@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AMT 211 — Aircraft Hardware, AN Bolts &amp; Standards Test</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>AMT 211 — Aircraft Hardware, AN Bolts &amp; Standards Test</h1>
+    <div class="sub">AIM Block 2 · FAA-H-8083-30B Aircraft Hardware (Ch.7) + AC 43.13-1B</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "In aircraft hardware coding, the letters \"AN\" stand for what standard?", "options": ["Air Force-Navy Standard", "Aircraft National", "Aerospace Numbered", "Army-Navy Aeronautical"], "correct": 0, "short": "Air Force-Navy (AN) Standard", "expl": "The handbook lists AN (Air Force-Navy) numbers as one of the primary ways threaded fasteners and rivets are identified.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "The abbreviation \"NAS\" on aircraft hardware stands for:", "options": ["Naval Aircraft Standard", "National Aerospace Standard", "National Aeronautical Society", "Navy Air Standard"], "correct": 1, "short": "National Aerospace Standard", "expl": "NAS = National Aerospace Standard (the handbook spells it 'National Aircraft Standard'; AIM worksheet uses 'National Aerospace Standard' — both refer to the same NAS series of internal-wrenching/close-tolerance parts).", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "\"MS\" in a part number such as MS20004 designates which standard?", "options": ["Metric Standard", "Material Specification", "Military Standard", "Manufacturing Standard"], "correct": 2, "short": "Military Standard", "expl": "MS = Military Standard. Threaded fasteners are identified by AN, NAS, or MS numbers per the Identification section.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "The standards organization abbreviated \"SAE\" is the:", "options": ["Standard Aerospace Engineering", "Society of Aviation Examiners", "Steel & Alloy Engineers", "Society of Automotive Engineers"], "correct": 3, "short": "Society of Automotive Engineers", "expl": "SAE = Society of Automotive Engineers, the body behind many alloy and hardware specifications referenced in aircraft maintenance.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "\"ASA\" (American Standards Association) is the predecessor of which present-day body?", "options": ["ANSI", "ASTM", "ISO", "NIST"], "correct": 0, "short": "ANSI (American National Standards Institute)", "expl": "The American Standards Association (ASA) was renamed and is known today as ANSI.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "The abbreviation \"NAF\" on older aircraft hardware refers to the:", "options": ["National Aircraft Foundation", "Naval Aircraft Factory", "Navy Airframe Fitting", "North American Fastener"], "correct": 1, "short": "Naval Aircraft Factory", "expl": "NAF = Naval Aircraft Factory, an early military source of aircraft-parts standards.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "\"AF\" as a hardware standard designation means:", "options": ["Aircraft Fastener", "Airframe Fitting", "Air Force Standard", "Anodized Finish"], "correct": 2, "short": "Air Force Standard", "expl": "AF = Air Force Standard (the worksheet's Standards-Organizations list).", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "Which abbreviation specifically identifies a fastener as an Air Force-Navy standard part?", "options": ["NAS", "MS", "SAE", "AN"], "correct": 3, "short": "AN", "expl": "AN = Air Force-Navy. NAS = National Aerospace Standard, MS = Military Standard, SAE = Society of Automotive Engineers.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "Standards Organizations"}, {"q": "The general-purpose hex-head aircraft bolt falls in which AN number range?", "options": ["AN3 through AN20", "AN21 through AN36", "AN73 through AN81", "AN173 through AN186"], "correct": 0, "short": "AN3 through AN20", "expl": "The hex-head aircraft bolt (AN-3 through AN-20) is the all-purpose structural bolt for tension or shear where a light drive fit is permissible.", "cite": "FAA-H-8083-30B pp. 7-37 to 7-38 (Aircraft Bolts / General Purpose Bolts)", "topic": "AN Bolt Ranges"}, {"q": "Clevis bolts, used in shear applications, are found in which AN number range?", "options": ["AN3-AN20", "AN21-AN36", "AN73-AN81", "AN173-AN186"], "correct": 1, "short": "AN21 through AN36", "expl": "Clevis bolts (AN21-AN36) are designed for shear loads only and are often used as a mechanical pin in a control system.", "cite": "FAA-H-8083-30B p. 7-39 (Clevis Bolts — shear only)", "topic": "AN Bolt Ranges"}, {"q": "The drilled-head bolt (deeper head drilled to receive safety wire) is designated:", "options": ["AN3", "AN21", "AN73", "AN173"], "correct": 2, "short": "AN73 (AN73-AN81 drilled-head series)", "expl": "The AN-73 drilled-head bolt is like the standard hex bolt but has a deeper head drilled for safety wire; AN-3 and AN-73 are interchangeable for strength.", "cite": "FAA-H-8083-30B p. 7-38 (General Purpose / Close Tolerance Bolts)", "topic": "AN Bolt Ranges"}, {"q": "Close-tolerance hex-head bolts, machined more accurately and used in tight drive-fit holes, are in which range?", "options": ["AN3-AN20", "AN21-AN36", "AN73-AN81", "AN173-AN186"], "correct": 3, "short": "AN173 through AN186", "expl": "Close-tolerance bolts may be hex-headed (AN-173 through AN-186) or 100-degree countersunk (NAS-80 through NAS-86); they require a tight drive fit.", "cite": "FAA-H-8083-30B p. 7-38 (General Purpose / Close Tolerance Bolts)", "topic": "AN Bolt Ranges"}, {"q": "A close-tolerance bolt moves into position only when struck with what tool?", "options": ["A 12- to 14-ounce hammer", "A 2-pound dead-blow mallet", "Finger pressure only", "A hydraulic press"], "correct": 0, "short": "A 12- to 14-ounce hammer", "expl": "The handbook defines the tight drive fit of a close-tolerance bolt: it moves only when struck with a 12- to 14-ounce hammer.", "cite": "FAA-H-8083-30B p. 7-38 (General Purpose / Close Tolerance Bolts)", "topic": "AN Bolt Ranges"}, {"q": "The AN-3 and AN-73 series bolts are described as essentially interchangeable in:", "options": ["Head diameter only", "Tension and shear strength", "Thread pitch only", "Material composition only"], "correct": 1, "short": "Tension and shear strength", "expl": "The AN-73 is the same as the AN-3 except for the drilled (deeper) head; the two series are interchangeable for tension and shear strengths.", "cite": "FAA-H-8083-30B p. 7-38 (General Purpose / Close Tolerance Bolts)", "topic": "AN Bolt Ranges"}, {"q": "Aircraft bolts are almost always manufactured in which class of thread fit?", "options": ["Class 1 (loose)", "Class 2 (free)", "Class 3 (medium)", "Class 4 (close)"], "correct": 2, "short": "Class 3 (medium fit)", "expl": "Aircraft bolts are almost always manufactured in Class 3, the medium fit; aircraft screws are usually Class 2 for ease of assembly.", "cite": "FAA-H-8083-30B p. 7-37 (Identification / Threaded Fasteners)", "topic": "AN Bolt Ranges"}, {"q": "A single raised dash on a bolt head identifies the bolt as:", "options": ["2024 aluminum alloy", "A reworked bolt", "Close-tolerance NAS bolt", "AN standard steel (corrosion-resistant/CRES)"], "correct": 3, "short": "AN standard steel bolt (corrosion-resistant steel)", "expl": "Per Figure 7-19, a single raised dash = AN standard steel bolt. (Note: the running text on p.7-39 has a known typo swapping this; the figure is authoritative and matches the AIM worksheet.)", "cite": "FAA-H-8083-30B p. 7-40, Figure 7-19 (Aircraft bolt identification)", "topic": "Bolt-Head Markings"}, {"q": "Two raised dashes on a bolt head indicate the bolt is made of:", "options": ["2024 aluminum alloy", "Corrosion-resistant steel", "Cadmium-plated carbon steel", "Titanium"], "correct": 0, "short": "2024 aluminum-alloy bolt", "expl": "Figure 7-19 shows the aluminum-alloy (2024) bolt marked with two raised dashes. Single dash = steel; double dash = aluminum.", "cite": "FAA-H-8083-30B p. 7-40, Figure 7-19 (Aircraft bolt identification)", "topic": "Bolt-Head Markings"}, {"q": "A raised or recessed triangle on a bolt head identifies a:", "options": ["Reworked bolt", "Close-tolerance NAS bolt", "Drilled-head bolt", "Special low-strength bolt"], "correct": 1, "short": "Close-tolerance (NAS) bolt", "expl": "Close-tolerance NAS bolts are marked with either a raised or recessed triangle; the material marking is the same as AN bolts.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Bolt-Head Markings"}, {"q": "A cross (plus-sign) marking on a bolt head indicates:", "options": ["A close-tolerance bolt", "An aluminum bolt", "A standard AN steel bolt", "A magnetically inspected bolt"], "correct": 2, "short": "Standard AN steel bolt", "expl": "Figure 7-19 shows the cross/asterisk-style markings on AN standard steel bolts. AN standard steel bolts are marked with a raised dash, asterisk, or single raised dash.", "cite": "FAA-H-8083-30B p. 7-40, Figure 7-19 (Aircraft bolt identification)", "topic": "Bolt-Head Markings"}, {"q": "A bolt head marked with the letter \"C\" indicates the bolt is:", "options": ["Cadmium-plated", "2024 aluminum", "Close-tolerance", "Corrosion-resistant (stainless) steel"], "correct": 3, "short": "Corrosion-resistant (stainless/CRES) steel", "expl": "A 'C' (whether on the head or in the part number) designates corrosion-resistant steel.", "cite": "FAA-H-8083-30B p. 7-40, Figure 7-19 (Aircraft bolt identification)", "topic": "Bolt-Head Markings"}, {"q": "An orange-dyed bolt head indicates the bolt has been:", "options": ["Magnetically (Magnaflux) inspected", "Cadmium plated", "Heat treated", "Reworked oversize"], "correct": 0, "short": "Magnetically (Magnaflux) inspected", "expl": "Figure 7-19 labels an 'Orange-dyed magnetically inspected' bolt; bolts inspected magnetically (Magnaflux) or fluorescently (Zyglo) are identified by colored lacquer or a distinctive head marking.", "cite": "FAA-H-8083-30B p. 7-40, Figure 7-19 (Aircraft bolt identification)", "topic": "Bolt-Head Markings"}, {"q": "A letter \"S\" stamped on a bolt head usually identifies a:", "options": ["Stainless bolt", "Special-purpose bolt", "Shear bolt", "Standard bolt"], "correct": 1, "short": "Special-purpose bolt", "expl": "Where manufacturers make bolts of different dimensions or greater strength than standard, the letter 'S' stamped on the head usually identifies these special bolts.", "cite": "FAA-H-8083-30B pp. 7-37 to 7-38 (Aircraft Bolts / General Purpose Bolts)", "topic": "Bolt-Head Markings"}, {"q": "In the part number AN3DD5A, what does the \"3\" indicate?", "options": ["Length of 3/8 inch", "Grip length of 3 inches", "Diameter of 3/16 inch (3 sixteenths)", "Three threads per inch"], "correct": 2, "short": "Diameter = 3/16 inch (3 sixteenths)", "expl": "The number after AN gives diameter in sixteenths of an inch: '3' = 3/16 inch.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "In the part number AN3DD5A, what does the \"DD\" indicate?", "options": ["Drilled and deburred", "Cadmium plated", "Double dash steel", "2024 aluminum alloy"], "correct": 3, "short": "2024 aluminum alloy", "expl": "'DD' = 2024 aluminum alloy. A 'C' in its place = corrosion-resistant steel; no letter = cadmium-plated steel.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "In the part number AN3DD5A, what does the \"5\" indicate?", "options": ["Length of 5/8 inch (5 eighths)", "Diameter of 5/16 inch", "5 threads per inch", "Grade-5 steel"], "correct": 0, "short": "Length = 5/8 inch (5 eighths)", "expl": "The number before any trailing letter gives length in eighths of an inch: '5' = 5/8 inch.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "In the part number AN3DD5A, what does the trailing \"A\" indicate?", "options": ["Aluminum material", "The shank is undrilled (no cotter-pin hole)", "Anodized finish", "An adjustable grip"], "correct": 1, "short": "The shank is undrilled (no cotter-pin hole)", "expl": "A trailing 'A' means the shank is undrilled. Absence of the 'A' means the shank IS drilled for a cotter pin.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "In the part number AN3C5, the letter \"C\" tells you the bolt is:", "options": ["Cadmium-plated steel", "2024 aluminum alloy", "Corrosion-resistant (stainless) steel", "Close tolerance"], "correct": 2, "short": "Corrosion-resistant steel (CRES)", "expl": "A 'C' in place of the 'DD' indicates corrosion-resistant steel.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "In a bolt part number, the absence of any material code letter (e.g., AN3-5) means the bolt is:", "options": ["2024 aluminum", "Corrosion-resistant steel", "Titanium", "Cadmium-plated carbon steel"], "correct": 3, "short": "Cadmium-plated (carbon) steel", "expl": "The handbook states the absence of the letters would indicate cadmium-plated steel.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "If an \"H\" precedes the length number in a bolt part number (e.g., AN3H5A), the bolt has a:", "options": ["Drilled head (for safety wire)", "Hardened shank", "Hex recess", "Heavy washer face"], "correct": 0, "short": "Drilled head (for safetying)", "expl": "An 'H' before the length digit means the head is drilled for safetying; the trailing 'A' still means the shank is undrilled.", "cite": "FAA-H-8083-30B p. 7-39 (Identification & Coding; AN3DD5A example)", "topic": "Part-Number Decoding"}, {"q": "In the nut code AN310D5R, what does the \"D\" indicate?", "options": ["Drilled", "2024-T aluminum alloy", "2017-T aluminum alloy", "Double thread"], "correct": 1, "short": "2024-T aluminum alloy", "expl": "For nut coding: B = brass, D = 2017-T aluminum, DD = 2024-T aluminum, C = stainless steel, dash = cadmium-plated carbon steel. (Handbook's AN310D5R example uses D = 2024-T.)", "cite": "FAA-H-8083-30B p. 7-46 (Nut coding; Aircraft Washers / AN960)", "topic": "Part-Number Decoding"}, {"q": "In the nut code AN310D5R, what does the trailing \"R\" indicate?", "options": ["Reworked", "Riveted base", "Right-hand thread", "Reduced grip"], "correct": 2, "short": "Right-hand thread", "expl": "In AN310D5R, R = right-hand thread (usually 24 threads per inch).", "cite": "FAA-H-8083-30B p. 7-46 (Nut coding; Aircraft Washers / AN960)", "topic": "Part-Number Decoding"}, {"q": "In the nut code AN310D5R, what does the \"5\" indicate?", "options": ["Grade-5 alloy", "5/8-inch length", "5 threads per inch", "5/16-inch diameter"], "correct": 3, "short": "5/16-inch diameter", "expl": "In the AN310D5R example, 5 = 5/16-inch diameter (the dash number corresponds to the bolt diameter it fits).", "cite": "FAA-H-8083-30B p. 7-46 (Nut coding; Aircraft Washers / AN960)", "topic": "Part-Number Decoding"}, {"q": "Which nut is castellated (slotted) to be safetied with a cotter pin or lock wire?", "options": ["Castle nut AN310", "Plain hex nut AN315", "Wing nut AN350", "Check nut AN316"], "correct": 0, "short": "Castle nut, AN310", "expl": "The castle nut AN310 is used with drilled-shank AN hex bolts, clevis bolts, eyebolts, drilled-head bolts, or studs; its castellations accommodate a cotter pin or lock wire.", "cite": "FAA-H-8083-30B p. 7-42 (Non-Self-Locking Nuts: AN310/AN315/AN320)", "topic": "Nuts"}, {"q": "A plain hex nut that requires a separate locking device (jam/check nut or lock washer) is the:", "options": ["AN310 castle nut", "AN315 plain hex nut", "AN320 shear nut", "AN350 wing nut"], "correct": 1, "short": "Plain hex nut, AN315", "expl": "The plain hex nut AN315 (and AN335) carries large tension loads but requires an auxiliary locking device such as a check nut or lock washer.", "cite": "FAA-H-8083-30B p. 7-42 (Non-Self-Locking Nuts: AN310/AN315/AN320)", "topic": "Nuts"}, {"q": "The castellated SHEAR nut (thinner, with shallower castellations than the castle nut) is the:", "options": ["AN310", "AN315", "AN320", "AN350"], "correct": 2, "short": "AN320 castellated shear nut", "expl": "The castellated shear nut AN320 is used where shear stress only is expected; it is not as deep or strong as the AN310 castle nut.", "cite": "FAA-H-8083-30B p. 7-42 (Non-Self-Locking Nuts: AN310/AN315/AN320)", "topic": "Nuts"}, {"q": "How is a low-temperature, fiber-insert self-locking nut typically identified?", "options": ["A red dot", "A knurled flange", "A green stripe", "Its blue color / blue fiber collar"], "correct": 3, "short": "By its blue color (fiber-insert collar)", "expl": "Self-locking nuts can be identified by the color of the insert; the low-temperature fiber-insert (elastic stop) nut is blue and is limited to about 250 F.", "cite": "FAA-H-8083-30B pp. 7-44 to 7-45 (Elastic Stop Nut / fiber collar)", "topic": "Nuts"}, {"q": "Elastic stop (fiber-insert) self-locking nuts must NOT be installed where temperatures exceed:", "options": ["250 F", "200 F", "150 F", "450 F"], "correct": 0, "short": "250 F", "expl": "Do not install elastic stop nuts where the temperature is higher than 250 F, because the self-locking action is reduced beyond that point.", "cite": "FAA-H-8083-30B p. 7-45 (Elastic stop nut 250 F limit; nut part numbers)", "topic": "Nuts"}, {"q": "A self-locking nut stamped out of spring sheet metal for non-structural use (e.g., access panels) is a:", "options": ["Castle nut", "Sheet-spring nut (speed nut / Tinnerman)", "Boots nut", "Plate nut"], "correct": 1, "short": "Sheet-spring nut (speed nut / Tinnerman)", "expl": "Sheet-spring nuts, such as speed nuts, are made of arched spring steel and used with self-tapping screws in non-structural locations.", "cite": "FAA-H-8083-30B pp. 7-67 to 7-68 (Sheet Spring/Speed nuts; Nut Plates)", "topic": "Nuts"}, {"q": "A nut riveted or welded permanently to the structure so a bolt can be installed from one side is a/an:", "options": ["Wing nut", "Jam nut", "Anchor nut / nut plate", "Check nut"], "correct": 2, "short": "Anchor nut / nut plate", "expl": "Self-locking nut bases (anchor nuts / nut plates) are riveted or welded to the structure, allowing bolts and screws to be installed from one side.", "cite": "FAA-H-8083-30B pp. 7-67 to 7-68 (Sheet Spring/Speed nuts; Nut Plates)", "topic": "Nuts"}, {"q": "A screw with fine threads, a clearly threaded full length, and no defined grip is a:", "options": ["Structural screw", "Self-tapping screw", "Drive screw", "Machine screw"], "correct": 3, "short": "Machine screw (AN515/AN520 roundhead, AN500-AN503 fillister, etc.)", "expl": "Machine screws (roundhead AN515 coarse / AN520 fine; fillister AN500-AN503) are general-purpose screws threaded along their length with no defined grip.", "cite": "FAA-H-8083-30B p. 7-67 (Machine Screws AN515/AN520; Self-Tapping Screws)", "topic": "Screws"}, {"q": "A screw with coarse threads and a sharp point, designed to cut its own threads, is a:", "options": ["Self-tapping screw", "Machine screw", "Structural screw", "Cap screw"], "correct": 0, "short": "Self-tapping screw", "expl": "Self-tapping sheet-metal screws (AN530/AN531, Parker-Kalon Z-type) have coarse threads and a point so they cut their own mating threads.", "cite": "FAA-H-8083-30B p. 7-67 (Machine Screws AN515/AN520; Self-Tapping Screws)", "topic": "Screws"}, {"q": "A screw that has a defined grip and the same shear strength as a comparable bolt is a:", "options": ["Machine screw", "Structural screw (AN509/AN525)", "Self-tapping screw", "Drive screw"], "correct": 1, "short": "Structural screw (AN509 / AN525)", "expl": "Structural screws (AN509 100-degree flathead, AN525 washer-head; NAS204-235) have a definite grip and the same shear strength as the equivalent bolt.", "cite": "FAA-H-8083-30B p. 7-66 (Structural Screws AN509/AN525)", "topic": "Screws"}, {"q": "The AN509 structural screw is specifically a:", "options": ["Roundhead machine screw", "Washer-head screw", "100-degree flathead (countersunk) screw", "Self-tapping sheet-metal screw"], "correct": 2, "short": "100-degree flathead (countersunk) structural screw", "expl": "The AN509 (100-degree) flathead screw is used in countersunk holes; the AN525 washer-head is used where a raised head is acceptable.", "cite": "FAA-H-8083-30B p. 7-66 (Structural Screws AN509/AN525)", "topic": "Screws"}, {"q": "Which washer provides a smooth bearing surface and acts as a shim to obtain correct grip length?", "options": ["AN935 lock washer", "AC950 ball-seat washer", "AN936 toothed washer", "AN960 plain (flat) washer"], "correct": 3, "short": "AN960 plain (flat) washer", "expl": "Plain washers AN960 (and AN970) provide a smooth bearing surface, act as shims for grip length, and position castellated nuts to drilled cotter-pin holes.", "cite": "FAA-H-8083-30B p. 7-46 (Nut coding; Aircraft Washers / AN960)", "topic": "Washers"}, {"q": "Which washer's spring action provides friction to keep a nut from loosening under vibration?", "options": ["AN935 / AN936 lock washer", "AN970 wood washer", "AN960 plain washer", "AN975 taper-pin washer"], "correct": 0, "short": "AN935 (split) / AN936 (toothed) lock washer", "expl": "Lock washers AN935 and AN936 are used with machine screws or bolts where a self-locking/castellated nut is not appropriate; the spring action prevents loosening.", "cite": "FAA-H-8083-30B pp. 7-46 to 7-47 (Plain & Lock Washers AN960/AN935/AN936)", "topic": "Washers"}, {"q": "A plain washer should be placed under a lock washer in order to:", "options": ["Increase clamp load", "Prevent damage (galling) to the surface material", "Reduce bolt grip", "Improve electrical bonding"], "correct": 1, "short": "Prevent damage to the surface material", "expl": "The handbook directs using plain washers under lock washers to prevent damage to the surface material.", "cite": "FAA-H-8083-30B p. 7-46 (Nut coding; Aircraft Washers / AN960)", "topic": "Washers"}, {"q": "To repair a worn or oversized HOLE, the technician installs a:", "options": ["Helicoil", "Rivnut", "Bushing (replacement/sleeve bushing)", "Speed nut"], "correct": 2, "short": "Replacement bushing", "expl": "Damaged internal threads/worn holes are repaired with replacement bushings (often shrink-fit, staked) — special wear-resistant material such as spark-plug bushings in cylinder heads.", "cite": "FAA-H-8083-30B pp. 7-48 to 7-49 (Replacement Bushings / Helicoils)", "topic": "Repair Inserts"}, {"q": "To repair worn-out internal THREADS in a casting, the technician installs a:", "options": ["Bushing", "Nut plate", "Cotter pin", "Helicoil (wire thread insert)"], "correct": 3, "short": "Helicoil (wire thread insert)", "expl": "Helicoils are precision-formed coils of 18-8 stainless wire (diamond cross-section) used as screw-thread bushings to restore damaged threads in castings/light metals.", "cite": "FAA-H-8083-30B p. 7-49 (Helicoils)", "topic": "Repair Inserts"}, {"q": "Name the three common turnlock (quarter-turn captive) fasteners.", "options": ["Dzus, Camloc, Airloc", "Hi-Lok, Hi-Tigue, Hi-Lite", "Cherry, Olympic, Huck", "Rivnut, Jo-bolt, Lockbolt"], "correct": 0, "short": "Dzus, Camloc, and Airloc", "expl": "The most commonly used captive/turn-lock fasteners are the Dzus, Camloc, and Airloc; a quarter turn of the stud locks them.", "cite": "FAA-H-8083-30B p. 7-64 (Captive/Turn Lock Fasteners: Dzus, Camloc, Airloc)", "topic": "Turnlock Fasteners"}, {"q": "A swaged copper sleeve squeezed onto a control cable around a thimble is known by what process/trade name?", "options": ["Dzus swage", "Nicopress (copper sleeve) process", "Camloc crimp", "Helicoil splice"], "correct": 1, "short": "Nicopress process (copper sleeve)", "expl": "The Nicopress process uses patented copper sleeves swaged onto cable; this is an AC 43.13-1B term (the FAA -30B simply calls them swaged terminals/sleeves).", "cite": "AC 43.13-1B pp. 7-13 to 7-14 (Nicopress process / copper sleeves)", "topic": "Cable Hardware"}];
+const DRILL = [{"label": "7 Standards orgs", "text": "AN=Air Force-Navy · NAF=Naval Aircraft Factory · AF=Air Force Std · NAS=National Aerospace Std · SAE=Society of Automotive Engineers · ASA=American Standards Assn (now ANSI) · MS=Military Standard"}, {"label": "4 AN bolt ranges", "text": "AN3-AN20 = general-purpose hex-head · AN21-AN36 = clevis (shear) · AN73-AN81 = drilled-head (safety wire) · AN173-AN186 = close-tolerance"}, {"label": "Head-marking codes", "text": "Single dash = AN steel/CRES · Two dashes = 2024 aluminum · Triangle = close-tolerance (NAS) · Cross = standard AN steel · 'C' = CRES · Orange dye = Magnaflux (magnetic-particle) inspected"}, {"label": "Decode AN3DD5A", "text": "AN = Air Force-Navy std · 3 = 3/16 in dia · DD = 2024 aluminum (C=CRES, none=cad-plated steel) · 5 = 5/8 in length · A = undrilled shank (H before length = drilled head)"}, {"label": "Key nut numbers", "text": "AN310 = castle nut (cotter pin) · AN315 = plain hex (needs jam/check nut) · AN320 = castellated shear nut · AN350 = wing nut"}, {"label": "Fiber nut limit", "text": "Elastic stop / fiber self-locking nut = blue, max 250 F — do NOT use above 250 F"}, {"label": "Washers", "text": "AN960 = plain/flat (bearing surface + shim) · AN935 = split lock · AN936 = toothed lock"}, {"label": "Screws", "text": "Machine = AN500-AN520 (no grip) · Self-tapping = coarse, sharp point (AN530/AN531) · Structural = AN509 (100-deg flat) / AN525 (washer head), defined grip + bolt-equal shear"}, {"label": "Repair inserts", "text": "Bushing = worn HOLE · Helicoil = worn THREADS (18-8 stainless wire coil)"}, {"label": "Turnlock fasteners", "text": "Dzus, Camloc, Airloc — quarter-turn captive fasteners for panels/cowls"}, {"label": "Cable hardware", "text": "Nicopress = swaged copper sleeve · Go/no-go gauge = checks swaged terminal compression · Turnbuckle = adjusts cable tension (one RH, one LH terminal)"}, {"label": "Thread fit", "text": "Aircraft bolts = Class 3 (medium fit) · aircraft screws = Class 2 (free) · close-tolerance bolt seats with a 12-14 oz hammer"}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
