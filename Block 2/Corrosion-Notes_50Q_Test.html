@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Corrosion Notes — 50Q Test</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Corrosion Notes — 50Q Test</h1>
+    <div class="sub">AIM Block 2 · Corrosion &amp; cleaning retention · FAA-H-8083-30B Ch.8</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Metal corrosion is best defined as the deterioration of metal by:", "options": ["Mechanical abrasion only", "Chemical or electrochemical attack", "Heat discoloration above 700 °F", "Fatigue cracking from cyclic stress"], "correct": 1, "short": "Chemical or electrochemical attack", "expl": "Corrosion is the deterioration of metal by chemical or electrochemical attack, converting it back to a metallic compound. Heat discoloration is not corrosion.", "cite": "FAA-H-8083-30B p. 8-1", "topic": "definitions"}, {"q": "On aluminum alloys and magnesium, corrosion typically appears as:", "options": ["A greenish film", "A reddish byproduct (rust)", "Pitting/etching with a gray or white powdery deposit", "A blue-green powder"], "correct": 2, "short": "Pitting/etching with a gray or white powdery deposit", "expl": "Aluminum and magnesium corrode to white/gray powder with pitting and etching. Green = copper; red rust = steel; blue-green = copper alloy.", "cite": "FAA-H-8083-30B p. 8-1", "topic": "corrosive agents"}, {"q": "The greenish film that forms on copper and copper alloys indicates:", "options": ["Filiform corrosion", "Corrosion of the copper", "Heat oxidation", "Cadmium plating loss"], "correct": 1, "short": "Corrosion of the copper", "expl": "Copper and copper alloys form a greenish corrosion film; steel forms reddish rust; aluminum/magnesium form gray/white powder.", "cite": "FAA-H-8083-30B p. 8-1", "topic": "corrosive agents"}, {"q": "The two general classifications that cover most forms of corrosion are:", "options": ["Surface and intergranular", "Galvanic and stress", "Direct chemical attack and electrochemical attack", "Pitting and exfoliation"], "correct": 2, "short": "Direct chemical attack and electrochemical attack", "expl": "The handbook lists two general classifications: direct chemical attack and electrochemical attack. The others are specific forms.", "cite": "FAA-H-8083-30B p. 8-3", "topic": "direct vs electrochemical"}, {"q": "In direct chemical attack, the anodic and cathodic changes occur:", "options": ["A measurable distance apart", "Simultaneously at the same point", "Only in the presence of dissimilar metals", "Only under an organic coating"], "correct": 1, "short": "Simultaneously at the same point", "expl": "In direct (pure) chemical attack the changes occur simultaneously at the same point; in electrochemical attack they occur a measurable distance apart.", "cite": "FAA-H-8083-30B p. 8-3", "topic": "direct vs electrochemical"}, {"q": "How many conditions must exist before electrochemical corrosion can occur?", "options": ["Two", "Three", "Four", "Five"], "correct": 2, "short": "Four", "expl": "Four conditions: an anode, a cathode (dissimilar conductive material), an electrolyte, and electrical contact between anode and cathode.", "cite": "FAA-H-8083-30B p. 8-3", "topic": "four conditions"}, {"q": "Eliminating which of the following will stop electrochemical corrosion?", "options": ["All four conditions at once", "Any one of the four required conditions", "Only the electrolyte", "Only the anode"], "correct": 1, "short": "Any one of the four required conditions", "expl": "Elimination of any ONE of the four conditions stops electrochemical corrosion. Removing the electrolyte by cleaning is the basis of corrosion control.", "cite": "FAA-H-8083-30B p. 8-3", "topic": "four conditions"}, {"q": "In an electrochemical corrosion cell, the anode is the metal that:", "options": ["Does not corrode", "Is most noble", "Corrodes (is oxidized / loses electrons)", "Acts as the electrolyte"], "correct": 2, "short": "Corrodes (is oxidized / loses electrons)", "expl": "The anode is the more active/less noble metal that corrodes (oxidizes). The cathode is the more noble metal that does not corrode.", "cite": "FAA-H-8083-30B p. 8-3, 8-6", "topic": "anode/cathode"}, {"q": "In a corrosion cell, the cathode is the metal that:", "options": ["Corrodes most rapidly", "Is least likely to corrode (most noble)", "Always becomes the electrolyte", "Is always magnesium"], "correct": 1, "short": "Is least likely to corrode (most noble)", "expl": "The cathode is the most noble / least active metal and does not corrode; magnesium is anodic, never the cathode in aircraft couples.", "cite": "FAA-H-8083-30B p. 8-6", "topic": "anode/cathode"}, {"q": "The electrolyte in an electrochemical corrosion cell is:", "options": ["A dissimilar metal", "A continuous conductive liquid path (usually water)", "The protective oxide film", "An inert gas"], "correct": 1, "short": "A continuous conductive liquid path (usually water)", "expl": "The electrolyte is a continuous, conductive liquid path—usually water—capable of conducting a tiny current of electricity.", "cite": "FAA-H-8083-30B p. 8-3", "topic": "electrolyte"}, {"q": "A metal's specific electrical potential in a given environment is commonly referred to as its:", "options": ["Hardness", "Nobility", "Ductility", "Tensile strength"], "correct": 1, "short": "Nobility", "expl": "Each metal's electrical potential is called its 'nobility.' The less noble a metal, the more easily it corrodes.", "cite": "FAA-H-8083-30B p. 8-3", "topic": "electrochemical series"}, {"q": "The galvanic (electrochemical) series lists metals from:", "options": ["Hardest to softest", "Most anodic (likely to corrode) to most cathodic (least likely)", "Lightest to heaviest", "Cheapest to most costly"], "correct": 1, "short": "Most anodic (likely to corrode) to most cathodic (least likely)", "expl": "Figure 8-6 ranks metals from most likely to corrode (anodic) to least likely (cathodic). Magnesium is most anodic; gold/platinum most cathodic.", "cite": "FAA-H-8083-30B p. 8-6", "topic": "electrochemical series"}, {"q": "The greater the difference in electrical potential between two coupled metals, the:", "options": ["Slower the corrosion", "Greater the severity of corrosive attack", "Less electrolyte is needed", "More noble both become"], "correct": 1, "short": "Greater the severity of corrosive attack", "expl": "The greater the potential difference (difference in activity), the greater the severity of galvanic attack if conditions allow.", "cite": "FAA-H-8083-30B p. 8-3, 8-10", "topic": "anode/cathode"}, {"q": "The most common (and most general) form of corrosion is:", "options": ["Filiform corrosion", "Surface (uniform etch) corrosion", "Exfoliation", "Fretting"], "correct": 1, "short": "Surface (uniform etch) corrosion", "expl": "General surface corrosion (uniform etch/attack) is the most common form, appearing as roughening, etching, or pitting with a powdery deposit.", "cite": "FAA-H-8083-30B p. 8-5", "topic": "surface corrosion"}, {"q": "Filiform corrosion is a special form of:", "options": ["Stress corrosion", "Oxygen concentration cell corrosion", "Direct chemical attack", "Fretting corrosion"], "correct": 1, "short": "Oxygen concentration cell corrosion", "expl": "Filiform corrosion is a special form of oxygen concentration cell that occurs under organic coatings; polyurethane is especially susceptible.", "cite": "FAA-H-8083-30B p. 8-5", "topic": "filiform"}, {"q": "Filiform corrosion is recognized by:", "options": ["A green powdery film", "A worm-like trace of corrosion under the paint film", "Lifting layers of metal", "A reddish rust streak"], "correct": 1, "short": "A worm-like trace of corrosion under the paint film", "expl": "Filiform shows a characteristic worm-like trace beneath the paint film. Lifting metal layers describes exfoliation.", "cite": "FAA-H-8083-30B p. 8-5", "topic": "filiform"}, {"q": "One of the most destructive and intense forms of corrosion, most common on aluminum and magnesium, is:", "options": ["Surface corrosion", "Pitting corrosion", "Fretting corrosion", "Filiform corrosion"], "correct": 1, "short": "Pitting corrosion", "expl": "Pitting is one of the most destructive forms, common on metals that form protective oxide films like aluminum and magnesium.", "cite": "FAA-H-8083-30B p. 8-6", "topic": "pitting"}, {"q": "Pitting corrosion is first noticeable as:", "options": ["A worm-like trace", "A white or gray powdery deposit (like dust) blotching the surface", "Lifted metal layers", "A black smoking ring"], "correct": 1, "short": "A white or gray powdery deposit (like dust) blotching the surface", "expl": "Pitting first shows as a white/gray powdery deposit similar to dust; when cleaned, tiny holes or pits are revealed.", "cite": "FAA-H-8083-30B p. 8-6", "topic": "pitting"}, {"q": "Dissimilar metal corrosion is also known as:", "options": ["Intergranular corrosion", "Galvanic corrosion", "Fretting corrosion", "Uniform etch"], "correct": 1, "short": "Galvanic corrosion", "expl": "Dissimilar metal corrosion = galvanic (electrolytic) corrosion, occurring where insulation between dissimilar metals has broken down.", "cite": "FAA-H-8083-30B p. 8-6, 8-20", "topic": "dissimilar metal"}, {"q": "Galvanic corrosion requires two dissimilar metals in electrical contact in the presence of:", "options": ["Dry air", "An electrolyte", "An inert gas", "Heat above 700 °F"], "correct": 1, "short": "An electrolyte", "expl": "Galvanic corrosion occurs when two dissimilar metals make electrical contact in the presence of an electrolyte.", "cite": "FAA-H-8083-30B p. 8-10", "topic": "dissimilar metal"}, {"q": "In galvanic corrosion, corrosion is most rapid and severe when the corroding (anodic) metal's surface area is:", "options": ["Much larger than the cathodic metal", "Smaller than the less active (cathodic) metal", "Equal to the cathode", "Coated with oxide"], "correct": 1, "short": "Smaller than the less active (cathodic) metal", "expl": "When the corroding metal's area is smaller than the less active metal, corrosion is rapid and severe (unfavorable area ratio).", "cite": "FAA-H-8083-30B p. 8-10", "topic": "dissimilar metal"}, {"q": "Intergranular corrosion is an attack along the:", "options": ["Surface oxide film", "Grain boundaries of an alloy", "Rivet heads only", "Paint film"], "correct": 1, "short": "Grain boundaries of an alloy", "expl": "Intergranular corrosion attacks along grain boundaries, resulting from lack of uniformity in the alloy structure—often improper heat treatment.", "cite": "FAA-H-8083-30B p. 8-7", "topic": "intergranular"}, {"q": "High-strength aluminum alloys 2014 and 7075 are especially susceptible to intergranular corrosion when they have been:", "options": ["Anodized", "Improperly heat-treated and then exposed to a corrosive environment", "Painted with epoxy", "Shot peened"], "correct": 1, "short": "Improperly heat-treated and then exposed to a corrosive environment", "expl": "2014 and 7075 are more susceptible to intergranular corrosion if improperly heat-treated then exposed to a corrosive environment.", "cite": "FAA-H-8083-30B p. 8-7", "topic": "intergranular"}, {"q": "Exfoliation corrosion is best described as:", "options": ["A surface powdery deposit", "An advanced form of intergranular corrosion that lifts surface grains in layers", "A worm-like trace under paint", "Pitting in tubing walls"], "correct": 1, "short": "An advanced form of intergranular corrosion that lifts surface grains in layers", "expl": "Exfoliation is an advanced form of intergranular corrosion; expanding corrosion products at grain boundaries lift the surface grains/layers.", "cite": "FAA-H-8083-30B p. 8-7", "topic": "exfoliation"}, {"q": "Exfoliation corrosion is most often seen on:", "options": ["Cast magnesium engine cases", "Extruded sections such as spars", "Polished Alclad skin", "Steel control cables"], "correct": 1, "short": "Extruded sections such as spars", "expl": "Exfoliation is most often seen on extruded sections (e.g., spars) where grain thickness is less than in rolled forms.", "cite": "FAA-H-8083-30B p. 8-7", "topic": "exfoliation"}, {"q": "Which inspection methods are noted as successful for detecting exfoliation/intergranular corrosion?", "options": ["Visual and dye penetrant", "Ultrasonic and eddy current", "Magnetic particle only", "Litmus paper"], "correct": 1, "short": "Ultrasonic and eddy current", "expl": "Ultrasonic and eddy current inspection methods are used with great success to detect this subsurface corrosion.", "cite": "FAA-H-8083-30B p. 8-7", "topic": "detection"}, {"q": "Stress corrosion cracking results from the combined effect of:", "options": ["Heat and oxygen only", "Sustained (constant or cyclic) tensile stress and a damaging chemical environment", "Two dissimilar metals only", "Abrasion and vibration"], "correct": 1, "short": "Sustained (constant or cyclic) tensile stress and a damaging chemical environment", "expl": "Stress corrosion involves sustained tensile stress acting together with a corrosive chemical environment.", "cite": "FAA-H-8083-30B p. 8-8", "topic": "stress corrosion"}, {"q": "Magnesium alloys may experience stress corrosion cracking in:", "options": ["Dry nitrogen", "Moist air", "Pure water only", "Vacuum"], "correct": 1, "short": "Moist air", "expl": "Magnesium alloys may stress corrode in moist air; salt water attacks steel/aluminum; methyl alcohol-HCl attacks titanium.", "cite": "FAA-H-8083-30B p. 8-8", "topic": "stress corrosion"}, {"q": "Fretting corrosion occurs between two mating surfaces, normally at rest, that are subject to:", "options": ["A strong electrolyte", "Slight relative motion (vibration)", "High heat only", "Chemical immersion"], "correct": 1, "short": "Slight relative motion (vibration)", "expl": "Fretting occurs when two surfaces normally at rest undergo slight relative motion, producing pitting and fine debris.", "cite": "FAA-H-8083-30B p. 8-9", "topic": "fretting"}, {"q": "Deep grooves resembling brinell markings worn into a bearing surface by fretting are called:", "options": ["Smoking rivets", "False brinelling", "Exfoliation", "Pitting trails"], "correct": 1, "short": "False brinelling", "expl": "Sharp small contact areas can wear grooves resembling brinell marks—called false brinelling.", "cite": "FAA-H-8083-30B p. 8-9", "topic": "fretting"}, {"q": "The classic indication of fretting corrosion on a rivet is a:", "options": ["Greenish film", "Black ring (smoking rivet)", "White whisker", "Worm-like trace"], "correct": 1, "short": "Black ring (smoking rivet)", "expl": "The most common fretting example is the 'smoking rivet'—identified by a black ring around the rivet on cowling and wing skins.", "cite": "FAA-H-8083-30B p. 8-9", "topic": "fretting"}, {"q": "The most common corrosive agents are:", "options": ["Oils, greases, and waxes", "Acids, alkalies, and salts", "Plastics and rubber", "Inert gases"], "correct": 1, "short": "Acids, alkalies, and salts", "expl": "The most common corrosive agents are acids, alkalies, and salts; atmosphere and water act as media (and agents).", "cite": "FAA-H-8083-30B p. 8-10", "topic": "corrosive agents"}, {"q": "Which alkali is an exception that aluminum alloys are highly resistant to?", "options": ["Washing soda", "Potash", "Lime", "Ammonia"], "correct": 3, "short": "Ammonia", "expl": "Aluminum alloys are highly resistant to ammonia (an alkali); washing soda, potash, and lime are all particularly corrosive to aluminum.", "cite": "FAA-H-8083-30B p. 8-10", "topic": "corrosive agents"}, {"q": "Visual inspection for corrosion is typically aided by a flashlight, inspection mirror, and a:", "options": ["100X microscope", "5–10X magnifying glass", "Litmus strip", "Borescope only"], "correct": 1, "short": "5–10X magnifying glass", "expl": "A general visual inspection uses a flashlight, inspection mirror, and a 5–10X magnifying glass. Visual is the most widely used method.", "cite": "FAA-H-8083-30B p. 8-13", "topic": "detection"}, {"q": "Which NDI methods specifically require calibrated equipment and a controlling reference standard each time used?", "options": ["Visual and tactile", "Eddy current, x-ray (radiological), and ultrasonic", "Litmus and pH paper", "Dry-wash and polishing"], "correct": 1, "short": "Eddy current, x-ray (radiological), and ultrasonic", "expl": "Eddy current, x-ray, and ultrasonic methods require properly calibrated equipment and a reference standard for reliable results.", "cite": "FAA-H-8083-30B p. 8-13", "topic": "detection"}, {"q": "Battery compartments remain corrosion-prone primarily because:", "options": ["They contain magnesium castings", "Fumes from overheated electrolyte spread to adjacent cavities", "They are exposed to high-velocity air", "They trap exhaust gases"], "correct": 1, "short": "Fumes from overheated electrolyte spread to adjacent cavities", "expl": "Fumes from overheated electrolyte are hard to contain and spread to adjacent cavities, causing rapid attack on unprotected metal.", "cite": "FAA-H-8083-30B p. 8-11", "topic": "corrosion-prone"}, {"q": "Battery boxes are vented and neutralized using a porous pad moistened with:", "options": ["Chromic acid", "A neutralizing agent (e.g., bicarbonate of soda)", "Kerosene", "Stoddard solvent"], "correct": 1, "short": "A neutralizing agent (e.g., bicarbonate of soda)", "expl": "Battery vent systems use a porous pad moistened with a neutralizing agent (bicarbonate of soda) to neutralize acid.", "cite": "FAA-H-8083-30B p. 8-11", "topic": "corrosion-prone"}, {"q": "Piano-type hinges are prime corrosion spots mainly because:", "options": ["They are made entirely of magnesium", "Of dissimilar metal contact between the steel pin and aluminum hinge plus trapped moisture", "They run hot from braking", "They are exposed to exhaust gas"], "correct": 1, "short": "Of dissimilar metal contact between the steel pin and aluminum hinge plus trapped moisture", "expl": "Piano hinges combine a steel pin with an aluminum hinge (dissimilar metals) and trap dirt, salt, and moisture—the electrolyte.", "cite": "FAA-H-8083-30B p. 8-13", "topic": "corrosion-prone"}, {"q": "Which area 'probably receives more punishment' from mud, water, salt, gravel, and debris than any other?", "options": ["The empennage", "The wheel well and landing gear", "The cockpit", "The fuel tank vents"], "correct": 1, "short": "The wheel well and landing gear", "expl": "The wheel well and landing gear receive more punishment from mud, water, salt, and debris than any other area on the aircraft.", "cite": "FAA-H-8083-30B p. 8-12", "topic": "corrosion-prone"}, {"q": "In general, a complete corrosion treatment includes cleaning/stripping, removing corrosion products, neutralizing residue in pits, restoring protective films, and:", "options": ["Leaving the area bare", "Applying temporary or permanent coatings or paint finishes", "Heat-treating the part", "Pickling in acid"], "correct": 1, "short": "Applying temporary or permanent coatings or paint finishes", "expl": "Complete treatment ends with applying temporary or permanent coatings/paint finishes after the other steps.", "cite": "FAA-H-8083-30B p. 8-14", "topic": "treatment steps"}, {"q": "Iron oxide (rust) must be controlled because, unlike some oxides, rust:", "options": ["Forms a protective barrier", "Is not protective and actually promotes further attack by attracting moisture", "Neutralizes acids", "Only forms above 700 °F"], "correct": 1, "short": "Is not protective and actually promotes further attack by attracting moisture", "expl": "Rust is not a protective coating; it attracts moisture and acts as a catalyst for additional corrosion, so all rust must be removed.", "cite": "FAA-H-8083-30B p. 8-15", "topic": "ferrous"}, {"q": "Chemical rust removers are prohibited on high-strength steel parts without engineering authorization because they can cause:", "options": ["Exfoliation", "Hydrogen embrittlement", "Filiform corrosion", "Anodizing"], "correct": 1, "short": "Hydrogen embrittlement", "expl": "High-strength steel parts are subject to hydrogen embrittlement, so chemical corrosion removers require engineering authorization.", "cite": "FAA-H-8083-30B p. 8-17", "topic": "hydrogen embrittlement"}, {"q": "Magnesium is described as the metal in aircraft construction that is:", "options": ["Most noble and corrosion resistant", "The most chemically active and most difficult to protect", "Always the cathode", "Immune to corrosion in moist air"], "correct": 1, "short": "The most chemically active and most difficult to protect", "expl": "Magnesium is the most chemically active (most anodic) metal used in aircraft and the most difficult to protect.", "cite": "FAA-H-8083-30B p. 8-19", "topic": "magnesium"}, {"q": "When cleaning corroded magnesium, you must NOT use:", "options": ["Hog-bristle (nonmetallic) brushes", "Steel wire brushes or steel cutting tools", "Nonwoven abrasive pads", "Chromic acid solution"], "correct": 1, "short": "Steel wire brushes or steel cutting tools", "expl": "Steel wire brushes, carborundum abrasives, and steel cutting tools must not be used on magnesium; use stiff hog-bristle/nonmetallic tools.", "cite": "FAA-H-8083-30B p. 8-19", "topic": "magnesium"}, {"q": "A thin coating of relatively pure aluminum rolled over a stronger aluminum alloy is called:", "options": ["Anodize", "Alodine", "Alclad", "Cadmium plate"], "correct": 2, "short": "Alclad", "expl": "Alclad is pure aluminum clad over an alloy; the pure layer resists corrosion and acts sacrificially (anodic) to protect the base.", "cite": "FAA-H-8083-30B p. 8-18", "topic": "alclad/anodize"}, {"q": "Anodizing is best described as a/an:", "options": ["Simple non-electrolytic field chemical dip", "Electrolytic process that thickens the aluminum oxide film, with the part as the positive pole", "Painting primer step", "Mechanical buffing process"], "correct": 1, "short": "Electrolytic process that thickens the aluminum oxide film, with the part as the positive pole", "expl": "Anodizing is an electrolytic process; the aluminum part is the positive pole in a chromic-acid bath, thickening the protective oxide film.", "cite": "FAA-H-8083-30B p. 8-22", "topic": "alclad/anodize"}, {"q": "Alodizing (Alodine) differs from anodizing in that alodizing is a:", "options": ["Electrolytic factory-only process", "Simple non-electrolytic chemical conversion treatment for all aluminum alloys", "Mechanical sanding method", "Heat-treatment"], "correct": 1, "short": "Simple non-electrolytic chemical conversion treatment for all aluminum alloys", "expl": "Alodizing is a simple chemical (non-electrolytic) conversion coating for all aluminum alloys; it is replacing anodizing in field work.", "cite": "FAA-H-8083-30B p. 8-22", "topic": "alodine/anodize"}, {"q": "The anodic (oxide) coating produced by anodizing is, with respect to electricity, a:", "options": ["Good conductor", "Poor conductor (insulator)", "Superconductor", "Variable conductor"], "correct": 1, "short": "Poor conductor (insulator)", "expl": "The anodic coating is a poor conductor; it must be removed where a bonding wire attaches. It also is a good bond for paint.", "cite": "FAA-H-8083-30B p. 8-22", "topic": "alclad/anodize"}, {"q": "Aluminum metal polish must NOT be used on anodized surfaces because it:", "options": ["Causes hydrogen embrittlement", "Is abrasive enough to remove the protective oxide/anodized film", "Etches steel fasteners", "Promotes filiform corrosion"], "correct": 1, "short": "Is abrasive enough to remove the protective oxide/anodized film", "expl": "Metal polish is abrasive enough to remove the protective anodized/oxide film, so it must not be used on anodized aluminum.", "cite": "FAA-H-8083-30B p. 8-18, 8-22", "topic": "alclad/anodize"}, {"q": "All dissimilar-metal joints NOT involving magnesium are protected by applying a minimum of:", "options": ["One coat of lacquer", "Two coats of zinc chromate or epoxy primer", "Three coats of wax", "A single layer of vinyl tape"], "correct": 1, "short": "Two coats of zinc chromate or epoxy primer", "expl": "Non-magnesium dissimilar joints get a minimum of two coats of zinc chromate (preferably epoxy) primer, air-dried 6 hours between coats.", "cite": "FAA-H-8083-30B p. 8-20", "topic": "dissimilar insulation"}];
+const DRILL = [];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

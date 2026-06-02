@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project 2-11 — Corrosion Control Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Project 2-11 — Corrosion Control Quiz</h1>
+    <div class="sub">AIM Block 2 · AC 43-4B (primary) + FAA-H-8083-30B Ch.8</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Aircraft operated in a corrosive environment need a more stringent corrosion-control program than those in a dry environment. Which of the following is one of the corrosive environments identified by AC 43-4B?", "options": ["High-altitude desert operation", "Over-water (over-the-ocean) operation", "Operation below 10,000 feet MSL", "Operation in below-freezing temperatures only"], "correct": 1, "short": "Over-water (over-the-ocean) operation.", "expl": "Corrosive environments include salt air, heavy atmospheric industrial pollution, and over-water operations. Dry desert air is far less corrosive.", "cite": "AC 43-4B p. 1-2, para. 1.8.1", "topic": "environments"}, {"q": "Heavy atmospheric industrial pollution is considered a corrosive environment chiefly because it introduces:", "options": ["Acidic and sulfur-bearing contaminants onto the surface", "Excess oxygen to the metal", "Mechanical abrasion from soot", "Ultraviolet degradation of paint"], "correct": 0, "short": "Acidic/industrial contaminants on the surface.", "expl": "Industrial pollution deposits acidic, salt- and sulfur-bearing contaminants that act as electrolytes/corrosive agents. The chief corrosion driver is chemical, not abrasion or UV.", "cite": "AC 43-4B p. 1-2, para. 1.8.1", "topic": "environments"}, {"q": "AC 43-4B lists numerous factors that influence the rate of metal corrosion. Which of the following is one of those factors?", "options": ["The paint manufacturer's brand name", "Heat treatment and grain direction of the metal", "The registration number of the aircraft", "The altitude at which the part was machined"], "correct": 1, "short": "Heat treatment and grain direction.", "expl": "Listed factors include type of metal, heat treatment and grain direction, presence of a dissimilar metal, temperature, and presence of electrolytes, among others.", "cite": "AC 43-4B p. 2-2/2-3, para. 2.4.1", "topic": "factors"}, {"q": "The presence of a dissimilar, less corrodible metal in contact with a metal increases the corrosion rate because it sets up:", "options": ["Galvanic (electrochemical) corrosion", "Filiform corrosion", "Heat oxidation", "Direct chemical attack"], "correct": 0, "short": "Galvanic corrosion.", "expl": "A dissimilar, less corrodible (more noble) metal in electrical contact through an electrolyte makes the active metal the anode, accelerating galvanic corrosion.", "cite": "AC 43-4B p. 2-2/2-3, para. 2.4.1 (also p. 2-5, para. 2.5.3)", "topic": "factors"}, {"q": "A form of corrosion that first appears as a white or gray powdery deposit, similar to dust, blotching the surface — and reveals tiny holes when cleaned away — is:", "options": ["Filiform corrosion", "Fretting corrosion", "Pitting corrosion", "Intergranular corrosion"], "correct": 2, "short": "Pitting corrosion.", "expl": "Pitting is the most common effect of corrosion on aluminum and magnesium alloys, first seen as a white/gray powdery deposit; cleaning it reveals tiny pits or holes.", "cite": "AC 43-4B p. 2-4, para. 2.5.2", "topic": "forms"}, {"q": "Concentration cell corrosion (crevice corrosion) develops where there is a difference in concentration of ions or oxygen. Oxygen concentration cells typically form under all of the following EXCEPT:", "options": ["Metallic or nonmetallic deposits on the surface", "Faying surfaces such as riveted lap joints", "A freshly anodized, sealed surface with no deposits", "Gaskets, wood, rubber, and similar materials in contact with the metal"], "correct": 2, "short": "A clean, sealed anodized surface.", "expl": "Oxygen cells form under deposits, faying/riveted lap joints, and gaskets/wood/rubber. A clean, properly sealed surface with no trapped material or deposit does not create the oxygen-starved anodic site.", "cite": "AC 43-4B p. 2-6, para. 2.5.4.2", "topic": "forms"}, {"q": "Galvanic corrosion occurs when:", "options": ["A single metal is heated above 700 degrees F", "Two dissimilar metals make electrical contact in the presence of an electrolyte", "Paint is applied too thickly", "Oxygen is completely excluded from a surface"], "correct": 1, "short": "Two dissimilar metals + electrolyte + electrical contact.", "expl": "Galvanic corrosion requires two dissimilar metals in electrical contact through an electrolyte. The greater the activity difference, the faster the attack.", "cite": "AC 43-4B p. 2-5, para. 2.5.3", "topic": "forms"}, {"q": "Corrosion that attacks along the grain boundaries of an alloy — where the boundary and grain center act as anode and cathode — is called:", "options": ["Intergranular corrosion", "Filiform corrosion", "Fretting corrosion", "Surface (uniform) corrosion"], "correct": 0, "short": "Intergranular corrosion.", "expl": "Intergranular corrosion attacks grain boundaries, which differ chemically from the grain center. High-strength aluminum alloys 2014 and 7075 are especially susceptible if improperly heat-treated.", "cite": "AC 43-4B p. 2-6, para. 2.5.5", "topic": "forms"}, {"q": "High-strength aluminum alloys 2014 and 7075 become more susceptible to intergranular corrosion when they have been:", "options": ["Anodized", "Shot-peened", "Painted with epoxy primer", "Improperly heat-treated and then exposed to a corrosive environment"], "correct": 3, "short": "Improperly heat-treated, then exposed to corrosion.", "expl": "AC 43-4B states 2014 and 7075 are more susceptible to intergranular corrosion if improperly heat-treated then exposed to a corrosive environment.", "cite": "AC 43-4B p. 2-6, para. 2.5.5", "topic": "forms"}, {"q": "An advanced form of intergranular corrosion in which surface grains are lifted up or swelled by expanding corrosion products at the grain boundaries is:", "options": ["Pitting", "Filiform corrosion", "Exfoliation corrosion", "Stress-corrosion cracking"], "correct": 2, "short": "Exfoliation corrosion.", "expl": "Exfoliation is an advanced form of intergranular corrosion that lifts/swells surface grains. It occurs on extruded, rolled, wrought, and forged high-strength aluminum and magnesium parts.", "cite": "AC 43-4B p. 2-7, para. 2.5.6", "topic": "forms"}, {"q": "A special form of oxygen concentration cell corrosion that occurs under an organic (paint) coating and is recognized by a worm-like trace beneath the paint film is:", "options": ["Filiform corrosion", "Exfoliation", "Fretting corrosion", "Galvanic corrosion"], "correct": 0, "short": "Filiform corrosion.", "expl": "Filiform is a special oxygen concentration / crevice corrosion under organic coatings, recognized by a worm-like trace of corrosion products beneath the paint film.", "cite": "AC 43-4B p. 2-9, para. 2.5.7", "topic": "forms"}, {"q": "Filiform corrosion occurs when the atmospheric relative humidity is between:", "options": ["30 and 50 percent", "55 and 70 percent", "78 and 90 percent", "95 and 100 percent"], "correct": 2, "short": "78 and 90 percent.", "expl": "Filiform occurs when relative humidity is between 78 and 90 percent and the surface is slightly acidic. Storing aircraft below 70 percent RH helps prevent it.", "cite": "AC 43-4B p. 2-9, para. 2.5.7", "topic": "forms"}, {"q": "Abrasive wear that occurs at the interface of two highly-loaded surfaces held immobile but caused to rub by vibration — removing protective film and exposing fresh metal — is:", "options": ["Filiform corrosion", "Fretting corrosion", "Intergranular corrosion", "Exfoliation"], "correct": 1, "short": "Fretting corrosion.", "expl": "Fretting occurs where two highly-loaded surfaces rub due to vibration; the rubbing removes protective film, prevents oxide reformation, and can cause severe pitting.", "cite": "AC 43-4B p. 2-11, para. 2.6.3", "topic": "forms"}, {"q": "Stress-corrosion cracking is best described as:", "options": ["Cracking from heat alone", "Pitting under a paint blister", "Intergranular cracking caused by combined stress and corrosion", "Wear between two vibrating parts"], "correct": 2, "short": "Intergranular cracking from combined stress + corrosion.", "expl": "Stress-corrosion cracking is intergranular cracking caused by combined sustained stress and corrosion; concealed (residual) stress is more dangerous than design stress.", "cite": "AC 43-4B p. 2-10, para. 2.6.1", "topic": "forms"}, {"q": "AC 43-4B identifies the MOST COMMON corrosive agents/media as:", "options": ["Oils, greases, and waxes", "Acids, alkalis, and salts (plus atmosphere and water)", "Inert gases and vacuum", "Plastics and rubber"], "correct": 1, "short": "Acids, alkalis, and salts (plus atmosphere and water).", "expl": "The most common corrosive agents are acids, alkalis, and salts; the atmosphere and water also act as corrosive agents.", "cite": "AC 43-4B p. 2-14/2-15, para. 2.7", "topic": "agents"}, {"q": "The recommended corrosion-prevention treatment for aluminum alloy parts generally consists of:", "options": ["Leaving the bare metal exposed", "Cadmium plating only", "Anodize or conversion coating, then prime (and topcoat)", "No coating, just frequent washing"], "correct": 2, "short": "Anodize or conversion coat, then prime/topcoat.", "expl": "Aluminum is protected by anodizing or a chemical conversion coating, then primed and topcoated. Bare aluminum is not the recommended protection.", "cite": "AC 43-4B p. 3-1, para. 3.1.1", "topic": "prevention"}, {"q": "Brass and bronze parts are typically protected against corrosion by:", "options": ["Cadmium plating, zinc plating, IVD aluminum coating, or a conversion coating", "Anodizing only", "No treatment — they are immune", "Steel-wool burnishing"], "correct": 0, "short": "Cadmium/zinc/IVD-aluminum coating or conversion coating.", "expl": "AC 43-4B lists cadmium plating, zinc plating, IVD aluminum coating, or a conversion coating for brass and bronze.", "cite": "AC 43-4B p. 3-1, para. 3.1.2", "topic": "prevention"}, {"q": "Magnesium alloys are among the most chemically active aircraft metals and therefore:", "options": ["Require no protective finish", "Always require protective coatings (special chemical/electrochemical treatments and paint)", "Are best protected by bare polishing", "Should be cadmium plated directly with a wire brush"], "correct": 1, "short": "Always require protective coatings.", "expl": "Magnesium is highly active and always requires protective coatings — special chemical and electrochemical treatments plus paint finishes.", "cite": "AC 43-4B p. 3-1, para. 3.1.3", "topic": "prevention"}, {"q": "According to AC 43-4B Table 3-1, magnesium is HIGHLY susceptible to which type of attack, and how does its corrosion appear?", "options": ["Surface oxidation; reddish-brown rust", "Pitting; white, powdery, snow-like mounds and white spots", "Crevice; blue-green powder", "Exfoliation only; black mottling"], "correct": 1, "short": "Pitting; white powdery snow-like mounds and white spots.", "expl": "Table 3-1 lists magnesium as highly susceptible to pitting, with white, powdery, snow-like mounds and white spots on the surface.", "cite": "AC 43-4B p. 3-4, Table 3-1", "topic": "metals"}, {"q": "Per Table 3-1, how does corrosion on stainless steels (300/400 series) typically appear?", "options": ["A rough surface, sometimes with a uniform red, brown, or stain", "Classic red rust like carbon steel", "White powdery snow-like mounds", "Blue-green powder"], "correct": 0, "short": "Rough surface; sometimes a uniform red, brown, or stain.", "expl": "Stainless does NOT show classic red rust. Table 3-1 describes a rough surface, sometimes with a uniform red, brown, or stain, and it is prone to crevice/pitting (marine) and intergranular (300 series).", "cite": "AC 43-4B p. 3-4, Table 3-1", "topic": "metals"}, {"q": "Per Table 3-1, titanium produces 'no visible corrosion products at low temperature,' but colored surface oxides develop above:", "options": ["300 degrees F", "500 degrees F", "212 degrees F", "700 degrees F"], "correct": 3, "short": "700 degrees F (about 370 degrees C).", "expl": "Titanium is highly corrosion resistant; colored surface oxides develop above 700 degrees F (370 degrees C). Repeated contact with chlorinated solvents can degrade it at high temperature.", "cite": "AC 43-4B p. 3-4, Table 3-1", "topic": "metals"}, {"q": "Per Table 3-1, cadmium is described as 'used as sacrificial plating to protect steel,' and its corrosion ranges from a white powdery deposit to:", "options": ["Brown or black mottling of the surface", "Blue-green powder", "Reddish rust", "A worm-like trace"], "correct": 0, "short": "Brown or black mottling of the surface.", "expl": "Cadmium gives uniform surface corrosion ranging from white powder to brown or black mottling. This mottling is the SIGN that sacrificial protection is working and should not be removed for appearance.", "cite": "AC 43-4B p. 3-4, Table 3-1 (also p. 6-39, para. 6.81)", "topic": "metals"}, {"q": "Wheel wells and landing gear are among the MOST corrosion-prone areas on an aircraft primarily because they:", "options": ["Are always painted with the thinnest coatings", "Are exposed to mud, water, salt, gravel, and runway debris, and have complex shapes hard to coat", "Operate at the highest temperatures", "Contain the battery"], "correct": 1, "short": "Exposure to runway debris + complex shapes hard to coat.", "expl": "Wheel wells/landing gear receive more punishment than any other area: mud, water, salt, gravel, and debris thrown from runways, plus complicated shapes/fittings that make complete paint coverage difficult.", "cite": "AC 43-4B p. 4-2/4-3, para. 4.6", "topic": "areas"}, {"q": "A protective coating that corrodes ITSELF to protect the underlying base metal is called a:", "options": ["Non-sacrificial coating", "Conversion-only coating", "Topcoat sealant", "Sacrificial coating"], "correct": 3, "short": "Sacrificial coating.", "expl": "Sacrificial coatings (cadmium, zinc, aluminum) corrode preferentially to protect the base metal. Non-sacrificial coatings (hard chrome/nickel plate, conversion coatings, sealants/primers, topcoat) protect by barrier action.", "cite": "AC 43-4B p. 4-20, para. 4.12.3", "topic": "finishes"}, {"q": "Which group lists only SACRIFICIAL protective coatings?", "options": ["Chromium plate, nickel plate, topcoat", "Conversion coating, primer, sealant", "Anodize, alodine, paint", "Cadmium, zinc, aluminum"], "correct": 3, "short": "Cadmium, zinc, aluminum.", "expl": "Sacrificial coatings are cadmium, zinc, and aluminum. Chromium/nickel hard plating, conversion coatings, primers/sealants, and topcoats are non-sacrificial.", "cite": "AC 43-4B p. 4-20, para. 4.12.3", "topic": "finishes"}, {"q": "Properly functioning cadmium plating may show white-to-brown-to-black mottling on its surface. This mottling indicates:", "options": ["Sacrificial protection is taking place — do not remove it for appearance", "The plating has failed and must be stripped", "An electrolyte spill requiring neutralization", "Filiform corrosion under the paint"], "correct": 0, "short": "Sacrificial protection working — leave it alone.", "expl": "Mottling (white to brown to black) shows the cadmium is sacrificially protecting the base metal; it must NOT be removed merely for appearance.", "cite": "AC 43-4B p. 6-39, para. 6.81", "topic": "finishes"}, {"q": "Cadmium- and zinc-plated parts must NEVER have their coatings cleaned with a:", "options": ["Soft cloth", "Fiber bristle brush", "Wire brush", "Soap-and-water rinse"], "correct": 2, "short": "A wire brush.", "expl": "AC 43-4B states that under no condition should a cadmium (or zinc) coating be cleaned with a wire brush — it would remove the thin sacrificial layer.", "cite": "AC 43-4B p. 6-39, para. 6.81.2 (zinc: 6.81.3)", "topic": "finishes"}, {"q": "In addition to routine maintenance, an aircraft operating in a MODERATE corrosive environment should be inspected for corrosion every:", "options": ["45 calendar days", "15 calendar days", "90 calendar days", "180 calendar days"], "correct": 0, "short": "45 calendar days.", "expl": "Suggested intervals: severe = 15 days, moderate = 45 days, mild = 90 days. The 45-day moderate interval is a classic exam number.", "cite": "AC 43-4B p. 5-1, para. 5.2", "topic": "intervals"}, {"q": "Before performing a corrosion inspection, the aircraft should be:", "options": ["Defueled completely", "Washed (cleaned) first", "Stripped of all paint", "Weighed"], "correct": 1, "short": "Washed first.", "expl": "AC 43-4B directs that the aircraft be washed prior to any inspection for corrosion, so contaminants do not hide developing corrosion.", "cite": "AC 43-4B p. 5-1, para. 5.2", "topic": "intervals"}, {"q": "Which of the following is one of the nondestructive inspection (NDI) methods listed in AC 43-4B for detecting corrosion/cracks?", "options": ["Tensile testing", "Hardness-file testing", "Magnetic compass swing", "Eddy current inspection"], "correct": 3, "short": "Eddy current inspection.", "expl": "NDI methods include visual/fiber-optic, liquid (dye) penetrant, magnetic particle, eddy current, X-ray (radiographic), ultrasonic, and acoustic emission. Tensile and hardness-file are destructive/mechanical, not NDI.", "cite": "AC 43-4B p. 5-12, para. 5.4.1.2", "topic": "ndi"}, {"q": "Which NDI method uses a dye drawn into surface-breaking flaws and then a developer to make the flaw visible, and is limited to flaws OPEN to the surface?", "options": ["Liquid (dye) penetrant", "Eddy current", "X-ray", "Ultrasonic"], "correct": 0, "short": "Liquid (dye) penetrant.", "expl": "Liquid penetrant reveals only surface-breaking flaws (the dye must enter an opening). Eddy current and ultrasonic can find some subsurface flaws; X-ray sees internal/volumetric defects.", "cite": "AC 43-4B p. 5-12, para. 5.4.1.2", "topic": "ndi"}, {"q": "Which NDI method can ONLY be used on ferromagnetic (magnetizable) materials such as steel?", "options": ["Liquid penetrant", "Magnetic particle", "Eddy current", "Ultrasonic"], "correct": 1, "short": "Magnetic particle.", "expl": "Magnetic particle inspection requires a ferromagnetic material; it cannot be used on aluminum or other nonmagnetic metals. Penetrant, eddy current, and ultrasonic work on nonmagnetic metals too.", "cite": "AC 43-4B p. 5-12, para. 5.4.1.2", "topic": "ndi"}, {"q": "Which NDI method uses high-frequency sound waves to detect subsurface flaws and measure thickness?", "options": ["Liquid penetrant", "Magnetic particle", "Fiber-optic borescope", "Ultrasonic inspection"], "correct": 3, "short": "Ultrasonic inspection.", "expl": "Ultrasonic uses high-frequency sound to find subsurface flaws and measure remaining thickness (useful for hidden corrosion). Penetrant/magnetic particle are surface methods.", "cite": "AC 43-4B p. 5-12, para. 5.4.1.2", "topic": "ndi"}, {"q": "When mixing acid and water, the correct and safe procedure is to:", "options": ["Never add water to acid — always add acid to water", "Add water to acid slowly", "Mix them in equal amounts simultaneously", "Heat the acid first, then pour in water"], "correct": 0, "short": "Add acid to water; never add water to acid.", "expl": "Never add water to acid — the violent exothermic reaction can spatter acid. Always add acid slowly to water.", "cite": "AC 43-4B p. 6-1, para. 6.1.1", "topic": "safety"}, {"q": "When using solvents, cleaners, strippers, etchants, or conversion coatings, AC 43-4B requires that you:", "options": ["Wear cotton gloves only", "Work without gloves for better feel", "Wear rubber or plastic gloves", "Apply with bare hands and rinse afterward"], "correct": 2, "short": "Wear rubber or plastic gloves.", "expl": "Rubber or plastic gloves are required when handling solvents, cleaners, strippers, etchants, or conversion coatings; any of these on skin should be washed off immediately.", "cite": "AC 43-4B p. 6-1, para. 6.1.1", "topic": "safety"}, {"q": "Pits remaining after removal of corrosion products must be blended out when they are found in:", "options": ["Any structure, critical or not", "Only painted areas", "Only noncritical fairings", "Critical and highly-stressed structural areas"], "correct": 3, "short": "Critical and highly-stressed structural areas.", "expl": "In critical and highly-stressed areas, remaining pits must be blended out to prevent stress risers that can cause stress-corrosion cracking. On noncritical structures, abrasive blasting to remove them is not required.", "cite": "AC 43-4B p. 6-7, para. 6.15.3", "topic": "blendout"}, {"q": "When reworking a corrosion dish-out, AC 43-4B specifies blending the depression using a length-to-depth ratio of:", "options": ["5 to 1", "20 to 1", "10 to 1", "2 to 1"], "correct": 1, "short": "20 to 1 (length-to-depth).", "expl": "Rework depressions with a smoothly-blended dish-out using a length-to-depth ratio of 20:1. (Note: AC 43-4B specifies the 20:1 length-to-depth ratio; it does not state a separate 10:1 width ratio.)", "cite": "AC 43-4B p. 6-7, para. 6.15.2", "topic": "blendout"}, {"q": "Corrosion dish-outs should be shaped so that the major axis runs:", "options": ["Diagonally across the part", "Always vertically regardless of location", "Spanwise on wings/horizontal stabilizers and longitudinally on fuselages", "In a perfect circle"], "correct": 2, "short": "Spanwise on wings, longitudinally on fuselages (vertical on vertical stabilizers).", "expl": "Dish-outs should be elliptical with the major axis spanwise on wings and horizontal stabilizers, longitudinally on fuselages, and vertically on vertical stabilizers — aligning with primary load paths.", "cite": "AC 43-4B p. 6-7, para. 6.15.1", "topic": "blendout"}, {"q": "Before resorting to chemical testing, the PRIMARY reference used to identify an aircraft metal is the:", "options": ["Aircraft Structural Repair Manual (SRM)", "Type Certificate Data Sheet", "Pilot's Operating Handhook", "Weight and balance report"], "correct": 0, "short": "The Structural Repair Manual (SRM).", "expl": "The primary method of identifying metal is the aircraft SRM. Chemical testing is used only after other methods are exhausted.", "cite": "AC 43-4B p. 6-13, para. 6.16.1.1", "topic": "metal-id"}, {"q": "Which of the following must NEVER be used to remove corrosion from an aluminum surface?", "options": ["Aluminum wool", "Steel wool or a steel wire brush", "Fiber (Tampico) bristle brush", "Mild abrasive"], "correct": 1, "short": "Steel wool or steel wire brush.", "expl": "Steel wool, steel wire brushes, copper alloy brushes, and severe abrasives must never be used on aluminum — they embed dissimilar particles that start galvanic corrosion. Use aluminum wool, fiber bristle brushes, and mild abrasives instead.", "cite": "AC 43-4B p. 6-23, para. 6.51.3.1", "topic": "aluminum-cleaning"}, {"q": "Which materials are ACCEPTABLE for removing corrosion from aluminum?", "options": ["Aluminum wool, fiber (Tampico) bristle brushes, and mild abrasives", "Steel wool and emery cloth", "Copper alloy brushes and crocus cloth", "Any wire brush"], "correct": 0, "short": "Aluminum wool, fiber bristle brushes, mild abrasives.", "expl": "Acceptable choices are aluminum wool, fiber (Tampico) bristle brushes, and mild abrasives. Steel/copper brushes, steel wool, and severe abrasives are prohibited on aluminum.", "cite": "AC 43-4B p. 6-23, para. 6.51.3.1", "topic": "aluminum-cleaning"}, {"q": "Austenitic (300-series) stainless steels resist corrosion because of a tightly adhering oxide (passive) film. If that film is broken and re-passivation does NOT restore it and serviceability is affected, AC 43-4B says you must:", "options": ["Paint over the area", "Wire-brush the area bright", "Apply cadmium plating", "Remove the part"], "correct": 3, "short": "Remove the part.", "expl": "If corrosion occurs on austenitic steel and the part's structural integrity or serviceability is affected (film not restored by re-passivation), the part must be removed.", "cite": "AC 43-4B p. 6-37, para. 6.74", "topic": "stainless"}, {"q": "Which cleaning agent is correctly matched to neutralizing an electrolyte spill from a SULFURIC-ACID (lead-acid) battery?", "options": ["Boric acid solution", "Monobasic sodium phosphate", "Sodium bicarbonate (baking soda)", "Acetone"], "correct": 2, "short": "Sodium bicarbonate.", "expl": "Sodium bicarbonate neutralizes acidic (lead-acid/sulfuric) spills. Monobasic sodium phosphate and boric acid are used for nickel-cadmium (alkaline) battery spills.", "cite": "AC 43-4B p. 4-29, para. 4.13.2.8", "topic": "cleaning-agents"}, {"q": "Before applying soap and water to a plastic (transparent) surface, you should FIRST:", "options": ["Wipe it with acetone", "Polish it with a dry cloth", "Flush it with fresh water to dissolve salt deposits and wash away dust particles", "Spray it with window cleaner"], "correct": 2, "short": "Flush with fresh water first.", "expl": "Flush plastic surfaces with fresh water first to dissolve salt and remove grit, then wash with soap and water, preferably by hand. Dry cloths and solvents can scratch or craze the plastic.", "cite": "FAA-H-8083-30B p. 8-24", "topic": "plastics"}, {"q": "To remove oil and grease from a plastic windshield/window, you should:", "options": ["Wipe with carbon tetrachloride", "Use lacquer thinner", "Use gasoline on a rag", "Rub gently with a cloth wet with soap and water"], "correct": 3, "short": "Rub gently with a soap-and-water-wet cloth.", "expl": "Remove oil and grease by rubbing gently with a soap-and-water cloth. Solvents like carbon tetrachloride, lacquer thinner, and gasoline soften the plastic and cause crazing.", "cite": "FAA-H-8083-30B p. 8-24", "topic": "plastics"}, {"q": "Which of the following must NOT be used on aircraft plastics because it softens the plastic and causes crazing?", "options": ["Soap and water", "Fresh water", "A clean chamois", "Acetone"], "correct": 3, "short": "Acetone.", "expl": "Acetone, benzene, carbon tetrachloride, lacquer thinners, window-cleaning sprays, gasoline, fire-extinguisher fluid, and deicer fluid all craze plastic. Soap, water, and a chamois are safe.", "cite": "FAA-H-8083-30B p. 8-24", "topic": "plastics"}, {"q": "Crazing of an aircraft plastic windshield refers to:", "options": ["A protective oxide film", "A network of fine cracks/clouding caused by attack from solvents or stress", "A type of galvanic corrosion", "Sacrificial cadmium mottling"], "correct": 1, "short": "A network of fine cracks/clouding in the plastic.", "expl": "Crazing is fine cracking/clouding of plastic, commonly caused by incompatible solvents (acetone, benzene, carbon tetrachloride, etc.). It is unrelated to metal corrosion.", "cite": "FAA-H-8083-30B p. 8-24", "topic": "plastics"}, {"q": "A mechanic finds a worm-like trail of corrosion under the painted skin of a stored aircraft kept in a humid hangar (about 85 percent RH). The MOST likely corrosion and a good prevention step are:", "options": ["Pitting; strip all paint", "Galvanic corrosion; add a sacrificial anode", "Fretting; lubricate the joint", "Filiform corrosion; store below 70 percent RH and use low-diffusion coatings"], "correct": 3, "short": "Filiform; store below 70 percent RH.", "expl": "A worm-like trace under paint at 78-90 percent RH is filiform corrosion. Prevention includes storing below 70 percent RH, low-diffusion coatings, and washing off acidic contaminants.", "cite": "AC 43-4B p. 2-9, para. 2.5.7", "topic": "scenario"}, {"q": "During a corrosion inspection a mechanic plans to clean an aluminum panel using a power wire brush from the steel-parts bench, then refuels and inspects. What is wrong with this plan?", "options": ["Nothing — wire brushing aluminum is preferred", "Aluminum cannot be cleaned at all", "Only X-ray may touch aluminum", "A steel wire brush embeds steel particles into aluminum, causing galvanic corrosion; use aluminum wool or a fiber brush"], "correct": 3, "short": "Steel brush -> embedded steel -> galvanic corrosion.", "expl": "Never use a steel wire brush (or steel wool/copper brush) on aluminum; embedded steel particles start dissimilar-metal corrosion. Use aluminum wool, fiber (Tampico) brushes, and mild abrasives.", "cite": "AC 43-4B p. 6-23, para. 6.51.3.1", "topic": "scenario"}, {"q": "A lead-acid battery has leaked electrolyte into a battery box. The correct neutralizing agent, and the reason cadmium mottling on the box plating should be left alone, are:", "options": ["Boric acid; mottling means failure", "Acetone; mottling is just dirt", "Sodium bicarbonate; mottling shows the cadmium is sacrificially protecting the steel", "Monobasic sodium phosphate; mottling must be wire-brushed off"], "correct": 2, "short": "Sodium bicarbonate; mottling = sacrificial protection working.", "expl": "Sodium bicarbonate neutralizes acidic (lead-acid) electrolyte. Cadmium mottling (white-to-brown-to-black) indicates sacrificial protection is working and must not be removed for appearance.", "cite": "AC 43-4B p. 4-29 para. 4.13.2.8; p. 6-39 para. 6.81", "topic": "scenario"}];
+const DRILL = [{"label": "Inspection intervals", "text": "Severe = 15 days  |  Moderate = 45 days  |  Mild = 90 days (AC 43-4B p. 5-1)"}, {"label": "Blend-out ratio", "text": "Length-to-depth 20:1 for corrosion dish-outs (AC 43-4B p. 6-7). [No 10:1 width ratio is stated in the AC.]"}, {"label": "Filiform humidity", "text": "Occurs at 78-90% RH on slightly acidic surface; prevent by storing below 70% RH (AC 43-4B p. 2-9)"}, {"label": "Oxygen concentration cell - 3 locations", "text": "1) deposits, 2) faying/riveted lap joints, 3) gaskets-wood-rubber (AC 43-4B p. 2-6)"}, {"label": "Galvanic area ratio", "text": "Anode SMALLER than cathode = rapid, severe attack; anode larger = slow, superficial (AC 43-4B p. 2-5)"}, {"label": "Sacrificial coatings", "text": "Cadmium, Zinc, Aluminum (they corrode to save base metal) (AC 43-4B p. 4-20)"}, {"label": "Non-sacrificial coatings", "text": "Hard chrome/nickel plate, conversion coatings, sealant/primers, topcoat (AC 43-4B p. 4-20)"}, {"label": "Cadmium mottling", "text": "White-to-brown-to-black = sacrificial protection working; do NOT remove (AC 43-4B p. 6-39)"}, {"label": "Never on aluminum", "text": "Steel wool, steel wire brush, copper alloy brush, severe abrasives (AC 43-4B p. 6-23)"}, {"label": "Crazes plastic - do NOT use", "text": "Acetone, benzene, carbon tetrachloride, lacquer thinner, gasoline, window-cleaning spray, deicer/extinguisher fluid (FAA-30B p. 8-24)"}, {"label": "Primary metal-ID reference", "text": "Aircraft Structural Repair Manual (SRM) - before chemical testing (AC 43-4B p. 6-13)"}, {"label": "Acid + water rule", "text": "NEVER add water to acid - always add acid to water (AC 43-4B p. 6-1)"}, {"label": "Titanium oxide threshold", "text": "Colored surface oxides develop above 700 degrees F / 370 degrees C (AC 43-4B p. 3-4)"}, {"label": "NDI methods", "text": "Visual/fiber-optic, liquid penetrant, magnetic particle, eddy current, X-ray, ultrasonic, acoustic emission (AC 43-4B p. 5-12)"}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
