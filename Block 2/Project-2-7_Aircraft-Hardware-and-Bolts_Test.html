@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project 2-7 — Aircraft Hardware, Bolts &amp; Torque Test</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Project 2-7 — Aircraft Hardware, Bolts &amp; Torque Test</h1>
+    <div class="sub">AIM Block 2 · FAA-H-8083-30B Ch.7 + AC 43.13-1B</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Threaded fasteners and rivets on aircraft are identified by which three numbering systems?", "options": ["AN (Air Force-Navy), NAS (National Aircraft Standard), and MS (Military Standard)", "SAE, ANSI, and ISO numbers", "AC, CFR, and TSO numbers", "FAA, PMA, and STC numbers"], "correct": 0, "short": "AN, NAS, and MS numbers", "expl": "Most aircraft hardware is identified by its specification number: AN (Air Force-Navy), NAS (National Aircraft Standard), or MS (Military Standard). Quick-release fasteners use factory trade names.", "cite": "FAA-H-8083-30B p. 7-37", "topic": "Bolt Identification"}, {"q": "On AN-type bolt heads, what marking identifies a standard steel bolt?", "options": ["Two raised dashes", "A raised dash or asterisk, or a single raised dash", "A raised or recessed triangle", "A raised letter 'S'"], "correct": 1, "short": "A raised dash/asterisk (single raised dash)", "expl": "AN standard steel bolts are marked with a raised dash or asterisk. Two raised dashes = corrosion-resistant steel; a triangle = close-tolerance NAS bolt; 'S' = special bolt.", "cite": "FAA-H-8083-30B pp. 7-38 to 7-39", "topic": "Bolt Identification"}, {"q": "A bolt head marked with two raised dashes indicates what material?", "options": ["Cadmium-plated steel", "2024 aluminum alloy", "Corrosion-resistant (CRES) steel", "Titanium"], "correct": 2, "short": "Corrosion-resistant steel", "expl": "AN aluminum-alloy bolts are marked with two raised dashes to indicate corrosion-resistant steel. (Aluminum bolt material is also coded 'DD' in the part number.)", "cite": "FAA-H-8083-30B p. 7-39", "topic": "Bolt Identification"}, {"q": "In the bolt part number AN3DD5A, what does the '3' indicate?", "options": ["The length in sixteenths of an inch", "The grip length in eighths of an inch", "The number of threads per inch", "The diameter in sixteenths of an inch (3/16\")"], "correct": 3, "short": "Diameter = 3/16\" (sixteenths)", "expl": "In AN3DD5A: AN = Air Force-Navy standard; 3 = diameter in 16ths (3/16\"); DD = 2024 aluminum alloy; 5 = length in 8ths (5/8\"); A = undrilled shank.", "cite": "FAA-H-8083-30B p. 7-39", "topic": "Bolt Identification"}, {"q": "In the bolt part number AN3DD5A, what does the 'DD' indicate?", "options": ["The material is 2024 aluminum alloy", "The material is corrosion-resistant steel", "The material is cadmium-plated steel", "The head is drilled for safetying"], "correct": 0, "short": "2024 aluminum alloy", "expl": "'DD' = 2024 aluminum alloy. A 'C' in place of DD = corrosion-resistant steel; no letters = cadmium-plated steel. (An 'H' before the length = drilled head.)", "cite": "FAA-H-8083-30B p. 7-39", "topic": "Bolt Identification"}, {"q": "From what materials are aircraft bolts fabricated?", "options": ["Only mild carbon steel", "Cadmium- or zinc-plated corrosion-resistant steel, un-plated CRES steel, or anodized aluminum alloys", "Only titanium and Inconel", "Brass and bronze only"], "correct": 1, "short": "Plated/un-plated CRES steel or anodized aluminum alloys", "expl": "Aircraft bolts are fabricated from cadmium- or zinc-plated corrosion-resistant steel, un-plated corrosion-resistant steel, or anodized-aluminum alloys.", "cite": "FAA-H-8083-30B p. 7-37", "topic": "Bolt Identification"}, {"q": "The AN-73 bolt differs from the standard hex bolt how?", "options": ["It has a countersunk head", "It is made of aluminum alloy", "It has a deeper head that is drilled to receive safety wire", "It has left-hand threads"], "correct": 2, "short": "Deeper, drilled head for safety wire", "expl": "The AN-73 drilled-head bolt is like the standard hex bolt but has a deeper head drilled for safety wire. AN-3 and AN-73 are interchangeable for tension/shear strength.", "cite": "FAA-H-8083-30B p. 7-38", "topic": "Bolt Identification"}, {"q": "A Clevis bolt is used where what type of load occurs?", "options": ["Tension loads only", "Both tension and shear equally", "Torsional loads only", "Shear loads only — never in tension"], "correct": 3, "short": "Shear only, never tension", "expl": "The Clevis bolt has a round, slotted/recessed head and is used only where shear loads occur, never in tension. It is often used as a mechanical pin in control systems.", "cite": "FAA-H-8083-30B p. 7-39", "topic": "Bolt Identification"}, {"q": "An eyebolt is a special-purpose bolt designed for what?", "options": ["External tension loads (e.g., attaching a turnbuckle fork, Clevis, or cable shackle)", "Shear loads only", "Internal wrenching applications", "Blind (one-side-access) installation"], "correct": 0, "short": "External tension loads", "expl": "The eyebolt is used where external tension loads are applied — for attaching devices such as a turnbuckle fork, Clevis, or cable shackle. Its threaded end may or may not be drilled for safetying.", "cite": "FAA-H-8083-30B p. 7-39", "topic": "Bolt Identification"}, {"q": "Internal-wrenching bolts (MS-20004 through MS-20024 or NAS-495) are fabricated from what and used for what?", "options": ["Aluminum alloy, for light shear only", "High-strength steel, suitable for both tension and shear applications", "Brass, for electrical bonding", "Mild steel, for non-structural use"], "correct": 1, "short": "High-strength steel; tension and shear", "expl": "Internal-wrenching bolts are made of high-strength steel and are suitable for both tension and shear. Their recessed head takes an internal (Allen) wrench. Standard AN hex bolts cannot be substituted.", "cite": "FAA-H-8083-30B p. 7-38", "topic": "Bolt Identification"}, {"q": "Aircraft bolts are almost always manufactured in which class of thread fit?", "options": ["Class 1 (loose fit)", "Class 2 (free fit)", "Class 3 (medium fit)", "Class 4 (close fit)"], "correct": 2, "short": "Class 3 — medium fit", "expl": "Aircraft bolts are almost always Class 3 (medium fit). Class 1 = loose, Class 2 = free (used for aircraft screws), Class 4 = close (needs a wrench to turn the nut).", "cite": "FAA-H-8083-30B p. 7-37", "topic": "Threads & Fit"}, {"q": "A 'light-drive fit' for a bolt is specified on repair drawings as what maximum clearance?", "options": ["0.006 inch maximum clearance", "0.002 inch maximum clearance", "0.040 inch maximum clearance", "0.0015 inch maximum clearance between bolt and hole"], "correct": 3, "short": "0.0015 inch maximum", "expl": "Light-drive fits are specified as 0.0015\" maximum clearance between bolt and hole — the bolt moves when a hammer handle is held against its head and pressed by body weight.", "cite": "FAA-H-8083-30B p. 7-48", "topic": "Threads & Fit"}, {"q": "In a 'tight drive fit,' how is the bolt moved into position?", "options": ["A sharp blow of a 12- to 14-ounce hammer is required", "It is pushed by hand", "It threads in with a wrench", "It drops in under its own weight"], "correct": 0, "short": "Sharp blow of a 12-14 oz hammer", "expl": "A tight drive fit requires a sharp blow of a 12- or 14-ounce hammer to move the bolt. A bolt that needs a hard blow and sounds tight is too tight a fit.", "cite": "FAA-H-8083-30B p. 7-48", "topic": "Threads & Fit"}, {"q": "Bolt grip length is defined as what?", "options": ["The total length of the bolt", "The length of the unthreaded portion of the bolt shank", "The length of the threaded portion", "The diameter of the bolt shank"], "correct": 1, "short": "Length of the unthreaded shank", "expl": "Grip length is the length of the unthreaded portion of the bolt shank. It should equal the thickness of the material being bolted together.", "cite": "FAA-H-8083-30B p. 7-48", "topic": "Grip Length & Washers"}, {"q": "The grip length of a correctly selected bolt should equal what?", "options": ["The diameter of the bolt", "Twice the bolt diameter", "The thickness of the material being bolted together", "The thread pitch of the bolt"], "correct": 2, "short": "Thickness of the material being bolted", "expl": "Grip length should equal the thickness of the material being bolted together. A bolt of slightly greater grip may be used if washers are placed under the nut or bolt head.", "cite": "FAA-H-8083-30B p. 7-48", "topic": "Grip Length & Washers"}, {"q": "If a bolt's grip length is slightly too long, what is the correct fix?", "options": ["File down the bolt shank", "Use a thicker nut", "Replace it with a shorter bolt only — washers are never allowed", "Add washers under the nut or bolt head (or shims under a plate nut)"], "correct": 3, "short": "Add washers/shims to take up the grip", "expl": "Bolts of slightly greater grip length may be used if washers are placed under the nut or bolt head; for plate nuts, add shims under the plate.", "cite": "FAA-H-8083-30B p. 7-48", "topic": "Grip Length & Washers"}, {"q": "Where should washers be placed when installing a bolt?", "options": ["Under both the head of the bolt and the nut, unless their omission is specified", "Only under the nut", "Only under the bolt head", "Never — washers are optional decoration"], "correct": 0, "short": "Under both head and nut", "expl": "Be sure washers are used under both the heads of bolts and nuts unless their omission is specified. A washer guards against mechanical damage and prevents corrosion of the members.", "cite": "FAA-H-8083-30B p. 7-48", "topic": "Grip Length & Washers"}, {"q": "Aircraft nuts are divided into which two general groups?", "options": ["Tension nuts and shear nuts", "Non-self-locking nuts and self-locking nuts", "Steel nuts and aluminum nuts", "Castle nuts and wing nuts"], "correct": 1, "short": "Non-self-locking and self-locking", "expl": "Aircraft nuts divide into non-self-locking (must be safetied by an external device — cotter pin, safety wire, locknut) and self-locking (locking feature is integral).", "cite": "FAA-H-8083-30B p. 7-41", "topic": "Nuts"}, {"q": "The castle nut (AN310) is used with what kind of hardware?", "options": ["Only self-tapping screws", "Only blind rivets", "Drilled-shank AN hex head bolts, Clevis bolts, eyebolts, drilled-head bolts, or studs", "Only wing nuts and check nuts"], "correct": 2, "short": "Drilled-shank bolts, Clevis bolts, eyebolts, studs", "expl": "The castle nut (AN310) is used with drilled-shank AN hex bolts, Clevis bolts, eyebolts, drilled-head bolts, or studs. Its slots (castellations) accept a cotter pin or lock wire.", "cite": "FAA-H-8083-30B p. 7-42", "topic": "Nuts"}, {"q": "The castellated shear nut (AN320) is designed for use where the device is subjected to what?", "options": ["Tension stress only", "High-temperature exhaust applications", "Frequent hand removal", "Shearing stress only (e.g., drilled Clevis bolts, threaded taper pins)"], "correct": 3, "short": "Shearing stress only", "expl": "The AN320 castellated shear nut is for devices subjected to shearing stress only, such as drilled Clevis bolts and threaded taper pins. It is shallower and not as strong as the castle nut.", "cite": "FAA-H-8083-30B p. 7-42", "topic": "Nuts"}, {"q": "The elastic stop nut achieves its locking action by means of what?", "options": ["A fiber (nylon) locking collar that is unthreaded and smaller than the bolt thread diameter", "A spring connecting two nut sections", "A wedging metal insert pulled against the case", "Castellations and a cotter pin"], "correct": 0, "short": "A fiber locking collar", "expl": "The elastic stop nut is a standard nut with added height for a fiber locking collar. The collar is unthreaded; the bolt threads impress themselves into the fiber for the locking action.", "cite": "FAA-H-8083-30B p. 7-44", "topic": "Nuts"}, {"q": "Do NOT install fiber-type (elastic stop) self-locking nuts where the temperature is higher than what value?", "options": ["450 °F", "250 °F", "200 °F", "350 °F"], "correct": 1, "short": "250 °F", "expl": "Do not install elastic stop (fiber) nuts where temperature exceeds 250 °F, because the self-locking action is reduced beyond this point. (All-metal MS21047 nut plates handle 450 °F.)", "cite": "FAA-H-8083-30B p. 7-45", "topic": "Nuts"}, {"q": "Commonly used aircraft screws are classified into which four groups?", "options": ["Hex, Phillips, slotted, and Torx screws", "Tension, shear, blind, and rivet screws", "Structural, machine, self-tapping, and drive screws", "AN, NAS, MS, and SAE screws"], "correct": 2, "short": "Structural, machine, self-tapping, drive", "expl": "The four classes are: structural screws (same strength as equal-size bolts), machine screws (general repair), self-tapping screws (lighter parts), and drive screws (actually nails).", "cite": "FAA-H-8083-30B p. 7-66", "topic": "Screws"}, {"q": "Self-tapping sheet-metal screws (AN530/AN531) may be used for what — and what restriction applies?", "options": ["Primary structural joints in place of bolts", "Engine mount attachment", "Any application where a standard screw is unavailable", "Temporary attachment of metal for riveting and permanent assembly of nonstructural parts — they must NOT replace standard screws, nuts, bolts, or rivets"], "correct": 3, "short": "Temporary/nonstructural only; never replace standard fasteners", "expl": "Self-tapping sheet-metal screws are used to temporarily attach metal for riveting and to permanently assemble nonstructural assemblies. They should not be used to replace standard screws, nuts, bolts, or rivets.", "cite": "FAA-H-8083-30B p. 7-67", "topic": "Screws"}, {"q": "The three most commonly used captive (turn-lock) quick-release fasteners are:", "options": ["Dzus, Camloc, and Airloc", "Hi-Lok, Hi-Lite, and Hi-Tigue", "Rivnut, Jo-bolt, and Cherry rivet", "Taper-Lok, lockbolt, and Cleco"], "correct": 0, "short": "Dzus, Camloc, and Airloc", "expl": "Captive (turn-lock) fasteners for fast access — inspection panels, nacelles — are most commonly the Dzus, Camloc, and Airloc.", "cite": "FAA-H-8083-30B p. 7-64", "topic": "Special Fasteners"}, {"q": "What feature prevents a HI-LOK fastener from being over-torqued?", "options": ["A torque-limiting clutch in the pin head", "The collar's wrenching device shears off when a predetermined preload/clamp-up is reached", "A breakaway cotter pin", "A nylon insert that slips at high torque"], "correct": 1, "short": "Collar wrenching tip shears at preset preload", "expl": "The HI-LOK collar has a wrenching device that the driving tool torques until it shears off, leaving the collar seated at proper torque. This shear-off occurs at a predetermined preload — so it cannot be over-torqued.", "cite": "FAA-H-8083-30B p. 7-61", "topic": "Special Fasteners"}, {"q": "How should the proper torque value for a fastener be determined?", "options": ["Always use the standard torque table regardless of the manual", "Tighten until the bolt just begins to deform", "Use the value in the maintenance procedure; if none is specified, use the standard torque table as a guide", "Use the highest value in the standard torque table for safety"], "correct": 2, "short": "Maintenance manual first; standard table only if none specified", "expl": "Use the standard torque table as a guide only when specific torque values are NOT called out in the maintenance procedures. The manufacturer's specified value always takes precedence.", "cite": "FAA-H-8083-30B p. 7-50; AC 43.13-1B Table 7-1", "topic": "Torque"}, {"q": "To convert a torque-table value from inch-pounds to foot-pounds, what do you do?", "options": ["Multiply inch-pounds by 12", "Divide inch-pounds by 16", "Multiply inch-pounds by 16", "Divide inch-pounds by 12"], "correct": 3, "short": "Divide inch-pounds by 12", "expl": "To obtain values in foot-pounds, divide inch-pounds by 12.", "cite": "FAA-H-8083-30B p. 7-50", "topic": "Torque"}, {"q": "Should nuts and bolts be lubricated before torquing?", "options": ["No — do not lubricate, except for corrosion-resistant steel parts or where specifically instructed", "Yes — always lubricate threads before torquing", "Yes — lubricate only the bolt head, never the threads", "No — never lubricate under any circumstance"], "correct": 0, "short": "No, except CRES parts or where instructed", "expl": "Do not lubricate nuts or bolts except for corrosion-resistant steel parts or where specifically instructed. Lubrication on cad-plated threads would over-tension the bolt at a given reading.", "cite": "FAA-H-8083-30B p. 7-50", "topic": "Torque"}, {"q": "When torquing, you should tighten by rotating which part first if possible?", "options": ["The bolt head", "The nut", "Either one — it makes no difference", "The washer"], "correct": 1, "short": "The nut", "expl": "Always tighten by rotating the nut first if possible. When space requires turning the bolt head, approach the high side of the torque range but never exceed maximum.", "cite": "FAA-H-8083-30B p. 7-50", "topic": "Torque"}, {"q": "The three most commonly used torque wrenches are:", "options": ["Click, dial, and digital types", "Breaker bar, speed handle, and T-handle", "Flexible beam, rigid frame, and ratchet types", "Micrometer, vernier, and dial-indicator types"], "correct": 2, "short": "Flexible beam, rigid frame, ratchet", "expl": "The three most commonly used torque wrenches are the flexible beam, the rigid frame, and the ratchet types.", "cite": "FAA-H-8083-30B p. 7-49", "topic": "Torque"}, {"q": "When a castellated nut's cotter-pin holes don't line up within the recommended torque range, what should you generally do?", "options": ["Always over-torque until a slot lines up", "Always loosen below the range until a slot lines up", "Drill a new cotter-pin hole in the bolt", "Remove the hardware and realign the holes — do not over-torque (except highly-stressed engine parts)"], "correct": 3, "short": "Realign holes; do not over-torque", "expl": "Except for highly-stressed engine parts, the nut may not be over-torqued. Remove the hardware and realign the holes. Never loosen a torqued nut below the minimum to align holes either.", "cite": "FAA-H-8083-30B p. 7-50", "topic": "Torque"}, {"q": "Why is the standard torque table referred to only as a 'guide'?", "options": ["It is used only when the maintenance procedure gives no specific torque value — the manufacturer's value always governs", "Because torque values are never critical", "Because it lists maximum values only", "Because it applies only to aluminum bolts"], "correct": 0, "short": "Manufacturer's specified value always wins", "expl": "The standard torque table is a guide used only when specific torque values are not called out in the maintenance procedure. The manufacturer's specified value always takes precedence.", "cite": "FAA-H-8083-30B p. 7-50", "topic": "Torque"}, {"q": "Safetying is best defined as what?", "options": ["A method of applying final torque to a fastener", "Securing fasteners so vibration will not cause them to loosen — it is NOT a means of obtaining or maintaining torque", "A way to seal a fastener against corrosion", "A method of pre-tensioning control cables"], "correct": 1, "short": "Securing against vibration; not a torque method", "expl": "Safetying secures bolts, nuts, screws, pins, and fasteners so they do not work loose due to vibration. It is NOT a means of obtaining or maintaining torque.", "cite": "FAA-H-8083-30B p. 7-75; AC 43.13-1B ¶7-122, p. 7-19", "topic": "Safetying: Safety Wire"}, {"q": "When is the single-wire safety method appropriate?", "options": ["On all widely-spaced primary structural bolts", "On turnbuckle barrels only", "On small screws in a closely-spaced closed geometrical pattern, on electrical-system parts, and in hard-to-reach places", "On any nut larger than 5/8 inch"], "correct": 2, "short": "Small closely-spaced screws, electrical parts, hard-to-reach", "expl": "The single-wire method may be used on small screws in a closely-spaced closed geometrical pattern, on parts in electrical systems, and in places extremely difficult to reach.", "cite": "FAA-H-8083-30B p. 7-77; AC 43.13-1B ¶7-123a", "topic": "Safetying: Safety Wire"}, {"q": "For the double-twist method on a part whose safety-wire hole is larger than 0.045\", what is the MINIMUM safety-wire diameter?", "options": ["0.020 inch", "0.040 inch", "0.057 inch", "0.032 inch"], "correct": 3, "short": "0.032 inch", "expl": "The minimum safety-wire diameter for the double-twist method, on parts with a hole larger than 0.045\", is 0.032 inch. 0.020\" double-strand is only for small parts (0.045-0.062\" holes under 2\" apart).", "cite": "AC 43.13-1B ¶7-123b, p. 7-19", "topic": "Safetying: Safety Wire"}, {"q": "What diameter copper/brass safety wire is used to SEAL emergency devices (e.g., fire extinguishers, first-aid kits)?", "options": ["0.020 inch (frangible, so it shears for emergency use)", "0.032 inch stainless steel", "0.040 inch stainless steel", "0.057 inch copper"], "correct": 0, "short": "0.020\" copper/brass (frangible)", "expl": "0.020\" copper/brass safety wire is used to seal emergency devices that must be broken to operate (fire extinguishers, first-aid kits, oxygen regulators). It shears easily in an emergency.", "cite": "AC 43.13-1B ¶7-123, p. 7-19", "topic": "Safetying: Safety Wire"}, {"q": "When safety-wiring WIDELY-spaced bolts by the double-twist method, the maximum number in a series is:", "options": ["Two (2)", "Three (3)", "Four (4)", "Six (6)"], "correct": 1, "short": "Three (3)", "expl": "When safety wiring widely-spaced bolts by the double-twist method, a group of three should be the maximum number in a series.", "cite": "FAA-H-8083-30B p. 7-77", "topic": "Safetying: Safety Wire"}, {"q": "In which direction must safety wire always be applied?", "options": ["So the pull tends to loosen the nut", "Perpendicular to the bolt axis", "So that all pull (tension) exerted by the wire tends to tighten the nut", "Always clockwise regardless of the nut"], "correct": 2, "short": "So pull tends to TIGHTEN the nut", "expl": "The wire is arranged so that if the bolt or screw begins to loosen, the force applied to the wire is in the tightening direction — all pull tends to tighten the nut.", "cite": "FAA-H-8083-30B pp. 7-77 to 7-80", "topic": "Safetying: Safety Wire"}, {"q": "The safety-wire pigtail at the end of the wiring should be what length / how many twists?", "options": ["1 to 2 inches (six to ten twists)", "1/8 inch (one to two twists)", "Flush — no pigtail is left", "1/4 to 1/2 inch (three to six twists), bent back or under to prevent a snag"], "correct": 3, "short": "1/4 to 1/2 inch (3 to 6 twists)", "expl": "A pigtail of 1/4 to 1/2 inch (three to six twists) should be made at the end of the wiring, bent back or under to keep it from becoming a snag.", "cite": "FAA-H-8083-30B p. 7-80", "topic": "Safetying: Safety Wire"}, {"q": "After a turnbuckle is adjusted, no more than how many threads may be exposed on either side of the barrel?", "options": ["Three (3) threads", "Five (5) threads", "Two (2) threads", "One (1) thread"], "correct": 0, "short": "Three (3) threads", "expl": "All turnbuckle terminals must be screwed into the barrel until not more than three threads are exposed on either side. After safetying, no more than three threads of the threaded terminal should be exposed.", "cite": "FAA-H-8083-30B pp. 7-72, 7-80", "topic": "Safetying: Turnbuckles"}, {"q": "How many turns must safety wire be wrapped around a turnbuckle shank?", "options": ["At least two (2) turns", "At least four (4) turns", "At least six (6) turns", "Exactly three (3) turns"], "correct": 1, "short": "At least four (4) turns", "expl": "Wrap the remaining length of safety wire at least four turns around the shank and cut it off. This applies to all turnbuckle wrappings.", "cite": "FAA-H-8083-30B pp. 7-78 to 7-79", "topic": "Safetying: Turnbuckles"}, {"q": "The standard cotter pin (cadmium-plated, low-carbon steel) carries which part number?", "options": ["AN381", "AN310", "AN380", "AN350"], "correct": 2, "short": "AN380", "expl": "The AN380 cadmium-plated, low-carbon steel cotter pin is the standard. The AN381 corrosion-resistant steel cotter pin is used where nonmagnetic material or corrosion resistance is required.", "cite": "FAA-H-8083-30B p. 7-75", "topic": "Safetying: Cotter Pins"}, {"q": "A flathead (Clevis) pin (MS20392) is customarily installed in which orientation, and why?", "options": ["Head down — to streamline airflow", "Either way — orientation does not matter", "Threaded end up — for safety wire access", "Head up — so that if the cotter pin fails or works out, the pin remains in place"], "correct": 3, "short": "Head up — so it stays put if the cotter fails", "expl": "The flathead (Clevis) pin is customarily installed with the head up so that if the cotter pin fails or works out, the pin remains in place.", "cite": "FAA-H-8083-30B p. 7-75", "topic": "Safetying: Cotter Pins"}, {"q": "Internal-type snap rings are safetied how?", "options": ["They are NEVER safetied; only external types may be safety wired", "Always safety wired with 0.032\" wire", "Always secured with a cotter pin", "Safetied only on rotating shafts"], "correct": 0, "short": "Never — only external types may be wired", "expl": "Internal-type snap rings fit in a groove inside a cylinder and are never safetied. External types fit around a shaft and may be safety wired.", "cite": "FAA-H-8083-30B p. 7-80", "topic": "Safetying: Snap Rings"}, {"q": "You install a steel bolt through an aluminum bracket. The maintenance manual gives no torque value. What is the correct sequence?", "options": ["Steel washer, lubricate threads, torque to the table maximum, leave un-safetied", "Aluminum-alloy washer under head and nut, torque per the standard table (don't lubricate), then safety it", "No washer, hand-tighten, then safety wire", "Lubricate, torque high side, no safetying needed"], "correct": 1, "short": "Al washer both ends, table torque dry, then safety", "expl": "Use aluminum-alloy washers (corrosion attacks the washer, not the structure), torque per the standard table since the manual is silent, do not lubricate (cad-plated steel), then safety all bolts/nuts except self-locking.", "cite": "FAA-H-8083-30B pp. 7-48, 7-50", "topic": "Scenario / Application"}, {"q": "You are safetying a castellated nut on a drilled-shank bolt and the cotter-pin hole won't line up at the proper torque. The bolt is NOT a highly-stressed engine part. What do you do?", "options": ["Over-torque the nut until a slot lines up", "Loosen the nut below minimum until a slot lines up", "Remove the hardware and realign the holes — do not over-torque or loosen the nut", "File the castellations deeper"], "correct": 2, "short": "Realign holes; don't over-torque or loosen", "expl": "Except for highly-stressed engine parts, do not over-torque. Remove and realign so the holes line up within the recommended range. Never loosen a torqued nut to align holes either.", "cite": "FAA-H-8083-30B p. 7-50", "topic": "Scenario / Application"}, {"q": "A project kit offers safety wire in 0.021\", 0.032\", and 0.040\" stainless. You must double-twist a typical bolt/nut whose hole exceeds 0.045\". Which wire do you choose and why?", "options": ["0.021\" — the thinnest is always preferred", "0.040\" — anything over 0.032\" is required", "0.020\" copper — copper is the structural standard", "0.032\" stainless — it meets the AC 43.13-1B minimum for the double-twist method on holes larger than 0.045\""], "correct": 3, "short": "0.032\" stainless (meets the double-twist minimum)", "expl": "For the double-twist method on parts with a hole larger than 0.045\", the minimum wire is 0.032\". Stainless is the general-purpose strength/corrosion choice. 0.020\" copper is only for sealing frangible emergency devices.", "cite": "AC 43.13-1B ¶7-123b, p. 7-19; FAA-H-8083-30B p. 7-77", "topic": "Scenario / Application"}, {"q": "You find a fiber-insert self-locking nut that spins freely onto its bolt by hand. What is the correct action?", "options": ["Replace it — the fiber has lost its locking friction", "Reuse it; finger-tight is normal for these nuts", "Add a lock washer under it and reuse it", "Safety wire it and reuse it"], "correct": 0, "short": "Replace it", "expl": "If an elastic stop (fiber) nut can be turned onto the bolt with the fingers, the fiber has lost its locking friction — replace the nut.", "cite": "FAA-H-8083-30B p. 7-44", "topic": "Scenario / Application"}, {"q": "A bolt must pass through a fitting that sees only shear loads and acts as a control-system pin. Which fastener is correct?", "options": ["An eyebolt (external tension only)", "A Clevis bolt (used only in shear, never tension)", "An internal-wrenching bolt (high tension)", "A drive screw"], "correct": 1, "short": "Clevis bolt", "expl": "The Clevis bolt is used only where shear loads occur, never in tension, and is often inserted as a mechanical pin in a control system. The eyebolt is the tension-load special bolt.", "cite": "FAA-H-8083-30B p. 7-39", "topic": "Scenario / Application"}];
+const DRILL = [{"label": "Safety wire — double-twist minimum diameter", "text": "0.032 inch (on parts with a hole larger than 0.045\"). AC 43.13-1B ¶7-123b."}, {"label": "Safety wire — 0.020\" copper/brass", "text": "Used to SEAL frangible emergency devices (fire extinguishers, first-aid kits) — shears for use."}, {"label": "Widely-spaced bolts, double-twist", "text": "Maximum 3 in a series. FAA-H-8083-30B p. 7-77."}, {"label": "Closely-spaced bolts", "text": "Maximum in a series = what a 24-inch length of wire can wire. p. 7-77."}, {"label": "Safety wire direction", "text": "Always applied so all pull TIGHTENS the nut. Wire is NEW each application; pigtail = 1/4-1/2\" (3-6 twists)."}, {"label": "Fiber (elastic stop) self-locking nut temperature limit", "text": "Do not install where temperature exceeds 250 °F. Replace if it can be finger-turned. p. 7-45."}, {"label": "Turnbuckle safetying", "text": "Double-wrap method preferred; wrap at least 4 turns around the shank; no more than 3 threads exposed. pp. 7-79, 7-80."}, {"label": "Torque value rule", "text": "Maintenance manual value first; standard torque table is only a GUIDE when none is specified. p. 7-50."}, {"label": "Torque conversion / lubrication / sequence", "text": "Foot-pounds = inch-pounds ÷ 12; do NOT lubricate (except CRES); rotate the NUT first; pull smooth & clockwise."}, {"label": "Bolt part number (AN3DD5A)", "text": "3 = dia in 16ths (3/16\"); DD = 2024 aluminum; C = CRES; no letter = cad-plated steel; 5 = length in 8ths; H (before length) = drilled head."}, {"label": "Bolt install", "text": "Head UP/FORWARD; washer under head AND nut; grip length = material thickness; safety ALL bolts/nuts except self-locking."}, {"label": "Cotter pins", "text": "AN380 = cad-plated low-carbon steel (standard); AN381 = corrosion-resistant. Never loosen/over-torque a nut to align holes."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
