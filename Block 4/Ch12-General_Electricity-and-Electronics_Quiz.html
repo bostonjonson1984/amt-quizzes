@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ch.12 General — Fundamentals of Electricity &amp; Electronics</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Ch.12 General — Fundamentals of Electricity &amp; Electronics</h1>
+    <div class="sub">Block 4 · FAA-H-8083-30B Chapter 12</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "What is the smallest particle of matter that can exist and still retain the identity of a substance such as water?", "options": ["Molecule", "Atom", "Electron", "Compound"], "correct": 0, "short": "Molecule", "expl": "The handbook defines the molecule as the smallest particle of matter that can exist and still retain its identity, such as water (H2O). An atom is the basic building block, but it is the molecule that retains the substance's identity.", "cite": "FAA-H-8083-30B p. 12-1", "topic": "Matter & Atoms"}, {"q": "Which group of materials makes the BEST electrical conductors because of their large number of free electrons?", "options": ["Glass, ceramic, and plastic", "Gold, copper, and silver", "Silicon and germanium", "Rubber and porcelain"], "correct": 1, "short": "Gold, copper, and silver", "expl": "Conductors such as gold, copper, and silver have many loosely bound free electrons. Copper and silver have just one electron in their outer orbit. Glass/ceramic/plastic are insulators; silicon/germanium are semiconductors.", "cite": "FAA-H-8083-30B p. 12-3", "topic": "Conductors & Insulators"}, {"q": "Per the fundamental law of static electricity (and magnetism), how do charges behave?", "options": ["Like charges repel; unlike charges attract", "Like charges attract; unlike charges repel", "All charges attract each other", "All charges repel each other"], "correct": 0, "short": "Like charges repel; unlike charges attract", "expl": "One of the most fundamental laws of static electricity and magnetism: like charges repel each other and unlike charges attract each other. Electrons (–) and protons (+) attract.", "cite": "FAA-H-8083-30B p. 12-4", "topic": "Static Electricity"}, {"q": "The push or pressure (electromotive force) that moves electrons through a circuit is measured in:", "options": ["Amperes", "Volts", "Ohms", "Coulombs"], "correct": 1, "short": "Volts", "expl": "Electromotive force (emf), symbol 'E', is the electrical pressure that moves electrons. It is measured in volts and exists as a potential difference between two points.", "cite": "FAA-H-8083-30B p. 12-15", "topic": "EMF, Current & Units"}, {"q": "Ohm's Law states that current equals voltage divided by resistance. Which equation expresses this correctly?", "options": ["I = E × R", "I = R / E", "I = E / R", "E = I / R"], "correct": 2, "short": "I = E / R", "expl": "Ohm's Law: I = E/R, where I is current (A), E is voltage (V), and R is resistance (ohms). Transposed: E = I×R and R = E/I.", "cite": "FAA-H-8083-30B p. 12-17", "topic": "Ohm's Law"}, {"q": "Using the general power formula P = I × E, what is the power in a circuit carrying 2 amps at 24 volts?", "options": ["12 watts", "26 watts", "96 watts", "48 watts"], "correct": 3, "short": "48 watts", "expl": "P = I(E) = 2 A × 24 V = 48 W. This is the handbook's own worked example of the general power formula (Watt's Law).", "cite": "FAA-H-8083-30B p. 12-22", "topic": "Power & Watt's Law"}, {"q": "Which material is usually considered the BEST available conductor for a given wire diameter?", "options": ["Copper", "Aluminum", "Iron", "Tungsten"], "correct": 0, "short": "Copper", "expl": "Copper is usually considered the best available conductor, since a copper wire of a given diameter has lower resistance than aluminum of the same diameter. Aluminum is used when weight/cost matter because it is lighter.", "cite": "FAA-H-8083-30B p. 12-18", "topic": "Conductors & Wire"}, {"q": "On the resistor color code, what numerical value does the color RED represent?", "options": ["0", "2", "1", "5"], "correct": 1, "short": "2", "expl": "Resistor color code values: Black 0, Brown 1, Red 2, Orange 3, Yellow 4, Green 5, Blue 6, Violet 7, Gray 8, White 9.", "cite": "FAA-H-8083-30B p. 12-25", "topic": "Resistors & Color Code"}, {"q": "In a SERIES circuit, what is true about the current?", "options": ["Current divides among the resistors", "Current is greatest at the source only", "Current is the same through every component", "Current is zero in the resistors"], "correct": 2, "short": "Current is the same through every component", "expl": "A series circuit provides only one path, so the current through a series circuit is always the same value at every point. Total resistance = sum of the individual resistors.", "cite": "FAA-H-8083-30B p. 12-34", "topic": "Series & Parallel Circuits"}, {"q": "Kirchhoff's Voltage Law states that around any closed loop, the algebraic sum of all voltages is zero. Put another way:", "options": ["The source voltage equals the largest single voltage drop", "Voltage drops are equal in every resistor", "The sum of currents equals zero", "The sum of voltage drops equals the total source voltage"], "correct": 3, "short": "Sum of voltage drops = source voltage", "expl": "Kirchhoff's Voltage Law: the algebraic sum of all voltages around a closed loop is zero — i.e., the sum of all the voltage drops equals the total source voltage.", "cite": "FAA-H-8083-30B p. 12-37", "topic": "Kirchhoff's Laws"}, {"q": "In troubleshooting, an unintentional LOW-resistance path that allows excessive current to bypass the normal load is called a:", "options": ["Short circuit", "Open circuit", "Series circuit", "Ground loop"], "correct": 0, "short": "Short circuit", "expl": "A short circuit is an unintentional low-resistance path. An open circuit is one that is not complete and so carries no current.", "cite": "FAA-H-8083-30B p. 12-78", "topic": "Open & Short Circuits"}, {"q": "A cell whose chemical reaction is REVERSIBLE — so it can be recharged — is called a:", "options": ["Primary cell", "Secondary cell", "Fuel cell", "Photocell"], "correct": 1, "short": "Secondary cell", "expl": "A secondary cell's energy-releasing reaction is reversible, so it can be recharged (e.g., lead-acid, nickel-cadmium). A primary cell's reaction is NOT reversible — recharging it is dangerous.", "cite": "FAA-H-8083-30B p. 12-89", "topic": "Batteries & Cells"}, {"q": "In magnetism, the measure of OPPOSITION a material offers to magnetic lines of force is called:", "options": ["Permeability", "Flux", "Reluctance", "Retentivity"], "correct": 2, "short": "Reluctance", "expl": "Reluctance is the measure of opposition to magnetic lines of force, analogous to resistance in an electrical circuit. Permeability is the EASE with which a material carries flux (soft iron has low reluctance / high permeability).", "cite": "FAA-H-8083-30B p. 12-10", "topic": "Magnetism"}, {"q": "A coil of wire wound around a soft-iron core to concentrate the magnetic field is called a(n):", "options": ["Capacitor", "Resistor", "Rheostat", "Electromagnet"], "correct": 3, "short": "Electromagnet", "expl": "A coil of many loops with a soft-iron core inside is an electromagnet; the iron concentrates the flux in the center, greatly increasing field strength. The handbook uses the LEFT-hand rule for electron flow to find its polarity.", "cite": "FAA-H-8083-30B p. 12-13", "topic": "Electromagnetism"}, {"q": "An electromechanical switch in which a small current energizes a coil to move contacts (controlling a larger circuit) is a:", "options": ["Relay", "Rheostat", "Rectifier", "Potentiometer"], "correct": 0, "short": "Relay", "expl": "A relay is an electromechanical switch where a small current energizes an electromagnet, whose magnetic pull moves the armature to open or close the (normally open / normally closed) contacts.", "cite": "FAA-H-8083-30B p. 12-33", "topic": "Switches & Relays"}, {"q": "How many electrical degrees are there in one complete cycle of an AC sine wave?", "options": ["90 degrees", "360 degrees", "180 degrees", "270 degrees"], "correct": 1, "short": "360 degrees", "expl": "One full sine-wave cycle spans 360 degrees: voltage is zero at 0, maximum at 90, zero at 180, maximum (opposite) at 270, and zero again at 360.", "cite": "FAA-H-8083-30B p. 12-49", "topic": "AC Theory"}, {"q": "The effective (RMS) value of an AC sine wave equals what fraction of the peak value?", "options": ["0.637 x peak", "1.414 x peak", "0.707 x peak", "1.0 x peak"], "correct": 2, "short": "0.707 x peak", "expl": "RMS (effective) value = 0.707 x peak. It represents the heating effect (the DC voltage producing the same heat). Do not confuse 0.707 (RMS) with 0.637 (the average value).", "cite": "FAA-H-8083-30B p. 12-49", "topic": "AC Values (RMS/Peak)"}, {"q": "Besides resistance, which TWO factors oppose current flow only in AC circuits (not in DC)?", "options": ["Voltage and current", "Impedance and resistance", "Permeability and reluctance", "Inductive reactance and capacitive reactance"], "correct": 3, "short": "Inductive & capacitive reactance", "expl": "Resistance opposes both AC and DC. Inductive reactance (XL) and capacitive reactance (XC) oppose current only in AC circuits, and can create a phase shift between voltage and current.", "cite": "FAA-H-8083-30B p. 12-49", "topic": "AC Reactance"}, {"q": "In a series AC circuit, the total opposition combining resistance and reactance is called:", "options": ["Impedance", "Capacitance", "Conductance", "Inductance"], "correct": 0, "short": "Impedance", "expl": "Impedance (Z) is the total opposition to AC, combining resistance and reactance. For a series R-C or R-L circuit, Z = sqrt(R^2 + X^2).", "cite": "FAA-H-8083-30B p. 12-61", "topic": "Impedance & Power Factor"}, {"q": "The factor that determines whether a transformer is step-up or step-down is the:", "options": ["Core material", "Turns ratio", "Wire gauge", "Frequency"], "correct": 1, "short": "Turns ratio", "expl": "The turns ratio — the ratio of primary winding turns to secondary winding turns — determines step-up vs. step-down. The voltage ratio equals the turns ratio in an ideal transformer.", "cite": "FAA-H-8083-30B p. 12-65", "topic": "Transformers"}, {"q": "Which DC motor produces a HIGH starting torque and is therefore commonly used as an aircraft engine starter?", "options": ["Shunt motor", "Compound motor", "Series motor", "Synchronous motor"], "correct": 2, "short": "Series motor", "expl": "The series motor has its field windings in series with the armature, producing high starting torque — ideal for engine starters. Caution: with no load it can overspeed until the armature flies apart.", "cite": "FAA-H-8083-30B p. 12-142", "topic": "Motors & Generators"}, {"q": "Capacitors connected in PARALLEL combine how (to find total capacitance)?", "options": ["Use the reciprocal formula", "Take the smallest value", "Multiply them", "Add them directly (CT = C1 + C2 + ...)"], "correct": 3, "short": "Add them directly", "expl": "Capacitors in parallel add directly: CT = C1 + C2 + C3... (e.g., 330 uF + 220 uF = 550 uF). This is OPPOSITE to resistors, where parallel uses the reciprocal formula — a common trap.", "cite": "FAA-H-8083-30B p. 12-54", "topic": "Capacitance & Inductance"}, {"q": "A semiconductor diode (PN junction) allows current to flow easily in which condition?", "options": ["When forward biased", "When reverse biased", "Only with AC applied", "In both directions equally"], "correct": 0, "short": "When forward biased", "expl": "A forward-biased diode (negative source to N-type, positive source to P-type) conducts. Reverse bias blocks current. This one-way action is what makes a diode work as a rectifier.", "cite": "FAA-H-8083-30B p. 12-98", "topic": "Semiconductors & Diodes"}, {"q": "A transistor is a three-terminal device used mainly to amplify signals. Its three regions are the emitter, the base, and the:", "options": ["Cathode", "Collector", "Anode", "Gate"], "correct": 1, "short": "Collector", "expl": "A transistor's three regions are the collector (moderately doped), the emitter (heavily doped), and the base (lightly doped, and thinnest). Transistors are classed NPN or PNP by their material arrangement.", "cite": "FAA-H-8083-30B p. 12-104", "topic": "Transistors"}, {"q": "How is an AMMETER connected to measure current in a circuit?", "options": ["In parallel with the load", "Across the voltage source", "In series with the element being measured", "Between ground and chassis"], "correct": 2, "short": "In series with the element", "expl": "Always connect an ammeter in SERIES with the element whose current you are measuring. NEVER connect an ammeter across a voltage source — its very low resistance would cause excessive current.", "cite": "FAA-H-8083-30B p. 12-70", "topic": "Measuring Instruments"}, {"q": "A circuit-protection device that interrupts current on an overload and CAN be reset (unlike a fuse) is a:", "options": ["Fuse", "Current limiter", "Resistor", "Circuit breaker"], "correct": 3, "short": "Circuit breaker", "expl": "A circuit breaker opens when current exceeds a set value and can be reset; a fuse or current limiter must be replaced after it opens. Most breakers are reset by hand; automatic reset types are not allowed in aircraft.", "cite": "FAA-H-8083-30B p. 12-30", "topic": "Circuit Protection"}, {"q": "A substance that cannot be reduced to a simpler form by chemical means — such as iron, copper, or oxygen — is called a:", "options": ["Element", "Compound", "Molecule", "Mixture"], "correct": 0, "short": "Element", "expl": "An element cannot be reduced to a simpler form by chemical means. A compound, by contrast, is a chemical combination of two or more elements (e.g., water).", "cite": "FAA-H-8083-30B p. 12-1", "topic": "Matter & Atoms"}, {"q": "Which subatomic particle carries a negative charge and has the smallest mass?", "options": ["Proton", "Electron", "Neutron", "Nucleus"], "correct": 1, "short": "Electron", "expl": "Protons are positively charged and neutrons are neutral; both sit in the nucleus. The electron is the negatively charged particle with a very small mass — the proton's mass is roughly 1,837 times greater than the electron's.", "cite": "FAA-H-8083-30B p. 12-2", "topic": "Matter & Atoms"}, {"q": "The electrons located in the outermost shell of an atom — the ones that determine its electrical and chemical behavior — are called:", "options": ["Free electrons", "Bound electrons", "Valence electrons", "Ions"], "correct": 2, "short": "Valence electrons", "expl": "Valence electrons occupy the outermost shell and determine the atom's valence (number of chemical bonds it can form). When loosely bound and able to drift atom-to-atom, they become 'free electrons' that make up current.", "cite": "FAA-H-8083-30B p. 12-2", "topic": "Matter & Atoms"}, {"q": "An atom that has LOST an electron becomes a positively charged particle known as a:", "options": ["Anion", "Free electron", "Neutron", "Cation (positive ion)"], "correct": 3, "short": "Cation (positive ion)", "expl": "Ionization is the gain or loss of electrons. Losing an electron leaves the atom net positive — a positive ion or cation. Gaining an electron makes a negative ion or anion.", "cite": "FAA-H-8083-30B p. 12-2", "topic": "Matter & Atoms"}, {"q": "Silicon and germanium are the two most widely used materials for making transistors and integrated circuits. They are classified as:", "options": ["Semiconductors", "Conductors", "Insulators", "Superconductors"], "correct": 0, "short": "Semiconductors", "expl": "Semiconductor properties fall between conductors and insulators; in their pure state they neither conduct nor insulate well, but conduct depending on the load applied. Silicon and germanium are the most widely used.", "cite": "FAA-H-8083-30B p. 12-4", "topic": "Conductors & Insulators"}, {"q": "One ampere of current is defined as how much charge passing a point in one second?", "options": ["1 volt", "1 coulomb", "1 ohm", "1 joule"], "correct": 1, "short": "1 coulomb", "expl": "1 A = 1 coulomb per second. One ampere equals one coulomb of charge passing through a conductor in one second. The symbol for current in formulas is 'I'.", "cite": "FAA-H-8083-30B p. 12-17", "topic": "EMF, Current & Units"}, {"q": "One coulomb of charge is equal to approximately how many electrons?", "options": ["6.28 thousand electrons", "6.28 million electrons", "6.28 billion electrons", "1,837 electrons"], "correct": 2, "short": "6.28 billion electrons", "expl": "The handbook states one coulomb of charge equals 6.28 billion electrons. (Note: 1 A = 1 C/s.)", "cite": "FAA-H-8083-30B p. 12-17", "topic": "EMF, Current & Units"}, {"q": "When current flows in only one direction through a circuit, it is called:", "options": ["Alternating current (AC)", "Inductive current", "Eddy current", "Direct current (DC)"], "correct": 3, "short": "Direct current (DC)", "expl": "When current flow is in one direction it is direct current (DC). Current that periodically oscillates back and forth is alternating current (AC).", "cite": "FAA-H-8083-30B p. 12-17", "topic": "EMF, Current & Units"}, {"q": "A circuit has 28 volts applied across a 14-ohm resistor. Using Ohm's Law, how much current flows?", "options": ["2 amperes", "0.5 amperes", "14 amperes", "42 amperes"], "correct": 0, "short": "2 amperes", "expl": "I = E/R = 28 V / 14 ohms = 2 A. When two of the three quantities are known, the third is found by transposing Ohm's Law.", "cite": "FAA-H-8083-30B p. 12-18", "topic": "Ohm's Law"}, {"q": "A circuit carries 2 amps through a 100-ohm resistor. Using P = I^2 R, what is the power dissipated?", "options": ["200 watts", "400 watts", "50 watts", "10,000 watts"], "correct": 1, "short": "400 watts", "expl": "Second form of the power equation: P = I^2 R = (2 A)^2 × 100 ohms = 4 × 100 = 400 W. This is the handbook's worked example.", "cite": "FAA-H-8083-30B p. 12-22", "topic": "Power & Watt's Law"}, {"q": "Using the third form of the power equation, P = E^2 / R, what is the power for 24 volts across 20 ohms?", "options": ["1.2 watts", "480 watts", "28.8 watts", "120 watts"], "correct": 2, "short": "28.8 watts", "expl": "P = E^2/R = (24 V)^2 / 20 ohms = 576 / 20 = 28.8 W. This matches the handbook's worked example.", "cite": "FAA-H-8083-30B p. 12-22", "topic": "Power & Watt's Law"}, {"q": "One horsepower of mechanical power is equivalent to how many watts of electrical power?", "options": ["550 watts", "1,000 watts", "33,000 watts", "746 watts"], "correct": 3, "short": "746 watts", "expl": "An electric motor rated at 1 horsepower requires 746 watts of electrical energy. (33,000 ft-lb/min and 550 ft-lb/s describe the mechanical horsepower definition.)", "cite": "FAA-H-8083-30B p. 12-21", "topic": "Power & Watt's Law"}, {"q": "How does the resistance of a metallic conductor change as its length increases?", "options": ["Resistance increases (directly proportional)", "Resistance decreases (inversely proportional)", "Resistance is unaffected by length", "Resistance varies with the square of length"], "correct": 0, "short": "Resistance increases (directly proportional)", "expl": "Resistance is DIRECTLY proportional to length — double the length, double the resistance. (It is INVERSELY proportional to cross-sectional area — a classic trap to mix up.)", "cite": "FAA-H-8083-30B p. 12-18", "topic": "Conductors & Wire"}, {"q": "If the cross-sectional area of a conductor is doubled, the resistance to current flow is:", "options": ["Doubled", "Cut in half", "Unchanged", "Quadrupled"], "correct": 1, "short": "Cut in half", "expl": "Resistance is inversely proportional to cross-sectional area. Doubling the area cuts resistance in half, because electrons have more room to move without collisions.", "cite": "FAA-H-8083-30B p. 12-19", "topic": "Conductors & Wire"}, {"q": "For most metallic conductors, what happens to resistance as temperature rises?", "options": ["Resistance decreases", "Resistance stays exactly constant", "Resistance increases", "Resistance drops to zero"], "correct": 2, "short": "Resistance increases", "expl": "Most materials used as conductors increase in resistance as temperature increases. (Carbon is an exception — it decreases. Alloys like constantan and Manganin change very little.)", "cite": "FAA-H-8083-30B p. 12-19", "topic": "Conductors & Wire"}, {"q": "In American Wire Gauge (AWG), a decrease of THREE gauge numbers does what to the conductor's resistance for a given length?", "options": ["Doubles it", "Leaves it unchanged", "Triples it", "Cuts it in half"], "correct": 3, "short": "Cuts it in half", "expl": "Each decrease of one gauge number = ~25% increase in cross-sectional area; a decrease of three gauge numbers ~doubles the area (2:1), which cuts resistance in half.", "cite": "FAA-H-8083-30B p. 12-20", "topic": "Conductors & Wire"}, {"q": "On a 4-band resistor, if there is NO fourth (tolerance) color band, what tolerance is understood?", "options": ["20 percent", "5 percent", "10 percent", "1 percent"], "correct": 0, "short": "20 percent", "expl": "If there is no fourth band, the tolerance is understood to be 20 percent. A gold fourth band = 5%, silver = 10%.", "cite": "FAA-H-8083-30B p. 12-25", "topic": "Resistors & Color Code"}, {"q": "Which variable resistor is used specifically to VARY the amount of current flowing in a circuit and is typically connected in series?", "options": ["Potentiometer", "Rheostat", "Wire-wound fixed resistor", "Thermistor"], "correct": 1, "short": "Rheostat", "expl": "A rheostat is a variable resistor used to vary current; it is connected in series, so increasing its resistance increases total resistance and decreases current. The other manual variable type is the potentiometer.", "cite": "FAA-H-8083-30B p. 12-26", "topic": "Resistors & Color Code"}, {"q": "Three resistors of 10, 20, and 30 ohms are connected in SERIES. What is the total resistance?", "options": ["6 ohms", "30 ohms", "60 ohms", "20 ohms"], "correct": 2, "short": "60 ohms", "expl": "In a series circuit total resistance is the simple sum: 10 + 20 + 30 = 60 ohms.", "cite": "FAA-H-8083-30B p. 12-34", "topic": "Series & Parallel Circuits"}, {"q": "In a PARALLEL circuit, what is true about the total resistance compared to the branches?", "options": ["It equals the sum of the branch resistances", "It equals the largest branch resistance", "It is the average of the branches", "It is always less than the smallest branch resistance"], "correct": 3, "short": "Less than the smallest branch resistance", "expl": "Adding parallel branches gives current more paths, so total parallel resistance is always less than that of any single branch. (Series resistance, by contrast, simply adds up — a common trap.)", "cite": "FAA-H-8083-30B p. 12-39", "topic": "Series & Parallel Circuits"}, {"q": "In a PARALLEL circuit, what is the same across every branch?", "options": ["The voltage", "The current", "The resistance", "The power"], "correct": 0, "short": "The voltage", "expl": "Branches in parallel are connected across the same voltage source, so the voltage across each branch equals the voltage across all the others. Current divides among branches.", "cite": "FAA-H-8083-30B p. 12-39", "topic": "Series & Parallel Circuits"}, {"q": "Kirchhoff's Current Law states that at any junction (node) in a circuit:", "options": ["Current leaving exceeds current entering", "The sum of currents entering equals the sum of currents leaving", "Current is the same in every branch", "Voltage drops sum to zero"], "correct": 1, "short": "Currents in = currents out", "expl": "Kirchhoff's Current Law: the sum of the currents entering a junction equals the sum of the currents leaving it. Current divides among branches according to each branch's resistance.", "cite": "FAA-H-8083-30B p. 12-41", "topic": "Kirchhoff's Laws"}, {"q": "A circuit that is not a complete or continuous path — so no current can flow — is called a(n):", "options": ["Short circuit", "Parallel circuit", "Open circuit", "Closed circuit"], "correct": 2, "short": "Open circuit", "expl": "An open circuit is a circuit that is not a complete or continuous path; current cannot flow. Contrast with a short, which is a low-resistance bypass.", "cite": "FAA-H-8083-30B p. 12-79", "topic": "Open & Short Circuits"}, {"q": "What is the approximate normal RATED voltage of a single lead-acid cell?", "options": ["1.2 volts", "1.5 volts", "2.2 volts", "2 volts"], "correct": 3, "short": "2 volts", "expl": "A lead-acid cell is normally rated at approximately 2 volts (about 2.2 V right off the charger). A 12-volt battery uses 6 cells in series; a 24-volt battery uses 12 cells.", "cite": "FAA-H-8083-30B p. 12-90", "topic": "Batteries & Cells"}];
+const DRILL = [{"label": "Ohm's Law", "text": "I = E / R  (current = volts / ohms); transposed: E = I x R and R = E / I. (p. 12-17)"}, {"label": "Watt's Law / Power", "text": "P = I x E; also P = I^2 x R; also P = E^2 / R. 1 horsepower = 746 watts. (p. 12-21/22)"}, {"label": "RMS value", "text": "RMS (effective) = 0.707 x peak; Peak = 1.414 x RMS. RMS = the heating-effect value AC meters read. (p. 12-49)"}, {"label": "Average vs RMS", "text": "Average value = 0.637 x peak (DISTRACTOR); RMS = 0.707 x peak (CORRECT). Don't swap them. (p. 12-49)"}, {"label": "Meter connections", "text": "AMMETER = in SERIES (never across a voltage source). VOLTMETER = in PARALLEL (across the two points). (p. 12-70/71)"}, {"label": "Current units", "text": "1 ampere = 1 coulomb/second; 1 coulomb = 6.28 billion electrons. Current symbol = I. (p. 12-17)"}, {"label": "Best conductor", "text": "Copper is the best common conductor for a given diameter; aluminum is lighter (used to save weight). (p. 12-18)"}, {"label": "Resistance factors", "text": "R is DIRECTLY proportional to length; INVERSELY proportional to cross-sectional area; rises with temperature (most metals). (p. 12-18/19)"}, {"label": "Series vs Parallel", "text": "SERIES: same current, R adds up, voltage drops add to source. PARALLEL: same voltage, RT < smallest branch, currents add. (p. 12-34/39)"}, {"label": "Cell voltages", "text": "Lead-acid cell ~2 V (6 cells=12 V, 12 cells=24 V). Ni-Cad cell ~1.25 V. Hydrometer reads specific gravity (1.100-1.300). (p. 12-90/91)"}, {"label": "Battery hookup", "text": "PARALLEL increases ampere-hour capacity (voltage same). SERIES increases voltage (capacity same). (p. 12-90)"}, {"label": "Transformer / Reactance", "text": "Voltage ratio = turns ratio (Np:Ns). XL = 2(pi)fL (rises with f); XC = 1/(2(pi)fC) (falls with f); Z = sqrt(R^2 + X^2). (p. 12-58/61/65)"}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
