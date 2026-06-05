@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AET — Module 1: DC Fundamentals</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>AET — Module 1: DC Fundamentals</h1>
+    <div class="sub">Standards 1, 5, 6 · electron theory, units &amp; definitions, Ohm&#x27;s Law &amp; power calcs, meter connection rules. Pass mark 73%.</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Which subatomic particle actually carries electricity through a conductor?", "options": ["The proton", "The neutron", "The electron", "The nucleus"], "correct": 2, "short": "The electron", "expl": "Electrons are the negatively-charged particles that orbit the nucleus and are involved in the conduction of electricity. Protons (+) and neutrons (neutral) stay in the nucleus and do NOT conduct.", "cite": "AET Study Guide p. 5-6; FAA-H-8083-30B p. 12-1", "topic": "Std 1 · Electron theory"}, {"q": "A proton carries what charge?", "options": ["Negative (−)", "Positive (+)", "Neutral / no charge", "It alternates"], "correct": 1, "short": "Positive (+)", "expl": "Protons are positively-charged particles in the nucleus. They are NOT involved in conducting electricity.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-1", "topic": "Std 1 · Electron theory"}, {"q": "A neutron carries what charge?", "options": ["Positive (+)", "Negative (−)", "Neutral / no charge", "Double negative"], "correct": 2, "short": "Neutral (no charge)", "expl": "Neutrons are neutral subatomic particles inside the nucleus and are not involved in conduction.", "cite": "AET Study Guide p. 5; FAA-H-8083-30B p. 12-1", "topic": "Std 1 · Electron theory"}, {"q": "What is a 'free electron'?", "options": ["An electron with no charge", "A loosely-bound outer-shell electron that can move from atom to atom", "An electron locked tightly in the nucleus", "A proton that has lost its charge"], "correct": 1, "short": "A loosely-bound outer electron that can travel atom-to-atom", "expl": "Outermost electrons are loosely held and easily dislodged. Once freed, they travel atom to atom — and that flow IS electric current.", "cite": "FAA-H-8083-30B p. 12-2, 12-16", "topic": "Std 1 · Electron theory"}, {"q": "Whether a material conducts electricity depends mainly on its number of:", "options": ["Protons", "Neutrons", "Free electrons", "Nuclei"], "correct": 2, "short": "Free electrons", "expl": "More free electrons available = more current the material can conduct. This is what separates conductors, insulators, and semiconductors.", "cite": "FAA-H-8083-30B p. 12-2", "topic": "Std 1 · Conductors/Insulators"}, {"q": "Which group lists good electrical CONDUCTORS?", "options": ["Glass, rubber, plastic", "Silver, copper, gold, aluminum", "Ceramic, quartz, wood", "Silicon, germanium, air"], "correct": 1, "short": "Silver, copper, gold, aluminum", "expl": "Conductors have many free electrons. Copper and silver each have one electron in their outer orbit, giving billions of free electrons.", "cite": "AET Study Guide p. 4; FAA-H-8083-30B p. 12-3", "topic": "Std 1 · Conductors/Insulators"}, {"q": "Which material is an INSULATOR?", "options": ["Copper", "Silver", "Glass", "Aluminum"], "correct": 2, "short": "Glass", "expl": "An insulator is used to prevent the passage of electricity. Insulators (glass, ceramic, plastic, rubber) make almost no free electrons.", "cite": "AET Study Guide p. 5; FAA-H-8083-30B p. 12-3", "topic": "Std 1 · Conductors/Insulators"}, {"q": "Silicon and germanium, in their pure state, are best described as:", "options": ["Excellent conductors", "Perfect insulators", "Semiconductors", "Superconductors"], "correct": 2, "short": "Semiconductors", "expl": "Semiconductors fall between conductors and insulators and can be made to act like either. Silicon and germanium are the most common, used in transistors and chips.", "cite": "FAA-H-8083-30B p. 12-4", "topic": "Std 1 · Conductors/Insulators"}, {"q": "Static electricity is best described as:", "options": ["Electrons flowing steadily in one direction", "An electrical charge built up on a non-conductive surface by friction", "Alternating current at 400 Hz", "The current inside a battery"], "correct": 1, "short": "A charge built up on a non-conductive surface by friction", "expl": "Static electricity is a buildup of charge (electrons at rest) from rubbing non-conductive materials. There is no current flow, and it serves no useful purpose.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-4", "topic": "Std 1 · DC Basic Terms"}, {"q": "In the water-pipe analogy, VOLTAGE is like the:", "options": ["Amount of water flowing", "Pressure pushing the water", "Friction of the pipe", "Size of the tank"], "correct": 1, "short": "Pressure pushing the water", "expl": "Voltage = electrical pressure (EMF) that pushes electrons. Current = amount flowing; resistance = friction opposing flow.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-16", "topic": "Std 1 · DC Basic Terms"}, {"q": "The VOLT is the basic unit of what?", "options": ["Current", "Resistance", "Electrical pressure (EMF)", "Power"], "correct": 2, "short": "Electrical pressure (EMF)", "expl": "A volt is the basic unit of electrical pressure — the amount of force required to cause one amp to flow through one ohm of resistance.", "cite": "AET Study Guide p. 6", "topic": "Std 1 · DC Basic Terms"}, {"q": "In math problems, voltage is represented by which letter?", "options": ["I", "R", "E", "V only"], "correct": 2, "short": "E", "expl": "Voltage (EMF) is expressed by the letter E in formulas like E = I × R.", "cite": "AET Study Guide p. 5", "topic": "Std 5 · Symbols"}, {"q": "The AMPERE is the unit used to express:", "options": ["Resistance", "The flow of electrons (current)", "Electrical pressure", "Power"], "correct": 1, "short": "The flow of electrons (current)", "expl": "The ampere measures current. One ampere = a flow of one coulomb passing a point per second. In math, current is the letter I.", "cite": "AET Study Guide p. 4; FAA-H-8083-30B p. 12-17", "topic": "Std 1 · DC Basic Terms"}, {"q": "One ampere equals a flow of one coulomb past a point in:", "options": ["One minute", "One hour", "One second", "One millisecond"], "correct": 2, "short": "One second", "expl": "1 amp = 1 coulomb per second. Current I = Q (charge in coulombs) ÷ t (time in seconds).", "cite": "AET Study Guide p. 4; FAA-H-8083-30B p. 12-17", "topic": "Std 1 · DC Basic Terms"}, {"q": "One coulomb is equal to how many electrons?", "options": ["6.28 million", "6.28 billion", "6.28 billion-billion (6.28 × 10¹⁸)", "186,000"], "correct": 2, "short": "6.28 × 10¹⁸ (6.28 billion-billion)", "expl": "The coulomb is the basic unit of electrical quantity: 6.28 × 10¹⁸ electrons.", "cite": "AET Study Guide p. 4; FAA-H-8083-30B p. 12-17", "topic": "Std 1 · DC Basic Terms"}, {"q": "The OHM (Ω) is the unit of:", "options": ["Current", "Opposition to current flow (resistance)", "Pressure", "Power"], "correct": 1, "short": "Resistance (opposition to current)", "expl": "The ohm is the unit of electrical opposition to current. A circuit has one ohm when it limits current to one amp under a pressure of one volt.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-18", "topic": "Std 1 · DC Basic Terms"}, {"q": "'A circuit has one ohm of resistance when it limits the flow of current to ___ under a pressure of ___.'", "options": ["one volt … one amp", "one amp … one volt", "one watt … one amp", "one coulomb … one second"], "correct": 1, "short": "one amp … one volt", "expl": "Verbatim definition: one ohm limits current to one amp under a voltage pressure of one volt.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-18", "topic": "Std 1 · DC Basic Terms"}, {"q": "Which four factors affect a conductor's resistance?", "options": ["Color, weight, shape, age", "Material, length, cross-sectional area, temperature", "Voltage, current, power, frequency", "Brand, coating, insulation, gauge color"], "correct": 1, "short": "Material, length, area, temperature", "expl": "A conductor's resistance depends on its material, length, cross-sectional area, and temperature.", "cite": "AET Study Guide p. 4; FAA-H-8083-30B p. 12-18", "topic": "Std 1 · DC Basic Terms"}, {"q": "If you DOUBLE the length of a wire (same everything else), its resistance:", "options": ["Stays the same", "Doubles", "Is cut in half", "Becomes zero"], "correct": 1, "short": "Doubles", "expl": "Resistance is directly proportional to length. Twice the length = twice the resistance, which halves the current.", "cite": "FAA-H-8083-30B p. 12-18, 12-19", "topic": "Std 1 · Resistance"}, {"q": "The FAA officially defines current flow using which theory/direction?", "options": ["Conventional flow: positive to negative", "Electron flow: negative to positive", "Conventional flow: negative to positive", "Alternating flow"], "correct": 1, "short": "Electron flow: negative (−) to positive (+)", "expl": "Electron flow is what actually happens; the FAA officially defines current using electron theory, negative to positive.", "cite": "FAA-H-8083-30B p. 12-14", "topic": "Std 1 · Current direction"}, {"q": "Ohm's Law states current is ___ to voltage and ___ to resistance.", "options": ["inversely proportional … directly proportional", "directly proportional … inversely proportional", "directly proportional … directly proportional", "equal … opposite"], "correct": 1, "short": "directly proportional to V, inversely proportional to R", "expl": "Ohm's Law: current is directly proportional to circuit voltage and inversely proportional to circuit resistance.", "cite": "AET Study Guide p. 6", "topic": "Std 5 · Ohm's Law"}, {"q": "Which is the correct Ohm's Law formula to solve for CURRENT?", "options": ["I = E × R", "I = E ÷ R", "I = R ÷ E", "I = E + R"], "correct": 1, "short": "I = E ÷ R", "expl": "From the triangle (E on top, I and R below): cover I and you get E over R, so I = E / R.", "cite": "FAA-H-8083-30B p. 12-17, 12-18", "topic": "Std 5 · Ohm's Law"}, {"q": "A 28-volt circuit has 14 ohms of resistance. How much current flows?", "options": ["0.5 A", "2 A", "14 A", "42 A"], "correct": 1, "short": "2 amps", "expl": "I = E ÷ R = 28 V ÷ 14 Ω = 2 A.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-17", "topic": "Std 5 · Ohm's Law calc"}, {"q": "A 50-ohm relay coil carries 0.5 amp. What voltage is across it?", "options": ["10 V", "25 V", "100 V", "0.01 V"], "correct": 1, "short": "25 volts", "expl": "E = I × R = 0.5 A × 50 Ω = 25 V.", "cite": "FAA-H-8083-30B p. 12-18", "topic": "Std 5 · Ohm's Law calc"}, {"q": "24 volts pushes 3 amps through a heater. What is its resistance?", "options": ["3 Ω", "8 Ω", "27 Ω", "72 Ω"], "correct": 1, "short": "8 ohms", "expl": "R = E ÷ I = 24 V ÷ 3 A = 8 Ω.", "cite": "FAA-H-8083-30B p. 12-18", "topic": "Std 5 · Ohm's Law calc"}, {"q": "In a circuit, if voltage stays the same but resistance DOUBLES, the current:", "options": ["Doubles", "Stays the same", "Is cut in half", "Goes to zero"], "correct": 2, "short": "Is cut in half", "expl": "Current is inversely proportional to resistance. Double R → half the current (e.g., 12V/3Ω=4A becomes 12V/6Ω=2A).", "cite": "FAA-H-8083-30B p. 12-17", "topic": "Std 5 · Ohm's Law"}, {"q": "The WATT is the basic unit of:", "options": ["Current", "Power", "Resistance", "Charge"], "correct": 1, "short": "Power", "expl": "The watt is the basic unit of power — the product of voltage times current. One watt = one amp under one volt.", "cite": "AET Study Guide p. 6", "topic": "Std 5 · Power"}, {"q": "Which is a correct power (Watt's Law) formula?", "options": ["P = I ÷ E", "P = I × E", "P = R ÷ E", "P = E − I"], "correct": 1, "short": "P = I × E", "expl": "Power = current × voltage. The other valid forms are P = I²R and P = E²/R.", "cite": "AET Study Guide p. 6; FAA-H-8083-30B p. 12-22", "topic": "Std 5 · Power"}, {"q": "A device draws 2 amps from a 24-volt bus. How much power does it use?", "options": ["12 W", "26 W", "48 W", "96 W"], "correct": 2, "short": "48 watts", "expl": "P = I × E = 2 A × 24 V = 48 W.", "cite": "FAA-H-8083-30B p. 12-22", "topic": "Std 5 · Power calc"}, {"q": "24 volts is applied across a 20-ohm resistor. Power dissipated? (P = E² / R)", "options": ["1.2 W", "28.8 W", "480 W", "576 W"], "correct": 1, "short": "28.8 watts", "expl": "P = E² / R = (24 × 24) / 20 = 576 / 20 = 28.8 W.", "cite": "FAA-H-8083-30B p. 12-22", "topic": "Std 5 · Power calc"}, {"q": "One horsepower equals how many watts?", "options": ["100 W", "550 W", "746 W", "1,000 W"], "correct": 2, "short": "746 watts", "expl": "1 horsepower = 746 watts. A 1-hp electric motor needs 746 W of electrical energy.", "cite": "FAA-H-8083-30B p. 12-21", "topic": "Std 5 · Power"}, {"q": "To measure VOLTAGE across a component, the voltmeter is connected:", "options": ["In series (in line)", "In parallel (across the component)", "After removing power", "Only at the battery"], "correct": 1, "short": "In parallel (across the component)", "expl": "Voltmeters are connected in parallel — across the two points whose voltage you want. They have HIGH resistance so they don't load the circuit. Power is ON.", "cite": "AET Study Guide p. 15; FAA-H-8083-30B p. 12-71", "topic": "Std 6 · Voltmeter"}, {"q": "A voltmeter should have a HIGH internal resistance because:", "options": ["It makes the needle move faster", "Low resistance would draw off current and give a wrong reading (load the circuit)", "It protects the battery", "It is required to read AC"], "correct": 1, "short": "So it doesn't load the circuit / steal current", "expl": "A low-resistance voltmeter shunts current and lowers the circuit's effective resistance, changing the reading. Use a high-resistance voltmeter.", "cite": "FAA-H-8083-30B p. 12-71", "topic": "Std 6 · Voltmeter"}, {"q": "To measure CURRENT through a load, an ammeter is connected:", "options": ["In parallel (across)", "In series (in line)", "Across the battery", "With power off"], "correct": 1, "short": "In series (in line)", "expl": "The ammeter must be in series so all the current flows THROUGH it. It has very low resistance. Power is ON.", "cite": "AET Study Guide p. 14; FAA-H-8083-30B p. 12-69", "topic": "Std 6 · Ammeter"}, {"q": "Why must you NEVER connect an ammeter directly across a battery or voltage source?", "options": ["It only reads AC there", "Its resistance is so low that huge current flows and destroys the meter", "It will reverse the battery", "It will read zero"], "correct": 1, "short": "Its low resistance lets huge current flow and ruins the meter", "expl": "An ammeter's resistance is extremely low. Across a source, even a volt or two drives very high current through it, damaging the meter. Always wire it in series.", "cite": "FAA-H-8083-30B p. 12-69, 12-70", "topic": "Std 6 · Ammeter safety"}, {"q": "An OHMMETER must be used with the circuit's power:", "options": ["ON, at full voltage", "ON, but reduced", "OFF / removed", "Reversed"], "correct": 2, "short": "OFF / power removed", "expl": "An ohmmeter has its own internal battery and is used when power is removed from the circuit. Outside power gives false readings and can damage it.", "cite": "AET Study Guide p. 11; FAA-H-8083-30B p. 12-71", "topic": "Std 6 · Ohmmeter"}, {"q": "On an analog ohmmeter, leads held OPEN (not touching) read:", "options": ["Zero ohms", "Infinite (∞) resistance / open circuit", "1 ohm", "The battery voltage"], "correct": 1, "short": "Infinite (∞) / open circuit", "expl": "Open leads = full-scale = infinite resistance (open). Shorting the leads together reads zero ohms (and is used to zero-adjust the meter).", "cite": "FAA-H-8083-30B p. 12-71", "topic": "Std 6 · Ohmmeter"}, {"q": "A MULTIMETER measures voltage, current, and resistance by using a:", "options": ["Bigger battery", "Selector switch that sets it as voltmeter, ammeter, or ohmmeter", "Second technician", "Separate oscilloscope"], "correct": 1, "short": "Selector switch (volt / amp / ohm)", "expl": "A multimeter is a multi-function meter; a selector switch sets it to act as an ammeter, voltmeter, or ohmmeter. It's the most versatile tool the AET uses.", "cite": "AET Study Guide p. 10, 14", "topic": "Std 6 · Multimeter"}, {"q": "The abbreviation 'VOM' (an analog multimeter) stands for:", "options": ["Voltage Over Meter", "Volt-Ohm-Milliammeter", "Variable Output Module", "Voltmeter-Only Mode"], "correct": 1, "short": "Volt-Ohm-Milliammeter", "expl": "Analog multimeters are called VOMs (Volt-Ohm-Milliammeter). Digital ones are DMMs, which read easier and load the circuit less.", "cite": "FAA-H-8083-30B p. 12-78", "topic": "Std 6 · Multimeter"}, {"q": "Which instrument displays a voltage WAVEFORM (shape over time), not just a DC number?", "options": ["Voltmeter", "Ammeter", "Ohmmeter", "Oscilloscope"], "correct": 3, "short": "Oscilloscope", "expl": "An oscilloscope displays the waveform of electrical signals — AC peak-to-peak values, frequency, and phase relationships.", "cite": "AET Study Guide p. 11, 14", "topic": "Std 6 · Oscilloscope"}, {"q": "An aircraft storage battery is generally rated at what voltage?", "options": ["1.5 or 3 volts", "12 or 24 volts", "120 or 240 volts", "400 volts"], "correct": 1, "short": "12 or 24 volts", "expl": "Aircraft storage batteries are generally rated at 12 or 24 volts, providing the EMF that pushes current through the circuit.", "cite": "AET Study Guide p. 4; FAA-H-8083-30B p. 12-16", "topic": "Std 1 · Battery"}];
+const DRILL = [{"label": "Volt (E)", "text": "Unit of electrical pressure. The force to push 1 amp through 1 ohm."}, {"label": "Ampere (I)", "text": "Unit of current. 1 amp = 1 coulomb passing a point per second."}, {"label": "Ohm (R, Ω)", "text": "Unit of resistance. 1 ohm limits current to 1 amp under 1 volt."}, {"label": "Coulomb (C)", "text": "Unit of quantity = 6.28 × 10¹⁸ electrons (6.28 billion-billion)."}, {"label": "Watt (W)", "text": "Unit of power = volts × amps. 1 watt = 1 amp under 1 volt."}, {"label": "Ohm's Law", "text": "E = I × R  (so I = E/R and R = E/I). 1 V drives 1 A through 1 Ω."}, {"label": "Power forms", "text": "P = I × E  =  I² × R  =  E² / R."}, {"label": "1 horsepower", "text": "= 746 watts."}, {"label": "Electron carries current", "text": "Negative particle, orbits nucleus. Protons/neutrons do NOT conduct."}, {"label": "Conductors vs insulators", "text": "Conductors = many free electrons (Cu, Ag, Au, Al). Insulators = almost none (glass, rubber, plastic)."}, {"label": "FAA current direction", "text": "Electron flow: negative (−) to positive (+)."}, {"label": "Meter rules", "text": "Voltmeter = PARALLEL, high R, power ON. Ammeter = SERIES, low R, power ON. Ohmmeter = power OFF."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
