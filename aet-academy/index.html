@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AET Academy</title>
+<style>
+  :root{--navy:#0d2a4a;--navy2:#15436e;--gold:#ffce4d;--ink:#1c2330;--bg:#eef2f8;--card:#fff;
+        --green:#1f9d57;--greenbg:#e7f7ee;--red:#d6453d;--redbg:#fdecea;--line:#e3e8f0;--muted:#5a6678;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--ink);
+       min-height:100vh;padding:0 16px env(safe-area-inset-bottom);}
+  .wrap{max-width:760px;margin:0 auto;}
+  a{color:var(--navy2);}
+  /* header */
+  .top{position:sticky;top:0;z-index:20;background:var(--bg);padding:14px 0 8px;}
+  .toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .brand{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.3px;}
+  .brand small{font-weight:600;color:var(--muted);font-size:12px;}
+  .ovr{height:8px;background:#dbe3ee;border-radius:6px;margin-top:9px;overflow:hidden;}
+  .ovrf{height:100%;width:0;background:linear-gradient(90deg,var(--navy2),var(--gold));transition:width .4s;}
+  .ovrlbl{font-size:11.5px;color:var(--muted);margin-top:5px;font-weight:600;}
+  .link{background:none;border:none;color:var(--navy2);font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;padding:6px 2px;}
+  /* dashboard cards */
+  .cards{display:flex;flex-direction:column;gap:11px;margin:14px 0 30px;}
+  .mod{display:flex;align-items:center;gap:13px;background:var(--card);border-radius:13px;padding:15px 16px;
+       box-shadow:0 5px 18px rgba(13,42,74,.07);border:1.5px solid transparent;cursor:pointer;transition:transform .1s,border-color .1s;}
+  .mod:hover{transform:translateY(-2px);border-color:var(--navy2);}
+  .mod.locked{opacity:.55;cursor:not-allowed;}
+  .mod.locked:hover{transform:none;border-color:transparent;}
+  .mnum{flex:0 0 42px;height:42px;border-radius:11px;background:#eef2f8;color:var(--navy);font-weight:800;
+        font-size:17px;display:flex;align-items:center;justify-content:center;}
+  .mod.passed .mnum{background:var(--green);color:#fff;}
+  .mbody{flex:1;min-width:0;}
+  .mtitle{font-size:15.5px;font-weight:700;line-height:1.25;}
+  .mstd{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .mbadge{font-size:12px;font-weight:800;white-space:nowrap;padding:5px 11px;border-radius:11px;}
+  .b-start{background:var(--navy);color:#fff;}
+  .b-lock{background:#e6ecf4;color:var(--muted);}
+  .b-pass{background:var(--greenbg);color:var(--green);}
+  .b-review{background:#fff6e6;color:#8a5a00;}
+  /* reader */
+  .screen{background:var(--card);border-radius:16px;padding:22px 20px 26px;margin:14px 0 30px;box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .crumbs{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:10px;}
+  .lesson h2{font-size:21px;color:var(--navy);margin:2px 0 4px;}
+  .lesson h3{font-size:16px;color:var(--navy2);margin:20px 0 7px;border-left:4px solid var(--gold);padding-left:9px;}
+  .lesson p{font-size:15px;line-height:1.55;margin:8px 0;}
+  .lesson ul,.lesson ol{font-size:15px;line-height:1.5;padding-left:20px;}
+  .lesson li{margin:4px 0;}
+  .lesson table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;}
+  .lesson th{background:var(--navy);color:#fff;text-align:left;padding:6px 9px;}
+  .lesson td{padding:6px 9px;border-bottom:1px solid var(--line);}
+  .lesson .box{background:#f3f7fc;border:1px solid #d6e2f0;border-radius:10px;padding:12px 14px;margin:13px 0;font-size:14px;}
+  .lesson .box.key{background:#fff8e6;border-color:#f3d28a;}
+  .lesson .box.ex{background:#eef7f1;border-color:#bfe3cc;}
+  .lesson .box b,.lesson .box strong{color:var(--navy);}
+  .lesson .box .bt{font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:var(--navy2);display:block;margin-bottom:4px;}
+  .lesson code{background:#eef2f8;padding:1px 5px;border-radius:4px;font-size:13.5px;}
+  .selfq{background:#fbfcfe;border:1px dashed #c5d2e2;border-radius:9px;padding:10px 13px;margin:9px 0;font-size:14px;}
+  .selfq .a{color:var(--green);font-weight:700;margin-top:5px;display:block;}
+  /* quiz */
+  .qtag{display:inline-block;background:#eef2f8;color:var(--navy2);font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:11px;text-transform:uppercase;}
+  .stem{font-size:18px;line-height:1.4;font-weight:600;margin:12px 0 16px;color:#0d1b2a;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;background:#f7f9fc;border:1.5px solid var(--line);
+       border-radius:11px;padding:13px 14px;font-size:15.5px;line-height:1.35;cursor:pointer;color:var(--ink);transition:border-color .1s,background .1s;}
+  .opt:hover:not(.locked){border-color:var(--navy2);background:#fff;}
+  .opt .L{flex:0 0 25px;height:25px;border-radius:50%;background:#e6ecf4;color:var(--navy);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .opt .T{flex:1;padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green);background:var(--greenbg);}
+  .opt.correct .L{background:var(--green);color:#fff;}
+  .opt.wrong{border-color:var(--red);background:var(--redbg);}
+  .opt.wrong .L{background:var(--red);color:#fff;}
+  .opt .mk{margin-left:auto;font-weight:800;align-self:center;}
+  .opt.correct .mk{color:var(--green);}.opt.wrong .mk{color:var(--red);}
+  .fb{margin-top:14px;border-radius:11px;padding:14px 15px;display:none;}
+  .fb.show{display:block;}
+  .fb.ok{background:var(--greenbg);border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg);border:1px solid #f3c6c2;}
+  .fb .v{font-weight:800;font-size:15px;margin-bottom:4px;}
+  .fb.ok .v{color:var(--green);}.fb.no .v{color:var(--red);}
+  .fb .e{font-size:14px;line-height:1.5;}
+  .fb .c{margin-top:8px;font-size:12px;color:var(--muted);font-style:italic;}
+  /* buttons */
+  .nav{display:flex;gap:10px;margin-top:18px;}
+  .btn{flex:1;border:none;border-radius:11px;padding:14px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .btn.primary{background:var(--navy);color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4;cursor:default;}
+  .qbar{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:8px;}
+  .prog{height:7px;background:#dbe3ee;border-radius:6px;overflow:hidden;margin-bottom:4px;}
+  .progf{height:100%;width:0;background:linear-gradient(90deg,var(--navy2),var(--gold));transition:width .3s;}
+  .bigscore{font-size:54px;font-weight:800;color:var(--navy);line-height:1;margin:6px 0;text-align:center;}
+  .bigscore small{font-size:20px;color:var(--muted);}
+  .pct{text-align:center;font-size:16px;font-weight:700;margin-bottom:14px;}
+  .pass{color:var(--green);}.fail{color:var(--red);}
+  .hint{text-align:center;font-size:11.5px;color:var(--muted);margin:10px 0 0;}
+  .foot{text-align:center;color:#9aa6b8;font-size:11px;margin:8px 0 26px;}
+  details.drill{margin-top:14px;text-align:left;}
+  details.drill summary{cursor:pointer;font-weight:700;color:var(--navy);}
+  .drow{border-bottom:1px solid var(--line);padding:8px 2px;font-size:13.5px;}
+  .drow b{color:var(--navy2);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="toprow">
+      <div class="brand">🎓 AET Academy <small id="subttl"></small></div>
+      <button class="link" id="homebtn" onclick="App.home()" style="display:none">‹ All modules</button>
+    </div>
+    <div class="ovr"><div class="ovrf" id="ovrf"></div></div>
+    <div class="ovrlbl" id="ovrlbl"></div>
+  </div>
+  <div id="view"></div>
+  <div class="foot">aet-coach · Matt's Agency · your progress is saved on this device</div>
+</div>
+
+<script src="course-data.js"></script>
+<script>
+const PASS = (window.COURSE && window.COURSE.passMark) || 0.73;
+const MODS = (window.COURSE && window.COURSE.modules) || [];
+const KEY = "aet-academy-progress-v1";
+
+const Store = {
+  load(){ try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};} },
+  save(p){ try{localStorage.setItem(KEY,JSON.stringify(p));}catch(e){} },
+  get(n){ return this.load()[n] || {status:"new",best:0}; },
+  set(n,o){ const p=this.load(); p[n]=Object.assign(this.get(n),o); this.save(p); },
+};
+
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
+
+// a module is unlocked if it's #0, or the previous module is passed,
+// or module 0 has been opened (unlocks module 1).
+function unlocked(n){
+  if(n===0) return true;
+  const prev = Store.get(n-1);
+  if(n===1) return Store.get(0).status!=="new" || prev.status==="passed";
+  return prev.status==="passed";
+}
+function passedCount(){ return MODS.filter(m=>Store.get(m.n).status==="passed").length; }
+function gradeMods(){ return MODS.filter(m=>m.n>=1).length; }
+
+const App = {
+  home(){
+    document.getElementById('homebtn').style.display='none';
+    document.getElementById('subttl').textContent = window.COURSE? '· '+(window.COURSE.title||'') : '';
+    const done=passedCount(), total=gradeMods();
+    document.getElementById('ovrf').style.width = (total? done/total*100:0)+'%';
+    document.getElementById('ovrlbl').textContent = done+' of '+total+' graded modules passed (≥'+Math.round(PASS*100)+'%)';
+    let cards='';
+    MODS.forEach(m=>{
+      const st=Store.get(m.n), open=unlocked(m.n);
+      let badge,cls='';
+      if(st.status==="passed"){badge='<span class="mbadge b-pass">✓ '+Math.round(st.best*100)+'%</span>';cls='passed';}
+      else if(!open){badge='<span class="mbadge b-lock">🔒 Locked</span>';cls='locked';}
+      else if(st.status==="failed"){badge='<span class="mbadge b-review">Retry '+Math.round(st.best*100)+'%</span>';}
+      else{badge='<span class="mbadge b-start">▶ Start</span>';}
+      cards+='<div class="mod '+cls+'" '+(open?'onclick="App.open('+m.n+')"':'')+'>'+
+        '<div class="mnum">'+(st.status==="passed"?'✓':m.n)+'</div>'+
+        '<div class="mbody"><div class="mtitle">'+esc(m.title)+'</div>'+
+        '<div class="mstd">'+(m.n===0?'Start here':'Standards '+esc(m.standards))+'</div></div>'+
+        badge+'</div>';
+    });
+    document.getElementById('view').innerHTML='<div class="cards">'+cards+'</div>'+
+      '<div style="text-align:center"><button class="link" onclick="App.reset()">Reset all progress</button></div>';
+    window.scrollTo({top:0});
+  },
+
+  open(n){
+    this.cur=MODS.find(m=>m.n===n);
+    document.getElementById('homebtn').style.display='';
+    this.lesson();
+  },
+
+  lesson(){
+    const m=this.cur;
+    const hasQuiz = m.quiz && m.quiz.length;
+    document.getElementById('view').innerHTML=
+      '<div class="screen"><div class="crumbs">Module '+m.n+(m.n===0?'':' · Standards '+esc(m.standards))+'</div>'+
+      '<div class="lesson"><h2>'+esc(m.title)+'</h2>'+ (m.lesson||'<p>(lesson coming soon)</p>') +'</div>'+
+      (m.drill&&m.drill.length? '<details class="drill"><summary>📌 Key facts to memorize ('+m.drill.length+')</summary>'+
+        m.drill.map(d=>'<div class="drow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>').join('')+'</details>':'')+
+      '<div class="nav">'+
+        '<button class="btn ghost" onclick="App.home()">‹ Dashboard</button>'+
+        (hasQuiz?'<button class="btn primary" onclick="App.startQuiz()">Take the quiz →</button>'
+                :'<button class="btn primary" onclick="App.markDone()">Mark complete →</button>')+
+      '</div></div>';
+    window.scrollTo({top:0});
+  },
+
+  markDone(){ // for module 0 (no graded quiz) — just unlock next
+    Store.set(this.cur.n,{status:"passed",best:1});
+    this.home();
+  },
+
+  // ---- quiz engine ----
+  startQuiz(){
+    const q=this.cur.quiz.slice();
+    this.q={order:q.map((_,i)=>i),i:0,score:0,answered:0,locked:false,items:q};
+    this.renderQ();
+  },
+  renderQ(){
+    const Q=this.q, item=Q.items[Q.order[Q.i]], total=Q.order.length;
+    let opts='';
+    item.options.forEach((o,li)=>{opts+='<button class="opt" onclick="App.pick('+li+')"><span class="L">'+'ABCD'[li]+'</span><span class="T">'+esc(o)+'</span><span class="mk"></span></button>';});
+    document.getElementById('view').innerHTML='<div class="screen">'+
+      '<div class="qbar"><span>Q'+(Q.i+1)+' of '+total+'</span><span>Score '+Q.score+'/'+Q.answered+'</span></div>'+
+      '<div class="prog"><div class="progf" style="width:'+(Q.i/total*100)+'%"></div></div>'+
+      '<span class="qtag">'+esc(item.topic||this.cur.title)+'</span>'+
+      '<div class="stem">'+esc(item.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div>'+
+      '<div class="nav"><button class="btn primary" id="nx" onclick="App.nextQ()" disabled>Next →</button></div>'+
+      '<div class="hint">Press A–D or 1–4 · Enter for next</div></div>';
+    Q.locked=false; window.scrollTo({top:0});
+  },
+  pick(li){
+    const Q=this.q; if(Q.locked)return; Q.locked=true;
+    const item=Q.items[Q.order[Q.i]], wrap=document.getElementById('opts'); wrap.classList.add('locked');
+    const ok=li===item.correct;
+    wrap.querySelectorAll('.opt').forEach((b,bi)=>{
+      if(bi===item.correct){b.classList.add('correct');b.querySelector('.mk').textContent='✓';}
+      if(bi===li&&!ok){b.classList.add('wrong');b.querySelector('.mk').textContent='✗';}
+    });
+    Q.answered++; if(ok)Q.score++;
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML='<div class="v">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="e"><b>'+'ABCD'[item.correct]+'.</b> '+esc(item.short||item.options[item.correct])+(item.expl?' — '+esc(item.expl):'')+'</div>'+
+      (item.cite?'<div class="c">📖 '+esc(item.cite)+'</div>':'');
+    document.getElementById('nx').disabled=false;
+  },
+  nextQ(){
+    const Q=this.q; Q.i++;
+    if(Q.i>=Q.order.length){ this.finishQuiz(); return; }
+    this.renderQ();
+  },
+  finishQuiz(){
+    const Q=this.q, pct=Q.answered? Q.score/Q.answered:0, passed=pct>=PASS;
+    const prev=Store.get(this.cur.n);
+    Store.set(this.cur.n,{status:passed?"passed":"failed",best:Math.max(prev.best||0,pct)});
+    const next=MODS.find(m=>m.n===this.cur.n+1);
+    document.getElementById('view').innerHTML='<div class="screen">'+
+      '<h2 style="text-align:center;color:var(--navy);margin:4px 0">'+(passed?'Module passed! 🎉':'Almost — keep going 💪')+'</h2>'+
+      '<div class="bigscore">'+Q.score+'<small>/'+Q.answered+'</small></div>'+
+      '<div class="pct '+(passed?'pass':'fail')+'">'+Math.round(pct*100)+'% '+(passed?'· cleared the '+Math.round(PASS*100)+'% bar':'· need '+Math.round(PASS*100)+'%')+'</div>'+
+      (passed
+        ? '<div class="nav">'+(next?'<button class="btn primary" onclick="App.open('+next.n+')">Next: Module '+next.n+' →</button>':'<button class="btn primary" onclick="App.home()">Back to dashboard</button>')+'<button class="btn ghost" onclick="App.home()">Dashboard</button></div>'
+        : '<div class="nav"><button class="btn primary" onclick="App.startQuiz()">Retake quiz</button><button class="btn ghost" onclick="App.lesson()">Re-read lesson</button></div>')+
+      (passed&&next?'<div class="hint">Module '+next.n+' is now unlocked.</div>':'')+
+      '</div>';
+    window.scrollTo({top:0});
+  },
+
+  reset(){ if(confirm('Reset all course progress on this device?')){localStorage.removeItem(KEY);this.home();} },
+};
+
+document.addEventListener('keydown',e=>{
+  if(!App.q||App.q.locked&&e.key!=='Enter'){ /* allow Enter */ }
+  if(!App.cur||!App.q)return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) App.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) App.pick(+k-1);
+  else if(e.key==='Enter'){const nx=document.getElementById('nx'); if(nx&&!nx.disabled)App.nextQ();}
+});
+
+if(!window.COURSE||!MODS.length){
+  document.getElementById('view').innerHTML='<div class="screen"><p>Course content is loading… if this persists, the course data hasn\'t been published yet.</p></div>';
+}else{
+  App.home();
+}
+</script>
+</body>
+</html>
