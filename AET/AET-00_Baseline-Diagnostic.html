@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AET — Baseline Diagnostic</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>AET — Baseline Diagnostic</h1>
+    <div class="sub">25 questions sampling every AET domain. Find your starting line — answers are cited.</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "In math problems for electrical circuits, which letter stands for current (amperage)?", "options": ["E", "I", "R", "P"], "correct": 1, "short": "I", "expl": "Amperage (current) is represented by the letter I in circuit math; E is voltage, R is resistance.", "cite": "AET Study Guide p.4 (Ampere)", "topic": "DC Basics"}, {"q": "One coulomb is equal to about how many electrons?", "options": ["6.28 thousand", "6.28 million", "6.28 billion-billion (6.28 x 10^18)", "1,000"], "correct": 2, "short": "6.28 x 10^18 electrons", "expl": "A coulomb is the basic unit of electrical quantity, equal to 6.28 billion-billion (6.28 x 10^18) electrons.", "cite": "AET Study Guide p.4 (Coulomb)", "topic": "DC Basics"}, {"q": "Ohm's Law states that current in a circuit is:", "options": ["Directly proportional to voltage and directly proportional to resistance", "Directly proportional to voltage and inversely proportional to resistance", "Inversely proportional to voltage and directly proportional to resistance", "Independent of both voltage and resistance"], "correct": 1, "short": "Directly proportional to voltage, inversely proportional to resistance", "expl": "Ohm's Law: current is directly proportional to circuit voltage and inversely proportional to resistance. In plain terms, 1 volt pushes 1 amp through 1 ohm.", "cite": "AET Study Guide p.6 (Ohm's Law)", "topic": "Ohm's Law"}, {"q": "A 12-volt source is connected across a 4-ohm resistor. Using Ohm's Law (I = E / R), how much current flows?", "options": ["0.33 A", "3 A", "16 A", "48 A"], "correct": 1, "short": "3 amps", "expl": "I = E / R = 12 V / 4 ohm = 3 A. This is the core Ohm's Law calculation the exam expects.", "cite": "AET Study Guide p.6 (Ohm's Law) / FAA-H-8083-30B p.12-39", "topic": "Ohm's Law"}, {"q": "Electrical power (watts) is found by:", "options": ["Voltage divided by current", "Current divided by voltage", "Voltage multiplied by current", "Resistance multiplied by voltage"], "correct": 2, "short": "Voltage x current", "expl": "Watts is the basic unit of power, the product of voltage multiplied by current (P = E x I). One watt = one amp under one volt.", "cite": "AET Study Guide p.6 (Watts)", "topic": "Power"}, {"q": "The RMS (effective) value of a sine wave equals what fraction of the peak value?", "options": ["0.5 x peak", "0.636 x peak", "0.707 x peak", "1.414 x peak"], "correct": 2, "short": "0.707 x peak", "expl": "RMS (root mean square) is the effective value of AC; it equals 0.707 times the peak value. RMS produces the same heating as an equal DC value.", "cite": "AET Study Guide p.8 (Root Mean Square)", "topic": "AC Basics"}, {"q": "The frequency of most AC used in aircraft applications is:", "options": ["50 Hz", "60 Hz", "400 Hz", "1000 Hz"], "correct": 2, "short": "400 Hz", "expl": "Aircraft AC systems commonly run at 400 Hz. Frequency = cycles per second, measured in hertz (Hz).", "cite": "AET Study Guide p.7 (Frequency)", "topic": "AC Basics"}, {"q": "In an AC circuit, capacitance causes current to ___ the voltage (remember 'ICE').", "options": ["lag", "lead", "equal", "cancel"], "correct": 1, "short": "lead", "expl": "Capacitive reactance causes current to LEAD voltage (ICE: in a Capacitor, I leads E). Inductance does the opposite (ELI).", "cite": "AET Study Guide p.7 (Capacitive Reactance)", "topic": "AC Basics"}, {"q": "Kirchhoff's Voltage Law states that in any closed circuit the algebraic sum of all voltage drops is:", "options": ["Equal to the source voltage doubled", "Equal to zero", "Always negative", "Equal to the current"], "correct": 1, "short": "Equal to zero", "expl": "KVL: the algebraic sum of all voltage drops in any closed circuit equals zero.", "cite": "AET Study Guide p.9 (Kirchhoff's Voltage Law)", "topic": "Circuits"}, {"q": "A series circuit is best described as a circuit that:", "options": ["Has more than one path for current", "Has only one path for current, making current common through all components", "Always contains a bridge", "Divides current between branches"], "correct": 1, "short": "One path; current common to all components", "expl": "A series circuit has only one path for current, so the same current flows through every component (connected end-to-end).", "cite": "AET Study Guide p.10 (Series Circuits)", "topic": "Circuits"}, {"q": "The two most common faults found when troubleshooting circuits are:", "options": ["Open resistors/contacts and shorts between conductors", "Reversed batteries and dead meters", "Too many resistors and too few capacitors", "Software bugs and bad lighting"], "correct": 0, "short": "Opens and shorts", "expl": "The most common circuit problems are open resistors or contacts, and shorts between conductors.", "cite": "AET Study Guide p.12 (Troubleshooting Circuits)", "topic": "Troubleshooting"}, {"q": "On a resistor color code, what value does the color GREEN represent?", "options": ["3", "4", "5", "6"], "correct": 2, "short": "5", "expl": "Green = 5 (mnemonic: Big Bears Romp On Yellow Grass...: Grass = Green = 5).", "cite": "AET Study Guide p.15 (Color Codes)", "topic": "Resistors"}, {"q": "On a resistor's tolerance band, GOLD represents what tolerance?", "options": ["+/- 1%", "+/- 5%", "+/- 10%", "+/- 20%"], "correct": 1, "short": "+/- 5%", "expl": "Gold tolerance band = +/- 5%. Silver = +/- 10%, no color = +/- 20%.", "cite": "AET Study Guide p.15 (Color Codes table)", "topic": "Resistors"}, {"q": "Which of these is NOT one of the physical factors that affects an inductor's inductance?", "options": ["Number of turns of the coil", "Type of core material (permeability)", "The color of the wire insulation", "Core cross-sectional area"], "correct": 2, "short": "Color of the wire insulation", "expl": "Inductance depends on core cross-section, coil length, number of turns, and core material. Insulation color is irrelevant.", "cite": "AET Study Guide p.16 (Inductors / Physical Factors)", "topic": "Inductors"}, {"q": "The time constant of a capacitor is the time needed for the capacitor voltage to reach what percent of the applied voltage?", "options": ["50%", "63.2%", "70.7%", "100%"], "correct": 1, "short": "63.2%", "expl": "One time constant = the time for the voltage across a capacitor to advance to 63.2% of the applied voltage.", "cite": "AET Study Guide p.18 (Time Constant)", "topic": "Capacitors"}, {"q": "A step-down transformer, compared to a step-up transformer:", "options": ["Increases voltage and decreases current", "Decreases voltage and increases current", "Has equal turns on both windings", "Only works on DC"], "correct": 1, "short": "Decreases voltage, increases current", "expl": "A step-down transformer decreases voltage and increases current; it has more turns on the primary than the secondary.", "cite": "AET Study Guide p.19 (Step-down)", "topic": "Transformers"}, {"q": "About how much forward voltage (of the correct polarity) does it typically take to make a silicon diode conduct?", "options": ["0.1 VDC", "0.7 VDC", "1.4 VDC", "5 VDC"], "correct": 1, "short": "0.7 VDC", "expl": "On average it takes about 0.7 VDC of correct polarity to forward-bias a diode into conduction.", "cite": "AET Study Guide p.22 (Forward bias)", "topic": "Semiconductors"}, {"q": "A diode allows current to flow:", "options": ["In both directions equally", "In one direction only", "Only when reverse biased", "Only in AC circuits"], "correct": 1, "short": "In one direction only", "expl": "A diode is the simplest semiconductor (N-type joined to P-type). It allows current to flow in one direction only and is used to change AC into DC (rectification).", "cite": "AET Study Guide p.22 (Diode)", "topic": "Semiconductors"}, {"q": "The primary purpose of a Zener diode is to:", "options": ["Amplify a signal", "Regulate voltage", "Store charge", "Generate a sine wave"], "correct": 1, "short": "Regulate voltage", "expl": "A Zener diode conducts under certain voltage conditions; its primary purpose is to regulate voltage.", "cite": "AET Study Guide p.26 (Zener Diodes)", "topic": "Semiconductors"}, {"q": "The binary numbering system operates in which base?", "options": ["Base 2", "Base 8", "Base 10", "Base 16"], "correct": 0, "short": "Base 2", "expl": "Binary uses only two digits (1 and 0) and operates in Base 2. Octal = Base 8, decimal = Base 10, hex = Base 16.", "cite": "AET Study Guide p.27 (Binary Numbering System)", "topic": "Digital"}, {"q": "An AND logic gate produces a HIGH (1) output only when:", "options": ["Any one input is high", "All inputs are high", "All inputs are low", "The inputs are different"], "correct": 1, "short": "All inputs are high", "expl": "An AND gate has two or more inputs and one output; it outputs 1 only when ALL inputs are 1. (EXCLUSIVE OR needs inputs to differ.)", "cite": "AET Study Guide p.29 (AND Logic Gate)", "topic": "Digital"}, {"q": "ESD stands for Electrostatic Discharge. The recommended way to protect static-sensitive devices is to:", "options": ["Wear a conductive wrist strap connected to ground", "Rub the part with a dry cloth first", "Hold the part by its bare pins", "Keep the workbench ungrounded"], "correct": 0, "short": "Wear a grounded conductive wrist strap", "expl": "ESD control: attach a conductive wrist strap that connects your body to ground, touch only components to be installed/removed, and do not touch bare pins.", "cite": "AET Study Guide p.33 & p.45 (ESD / Proper Grounding)", "topic": "ESD"}, {"q": "'Clean As You Go' and tool accountability (shadow boards, chit systems) are practices used to prevent:", "options": ["Corrosion", "FOD (Foreign Object Damage/Debris)", "Electrical shock", "Voltage drop"], "correct": 1, "short": "FOD", "expl": "FOD = Foreign Object Debris/Damage. Clean-as-you-go and tool control (shadow box, tether, chit, sponge count) prevent debris from damaging aircraft.", "cite": "AET Study Guide pp.39-40 (FOD Prevention)", "topic": "FOD/Safety"}, {"q": "Galvanic corrosion occurs when:", "options": ["A single metal sits in dry air", "Two different metals are in contact in the presence of an electrolyte", "A wire is over-tightened", "A capacitor is reverse-connected"], "correct": 1, "short": "Two dissimilar metals + an electrolyte", "expl": "Galvanic corrosion occurs when different (dissimilar) metals contact each other in the presence of an electrolyte.", "cite": "AET Study Guide p.46 (Corrosion Types)", "topic": "Corrosion"}, {"q": "In the American Wire Gage (AWG) standard, as the gage NUMBER gets larger, the wire diameter:", "options": ["Gets larger", "Gets smaller", "Stays the same", "Doubles each step"], "correct": 1, "short": "Gets smaller", "expl": "AWG is the wire sizing standard: as gage numbers become larger, wire diameters get smaller. Sizing also considers power loss, voltage drop, and current capacity.", "cite": "AET Study Guide p.48 (American Wire Gage)", "topic": "Wiring"}, {"q": "Which instrument is used to find a circuit problem when power is REMOVED from the circuit (it measures resistance)?", "options": ["Voltmeter", "Ammeter", "Ohmmeter", "Oscilloscope"], "correct": 2, "short": "Ohmmeter", "expl": "An ohmmeter is used with power removed and measures resistance/continuity. A voltmeter and ammeter are used with power on the circuit.", "cite": "AET Study Guide p.11 (Ohmmeter) / p.51 (Ohmmeter)", "topic": "Test Equipment"}, {"q": "Motion around the aircraft's longitudinal axis (nose-to-tail) is called:", "options": ["Pitch", "Yaw", "Roll", "Drag"], "correct": 2, "short": "Roll", "expl": "Longitudinal axis runs nose to tail; motion about it is roll. Lateral axis = pitch; vertical axis = yaw.", "cite": "AET Study Guide p.53 (Axis of Flight)", "topic": "Aircraft Fundamentals"}];
+const DRILL = [{"label": "Pass bar", "text": "AET = 90 questions, 73% to pass (~66 of 90), ~2 hours, proctored, lifetime cert."}, {"label": "Ohm's Law", "text": "I = E / R. One volt pushes one amp through one ohm."}, {"label": "Power", "text": "P = E x I (watts = volts x amps)."}, {"label": "RMS", "text": "RMS (effective) AC value = 0.707 x peak."}, {"label": "Aircraft AC", "text": "Most aircraft AC runs at 400 Hz."}, {"label": "ICE / ELI", "text": "Capacitor: I leads E (ICE). Inductor: E leads I (ELI)."}, {"label": "Diode forward drop", "text": "~0.7 VDC forward-biases a silicon diode; current flows one direction only."}, {"label": "Zener", "text": "Zener diode's job = regulate voltage."}, {"label": "Time constant", "text": "One RC time constant = 63.2% of applied voltage."}, {"label": "Color code", "text": "Green=5; Gold tolerance=+/-5%, Silver=+/-10%, none=+/-20%."}, {"label": "AWG", "text": "Bigger AWG number = smaller wire."}, {"label": "Galvanic corrosion", "text": "Two dissimilar metals + electrolyte."}, {"label": "ESD", "text": "Grounded wrist strap; touch only the part; never touch bare pins."}, {"label": "Meters", "text": "Ohmmeter = power OFF (resistance). Volt/ammeter = power ON."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
