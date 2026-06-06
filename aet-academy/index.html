@@ -182,15 +182,25 @@ const App = {
     this.lesson();
   },
 
+  vhtml(v){ return '<div class="vid"><div class="vlbl">🎬 '+esc(v.title)+'</div>'+
+      '<video controls preload="none" playsinline src="videos/'+encodeURIComponent(v.file)+'"></video></div>'; },
+
   lesson(){
     const m=this.cur;
     const hasQuiz = m.quiz && m.quiz.length;
+    // inline each video at its [[VID:file]] marker in the lesson; any without a marker fall to an end section
+    let body = m.lesson || '<p>(lesson coming soon)</p>';
+    const used = {};
+    (m.videos||[]).forEach(v=>{
+      const tok='[[VID:'+v.file+']]';
+      if(body.indexOf(tok)>=0){ body=body.split(tok).join(this.vhtml(v)); used[v.file]=1; }
+    });
+    const leftover=(m.videos||[]).filter(v=>!used[v.file]);
     document.getElementById('view').innerHTML=
       '<div class="screen"><div class="crumbs">Module '+m.n+(m.n===0?'':' · Standards '+esc(m.standards))+'</div>'+
-      '<div class="lesson"><h2>'+esc(m.title)+'</h2>'+ (m.lesson||'<p>(lesson coming soon)</p>') +'</div>'+
-      (m.videos&&m.videos.length? '<div class="vids"><div class="vh">🎬 Math walkthroughs ('+m.videos.length+') — watch the math step by step</div>'+
-        m.videos.map(v=>'<div class="vid"><div class="vlbl">'+esc(v.title)+'</div>'+
-          '<video controls preload="none" playsinline src="videos/'+encodeURIComponent(v.file)+'"></video></div>').join('')+'</div>':'')+
+      '<div class="lesson"><h2>'+esc(m.title)+'</h2>'+ body +'</div>'+
+      (leftover.length? '<div class="vids"><div class="vh">🎬 More math walkthroughs</div>'+
+        leftover.map(v=>this.vhtml(v)).join('')+'</div>':'')+
       (m.drill&&m.drill.length? '<details class="drill"><summary>📌 Key facts to memorize ('+m.drill.length+')</summary>'+
         m.drill.map(d=>'<div class="drow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>').join('')+'</details>':'')+
       '<div class="nav">'+
