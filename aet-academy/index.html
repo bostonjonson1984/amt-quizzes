@@ -59,6 +59,11 @@
   .lesson code{background:#eef2f8;padding:1px 5px;border-radius:4px;font-size:13.5px;}
   .selfq{background:#fbfcfe;border:1px dashed #c5d2e2;border-radius:9px;padding:10px 13px;margin:9px 0;font-size:14px;}
   .selfq .a{color:var(--green);font-weight:700;margin-top:5px;display:block;}
+  .vids{margin:20px 0 4px;}
+  .vh{font-size:16px;color:var(--navy);margin:0 0 10px;font-weight:800;}
+  .vid{background:#0d2a4a;border-radius:12px;padding:11px 11px 9px;margin:0 0 13px;box-shadow:0 5px 16px rgba(13,42,74,.12);}
+  .vid .vlbl{color:var(--gold);font-weight:700;font-size:14px;margin:0 2px 8px;}
+  .vid video{width:100%;border-radius:8px;display:block;background:#000;}
   /* quiz */
   .qtag{display:inline-block;background:#eef2f8;color:var(--navy2);font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:11px;text-transform:uppercase;}
   .stem{font-size:18px;line-height:1.4;font-weight:600;margin:12px 0 16px;color:#0d1b2a;}
@@ -183,6 +188,9 @@ const App = {
     document.getElementById('view').innerHTML=
       '<div class="screen"><div class="crumbs">Module '+m.n+(m.n===0?'':' · Standards '+esc(m.standards))+'</div>'+
       '<div class="lesson"><h2>'+esc(m.title)+'</h2>'+ (m.lesson||'<p>(lesson coming soon)</p>') +'</div>'+
+      (m.videos&&m.videos.length? '<div class="vids"><div class="vh">🎬 Math walkthroughs ('+m.videos.length+') — watch the math step by step</div>'+
+        m.videos.map(v=>'<div class="vid"><div class="vlbl">'+esc(v.title)+'</div>'+
+          '<video controls preload="none" playsinline src="videos/'+encodeURIComponent(v.file)+'"></video></div>').join('')+'</div>':'')+
       (m.drill&&m.drill.length? '<details class="drill"><summary>📌 Key facts to memorize ('+m.drill.length+')</summary>'+
         m.drill.map(d=>'<div class="drow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>').join('')+'</details>':'')+
       '<div class="nav">'+
