@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Physics: Matter, Energy &amp; Machines — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Physics: Matter, Energy &amp; Machines — Quiz</h1>
+    <div class="sub">AIM BLK01 Day 5 (slides 169-229) · matter · specific gravity · energy · work/power/torque · the six simple machines · levers &amp; pulleys (Project G3) · the five stresses incl. torsion · Newton&#x27;s laws · cited to the BLK01 slide deck + FAA-H-8083-30B Ch.5</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "If a driven gear rotates slower than the driving gear, what usually happens to torque?", "options": ["Torque decreases", "Torque increases", "Torque becomes zero", "Torque is unrelated to speed"], "correct": 1, "short": "Torque increases", "expl": "Speed reduction usually gives torque multiplication. A gear reduction lowers speed but increases torque, ignoring friction losses.", "cite": "Your class bank (verbatim) · BLK01 slides p.197 (the gear) & p.73 · FAA-H-8083-30B pp.5-10/5-11", "topic": "Torque"}, {"q": "A mechanic applies a force of 50 pounds through a distance of 10 feet. How much work is done?", "options": ["5 ft-lb", "50 ft-lb", "500 ft-lb", "5,000 ft-lb"], "correct": 2, "short": "500 ft-lb", "expl": "Use work = force × distance. Work = 50 × 10 = 500 foot-pounds.", "cite": "Your class bank (verbatim) · BLK01 slides p.188 (AM.I.J.K2, Work = F × D) · FAA-H-8083-30B p.5-4", "topic": "Work"}, {"q": "An engine does 11,000 ft-lb of work in 10 seconds. What is the power in ft-lb/sec?", "options": ["110 ft-lb/sec", "550 ft-lb/sec", "1,100 ft-lb/sec", "11,000 ft-lb/sec"], "correct": 2, "short": "1,100 ft-lb/sec", "expl": "Power = work ÷ time. Power = 11,000 ÷ 10 = 1,100 ft-lb/sec.", "cite": "Your class bank (verbatim) · BLK01 slides p.190 (AM.I.J.K2, P = F×D/T) · FAA-H-8083-30B p.5-6", "topic": "Power"}, {"q": "An engine produces 1,100 ft-lb/sec of power. How many horsepower is this?", "options": ["1 hp", "2 hp", "5 hp", "10 hp"], "correct": 1, "short": "2 hp", "expl": "1 horsepower = 550 ft-lb/sec. Horsepower = 1,100 ÷ 550 = 2 hp.", "cite": "Your class bank (verbatim) · BLK01 slides p.191 (1 hp = 550 ft-lb/s) · FAA-H-8083-30B p.5-6", "topic": "Horsepower"}, {"q": "Which simple machine is used when a ramp helps move equipment to a higher level?", "options": ["Lever", "Pulley", "Inclined plane", "Gear"], "correct": 2, "short": "Inclined plane", "expl": "A ramp spreads the work over a longer distance. A ramp is an inclined plane.", "cite": "Your class bank (verbatim) · BLK01 slides p.197 & 212 (AM.I.J.K3, inclined plane) · FAA-H-8083-30B p.5-11", "topic": "Simple machines"}, {"q": "Physics studies how matter and energy behave. What does it NOT attempt to determine?", "options": ["How energy relates to physical phenomena", "WHY matter and energy behave as they do", "How matter behaves in relation to physical phenomena", "The fundamental nature of matter"], "correct": 1, "short": "WHY matter and energy behave as they do", "expl": "Physics does not attempt to determine why matter and energy behave as they do in relation to physical phenomena, but rather HOW they behave.", "cite": "BLK01 slides p.170 · FAA-H-8083-30B Ch.5 p.5-2", "topic": "Physics basics"}, {"q": "According to the Law of Conservation, matter:", "options": ["Can be created but never destroyed", "Can be destroyed only by chemical means", "Is created whenever energy is released", "Cannot be created or destroyed, but its physical state can change"], "correct": 3, "short": "Cannot be created or destroyed, but its physical state can change", "expl": "Matter is whatever occupies space, has mass, and is perceptible to the senses. Per the Law of Conservation it cannot be created or destroyed, though its physical state can change.", "cite": "BLK01 slides p.171 (AM.I.J.K1) · FAA-H-8083-30B Ch.5 p.5-2", "topic": "Matter"}, {"q": "The smallest particle of a COMPOUND is:", "options": ["The molecule", "The atom", "The electron", "The element"], "correct": 0, "short": "The molecule", "expl": "Matter is composed of atoms; atoms create molecules. The molecule is the smallest particle of a compound.", "cite": "BLK01 slides p.172 (AM.I.J.K1) · FAA-H-8083-30B Ch.5 p.5-2", "topic": "Matter"}, {"q": "An ELEMENT is a substance that:", "options": ["Can only exist as a gas", "Is always magnetic", "Cannot be reduced to a simpler form by chemical means", "Contains two or more kinds of atoms"], "correct": 2, "short": "Cannot be reduced to a simpler form by chemical means", "expl": "An element (iron, gold, silver, copper, oxygen) cannot be reduced to a simpler form by chemical means — beyond that point it ceases to be what it is.", "cite": "BLK01 slides p.173 · FAA-H-8083-30B Ch.5 p.5-2", "topic": "Matter"}, {"q": "Mass equals:", "options": ["Weight divided by gravity", "Density times area", "Volume divided by weight", "Weight times gravity"], "correct": 0, "short": "Weight divided by gravity", "expl": "Mass = Weight ÷ Gravity, and Weight = Mass × Gravity. Mass is the amount of matter in an object and is constant anywhere in the universe.", "cite": "BLK01 slides p.174 (AM.I.J.K12) · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Mass & weight"}, {"q": "The acceleration due to gravity used in these formulas is:", "options": ["14.7 ft/sec²", "9.8 ft/sec²", "32.2 ft/sec²", "186,000 ft/sec²"], "correct": 2, "short": "32.2 ft/sec²", "expl": "Acceleration due to gravity = 32.2 feet per second per second (32.2 ft/sec²).", "cite": "BLK01 slides p.174 (AM.I.J.K12) · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Mass & weight"}, {"q": "Density is defined as:", "options": ["Mass times gravity", "Weight per unit volume", "Volume per unit weight", "Weight per unit area"], "correct": 1, "short": "Weight per unit volume", "expl": "Density = weight per unit volume, expressed in lb/ft³ (U.S.) or g/cm³. Divide weight by volume to find it.", "cite": "BLK01 slides p.178 (AM.I.J.K12) · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Density"}, {"q": "The standard substance used when comparing the specific gravity of all liquids and solids is:", "options": ["Mercury at 0°C", "Dry air at sea level", "AvGas at 59°F", "Water at 4°C"], "correct": 3, "short": "Water at 4°C", "expl": "Specific gravity compares the weight/density of a substance to an equal volume of water at 4°C. (For gases the standard is air.)", "cite": "BLK01 slides p.179-180 · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Specific gravity"}, {"q": "The instrument used to check the specific gravity of liquids is the:", "options": ["Micrometer", "Barometer", "Hydrometer", "Anemometer"], "correct": 2, "short": "Hydrometer", "expl": "A hydrometer checks liquids against the pure-water standard of 1.000.", "cite": "BLK01 slides p.181 · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Specific gravity"}, {"q": "An aircraft lead-acid battery is FULLY CHARGED when its electrolyte specific gravity reads:", "options": ["2.275 to 2.310", "1.275 to 1.310", "1.150", "1.000"], "correct": 1, "short": "1.275 to 1.310", "expl": "Fully charged = 1.275 to 1.310. A reading of 1.150 shows the battery is in a discharged state.", "cite": "BLK01 slides p.181 · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Specific gravity"}, {"q": "Energy is defined as:", "options": ["Force times time", "Mass times gravity", "The rate of doing work", "The ability to do work"], "correct": 3, "short": "The ability to do work", "expl": "Energy is the ability to do work, classified as potential (stored) or kinetic (motion).", "cite": "BLK01 slides p.183 (AM.I.J.K1) · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Energy"}, {"q": "Which is NOT one of the three groups of potential energy from the slide?", "options": ["Energy due to velocity of a moving body", "Energy which produces work through chemical action", "Energy due to position", "Energy due to distortion of an elastic body"], "correct": 0, "short": "Energy due to velocity of a moving body", "expl": "Potential energy groups: position, distortion of an elastic body, and chemical action. Energy of motion is KINETIC energy.", "cite": "BLK01 slides p.184 (AM.I.J.K1) · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Energy"}, {"q": "The formula for kinetic energy is:", "options": ["KE = Mass × Gravity", "KE = Force × Distance ÷ Time", "KE = ½ × Mass × Velocity²", "KE = Weight × Height"], "correct": 2, "short": "KE = ½ × Mass × Velocity²", "expl": "Kinetic energy is energy due to motion: KE = ½MV².", "cite": "BLK01 slides p.186 (AM.I.J.K1) · FAA-H-8083-30B Ch.5 p.5-4", "topic": "Energy"}, {"q": "Force is defined on the slide as:", "options": ["A push or pull that causes a change in motion (F = Mass × Acceleration)", "Resistance divided by effort", "Stored energy due to position", "The rate of doing work"], "correct": 0, "short": "A push or pull that causes a change in motion (F = Mass × Acceleration)", "expl": "Force = a push or pull causing a change in motion; F = M × A.", "cite": "BLK01 slides p.187 (AM.I.J.K2) · FAA-H-8083-30B Ch.5 p.5-4", "topic": "Force"}, {"q": "Mechanical advantage can be computed as:", "options": ["Force out × Force in", "Force out ÷ Force in (or distance out ÷ distance in)", "Effort minus resistance", "Force in ÷ Force out only"], "correct": 1, "short": "Force out ÷ Force in (or distance out ÷ distance in)", "expl": "MA = Resistance/Effort = Force Out/Force In = Distance Out/Distance In = Effort Arm/Resistance Arm.", "cite": "BLK01 slides p.187 & 196 (AM.I.J.K3) · FAA-H-8083-30B Ch.5 p.5-7", "topic": "Mechanical advantage"}, {"q": "100 lbs is moved 100 feet. The work done is:", "options": ["200 ft-lbs", "100,000 ft-lbs", "1 ft-lb", "10,000 ft-lbs"], "correct": 3, "short": "10,000 ft-lbs", "expl": "Work = Force × Distance = 100 × 100 = 10,000 ft-lbs. (In metric, 100 N moved 100 m = 10,000 joules.)", "cite": "BLK01 slides p.188 (AM.I.J.K2) · FAA-H-8083-30B Ch.5 p.5-4", "topic": "Work"}, {"q": "Which type of friction is always LESS than starting (static) friction?", "options": ["Breakaway friction", "Sliding friction", "Standing friction", "Holding friction"], "correct": 1, "short": "Sliding friction", "expl": "Sliding friction — the resistance after the object has been set in motion — is always less than starting friction. Rolling friction (wheels/rollers) is less still.", "cite": "BLK01 slides p.189 (AM.I.J.K2) · FAA-H-8083-30B Ch.5 p.5-5", "topic": "Friction"}, {"q": "One horsepower equals:", "options": ["33,000 ft-lb per minute (550 ft-lb per second)", "746 ft-lb per second", "550 ft-lb per minute", "3,300 ft-lb per minute"], "correct": 0, "short": "33,000 ft-lb per minute (550 ft-lb per second)", "expl": "1 hp = 550 ft-lb/s = 33,000 ft-lb/min = 746 watts (electrical conversion).", "cite": "BLK01 slides p.191 · FAA-H-8083-30B Ch.5 p.5-6", "topic": "Horsepower"}, {"q": "Torque differs from work in that torque is:", "options": ["The rate of doing work", "Linear motion through a distance", "Rotational in nature, expressed in lb-in or lb-ft", "Always measured in watts"], "correct": 2, "short": "Rotational in nature, expressed in lb-in or lb-ft", "expl": "Torque = Force × Distance but is rotational; torque units are lb-in or lb-ft, while work units are in-lb or ft-lb.", "cite": "BLK01 slides p.192 (AM.I.J.K2) · FAA-H-8083-30B Ch.5 p.5-6", "topic": "Torque"}, {"q": "A machine can multiply force or multiply speed, but it cannot:", "options": ["Change the direction of a force", "Transfer energy from one place to another", "Transform energy from one form to another", "Multiply force and speed at the same time"], "correct": 3, "short": "Multiply force and speed at the same time", "expl": "To gain one it must lose the other — otherwise more power would come out than goes in, which is not possible.", "cite": "BLK01 slides p.196 (AM.I.J.K3) · FAA-H-8083-30B Ch.5 p.5-7", "topic": "Simple machines"}, {"q": "Which list contains the six simple machines from the slide?", "options": ["Lever, pulley, wheel and axle, inclined plane, screw, gear", "Pulley, wheel, axle, wedge, crank, screw", "Lever, wedge, piston, screw, gear, crank", "Lever, pulley, ramp, spring, cam, gear"], "correct": 0, "short": "Lever, pulley, wheel and axle, inclined plane, screw, gear", "expl": "There are only six simple machines: the lever, the pulley, the wheel and axle, the inclined plane, the screw, and the gear.", "cite": "BLK01 slides p.197 (AM.I.J.K3) · FAA-H-8083-30B Ch.5 p.5-7", "topic": "Simple machines"}, {"q": "For a bolt (a screw), the EFFORT ARM is:", "options": ["The distance between the threads", "The circumference of the bolt", "The length of the bolt shank", "The diameter of the bolt head"], "correct": 1, "short": "The circumference of the bolt", "expl": "On a screw, the circumference is the effort arm and the distance between the threads is the resistance arm.", "cite": "BLK01 slides p.197 · FAA-H-8083-30B Ch.5 p.5-11", "topic": "Simple machines"}, {"q": "A first-class lever has an effort arm (L) of 8 feet and a resistance arm (I) of 2 feet. What effort lifts a 220-lb weight?", "options": ["110 lbs", "27.5 lbs", "55 lbs", "880 lbs"], "correct": 2, "short": "55 lbs", "expl": "L/I = R/E → 8/2 = 220/E → E = (2 × 220) ÷ 8 = 55 lbs. Mechanical advantage = 8/2 = 4:1. (Slide's worked example.)", "cite": "BLK01 slides p.198 (AM.I.J.K3, AM.I.J.S5) · FAA-H-8083-30B Ch.5 p.5-8", "topic": "Levers"}, {"q": "Box 1 (300 lbs) sits 32 inches left of the fulcrum. Box 2 sits 160 inches right of the fulcrum. For balance, Box 2 must weigh:", "options": ["120 lbs", "9,600 lbs", "300 lbs", "60 lbs"], "correct": 3, "short": "60 lbs", "expl": "For balance the moments must be equal: 300 × 32 = 9,600 in-lbs. Then 9,600 ÷ 160 = 60 lbs. Weight × Arm = Moment (WAM). (Slide's worked example.)", "cite": "BLK01 slides p.199 (AM.I.J.S5) · FAA-H-8083-30B Ch.5 p.5-8", "topic": "Levers"}, {"q": "A wheelbarrow — with the resistance between the fulcrum and the effort — is an example of a:", "options": ["Third-class lever", "First-class lever", "Wheel and axle", "Second-class lever"], "correct": 3, "short": "Second-class lever", "expl": "First class = fulcrum between effort and resistance (see-saw); second class = resistance in the middle (wheelbarrow); third class = effort in the middle (your forearm).", "cite": "BLK01 slides p.200 & 202 (AM.I.J.K3) · FAA-H-8083-30B Ch.5 p.5-8", "topic": "Levers"}, {"q": "In a THIRD-class lever, such as your forearm, the applied effort is:", "options": ["Always equal to the resistance", "Greater than the resistance, in order to gain speed/distance", "Less than the resistance", "Zero at the fulcrum"], "correct": 1, "short": "Greater than the resistance, in order to gain speed/distance", "expl": "Slide example: R = 200 lbs, L = 0.5 ft, I = 4 ft → E = 1,600 lbs. Third-class levers trade large effort for speed and distance of the resistance end.", "cite": "BLK01 slides p.201-202 (AM.I.J.K3) · FAA-H-8083-30B Ch.5 p.5-9", "topic": "Levers"}, {"q": "A single FIXED pulley operates as what class of lever, and with what mechanical advantage?", "options": ["First-class lever, MA = 1:1", "Second-class lever, MA = 2:1", "Third-class lever, MA = 1:2", "Second-class lever, MA = 1:1"], "correct": 0, "short": "First-class lever, MA = 1:1", "expl": "A single fixed pulley = class 1 lever with MA 1:1 — it only changes the direction of the force. A single MOVABLE pulley = class 2 lever with MA 2:1.", "cite": "BLK01 slides p.204 · FAA-H-8083-30B Ch.5 p.5-9", "topic": "Pulleys"}, {"q": "What determines the mechanical advantage of a block and tackle?", "options": ["The length of rope used", "The total number of pulleys, fixed and movable", "The number of ropes supporting the weight", "The diameter of the sheaves"], "correct": 2, "short": "The number of ropes supporting the weight", "expl": "MA = number of weight-supporting ropes. Slide example: 4 supporting ropes → MA of 4 → a 200-lb weight needs only a 50-lb effort.", "cite": "BLK01 slides p.205 · FAA-H-8083-30B Ch.5 p.5-10", "topic": "Pulleys"}, {"q": "A 500-lb engine is moved up a 12-ft ramp onto a platform 4 ft high. The required effort is approximately:", "options": ["500 lbs", "166.7 lbs", "1,500 lbs", "41.7 lbs"], "correct": 1, "short": "166.7 lbs", "expl": "Inclined plane: L/I = R/E → 12/4 = 500/E → E = (4 × 500) ÷ 12 = 166.7 lbs. (Slide's worked example.)", "cite": "BLK01 slides p.212 (AM.I.J.K3) · FAA-H-8083-30B Ch.5 p.5-11", "topic": "Inclined plane"}, {"q": "When an external force acts on a body, the internal force that opposes it is known as:", "options": ["Stress", "Strain", "Torque", "Inertia"], "correct": 0, "short": "Stress", "expl": "Stress is the internal force opposing an external force, typically measured in pounds per square inch (psi). It manifests in one of five forms.", "cite": "BLK01 slides p.214 · FAA-H-8083-30B Ch.5 p.5-12", "topic": "Stress"}, {"q": "Which list gives the five forms of stress?", "options": ["Torsion, bending, strain, fatigue, creep", "Tension, twisting, expansion, vibration, shear", "Tension, compression, torsion, bending, shear", "Tension, compression, friction, lift, drag"], "correct": 2, "short": "Tension, compression, torsion, bending, shear", "expl": "External force causes stress to manifest in one of five forms: tension (pulls apart), compression (pushes together), torsion (twist), bending, and shear (slices).", "cite": "BLK01 slides p.214-220 · FAA-H-8083-30B Ch.5 pp.5-12/5-13", "topic": "Stress"}, {"q": "Torsion stress, applied when a material is twisted, is a combination of:", "options": ["Tension and shear", "Bending and shear", "Compression and bending", "Tension and compression"], "correct": 3, "short": "Tension and compression", "expl": "Torsion is applied when a material is twisted; it is a combination of tension and compression stresses.", "cite": "BLK01 slides p.217 · FAA-H-8083-30B Ch.5 p.5-12", "topic": "Stress"}, {"q": "In FLIGHT, lift bends the wing upward. The wing skin experiences:", "options": ["Tension on top, compression on the bottom", "Compression on top, tension on the bottom", "Torsion on top, tension on the bottom", "Pure shear on both surfaces"], "correct": 1, "short": "Compression on top, tension on the bottom", "expl": "In flight, lift raising the wing compresses the TOP skin and puts the BOTTOM skin in tension. On the ground it reverses: gravity bends the wing down — top in tension, bottom in compression.", "cite": "BLK01 slides p.218-219 · FAA-H-8083-30B Ch.5 p.5-13", "topic": "Stress"}, {"q": "A clevis bolt in an aircraft control system is designed to carry which stress?", "options": ["Tension", "Compression", "Shear", "Torsion"], "correct": 2, "short": "Shear", "expl": "Shear stress tries to slice a body apart — the clevis bolt is under shear (cutting) stress.", "cite": "BLK01 slides p.220 · FAA-H-8083-30B Ch.5 p.5-13", "topic": "Stress"}, {"q": "When stress distorts (bends) a body, the resulting distortion is called:", "options": ["Strain", "Fatigue", "Shear", "Creep"], "correct": 0, "short": "Strain", "expl": "Strain is a consequence of stress: when stress is applied and the body becomes distorted, the result is strain (e.g., the deflecting-beam torque wrench).", "cite": "BLK01 slides p.221 · FAA-H-8083-30B Ch.5 p.5-13", "topic": "Stress"}, {"q": "Velocity differs from speed because velocity is:", "options": ["Always greater than speed", "Distance divided by force", "The rate of change of acceleration", "The object's speed in a given direction"], "correct": 3, "short": "The object's speed in a given direction", "expl": "Speed = distance ÷ time. Velocity = speed in a given direction. Acceleration = the rate of change of velocity.", "cite": "BLK01 slides p.224 · FAA-H-8083-30B Ch.5 p.5-14", "topic": "Motion"}, {"q": "Newton's FIRST law — objects at rest stay at rest and objects in motion stay in motion unless acted on by an external force — is known as:", "options": ["The law of universal gravitation", "The law of inertia", "The law of momentum", "The law of action and reaction"], "correct": 1, "short": "The law of inertia", "expl": "First law = inertia. Second law = momentum (rate of change of momentum proportional to applied force). Third law = action and reaction.", "cite": "BLK01 slides p.225 (AM.I.J.K6) · FAA-H-8083-30B Ch.5 p.5-15", "topic": "Newton's laws"}, {"q": "'For every action there is an equal and opposite reaction' is Newton's:", "options": ["Third law", "Law of gravitation", "Second law", "First law"], "correct": 0, "short": "Third law", "expl": "Newton's third law — the law of action and reaction. (It is also the basis for jet/rocket propulsion and part of how wings make lift.)", "cite": "BLK01 slides p.227 (AM.I.J.K6) · FAA-H-8083-30B Ch.5 p.5-15", "topic": "Newton's laws"}, {"q": "In circular motion, the force that HOLDS an object within its orbit (acting toward the center) is:", "options": ["Gyroscopic force", "Torsional force", "Centrifugal force", "Centripetal force"], "correct": 3, "short": "Centripetal force", "expl": "Centripetal force (X to C) holds the object within the orbit; centrifugal force (X to Y) tries to throw the object out of orbit.", "cite": "BLK01 slides p.228 · FAA-H-8083-30B Ch.5 p.5-16", "topic": "Motion"}];
+const DRILL = [{"label": "Mass vs weight", "text": "Mass = Weight ÷ Gravity (constant anywhere). Weight = Mass × Gravity. g = 32.2 ft/sec²."}, {"label": "Specific gravity", "text": "Standard = water at 4°C (SG 1.000; 0.0361 lb/in³; 62.4 lb/ft³). Battery charged 1.275-1.310; discharged 1.150. Checked with a hydrometer."}, {"label": "Energy & work", "text": "PE = Weight × Height · KE = ½MV² · Work = Force × Distance · Power = F×D ÷ Time."}, {"label": "Horsepower", "text": "1 hp = 550 ft-lb/s = 33,000 ft-lb/min = 746 watts."}, {"label": "Lever law", "text": "L/I = R/E (Effort × Effort Arm = Resistance × Resistance Arm). Weight × Arm = Moment (WAM)."}, {"label": "Lever classes", "text": "1st: fulcrum in middle (see-saw). 2nd: resistance in middle (wheelbarrow). 3rd: effort in middle (forearm)."}, {"label": "Pulleys", "text": "Single fixed = class 1, MA 1:1 (direction change only). Single movable = class 2, MA 2:1. Block & tackle MA = number of ropes SUPPORTING the weight."}, {"label": "Five stresses", "text": "Tension · compression · torsion (= tension + compression) · bending · shear (clevis bolt). Strain is the distortion that results."}, {"label": "Wing bending", "text": "In flight (lift up): top = compression, bottom = tension. On the ground: reversed."}, {"label": "Newton's laws", "text": "1st = inertia · 2nd = momentum/F=MA · 3rd = action-reaction. Centripetal holds in orbit; centrifugal throws out."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

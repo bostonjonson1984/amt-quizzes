@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Inspection, NDT &amp; Welding — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Inspection, NDT &amp; Welding — Quiz</h1>
+    <div class="sub">AIM BLK01 Days 9-12 (slides 403-527, Project G7) · inspection programs (annual/100-hr/progressive) · transponder &amp; altimeter checks · special flight permits · dye penetrant steps · eddy current · ultrasonic · magnetic particle · radiography · bonded structures &amp; composites · weld inspection · cited to the BLK01 slide deck + FAA-H-8083-30B Ch.10 + 14 CFR</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Inspections are defined as:", "options": ["Visual examinations and manual checks to determine the condition of an aircraft or component", "Functional flight tests after maintenance", "Mandatory engine teardowns at fixed intervals", "Paperwork reviews performed only by the FAA"], "correct": 0, "short": "Visual examinations and manual checks to determine the condition of an aircraft or component", "expl": "An inspection is a visual examination and manual check to determine the condition of an aircraft or component.", "cite": "BLK01 slides p.405 (AM.I.K.K4/K5) · FAA-H-8083-30B Ch.10 p.10-1", "topic": "Inspection basics"}, {"q": "Before starting an inspection, you should be certain that:", "options": ["The aircraft has been fueled to capacity", "The engine has been removed from the airframe", "All plates, access doors, fairings, and cowling have been opened or removed and the structure cleaned", "All avionics have been powered up"], "correct": 2, "short": "All plates, access doors, fairings, and cowling have been opened or removed and the structure cleaned", "expl": "Open/remove all plates, access doors, fairings and cowling and clean the structure first — and before cleaning, note any oil or other evidence of fluid leakage.", "cite": "BLK01 slides p.405 (AM.I.K.K4/K5) · FAA-H-8083-30B Ch.10 p.10-1", "topic": "Inspection basics"}, {"q": "The aircraft logbook is:", "options": ["The same thing as the Type Certificate Data Sheet", "The record where all data concerning the aircraft is recorded — condition, inspections, time on airframe, engines, propellers", "Required only for commercial aircraft", "A pilot-only document not used by mechanics"], "correct": 1, "short": "The record where all data concerning the aircraft is recorded — condition, inspections, time on airframe, engines, propellers", "expl": "Aircraft logs record the history of all significant events for the aircraft, its components and accessories. Make entries legible and clear for any future reader.", "cite": "BLK01 slides p.406 (AM.I.K.K4/K5) · FAA-H-8083-30B Ch.10 p.10-2", "topic": "Records"}, {"q": "At a minimum, an inspection checklist should include information from:", "options": ["14 CFR Part 43, Appendix F", "AC 43.13-2B Chapter 1", "The aircraft sales brochure", "14 CFR Part 43, Appendix D — Scope and Detail of Items"], "correct": 3, "short": "14 CFR Part 43, Appendix D — Scope and Detail of Items", "expl": "Always use a checklist — your own design, the manufacturer's, or another source — but at minimum it must include the scope-and-detail items of Part 43 Appendix D.", "cite": "BLK01 slides p.407 · 14 CFR Part 43 App. D · FAA-H-8083-30B Ch.10 p.10-2", "topic": "Checklists"}, {"q": "The slide lists two categories of Airworthiness Directives (ADs):", "options": ["Recurring and terminating only", "Mandatory and optional", "Engine ADs and airframe ADs", "Emergency in nature requiring immediate compliance, and less urgent requiring compliance within a specific time"], "correct": 3, "short": "Emergency in nature requiring immediate compliance, and less urgent requiring compliance within a specific time", "expl": "AD categories per the slide: (1) emergency — immediate compliance; (2) less urgent — compliance within a specified time.", "cite": "BLK01 slides p.408 · 14 CFR Part 39 · FAA-H-8083-30B Ch.10", "topic": "Publications"}, {"q": "Under FAR 43.3, who may perform PREVENTIVE maintenance on an aircraft?", "options": ["Any passenger", "A private pilot, on an aircraft he or she owns", "Only a repair station", "Only an IA"], "correct": 1, "short": "A private pilot, on an aircraft he or she owns", "expl": "Per the slide: an aircraft private pilot may do preventive maintenance on his own aircraft under FAR 43.3.", "cite": "BLK01 slides p.410 · 14 CFR 43.3 · FAA-H-8083-30B Ch.10", "topic": "Inspections"}, {"q": "An ANNUAL inspection is required every:", "options": ["12 calendar months", "100 flight hours", "90 days or 25 hours", "24 calendar months"], "correct": 0, "short": "12 calendar months", "expl": "Annual inspections (FAR 91.409) are due every 12 calendar months. A calendar month extends from a given day until midnight of the last day of that month.", "cite": "BLK01 slides p.411 (AM.I.K.K4/K5) · 14 CFR 91.409 · FAA-H-8083-30B Ch.10 p.10-4", "topic": "Inspections"}, {"q": "An annual inspection must be performed by:", "options": ["The aircraft owner", "Any A&P mechanic", "An A&P mechanic holding an Inspection Authorization (IA), a certificated repair station, or the aircraft manufacturer", "A private pilot with 100 hours in type"], "correct": 2, "short": "An A&P mechanic holding an Inspection Authorization (IA), a certificated repair station, or the aircraft manufacturer", "expl": "Annual = IA, certificated repair station, or manufacturer. (A 100-hour inspection may be performed by an A&P without IA.)", "cite": "BLK01 slides p.411 · 14 CFR 91.409 · FAA-H-8083-30B Ch.10 p.10-4", "topic": "Inspections"}, {"q": "An aircraft's annual inspection has lapsed. To fly it to a base where the inspection can be performed, you need:", "options": ["Nothing, if the flight is under 50 miles", "A new airworthiness certificate", "A verbal OK from an IA", "A special flight permit (the aircraft must be safe to fly)"], "correct": 3, "short": "A special flight permit (the aircraft must be safe to fly)", "expl": "After the annual lapses the aircraft is no longer airworthy. A special flight permit allows ferrying it to where repairs/inspection can be made, if it is capable of safe flight.", "cite": "BLK01 slides p.411 & 423 · 14 CFR 21.197 · FAA-H-8083-30B Ch.10 p.10-4", "topic": "Special flight permits"}, {"q": "A 100-hour inspection is required for aircraft:", "options": ["Operated only for personal pleasure", "Older than 30 years", "Used for hire (commercial purposes)", "With more than six seats"], "correct": 2, "short": "Used for hire (commercial purposes)", "expl": "Aircraft used commercially must have the complete inspection every 100 hours in addition to the annual. The 100-hour may be performed by an A&P mechanic.", "cite": "BLK01 slides p.412-413 (AM.I.K.K4/K5) · 14 CFR 91.409(b) · FAA-H-8083-30B Ch.10 p.10-4", "topic": "Inspections"}, {"q": "The 100-hour limit may be exceeded by how much, and for what purpose?", "options": ["Up to 25 hours, for any reason", "Up to 10 hours, while en route to reach a place where the inspection can be done", "It may never be exceeded", "Up to 50 hours with FSDO approval"], "correct": 1, "short": "Up to 10 hours, while en route to reach a place where the inspection can be done", "expl": "There is a 10-hour grace period while en route to have the inspection accomplished; the excess time counts against the next 100 hours.", "cite": "BLK01 slides p.413 · 14 CFR 91.409(b) · FAA-H-8083-30B Ch.10 p.10-4", "topic": "Inspections"}, {"q": "Under a PROGRESSIVE inspection (FAR 91.409(d)), each segment must be accomplished every:", "options": ["90 days or every 25 hours", "30 days or 10 hours", "6 months or 200 hours", "12 months or 100 hours"], "correct": 0, "short": "90 days or every 25 hours", "expl": "Progressive inspections divide the complete inspection into segments (detailed + routine) done every 90 days or 25 hours, with the complete aircraft covered within each 12 calendar months. Prior FAA approval is required and the aircraft must be completely inspected before the program starts.", "cite": "BLK01 slides p.414-415 (AM.I.K.K4/K5) · 14 CFR 91.409(d) · FAA-H-8083-30B Ch.10 p.10-5", "topic": "Inspections"}, {"q": "The CONTINUOUS inspection program is designed for:", "options": ["Gliders and balloons", "Light sport aircraft", "Large aircraft of 12,500 lbs gross takeoff weight or more, multi-engine jets or turboprops", "Any aircraft under Part 91"], "correct": 2, "short": "Large aircraft of 12,500 lbs gross takeoff weight or more, multi-engine jets or turboprops", "expl": "Continuous inspection programs serve large aircraft (12,500+ lbs GTOW, turbojet/turboprop multiengine); they require a large maintenance organization with extensive personnel, facilities and equipment.", "cite": "BLK01 slides p.417 · 14 CFR 91.409(e)/(f) · FAA-H-8083-30B Ch.10 p.10-5", "topic": "Inspections"}, {"q": "ATA iSpec 2200 is:", "options": ["A standardized format for presenting maintenance information in all aircraft maintenance manuals", "An FAA inspection checklist for transponders", "The FAA's database of ADs", "A military NDT qualification standard"], "correct": 0, "short": "A standardized format for presenting maintenance information in all aircraft maintenance manuals", "expl": "ATA iSpec 2200 standardizes maintenance manuals into numbered systems (e.g., 21 Air Conditioning, 27 Flight Controls, 28 Fuel, 32 Landing Gear).", "cite": "BLK01 slides p.418 · FAA-H-8083-30B Ch.10 p.10-6 Fig.10-4", "topic": "Publications"}, {"q": "ATC transponder tests are required every ___, performed by ___.", "options": ["12 calendar months; any A&P", "24 calendar months; any private pilot", "100 hours; an IA only", "24 calendar months; the aircraft manufacturer or a repair station with a radio rating"], "correct": 3, "short": "24 calendar months; the aircraft manufacturer or a repair station with a radio rating", "expl": "Transponder tests: every 24 calendar months, per Part 43 Appendix F, by the manufacturer or a radio-rated repair station.", "cite": "BLK01 slides p.419 (AM.I.K.K4/K5) · 14 CFR 91.413, Part 43 App. F · FAA-H-8083-30B Ch.10 p.10-7", "topic": "Special inspections"}, {"q": "Altimeter and static system checks are required every 24 calendar months for aircraft:", "options": ["With retractable landing gear", "Operating in controlled airspace under instrument flight rules (IFR)", "Operating VFR only", "Used in flight training"], "correct": 1, "short": "Operating in controlled airspace under instrument flight rules (IFR)", "expl": "Altimeter/static tests: every 24 calendar months for IFR in controlled airspace, per Part 43 Appendix E, by the manufacturer or an instrument-rated repair station.", "cite": "BLK01 slides p.420 (AM.I.K.K4/K5) · 14 CFR 91.411, Part 43 App. E · FAA-H-8083-30B Ch.10 p.10-7", "topic": "Special inspections"}, {"q": "The static system LEAK test may be performed by:", "options": ["A mechanic with an Airframe (A) rating", "Only a radio-rated repair station", "Only the aircraft manufacturer", "Any student mechanic unsupervised"], "correct": 0, "short": "A mechanic with an Airframe (A) rating", "expl": "The static system test and inspection (leak test) may be performed by an airframe-rated mechanic; details are in Part 43 Appendix E (which refers to FAR 23.1325/25.1325 for standards).", "cite": "BLK01 slides p.421 · 14 CFR Part 43 App. E · FAA-H-8083-30B Ch.10 p.10-7", "topic": "Special inspections"}, {"q": "Which of these is listed as a SPECIAL inspection on the slide?", "options": ["Preflight inspection", "Annual inspection", "Overweight or hard landing", "Progressive inspection"], "correct": 2, "short": "Overweight or hard landing", "expl": "Special inspections: overweight/hard landing, severe turbulence, lightning strike, bird strike, fire damage, flood damage, seaplanes, aerial application aircraft.", "cite": "BLK01 slides p.422 (AM.I.K.K4/K5) · FAA-H-8083-30B Ch.10 pp.10-8/10-10", "topic": "Special inspections"}, {"q": "Which is one of the five purposes for which a special flight permit may be issued under 14 CFR 21.197?", "options": ["Carrying paying passengers on a scheduled route", "Conducting aerobatic competition flights", "Avoiding a required 100-hour inspection indefinitely", "Evacuating aircraft from areas of impending danger"], "correct": 3, "short": "Evacuating aircraft from areas of impending danger", "expl": "Special flight permit purposes: (1) flight to a repair/storage base, (2) delivering or exporting, (3) production flight testing, (4) evacuating from impending danger, (5) customer demonstration flights in new production aircraft that completed production flight tests.", "cite": "BLK01 slides p.423 · 14 CFR 21.197 · FAA-H-8083-30B Ch.10", "topic": "Special flight permits"}, {"q": "Nondestructive testing (NDT) is defined as:", "options": ["Testing that always requires part removal", "Noninvasive techniques to determine the integrity of a material, component or structure — inspect or measure without doing harm", "Testing a sample part to destruction to find its limits", "Visual inspection only"], "correct": 1, "short": "Noninvasive techniques to determine the integrity of a material, component or structure — inspect or measure without doing harm", "expl": "NDT determines integrity or quantitatively measures a characteristic of an object without doing harm.", "cite": "BLK01 slides p.469 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-17", "topic": "NDT basics"}, {"q": "Anyone performing NDT must be qualified and certified to standards such as:", "options": ["ISO 9000 only", "Part 43 Appendix D", "OSHA 1910", "MIL-STD-410 or ATA iSpec 105"], "correct": 3, "short": "MIL-STD-410 or ATA iSpec 105", "expl": "MIL-STD-410 (NDT personnel qualification and certification) and ATA iSpec 105 (guidelines for training and qualifying NDT personnel).", "cite": "BLK01 slides p.470 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-17", "topic": "NDT basics"}, {"q": "The most basic and common inspection method — also the least expensive — is:", "options": ["Visual inspection", "Radiographic inspection", "Eddy current inspection", "Acoustic emission"], "correct": 0, "short": "Visual inspection", "expl": "Visual inspection requires the least tools: work light/flashlight, fiberscopes, borescopes, magnifying glasses, and mirrors.", "cite": "BLK01 slides p.473 (AM.I.K.K3, AM.I.K.S4) · FAA-H-8083-30B Ch.10 p.10-19", "topic": "Visual inspection"}, {"q": "Liquid dye penetrant inspection detects discontinuities:", "options": ["Only in composites", "Only on the SURFACE of objects (and only on non-porous surfaces)", "Deep inside the part's core", "Only in ferrous metals"], "correct": 1, "short": "Only on the SURFACE of objects (and only on non-porous surfaces)", "expl": "Dye penetrant detects surface discontinuities only, on non-porous surfaces, in metals and other materials. There are two penetrant types: visible and fluorescent.", "cite": "BLK01 slides p.474-475 (AM.I.K.K3, AM.I.K.S5) · FAA-H-8083-30B Ch.10 p.10-20", "topic": "Dye penetrant"}, {"q": "Put the dye penetrant steps in order:", "options": ["Developer → penetrant → cleaner → inspect", "Preparation → developer → penetrant → inspect", "Preparation → penetrant application → penetrant removal → developer application → inspect → remove developer", "Penetrant → preparation → inspect → developer"], "correct": 2, "short": "Preparation → penetrant application → penetrant removal → developer application → inspect → remove developer", "expl": "Six steps: 1) prepare/clean the surface, 2) apply penetrant, 3) remove excess penetrant, 4) apply developer, 5) inspect and record, 6) remove developer and dry.", "cite": "BLK01 slides p.476-484 (AM.I.K.S5) · FAA-H-8083-30B Ch.10 p.10-20", "topic": "Dye penetrant"}, {"q": "During penetrant PREPARATION, which cleaning method is prohibited?", "options": ["Removing paint", "Volatile petroleum-based solvent", "Abrasive blasting, scraping, or heavy brushing", "Rinsing and drying thoroughly"], "correct": 2, "short": "Abrasive blasting, scraping, or heavy brushing", "expl": "Surfaces must be free of grease/dirt/oil and paint removed — but do NOT clean by abrasive blasting, scraping, or heavy brushing (these can smear metal over cracks). Use a volatile petroleum-based solvent, rinse and dry.", "cite": "BLK01 slides p.476 · FAA-H-8083-30B Ch.10 p.10-20", "topic": "Dye penetrant"}, {"q": "Penetrant DWELL TIME is:", "options": ["The amount of time required for the penetrant to cure (work into discontinuities)", "The interval between inspections", "The cleaning soak time", "The time the developer takes to dry"], "correct": 0, "short": "The amount of time required for the penetrant to cure (work into discontinuities)", "expl": "Dwell time depends on the size and shape of the discontinuities sought — small thin cracks need LONGER dwell. Heating the part decreases dwell time, but too much heat evaporates the penetrant.", "cite": "BLK01 slides p.479 · FAA-H-8083-30B Ch.10 p.10-20", "topic": "Dye penetrant"}, {"q": "Water-soluble penetrants are flushed away with water sprayed at:", "options": ["5 psi mist, vertically", "Any pressure, any angle", "100 to 120 psi, straight on", "30 to 40 psi, at a 45° angle"], "correct": 3, "short": "30 to 40 psi, at a 45° angle", "expl": "Flush at 30-40 psi and spray at 45° so the penetrant is not washed OUT of the cracks. Post-emulsifying penetrants get an emulsifying agent first; solvent penetrants are wiped with solvent-dampened towels.", "cite": "BLK01 slides p.480-481 · FAA-H-8083-30B Ch.10 p.10-21", "topic": "Dye penetrant"}, {"q": "The three kinds of penetrant developer are:", "options": ["Hot, cold, and neutral", "Dry, wet, and nonaqueous", "Visible, fluorescent, and infrared", "Acid, alkaline, and solvent"], "correct": 1, "short": "Dry, wet, and nonaqueous", "expl": "Dry developer (loose powder/powder gun), wet developer (white powder mixed with water, air-dried), and nonaqueous developer (chalk-like powder suspended in solvent, sprayed from a can). Apply developer as soon as possible after penetrant removal.", "cite": "BLK01 slides p.482 · FAA-H-8083-30B Ch.10 p.10-21", "topic": "Dye penetrant"}, {"q": "Eddy current testing works by:", "options": ["Spraying ferromagnetic particles on the part", "Applying AC to a coil and watching how defects distort the induced current/resistance display", "Beaming X-rays through the part onto film", "Tapping the part and listening for a dead response"], "correct": 1, "short": "Applying AC to a coil and watching how defects distort the induced current/resistance display", "expl": "AC in a coil (electromagnet) sends electrons through the component; the electron flow directly influences the coil's resistance, and surface or subsurface defects distort the current display.", "cite": "BLK01 slides p.485 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-23", "topic": "Eddy current"}, {"q": "The three types of ULTRASONIC testing are:", "options": ["Pitch-catch, reflection, and absorption", "Axial, radial, and shear", "Pulse echo, through transmission, and resonance", "Continuous, residual, and pulsed"], "correct": 2, "short": "Pulse echo, through transmission, and resonance", "expl": "Pulse echo, through transmission, and resonance. Through transmission requires access to the BACK of the test piece because it uses a separate transmitter and receiver.", "cite": "BLK01 slides p.486 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-24", "topic": "Ultrasonic"}, {"q": "In bonded-structure inspection, a TYPE V defect is:", "options": ["A void between layers of laminate", "A disbond at the outer skin-to-adhesive interface", "A scratch in the paint", "Water in the core"], "correct": 3, "short": "Water in the core", "expl": "Bonded/laminate defect types: I = disbond/void at outer skin-to-adhesive; II = at adhesive-to-core; III = voids between laminate layers; IV = voids in foam adhesive / closure-member disbonds; V = water in the core.", "cite": "BLK01 slides p.492 · FAA-H-8083-30B Ch.10 p.10-26", "topic": "Bonded structures"}, {"q": "What advantage does ACOUSTIC EMISSION inspection have over other NDI methods?", "options": ["It can detect and locate ALL the flaws in a structure in one test", "It permanently magnetizes the part", "It needs no sensors or equipment", "It works without applying any load"], "correct": 0, "short": "It can detect and locate ALL the flaws in a structure in one test", "expl": "Acoustic sensors are placed on the aircraft and a load/stress is applied; cracks and corrosion emit sounds and stress waves as ultrasonic pulses, locating every flaw in a single test.", "cite": "BLK01 slides p.493 · FAA-H-8083-30B Ch.10 p.10-26", "topic": "Acoustic emission"}, {"q": "Magnetic particle inspection is only effective on:", "options": ["Any electrically conductive metal", "Composites", "Ferrous (magnetizable) materials", "Aluminum alloys"], "correct": 2, "short": "Ferrous (magnetizable) materials", "expl": "The part must be magnetized; an indicating medium of ferromagnetic particulate is applied. It detects surface and subsurface discontinuities, but only on ferrous materials.", "cite": "BLK01 slides p.494 & 498 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-27", "topic": "Magnetic particle"}, {"q": "For a discontinuity to be detected by magnetic particle inspection, it must run:", "options": ["Parallel to the lines of flux", "At exactly 45° to the surface", "Along the part's centerline", "Perpendicular to the lines of flux"], "correct": 3, "short": "Perpendicular to the lines of flux", "expl": "Flux travels pole to pole; a discontinuity must interfere with the flux lines (flux leakage) to attract particles. Parallel discontinuities go undetected — so flux must be introduced in multiple directions.", "cite": "BLK01 slides p.495-496 & 498 · FAA-H-8083-30B Ch.10 p.10-28", "topic": "Magnetic particle"}, {"q": "CONTINUOUS magnetization (force applied during testing) provides:", "options": ["Less sensitivity than residual magnetism", "Greater sensitivity in locating SUBSURFACE discontinuities", "Detection of flaws in aluminum", "Permanent magnetization that needs no removal"], "correct": 1, "short": "Greater sensitivity in locating SUBSURFACE discontinuities", "expl": "Residual magnetism: force removed before testing, used on heat-treated stressed steels. Continuous magnetism: applied during testing, greater subsurface sensitivity.", "cite": "BLK01 slides p.497 · FAA-H-8083-30B Ch.10 p.10-29", "topic": "Magnetic particle"}, {"q": "Magnaglo inspection differs from standard magnetic particle inspection because it:", "options": ["Uses a fluorescent particle solution inspected under black light", "Works on composite structures", "Uses X-rays instead of magnetism", "Requires no magnetization of the part"], "correct": 0, "short": "Uses a fluorescent particle solution inspected under black light", "expl": "Magnaglo's neon-like glow of defects under black light lets smaller flaw indications be seen.", "cite": "BLK01 slides p.500 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-30", "topic": "Magnetic particle"}, {"q": "After magnetic particle inspection, a part returning to service must be demagnetized. The basic procedure is:", "options": ["Soak the part in penetrant developer", "Subject the part to a reversing and gradually decreasing magnetizing force (e.g., AC solenoid, slowly withdrawing the part)", "Strike the part sharply with a mallet", "Heat the part above 1,000°F"], "correct": 1, "short": "Subject the part to a reversing and gradually decreasing magnetizing force (e.g., AC solenoid, slowly withdrawing the part)", "expl": "Use an AC-energized solenoid coil and slowly move the part out of and away from the field — or pass AC through the part while gradually reducing the current to zero.", "cite": "BLK01 slides p.501 (AM.I.K.R1) · FAA-H-8083-30B Ch.10 p.10-30", "topic": "Magnetic particle"}, {"q": "The three steps of radiographic inspection are:", "options": ["Penetrate, develop, inspect", "Magnetize, apply medium, demagnetize", "Cleaning, spraying, and drying", "Exposure to radiation, processing of the film/recording device, and interpretation of the radiograph"], "correct": 3, "short": "Exposure to radiation, processing of the film/recording device, and interpretation of the radiograph", "expl": "Radiography: (1) exposure, (2) processing, (3) interpretation. Two source types: X-ray and isotope.", "cite": "BLK01 slides p.504 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-31", "topic": "Radiography"}, {"q": "In a tap test (coin/ring test) on composite or honeycomb structure, a 'thud' or dead knock indicates:", "options": ["Possible delamination (a ringing sound indicates good continuity)", "A sound, well-bonded structure", "Excess resin", "Normal paint thickness"], "correct": 0, "short": "Possible delamination (a ringing sound indicates good continuity)", "expl": "Tap testing locates subsurface discontinuity by sound: ringing/reverberation = good continuity; thud/dead response = possible delamination.", "cite": "BLK01 slides p.509 (AM.I.K.K3, AM.I.K.S8) · FAA-H-8083-30B Ch.10 p.10-36", "topic": "Composites"}, {"q": "Thermography inspects composites by:", "options": ["Passing eddy currents through the skin", "Listening to ultrasonic echoes", "Applying electromagnetic heat and viewing how discontinuities affect heat dissipation with an IR camera", "Spraying fluorescent dye"], "correct": 2, "short": "Applying electromagnetic heat and viewing how discontinuities affect heat dissipation with an IR camera", "expl": "Discontinuities change the heat-dissipation pattern, which an infrared camera reveals. Used on composites.", "cite": "BLK01 slides p.511 · FAA-H-8083-30B Ch.10 p.10-37", "topic": "Composites"}, {"q": "Which list matches the slide's types of welds?", "options": ["Spot, seam, plug, and groove welds", "Square, vee, bevel, and J welds", "Stick, MIG, TIG, and gas welds", "Butt, double butt, lap, fillet, and edge welds"], "correct": 3, "short": "Butt, double butt, lap, fillet, and edge welds", "expl": "Weld types named on the slide: butt weld, double butt weld, lap weld, fillet weld, edge weld.", "cite": "BLK01 slides p.513 · FAA-H-8083-30B Ch.10 p.10-38", "topic": "Welding"}, {"q": "The MOST important characteristic of a good weld is:", "options": ["A thick oxide coating", "A shiny surface finish", "Penetration — the depth of fusion in the weld", "Wide, flat ripples"], "correct": 2, "short": "Penetration — the depth of fusion in the weld", "expl": "Penetration is the depth of fusion and the most important characteristic of a good weld. It depends on material thickness, filler rod size, and welding technique.", "cite": "BLK01 slides p.515 · FAA-H-8083-30B Ch.10 p.10-38", "topic": "Welding"}, {"q": "A good weld is uniform in width with even ripples, and no oxide should form on the base metal more than:", "options": ["1/2 inch from the weld", "2 inches from the weld", "Any oxide at all is acceptable", "1/16 inch from the weld"], "correct": 0, "short": "1/2 inch from the weld", "expl": "Good weld: uniform width, even ripples tapering smoothly into the base metal, no burn marks or overheating signs, oxide limited to within 1/2 inch of the weld, and free of gas pockets, porosity, and inclusions.", "cite": "BLK01 slides p.517 · FAA-H-8083-30B Ch.10 p.10-38", "topic": "Welding"}, {"q": "Bumps along the center and craters along the weld's edge are caused by:", "options": ["A cold weld", "Too much acetylene, making the molten metal boil", "Cooling too quickly", "Excessive oxygen"], "correct": 1, "short": "Too much acetylene, making the molten metal boil", "expl": "Poor welds: too much acetylene → boiling metal, bumps and craters; cold weld → irregular edges and varying penetration; excessive heat → pitting and long pointed ripples; cooled too quickly → cracks adjacent to the weld.", "cite": "BLK01 slides p.520 · FAA-H-8083-30B Ch.10 p.10-39", "topic": "Welding"}, {"q": "If a weld has ANY defects, the correct repair is to:", "options": ["Weld a second bead over the top", "Grind the surface smooth and paint it", "Remove ALL of the old weld and re-weld the joint", "Drill-stop the ends of the defect"], "correct": 2, "short": "Remove ALL of the old weld and re-weld the joint", "expl": "Correcting bad welds: all of the old weld must be removed and the joint re-welded.", "cite": "BLK01 slides p.521 · FAA-H-8083-30B Ch.10 p.10-39", "topic": "Welding"}];
+const DRILL = [{"label": "Inspection clock", "text": "Annual = 12 calendar months (IA/repair station/manufacturer) · 100-hour = aircraft for hire (A&P may perform; 10-hr en route grace) · progressive = 90 days/25 hrs per segment · transponder & altimeter/static = 24 calendar months."}, {"label": "Appendices", "text": "Part 43 App. D = scope/detail of annual & 100-hr · App. E = altimeter/static test · App. F = transponder test."}, {"label": "Special flight permit (21.197)", "text": "Ferry to repairs/storage · delivery/export · production flight test · evacuation from danger · customer demos of new production aircraft."}, {"label": "NDT personnel", "text": "Qualified/certified per MIL-STD-410 or ATA iSpec 105."}, {"label": "Dye penetrant", "text": "Surface-only, non-porous materials. Steps: clean → penetrant → remove (water-soluble: 30-40 psi at 45°) → developer (dry/wet/nonaqueous) → inspect → remove developer. Small thin cracks = longer dwell."}, {"label": "Magnetic particle", "text": "Ferrous only · flaw must cut flux lines (perpendicular) · continuous magnetization = better subsurface sensitivity · Magnaglo = fluorescent + black light · demagnetize with decreasing AC."}, {"label": "Ultrasonic", "text": "Pulse echo · through transmission (needs access to the back) · resonance. Reference standards calibrate sensitivity."}, {"label": "Bonded defects", "text": "Type I skin-adhesive disbond · II adhesive-core · III between laminate layers · IV foam-adhesive/closure · V = WATER IN CORE. Acoustic emission finds all flaws in one test."}, {"label": "Tap test", "text": "Ring = good bond · thud/dead = delamination. Thermography = IR camera. Composite conductivity: aluminum w/ fiberglass-Kevlar, copper w/ carbon fiber."}, {"label": "Weld quality", "text": "Penetration = #1 characteristic · oxide ≤ 1/2 inch from weld · too much acetylene = bumps/craters · cold weld = irregular edges · too hot = pitting + pointed ripples · fast cooling = adjacent cracks · ANY defect → remove ALL old weld and re-weld."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

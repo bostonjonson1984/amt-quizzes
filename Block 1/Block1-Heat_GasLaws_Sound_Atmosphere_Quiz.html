@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Heat, Gas Laws, Sound &amp; Atmosphere — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Heat, Gas Laws, Sound &amp; Atmosphere — Quiz</h1>
+    <div class="sub">AIM BLK01 Days 6-7 (slides 231-298) · heat &amp; temperature scales · gas laws with worked problems · Pascal&#x27;s law FAP/VAD (Project G4) · Bernoulli · sound &amp; Doppler · the atmosphere · pressure &amp; density altitude (Project G5) · cited to the BLK01 slide deck + FAA-H-8083-30B Ch.5</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "A hydraulic system pressure is 500 psi and acts on a piston area of 4 square inches. What force is produced?", "options": ["125 lb", "500 lb", "1,000 lb", "2,000 lb"], "correct": 3, "short": "2,000 lb", "expl": "Use F = P × A. Force = 500 × 4 = 2,000 pounds.", "cite": "Your class bank (verbatim) · BLK01 slides p.264-265 (AM.I.J.K13, F = P × A) · FAA-H-8083-30B p.5-28", "topic": "Hydraulics"}, {"q": "A force of 600 pounds acts on an area of 3 square inches. What is the pressure?", "options": ["100 psi", "200 psi", "600 psi", "1,800 psi"], "correct": 1, "short": "200 psi", "expl": "Use P = F ÷ A. Pressure = 600 ÷ 3 = 200 psi.", "cite": "Your class bank (verbatim) · BLK01 slides p.247 & 264 (P = F ÷ A) · FAA-H-8083-30B p.5-22", "topic": "Pressure"}, {"q": "A hydraulic piston has an area of 6 square inches. If pressure is 200 psi, what force is produced?", "options": ["206 lb", "600 lb", "1,200 lb", "2,000 lb"], "correct": 2, "short": "1,200 lb", "expl": "Use F = P × A. Force = 200 × 6 = 1,200 pounds.", "cite": "Your class bank (verbatim) · BLK01 slides p.264-265 (AM.I.J.K13, F = P × A) · FAA-H-8083-30B p.5-28", "topic": "Hydraulics"}, {"q": "According to Pascal’s law, pressure applied to a confined fluid is transmitted:", "options": ["Only downward", "Only upward", "Equally in all directions", "Only through gases"], "correct": 2, "short": "Equally in all directions", "expl": "Think about hydraulic systems. Pascal’s law says pressure applied to a confined fluid is transmitted equally in all directions.", "cite": "Your class bank (verbatim) · BLK01 slides p.264 (AM.I.J.K13) · FAA-H-8083-30B pp.5-27/5-28", "topic": "Pascal’s law"}, {"q": "In a venturi, as fluid velocity increases, pressure generally:", "options": ["Increases", "Decreases", "Remains exactly the same", "Becomes zero"], "correct": 1, "short": "Decreases", "expl": "Bernoulli principle relationship. In a venturi throat, velocity increases and static pressure decreases.", "cite": "Your class bank (verbatim) · BLK01 slides p.269 & 308 (AM.I.J.K5) · FAA-H-8083-30B pp.5-29/5-30", "topic": "Venturi"}, {"q": "Which type of heat transfer occurs mainly through direct contact?", "options": ["Conduction", "Convection", "Radiation", "Refraction"], "correct": 0, "short": "Conduction", "expl": "Example: heat moving through metal. Conduction is heat transfer through direct contact between materials.", "cite": "Your class bank (verbatim) · BLK01 slides p.241 (conduction/convection/radiation) · FAA-H-8083-30B pp.5-19/5-20", "topic": "Heat transfer"}, {"q": "Which type of heat transfer occurs by movement of a fluid such as air or liquid?", "options": ["Conduction", "Convection", "Radiation", "Compression"], "correct": 1, "short": "Convection", "expl": "Example: warm air rising. Convection is heat transfer by movement of a fluid, including air or liquid.", "cite": "Your class bank (verbatim) · BLK01 slides p.241 (conduction/convection/radiation) · FAA-H-8083-30B pp.5-19/5-20", "topic": "Heat transfer"}, {"q": "If the same force is applied to a larger area, the pressure will:", "options": ["Increase", "Decrease", "Stay the same", "Become horsepower"], "correct": 1, "short": "Decrease", "expl": "Use P = F ÷ A. Pressure decreases when the same force is spread over a larger area.", "cite": "Your class bank (verbatim) · BLK01 slides p.247 & 264 (P = F ÷ A) · FAA-H-8083-30B p.5-22", "topic": "Pressure"}, {"q": "Heat may be defined as:", "options": ["The weight of thermal radiation", "The total kinetic energy of the molecules of any substance", "The potential energy stored in chemical bonds", "Molecular mass per unit volume"], "correct": 1, "short": "The total kinetic energy of the molecules of any substance", "expl": "Heat is a form of energy produced only by the conversion of one of the other forms of energy; it is the total kinetic energy of a substance's molecules.", "cite": "BLK01 slides p.232 (AM.I.J.K4) · FAA-H-8083-30B Ch.5 p.5-18", "topic": "Heat"}, {"q": "A BTU (British Thermal Unit) is the amount of heat required to:", "options": ["Raise 1 gram of water 1°C", "Raise 1 gallon of water 1°F", "Boil 1 lb of water at sea level", "Raise the temperature of 1 lb of water 1°F"], "correct": 3, "short": "Raise the temperature of 1 lb of water 1°F", "expl": "BTU = heat required to increase the temperature of 1 pound of water by 1 degree Fahrenheit.", "cite": "BLK01 slides p.239 · FAA-H-8083-30B Ch.5 p.5-18", "topic": "Heat"}, {"q": "An engine produces 200 hp from fuel containing 744 potential horsepower. Its thermal efficiency is:", "options": ["26.88%", "2.688%", "73.12%", "37.2%"], "correct": 0, "short": "26.88%", "expl": "Thermal efficiency = HP produced ÷ potential HP in fuel = 200 ÷ 744 = 0.2688 = 26.88%. More than 70% of the fuel's energy is not turned into usable horsepower. (Slide's worked example.)", "cite": "BLK01 slides p.240 · FAA-H-8083-30B Ch.5 p.5-19", "topic": "Heat"}, {"q": "Heat always transfers from:", "options": ["Areas of low heat energy to high heat energy", "Solids to gases only", "Areas of high heat energy to areas of low heat energy", "Large objects to small objects"], "correct": 2, "short": "Areas of high heat energy to areas of low heat energy", "expl": "Heat always flows high → low. The three transfer methods are conduction (direct contact), convection (movement of heated fluid), and radiation (waves).", "cite": "BLK01 slides p.241 · FAA-H-8083-30B Ch.5 p.5-19", "topic": "Heat transfer"}, {"q": "Which heat-transfer method works by electromagnetic waves and requires NO physical contact or fluid?", "options": ["Induction", "Radiation", "Convection", "Conduction"], "correct": 1, "short": "Radiation", "expl": "Radiation transfers heat by radiant energy (waves). Conduction needs direct physical contact; convection needs movement of a heated fluid (gas or liquid).", "cite": "BLK01 slides p.241 · FAA-H-8083-30B Ch.5 pp.5-19/5-20", "topic": "Heat transfer"}, {"q": "At standard conditions, pure water BOILS at:", "options": ["0°C / 32°F / 273 K / 492°R", "100°C / 180°F / 273 K / 460°R", "15°C / 59°F / 288 K / 519°R", "100°C / 212°F / 373 K / 672°R"], "correct": 3, "short": "100°C / 212°F / 373 K / 672°R", "expl": "Water boils at 100°C = 212°F = 373 Kelvin = 672 Rankine; it freezes at 0°C = 32°F = 273 K = 492°R.", "cite": "BLK01 slides p.244 · FAA-H-8083-30B Ch.5 p.5-21", "topic": "Temperature"}, {"q": "All molecular activity ceases at absolute zero, which is:", "options": ["−100°C or −212°F", "0°C or 32°F", "−273°C or −460°F", "−373°C or −672°F"], "correct": 2, "short": "−273°C or −460°F", "expl": "Absolute zero = −273 Celsius = −460 Fahrenheit = 0 Kelvin = 0 Rankine.", "cite": "BLK01 slides p.244 · FAA-H-8083-30B Ch.5 p.5-21", "topic": "Temperature"}, {"q": "Convert 20°C to Fahrenheit.", "options": ["68°F", "36°F", "93.6°F", "52°F"], "correct": 0, "short": "68°F", "expl": "°F = (°C × 1.8) + 32 = (20 × 1.8) + 32 = 36 + 32 = 68°F. ⚠ Exam note: the formula sheet in FAA-H-8083-30B Fig. 3-23 contains a misprint of this conversion — the correct form is °F = (1.8 × °C) + 32, exactly as the AIM slide teaches it.", "cite": "BLK01 slides p.245 (AM.I.J.S1, AM.I.J.R4) · FAA-H-8083-30B Ch.5 p.5-21 (cf. Fig.3-23 misprint)", "topic": "Temperature"}, {"q": "To convert Celsius to Kelvin you:", "options": ["Multiply by 1.8 and add 32", "Add 273", "Subtract 273", "Add 460"], "correct": 1, "short": "Add 273", "expl": "Kelvin = °C + 273 (21°C = 294 K). Rankine = °F + 460 (70°F = 530°R).", "cite": "BLK01 slides p.245 · FAA-H-8083-30B Ch.5 p.5-21", "topic": "Temperature"}, {"q": "The formula for linear thermal expansion is:", "options": ["Expansion = coefficient × area × pressure", "Expansion = length ÷ (coefficient × temperature)", "Expansion = coefficient × length × rise in temperature", "Expansion = mass × specific heat × temperature"], "correct": 2, "short": "Expansion = coefficient × length × rise in temperature", "expl": "Expansion = coefficient × length × temperature rise. Slide example: a 9-ft steel rod heated 34°C grows by (11×10⁻⁶) × 9 × 34 ≈ 0.0034 ft. Coefficients are in Fig. 5-32, p.5-23.", "cite": "BLK01 slides p.246 · FAA-H-8083-30B Ch.5 p.5-23 Fig.5-32", "topic": "Expansion"}, {"q": "Standard atmospheric pressure at sea level (59°F) is 14.7 psi, which also equals:", "options": ["29.92 psi / 760 inches / 1013.2 mb", "14.7 inches of mercury / 29.92 mm / 760 millibars", "33.92 inches of mercury / 700 mm / 1003 millibars", "29.92 inches of mercury / 760 mm of mercury / 1013.2 millibars"], "correct": 3, "short": "29.92 inches of mercury / 760 mm of mercury / 1013.2 millibars", "expl": "Standard sea-level atmosphere: 14.7 psi = 29.92 in Hg = 760 mm Hg = 1013.2 millibars, at 59°F/15°C.", "cite": "BLK01 slides p.247-248 · FAA-H-8083-30B Ch.5 p.5-24", "topic": "Pressure"}, {"q": "PSIA stands for and measures:", "options": ["Pounds per square inch ABSOLUTE — pressure measured from a complete vacuum (zero)", "The difference between two pressure sources", "Pounds per square inch ATMOSPHERIC — gauge pressure plus 100", "Pressure relative to the local field elevation"], "correct": 0, "short": "Pounds per square inch ABSOLUTE — pressure measured from a complete vacuum (zero)", "expl": "PSIG = gauge pressure (above ambient), PSIA = absolute pressure (from vacuum), PSID = differential pressure (difference between two sources).", "cite": "BLK01 slides p.249-251 · FAA-H-8083-30B Ch.5 p.5-25", "topic": "Pressure"}, {"q": "Boyle's Law states that the volume of an enclosed dry gas varies ___ with its absolute pressure, temperature constant.", "options": ["Not at all", "Exponentially", "Directly", "Inversely"], "correct": 3, "short": "Inversely", "expl": "Boyle's Law: volume varies inversely with absolute pressure at constant temperature. V1 × P1 = V2 × P2.", "cite": "BLK01 slides p.252 (AM.I.J.K7) · FAA-H-8083-30B Ch.5 p.5-26", "topic": "Gas laws"}, {"q": "10 ft³ of nitrogen at 500 psia is compressed to 7 ft³ at constant temperature. The new pressure is approximately:", "options": ["714.3 psia", "1,000 psia", "500 psia", "350 psia"], "correct": 0, "short": "714.3 psia", "expl": "V1P1 = V2P2 → 10 × 500 = 7 × P2 → P2 = 5,000 ÷ 7 = 714.29 psia. (Slide's worked example.)", "cite": "BLK01 slides p.253 (AM.I.J.K7) · FAA-H-8083-30B Ch.5 p.5-26", "topic": "Gas laws"}, {"q": "Charles' Law states that gases expand and contract in direct proportion to the change in ___, pressure constant.", "options": ["Relative humidity", "Volume of the container", "Absolute temperature", "Absolute pressure"], "correct": 2, "short": "Absolute temperature", "expl": "Charles' Law: all gases expand and contract in direct proportion to the change in ABSOLUTE temperature (Kelvin/Rankine), pressure held constant.", "cite": "BLK01 slides p.255 (AM.I.J.K7) · FAA-H-8083-30B Ch.5 p.5-26", "topic": "Gas laws"}, {"q": "The General Gas Law combines Boyle's and Charles' laws into:", "options": ["V1 × T2 = V2 × T1 only", "(P1 × V1) ÷ T1 = (P2 × V2) ÷ T2", "P1 × V1 = P2 × V2 only", "P1 ÷ V1 = T1 ÷ T2"], "correct": 1, "short": "(P1 × V1) ÷ T1 = (P2 × V2) ÷ T2", "expl": "The general gas law lets you solve for pressure, volume and temperature when one or more variables change: P1V1/T1 = P2V2/T2.", "cite": "BLK01 slides p.257 (AM.I.J.K7) · FAA-H-8083-30B Ch.5 p.5-27", "topic": "Gas laws"}, {"q": "When two or more gases that do not combine chemically share a container, each gas's reduced pressure is called its ___ (Dalton's Law).", "options": ["Static fraction", "Vapor point", "Partial pressure", "Gauge pressure"], "correct": 2, "short": "Partial pressure", "expl": "Dalton's Law: each gas expands through the total space and the absolute pressure of each gas drops to a lower value, called its partial pressure.", "cite": "BLK01 slides p.258 (AM.I.J.K7) · FAA-H-8083-30B Ch.5 p.5-27", "topic": "Gas laws"}, {"q": "Per Avogadro's principle, why does humid air affect aircraft performance?", "options": ["A water molecule (weight 18) is LIGHTER than N₂ (28) or O₂ (32), so humid air is less dense", "Water molecules are heavier than air molecules, making humid air denser", "Water vapor blocks oxygen from the engine entirely", "Humidity increases air pressure, adding drag"], "correct": 0, "short": "A water molecule (weight 18) is LIGHTER than N₂ (28) or O₂ (32), so humid air is less dense", "expl": "Equal volumes of gases hold equal numbers of molecules. Water (H₂O = 18) weighs less than the N₂ (28) and O₂ (32) it displaces, so humid air is less dense — hurting lift and engine performance.", "cite": "BLK01 slides p.259 · FAA-H-8083-30B Ch.5 p.5-27", "topic": "Gas laws"}, {"q": "Buoyant force equals:", "options": ["Surface area × fluid pressure", "Volume of the object × density of the fluid displaced", "Mass × gravity ÷ volume", "Weight of the object × specific gravity"], "correct": 1, "short": "Volume of the object × density of the fluid displaced", "expl": "Buoyant force = volume × density of displaced fluid. Water at 4°C is 62.4 lb/ft³, so 0.11 cu ft displaced = 0.11 × 62.4 = 6.864 lbs of buoyant force. (Slide's worked example.)", "cite": "BLK01 slides p.262 · FAA-H-8083-30B Ch.5 p.5-28", "topic": "Fluid mechanics"}, {"q": "The pressure a liquid exerts on the bottom of its container (static pressure) is caused solely by:", "options": ["The shape of the container", "The color and temperature of the fluid", "The surface area of the container bottom", "The height of the fluid, not the container shape"], "correct": 3, "short": "The height of the fluid, not the container shape", "expl": "Static pressure depends only on fluid height: containers of different shapes each filled to 231 inches all read 8.34 psi at the bottom.", "cite": "BLK01 slides p.263 (AM.I.J.K7) · FAA-H-8083-30B Ch.5 p.5-28", "topic": "Fluid mechanics"}, {"q": "Pascal's Law states that pressure set up in a fluid:", "options": ["Acts equally in all directions", "Decreases with distance from the pump", "Concentrates at the smallest piston", "Acts only downward toward gravity"], "correct": 0, "short": "Acts equally in all directions", "expl": "Pressure in a closed hydraulic system is equal and constant throughout the entire system. Use the FAP triangle: Force = Pressure × Area; Pressure = F ÷ A; Area = F ÷ P.", "cite": "BLK01 slides p.264 (AM.I.J.K13) · FAA-H-8083-30B Ch.5 p.5-28", "topic": "Pascal's law"}, {"q": "A hydraulic actuator must produce 18,000 lbs of force and holds 48 cubic inches of fluid over an 8-inch stroke. What is the piston area and system pressure?", "options": ["Area = 6 sq in; Pressure = 1,500 psi", "Area = 6 sq in; Pressure = 3,000 psi", "Area = 4 sq in; Pressure = 4,500 psi", "Area = 8 sq in; Pressure = 2,250 psi"], "correct": 1, "short": "Area = 6 sq in; Pressure = 3,000 psi", "expl": "VAD: Volume = Area × Distance(Length) → A = 48 ÷ 8 = 6 sq in. FAP: P = F ÷ A = 18,000 ÷ 6 = 3,000 psi. (Built from slide p.267 practice problem #1.)", "cite": "BLK01 slides p.266-267 (AM.I.J.K13, AM.I.J.S4) · FAA-H-8083-30B Ch.5 p.5-28", "topic": "Pascal's law"}, {"q": "The three elements necessary for the transmission and reception of sound are:", "options": ["Amplitude, frequency, and wavelength", "A speaker, an amplifier, and a microphone", "The source, a medium for carrying the sound, and the detector", "Pressure, temperature, and humidity"], "correct": 2, "short": "The source, a medium for carrying the sound, and the detector", "expl": "Sound transmission/reception requires: the source, a medium to carry it, and the detector.", "cite": "BLK01 slides p.270 · FAA-H-8083-30B Ch.5 p.5-30", "topic": "Sound"}, {"q": "As a general rule, sound travels FASTEST in:", "options": ["Gases (slower in liquids, slowest in solids)", "A vacuum", "Liquids (slower in solids and gases)", "Solids (slower in liquids, slowest in gases)"], "correct": 3, "short": "Solids (slower in liquids, slowest in gases)", "expl": "Sound travels fastest in solid materials, slower in liquids, and slowest in gases — and not at all in a vacuum (no medium).", "cite": "BLK01 slides p.272 · FAA-H-8083-30B Ch.5 p.5-31", "topic": "Sound"}, {"q": "The velocity of sound in air at 0°C (32°F) is:", "options": ["1,087 fps", "1,225 fps", "761 fps", "666.7 fps"], "correct": 0, "short": "1,087 fps", "expl": "Sound in air at 0°C travels 1,087 feet per second, increasing 2 fps per °C of temperature rise (1.1 fps per °F).", "cite": "BLK01 slides p.272 · FAA-H-8083-30B Ch.5 p.5-31", "topic": "Sound"}, {"q": "Mach number is the ratio of:", "options": ["The speed of sound to the aircraft's speed", "An aircraft's speed to the speed of sound", "Engine rpm to propeller rpm", "True airspeed to ground speed"], "correct": 1, "short": "An aircraft's speed to the speed of sound", "expl": "Mach number = aircraft speed ÷ speed of sound, named for Austrian scientist Ernst Mach. The speed of sound at sea level on a standard day is 761 mph (666.739 knots).", "cite": "BLK01 slides p.273 · FAA-H-8083-30B Ch.5 p.5-31", "topic": "Sound"}, {"q": "When a sound source moves toward you, the frequency you sense increases. This is known as:", "options": ["Harmonic distortion", "The Mach effect", "Resonance", "The Doppler Effect"], "correct": 3, "short": "The Doppler Effect", "expl": "Forward motion adds to the frequency sensed from the front and subtracts from the frequency sensed behind — the Doppler Effect.", "cite": "BLK01 slides p.277 · FAA-H-8083-30B Ch.5 p.5-32", "topic": "Sound"}, {"q": "Two pieces of matter share the same natural frequency; one vibrates and transfers its wave energy to the other. This is:", "options": ["Conduction", "The Doppler effect", "Resonance", "Dissymmetry"], "correct": 2, "short": "Resonance", "expl": "All matter has a natural vibration frequency. Energy transfer between two objects with the same natural frequency is resonance — a serious consideration in aircraft structures.", "cite": "BLK01 slides p.278 · FAA-H-8083-30B Ch.5 p.5-32", "topic": "Sound"}, {"q": "The composition of the atmosphere is approximately:", "options": ["78% nitrogen, 21% oxygen, ~1% other gases", "90% nitrogen, 9% oxygen, 1% CO₂", "50% nitrogen, 30% oxygen, 20% water vapor", "78% oxygen, 21% nitrogen, ~1% argon"], "correct": 0, "short": "78% nitrogen, 21% oxygen, ~1% other gases", "expl": "Air is about 78% nitrogen, 21% oxygen, 0.9% argon, plus traces of CO₂ and other gases.", "cite": "BLK01 slides p.283 (AM.I.J.K9) · FAA-H-8083-30B Ch.5 p.5-33", "topic": "Atmosphere"}, {"q": "The atmospheric layer where we live (0-7 miles average) is the:", "options": ["Thermosphere", "Stratosphere", "Troposphere", "Mesosphere"], "correct": 2, "short": "Troposphere", "expl": "From the surface up: troposphere (where we live, 0-7 mi avg), stratosphere (7-31 mi), mesosphere, thermosphere, exosphere.", "cite": "BLK01 slides p.283 (AM.I.J.K9) · FAA-H-8083-30B Ch.5 p.5-33", "topic": "Atmosphere"}, {"q": "Altimeter setting is 29.45 in Hg and field elevation is 5,000 ft. Pressure altitude is:", "options": ["4,530 feet", "5,470 feet", "5,920 feet", "5,047 feet"], "correct": 1, "short": "5,470 feet", "expl": "PA = (29.92 − current setting) × 1,000 + field elevation = (29.92 − 29.45) × 1,000 + 5,000 = 470 + 5,000 = 5,470 ft. (Slide's worked example.)", "cite": "BLK01 slides p.289 (AM.I.J.R1, AM.I.J.S3) · FAA-H-8083-30B Ch.5 p.5-34", "topic": "Pressure altitude"}, {"q": "The density of a gas varies ___ with pressure and ___ with temperature.", "options": ["Directly; directly", "Inversely; directly", "Inversely; inversely", "Directly; inversely"], "correct": 3, "short": "Directly; inversely", "expl": "Double the pressure → twice as dense. Raise the temperature → density decreases. So high-altitude air and hot air are both less dense. Density decreases with increased altitude.", "cite": "BLK01 slides p.290 · FAA-H-8083-30B Ch.5 p.5-35", "topic": "Density altitude"}, {"q": "Density altitude is best described as:", "options": ["Field elevation corrected for runway slope", "The height indicated on the altimeter at all times", "The altitude where the air is 100% dry", "The altitude the airplane 'feels' like it is at — where standard density equals the observed density"], "correct": 3, "short": "The altitude the airplane 'feels' like it is at — where standard density equals the observed density", "expl": "Density altitude is the altitude (relative to standard atmosphere) at which the air density equals the density at the place of observation — if DA is 4,200 ft at sea level, the airplane takes off as if already at 4,200 ft.", "cite": "BLK01 slides p.292 (AM.I.J.S2) · FAA-H-8083-30B Ch.5 p.5-35", "topic": "Density altitude"}, {"q": "Pressure altitude is 5,470 ft, OAT is 4°C, and ISA temp for the altitude is 5°C. Density altitude is:", "options": ["5,470 feet", "5,590 feet", "5,350 feet", "4,750 feet"], "correct": 2, "short": "5,350 feet", "expl": "DA = PA + [120 × (OAT − ISA)] = 5,470 + [120 × (4 − 5)] = 5,470 − 120 = 5,350 ft. (Slide's worked example.) ISA temp rule: 15 − (2 × altitude in thousands).", "cite": "BLK01 slides p.293-294 (AM.I.J.R1, AM.I.J.S2) · FAA-H-8083-30B Ch.5 p.5-35", "topic": "Density altitude"}, {"q": "RELATIVE humidity is:", "options": ["The ratio of water vapor actually present to the amount present if the air were saturated at that temperature and pressure", "The temperature at which air becomes saturated", "The weight of water vapor per gallon of fuel", "The actual amount of water vapor, in lbs per cubic foot"], "correct": 0, "short": "The ratio of water vapor actually present to the amount present if the air were saturated at that temperature and pressure", "expl": "Absolute humidity = the actual amount of water vapor. Relative humidity = ratio of actual vapor to saturation. Dew point = the temperature to which humid air must be cooled at constant pressure to become saturated.", "cite": "BLK01 slides p.296 (AM.I.J.K9) · FAA-H-8083-30B Ch.5 p.5-36", "topic": "Humidity"}, {"q": "Water vapor weighs approximately ___ as much as an equal amount of dry air.", "options": ["8/5", "5/8", "1/2", "The same"], "correct": 1, "short": "5/8", "expl": "Water vapor weighs about 5/8 as much as an equal amount of dry air — so moist air is lighter (less dense) than dry air, influencing aircraft performance.", "cite": "BLK01 slides p.297 · FAA-H-8083-30B Ch.5 p.5-36", "topic": "Humidity"}];
+const DRILL = [{"label": "BTU", "text": "1 BTU raises 1 lb of water 1°F. Thermal efficiency = HP produced ÷ HP available in fuel (typical recip <30%)."}, {"label": "Heat transfer", "text": "Conduction = direct contact · Convection = moving fluid · Radiation = waves. Heat always flows high → low."}, {"label": "Temperature scales", "text": "°F = (1.8×°C)+32 · °C = (°F−32)÷1.8 · K = °C+273 · °R = °F+460. Absolute zero = −273°C/−460°F. ⚠ FAA Fig.3-23 misprints the °F formula — use (1.8×°C)+32."}, {"label": "Standard day", "text": "Sea level: 14.7 psi = 29.92 in Hg = 760 mm = 1013.2 mb at 59°F/15°C. 1 psi = 2.04 in Hg."}, {"label": "Gas laws", "text": "Boyle = inverse w/ pressure (V1P1=V2P2) · Charles = direct w/ ABSOLUTE temp · General = P1V1/T1 = P2V2/T2 · Dalton = partial pressures."}, {"label": "Pascal/FAP/VAD", "text": "F = P×A · P = F÷A · A = F÷P · Volume = Area × Distance. Pressure acts equally in all directions."}, {"label": "Buoyancy", "text": "Buoyant force = volume × density of displaced fluid. Water = 62.4 lb/ft³."}, {"label": "Sound numbers", "text": "1,087 fps at 0°C (+2 fps/°C; +1.1 fps/°F) · 761 mph / 666.7 kt at sea level standard · fastest in solids · whisper 20 dB, pneumatic drill 80 dB."}, {"label": "Pressure altitude", "text": "PA = (29.92 − altimeter setting) × 1,000 + field elevation."}, {"label": "Density altitude", "text": "DA = PA + [120 × (OAT − ISA)] · ISA = 15 − (2 × thousands of ft). Humid air is LESS dense (water vapor ≈ 5/8 weight of dry air)."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

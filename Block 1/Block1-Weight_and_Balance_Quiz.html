@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Weight &amp; Balance — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Weight &amp; Balance — Quiz</h1>
+    <div class="sub">AIM BLK01 Days 13-17 (slides 529-639, Project G8) · CG terminology · weighing &amp; leveling procedures · the three formulas &amp; four EWCG formulas · adverse-loaded CG checks · equipment change math · ballast · %MAC · helicopter W&amp;B · records &amp; logbook entries · cited to the BLK01 slide deck + FAA-H-8083-30B Ch.6</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "The PRIMARY reason for an aircraft's weight and balance requirements is:", "options": ["Passenger comfort", "Safety", "Insurance rates", "Fuel economy"], "correct": 1, "short": "Safety", "expl": "Safety is the primary reason; aircraft efficiency is also a factor. Maximum weight is designed in based on the lift the wings or rotors can produce.", "cite": "BLK01 slides p.530 (AM.I.C.K2/K5/K6) · FAA-H-8083-30B Ch.6 p.6-1", "topic": "W&B theory"}, {"q": "The manufacturer is only required to actually WEIGH what fraction of each aircraft model produced?", "options": ["10% to 20%", "100%", "50%", "1%"], "correct": 0, "short": "10% to 20%", "expl": "The manufacturer creates a W&B report for each aircraft but is only required to weigh 10-20% of each model; the rest use computed values.", "cite": "BLK01 slides p.533 · FAA-H-8083-30B Ch.6 p.6-2", "topic": "W&B records"}, {"q": "Which aircraft are required to be weighed and have CG calculated periodically (typically every 3 years)?", "options": ["All Part 91 private aircraft", "Any aircraft older than 10 years", "Part 135 air taxi/charter twins, and airplanes with 20+ passenger seats or 6,000+ lbs payload (Part 125)", "Only seaplanes"], "correct": 2, "short": "Part 135 air taxi/charter twins, and airplanes with 20+ passenger seats or 6,000+ lbs payload (Part 125)", "expl": "Periodic reweigh examples: 14 CFR 135.185(a) multiengine air taxi/charter, and 14 CFR 125.91(b) airplanes with seating for 20+ or max payload 6,000 lbs+.", "cite": "BLK01 slides p.534 (AM.I.C.K2/K5) · 14 CFR 135.185, 125.91 · FAA-H-8083-30B Ch.6 p.6-2", "topic": "W&B records"}, {"q": "Does a small GA aircraft like a Cessna 172 have an FAA requirement for periodic reweighing?", "options": ["Yes — every annual inspection it must go on scales", "Yes — every 100 hours", "Yes — every 3 years", "No — but the mechanic must ensure the W&B data is correct at each annual inspection"], "correct": 3, "short": "No — but the mechanic must ensure the W&B data is correct at each annual inspection", "expl": "Small private GA aircraft have NO periodic reweigh requirement. But the aircraft must be weighed if the W&B report is lost, or after extensive repair, major alteration, or new equipment installation. Over time almost all aircraft tend to GAIN weight.", "cite": "BLK01 slides p.535 · FAA-H-8083-30B Ch.6 p.6-2", "topic": "W&B records"}, {"q": "Weight and balance data can be found in all of the following EXCEPT:", "options": ["The Aircraft Specification or Type Certificate Data Sheet (TCDS)", "The aircraft weight and balance report", "The pilot's personal logbook", "The aircraft flight manual / operating limitations"], "correct": 2, "short": "The pilot's personal logbook", "expl": "W&B data sources: TCDS/Aircraft Specification, aircraft operating limitations, aircraft flight manual, and the W&B report.", "cite": "BLK01 slides p.536 (AM.I.C.S16) · FAA-H-8083-30B Ch.6 p.6-3", "topic": "W&B records"}, {"q": "The DATUM is:", "options": ["A removable weight used during weighing", "An imaginary vertical plane from which all horizontal measurements are taken with the aircraft in level flight attitude", "The physical balance point of the aircraft", "The centerline of the main wheels"], "correct": 1, "short": "An imaginary vertical plane from which all horizontal measurements are taken with the aircraft in level flight attitude", "expl": "The manufacturer establishes the datum location (found in the Aircraft Specifications or TCDS). The datum is the 'zero arm' location.", "cite": "BLK01 slides p.537 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-3", "topic": "Terminology"}, {"q": "The ARM is:", "options": ["The horizontal distance, in inches, that an item is located from the datum (may be + or −)", "The vertical height of an item above the floor", "Always a positive distance from the nose", "The weight of an item times its distance"], "correct": 0, "short": "The horizontal distance, in inches, that an item is located from the datum (may be + or −)", "expl": "Arm = horizontal distance from the datum, always measured in inches; negative ahead of the datum, positive behind it.", "cite": "BLK01 slides p.539 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-3", "topic": "Terminology"}, {"q": "The MOMENT is the product of:", "options": ["Arm ÷ Weight", "Weight ÷ Arm", "Weight × Gravity", "Weight × Arm (expressed in inch-pounds)"], "correct": 3, "short": "Weight × Arm (expressed in inch-pounds)", "expl": "W × A = M. Also: A = M ÷ W and W = M ÷ A. Moments are expressed in inch-pounds (in-lb).", "cite": "BLK01 slides p.540 (AM.I.C.K1/K4) · FAA-H-8083-30B Ch.6 p.6-3", "topic": "Terminology"}, {"q": "The center of gravity (CG) is the point about which:", "options": ["The aircraft weighs the most", "All fuel is stored", "The wings attach to the fuselage", "The nose-heavy and tail-heavy moments are exactly equal"], "correct": 3, "short": "The nose-heavy and tail-heavy moments are exactly equal", "expl": "CG = the balance point. Total Moment ÷ Total Weight = CG (for the empty aircraft, the empty weight CG).", "cite": "BLK01 slides p.541 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-3", "topic": "Terminology"}, {"q": "'Basic Empty Weight' differs from 'Licensed Empty Weight' in that basic empty weight includes:", "options": ["Full engine oil (licensed empty weight includes only residual oil)", "Removable ballast and cargo", "Usable fuel", "Passengers and crew"], "correct": 0, "short": "Full engine oil (licensed empty weight includes only residual oil)", "expl": "Empty weight includes the airframe, powerplant, required/optional equipment, fixed ballast, hydraulic fluid, and residual fuel and oil. Basic empty weight = full oil; licensed empty weight = residual oil only; standard empty weight = a value supplied by the manufacturer.", "cite": "BLK01 slides p.544 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-4", "topic": "Terminology"}, {"q": "All weight and balance calculations — loading, equipment change, adverse checks — BEGIN with:", "options": ["The pilot's weight", "The maximum gross weight", "The empty weight and the empty weight center of gravity (EWCG)", "The fuel on board"], "correct": 2, "short": "The empty weight and the empty weight center of gravity (EWCG)", "expl": "The EWCG is the point where the aircraft balances in its empty weight condition; every other W&B calculation starts there.", "cite": "BLK01 slides p.545 (AM.I.C.K1/K6) · FAA-H-8083-30B Ch.6 p.6-4", "topic": "Terminology"}, {"q": "USEFUL LOAD is the difference between:", "options": ["Fuel capacity and oil capacity", "The empty weight and the maximum weight of the aircraft", "The forward and aft CG limits", "The ramp weight and the landing weight"], "correct": 1, "short": "The empty weight and the maximum weight of the aircraft", "expl": "Useful load = the amount of weight the aircraft is designed to carry = maximum weight − empty weight.", "cite": "BLK01 slides p.546 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-4", "topic": "Terminology"}, {"q": "MINIMUM FUEL for weight and balance purposes (METO) is calculated as:", "options": ["Maximum horsepower × 2 in gallons", "One hour of cruise fuel", "Maximum continuous engine horsepower ÷ 2, stated in POUNDS of fuel", "Half the tank capacity in gallons"], "correct": 2, "short": "Maximum continuous engine horsepower ÷ 2, stated in POUNDS of fuel", "expl": "METO (Maximum Except Take-Off): minimum fuel = max continuous HP ÷ 2, in pounds. Example: 180 HP ÷ 2 = 90 lbs of fuel.", "cite": "BLK01 slides p.547 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-4", "topic": "Terminology"}, {"q": "TARE weight is:", "options": ["The weight of unusable fuel", "The weight of items used to weigh the aircraft that are not part of it (chocks, ground locks) — subtracted from the scale readings", "The weight of the empty scales", "The weight of optional avionics"], "correct": 1, "short": "The weight of items used to weigh the aircraft that are not part of it (chocks, ground locks) — subtracted from the scale readings", "expl": "Tare = chocks, ground locks, hoists, etc. on the scales during weighing; their weight must be subtracted from the readings.", "cite": "BLK01 slides p.548 (AM.I.C.K1, AM.I.C.S10) · FAA-H-8083-30B Ch.6 p.6-5", "topic": "Terminology"}, {"q": "The standard weights used for aircraft W&B are:", "options": ["AvGas 6.7 · turbine fuel 6 · oil 8.35 · water 7.5 · people 180", "All fluids 7 lbs/gal, people 200 lbs", "AvGas 8.35 · turbine fuel 7.5 · oil 6 · water 6.7 · people 170", "AvGas 6 lbs/gal · turbine fuel 6.7 lbs/gal · oil 7.5 lbs/gal · water 8.35 lbs/gal · crew/passengers 170 lbs each"], "correct": 3, "short": "AvGas 6 lbs/gal · turbine fuel 6.7 lbs/gal · oil 7.5 lbs/gal · water 8.35 lbs/gal · crew/passengers 170 lbs each", "expl": "Aviation weight standards: AvGas 6 lb/gal, turbine fuel (Jet A/B, JP5) 6.7 lb/gal, lubricating oil 7.5 lb/gal, water 8.35 lb/gal, crew and passengers 170 lb per person.", "cite": "BLK01 slides p.549 & 580 · FAA-H-8083-30B Ch.6 p.6-5", "topic": "Standard weights"}, {"q": "A plane weighs: right main 755 lbs @ 108\", nose 440 lbs @ 42\", left main 781 lbs @ 108\". The CG is:", "options": ["93.30 inches aft of the datum", "108.00 inches", "84.95 inches", "86.00 inches"], "correct": 0, "short": "93.30 inches aft of the datum", "expl": "Moments: 81,540 + 18,480 + 84,348 = 184,368 in-lb. Total weight 1,976 lbs. CG = 184,368 ÷ 1,976 = 93.30 in. (Slide's worked example.)", "cite": "BLK01 slides p.555 · FAA-H-8083-30B Ch.6 p.6-5", "topic": "Weighing"}, {"q": "Which weight and balance information is in the TCDS?", "options": ["CG range, maximum weight, number of seats, baggage/fuel/oil capacity, datum and leveling means, and the oil/fuel included in empty weight", "Insurance and registration data", "The names of previous owners", "The serial number of every part installed"], "correct": 0, "short": "CG range, maximum weight, number of seats, baggage/fuel/oil capacity, datum and leveling means, and the oil/fuel included in empty weight", "expl": "TCDS W&B items: engine, CG range, max weight, seats, baggage capacity, fuel capacity, oil capacity, datum information, leveling means, oil in empty weight, fuel in empty weight.", "cite": "BLK01 slides p.556-558 (AM.I.C.R2) · FAA-H-8083-30B Ch.6 p.6-6", "topic": "TCDS"}, {"q": "Why must an aircraft be weighed INSIDE a hangar?", "options": ["Because scales fail in sunlight", "To keep the public from watching", "So wind cannot blow over the surfaces and cause fluctuating or false scale readings", "So the temperature stays at exactly 59°F"], "correct": 2, "short": "So wind cannot blow over the surfaces and cause fluctuating or false scale readings", "expl": "Weigh inside a hangar — wind over the wings causes lift and false/fluctuating readings.", "cite": "BLK01 slides p.568 (AM.I.C.R2/R3) · FAA-H-8083-30B Ch.6 p.6-8", "topic": "Weighing prep"}, {"q": "When weighing to determine empty weight, the only fuel weight included should be:", "options": ["Half tanks", "Full tanks", "METO fuel", "The residual (unusable) fuel"], "correct": 3, "short": "The residual (unusable) fuel", "expl": "Three acceptable conditions: (1) no fuel at all, (2) tanks drained per the manufacturer leaving only residual fuel, or (3) tanks completely full with the fuel weight calculated and subtracted (hydrometer).", "cite": "BLK01 slides p.570 (AM.I.C.K8/S8/S10) · FAA-H-8083-30B Ch.6 p.6-8", "topic": "Weighing prep"}, {"q": "For aircraft certificated AFTER 1978 under 14 CFR Part 23, engine oil is treated how during weighing?", "options": ["It is useful load — the tank must be drained", "It is part of the EMPTY weight — the oil tank must be serviced FULL before weighing", "It is ignored entirely", "Half the oil is counted"], "correct": 1, "short": "It is part of the EMPTY weight — the oil tank must be serviced FULL before weighing", "expl": "Post-1978 (14 CFR 23.29): oil is part of empty weight — service it full. Pre-1978 aircraft (certified under CAR Part 3): oil is part of the USEFUL LOAD — drain it or calculate it out.", "cite": "BLK01 slides p.571 (AM.I.C.K8/S8) · 14 CFR 23.29 · FAA-H-8083-30B Ch.6 p.6-9", "topic": "Weighing prep"}, {"q": "Which is a jacking safety rule from the slide?", "options": ["Jack one wheel at a time for stability", "Angle the jacks outward under load", "Raise all jacks simultaneously and keep the safety collars screwed down against the jack cylinder", "Let crew move around inside during jacking"], "correct": 2, "short": "Raise all jacks simultaneously and keep the safety collars screwed down against the jack cylinder", "expl": "Jacking safety: stress plates if specified, no movement inside the aircraft, jacks straight under the jack pads, raise all jacks simultaneously, and keep safety collars screwed down to prevent tipping if a jack loses pressure.", "cite": "BLK01 slides p.574 (AM.I.C.K3/K10) · FAA-H-8083-30B Ch.6 p.6-10", "topic": "Jacking"}, {"q": "When weighing from the wheels, leveling is normally done by:", "options": ["Shimming the scales with wood blocks", "Adjusting the air pressure in the nosewheel shock strut", "Deflating the main tires completely", "Adding ballast to the tail"], "correct": 1, "short": "Adjusting the air pressure in the nosewheel shock strut", "expl": "Reference the TCDS for leveling means. With load cells on jacks, level with the jacks; on wheels, adjust nosewheel/shock strut air pressure. The aircraft must be in level flight attitude so all components are the correct distance from the datum. A spirit level or plumb bob is used to check level.", "cite": "BLK01 slides p.565-567 & 577 (AM.I.C.K3/K10) · FAA-H-8083-30B Ch.6 p.6-10", "topic": "Leveling"}, {"q": "On some aircraft, as loaded weight increases the CG RANGE gets smaller because:", "options": ["The aft limit moves forward while the forward limit stays", "Both limits move outward", "The datum relocates", "The forward limit moves back while the aft limit stays in the same place"], "correct": 3, "short": "The forward limit moves back while the aft limit stays in the same place", "expl": "The CG range (forward limit to aft limit, in inches from the datum, found in the TCDS) can shrink with weight: the forward limit moves aft.", "cite": "BLK01 slides p.578 (AM.I.C.K3/K10) · FAA-H-8083-30B Ch.6 p.6-11", "topic": "CG range"}, {"q": "In the EWCG formulas, what does L stand for?", "options": ["The distance between the nose wheel (or tail wheel) and the main wheels", "The leading edge of the wing", "The total length of the aircraft", "The lateral arm to the butt line"], "correct": 0, "short": "The distance between the nose wheel (or tail wheel) and the main wheels", "expl": "D = datum to main wheels, F = forward (nose) wheel weight, R = aft (tail) wheel weight, L = distance between nose/tail wheel and main wheels, W = total weight.", "cite": "BLK01 slides p.585 (AM.I.C.K8, AM.I.C.S2) · FAA-H-8083-30B Ch.6 pp.6-16/6-20", "topic": "EWCG formulas"}, {"q": "Which formula applies to a NOSEWHEEL airplane with the datum FORWARD of the main wheels?", "options": ["CG = D − (F × L ÷ W)", "CG = −D + (R × L ÷ W)", "CG = D + (R × L ÷ W)", "CG = −(D + F × L ÷ W)"], "correct": 0, "short": "CG = D − (F × L ÷ W)", "expl": "Formula 1: nosewheel, datum forward of mains: CG = D − (F×L/W). Formula 2: nosewheel, datum aft: CG = −(D + F×L/W). Formula 3: tailwheel, datum forward: CG = D + (R×L/W). Formula 4: tailwheel, datum aft: CG = −D + (R×L/W).", "cite": "BLK01 slides p.586 & 591 (AM.I.C.K8/S2) · FAA-H-8083-30B Ch.6 pp.6-18/6-20", "topic": "EWCG formulas"}, {"q": "Nosewheel airplane, datum forward of mains: D = 46\", nose wheel weight F = 340 lbs, L = 78\", total weight W = 2,006 lbs. The CG is:", "options": ["+59.22 inches", "−13.22 inches", "+32.78 inches", "+46.00 inches"], "correct": 2, "short": "+32.78 inches", "expl": "CG = D − (F×L/W) = 46 − (340 × 78 ÷ 2,006) = 46 − 13.22 = +32.78 in. (Slide's worked example.)", "cite": "BLK01 slides p.586 · FAA-H-8083-30B Ch.6 p.6-18", "topic": "EWCG formulas"}, {"q": "Who is ULTIMATELY responsible for the weight and balance of a loaded airplane before flight?", "options": ["The fuel truck operator", "The A&P mechanic", "The FAA inspector", "The pilot-in-command (PIC)"], "correct": 3, "short": "The pilot-in-command (PIC)", "expl": "The mechanic must know how to calculate W&B, but the PIC is ultimately responsible and makes the final decision on whether the airplane is safe to fly.", "cite": "BLK01 slides p.595 (AM.I.C.K5) · FAA-H-8083-30B Ch.6 p.6-19", "topic": "Loading"}, {"q": "The slide's Piper Seneca loading example totals 4,225 lbs with CG at 96.42\". Limits: max takeoff 4,200 lbs, aft CG limit 94.6\". The aircraft is:", "options": ["Legal if the pilot files a waiver", "NOT safe or legal to fly — both overweight and CG aft of the limit", "Safe once the gear is retracted", "Safe to fly — within 1% tolerance"], "correct": 1, "short": "NOT safe or legal to fly — both overweight and CG aft of the limit", "expl": "Loaded CG 96.42 exceeds the aft limit of 94.6, and 4,225 is 25 lbs over max weight. Both conditions must be corrected before flight. (Slide's worked example.)", "cite": "BLK01 slides p.596-597 (AM.I.C.K5/S9/S16) · FAA-H-8083-30B Ch.6 pp.6-19/6-21", "topic": "Loading"}, {"q": "WHEN must adverse-loaded CG checks be performed?", "options": ["Only when the aircraft is repainted", "Before every flight", "After any repair or alteration that changes the aircraft's weight and balance", "Only at the annual inspection"], "correct": 2, "short": "After any repair or alteration that changes the aircraft's weight and balance", "expl": "After a W&B-changing repair/alteration, the mechanic or repairman must ensure no LEGAL loading condition can move the CG outside its limits — performing adverse-loaded CG checks and noting results in the revised W&B sheet.", "cite": "BLK01 slides p.598 (AM.I.C.K5/K7/S6) · FAA-H-8083-30B Ch.6 p.6-20", "topic": "Adverse loading"}, {"q": "In a FORWARD adverse-loaded CG check, which items are loaded?", "options": ["Only items behind the aft limit", "Every seat and tank full", "Nothing but the pilot", "All useful-load items FORWARD of the forward CG limit (items behind it left empty); METO fuel if the tank is behind the limit"], "correct": 3, "short": "All useful-load items FORWARD of the forward CG limit (items behind it left empty); METO fuel if the tank is behind the limit", "expl": "Forward extreme: load everything ahead of the forward limit, leave everything aft of it empty; if fuel is located behind the forward CG limit, use METO fuel (engine HP ÷ 2 in lbs).", "cite": "BLK01 slides p.599-600 (AM.I.C.K7) · FAA-H-8083-30B Ch.6 p.6-20", "topic": "Adverse loading"}, {"q": "In an AFT adverse-loaded CG check, which occupant is ALWAYS included?", "options": ["The pilot", "All passengers", "No occupants at all", "The rearmost passenger only"], "correct": 0, "short": "The pilot", "expl": "Aft extreme: all useful-load items behind the aft CG limit fully loaded; everything forward of the aft limit left empty EXCEPT the pilot. Fill the fuel tank that sits aft of the limit.", "cite": "BLK01 slides p.601 (AM.I.C.K7) · FAA-H-8083-30B Ch.6 p.6-20", "topic": "Adverse loading"}, {"q": "After an equipment change, the new empty weight and EWCG may be determined mathematically (instead of weighing) ONLY if:", "options": ["The IA approves it verbally", "The exact weight and arm of all the changes are known", "The total change is under 50 lbs", "The aircraft is under 6,000 lbs"], "correct": 1, "short": "The exact weight and arm of all the changes are known", "expl": "Either reweigh the aircraft or calculate — the math is acceptable only when the exact weight and arm of every change is known.", "cite": "BLK01 slides p.603 (AM.I.C.S5/S7) · FAA-H-8083-30B Ch.6 p.6-21", "topic": "Equipment change"}, {"q": "A radio (5.8 lbs) is installed at arm −28\". The moment change is:", "options": ["−162.4 in-lbs", "−5.8 in-lbs", "+162.4 in-lbs", "−33.8 in-lbs"], "correct": 0, "short": "−162.4 in-lbs", "expl": "Added weight × negative arm = negative moment: 5.8 × (−28) = −162.4 in-lb. Removed items get negative weight (e.g., removing 3-lb ADF at −28\" gives −3 × −28 = +84 in-lb). (Slide's worked example.)", "cite": "BLK01 slides p.604-605 (AM.I.C.S5/S14) · FAA-H-8083-30B Ch.6 p.6-21 Fig.6-39", "topic": "Equipment change"}, {"q": "Ballast should be located:", "options": ["Exactly at the CG", "Always in the baggage compartment", "As far aft or as far forward as possible, to bring the CG within limits using MINIMUM weight", "Evenly through the cabin"], "correct": 2, "short": "As far aft or as far forward as possible, to bring the CG within limits using MINIMUM weight", "expl": "Ballast attains the desired CG when it is out of limits or not where the operator wants it; placing it at the extreme gives the longest arm so the least weight is needed.", "cite": "BLK01 slides p.606 (AM.I.C.K9) · FAA-H-8083-30B Ch.6 p.6-22", "topic": "Ballast"}, {"q": "TEMPORARY ballast must be marked:", "options": ["'For flight test use only'", "'Ballast XX pounds — Removal Requires Weight and Balance Check'", "No marking is required", "'Permanent ballast — do not remove'"], "correct": 1, "short": "'Ballast XX pounds — Removal Requires Weight and Balance Check'", "expl": "Temporary ballast (lead bars, sand or lead shot in heavy canvas bags) adjusts CG for a flight-loaded condition, must be secured against movement, removed before weighing, and marked 'Ballast XX pounds — Removal Requires Weight and Balance Check.'", "cite": "BLK01 slides p.607 (AM.I.C.K9/S3/S15) · FAA-H-8083-30B Ch.6 p.6-22", "topic": "Ballast"}, {"q": "PERMANENT ballast is:", "options": ["Sandbags strapped in the baggage bay", "Removable lead shot in canvas bags", "Any fuel left in the aft tank", "Lead blocks permanently attached to the structure, painted RED, marked 'PERMANENT BALLAST — DO NOT REMOVE'"], "correct": 3, "short": "Lead blocks permanently attached to the structure, painted RED, marked 'PERMANENT BALLAST — DO NOT REMOVE'", "expl": "Permanent ballast corrects an empty-weight CG out-of-limits condition after a repair/alteration; it becomes part of the aircraft's empty weight.", "cite": "BLK01 slides p.612 (AM.I.C.K9) · FAA-H-8083-30B Ch.6 p.6-23", "topic": "Ballast"}, {"q": "The ballast weight formula is:", "options": ["B = CG shift × arm ÷ moment", "B = (distance needed to shift CG × aircraft total weight) ÷ distance between ballast location and desired CG", "B = arm × moment ÷ weight", "B = total weight ÷ CG shift"], "correct": 1, "short": "B = (distance needed to shift CG × aircraft total weight) ÷ distance between ballast location and desired CG", "expl": "Ballast = (D × W) ÷ X. Slide example: CG out by 0.6\" on a 3,034-lb plane, ballast station at +60 vs desired CG 99: B = (0.6 × 3,034) ÷ (99 − 60) = 1,820.4 ÷ 39 = 46.67 → 47 lbs.", "cite": "BLK01 slides p.609 (AM.I.C.K9/S3) · FAA-H-8083-30B Ch.6 p.6-23", "topic": "Ballast"}, {"q": "When the computed ballast weight comes out to 46.67 lbs, you install:", "options": ["46 lbs — round down to save weight", "46.5 lbs exactly", "50 lbs for a safety margin", "47 lbs — ALWAYS round ballast UP to the next pound"], "correct": 3, "short": "47 lbs — ALWAYS round ballast UP to the next pound", "expl": "Always round ballast UP to the next whole pound (46.67 → 47). Rounding down would leave the CG out of limits.", "cite": "BLK01 slides p.609 & 611 & 614 · FAA-H-8083-30B Ch.6 p.6-23", "topic": "Ballast"}, {"q": "Large aircraft (business jets to jumbo jets) state their CG location as:", "options": ["Inches from the nosewheel", "Degrees of pitch attitude", "A percentage of MAC (Mean Aerodynamic Chord)", "A fraction of the wingspan"], "correct": 2, "short": "A percentage of MAC (Mean Aerodynamic Chord)", "expl": "Large aircraft don't use a simple datum arm for CG; their tapered, swept wings vary in chord, so CG is stated as % of MAC from the leading edge (LEMAC = Leading Edge of the Mean Aerodynamic Chord).", "cite": "BLK01 slides p.623 & 625 · FAA-H-8083-30B Ch.6 p.6-29", "topic": "% MAC"}, {"q": "MAC = 180\", LEMAC at station 900. If the CG is at 25% MAC, the CG in inches from the datum is:", "options": ["945 inches", "900 inches", "225 inches", "1,080 inches"], "correct": 0, "short": "945 inches", "expl": "CG inches = (%MAC ÷ 100 × MAC) + LEMAC = (25 ÷ 100 × 180) + 900 = 45 + 900 = 945. (Slide's worked example.)", "cite": "BLK01 slides p.627 · FAA-H-8083-30B Ch.6 p.6-30", "topic": "% MAC"}, {"q": "Compared to airplanes, helicopters typically have:", "options": ["A CG behind the tail rotor", "No CG limits at all", "A CG range twice as wide", "A much more restricted CG range — sometimes as little as 3 inches"], "correct": 3, "short": "A much more restricted CG range — sometimes as little as 3 inches", "expl": "All W&B terminology is the same, but the helicopter's weight hangs from the main rotor mast like a pendulum; the CG is centered around the mast and the range can be as little as 3 inches.", "cite": "BLK01 slides p.617 · FAA-H-8083-30B Ch.6 p.6-27", "topic": "Helicopter W&B"}, {"q": "Helicopter LATERAL arms are measured from the:", "options": ["Butt line (the centerline of the fuselage) — right positive, left negative, facing forward", "Main rotor tip path", "Datum at the nose", "Tail rotor gearbox"], "correct": 0, "short": "Butt line (the centerline of the fuselage) — right positive, left negative, facing forward", "expl": "Both longitudinal AND lateral weigh points are needed for helicopter EWCG. Longitudinal arms come from the datum; lateral arms from the butt line — arms right of it positive, left negative (as viewed facing forward / from the pilot seat).", "cite": "BLK01 slides p.619-620 · FAA-H-8083-30B Ch.6 p.6-28", "topic": "Helicopter W&B"}, {"q": "The FAA requires the weight and balance report to be:", "options": ["Filed only at the FSDO", "Renewed every 90 days", "Current and accurate, part of the permanent records, and IN the aircraft when it is flown", "Kept by the mechanic at the shop"], "correct": 2, "short": "Current and accurate, part of the permanent records, and IN the aircraft when it is flown", "expl": "A current, accurate empty weight and EWCG must be known; the W&B report is part of the aircraft permanent records and must be in the aircraft when it is being flown.", "cite": "BLK01 slides p.629 (AM.I.C.S7/S17) · FAA-H-8083-30B Ch.6 p.6-31", "topic": "Records"}, {"q": "A maintenance logbook entry for repair or replacement of an item (FAR 43.9) must include, in order:", "options": ["Only a signature and date", "Description of work, date completed, type of certificate, certificate number, printed name, and signature", "The aircraft's sale price and hours", "The FSDO inspector's phone number"], "correct": 1, "short": "Description of work, date completed, type of certificate, certificate number, printed name, and signature", "expl": "Per FAR 43.9: specific description of work (so the next mechanic can point to the part), date completed, type of certificate (A&P or IA), certificate number, printed name, and signature — the signature constitutes approval for return to service only for the work performed.", "cite": "BLK01 slides p.630 (AM.I.C.S7/S17) · 14 CFR 43.9 · FAA-H-8083-30B Ch.10", "topic": "Records"}, {"q": "The AIRWORTHY certification statement after a 100-hour or annual inspection (FAR 43.11) reads:", "options": ["'I certify that this aircraft has been inspected in accordance with (insert type) inspection and was determined to be in airworthy condition.'", "'Inspection complete; see invoice for details.'", "'This aircraft is perfect and needs no further inspections.'", "'Work performed as requested by owner.'"], "correct": 0, "short": "'I certify that this aircraft has been inspected in accordance with (insert type) inspection and was determined to be in airworthy condition.'", "expl": "For an UNAIRWORTHY result the statement instead certifies a list of discrepancies and unairworthy items, dated, has been provided to the owner or operator.", "cite": "BLK01 slides p.631 (AM.I.C.S7/S17) · 14 CFR 43.11 · FAA-H-8083-30B Ch.10", "topic": "Records"}];
+const DRILL = [{"label": "The three formulas", "text": "Weight × Arm = Moment · Arm = Moment ÷ Weight · Weight = Moment ÷ Arm. CG = Total Moment ÷ Total Weight."}, {"label": "Datum & arm", "text": "Datum = imaginary vertical plane, the 'zero arm,' set by the manufacturer (in the TCDS). Arm = horizontal distance in INCHES from the datum (− forward, + aft)."}, {"label": "Standard weights", "text": "AvGas 6 lb/gal · turbine fuel 6.7 · oil 7.5 · water 8.35 · crew/pax 170 lb each."}, {"label": "Empty weight flavors", "text": "Basic = full oil · Licensed = residual oil only · Standard = manufacturer's value. Post-1978 (14 CFR 23.29): oil is EMPTY weight (tank full); pre-1978 (CAR 3): oil is USEFUL LOAD."}, {"label": "Minimum fuel (METO)", "text": "Max continuous HP ÷ 2, in POUNDS (180 HP → 90 lbs). Used in adverse-CG checks when a tank sits behind the forward limit."}, {"label": "Weighing prep", "text": "Inside a hangar · clean aircraft · tanks empty/drained-to-residual/or full + hydrometer math · lav & water drained, hydraulics & CSD full · chocks etc. = TARE weight, subtract it."}, {"label": "EWCG formulas", "text": "Nose gear: CG = D − (F·L/W) (datum fwd) or −(D + F·L/W) (datum aft). Tail gear: CG = D + (R·L/W) (datum fwd) or −D + (R·L/W) (datum aft)."}, {"label": "Adverse checks", "text": "Forward: load everything ahead of fwd limit, METO fuel if tank is aft of it. Aft: load everything behind aft limit — pilot ALWAYS in. Required after any W&B-changing repair/alteration."}, {"label": "Ballast", "text": "B = (CG shift needed × total weight) ÷ distance from ballast to desired CG. ALWAYS round UP. Temporary = marked, secured, removed before weighing. Permanent = lead, painted RED, 'DO NOT REMOVE.'"}, {"label": "% MAC", "text": "CG inches = %MAC/100 × MAC + LEMAC · %MAC = (CG − LEMAC) ÷ MAC × 100. Large aircraft use %MAC; helicopters have tiny CG ranges (≈3 in) and lateral arms from the butt line."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

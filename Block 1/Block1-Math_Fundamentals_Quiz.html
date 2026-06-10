@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Math Fundamentals — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Math Fundamentals — Quiz</h1>
+    <div class="sub">AIM BLK01 Days 1-2 (slides 33-113) · whole numbers · fractions · decimals · ratios &amp; gear ratios · proportion · percentage · signed numbers · powers &amp; roots · scientific notation · algebra/PEMDAS · includes your class bank verbatim · every answer cited to the BLK01 slide deck + FAA-H-8083-30B Ch.3</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "A cylinder has a volume of 90 cubic inches with the piston at BDC and 10 cubic inches at TDC. What is the compression ratio?", "options": ["8:1", "9:1", "10:1", "90:1"], "correct": 1, "short": "9:1", "expl": "Compression ratio = BDC volume ÷ TDC volume. Compression ratio = 90 ÷ 10 = 9:1.", "cite": "Your class bank (verbatim) · BLK01 slides p.70 (Ratios — compression ratio) · FAA-H-8083-30B p.3-7", "topic": "Compression ratio"}, {"q": "A cylinder has 120 cubic inches volume at BDC and 15 cubic inches at TDC. What is the compression ratio?", "options": ["6:1", "8:1", "15:1", "120:1"], "correct": 1, "short": "8:1", "expl": "Compression ratio = BDC volume ÷ TDC volume. Compression ratio = 120 ÷ 15 = 8:1.", "cite": "Your class bank (verbatim) · BLK01 slides p.70 (Ratios — compression ratio) · FAA-H-8083-30B p.3-7", "topic": "Compression ratio"}, {"q": "An engine has a compression ratio of 7:1. If the TDC volume is 12 cubic inches, what is the BDC volume?", "options": ["19 cu in", "72 cu in", "84 cu in", "96 cu in"], "correct": 2, "short": "84 cu in", "expl": "BDC volume = compression ratio × TDC volume. BDC volume = 7 × 12 = 84 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.70 (Ratios — compression ratio) · FAA-H-8083-30B p.3-7", "topic": "Compression ratio"}, {"q": "A cylinder has a BDC volume of 100 cubic inches and a clearance volume of 20 cubic inches. What is the compression ratio?", "options": ["4:1", "5:1", "6:1", "20:1"], "correct": 1, "short": "5:1", "expl": "Clearance volume is the TDC volume. Compression ratio = 100 ÷ 20 = 5:1.", "cite": "Your class bank (verbatim) · BLK01 slides p.70 (Ratios — compression ratio) · FAA-H-8083-30B p.3-7", "topic": "Compression ratio"}, {"q": "A driving gear has 20 teeth and turns a driven gear with 40 teeth. What is the gear ratio?", "options": ["1:2", "2:1", "20:1", "40:1"], "correct": 1, "short": "2:1", "expl": "Gear ratio = driven teeth ÷ driving teeth. Gear ratio = 40 ÷ 20 = 2:1.", "cite": "Your class bank (verbatim) · BLK01 slides p.73 (Ratios — gear ratio) · FAA-H-8083-30B p.3-8", "topic": "Gear ratio"}, {"q": "A 20-tooth driving gear turns at 1,000 RPM and drives a 40-tooth gear. What is the driven gear speed?", "options": ["250 RPM", "500 RPM", "1,000 RPM", "2,000 RPM"], "correct": 1, "short": "500 RPM", "expl": "Driven speed = driving speed × driving teeth ÷ driven teeth. Driven speed = 1,000 × 20 ÷ 40 = 500 RPM.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "A 60-tooth driving gear turns a 20-tooth driven gear. What happens to the driven gear speed?", "options": ["It decreases to one-third", "It stays the same", "It doubles", "It triples"], "correct": 3, "short": "It triples", "expl": "A larger driving gear turning a smaller driven gear increases speed. The driving gear has 3 times as many teeth as the driven gear, so the driven gear turns 3 times faster.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "A gear train has a driving gear of 30 teeth and a driven gear of 90 teeth. The driving gear turns at 1,800 RPM. What is the driven gear speed?", "options": ["300 RPM", "600 RPM", "1,200 RPM", "5,400 RPM"], "correct": 1, "short": "600 RPM", "expl": "Driven speed = driving speed × driving teeth ÷ driven teeth. Driven speed = 1,800 × 30 ÷ 90 = 600 RPM.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "A small gear with 25 teeth drives a larger gear with 100 teeth. What is the speed ratio?", "options": ["1:4", "2:1", "4:1", "25:100 only"], "correct": 2, "short": "4:1", "expl": "Compare driven teeth to driving teeth for the reduction ratio. The driven gear has 100 teeth and the driver has 25 teeth, so 100:25 reduces to 4:1.", "cite": "Your class bank (verbatim) · BLK01 slides p.73 (speed ratio = reverse of gear ratio) · FAA-H-8083-30B p.3-8", "topic": "Speed ratio"}, {"q": "A 10-tooth gear drives a 50-tooth gear. If the small gear turns at 2,500 RPM, what is the speed of the large gear?", "options": ["250 RPM", "500 RPM", "1,250 RPM", "12,500 RPM"], "correct": 1, "short": "500 RPM", "expl": "Driven speed = driving speed × driving teeth ÷ driven teeth. Driven speed = 2,500 × 10 ÷ 50 = 500 RPM.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "A 72-tooth gear drives a 24-tooth gear. If the large gear turns at 900 RPM, what is the speed of the small gear?", "options": ["300 RPM", "900 RPM", "1,800 RPM", "2,700 RPM"], "correct": 3, "short": "2,700 RPM", "expl": "The smaller driven gear turns faster. Driven speed = 900 × 72 ÷ 24 = 2,700 RPM.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "Convert 3/8 to a decimal.", "options": ["0.125", "0.250", "0.375", "0.625"], "correct": 2, "short": "0.375", "expl": "Divide numerator by denominator. 3 ÷ 8 = 0.375.", "cite": "Your class bank (verbatim) · BLK01 slides p.67 (AM.I.H.S5) · FAA-H-8083-30B p.3-7", "topic": "Fractions"}, {"q": "Convert 0.75 to a fraction.", "options": ["1/4", "1/2", "3/4", "7/8"], "correct": 2, "short": "3/4", "expl": "0.75 equals 75/100, then reduce. 0.75 = 75/100 = 3/4.", "cite": "Your class bank (verbatim) · BLK01 slides p.66 (AM.I.H.S5) · FAA-H-8083-30B p.3-6", "topic": "Decimals"}, {"q": "A mixture ratio is 4 parts solvent to 1 part cleaner. How many total parts are in the mixture?", "options": ["3", "4", "5", "6"], "correct": 2, "short": "5", "expl": "Add all parts in the ratio. Total parts = 4 + 1 = 5 parts.", "cite": "Your class bank (verbatim) · BLK01 slides p.69 (AM.I.H.K4) · FAA-H-8083-30B p.3-7", "topic": "Ratio"}, {"q": "A drawing scale is 1 inch = 4 feet. A line on the drawing is 3 inches long. What real length does it represent?", "options": ["4 ft", "7 ft", "12 ft", "16 ft"], "correct": 2, "short": "12 ft", "expl": "Multiply drawing length by the scale. 3 inches × 4 feet per inch = 12 feet.", "cite": "Your class bank (verbatim) · BLK01 slides p.76-77 (AM.I.H.K5, proportion) · FAA-H-8083-30B p.3-8", "topic": "Scale drawing"}, {"q": "In addition, the answer is called the:", "options": ["Product", "Sum", "Quotient", "Difference"], "correct": 1, "short": "Sum", "expl": "Addition is the process in which the value of one number is added to another. The answer is called the sum.", "cite": "BLK01 slides p.37 (AM.I.H.K13) · FAA-H-8083-30B Ch.3 p.3-2", "topic": "Whole numbers"}, {"q": "Multiplication is best described as the process of:", "options": ["Repeated addition", "Adding exponents", "Repeated subtraction", "Inverse division"], "correct": 0, "short": "Repeated addition", "expl": "Multiplication is repeated addition: 4 x 3 is the same as 4 + 4 + 4. The result is called the product.", "cite": "BLK01 slides p.41 (AM.I.H.K13) · FAA-H-8083-30B Ch.3 p.3-2", "topic": "Whole numbers"}, {"q": "In a fraction, the DENOMINATOR represents:", "options": ["The largest common factor", "The decimal equivalent", "The parts of the whole being counted", "The number of parts that make up the whole"], "correct": 3, "short": "The number of parts that make up the whole", "expl": "A fraction is N/D: N (numerator) is the parts of the whole number being counted; D (denominator) is the number of parts that make up the whole.", "cite": "BLK01 slides p.45 · FAA-H-8083-30B Ch.3 p.3-4", "topic": "Fractions"}, {"q": "What is the FIRST step when adding or subtracting fractions with unlike denominators?", "options": ["Multiply the numerators together", "Invert the second fraction", "Find the Least Common Denominator (LCD)", "Convert each fraction to a percentage"], "correct": 2, "short": "Find the Least Common Denominator (LCD)", "expl": "The first step in adding or subtracting fractions is to find the Least Common Denominator (LCD).", "cite": "BLK01 slides p.47 · FAA-H-8083-30B Ch.3 p.3-4", "topic": "Fractions"}, {"q": "Solve: 3/32 + 1/64 =", "options": ["1/16", "7/64", "5/64", "4/96"], "correct": 1, "short": "7/64", "expl": "The LCD is 64: 3/32 = 6/64. Then 6/64 + 1/64 = 7/64. (This is the slide's worked example.)", "cite": "BLK01 slides p.51 · FAA-H-8083-30B Ch.3 p.3-4", "topic": "Fractions"}, {"q": "Solve: 7/8 − 1/5 =", "options": ["27/40", "33/40", "6/13", "6/40"], "correct": 0, "short": "27/40", "expl": "LCD is 40: 7/8 = 35/40 and 1/5 = 8/40. 35/40 − 8/40 = 27/40.", "cite": "BLK01 slides p.53 · FAA-H-8083-30B Ch.3 p.3-5", "topic": "Fractions"}, {"q": "Per the slide memory aid KEEP–SWITCH–FLIP, how do you divide 7/8 by 4/3?", "options": ["Flip 7/8 to 8/7 and multiply by 4/3", "Divide 7 by 4 and 8 by 3 directly", "Cross-add the numerators and denominators", "Keep 7/8, switch ÷ to ×, flip 4/3 to 3/4: 7/8 × 3/4 = 21/32"], "correct": 3, "short": "Keep 7/8, switch ÷ to ×, flip 4/3 to 3/4: 7/8 × 3/4 = 21/32", "expl": "Division of fractions: KEEP the first fraction, SWITCH division to multiplication, FLIP the second fraction. 7/8 ÷ 4/3 = 7/8 × 3/4 = 21/32.", "cite": "BLK01 slides p.55 · FAA-H-8083-30B Ch.3 p.3-5", "topic": "Fractions"}, {"q": "13/16 − 7/16 = 6/16. Expressed in lowest terms, the answer is:", "options": ["3/4 inch", "6/16 inch (already lowest)", "3/8 inch", "2/3 inch"], "correct": 2, "short": "3/8 inch", "expl": "6/16 is not in lowest terms because 6 and 16 share a common factor of 2: 6÷2 / 16÷2 = 3/8.", "cite": "BLK01 slides p.56 · FAA-H-8083-30B Ch.3 p.3-5", "topic": "Fractions"}, {"q": "A bolt is 3 1/8 inches long and the threaded portion is 1 5/16 inches. What is the grip length?", "options": ["1 3/16 inches", "2 3/16 inches", "1 13/16 inches", "2 13/16 inches"], "correct": 2, "short": "1 13/16 inches", "expl": "3 1/8 − 1 5/16: convert to sixteenths — 3 2/16 − 1 5/16 = 2 18/16 − 1 5/16 = 1 13/16 inches (borrow from the whole number).", "cite": "BLK01 slides p.59 · FAA-H-8083-30B Ch.3 p.3-6", "topic": "Mixed numbers"}, {"q": "The decimal number system is a base-___ system.", "options": ["12", "10", "2", "60"], "correct": 1, "short": "10", "expl": "The prefix dec is Latin for ten. The decimal system has ten digits (0-9) and is a base 10 system in use for over 5,000 years.", "cite": "BLK01 slides p.60 (AM.I.H.K3) · FAA-H-8083-30B Ch.3 p.3-6", "topic": "Decimal system"}, {"q": "An actuator shaft is 2.1938 inches in diameter. Rounded to the nearest thousandth it is:", "options": ["2.194 inches", "2.20 inches", "2.19 inches", "2.193 inches"], "correct": 0, "short": "2.194 inches", "expl": "When the digit immediately to the right of the last retained digit is 5 or greater, round up by 1. The 8 after 2.193 rounds the 3 up to 4.", "cite": "BLK01 slides p.65 (AM.I.H.K9, AM.I.H.R3) · FAA-H-8083-30B Ch.3 p.3-7", "topic": "Rounding"}, {"q": "What is the rounding rule taught on the slide?", "options": ["Always round toward zero for safety", "Round up only when the digit is greater than 5 (a 5 rounds down)", "Always round up when shortening a decimal", "If the digit to the right of the last retained digit is 5 or greater, round up; if less than 5, leave it unchanged"], "correct": 3, "short": "If the digit to the right of the last retained digit is 5 or greater, round up; if less than 5, leave it unchanged", "expl": "Degree of accuracy desired determines digits retained. 5 or greater rounds up by 1; less than 5 leaves the retained digit unchanged.", "cite": "BLK01 slides p.65 (AM.I.H.K9) · FAA-H-8083-30B Ch.3 p.3-7", "topic": "Rounding"}, {"q": "A ratio may be expressed in which three ways?", "options": ["As a decimal, a percent, or a power", "Only as a fraction or a percent", "As a sum, a product, or a quotient", "As a fraction, with a colon, or with the word 'to'"], "correct": 3, "short": "As a fraction, with a colon, or with the word 'to'", "expl": "A ratio is the comparison of two numbers or quantities: 5/7, 5:7, or 5 to 7.", "cite": "BLK01 slides p.69 (AM.I.H.K4) · FAA-H-8083-30B Ch.3 p.3-7", "topic": "Ratios"}, {"q": "Compression ratio compares the cylinder volume with the piston at ___ to the volume with the piston at ___.", "options": ["Full throttle; idle", "TDC; BDC", "BDC (bottom of stroke); TDC (top of stroke)", "Intake stroke; exhaust stroke"], "correct": 2, "short": "BDC (bottom of stroke); TDC (top of stroke)", "expl": "Compression ratio = volume at Bottom Dead Center compared to volume at Top Dead Center. Example: 40 in³ BDC vs 4 in³ TDC = 10:1.", "cite": "BLK01 slides p.70 · FAA-H-8083-30B Ch.3 p.3-7", "topic": "Ratios"}, {"q": "A wing has a span of 42 feet and a mean chord of 4 feet. What is its aspect ratio?", "options": ["10.5:1", "4:1", "168:1", "42:1"], "correct": 0, "short": "10.5:1", "expl": "Aspect ratio is the ratio of the span of an airfoil to its mean chord: 42 ÷ 4 = 10.5, written 10.5:1. (Slide's worked example.)", "cite": "BLK01 slides p.71 · FAA-H-8083-30B Ch.3 p.3-8", "topic": "Ratios"}, {"q": "Glide ratio is the ratio of:", "options": ["Airspeed to ground speed", "Forward distance traveled to vertical distance descended (without power)", "Lift produced to drag produced at altitude", "Vertical distance descended to forward distance traveled"], "correct": 1, "short": "Forward distance traveled to vertical distance descended (without power)", "expl": "Glide ratio = horizontal distance ÷ vertical distance when operating without power. The slide example: 10,560 ft forward / 1,000 ft down = 10.56:1.", "cite": "BLK01 slides p.72 · FAA-H-8083-30B Ch.3 p.3-8", "topic": "Ratios"}, {"q": "When two gears mesh, the gear with the HIGHER number of teeth:", "options": ["Turns faster", "Turns slower", "Reverses direction of torque", "Turns at the same speed"], "correct": 1, "short": "Turns slower", "expl": "As the number of teeth decreases, rotational speed increases. The gear with more teeth turns slower; the gear with fewer teeth rotates faster. The speed ratio is the reverse of the gear ratio.", "cite": "BLK01 slides p.73 · FAA-H-8083-30B Ch.3 p.3-8", "topic": "Gear ratios"}, {"q": "In the proportion 3:4 = 6:8, the numbers 3 and 8 are called the:", "options": ["Quotients", "Reciprocals", "Extremes", "Means"], "correct": 2, "short": "Extremes", "expl": "A proportion is a statement of equality between two or more ratios. The outer numbers (3 and 8) are the extremes; the inner numbers (4 and 6) are the means.", "cite": "BLK01 slides p.76 (AM.I.H.K5) · FAA-H-8083-30B Ch.3 p.3-8", "topic": "Proportion"}, {"q": "Express the fraction 5/8 as a percentage.", "options": ["12.5%", "80%", "58%", "62.5%"], "correct": 3, "short": "62.5%", "expl": "Change the fraction to a decimal (5 ÷ 8 = 0.625), then convert the decimal to a percentage: 62.5%.", "cite": "BLK01 slides p.79 · FAA-H-8083-30B Ch.3 p.3-9", "topic": "Percentage"}, {"q": "A small engine rated at 12 horsepower is delivering only 10.75 horsepower. What is the motor efficiency as a percent?", "options": ["89.58%", "10.75%", "82.45%", "111.6%"], "correct": 0, "short": "89.58%", "expl": "N% × 12 = 10.75, so N% = 10.75 ÷ 12 = 0.8958 = 89.58%. (Slide's worked example, both algebra and proportion methods.)", "cite": "BLK01 slides p.80-81 · FAA-H-8083-30B Ch.3 p.3-9", "topic": "Percentage"}, {"q": "Denver is at −6°. The temperature at 15,000 ft is 20° colder. What is the temperature at 15,000 ft?", "options": ["+14°", "−14°", "−26°", "−20°"], "correct": 2, "short": "−26°", "expl": "−6 − (+20) becomes −6 + (−20) = −26. (Slide's worked example.)", "cite": "BLK01 slides p.85 · FAA-H-8083-30B Ch.3 p.3-10", "topic": "Signed numbers"}, {"q": "Any non-zero number raised to the zero power equals:", "options": ["Negative one", "1", "Itself", "0"], "correct": 1, "short": "1", "expl": "Power of zero: 4⁰ = 1, 7⁰ = 1, 284⁰ = 1 — any non-zero number to the zero power always equals 1.", "cite": "BLK01 slides p.93 · FAA-H-8083-30B Ch.3 p.3-12", "topic": "Powers"}, {"q": "When MULTIPLYING numbers with powers that have the same base, you ___ the powers.", "options": ["Subtract", "Divide", "Multiply", "Add"], "correct": 3, "short": "Add", "expl": "Law of exponents: 3² × 3⁴ = 3⁶ = 729 (add when multiplying); 4⁵ ÷ 4³ = 4² = 16 (subtract when dividing).", "cite": "BLK01 slides p.95-97 · FAA-H-8083-30B Ch.3 p.3-12", "topic": "Powers"}, {"q": "The symbol √ placed over a number is called a:", "options": ["Radical sign", "Exponent marker", "Vinculum", "Sigma"], "correct": 0, "short": "Radical sign", "expl": "The square root of 25 = 5; the symbol is the radical sign. Numbers whose square roots are whole numbers are called perfect squares.", "cite": "BLK01 slides p.100 (AM.I.H.S1) · FAA-H-8083-30B Ch.3 p.3-12", "topic": "Roots"}, {"q": "The cube root of 125 is:", "options": ["25", "3", "5", "41.7"], "correct": 2, "short": "5", "expl": "5 cubed = 5 × 5 × 5 = 125, so the cube root of 125 equals 5.", "cite": "BLK01 slides p.101 · FAA-H-8083-30B Ch.3 p.3-13", "topic": "Roots"}, {"q": "The velocity of light, 186,000 miles per second, written in scientific notation is:", "options": ["1.86 × 10⁵ mps", "18.6 × 10⁴ mps", "1.86 × 10⁶ mps", "1.86 × 10⁻⁵ mps"], "correct": 0, "short": "1.86 × 10⁵ mps", "expl": "Scientific notation is shorthand for very large or very small numbers — one digit left of the decimal times a power of 10. 186,000 = 1.86 × 10⁵.", "cite": "BLK01 slides p.104 (AM.I.H.K8) · FAA-H-8083-30B Ch.3 p.3-13", "topic": "Scientific notation"}, {"q": "Algebra is the branch of mathematics that:", "options": ["Studies the angles and sides of triangles", "Uses letters or symbols to represent variables in formulas and equations", "Deals only with whole-number arithmetic", "Converts between number bases"], "correct": 1, "short": "Uses letters or symbols to represent variables in formulas and equations", "expl": "Algebra uses letters/symbols as variables. Aviation equations normally have an equals sign showing the relationship between variables.", "cite": "BLK01 slides p.108 (AM.I.H.K6) · FAA-H-8083-30B Ch.3 p.3-16", "topic": "Algebra"}, {"q": "Solve for N: 3N = 21", "options": ["N = 18", "N = 63", "N = 24", "N = 7"], "correct": 3, "short": "N = 7", "expl": "Whatever you do to one side you do to the other: divide both sides by 3, N = 21 ÷ 3 = 7.", "cite": "BLK01 slides p.109 · FAA-H-8083-30B Ch.3 p.3-16", "topic": "Algebra"}, {"q": "In the order of operations (PEMDAS), what is evaluated FIRST?", "options": ["Addition and subtraction", "Everything inside parentheses, starting from the innermost", "Exponents and roots", "Multiplication, left to right"], "correct": 1, "short": "Everything inside parentheses, starting from the innermost", "expl": "Order: Parentheses, Exponents (roots count as exponents), Multiplication and Division left-to-right, then Addition and Subtraction left-to-right.", "cite": "BLK01 slides p.111-112 (AM.I.H.R1) · FAA-H-8083-30B Ch.3 p.3-17", "topic": "Order of operations"}];
+const DRILL = [{"label": "Answer names", "text": "Addition → sum · Subtraction → difference · Multiplication → product · Division → quotient (Dividend ÷ Divisor = Quotient)."}, {"label": "LCD", "text": "First step adding/subtracting fractions = find the Least Common Denominator. Multiplying all denominators works but may not be the LEAST."}, {"label": "Divide fractions", "text": "KEEP – SWITCH – FLIP: keep the first fraction, switch to multiply, flip the second."}, {"label": "Rounding rule", "text": "Digit to the right is 5 or greater → round up; less than 5 → leave unchanged."}, {"label": "Ratio forms", "text": "Fraction, colon, or 'to' (5/7 = 5:7 = 5 to 7). Compression ratio = BDC volume : TDC volume. Aspect ratio = span : mean chord."}, {"label": "Gear vs speed ratio", "text": "Speed ratio is the REVERSE of the gear ratio. More teeth = turns slower; fewer teeth = turns faster."}, {"label": "Proportion parts", "text": "In 3:4 = 6:8 the outer numbers (3, 8) are the EXTREMES, the inner numbers (4, 6) are the MEANS."}, {"label": "Sign rules", "text": "(−)×(−)=+ · (−)×(+)=− · same for division. Sum of two negatives is negative."}, {"label": "Power facts", "text": "Any non-zero number⁰ = 1 · negative power = reciprocal (2⁻³ = 1/8) · multiply same base → ADD powers; divide → SUBTRACT."}, {"label": "PEMDAS", "text": "Parentheses → Exponents (roots too) → Multiply/Divide left-to-right → Add/Subtract left-to-right."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

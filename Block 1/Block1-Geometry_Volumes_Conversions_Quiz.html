@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Geometry, Volumes &amp; Conversions — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Geometry, Volumes &amp; Conversions — Quiz</h1>
+    <div class="sub">AIM BLK01 Days 2-3 (slides 114-163) · areas · volumes · piston displacement · surface area · trig · Pythagorean theorem · unit &amp; torque conversions · binary (Project G2 skills) · includes your class bank verbatim · cited to the BLK01 slide deck + FAA-H-8083-30B Ch.3</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "A circular inspection plate has a radius of 4 inches. What is its area?", "options": ["12.56 sq in", "25.12 sq in", "50.24 sq in", "100.48 sq in"], "correct": 2, "short": "50.24 sq in", "expl": "Use A = πr² with π = 3.14. Area = 3.14 × 4² = 3.14 × 16 = 50.24 square inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.124 (Circle: A = πr²) · FAA-H-8083-30B p.3-19", "topic": "Circle area"}, {"q": "A circular access panel has a diameter of 10 inches. What is its radius?", "options": ["2 in", "5 in", "10 in", "20 in"], "correct": 1, "short": "5 in", "expl": "Radius is one-half of diameter. Radius = diameter ÷ 2 = 10 ÷ 2 = 5 inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.124 (radius = half the diameter) · FAA-H-8083-30B p.3-19", "topic": "Radius"}, {"q": "A piston has a diameter of 5 inches. What is the area of the piston head?", "options": ["15.7 sq in", "19.625 sq in", "25 sq in", "78.5 sq in"], "correct": 1, "short": "19.625 sq in", "expl": "First convert diameter to radius. Radius = 2.5 inches. Area = 3.14 × 2.5² = 3.14 × 6.25 = 19.625 square inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.124 & 138 (bore/2 = radius) · FAA-H-8083-30B p.3-19", "topic": "Piston area"}, {"q": "A circular aircraft part has a diameter of 8 inches. What is its circumference?", "options": ["12.56 in", "16 in", "25.12 in", "50.24 in"], "correct": 2, "short": "25.12 in", "expl": "Use C = πd. Circumference = 3.14 × 8 = 25.12 inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.123-124 (C = D × π) · FAA-H-8083-30B p.3-19", "topic": "Circumference"}, {"q": "A hydraulic piston has a radius of 2.5 inches. What is the piston area?", "options": ["6.25 sq in", "15.7 sq in", "19.625 sq in", "31.4 sq in"], "correct": 2, "short": "19.625 sq in", "expl": "Use A = πr². Area = 3.14 × 2.5² = 3.14 × 6.25 = 19.625 square inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.124 (A = πr²) · FAA-H-8083-30B p.3-19", "topic": "Hydraulic area"}, {"q": "A rectangular baggage compartment is 36 inches long and 24 inches wide. What is the floor area?", "options": ["60 sq in", "432 sq in", "864 sq in", "1,728 sq in"], "correct": 2, "short": "864 sq in", "expl": "Use A = length × width. Area = 36 × 24 = 864 square inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.114-115 (A = L × W) · FAA-H-8083-30B p.3-18", "topic": "Rectangle area"}, {"q": "A rectangular panel is 4 feet long and 3 feet wide. What is its area?", "options": ["7 sq ft", "12 sq ft", "24 sq ft", "48 sq ft"], "correct": 1, "short": "12 sq ft", "expl": "Use A = length × width. Area = 4 × 3 = 12 square feet.", "cite": "Your class bank (verbatim) · BLK01 slides p.114-115 (A = L × W) · FAA-H-8083-30B p.3-18", "topic": "Rectangle area"}, {"q": "A triangular gusset has a base of 10 inches and a height of 6 inches. What is its area?", "options": ["16 sq in", "30 sq in", "60 sq in", "120 sq in"], "correct": 1, "short": "30 sq in", "expl": "Use A = 1/2 × base × height. Area = 1/2 × 10 × 6 = 30 square inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.120 (A = ½ × B × H) · FAA-H-8083-30B p.3-18", "topic": "Triangle area"}, {"q": "A baggage compartment is 40 inches long, 20 inches wide, and 18 inches high. What is its volume?", "options": ["800 cu in", "1,440 cu in", "14,400 cu in", "18,000 cu in"], "correct": 2, "short": "14,400 cu in", "expl": "Use V = length × width × height. Volume = 40 × 20 × 18 = 14,400 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.135 (V = L × W × H) · FAA-H-8083-30B pp.3-20/3-21", "topic": "Volume"}, {"q": "A cylindrical container has a radius of 3 inches and a height of 10 inches. What is its volume?", "options": ["94.2 cu in", "188.4 cu in", "282.6 cu in", "565.2 cu in"], "correct": 2, "short": "282.6 cu in", "expl": "Use V = πr²h. Volume = 3.14 × 3² × 10 = 3.14 × 9 × 10 = 282.6 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.137 (AM.I.H.S2, V = πr²h) · FAA-H-8083-30B p.3-21", "topic": "Cylinder volume"}, {"q": "An aircraft wing panel is 12 feet long and 5 feet wide. What is its area?", "options": ["17 sq ft", "30 sq ft", "60 sq ft", "120 sq ft"], "correct": 2, "short": "60 sq ft", "expl": "Use A = length × width. Area = 12 × 5 = 60 square feet.", "cite": "Your class bank (verbatim) · BLK01 slides p.126 (span × mean chord) · FAA-H-8083-30B p.3-20", "topic": "Wing area"}, {"q": "A fuel tank is shaped like a rectangular box measuring 30 inches by 20 inches by 12 inches. What is the volume?", "options": ["600 cu in", "720 cu in", "6,000 cu in", "7,200 cu in"], "correct": 3, "short": "7,200 cu in", "expl": "Use V = length × width × height. Volume = 30 × 20 × 12 = 7,200 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.135 (rectangular solid) · FAA-H-8083-30B pp.3-20/3-21", "topic": "Fuel tank volume"}, {"q": "An engine has a bore of 5 inches and a stroke of 4 inches. What is the displacement of one cylinder?", "options": ["78.5 cu in", "98.125 cu in", "100 cu in", "314 cu in"], "correct": 0, "short": "78.5 cu in", "expl": "Displacement = piston area × stroke. Bore radius = 2.5 inches. Area = 19.625 sq in. Displacement = 19.625 × 4 = 78.5 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "A 4-cylinder engine has a bore of 4 inches and a stroke of 3 inches. What is the total piston displacement?", "options": ["37.68 cu in", "50.24 cu in", "150.72 cu in", "200.96 cu in"], "correct": 2, "short": "150.72 cu in", "expl": "Total displacement = πr² × stroke × number of cylinders. Radius = 2. Area = 3.14 × 4 = 12.56. One cylinder = 12.56 × 3 = 37.68. Total = 37.68 × 4 = 150.72 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "A 6-cylinder aircraft engine has a bore of 5 inches and stroke of 5 inches. What is the approximate total displacement?", "options": ["98.125 cu in", "117.75 cu in", "588.75 cu in", "706.5 cu in"], "correct": 2, "short": "588.75 cu in", "expl": "Find one cylinder, then multiply by 6. Area = 19.625 sq in. One cylinder = 19.625 × 5 = 98.125. Total = 98.125 × 6 = 588.75 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "An engine cylinder has a piston area of 20 square inches and a stroke of 5 inches. What is the displacement of that cylinder?", "options": ["25 cu in", "50 cu in", "100 cu in", "200 cu in"], "correct": 2, "short": "100 cu in", "expl": "Displacement = area × stroke. Displacement = 20 × 5 = 100 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "An 8-cylinder radial engine has 75 cubic inches displacement per cylinder. What is the total displacement?", "options": ["300 cu in", "450 cu in", "600 cu in", "750 cu in"], "correct": 2, "short": "600 cu in", "expl": "Total displacement = displacement per cylinder × number of cylinders. Total displacement = 75 × 8 = 600 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "A 4-cylinder engine has a total displacement of 320 cubic inches. What is the displacement per cylinder?", "options": ["40 cu in", "60 cu in", "80 cu in", "160 cu in"], "correct": 2, "short": "80 cu in", "expl": "Per-cylinder displacement = total displacement ÷ number of cylinders. Per-cylinder displacement = 320 ÷ 4 = 80 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "Convert 24 inches to feet.", "options": ["1 ft", "2 ft", "3 ft", "4 ft"], "correct": 1, "short": "2 ft", "expl": "There are 12 inches in 1 foot. 24 ÷ 12 = 2 feet.", "cite": "Your class bank (verbatim) · BLK01 slides p.127 (12 inches = 1 linear foot) · FAA-H-8083-30B p.3-22 Fig.3-23", "topic": "Conversion"}, {"q": "Convert 3 feet to inches.", "options": ["12 in", "24 in", "36 in", "48 in"], "correct": 2, "short": "36 in", "expl": "There are 12 inches in 1 foot. 3 × 12 = 36 inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.127 (12 inches = 1 linear foot) · FAA-H-8083-30B p.3-22 Fig.3-23", "topic": "Conversion"}, {"q": "Convert 72 inch-pounds to foot-pounds.", "options": ["3 ft-lb", "6 ft-lb", "12 ft-lb", "72 ft-lb"], "correct": 1, "short": "6 ft-lb", "expl": "Divide inch-pounds by 12. 72 in-lb ÷ 12 = 6 ft-lb.", "cite": "Your class bank (verbatim) · BLK01 slides p.156 (AM.I.H.S8, ×12 / ÷12) · FAA-H-8083-30B p.3-22", "topic": "Torque conversion"}, {"q": "Convert 8 foot-pounds to inch-pounds.", "options": ["48 in-lb", "72 in-lb", "96 in-lb", "120 in-lb"], "correct": 2, "short": "96 in-lb", "expl": "Multiply foot-pounds by 12. 8 ft-lb × 12 = 96 in-lb.", "cite": "Your class bank (verbatim) · BLK01 slides p.156 (AM.I.H.S8, ×12 / ÷12) · FAA-H-8083-30B p.3-22", "topic": "Torque conversion"}, {"q": "Area is a measurement of the amount of ___ of an object.", "options": ["Space inside", "Linear distance around", "Mass", "Surface"], "correct": 3, "short": "Surface", "expl": "Area measures the amount of surface, usually expressed in square inches, square feet, or square meters. (Volume is the space within.)", "cite": "BLK01 slides p.114 (AM.I.H.K1, K3, S3) · FAA-H-8083-30B Ch.3 p.3-18 Fig.3-13 (p.3-19)", "topic": "Area"}, {"q": "The formula for the area of a trapezoid is:", "options": ["A = base₁ × base₂ × height", "A = ½ (base × height)", "A = ½ (base₁ + base₂) × height", "A = π × base × height"], "correct": 2, "short": "A = ½ (base₁ + base₂) × height", "expl": "A trapezoid is a four-sided figure with ONE pair of parallel sides. Slide example: ½(16 + 8) × 7 = 12 × 7 = 84 sq in.", "cite": "BLK01 slides p.122 · FAA-H-8083-30B Ch.3 p.3-19 Fig.3-13", "topic": "Area"}, {"q": "A parallelogram differs from a rectangle in that a parallelogram:", "options": ["Has two pairs of parallel sides but does NOT have four right angles", "Has all four sides of equal length by definition", "Has only one pair of parallel sides", "Cannot have its area computed"], "correct": 0, "short": "Has two pairs of parallel sides but does NOT have four right angles", "expl": "A parallelogram is a four-sided figure with two pairs of parallel sides and no requirement of right angles. Area = length × height.", "cite": "BLK01 slides p.121 · FAA-H-8083-30B Ch.3 p.3-19", "topic": "Area"}, {"q": "The sum of the three angles in any triangle is always:", "options": ["360°", "180°", "90°", "270°"], "correct": 1, "short": "180°", "expl": "A triangle is a three-sided figure; its three angles always total 180°.", "cite": "BLK01 slides p.117 · FAA-H-8083-30B Ch.3 p.3-18", "topic": "Triangles"}, {"q": "A triangle with three sides of equal length is called:", "options": ["Isosceles", "Scalene", "Obtuse", "Equilateral"], "correct": 3, "short": "Equilateral", "expl": "By sides: equilateral = 3 equal sides; isosceles = 2 equal sides; scalene = all sides differ.", "cite": "BLK01 slides p.118 · FAA-H-8083-30B Ch.3 p.3-18", "topic": "Triangles"}, {"q": "The circumference of a circle equals:", "options": ["Radius × π", "Diameter² × π", "Diameter × π", "2 × diameter × π"], "correct": 2, "short": "Diameter × π", "expl": "Circumference (distance around the circle) = D × π (3.1416). Area = π × r². The radius is half the diameter.", "cite": "BLK01 slides p.123-124 · FAA-H-8083-30B Ch.3 p.3-19", "topic": "Circles"}, {"q": "An ellipse has semi-axes a = 14 inches and b = 8 inches. Its area is approximately:", "options": ["703.7 square inches", "351.86 square inches", "112 square inches", "87.96 square inches"], "correct": 1, "short": "351.86 square inches", "expl": "Ellipse area = π × a × b = 3.1416 × 14 × 8 = 351.8592 sq in. (Slide's worked example.)", "cite": "BLK01 slides p.125 · FAA-H-8083-30B Ch.3 p.3-19", "topic": "Area"}, {"q": "One square foot equals how many square inches?", "options": ["144", "9", "1,728", "12"], "correct": 0, "short": "144", "expl": "1 sq ft = 12 in × 12 in = 144 sq in. To convert sq ft to sq in multiply by 144; sq in to sq ft divide by 144 (720 ÷ 144 = 5 sq ft).", "cite": "BLK01 slides p.127 · FAA-H-8083-30B Ch.3 p.3-22 Fig.3-23", "topic": "Unit conversion"}, {"q": "The volume of a cube is found by:", "options": ["6 × side²", "4/3 × π × side³", "Side² × π", "Side³ (side × side × side)"], "correct": 3, "short": "Side³ (side × side × side)", "expl": "A cube is a three-dimensional solid with six square sides: V = S³.", "cite": "BLK01 slides p.136 · FAA-H-8083-30B Ch.3 p.3-21", "topic": "Volume"}, {"q": "The formula for the volume of a SPHERE is:", "options": ["V = π × r² × h", "V = 1/3 × π × r² × h", "V = 4/3 × π × r³ (or 1/6 × π × D³)", "V = 4 × π × r²"], "correct": 2, "short": "V = 4/3 × π × r³ (or 1/6 × π × D³)", "expl": "Sphere volume = 4/3 πr³, or equivalently 1/6 πD³ since the radius is half the diameter.", "cite": "BLK01 slides p.139 · FAA-H-8083-30B Ch.3 p.3-21", "topic": "Volume"}, {"q": "The formula for the volume of a CONE is:", "options": ["V = 1/3 × π × r² × h", "V = π × r² × h", "V = ½ × π × r × h", "V = 4/3 × π × r³"], "correct": 0, "short": "V = 1/3 × π × r² × h", "expl": "A cone (circular base tapering to a point) has volume 1/3 πr²h — one third of the cylinder that contains it.", "cite": "BLK01 slides p.140 · FAA-H-8083-30B Ch.3 p.3-21", "topic": "Volume"}, {"q": "The total volume swept by all the pistons of a reciprocating engine in ONE revolution of the crankshaft is called:", "options": ["Compression ratio", "Piston displacement", "Bore capacity", "Clearance volume"], "correct": 1, "short": "Piston displacement", "expl": "Piston displacement is the total volume (cubic inches) swept by all pistons in one crankshaft revolution. Total = #cyl × π(bore/2)² × stroke.", "cite": "BLK01 slides p.138 · FAA-H-8083-30B Ch.3 pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "One cubic foot equals how many cubic inches?", "options": ["144", "1,000", "1,728", "172.8"], "correct": 2, "short": "1,728", "expl": "1 cu ft = 12 × 12 × 12 = 1,728 cu in. Multiply cu ft by 1,728 to get cu in (38 cu ft = 65,664 cu in); divide cu in by 1,728 to get cu ft.", "cite": "BLK01 slides p.141-142 · FAA-H-8083-30B Ch.3 p.3-22 Fig.3-23", "topic": "Unit conversion"}, {"q": "Approximately how many gallons fit inside a volume of one cubic foot?", "options": ["7.5 gallons", "1 gallon", "27 gallons", "231 gallons"], "correct": 0, "short": "7.5 gallons", "expl": "7.5 gallons will fit inside 1 cubic foot. (A gallon itself occupies 231 cubic inches.) Needed when converting a tank's cubic volume to gallons.", "cite": "BLK01 slides p.143 · FAA-H-8083-30B Ch.3 p.3-22 Fig.3-23", "topic": "Unit conversion"}, {"q": "One cubic yard equals how many cubic feet?", "options": ["9", "27", "3", "1,728"], "correct": 1, "short": "27", "expl": "1 cu yd = 3 × 3 × 3 = 27 cu ft. Slide example: 450 cu yd × 27 = 12,150 cu ft.", "cite": "BLK01 slides p.144-145 · FAA-H-8083-30B Ch.3 p.3-22 Fig.3-23", "topic": "Unit conversion"}, {"q": "The surface area of a CUBE is found by:", "options": ["2 × S²", "4 × π × r²", "S³", "6 × S²"], "correct": 3, "short": "6 × S²", "expl": "A cube has six identical square faces, so surface area = 6 × S². (Sphere surface area = 4πr²; cylinder = 2πr² + πDH.)", "cite": "BLK01 slides p.147 · FAA-H-8083-30B Ch.3 p.3-22", "topic": "Surface area"}, {"q": "The SINE of an angle in a right triangle equals:", "options": ["Adjacent side ÷ hypotenuse", "Hypotenuse ÷ opposite side", "Opposite side ÷ hypotenuse", "Opposite side ÷ adjacent side"], "correct": 2, "short": "Opposite side ÷ hypotenuse", "expl": "Sine = opposite/hypotenuse; cosine = adjacent/hypotenuse; tangent = opposite/adjacent. Side c (hypotenuse) is always across from the right angle.", "cite": "BLK01 slides p.150-151 · FAA-H-8083-30B Ch.3 p.3-23", "topic": "Trigonometry"}, {"q": "The TANGENT of an angle equals:", "options": ["Opposite side ÷ adjacent side", "Opposite side ÷ hypotenuse", "Adjacent side ÷ opposite side", "Hypotenuse ÷ adjacent side"], "correct": 0, "short": "Opposite side ÷ adjacent side", "expl": "Tangent is the length of the opposite side divided by the length of the adjacent side.", "cite": "BLK01 slides p.150-151 · FAA-H-8083-30B Ch.3 p.3-23", "topic": "Trigonometry"}, {"q": "The sine of a 30° angle is 0.5. This means the hypotenuse is:", "options": ["Half as long as the opposite side", "Twice as long as the opposite side", "Equal to the opposite side", "1.5 times the adjacent side"], "correct": 1, "short": "Twice as long as the opposite side", "expl": "Sin 30° = opposite/hypotenuse = 0.5/1 — the ratio is 0.5 to 1, so the hypotenuse is twice the opposite side. (Slide's worked example.)", "cite": "BLK01 slides p.152 · FAA-H-8083-30B Ch.3 p.3-24", "topic": "Trigonometry"}, {"q": "The two short sides of a right triangle are 7 inches and 9 inches. The hypotenuse is approximately:", "options": ["10.3 inches", "130 inches", "16 inches", "11.4 inches"], "correct": 3, "short": "11.4 inches", "expl": "Pythagorean Theorem: a² + b² = c². 49 + 81 = 130; c = √130 = 11.4 inches. (Slide's worked example.)", "cite": "BLK01 slides p.153-154 · FAA-H-8083-30B Ch.3 p.3-24", "topic": "Pythagorean Theorem"}, {"q": "To convert inches to millimeters you multiply by:", "options": ["12", "25.4", "0.0394", "2.54"], "correct": 1, "short": "25.4", "expl": "Conventional to metric: inches × 25.4 mm (12 in × 25.4 = 304.8 mm). Metric to conventional: mm ÷ 25.4 (120 mm ÷ 25.4 = 4.72 in).", "cite": "BLK01 slides p.155 (AM.I.H.K11) · FAA-H-8083-30B Ch.3 p.3-22 Fig.3-23", "topic": "Unit conversion"}, {"q": "The binary number system has only two digits because:", "options": ["It is the oldest number system known", "Two digits make arithmetic carry easier", "Switches and valves have two states — on (1) and off (0)", "Computers cannot store more than two values per byte"], "correct": 2, "short": "Switches and valves have two states — on (1) and off (0)", "expl": "Binary uses only 0 and 1; its use is based on the fact that switches or valves have two states: on = 1, off = 0.", "cite": "BLK01 slides p.158 · FAA-H-8083-30B Ch.3 p.3-25", "topic": "Binary"}, {"q": "Convert the binary number 10110011 to a decimal number.", "options": ["147", "183", "211", "179"], "correct": 3, "short": "179", "expl": "Add the place values where 1s appear: 128 + 0 + 32 + 16 + 0 + 0 + 2 + 1 = 179. (Slide's worked example.)", "cite": "BLK01 slides p.160 · FAA-H-8083-30B Ch.3 p.3-25", "topic": "Binary"}];
+const DRILL = [{"label": "Area formulas (Fig 3-13, p.3-19)", "text": "Rectangle l×w · Square s² · Parallelogram l×h · Trapezoid ½(b1+b2)×h · Circle πr² · Ellipse πab · Triangle ½bh · Wing = span × mean chord."}, {"label": "Circle", "text": "Circumference = πD · Area = πr² · radius = D/2 · cylinder diameter = the BORE."}, {"label": "Volume formulas", "text": "Rectangular V=LWH · Cube S³ · Cylinder πr²h · Sphere 4/3πr³ (or 1/6πD³) · Cone 1/3πr²h."}, {"label": "Piston displacement", "text": "Total = #cyl × π(bore/2)² × stroke. Bore = inside diameter; stroke = piston travel."}, {"label": "Square units", "text": "1 sq ft = 144 sq in · 1 sq yd = 9 sq ft."}, {"label": "Cubic units", "text": "1 cu ft = 1,728 cu in · 1 cu yd = 27 cu ft · 1 cu ft holds ≈ 7.5 gallons · 1 gallon = 231 cu in."}, {"label": "Trig ratios", "text": "SOH-CAH-TOA: sin = opp/hyp · cos = adj/hyp · tan = opp/adj. Sin 30° = 0.5."}, {"label": "Pythagorean", "text": "a² + b² = c² — c is always the hypotenuse (across from the 90° angle)."}, {"label": "Length & torque", "text": "1 in = 25.4 mm · ft-lb × 12 = in-lb · in-lb ÷ 12 = ft-lb."}, {"label": "Binary", "text": "Base 2, digits 0/1 (switch on=1, off=0). Place values 128-64-32-16-8-4-2-1. 10110011 = 179; 233 = 11101001."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

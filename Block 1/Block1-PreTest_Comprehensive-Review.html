@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Pre-Test — Comprehensive Review</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Pre-Test — Comprehensive Review</h1>
+    <div class="sub">BLK01 General Science I final-exam warm-up · 46 questions sampled deterministically across all eight Block 1 quizzes (math → physics → aero → measuring → NDT → W&amp;B) · every answer cited to the AIM BLK01 slide deck + FAA-H-8083-30B</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Which type of heat transfer occurs by movement of a fluid such as air or liquid?", "options": ["Conduction", "Convection", "Radiation", "Compression"], "correct": 1, "short": "Convection", "expl": "Example: warm air rising. Convection is heat transfer by movement of a fluid, including air or liquid.", "cite": "Your class bank (verbatim) · BLK01 slides p.241 (conduction/convection/radiation) · FAA-H-8083-30B pp.5-19/5-20", "topic": "Heat transfer"}, {"q": "A wing FENCE keeps air flowing straight over the airfoil by preventing:", "options": ["Chordwise airflow over the flaps", "Spanwise airflow ('bleeding off' toward the wingtip)", "Propwash from striking the empennage", "Air from entering the engine inlet"], "correct": 1, "short": "Spanwise airflow ('bleeding off' toward the wingtip)", "expl": "Wing fences prevent spanwise airflow — they stop the air from bleeding off toward the wingtip.", "cite": "BLK01 slides p.321 (AM.I.J.K11) · FAA-H-8083-30B Ch.5 p.5-41", "topic": "Boundary layer control"}, {"q": "Torsion stress, applied when a material is twisted, is a combination of:", "options": ["Tension and shear", "Bending and shear", "Compression and bending", "Tension and compression"], "correct": 3, "short": "Tension and compression", "expl": "Torsion is applied when a material is twisted; it is a combination of tension and compression stresses.", "cite": "BLK01 slides p.217 · FAA-H-8083-30B Ch.5 p.5-12", "topic": "Stress"}, {"q": "Standard atmospheric pressure at sea level (59°F) is 14.7 psi, which also equals:", "options": ["29.92 psi / 760 inches / 1013.2 mb", "14.7 inches of mercury / 29.92 mm / 760 millibars", "33.92 inches of mercury / 700 mm / 1003 millibars", "29.92 inches of mercury / 760 mm of mercury / 1013.2 millibars"], "correct": 3, "short": "29.92 inches of mercury / 760 mm of mercury / 1013.2 millibars", "expl": "Standard sea-level atmosphere: 14.7 psi = 29.92 in Hg = 760 mm Hg = 1013.2 millibars, at 59°F/15°C.", "cite": "BLK01 slides p.247-248 · FAA-H-8083-30B Ch.5 p.5-24", "topic": "Pressure"}, {"q": "Which micrometer parts does the measured object sit between?", "options": ["The ratchet stop and the barrel", "The frame and the lock nut", "The anvil and the spindle", "The sleeve and the thimble"], "correct": 2, "short": "The anvil and the spindle", "expl": "Micrometer parts: frame, anvil, spindle, sleeve, thimble, ratchet stop, lock nut. The work sits between the fixed anvil and the moving spindle.", "cite": "BLK01 slides p.436 · FAA-H-8083-30B Ch.11 p.11-17", "topic": "Micrometers"}, {"q": "A single FIXED pulley operates as what class of lever, and with what mechanical advantage?", "options": ["First-class lever, MA = 1:1", "Second-class lever, MA = 2:1", "Third-class lever, MA = 1:2", "Second-class lever, MA = 1:1"], "correct": 0, "short": "First-class lever, MA = 1:1", "expl": "A single fixed pulley = class 1 lever with MA 1:1 — it only changes the direction of the force. A single MOVABLE pulley = class 2 lever with MA 2:1.", "cite": "BLK01 slides p.204 · FAA-H-8083-30B Ch.5 p.5-9", "topic": "Pulleys"}, {"q": "When weighing to determine empty weight, the only fuel weight included should be:", "options": ["Half tanks", "Full tanks", "METO fuel", "The residual (unusable) fuel"], "correct": 3, "short": "The residual (unusable) fuel", "expl": "Three acceptable conditions: (1) no fuel at all, (2) tanks drained per the manufacturer leaving only residual fuel, or (3) tanks completely full with the fuel weight calculated and subtracted (hydrometer).", "cite": "BLK01 slides p.570 (AM.I.C.K8/S8/S10) · FAA-H-8083-30B Ch.6 p.6-8", "topic": "Weighing prep"}, {"q": "The density of a gas varies ___ with pressure and ___ with temperature.", "options": ["Directly; directly", "Inversely; directly", "Inversely; inversely", "Directly; inversely"], "correct": 3, "short": "Directly; inversely", "expl": "Double the pressure → twice as dense. Raise the temperature → density decreases. So high-altitude air and hot air are both less dense. Density decreases with increased altitude.", "cite": "BLK01 slides p.290 · FAA-H-8083-30B Ch.5 p.5-35", "topic": "Density altitude"}, {"q": "An EXPANSION wave differs from a shock wave because behind it:", "options": ["Velocity decreases and pressure increases", "Temperature rises sharply", "Velocity increases while static pressure and density decrease — and it is not a shock wave", "The air becomes subsonic"], "correct": 2, "short": "Velocity increases while static pressure and density decrease — and it is not a shock wave", "expl": "Where supersonic flow turns away from the flow direction (over the top of a wing), an expansion wave forms: velocity increases, pressure and density decrease. It is NOT a shock wave.", "cite": "BLK01 slides p.371 · FAA-H-8083-30B Ch.5 p.5-47", "topic": "High-speed flight"}, {"q": "Box 1 (300 lbs) sits 32 inches left of the fulcrum. Box 2 sits 160 inches right of the fulcrum. For balance, Box 2 must weigh:", "options": ["120 lbs", "9,600 lbs", "300 lbs", "60 lbs"], "correct": 3, "short": "60 lbs", "expl": "For balance the moments must be equal: 300 × 32 = 9,600 in-lbs. Then 9,600 ÷ 160 = 60 lbs. Weight × Arm = Moment (WAM). (Slide's worked example.)", "cite": "BLK01 slides p.199 (AM.I.J.S5) · FAA-H-8083-30B Ch.5 p.5-8", "topic": "Levers"}, {"q": "In the proportion 3:4 = 6:8, the numbers 3 and 8 are called the:", "options": ["Quotients", "Reciprocals", "Extremes", "Means"], "correct": 2, "short": "Extremes", "expl": "A proportion is a statement of equality between two or more ratios. The outer numbers (3 and 8) are the extremes; the inner numbers (4 and 6) are the means.", "cite": "BLK01 slides p.76 (AM.I.H.K5) · FAA-H-8083-30B Ch.3 p.3-8", "topic": "Proportion"}, {"q": "If the same force is applied to a larger area, the pressure will:", "options": ["Increase", "Decrease", "Stay the same", "Become horsepower"], "correct": 1, "short": "Decrease", "expl": "Use P = F ÷ A. Pressure decreases when the same force is spread over a larger area.", "cite": "Your class bank (verbatim) · BLK01 slides p.247 & 264 (P = F ÷ A) · FAA-H-8083-30B p.5-22", "topic": "Pressure"}, {"q": "The SINE of an angle in a right triangle equals:", "options": ["Adjacent side ÷ hypotenuse", "Hypotenuse ÷ opposite side", "Opposite side ÷ hypotenuse", "Opposite side ÷ adjacent side"], "correct": 2, "short": "Opposite side ÷ hypotenuse", "expl": "Sine = opposite/hypotenuse; cosine = adjacent/hypotenuse; tangent = opposite/adjacent. Side c (hypotenuse) is always across from the right angle.", "cite": "BLK01 slides p.150-151 · FAA-H-8083-30B Ch.3 p.3-23", "topic": "Trigonometry"}, {"q": "A triangle with three sides of equal length is called:", "options": ["Isosceles", "Scalene", "Obtuse", "Equilateral"], "correct": 3, "short": "Equilateral", "expl": "By sides: equilateral = 3 equal sides; isosceles = 2 equal sides; scalene = all sides differ.", "cite": "BLK01 slides p.118 · FAA-H-8083-30B Ch.3 p.3-18", "topic": "Triangles"}, {"q": "Which list gives the five forms of stress?", "options": ["Torsion, bending, strain, fatigue, creep", "Tension, twisting, expansion, vibration, shear", "Tension, compression, torsion, bending, shear", "Tension, compression, friction, lift, drag"], "correct": 2, "short": "Tension, compression, torsion, bending, shear", "expl": "External force causes stress to manifest in one of five forms: tension (pulls apart), compression (pushes together), torsion (twist), bending, and shear (slices).", "cite": "BLK01 slides p.214-220 · FAA-H-8083-30B Ch.5 pp.5-12/5-13", "topic": "Stress"}, {"q": "Algebra is the branch of mathematics that:", "options": ["Studies the angles and sides of triangles", "Uses letters or symbols to represent variables in formulas and equations", "Deals only with whole-number arithmetic", "Converts between number bases"], "correct": 1, "short": "Uses letters or symbols to represent variables in formulas and equations", "expl": "Algebra uses letters/symbols as variables. Aviation equations normally have an equals sign showing the relationship between variables.", "cite": "BLK01 slides p.108 (AM.I.H.K6) · FAA-H-8083-30B Ch.3 p.3-16", "topic": "Algebra"}, {"q": "A shock wave is best described as:", "options": ["A gust of turbulence near thunderstorms", "Sound energy piling up on the airplane when it reaches the speed of sound", "An electrical discharge along the wing", "The trailing vortex behind heavy aircraft"], "correct": 1, "short": "Sound energy piling up on the airplane when it reaches the speed of sound", "expl": "At the speed of sound, pressure waves can no longer travel ahead of the airplane; the sound energy piles up — initially on top of the wing, then attaching to the leading and trailing edges.", "cite": "BLK01 slides p.368 · FAA-H-8083-30B Ch.5 p.5-46", "topic": "High-speed flight"}, {"q": "For aircraft certificated AFTER 1978 under 14 CFR Part 23, engine oil is treated how during weighing?", "options": ["It is useful load — the tank must be drained", "It is part of the EMPTY weight — the oil tank must be serviced FULL before weighing", "It is ignored entirely", "Half the oil is counted"], "correct": 1, "short": "It is part of the EMPTY weight — the oil tank must be serviced FULL before weighing", "expl": "Post-1978 (14 CFR 23.29): oil is part of empty weight — service it full. Pre-1978 aircraft (certified under CAR Part 3): oil is part of the USEFUL LOAD — drain it or calculate it out.", "cite": "BLK01 slides p.571 (AM.I.C.K8/S8) · 14 CFR 23.29 · FAA-H-8083-30B Ch.6 p.6-9", "topic": "Weighing prep"}, {"q": "A 60-tooth driving gear turns a 20-tooth driven gear. What happens to the driven gear speed?", "options": ["It decreases to one-third", "It stays the same", "It doubles", "It triples"], "correct": 3, "short": "It triples", "expl": "A larger driving gear turning a smaller driven gear increases speed. The driving gear has 3 times as many teeth as the driven gear, so the driven gear turns 3 times faster.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "PERMANENT ballast is:", "options": ["Sandbags strapped in the baggage bay", "Removable lead shot in canvas bags", "Any fuel left in the aft tank", "Lead blocks permanently attached to the structure, painted RED, marked 'PERMANENT BALLAST — DO NOT REMOVE'"], "correct": 3, "short": "Lead blocks permanently attached to the structure, painted RED, marked 'PERMANENT BALLAST — DO NOT REMOVE'", "expl": "Permanent ballast corrects an empty-weight CG out-of-limits condition after a repair/alteration; it becomes part of the aircraft's empty weight.", "cite": "BLK01 slides p.612 (AM.I.C.K9) · FAA-H-8083-30B Ch.6 p.6-23", "topic": "Ballast"}, {"q": "Magnetic particle inspection is only effective on:", "options": ["Any electrically conductive metal", "Composites", "Ferrous (magnetizable) materials", "Aluminum alloys"], "correct": 2, "short": "Ferrous (magnetizable) materials", "expl": "The part must be magnetized; an indicating medium of ferromagnetic particulate is applied. It detects surface and subsurface discontinuities, but only on ferrous materials.", "cite": "BLK01 slides p.494 & 498 (AM.I.K.K3) · FAA-H-8083-30B Ch.10 p.10-27", "topic": "Magnetic particle"}, {"q": "A gear train has a driving gear of 30 teeth and a driven gear of 90 teeth. The driving gear turns at 1,800 RPM. What is the driven gear speed?", "options": ["300 RPM", "600 RPM", "1,200 RPM", "5,400 RPM"], "correct": 1, "short": "600 RPM", "expl": "Driven speed = driving speed × driving teeth ÷ driven teeth. Driven speed = 1,800 × 30 ÷ 90 = 600 RPM.", "cite": "Your class bank (verbatim) · BLK01 slides p.73-74 (gear/speed ratio worked example) · FAA-H-8083-30B p.3-8", "topic": "Gear speed"}, {"q": "'Basic Empty Weight' differs from 'Licensed Empty Weight' in that basic empty weight includes:", "options": ["Full engine oil (licensed empty weight includes only residual oil)", "Removable ballast and cargo", "Usable fuel", "Passengers and crew"], "correct": 0, "short": "Full engine oil (licensed empty weight includes only residual oil)", "expl": "Empty weight includes the airframe, powerplant, required/optional equipment, fixed ballast, hydraulic fluid, and residual fuel and oil. Basic empty weight = full oil; licensed empty weight = residual oil only; standard empty weight = a value supplied by the manufacturer.", "cite": "BLK01 slides p.544 (AM.I.C.K1) · FAA-H-8083-30B Ch.6 p.6-4", "topic": "Terminology"}, {"q": "Small hole gauges measure inside diameters of holes from:", "options": ["1/8 to 1/2 inch", "0.0001 to 0.001 inch", "5/16 to 6 inches", "1/2 to 2 inches"], "correct": 0, "short": "1/8 to 1/2 inch", "expl": "The ball end is inserted in the hole and the shaft twisted to expand the ball until it fits; the ball is then measured with a micrometer.", "cite": "BLK01 slides p.463 (AM.I.K.K1, AM.I.K.S3) · FAA-H-8083-30B Ch.11 p.11-20", "topic": "Hole gauges"}, {"q": "Energy is defined as:", "options": ["Force times time", "Mass times gravity", "The rate of doing work", "The ability to do work"], "correct": 3, "short": "The ability to do work", "expl": "Energy is the ability to do work, classified as potential (stored) or kinetic (motion).", "cite": "BLK01 slides p.183 (AM.I.J.K1) · FAA-H-8083-30B Ch.5 p.5-3", "topic": "Energy"}, {"q": "Which type of heat transfer occurs mainly through direct contact?", "options": ["Conduction", "Convection", "Radiation", "Refraction"], "correct": 0, "short": "Conduction", "expl": "Example: heat moving through metal. Conduction is heat transfer through direct contact between materials.", "cite": "Your class bank (verbatim) · BLK01 slides p.241 (conduction/convection/radiation) · FAA-H-8083-30B pp.5-19/5-20", "topic": "Heat transfer"}, {"q": "In FLIGHT, lift bends the wing upward. The wing skin experiences:", "options": ["Tension on top, compression on the bottom", "Compression on top, tension on the bottom", "Torsion on top, tension on the bottom", "Pure shear on both surfaces"], "correct": 1, "short": "Compression on top, tension on the bottom", "expl": "In flight, lift raising the wing compresses the TOP skin and puts the BOTTOM skin in tension. On the ground it reverses: gravity bends the wing down — top in tension, bottom in compression.", "cite": "BLK01 slides p.218-219 · FAA-H-8083-30B Ch.5 p.5-13", "topic": "Stress"}, {"q": "Which list matches the slide's types of welds?", "options": ["Spot, seam, plug, and groove welds", "Square, vee, bevel, and J welds", "Stick, MIG, TIG, and gas welds", "Butt, double butt, lap, fillet, and edge welds"], "correct": 3, "short": "Butt, double butt, lap, fillet, and edge welds", "expl": "Weld types named on the slide: butt weld, double butt weld, lap weld, fillet weld, edge weld.", "cite": "BLK01 slides p.513 · FAA-H-8083-30B Ch.10 p.10-38", "topic": "Welding"}, {"q": "Approximately how many gallons fit inside a volume of one cubic foot?", "options": ["7.5 gallons", "1 gallon", "27 gallons", "231 gallons"], "correct": 0, "short": "7.5 gallons", "expl": "7.5 gallons will fit inside 1 cubic foot. (A gallon itself occupies 231 cubic inches.) Needed when converting a tank's cubic volume to gallons.", "cite": "BLK01 slides p.143 · FAA-H-8083-30B Ch.3 p.3-22 Fig.3-23", "topic": "Unit conversion"}, {"q": "A hydraulic system pressure is 500 psi and acts on a piston area of 4 square inches. What force is produced?", "options": ["125 lb", "500 lb", "1,000 lb", "2,000 lb"], "correct": 3, "short": "2,000 lb", "expl": "Use F = P × A. Force = 500 × 4 = 2,000 pounds.", "cite": "Your class bank (verbatim) · BLK01 slides p.264-265 (AM.I.J.K13, F = P × A) · FAA-H-8083-30B p.5-28", "topic": "Hydraulics"}, {"q": "In a FORWARD adverse-loaded CG check, which items are loaded?", "options": ["Only items behind the aft limit", "Every seat and tank full", "Nothing but the pilot", "All useful-load items FORWARD of the forward CG limit (items behind it left empty); METO fuel if the tank is behind the limit"], "correct": 3, "short": "All useful-load items FORWARD of the forward CG limit (items behind it left empty); METO fuel if the tank is behind the limit", "expl": "Forward extreme: load everything ahead of the forward limit, leave everything aft of it empty; if fuel is located behind the forward CG limit, use METO fuel (engine HP ÷ 2 in lbs).", "cite": "BLK01 slides p.599-600 (AM.I.C.K7) · FAA-H-8083-30B Ch.6 p.6-20", "topic": "Adverse loading"}, {"q": "TEMPORARY ballast must be marked:", "options": ["'For flight test use only'", "'Ballast XX pounds — Removal Requires Weight and Balance Check'", "No marking is required", "'Permanent ballast — do not remove'"], "correct": 1, "short": "'Ballast XX pounds — Removal Requires Weight and Balance Check'", "expl": "Temporary ballast (lead bars, sand or lead shot in heavy canvas bags) adjusts CG for a flight-loaded condition, must be secured against movement, removed before weighing, and marked 'Ballast XX pounds — Removal Requires Weight and Balance Check.'", "cite": "BLK01 slides p.607 (AM.I.C.K9/S3/S15) · FAA-H-8083-30B Ch.6 p.6-22", "topic": "Ballast"}, {"q": "The most basic and common inspection method — also the least expensive — is:", "options": ["Visual inspection", "Radiographic inspection", "Eddy current inspection", "Acoustic emission"], "correct": 0, "short": "Visual inspection", "expl": "Visual inspection requires the least tools: work light/flashlight, fiberscopes, borescopes, magnifying glasses, and mirrors.", "cite": "BLK01 slides p.473 (AM.I.K.K3, AM.I.K.S4) · FAA-H-8083-30B Ch.10 p.10-19", "topic": "Visual inspection"}, {"q": "During penetrant PREPARATION, which cleaning method is prohibited?", "options": ["Removing paint", "Volatile petroleum-based solvent", "Abrasive blasting, scraping, or heavy brushing", "Rinsing and drying thoroughly"], "correct": 2, "short": "Abrasive blasting, scraping, or heavy brushing", "expl": "Surfaces must be free of grease/dirt/oil and paint removed — but do NOT clean by abrasive blasting, scraping, or heavy brushing (these can smear metal over cracks). Use a volatile petroleum-based solvent, rinse and dry.", "cite": "BLK01 slides p.476 · FAA-H-8083-30B Ch.10 p.10-20", "topic": "Dye penetrant"}, {"q": "The FAA requires the weight and balance report to be:", "options": ["Filed only at the FSDO", "Renewed every 90 days", "Current and accurate, part of the permanent records, and IN the aircraft when it is flown", "Kept by the mechanic at the shop"], "correct": 2, "short": "Current and accurate, part of the permanent records, and IN the aircraft when it is flown", "expl": "A current, accurate empty weight and EWCG must be known; the W&B report is part of the aircraft permanent records and must be in the aircraft when it is being flown.", "cite": "BLK01 slides p.629 (AM.I.C.S7/S17) · FAA-H-8083-30B Ch.6 p.6-31", "topic": "Records"}, {"q": "The TANGENT of an angle equals:", "options": ["Opposite side ÷ adjacent side", "Opposite side ÷ hypotenuse", "Adjacent side ÷ opposite side", "Hypotenuse ÷ adjacent side"], "correct": 0, "short": "Opposite side ÷ adjacent side", "expl": "Tangent is the length of the opposite side divided by the length of the adjacent side.", "cite": "BLK01 slides p.150-151 · FAA-H-8083-30B Ch.3 p.3-23", "topic": "Trigonometry"}, {"q": "Liquid dye penetrant inspection detects discontinuities:", "options": ["Only in composites", "Only on the SURFACE of objects (and only on non-porous surfaces)", "Deep inside the part's core", "Only in ferrous metals"], "correct": 1, "short": "Only on the SURFACE of objects (and only on non-porous surfaces)", "expl": "Dye penetrant detects surface discontinuities only, on non-porous surfaces, in metals and other materials. There are two penetrant types: visible and fluorescent.", "cite": "BLK01 slides p.474-475 (AM.I.K.K3, AM.I.K.S5) · FAA-H-8083-30B Ch.10 p.10-20", "topic": "Dye penetrant"}, {"q": "The slide lists two categories of Airworthiness Directives (ADs):", "options": ["Recurring and terminating only", "Mandatory and optional", "Engine ADs and airframe ADs", "Emergency in nature requiring immediate compliance, and less urgent requiring compliance within a specific time"], "correct": 3, "short": "Emergency in nature requiring immediate compliance, and less urgent requiring compliance within a specific time", "expl": "AD categories per the slide: (1) emergency — immediate compliance; (2) less urgent — compliance within a specified time.", "cite": "BLK01 slides p.408 · 14 CFR Part 39 · FAA-H-8083-30B Ch.10", "topic": "Publications"}, {"q": "Under FAR 43.3, who may perform PREVENTIVE maintenance on an aircraft?", "options": ["Any passenger", "A private pilot, on an aircraft he or she owns", "Only a repair station", "Only an IA"], "correct": 1, "short": "A private pilot, on an aircraft he or she owns", "expl": "Per the slide: an aircraft private pilot may do preventive maintenance on his own aircraft under FAR 43.3.", "cite": "BLK01 slides p.410 · 14 CFR 43.3 · FAA-H-8083-30B Ch.10", "topic": "Inspections"}, {"q": "Directional stability — the tendency to return to alignment with the relative wind after a yaw disturbance — is provided mainly by the:", "options": ["Vertical fin", "Landing gear fairings", "Elevator trim tab", "Wing dihedral"], "correct": 0, "short": "Vertical fin", "expl": "Directional stability is stability about the VERTICAL axis; the vertical fin causes the airplane to align with the relative wind.", "cite": "BLK01 slides p.336 · FAA-H-8083-30B Ch.5 p.5-44", "topic": "Stability"}, {"q": "A 6-cylinder aircraft engine has a bore of 5 inches and stroke of 5 inches. What is the approximate total displacement?", "options": ["98.125 cu in", "117.75 cu in", "588.75 cu in", "706.5 cu in"], "correct": 2, "short": "588.75 cu in", "expl": "Find one cylinder, then multiply by 6. Area = 19.625 sq in. One cylinder = 19.625 × 5 = 98.125. Total = 98.125 × 6 = 588.75 cubic inches.", "cite": "Your class bank (verbatim) · BLK01 slides p.138 (#cyl × π(bore/2)² × stroke) · FAA-H-8083-30B pp.3-21/3-22", "topic": "Piston displacement"}, {"q": "The sleeve shows 0.200 plus two small divisions, and the thimble reads 0. What is the reading?", "options": ["0.202 inch", "0.225 inch", "0.220 inch", "0.250 inch"], "correct": 3, "short": "0.250 inch", "expl": "0.200 + (2 × 0.025) = 0.250 in. When thimble '0' lines up with the reference line, the thimble adds nothing. (Slide's worked example.)", "cite": "BLK01 slides p.448-449 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "The micrometer THIMBLE scale is divided into 25 parts. Each part equals ___ and one full revolution moves ___.", "options": ["0.025 inch; 0.001 inch", "0.001 inch; 0.025 inch", "0.0001 inch; 0.010 inch", "0.010 inch; 0.250 inch"], "correct": 1, "short": "0.001 inch; 0.025 inch", "expl": "Thimble: 25 divisions × 0.001 in each; one revolution = 0.025 in — exactly one sleeve division.", "cite": "BLK01 slides p.444 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "The ballast weight formula is:", "options": ["B = CG shift × arm ÷ moment", "B = (distance needed to shift CG × aircraft total weight) ÷ distance between ballast location and desired CG", "B = arm × moment ÷ weight", "B = total weight ÷ CG shift"], "correct": 1, "short": "B = (distance needed to shift CG × aircraft total weight) ÷ distance between ballast location and desired CG", "expl": "Ballast = (D × W) ÷ X. Slide example: CG out by 0.6\" on a 3,034-lb plane, ballast station at +60 vs desired CG 99: B = (0.6 × 3,034) ÷ (99 − 60) = 1,820.4 ÷ 39 = 46.67 → 47 lbs.", "cite": "BLK01 slides p.609 (AM.I.C.K9/S3) · FAA-H-8083-30B Ch.6 p.6-23", "topic": "Ballast"}, {"q": "Aerodynamics is the science of:", "options": ["Structural metallurgy of airframes", "Radio wave propagation through air", "The action of air on an object", "The chemistry of jet fuel combustion"], "correct": 2, "short": "The action of air on an object", "expl": "Aerodynamics deals with the motion of air and the forces acting on an object in that current of air. The four relevant parts: the atmosphere, relative wind, pressure, and density.", "cite": "BLK01 slides p.301 (AM.I.J.K8) · FAA-H-8083-30B Ch.5 p.5-36", "topic": "Aerodynamics"}, {"q": "Solve: 7/8 − 1/5 =", "options": ["27/40", "33/40", "6/13", "6/40"], "correct": 0, "short": "27/40", "expl": "LCD is 40: 7/8 = 35/40 and 1/5 = 8/40. 35/40 − 8/40 = 27/40.", "cite": "BLK01 slides p.53 · FAA-H-8083-30B Ch.3 p.3-5", "topic": "Fractions"}];
+const DRILL = [{"label": "Answer names", "text": "Addition → sum · Subtraction → difference · Multiplication → product · Division → quotient (Dividend ÷ Divisor = Quotient)."}, {"label": "Area formulas (Fig 3-13, p.3-19)", "text": "Rectangle l×w · Square s² · Parallelogram l×h · Trapezoid ½(b1+b2)×h · Circle πr² · Ellipse πab · Triangle ½bh · Wing = span × mean chord."}, {"label": "Mass vs weight", "text": "Mass = Weight ÷ Gravity (constant anywhere). Weight = Mass × Gravity. g = 32.2 ft/sec²."}, {"label": "BTU", "text": "1 BTU raises 1 lb of water 1°F. Thermal efficiency = HP produced ÷ HP available in fuel (typical recip <30%)."}, {"label": "Heat transfer", "text": "Conduction = direct contact · Convection = moving fluid · Radiation = waves. Heat always flows high → low."}, {"label": "Four forces", "text": "Lift up · weight down · thrust forward · drag back. All equal = straight & level at constant speed. Lift > weight = climb; thrust > drag = accelerate."}, {"label": "Scale graduations", "text": "Sheet metal scales: 32nds & 64ths · homebuilding rulers: 16ths · scales/rules = NON-precision."}, {"label": "Inspection clock", "text": "Annual = 12 calendar months (IA/repair station/manufacturer) · 100-hour = aircraft for hire (A&P may perform; 10-hr en route grace) · progressive = 90 days/25 hrs per segment · transponder & altimeter/static = 24 calendar months."}, {"label": "The three formulas", "text": "Weight × Arm = Moment · Arm = Moment ÷ Weight · Weight = Moment ÷ Arm. CG = Total Moment ÷ Total Weight."}, {"label": "Datum & arm", "text": "Datum = imaginary vertical plane, the 'zero arm,' set by the manufacturer (in the TCDS). Arm = horizontal distance in INCHES from the datum (− forward, + aft)."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

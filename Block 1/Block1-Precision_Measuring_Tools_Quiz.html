@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Precision Measuring Tools — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Precision Measuring Tools — Quiz</h1>
+    <div class="sub">AIM BLK01 Day 9 (slides 424-464, Project G6) · scales &amp; combination set · calipers · micrometer parts, sleeve/thimble/vernier reading practice · dial indicators · calibration rules · telescoping &amp; small hole gauges · cited to the BLK01 slide deck + FAA-H-8083-30B Ch.11</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Scales and rules are used where:", "options": ["Only metric dimensions exist", "Calibration decals are unavailable", "Tolerances are under one thousandth of an inch", "Precision measurements are NOT required"], "correct": 3, "short": "Precision measurements are NOT required", "expl": "Scales and rules are non-precision layout/measuring tools. Scales for sheet metal work are graduated in 32nds and 64ths; rulers used in homebuilding are normally in 16ths.", "cite": "BLK01 slides p.424 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-14", "topic": "Layout tools"}, {"q": "Scales used for SHEET METAL work are graduated in:", "options": ["10ths and 100ths of an inch", "32nds and 64ths of an inch", "8ths of an inch", "16ths of an inch"], "correct": 1, "short": "32nds and 64ths of an inch", "expl": "Sheet metal scales read in 32nds and 64ths; homebuilding rulers are normally in 16ths. Decimal and metric scales are also used.", "cite": "BLK01 slides p.424 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-14", "topic": "Layout tools"}, {"q": "On aircraft, protractors are used to measure:", "options": ["Cable tension", "Skin thickness", "Flight control surface travel (angles in degrees)", "Cylinder bore diameter"], "correct": 2, "short": "Flight control surface travel (angles in degrees)", "expl": "Protractors measure angles — on aircraft they measure flight control surface travel (e.g., the blade protractor).", "cite": "BLK01 slides p.426 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-15", "topic": "Layout tools"}, {"q": "A combination set consists of a 12-inch steel scale and which three removable heads?", "options": ["Stock head, protractor head, and center head", "Dial head, vernier head, and depth head", "Square head, level head, and clamp head", "Anvil head, spindle head, and thimble head"], "correct": 0, "short": "Stock head, protractor head, and center head", "expl": "The combination set's three heads move along the scale and may be used in any combination: stock head (90° and 45° angles), protractor head (degrees + bubble level), and center head (finds the center of round stock).", "cite": "BLK01 slides p.427-430 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-15", "topic": "Combination set"}, {"q": "Which head of the combination set is used to find the center of round bar stock?", "options": ["The vernier head", "The protractor head", "The center head", "The stock head"], "correct": 2, "short": "The center head", "expl": "Center head = centers of round objects. Stock head = 90° and 45° angles. Protractor head = degrees on control surfaces, and it contains a bubble level.", "cite": "BLK01 slides p.430 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-15", "topic": "Combination set"}, {"q": "The three types of calipers named on the slide are:", "options": ["Inside, outside, and hermaphrodite", "Depth, height, and bore", "Dial, digital, and vernier", "Spring, firm-joint, and locking"], "correct": 0, "short": "Inside, outside, and hermaphrodite", "expl": "Inside calipers measure the inside diameter of a hole; outside calipers measure outside diameters; hermaphrodite calipers mark distances away from edges.", "cite": "BLK01 slides p.433-434 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-16", "topic": "Calipers"}, {"q": "Hermaphrodite calipers are used to:", "options": ["Zero a micrometer", "Check shaft out-of-roundness", "Measure the inside diameter of holes", "Mark distances away from edges"], "correct": 3, "short": "Mark distances away from edges", "expl": "Hermaphrodite calipers (one bent leg, one scribe leg) lay out lines a set distance from an edge.", "cite": "BLK01 slides p.433 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-16", "topic": "Calipers"}, {"q": "Which micrometer type is used to measure the DEPTH of a hole?", "options": ["Telescoping micrometer", "Depth micrometer", "Inside micrometer", "Outside micrometer"], "correct": 1, "short": "Depth micrometer", "expl": "Outside micrometer = fit of engine parts / thickness; inside micrometer = inside size of a hole; depth micrometer = depth of a hole.", "cite": "BLK01 slides p.435 (AM.I.K.K1, AM.I.K.S2) · FAA-H-8083-30B Ch.11 p.11-17", "topic": "Micrometers"}, {"q": "Which micrometer parts does the measured object sit between?", "options": ["The ratchet stop and the barrel", "The frame and the lock nut", "The anvil and the spindle", "The sleeve and the thimble"], "correct": 2, "short": "The anvil and the spindle", "expl": "Micrometer parts: frame, anvil, spindle, sleeve, thimble, ratchet stop, lock nut. The work sits between the fixed anvil and the moving spindle.", "cite": "BLK01 slides p.436 · FAA-H-8083-30B Ch.11 p.11-17", "topic": "Micrometers"}, {"q": "Before use, a micrometer must be calibrated to zero using:", "options": ["A dial indicator and V-blocks", "A torque wrench and adapter", "A feeler gauge and pliers", "A gauge block and a spanner wrench"], "correct": 3, "short": "A gauge block and a spanner wrench", "expl": "Calibrate to zero with a gauge block and spanner wrench — and always turn the thimble using the ratchet stop to apply proper, repeatable pressure.", "cite": "BLK01 slides p.437 (AM.I.K.K1, AM.I.K.K2) · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometers"}, {"q": "On the micrometer SLEEVE scale, each numbered division equals ___ and each small division between numbers equals ___.", "options": ["0.100 inch; 0.025 inch", "1.000 inch; 0.100 inch", "0.010 inch; 0.001 inch", "0.100 inch; 0.010 inch"], "correct": 0, "short": "0.100 inch; 0.025 inch", "expl": "The 1-inch sleeve scale is divided into ten numbered parts (tenths, 0.100) and each tenth into four parts of 0.025 inch.", "cite": "BLK01 slides p.438-440 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "The micrometer THIMBLE scale is divided into 25 parts. Each part equals ___ and one full revolution moves ___.", "options": ["0.025 inch; 0.001 inch", "0.001 inch; 0.025 inch", "0.0001 inch; 0.010 inch", "0.010 inch; 0.250 inch"], "correct": 1, "short": "0.001 inch; 0.025 inch", "expl": "Thimble: 25 divisions × 0.001 in each; one revolution = 0.025 in — exactly one sleeve division.", "cite": "BLK01 slides p.444 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "The sleeve shows 0.200 plus two small divisions, and the thimble reads 0. What is the reading?", "options": ["0.202 inch", "0.225 inch", "0.220 inch", "0.250 inch"], "correct": 3, "short": "0.250 inch", "expl": "0.200 + (2 × 0.025) = 0.250 in. When thimble '0' lines up with the reference line, the thimble adds nothing. (Slide's worked example.)", "cite": "BLK01 slides p.448-449 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "Sleeve shows 0.200 + one division (0.025); thimble reads 1. The micrometer reading is:", "options": ["0.225 inch", "0.201 inch", "0.226 inch", "0.235 inch"], "correct": 2, "short": "0.226 inch", "expl": "0.200 + 0.025 + 0.001 = 0.226 in. (Slide's worked example.)", "cite": "BLK01 slides p.451 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "Sleeve shows 0.500 + one division; thimble reads 21. The reading is:", "options": ["0.546 inch", "0.546 feet", "0.571 inch", "0.521 inch"], "correct": 0, "short": "0.546 inch", "expl": "0.500 + 0.025 + 0.021 = 0.546 in. (Slide's worked example.)", "cite": "BLK01 slides p.452 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "A standard (non-vernier) micrometer can only read dimensions to the nearest:", "options": ["Hundredth of an inch (0.01)", "Thousandth of an inch (0.001)", "Sixty-fourth of an inch", "Ten-thousandth of an inch (0.0001)"], "correct": 1, "short": "Thousandth of an inch (0.001)", "expl": "A regular micrometer reads in thousandths; if a thimble line doesn't align with the reference line you estimate or neglect the remainder. Vernier micrometers add a ten-thousandths (0.0001) scale.", "cite": "BLK01 slides p.453-454 · FAA-H-8083-30B Ch.11 p.11-19", "topic": "Micrometer reading"}, {"q": "A vernier micrometer reads: sleeve 0.300 + three divisions (0.075), thimble 20, vernier 6. The reading is:", "options": ["0.3826 inch", "0.3956 inch", "0.3950 inch", "0.4016 inch"], "correct": 1, "short": "0.3956 inch", "expl": "0.300 + 0.075 + 0.020 + 0.0006 = 0.3956 in. (Slide's worked example.)", "cite": "BLK01 slides p.457 · FAA-H-8083-30B Ch.11 p.11-19", "topic": "Micrometer reading"}, {"q": "A 5-6 inch micrometer shows sleeve 0.400 + one division and thimble 16. The actual measurement is:", "options": ["5.441 inches", "0.441 inch", "5.416 inches", "6.441 inches"], "correct": 0, "short": "5.441 inches", "expl": "A 5-6 micrometer measures the range 5 to 6 inches, so add 5 inches: 5 + 0.400 + 0.025 + 0.016 = 5.441 in. (Slide's worked example.)", "cite": "BLK01 slides p.458 · FAA-H-8083-30B Ch.11 p.11-19", "topic": "Micrometer reading"}, {"q": "Micrometer calipers are used to measure the thickness of objects and to check cylindrical objects for:", "options": ["Surface hardness", "Internal cracks", "Thread pitch", "Out-of-roundness"], "correct": 3, "short": "Out-of-roundness", "expl": "Micrometers measure thickness and check cylindrical objects (like engine parts) for out-of-roundness. Types: outside, inside, and depth micrometers.", "cite": "BLK01 slides p.435 (AM.I.K.K1, AM.I.K.S2) · FAA-H-8083-30B Ch.11 p.11-17", "topic": "Micrometers"}, {"q": "When closing a micrometer on a part, you should always turn the thimble using the:", "options": ["Anvil, rotated by hand", "Lock nut, tightened firmly", "Ratchet stop, to apply the proper pressure", "Frame, held in a vise"], "correct": 2, "short": "Ratchet stop, to apply the proper pressure", "expl": "Always turn the thimble using the ratchet stop in order to apply the proper, repeatable pressure to the object or gauge block.", "cite": "BLK01 slides p.437 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometers"}, {"q": "The protractor head of a combination set measures degrees on control surfaces and also contains a:", "options": ["Bubble level", "Dial indicator", "Magnetic compass", "Vernier scale"], "correct": 0, "short": "Bubble level", "expl": "The protractor head measures degrees (control surface travel) and contains a bubble level for checking level conditions.", "cite": "BLK01 slides p.429 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-15", "topic": "Combination set"}, {"q": "The arrow on the sleeve sits at the .300 mark plus ONE small division. The sleeve reading is:", "options": ["0.301 inch", "0.400 inch", "0.310 inch", "0.325 inch"], "correct": 3, "short": "0.325 inch", "expl": "Each small sleeve division between numbers is 25/1000 (0.025): 0.300 + 0.025 = 0.325. (Slide's worked example.)", "cite": "BLK01 slides p.440 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "Sleeve shows .300 plus two small divisions; the thimble is at 0. The reading is:", "options": ["0.320 inch", "0.302 inch", "0.350 inch", "0.500 inch"], "correct": 2, "short": "0.350 inch", "expl": "0.300 + 0.050 = 0.350 in. (Slide's worked example.)", "cite": "BLK01 slides p.442 · FAA-H-8083-30B Ch.11 p.11-18", "topic": "Micrometer reading"}, {"q": "Sleeve reads 0.300 + two divisions (0.050) and the thimble reads 15, but the thimble line doesn't align exactly. A standard micrometer reads:", "options": ["0.3655 inch by interpolation scale", "0.365 inch — estimate or neglect any distance beyond the closest .001 line", "0.35 inch, ignoring the thimble", "0.365000 inch exactly"], "correct": 1, "short": "0.365 inch — estimate or neglect any distance beyond the closest .001 line", "expl": "0.300 + 0.050 + 0.015 = 0.365. With a regular micrometer, additional distance between thimble lines must be estimated using the closest line or entirely neglected. (Slide's worked example.)", "cite": "BLK01 slides p.453 · FAA-H-8083-30B Ch.11 p.11-19", "topic": "Micrometer reading"}, {"q": "A VERNIER micrometer reads: sleeve 0.200 + one division, thimble 22, vernier 0. The reading is:", "options": ["0.2475 inch", "0.2470 inch", "0.4470 inch", "0.2270 inch"], "correct": 1, "short": "0.2470 inch", "expl": "0.200 + 0.025 + 0.022 + 0.0000 = 0.2470 in. The vernier scale adds the fourth decimal (ten-thousandths). (Slide's worked example.)", "cite": "BLK01 slides p.456 · FAA-H-8083-30B Ch.11 p.11-19", "topic": "Micrometer reading"}, {"q": "Dial indicators are used to check shafts for:", "options": ["Out-of-roundness and bends", "Hardness and temper", "Internal cracks", "Thread pitch and depth"], "correct": 0, "short": "Out-of-roundness and bends", "expl": "Dial indicators measure in thousandths and ten-thousandths of an inch; the base holds the dial in place while the shaft is rotated.", "cite": "BLK01 slides p.459 (AM.I.K.K1) · FAA-H-8083-30B Ch.11 p.11-20", "topic": "Dial indicators"}, {"q": "Per the slide, torque wrenches must be calibrated:", "options": ["Monthly, by the manufacturer only", "Only when purchased", "Every five years regardless of use", "Annually — or any time the tool is dropped"], "correct": 3, "short": "Annually — or any time the tool is dropped", "expl": "All precision tools carry a calibration decal; calibration intervals vary by tool. Torque wrenches: annually, or when dropped. ALL precision tools must be recalibrated when dropped.", "cite": "BLK01 slides p.460 (AM.I.K.K2, AM.I.K.R3) · FAA-H-8083-30B Ch.11 (calibration)", "topic": "Calibration"}, {"q": "Calibration is defined as:", "options": ["Replacing a tool at the end of its service life", "Cleaning and lubricating a precision tool", "A set of documented operations comparing an instrument's measurements to a standard, to detect, report, or eliminate errors by adjustment", "Reading a tool twice and averaging"], "correct": 2, "short": "A set of documented operations comparing an instrument's measurements to a standard, to detect, report, or eliminate errors by adjustment", "expl": "Calibration compares the measurements performed by an instrument against a standard, for the purpose of detecting and reporting — or eliminating by adjustment — errors in the instrument tested.", "cite": "BLK01 slides p.460 (AM.I.K.K2) · FAA-H-8083-30B Ch.11 (calibration)", "topic": "Calibration"}, {"q": "Telescoping gauges accurately measure holes with diameters between:", "options": ["0.001 and 0.100 inch", "5/16 inch and 6 inches", "1 and 12 inches", "1/8 and 1/2 inch"], "correct": 1, "short": "5/16 inch and 6 inches", "expl": "T-shaped telescoping gauges: spring-loaded arms extend against the hole walls, lock, and are removed; the arm length is then measured with a micrometer.", "cite": "BLK01 slides p.461-462 (AM.I.K.K1, AM.I.K.S3) · FAA-H-8083-30B Ch.11 p.11-20", "topic": "Hole gauges"}, {"q": "Small hole gauges measure inside diameters of holes from:", "options": ["1/8 to 1/2 inch", "0.0001 to 0.001 inch", "5/16 to 6 inches", "1/2 to 2 inches"], "correct": 0, "short": "1/8 to 1/2 inch", "expl": "The ball end is inserted in the hole and the shaft twisted to expand the ball until it fits; the ball is then measured with a micrometer.", "cite": "BLK01 slides p.463 (AM.I.K.K1, AM.I.K.S3) · FAA-H-8083-30B Ch.11 p.11-20", "topic": "Hole gauges"}, {"q": "How does a telescoping gauge transfer its measurement?", "options": ["It stamps the dimension on the part", "It has its own built-in dial readout", "The locked arms are removed from the hole and measured with a micrometer", "It is read directly off the gauge's vernier scale"], "correct": 2, "short": "The locked arms are removed from the hole and measured with a micrometer", "expl": "Spring pressure extends the arms against the hole walls; the gauge is locked, removed, and the arm length measured with a micrometer.", "cite": "BLK01 slides p.462 (AM.I.K.S3) · FAA-H-8083-30B Ch.11 p.11-20", "topic": "Hole gauges"}];
+const DRILL = [{"label": "Scale graduations", "text": "Sheet metal scales: 32nds & 64ths · homebuilding rulers: 16ths · scales/rules = NON-precision."}, {"label": "Combination set", "text": "Stock head 90°/45° · protractor head degrees + bubble level · center head finds centers of round stock."}, {"label": "Calipers", "text": "Inside = hole ID · outside = OD · hermaphrodite = mark distances from an edge."}, {"label": "Micrometer scales", "text": "Sleeve number = 0.100 · sleeve division = 0.025 · thimble division = 0.001 (25 per rev) · vernier scale = 0.0001."}, {"label": "Reading recipe", "text": "Last sleeve number + visible sleeve divisions (.025 each) + thimble line (.001) + vernier line (.0001 if equipped). On a 5-6 mic, add 5 inches."}, {"label": "Calibration", "text": "Zero the mic with a gauge block + spanner; always use the ratchet stop. Torque wrenches calibrate ANNUALLY or when dropped — any dropped precision tool gets recalibrated."}, {"label": "Hole gauges", "text": "Telescoping gauges: 5/16-6 in. Small hole gauges: 1/8-1/2 in. Both are transfer tools — read them with a micrometer."}, {"label": "Dial indicator", "text": "Checks shafts for out-of-roundness and bends; reads thousandths / ten-thousandths."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
