@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Heat, Temperature &amp; Gas Laws — Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Heat, Temperature &amp; Gas Laws — Quiz</h1>
+    <div class="sub">Heat energy &amp; BTU · heat transfer · temperature scales · gas laws (Boyle/Charles/Dalton) · sound · includes your class bank verbatim · cited to FAA-H-8083-30B Ch.5</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Which type of heat transfer occurs mainly through direct contact?", "options": ["Conduction", "Convection", "Radiation", "Refraction"], "correct": 0, "short": "Conduction", "expl": "Example: heat moving through metal. Conduction is heat transfer through direct contact between materials.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-19 to 5-20 (Heat Transfer)", "topic": "Heat transfer"}, {"q": "Which type of heat transfer occurs by movement of a fluid such as air or liquid?", "options": ["Conduction", "Convection", "Radiation", "Compression"], "correct": 1, "short": "Convection", "expl": "Example: warm air rising. Convection is heat transfer by movement of a fluid, including air or liquid.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-19 to 5-20 (Heat Transfer)", "topic": "Heat transfer"}, {"q": "Heat may be defined as:", "options": ["The total kinetic energy of the molecules of a substance", "The weight of a substance per unit volume", "A fluid that flows from cold bodies to hot bodies", "The total potential energy stored in a substance"], "correct": 0, "short": "The total kinetic energy of the molecules of a substance", "expl": "Heat is a form of energy — the total kinetic energy of the molecules of any substance. Hot bodies have molecules with large kinetic energy; cooler bodies have less.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-18 (Heat)", "topic": "Heat energy"}, {"q": "One BTU is the amount of heat required to:", "options": ["Change 1 gallon of water by 1 degree Fahrenheit", "Change the temperature of 1 pound of water by 1 degree Fahrenheit", "Change the temperature of 1 gram of water by 1 degree Centigrade", "Boil 1 pound of water completely away"], "correct": 1, "short": "Change the temperature of 1 pound of water by 1 degree Fahrenheit", "expl": "1 BTU raises 1 lb of water 1 °F. (1 calorie raises 1 GRAM of water 1 °C.) The BTU is the unit used for engine thermal efficiency and fuel heat content.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-18 (Heat Energy Units)", "topic": "Heat energy"}, {"q": "One BTU of heat energy equals how much mechanical work?", "options": ["550 foot-pounds", "33,000 foot-pounds", "778 foot-pounds", "746 foot-pounds"], "correct": 2, "short": "778 foot-pounds", "expl": "Experiments established that 1 BTU = 778 ft-lb of work. (550 ft-lb/s and 33,000 ft-lb/min are horsepower; 746 is watts per hp.)", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Energy Units)", "topic": "Heat energy"}, {"q": "One pound of aviation gasoline contains how much heat energy?", "options": ["14,700 BTU", "778 BTU", "5,252 BTU", "18,900 BTU"], "correct": 3, "short": "18,900 BTU", "expl": "Avgas contains 18,900 BTU of heat energy per pound. Since each BTU can do 778 ft-lb of work, one pound of avgas is capable of 14,704,200 ft-lb of work.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Energy Units; also p. 5-3, Potential Energy)", "topic": "Heat energy"}, {"q": "Thermal efficiency of an engine is the ratio of:", "options": ["Exhaust temperature to intake temperature", "Compression ratio to displacement", "Fuel burned to fuel carried", "Horsepower produced to the potential horsepower in the fuel consumed"], "correct": 3, "short": "Horsepower produced to the potential horsepower in the fuel consumed", "expl": "Thermal Efficiency = Horsepower Produced ÷ Potential Horsepower in Fuel. A typical GA piston engine producing 200 hp while burning fuel with 744 potential hp is 26.88% efficient — over 70% of the fuel's energy is lost to friction and heat.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Energy and Thermal Efficiency)", "topic": "Heat energy"}, {"q": "The three methods of heat transfer are:", "options": ["Convection, evaporation, and compression", "Conduction, convection, and radiation", "Radiation, reflection, and refraction", "Conduction, induction, and absorption"], "correct": 1, "short": "Conduction, convection, and radiation", "expl": "Heat moves from areas of high heat energy to low by three methods: conduction (direct contact), convection (movement of a heated fluid), and radiation (electromagnetic waves).", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Transfer)", "topic": "Heat transfer"}, {"q": "Heat transfer by conduction requires:", "options": ["Physical contact between a body with high heat energy and one with lower heat energy", "Electromagnetic waves traveling through space", "A vacuum between the two bodies", "A moving fluid such as air or water"], "correct": 0, "short": "Physical contact between a body with high heat energy and one with lower heat energy", "expl": "Conduction needs physical contact — molecular agitation passed along by actual contact, like a metal pan handle burning the hand while a wood handle stays cool.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Transfer — Conduction)", "topic": "Heat transfer"}, {"q": "Of the metals listed in the handbook's conductivity chart, the best and poorest conductors of heat are:", "options": ["Iron (best) and magnesium (poorest)", "Aluminum (best) and silver (poorest)", "Silver (best) and lead (poorest)", "Copper (best) and iron (poorest)"], "correct": 2, "short": "Silver (best) and lead (poorest)", "expl": "Silver is the best conductor listed (1.00) and lead the poorest (0.08). Copper (0.94) and aluminum (0.57) conduct rapidly — which is why they're used in pots and pans. Silver, copper, and aluminum are also excellent electrical conductors.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 to 5-20 (Conduction, Figure 5-27)", "topic": "Heat transfer"}, {"q": "Compared to metals and liquids, gases are:", "options": ["The best conductors of all", "Even poorer conductors of heat than liquids", "Equal in conductivity to liquids", "Better conductors than liquids but worse than metals"], "correct": 1, "short": "Even poorer conductors of heat than liquids", "expl": "Liquids conduct heat more poorly than metals, and gases are even poorer conductors than liquids — their molecules are farther apart. That's why you can stand close to a stove without being burned.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Conduction)", "topic": "Heat transfer"}, {"q": "Convection is the process by which heat is transferred by:", "options": ["Electromagnetic waves moving at the speed of light", "Direct molecular contact between solids", "Movement of a heated fluid (gas or liquid)", "Compression of a confined gas"], "correct": 2, "short": "Movement of a heated fluid (gas or liquid)", "expl": "Convection transfers heat by movement of a heated fluid — like warm air rising off a light bulb, or heated water rising in a pan while cooler water moves in below.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-20 (Heat Transfer — Convection)", "topic": "Heat transfer"}, {"q": "An air-cooled piston engine's cylinder heat reaches the cooling fins by ______ and is then carried away by ______.", "options": ["Convection; conduction", "Convection; radiation", "Radiation; conduction", "Conduction; forced-air convection"], "correct": 3, "short": "Conduction; forced-air convection", "expl": "Heat travels within the cylinder metal to the fins by conduction. Then forced air from the propeller flowing around the finned cylinders carries the heat away — forced-air convection.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-20 (Convection — air-cooled engine example)", "topic": "Heat transfer"}, {"q": "Which method of heat transfer can cross the vacuum of space, travels at the speed of light, and always travels in straight lines?", "options": ["Radiation", "Conduction", "Convection", "Saturation"], "correct": 0, "short": "Radiation", "expl": "Radiation needs no medium — that's how the sun's heat reaches earth. It travels at light speed, can pass through a medium without heating it (a greenhouse), and travels in straight lines (it can be blocked by a screen).", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-20 to 5-21 (Heat Transfer — Radiation)", "topic": "Heat transfer"}, {"q": "Specific heat is expressed as a pure number (no units) because it is:", "options": ["A percentage of absolute zero", "The product of two identical units", "Always measured in BTU", "A ratio of a substance's specific heat capacity to that of water"], "correct": 3, "short": "A ratio of a substance's specific heat capacity to that of water", "expl": "Specific heat is the ratio of a substance's specific heat capacity to the specific heat capacity of water — a ratio has no units. Water's high specific heat is why large bodies of water stabilize surface temperatures.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-21 (Specific Heat)", "topic": "Temperature"}, {"q": "Convert 40 °C to Fahrenheit using °F = (1.8 × °C) + 32.", "options": ["129.6 °F", "104 °F", "72 °F", "4.4 °F"], "correct": 1, "short": "104 °F", "expl": "°F = (1.8 × 40) + 32 = 72 + 32 = 104 °F.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-21 (Temperature — conversion formulas)", "topic": "Temperature"}, {"q": "Convert 50 °F to Celsius using °C = (°F − 32) × 5/9.", "options": ["10 °C", "27.8 °C", "45.6 °C", "122 °C"], "correct": 0, "short": "10 °C", "expl": "°C = (50 − 32) × 5/9 = 18 × 5/9 = 10 °C.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-21 (Temperature — conversion formulas)", "topic": "Temperature"}, {"q": "To convert Celsius to the absolute Kelvin scale:", "options": ["Add 460 to the Celsius reading", "Subtract 32 then divide by 1.8", "Add 273 to the Celsius reading", "Multiply Celsius by 1.8"], "correct": 2, "short": "Add 273 to the Celsius reading", "expl": "Degrees Kelvin = Degrees Celsius + 273. (Rankine — the other absolute scale — is Fahrenheit + 460.) So 15 °C = 288 K.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-21 (Temperature — conversion formulas)", "topic": "Temperature"}, {"q": "For gas law calculations, 72 °F expressed on the Rankine absolute scale is:", "options": ["345 °R", "532 °R", "460 °R", "104 °R"], "correct": 1, "short": "532 °R", "expl": "Degrees Rankine = Degrees Fahrenheit + 460. So 72 °F = 72 + 460 = 532° absolute. Rankine is commonly used to convert Fahrenheit to absolute for gas-law work.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-21 (Temperature — Rankine scale)", "topic": "Temperature"}, {"q": "At absolute zero (−273 °C / −460 °F):", "options": ["All gases liquefy but keep vibrating", "Heat transfers only by radiation", "Water freezes", "Molecular motion ceases"], "correct": 3, "short": "Molecular motion ceases", "expl": "Absolute zero is the point where molecular motion ceases — the zero point of the Kelvin and Rankine scales.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-21 to 5-22 (Temperature, Figure 5-31)", "topic": "Temperature"}, {"q": "The amount a solid expands when heated is calculated as:", "options": ["Expansion = mass × velocity squared", "Expansion = weight × height × time", "Expansion = coefficient of linear expansion × length × rise in temperature", "Expansion = pressure × volume ÷ temperature"], "correct": 2, "short": "Expansion = coefficient of linear expansion × length × rise in temperature", "expl": "Expansion = (coefficient) × (length) × (temperature rise). A 9-ft steel rod heated from 21 °C to 55 °C grows just 0.003366 ft — small, but if restrained it exerts tremendous force, so airframe design must allow for it.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-22 (Thermal Expansion/Contraction)", "topic": "Thermal expansion"}, {"q": "According to the kinetic theory of gases, raising the temperature of a gas in a sealed container:", "options": ["Increases molecular collisions, which increases the pressure", "Converts the gas to a liquid", "Has no effect on pressure, only on volume", "Decreases the pressure as molecules slow down"], "correct": 0, "short": "Increases molecular collisions, which increases the pressure", "expl": "Higher temperature = more molecular motion = more collisions with the container walls = higher pressure. That's why a 'soft' tire in the cool morning looks normal at hot midday.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-23 (Gas Laws — kinetic theory)", "topic": "Gas laws"}, {"q": "Boyle's law states that, with temperature constant, the volume of an enclosed dry gas:", "options": ["Varies directly with its absolute temperature", "Varies inversely with its absolute pressure", "Remains constant regardless of pressure", "Varies directly with its absolute pressure"], "correct": 1, "short": "Varies inversely with its absolute pressure", "expl": "Boyle's law: volume varies INVERSELY with absolute pressure at constant temperature — double the absolute pressure and the volume halves. Formula: V1P1 = V2P2.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-24 (Boyle's Law)", "topic": "Gas laws"}, {"q": "10 cubic feet of nitrogen is under 500 psia. If the volume is reduced to 7 cubic feet (temperature constant), what is the new pressure?", "options": ["500 psia", "1,021 psia", "350 psia", "714.29 psia"], "correct": 3, "short": "714.29 psia", "expl": "V1P1 = V2P2: 10 × 500 = 7 × P2, so P2 = 5,000 ÷ 7 = 714.29 psia.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-24 (Boyle's Law — worked example, Figure 5-37)", "topic": "Gas laws"}, {"q": "Which of these is a common aviation application of Boyle's law?", "options": ["A hydrometer checking battery electrolyte", "An altimeter measuring height", "CO₂ bottles used to inflate life rafts and life vests", "A carburetor venturi metering fuel"], "correct": 2, "short": "CO₂ bottles used to inflate life rafts and life vests", "expl": "Boyle's law applications include CO₂ bottles for life rafts/vests, compressed oxygen and acetylene tanks for welding, compressed-air brakes and shock absorbers, and oxygen tanks for high-altitude flying.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-24 (Boyle's Law — applications)", "topic": "Gas laws"}, {"q": "Charles' law states that, with pressure held constant, all gases expand and contract:", "options": ["In direct proportion to the change in absolute temperature", "Independently of temperature", "In direct proportion to the gauge pressure", "In inverse proportion to the change in absolute temperature"], "correct": 0, "short": "In direct proportion to the change in absolute temperature", "expl": "Charles' law: gas volume changes in DIRECT proportion to absolute temperature at constant pressure (and pressure varies directly with absolute temperature at constant volume).", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-25 (Charles' Law)", "topic": "Gas laws"}, {"q": "A 15-cubic-foot oxygen cylinder sits at 70 °F and 750 psig. The sun heats it to 140 °F. What is the new pressure in psig?", "options": ["1,500 psig", "765 psig", "375 psig", "851 psig"], "correct": 3, "short": "851 psig", "expl": "Use absolute values: 70 °F = 530 °R, 140 °F = 600 °R, 750 psig + 14.7 = 764.7 psia. P1T2 = P2T1: 764.7 × 600 = P2 × 530 → P2 = 865.7 psia = 851 psig.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-25 (Charles' Law — oxygen cylinder worked example)", "topic": "Gas laws"}, {"q": "When using the general gas law (combining Boyle's and Charles' laws), temperature and pressure must be expressed:", "options": ["In absolute values (e.g., Rankine and psia)", "As percentages of standard day", "In metric units only", "In gauge values (psig and °F)"], "correct": 0, "short": "In absolute values (e.g., Rankine and psia)", "expl": "P1·V1·T2 = P2·V2·T1 — and both temperature AND pressure must be in the absolute (Rankine/Kelvin, psia) for the math to work.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-25 (General Gas Law)", "topic": "Gas laws"}, {"q": "Dalton's law states that a mixture of gases that do not combine chemically exerts a pressure equal to:", "options": ["The product of all the partial pressures", "The pressure of the heaviest gas alone", "The sum of the partial pressures the gases would exert separately", "The average of the gases' pressures"], "correct": 2, "short": "The sum of the partial pressures the gases would exert separately", "expl": "Each gas in a mixture expands to fill the whole space at its own partial pressure; the mixture's total pressure is the SUM of those partial pressures.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-25 to 5-26 (Dalton's Law)", "topic": "Gas laws"}, {"q": "The three elements necessary for the transmission and reception of sound are:", "options": ["Frequency, amplitude, and wavelength", "A source, a medium for carrying the sound, and a detector", "Compression, rarefaction, and resonance", "A speaker, an amplifier, and an antenna"], "correct": 1, "short": "A source, a medium for carrying the sound, and a detector", "expl": "Sound needs (1) a source (anything vibrating), (2) a medium to carry it, and (3) a detector (like the eardrum). With no medium — a vacuum — sound cannot travel.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-30 (Sound)", "topic": "Sound"}, {"q": "Sound travels through matter in the form of:", "options": ["Longitudinal waves — particles vibrate back and forth in the direction of propagation", "Transverse waves — particles vibrate at right angles to travel", "Static waves that do not move", "Electromagnetic waves like light"], "correct": 0, "short": "Longitudinal waves — particles vibrate back and forth in the direction of propagation", "expl": "Sound waves are LONGITUDINAL: the medium's particles vibrate along the direction of travel, as compressions and rarefactions. (Water waves are transverse.)", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-30 to 5-31 (Wave Motion)", "topic": "Sound"}, {"q": "As a general rule, sound travels:", "options": ["At the same speed in all media", "Fastest in solids, slower in liquids, and slowest in gases", "Only through gases", "Fastest in gases, slowest in solids"], "correct": 1, "short": "Fastest in solids, slower in liquids, and slowest in gases", "expl": "Using density as a rough guide: solids fastest, liquids slower, gases slowest. In air at 0 °C sound travels 1,087 fps, increasing about 1.1 fps per degree Fahrenheit of temperature rise.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-31 (Speed of Sound)", "topic": "Sound"}, {"q": "The speed of sound at sea level (59 °F) is approximately 761 mph. An aircraft flying at Mach 1.2 at sea level is traveling about:", "options": ["1,522 mph", "761 mph", "634 mph", "913 mph"], "correct": 3, "short": "913 mph", "expl": "Mach number = aircraft speed ÷ speed of sound. At Mach 1.2: 761 × 1.2 = 913 mph.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-31 (Mach Number)", "topic": "Sound"}, {"q": "One decibel (dB) is defined as:", "options": ["The loudness of a soft whisper at 5 feet", "One-tenth of the intensity of a jet engine", "The smallest change in sound intensity the human ear can detect", "The frequency of middle C"], "correct": 2, "short": "The smallest change in sound intensity the human ear can detect", "expl": "A decibel is the ratio of one sound to another; 1 dB is the smallest intensity change the ear can detect. A faint whisper is about 20 dB; a jetliner at takeoff thrust heard from 150 ft is about 90 dB.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-32 (Measurement of Sound Intensity)", "topic": "Sound"}, {"q": "As an airplane approaches you, its sound becomes louder and higher pitched; as it flies away, both decrease. This is:", "options": ["Harmonic motion", "Resonance", "A sonic boom", "The Doppler effect"], "correct": 3, "short": "The Doppler effect", "expl": "The Doppler effect: an object's forward motion adds to the sound frequency sensed from the front and subtracts from it as sensed from the rear.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-32 (Doppler Effect)", "topic": "Sound"}];
+const DRILL = [{"label": "BTU", "text": "1 BTU raises 1 lb of water 1 F. 1 calorie raises 1 gram of water 1 C."}, {"label": "BTU to work", "text": "1 BTU = 778 ft-lb of work. Avgas = 18,900 BTU per pound."}, {"label": "Temp conversions", "text": "F = 1.8C + 32; C = (F - 32) x 5/9; Kelvin = C + 273; Rankine = F + 460."}, {"label": "Absolute zero", "text": "-273 C / -460 F — molecular motion ceases."}, {"label": "Heat transfer", "text": "Conduction = contact; Convection = moving fluid; Radiation = electromagnetic (works in a vacuum)."}, {"label": "Boyle's law", "text": "Volume varies INVERSELY with absolute pressure (temperature constant). V1P1 = V2P2."}, {"label": "Charles' law", "text": "Volume/pressure vary DIRECTLY with ABSOLUTE temperature (use Rankine!)."}, {"label": "Dalton's law", "text": "Total pressure of a gas mixture = sum of the partial pressures."}, {"label": "Speed of sound", "text": "761 mph at 59 F sea level; 1,087 fps at 0 C; fastest in solids, slowest in gases."}, {"label": "Decibel", "text": "1 dB = smallest intensity change the human ear can detect."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

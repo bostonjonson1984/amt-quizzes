@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 1 Pre-Test — Comprehensive Review</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 1 Pre-Test — Comprehensive Review</h1>
+    <div class="sub">BLK01 General Science I: Math &amp; General Physics · 50 questions sampled across all five Block 1 quizzes · every answer cited to FAA-H-8083-30B</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "A hydraulic system pressure is 500 psi and acts on a piston area of 4 square inches. What force is produced?", "options": ["125 lb", "500 lb", "1,000 lb", "2,000 lb"], "correct": 3, "short": "2,000 lb", "expl": "Use F = P × A. Force = 500 × 4 = 2,000 pounds.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-28 (Pascal's Law — Force = Pressure x Area)", "topic": "Hydraulics"}, {"q": "A series circuit has resistors of 2.34 ohms, 37.5 ohms, and 0.09 ohms. What is the total resistance?", "options": ["39.84 ohms", "38.93 ohms", "39.93 ohms", "40.23 ohms"], "correct": 2, "short": "39.93 ohms", "expl": "Total resistance of a series circuit is the sum of the individual resistances. Align the decimal points vertically and add: 2.34 + 37.5 + 0.09 = 39.93 ohms.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-4 (Addition of Decimal Numbers — circuit example)", "topic": "Decimals"}, {"q": "Pressure is defined as:", "options": ["The total weight of a fluid in a container", "The volume of fluid displaced by a piston", "The amount of force acting on a specific amount of surface area", "The speed at which a fluid flows through a line"], "correct": 2, "short": "The amount of force acting on a specific amount of surface area", "expl": "Pressure = force ÷ area, with force in pounds and area in square inches, giving pounds per square inch (psi).", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-22 (Pressure)", "topic": "Pressure"}, {"q": "A 10-cubic-foot object weighing 700 pounds is placed in pure water (62.4 lb/ft³). What happens?", "options": ["It sinks, and its submerged weight is still 700 pounds", "It floats with 1.2 cubic feet above the water line", "It sinks, and its measurable submerged weight is 76 pounds", "It floats, because buoyant force always exceeds weight"], "correct": 2, "short": "It sinks, and its measurable submerged weight is 76 pounds", "expl": "Buoyant force = volume × density of fluid = 10 × 62.4 = 624 lb. Since 624 lb is less than the 700-lb weight, it sinks. Submerged weight = 700 − 624 = 76 lb.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-26 to 5-27 (Buoyancy — worked example)", "topic": "Buoyancy"}, {"q": "One BTU of heat energy equals how much mechanical work?", "options": ["550 foot-pounds", "33,000 foot-pounds", "778 foot-pounds", "746 foot-pounds"], "correct": 2, "short": "778 foot-pounds", "expl": "Experiments established that 1 BTU = 778 ft-lb of work. (550 ft-lb/s and 33,000 ft-lb/min are horsepower; 746 is watts per hp.)", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Energy Units)", "topic": "Heat energy"}, {"q": "A first class lever lifts a 500-pound weight placed 12 inches from the fulcrum. The effort is applied 60 inches from the fulcrum. How much force is required?", "options": ["500 pounds", "2,500 pounds", "100 pounds", "60 pounds"], "correct": 2, "short": "100 pounds", "expl": "Effort × Effort Arm = Resistance × Resistance Arm: E × 60 = 500 × 12, so E = 6,000 ÷ 60 = 100 lb. Mechanical advantage = 500 ÷ 100 = 5.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-8 (First Class Lever — worked example)", "topic": "Levers"}, {"q": "A rectangular baggage compartment is 36 inches long and 24 inches wide. What is the floor area?", "options": ["60 sq in", "432 sq in", "864 sq in", "1,728 sq in"], "correct": 2, "short": "864 sq in", "expl": "Use A = length × width. Area = 36 × 24 = 864 square inches.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.3, p. 3-18 (Rectangle)", "topic": "Rectangle area"}, {"q": "A hydraulic piston has an area of 6 square inches. If pressure is 200 psi, what force is produced?", "options": ["206 lb", "600 lb", "1,200 lb", "2,000 lb"], "correct": 2, "short": "1,200 lb", "expl": "Use F = P × A. Force = 200 × 6 = 1,200 pounds.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-28 (Pascal's Law — Force = Pressure x Area)", "topic": "Hydraulics"}, {"q": "An engine does 11,000 ft-lb of work in 10 seconds. What is the power in ft-lb/sec?", "options": ["110 ft-lb/sec", "550 ft-lb/sec", "1,100 ft-lb/sec", "11,000 ft-lb/sec"], "correct": 2, "short": "1,100 ft-lb/sec", "expl": "Power = work ÷ time. Power = 11,000 ÷ 10 = 1,100 ft-lb/sec.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-6 (Power = Force x distance / time)", "topic": "Power"}, {"q": "An aircraft floor panel is a rectangle 24 inches long and 12 inches wide. What is its area?", "options": ["288 square inches", "144 square inches", "576 square inches", "36 square inches"], "correct": 0, "short": "288 square inches", "expl": "Area of a rectangle = length × width = 24 × 12 = 288 square inches.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-18 (Rectangle — floor panel example)", "topic": "Rectangle area"}, {"q": "Archimedes' principle states that the buoyant force a fluid exerts on a submerged body is equal to:", "options": ["The volume of the body times its own density", "The weight of the fluid the body displaces", "The weight of the body in free air", "The surface area of the body times fluid pressure"], "correct": 1, "short": "The weight of the fluid the body displaces", "expl": "The buoyant force equals the weight of the displaced fluid. This applies to ALL fluids — air exerts buoyant force on objects just as water does.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-26 (Buoyancy — Archimedes' principle)", "topic": "Buoyancy"}, {"q": "10 cubic feet of nitrogen is under 500 psia. If the volume is reduced to 7 cubic feet (temperature constant), what is the new pressure?", "options": ["500 psia", "1,021 psia", "350 psia", "714.29 psia"], "correct": 3, "short": "714.29 psia", "expl": "V1P1 = V2P2: 10 × 500 = 7 × P2, so P2 = 5,000 ÷ 7 = 714.29 psia.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-24 (Boyle's Law — worked example, Figure 5-37)", "topic": "Gas laws"}, {"q": "One BTU is the amount of heat required to:", "options": ["Change 1 gallon of water by 1 degree Fahrenheit", "Change the temperature of 1 pound of water by 1 degree Fahrenheit", "Change the temperature of 1 gram of water by 1 degree Centigrade", "Boil 1 pound of water completely away"], "correct": 1, "short": "Change the temperature of 1 pound of water by 1 degree Fahrenheit", "expl": "1 BTU raises 1 lb of water 1 °F. (1 calorie raises 1 GRAM of water 1 °C.) The BTU is the unit used for engine thermal efficiency and fuel heat content.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-18 (Heat Energy Units)", "topic": "Heat energy"}, {"q": "Thermal efficiency of an engine is the ratio of:", "options": ["Exhaust temperature to intake temperature", "Compression ratio to displacement", "Fuel burned to fuel carried", "Horsepower produced to the potential horsepower in the fuel consumed"], "correct": 3, "short": "Horsepower produced to the potential horsepower in the fuel consumed", "expl": "Thermal Efficiency = Horsepower Produced ÷ Potential Horsepower in Fuel. A typical GA piston engine producing 200 hp while burning fuel with 744 potential hp is 26.88% efficient — over 70% of the fuel's energy is lost to friction and heat.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Energy and Thermal Efficiency)", "topic": "Heat energy"}, {"q": "The acceleration due to gravity on earth is:", "options": ["550 feet per second per second", "14.7 feet per second per second", "9.8 feet per second per second", "32.2 feet per second per second"], "correct": 3, "short": "32.2 feet per second per second", "expl": "Gravity accelerates objects at 32.2 fps/s here on earth. An object weighing 32.2 pounds has a mass of 1 slug.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-1 (Mass & Weight)", "topic": "Matter"}, {"q": "An engine has a bore of 5 inches and a stroke of 4 inches. What is the displacement of one cylinder?", "options": ["78.5 cu in", "98.125 cu in", "100 cu in", "314 cu in"], "correct": 0, "short": "78.5 cu in", "expl": "Displacement = piston area × stroke. Bore radius = 2.5 inches. Area = 19.625 sq in. Displacement = 19.625 × 4 = 78.5 cubic inches.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.3, p. 3-21 to 3-22 (Piston Displacement)", "topic": "Piston displacement"}, {"q": "Convection is the process by which heat is transferred by:", "options": ["Electromagnetic waves moving at the speed of light", "Direct molecular contact between solids", "Movement of a heated fluid (gas or liquid)", "Compression of a confined gas"], "correct": 2, "short": "Movement of a heated fluid (gas or liquid)", "expl": "Convection transfers heat by movement of a heated fluid — like warm air rising off a light bulb, or heated water rising in a pan while cooler water moves in below.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-20 (Heat Transfer — Convection)", "topic": "Heat transfer"}, {"q": "An engine produces 1,100 ft-lb/sec of power. How many horsepower is this?", "options": ["1 hp", "2 hp", "5 hp", "10 hp"], "correct": 1, "short": "2 hp", "expl": "1 horsepower = 550 ft-lb/sec. Horsepower = 1,100 ÷ 550 = 2 hp.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-6 (1 hp = 550 ft-lb/s)", "topic": "Horsepower"}, {"q": "Why does a piston engine's manifold pressure gauge read absolute pressure (psia)?", "options": ["Because the manifold is sealed from the atmosphere", "Because absolute gauges are cheaper to manufacture", "Because gauge pressure cannot be displayed in inches of mercury", "Manifold pressure can read either below atmospheric (unsupercharged) or above it (supercharged), and only an absolute gauge shows both"], "correct": 3, "short": "Manifold pressure can read either below atmospheric (unsupercharged) or above it (supercharged), and only an absolute gauge shows both", "expl": "Manifold pressure ranges from less than atmospheric (not supercharged) to more than atmospheric (supercharged). Only an absolute pressure gauge has the flexibility to show this whole range; 29.92 \"Hg is the standard-day reference.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-23 (Absolute Pressure — manifold pressure gauge)", "topic": "Pressure"}, {"q": "A 4-cylinder engine has a bore of 4 inches and a stroke of 3 inches. What is the total piston displacement?", "options": ["37.68 cu in", "50.24 cu in", "150.72 cu in", "200.96 cu in"], "correct": 2, "short": "150.72 cu in", "expl": "Total displacement = πr² × stroke × number of cylinders. Radius = 2. Area = 3.14 × 4 = 12.56. One cylinder = 12.56 × 3 = 37.68. Total = 37.68 × 4 = 150.72 cubic inches.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.3, p. 3-21 to 3-22 (Piston Displacement)", "topic": "Piston displacement"}, {"q": "Holes for aircraft structure are drilled 1/64 inch undersized, then reamed to final diameter. If the final reamed hole is 0.763 inch, what drill bit should be used?", "options": ["3/4 inch", "49/64 inch", "25/32 inch", "23/32 inch"], "correct": 0, "short": "3/4 inch", "expl": "0.763 × 64 = 48.8 ≈ 49, so the finished hole is 49/64. Subtract 1/64 for the undersized drill: 49/64 − 1/64 = 48/64 = 3/4-inch drill bit.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-7 (Converting Decimal Numbers to Fractions — drill/ream example)", "topic": "Decimals"}, {"q": "On a reciprocating engine, the 'bore' is the:", "options": ["Distance between the crankshaft and the piston pin", "Inside diameter of the cylinder", "Length the piston travels inside the cylinder", "Outside diameter of the piston rings"], "correct": 1, "short": "Inside diameter of the cylinder", "expl": "Bore = the inside diameter of the cylinder. Stroke = the length the piston travels inside the cylinder.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-22 (Piston displacement — bore and stroke definitions)", "topic": "Piston displacement"}, {"q": "One pound of aviation gasoline contains how much heat energy?", "options": ["14,700 BTU", "778 BTU", "5,252 BTU", "18,900 BTU"], "correct": 3, "short": "18,900 BTU", "expl": "Avgas contains 18,900 BTU of heat energy per pound. Since each BTU can do 778 ft-lb of work, one pound of avgas is capable of 14,704,200 ft-lb of work.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-19 (Heat Energy Units; also p. 5-3, Potential Energy)", "topic": "Heat energy"}, {"q": "A 19,000-pound GE-90 engine must be lifted 4 feet in 2 minutes to install it on a Boeing 777. What horsepower does this require?", "options": ["2.3 hp", "1.15 hp", "38,000 hp", "0.5 hp"], "correct": 1, "short": "1.15 hp", "expl": "Power = F × d ÷ t = 19,000 × 4 ÷ 2 = 38,000 ft-lb/min. Horsepower = 38,000 ÷ 33,000 = 1.15 hp.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-6 (Power — engine hoist example)", "topic": "Power"}, {"q": "An air-cooled piston engine's cylinder heat reaches the cooling fins by ______ and is then carried away by ______.", "options": ["Convection; conduction", "Convection; radiation", "Radiation; conduction", "Conduction; forced-air convection"], "correct": 3, "short": "Conduction; forced-air convection", "expl": "Heat travels within the cylinder metal to the fins by conduction. Then forced air from the propeller flowing around the finned cylinders carries the heat away — forced-air convection.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-20 (Convection — air-cooled engine example)", "topic": "Heat transfer"}, {"q": "The three kinds of friction are:", "options": ["Tension, compression, and shear", "Laminar, turbulent, and static", "Kinetic, potential, and chemical", "Starting (static), sliding, and rolling"], "correct": 3, "short": "Starting (static), sliding, and rolling", "expl": "Experiments show three kinds of friction: (1) starting or static friction, (2) sliding friction, and (3) rolling friction. Rolling friction is much smaller than sliding friction.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-5 (Friction & Work)", "topic": "Friction"}, {"q": "A panel is made from 3/32-inch thick aluminum with a 1/64-inch thick paint coating. What is the total thickness?", "options": ["7/64 inch", "7/32 inch", "5/64 inch", "1/8 inch"], "correct": 0, "short": "7/64 inch", "expl": "Convert to a common denominator of 64ths: 3/32 = 6/64. Then 6/64 + 1/64 = 7/64 inch total thickness.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-2 (Addition of Fractions — panel example)", "topic": "Fractions"}, {"q": "A spherical pressure tank in a cargo aircraft has a diameter of 34 inches. What is its volume?", "options": ["41,056 cubic inches", "15,396 cubic inches", "20,528.125 cubic inches", "3,631.7 cubic inches"], "correct": 2, "short": "20,528.125 cubic inches", "expl": "V = 4/3 × π × r³. Radius = 34 ÷ 2 = 17 inches. V = 1.33 × 3.1416 × 17³ = 1.33 × 3.1416 × 4,913 = 20,528.125 cubic inches.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-23 (Sphere — pressure tank example)", "topic": "Sphere volume"}, {"q": "One square foot equals how many square inches?", "options": ["1,728 square inches", "144 square inches", "12 square inches", "9 square inches"], "correct": 1, "short": "144 square inches", "expl": "A square foot measures 12 inches by 12 inches, so 12 × 12 = 144 square inches. To convert square feet to square inches, multiply by 144.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-20 (Units of Area)", "topic": "Units of area"}, {"q": "An actuator shaft is 2.1938 inches in diameter. Rounded to the nearest tenth, the diameter is:", "options": ["2.19 inches", "2.0 inches", "2.1 inches", "2.2 inches"], "correct": 3, "short": "2.2 inches", "expl": "The tenths digit is 1; the digit to its right is 9. Since 9 is 5 or greater, round the 1 up to 2. So 2.1938 rounds to 2.2.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-6 (Rounding Off Decimal Numbers)", "topic": "Decimals"}, {"q": "One decibel (dB) is defined as:", "options": ["The loudness of a soft whisper at 5 feet", "One-tenth of the intensity of a jet engine", "The smallest change in sound intensity the human ear can detect", "The frequency of middle C"], "correct": 2, "short": "The smallest change in sound intensity the human ear can detect", "expl": "A decibel is the ratio of one sound to another; 1 dB is the smallest intensity change the ear can detect. A faint whisper is about 20 dB; a jetliner at takeoff thrust heard from 150 ft is about 90 dB.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-32 (Measurement of Sound Intensity)", "topic": "Sound"}, {"q": "Which simple machine is used when a ramp helps move equipment to a higher level?", "options": ["Lever", "Pulley", "Inclined plane", "Gear"], "correct": 2, "short": "Inclined plane", "expl": "A ramp spreads the work over a longer distance. A ramp is an inclined plane.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-11 (Inclined Plane)", "topic": "Simple machines"}, {"q": "In a shipment of 80 wingtip lights, 15% were defective. How many lights were defective?", "options": ["12", "8", "15", "20"], "correct": 0, "short": "12", "expl": "15% of 80 = 0.15 × 80 = 12 defective lights.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-10 (Finding a Percentage of a Given Number)", "topic": "Percentage"}, {"q": "What is the length of the longest side (hypotenuse) of a right triangle whose other two sides are 7 inches and 9 inches?", "options": ["8 inches", "16 inches", "130 inches", "11.4 inches"], "correct": 3, "short": "11.4 inches", "expl": "Pythagorean Theorem: a² + b² = c². 7² + 9² = 49 + 81 = 130, so c = √130 = 11.4 inches.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-25 (Pythagorean Theorem)", "topic": "Pythagorean theorem"}, {"q": "In the proportion 65/80 = X/100, what is X?", "options": ["76.25", "81.25", "123.08", "52"], "correct": 1, "short": "81.25", "expl": "Multiply the two numbers along the diagonal and divide by the third: 65 × 100 = 6,500, then 6,500 ÷ 80 = 81.25.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-8 (Solving Proportions)", "topic": "Proportion"}, {"q": "Why is the allowable takeoff gross weight generally reduced for operations in consistently humid areas?", "options": ["Humid air is heavier and overloads the wings", "Water vapor corrodes the engine during takeoff", "Humidity increases fuel density", "Humid air is less dense than dry air, reducing performance"], "correct": 3, "short": "Humid air is less dense than dry air, reducing performance", "expl": "Humid air is LESS dense than dry air. Less density means less takeoff performance, so allowable takeoff gross weight is generally reduced for consistently humid operation.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-34 to 5-35 (Water Content of the Atmosphere)", "topic": "Atmosphere"}, {"q": "A worm gear drives a spur gear with 25 teeth. The mechanical advantage of this force-gaining machine is:", "options": ["25 — equal to the number of teeth on the spur gear", "1 — worm gears only change direction", "50 — twice the number of teeth", "5 — the square root of the teeth"], "correct": 0, "short": "25 — equal to the number of teeth on the spur gear", "expl": "One complete revolution of the worm gear moves the spur gear only one tooth. The MA equals the number of teeth on the spur gear — here 25 times more output force.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-10 to 5-11 (The Gear — worm gear)", "topic": "Gears"}, {"q": "The width of a hex head bolt measures 0.3123 inch. Which socket (in 64ths) is the best fit?", "options": ["3/8 inch", "5/16 inch", "1/4 inch", "19/64 inch"], "correct": 1, "short": "5/16 inch", "expl": "Multiply the decimal by 64: 0.3123 × 64 = 19.99 ≈ 20. That gives 20/64, which reduces to 5/16. So choose the 5/16-inch socket.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-7 (Converting Decimal Numbers to Fractions — socket example)", "topic": "Decimals"}, {"q": "If a driven gear rotates slower than the driving gear, what usually happens to torque?", "options": ["Torque decreases", "Torque increases", "Torque becomes zero", "Torque is unrelated to speed"], "correct": 1, "short": "Torque increases", "expl": "Speed reduction usually gives torque multiplication. A gear reduction lowers speed but increases torque, ignoring friction losses.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.5, p. 5-10 to 5-11 (The Gear — reduction & torque)", "topic": "Torque"}, {"q": "In the narrow throat of a venturi tube, the fluid's velocity ______ and its static pressure ______.", "options": ["Increases; decreases", "Increases; increases", "Stays the same; decreases", "Decreases; increases"], "correct": 0, "short": "Increases; decreases", "expl": "The narrow center must pass the same volume of fluid as the wide ends, so the fluid speeds up — and per Bernoulli, where velocity increases, static pressure decreases.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-29 to 5-30 (Bernoulli's Principle and a venturi, Figure 5-46)", "topic": "Bernoulli / venturi"}, {"q": "What is the area of a square access plate whose side measures 25 inches?", "options": ["100 square inches", "525 square inches", "50 square inches", "625 square inches"], "correct": 3, "short": "625 square inches", "expl": "Area of a square = side × side = 25 × 25 = 625 square inches.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-18 (Square — access plate example)", "topic": "Square area"}, {"q": "An airplane flying 300 miles used 24 gallons of gasoline. How many gallons will it need to travel 750 miles?", "options": ["75 gallons", "48 gallons", "96 gallons", "60 gallons"], "correct": 3, "short": "60 gallons", "expl": "Set up miles-to-gallons as a proportion: 300/24 = 750/G. Then G = (750 × 24) ÷ 300 = 60 gallons.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-8 to 3-9 (Solving Proportions — fuel example)", "topic": "Proportion"}, {"q": "Convert 8 foot-pounds to inch-pounds.", "options": ["48 in-lb", "72 in-lb", "96 in-lb", "120 in-lb"], "correct": 2, "short": "96 in-lb", "expl": "Multiply foot-pounds by 12. 8 ft-lb × 12 = 96 in-lb.", "cite": "Your class bank (verbatim) · FAA-H-8083-30B Ch.3, p. 3-22, Fig. 3-23 (12 in = 1 ft) & Ch.5 p. 5-6", "topic": "Torque conversion"}, {"q": "Using watts = amperes × voltage, what is the wattage of an electric drill that draws 9.45 amperes from a 120-volt source?", "options": ["1,134 watts", "113.4 watts", "1,260 watts", "11,340 watts"], "correct": 0, "short": "1,134 watts", "expl": "Multiply 9.45 × 120 = 1,134. Count decimal places: 9.45 has 2, 120 has none, so the product keeps 2 decimal places: 1,134.00, or 1,134 watts.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-5 (Multiplication of Decimal Numbers — drill example)", "topic": "Decimals"}, {"q": "Boyle's law states that, with temperature constant, the volume of an enclosed dry gas:", "options": ["Varies directly with its absolute temperature", "Varies inversely with its absolute pressure", "Remains constant regardless of pressure", "Varies directly with its absolute pressure"], "correct": 1, "short": "Varies inversely with its absolute pressure", "expl": "Boyle's law: volume varies INVERSELY with absolute pressure at constant temperature — double the absolute pressure and the volume halves. Formula: V1P1 = V2P2.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-24 (Boyle's Law)", "topic": "Gas laws"}, {"q": "The three elements necessary for the transmission and reception of sound are:", "options": ["Frequency, amplitude, and wavelength", "A source, a medium for carrying the sound, and a detector", "Compression, rarefaction, and resonance", "A speaker, an amplifier, and an antenna"], "correct": 1, "short": "A source, a medium for carrying the sound, and a detector", "expl": "Sound needs (1) a source (anything vibrating), (2) a medium to carry it, and (3) a detector (like the eardrum). With no medium — a vacuum — sound cannot travel.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-30 (Sound)", "topic": "Sound"}, {"q": "A carburetor needs 2 psi supplied at its inlet by gravity alone. This 'head of pressure' is obtained by:", "options": ["Enlarging the diameter of the fuel line", "Positioning the fuel tank the appropriate number of inches higher than the carburetor", "Using a wider, flatter fuel tank of the same height", "Painting the tank to reduce evaporation"], "correct": 1, "short": "Positioning the fuel tank the appropriate number of inches higher than the carburetor", "expl": "Pressure based on column height is static pressure, or a 'head' of pressure. Raising the tank higher than the carburetor increases the column height and therefore the pressure.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-27 (Fluid Pressure — head of pressure)", "topic": "Fluid pressure"}, {"q": "Using the cylinder above (128.29 cubic inches each), what is the total displacement of the eight-cylinder engine?", "options": ["1,026.32 cubic inches", "1,540.4 cubic inches", "513.16 cubic inches", "128.29 cubic inches"], "correct": 0, "short": "1,026.32 cubic inches", "expl": "Total displacement = displacement per cylinder × number of cylinders = 128.29 × 8 = 1,026.32 cubic inches.", "cite": "FAA-H-8083-30B Ch.3 (Mathematics in Aviation Maintenance), p. 3-22 (Cylinder — 8-cylinder total displacement)", "topic": "Piston displacement"}, {"q": "The dew point is the temperature to which humid air must be:", "options": ["Cooled at constant pressure to become saturated", "Heated at constant pressure to evaporate all moisture", "Raised before fog can form", "Cooled to exactly 0 °C"], "correct": 0, "short": "Cooled at constant pressure to become saturated", "expl": "Dew point = the temperature at which air, cooled at constant pressure, becomes saturated. Below the dew point, condensation occurs — like moisture fogging eyeglasses.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-36 (Dew Point)", "topic": "Atmosphere"}, {"q": "A wheelbarrow's handles are 60 inches from the wheel's center, and 300 pounds sits in the bucket 18 inches from the wheel. What force lifts the handles?", "options": ["1,000 pounds", "90 pounds", "54 pounds", "300 pounds"], "correct": 1, "short": "90 pounds", "expl": "E × 60 = 300 × 18, so E = 5,400 ÷ 60 = 90 lb. A wheelbarrow is a SECOND class lever — fulcrum (wheel) at one end, effort (handles) at the other, resistance between.", "cite": "FAA-H-8083-30B Ch.5 (Physics for Aviation), p. 5-9 (Second Class Lever — wheelbarrow example)", "topic": "Levers"}];
+const DRILL = [{"label": "Common denominator", "text": "Fractions must share a common denominator to add or subtract (find the LCD)."}, {"label": "Decimal to nearest 64th", "text": "Multiply the decimal by 64, round to a whole number, put it over 64, reduce. (0.3123 -> 20/64 = 5/16)"}, {"label": "Circle", "text": "Area = pi x r^2; Circumference = pi x d; radius = diameter / 2."}, {"label": "Triangle / Trapezoid", "text": "Triangle = 1/2 x b x h. Trapezoid = 1/2 x (b1 + b2) x h."}, {"label": "Gravity", "text": "Acceleration due to gravity = 32.2 fps/s; 32.2 lb = 1 slug of mass."}, {"label": "Water density", "text": "Water weighs 62.4 lb per cubic foot (the density standard)."}, {"label": "Standard day", "text": "14.7 psi = 29.92 \"Hg = 760 mm Hg = 1013.2 millibars; 59 F / 15 C at sea level."}, {"label": "Pressure types", "text": "psig = above ambient; psia = psig + atmospheric; psid = difference between two points."}, {"label": "BTU", "text": "1 BTU raises 1 lb of water 1 F. 1 calorie raises 1 gram of water 1 C."}, {"label": "BTU to work", "text": "1 BTU = 778 ft-lb of work. Avgas = 18,900 BTU per pound."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
