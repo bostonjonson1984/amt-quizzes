@@ -1,6 +1,6 @@
 {
  "built": "2026-06-10",
- "total": 2205,
+ "total": 2283,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -14,6 +14,7 @@
   "Block 1 Precision Measuring Tools — Quiz": 27,
   "Block 1 Weight & Balance — Quiz": 37,
   "AMT 211 — Aircraft Hardware, AN Bolts & Standards Test": 132,
+  "Block 2 Final Exam — Must-Know Drill": 78,
   "Block 2 Materials & Processes — Notes Review": 136,
   "Block 2 Tools & Measuring Devices — Notes Review": 122,
   "Ch.8 General — Cleaning & Corrosion Exam": 221,
@@ -10309,6 +10310,1488 @@
    "block": "Block 2",
    "sources": [
     "AMT 211 — Aircraft Hardware, AN Bolts & Standards Test"
+   ]
+  },
+  {
+   "id": "b639d527f1",
+   "q": "Why are piano-type hinges on an aircraft prime spots for corrosion?",
+   "options": [
+    "The grease used on hinges is acidic and slowly attacks the aluminum",
+    "Constant flexing of the hinge causes fatigue corrosion in the lugs",
+    "The steel hinge pin against the aluminum hinge is dissimilar-metal contact, and the hinge is a natural trap for dirt, salt, and moisture",
+    "The hinges are made of magnesium, the most chemically active aircraft metal"
+   ],
+   "correct": 2,
+   "short": "Dissimilar metals (steel pin in aluminum hinge) plus trapped dirt, salt, and moisture.",
+   "expl": "Hidden corrosion freezes the joint and the lugs break off when the hinge moves. Inspect, lubricate with WATER-DISPLACING lubricant, and work the hinge through several cycles so the lubricant penetrates.",
+   "cite": "FAA-H-8083-30B p. 8-13, 8-14",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "ff0d93e78f",
+   "q": "How can you tell a bolt that has been inspected by magnetic particle (Magnaflux) or fluorescent (Zyglo) methods from a regular bolt?",
+   "options": [
+    "By the letter M stamped on the shank",
+    "By a blue anodized finish on the threads",
+    "By a raised dash or asterisk on the bolt head",
+    "By colored lacquer (e.g., orange dye) or a distinctive head marking"
+   ],
+   "correct": 3,
+   "short": "Colored lacquer (orange dye) or a distinctive head marking.",
+   "expl": "A regular bolt only carries the standard material/manufacturer head markings. Don't confuse this with the raised dash/asterisk — that marks an AN standard STEEL bolt, not an inspected one.",
+   "cite": "FAA-H-8083-30B p. 7-39; AC 43.13-1B ¶7-36b + Fig. 7-1 (pp. 7-5, 7-6)",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "4affa46714",
+   "q": "Which statement best describes a schematic diagram?",
+   "options": [
+    "It locates components with respect to each other within the system and shows the principle of operation — not their actual location, size, or shape",
+    "It shows each part in its final installed position with locating dimensions",
+    "It shows the exact size and shape of every part using multiple views",
+    "It shows the object as it appears to the eye, like a photograph"
+   ],
+   "correct": 0,
+   "short": "Components relative to each other + principle of operation; used for troubleshooting and training.",
+   "expl": "Schematics do NOT show real location or size. The wrong options describe an installation drawing, an orthographic projection, and a perspective drawing — know all four apart.",
+   "cite": "FAA-H-8083-30B p. 4-11",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "9c4f3e35b0",
+   "q": "What is galvanic corrosion?",
+   "options": [
+    "Corrosion that occurs when two dissimilar metals make electrical contact while an electrolyte (moisture) is present",
+    "Uniform etching of a metal surface by direct chemical attack, such as spilled battery acid",
+    "Corrosion produced by cyclic stress and a corrosive environment acting together",
+    "Corrosion that attacks along the grain boundaries of improperly heat-treated alloys"
+   ],
+   "correct": 0,
+   "short": "Two dissimilar metals in electrical contact + an electrolyte.",
+   "expl": "The more active metal corrodes. The bigger the activity difference between the two metals, the faster the attack — and if the corroding metal is the smaller piece, it corrodes even faster. The wrong options are intergranular, direct chemical, and fatigue corrosion.",
+   "cite": "FAA-H-8083-30B p. 8-10",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "360490a021",
+   "q": "Why are plastic surfaces (windshields, windows) washed with soap and water instead of strong cleaners?",
+   "options": [
+    "Strong cleaners make the plastic electrically conductive, creating a shock hazard",
+    "Soap leaves a wax film that structurally strengthens the plastic",
+    "Harsh chemicals like acetone, benzene, lacquer thinner, and window sprays soften plastic and cause crazing",
+    "Plastic must never get wet, so soap is used dry on a cloth"
+   ],
+   "correct": 2,
+   "short": "Harsh solvents soften plastic and cause crazing — use soap and water, preferably by hand.",
+   "expl": "Procedure: flush with fresh water first (dissolves salt, floats off dust), wash with soap and water by hand, rinse, dry with a chamois. Never rub a dry plastic surface — it scratches and builds static.",
+   "cite": "FAA-H-8083-30B p. 8-24",
+   "topic": "Cleaning & Servicing",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "f336f6208a",
+   "q": "Who can make changes to an aircraft drawing?",
+   "options": [
+    "Only someone with proper authority — every revision is recorded in the revision block along with the authority for the change",
+    "Anyone in the engineering department; no record of the change is required",
+    "Only the original draftsman who created the drawing",
+    "Any certificated mechanic, as long as he initials and dates the change"
+   ],
+   "correct": 0,
+   "short": "Only with proper authority — recorded in the revision block.",
+   "expl": "The revision block records the identification symbol, date, nature of the revision, the AUTHORITY for the change, and the draftsman's name. All changes to approved drawings must be noted on all existing prints.",
+   "cite": "FAA-H-8083-30B p. 4-8",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "2b89e97aee",
+   "q": "A bolt head marked with an asterisk is what kind of bolt?",
+   "options": [
+    "A close-tolerance NAS bolt",
+    "An aluminum-alloy bolt",
+    "A corrosion-resistant steel bolt",
+    "An AN standard steel bolt"
+   ],
+   "correct": 3,
+   "short": "AN standard steel bolt — marked with either a raised dash or an asterisk.",
+   "expl": "Marking set: raised dash or asterisk = AN standard steel; SINGLE raised dash = corrosion-resistant steel; TWO raised dashes = aluminum alloy. Keep this trio straight — it shows up twice on this final (see also the single-raised-dash question).",
+   "cite": "AC 43.13-1B ¶7-36a (p. 7-5); FAA-H-8083-30B p. 7-38/7-39",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "7d37d81779",
+   "q": "A cube has 8-inch sides. What is its surface area?",
+   "options": [
+    "64 square inches",
+    "384 square inches",
+    "512 square inches",
+    "256 square inches"
+   ],
+   "correct": 1,
+   "short": "384 sq in — surface area of a cube = 6 × s².",
+   "expl": "6 × (8 × 8) = 6 × 64 = 384. The trap answer 512 is the VOLUME (8³); 64 is just one face.",
+   "cite": "FAA-H-8083-30B p. 3-24",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "787c19de2b",
+   "q": "Pressure is equal to —",
+   "options": [
+    "Force × Area",
+    "Force × Distance",
+    "Force ÷ Area",
+    "Area ÷ Force"
+   ],
+   "correct": 2,
+   "short": "Pressure = Force ÷ Area (psi).",
+   "expl": "Pressure is the amount of force acting on a specific amount of surface area — pounds per square inch. Force × Distance is WORK, a different formula on this same final.",
+   "cite": "FAA-H-8083-30B p. 5-22",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "9467963bb1",
+   "q": "Work is equal to —",
+   "options": [
+    "Force × Distance",
+    "Force ÷ Distance",
+    "Mass × Acceleration",
+    "Force × Area"
+   ],
+   "correct": 0,
+   "short": "Work = Force × Distance (ft-lb or in-lb).",
+   "expl": "Work happens only when something is moved some distance against a resisting force. Example: jacking a 150,000-lb airplane 4 ft = 600,000 ft-lb. Mass × Acceleration is Newton's second law (force), not work.",
+   "cite": "FAA-H-8083-30B p. 5-4",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "7631d55ecc",
+   "q": "What is the aspect ratio of a wing?",
+   "options": [
+    "The ratio of lift to drag at cruise speed",
+    "The ratio of the wing's span (tip-to-tip length) to its chord (width)",
+    "The ratio of wing area to aircraft gross weight",
+    "The ratio of the wing's thickness to its chord"
+   ],
+   "correct": 1,
+   "short": "Span ÷ chord.",
+   "expl": "Long span + narrow chord = HIGH aspect ratio = less drag at a given speed (think gliders). A typical airliner is about 7:1.",
+   "cite": "FAA-H-8083-30B p. 5-39",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "88a075aef8",
+   "q": "What is useful load?",
+   "options": [
+    "Maximum gross weight minus the payload",
+    "Maximum allowable gross weight minus empty weight",
+    "Empty weight plus the weight of crew and fuel",
+    "The weight of passengers and baggage only, not counting fuel"
+   ],
+   "correct": 1,
+   "short": "Useful load = max allowable gross weight − empty weight.",
+   "expl": "It's everything the aircraft can carry: crew, passengers, fuel, baggage. An aircraft certificated in both normal and utility categories may list two useful loads.",
+   "cite": "FAA-H-8083-30B p. 6-4",
+   "topic": "Misc (W&B, Tools)",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "8100b87713",
+   "q": "What inspection is required after a bird strike?",
+   "options": [
+    "Only the windshield and radome need to be inspected",
+    "A complete teardown inspection of the entire airframe is always required",
+    "No inspection is required unless the pilot reports a flight-control problem",
+    "Inspect the external areas around the strike; if structural damage is found, also inspect the internal structure and the hydraulic, pneumatic, and other systems in that area"
+   ],
+   "correct": 3,
+   "short": "External strike area first; structural damage found → internal structure + systems in the area.",
+   "expl": "It's one of the FAA's \"special inspections.\" Start local and external; escalate to internal structure and systems only when the initial inspection shows structural damage.",
+   "cite": "FAA-H-8083-30B p. 10-16",
+   "topic": "Inspection / NDT",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "473bf10633",
+   "q": "How does sound travel?",
+   "options": [
+    "As transverse waves that travel fastest through a vacuum",
+    "As longitudinal waves through a medium (matter); its speed is governed by the medium's density and elasticity",
+    "As electromagnetic waves, the same as light but slower",
+    "Only through air — it cannot travel through liquids or solids"
+   ],
+   "correct": 1,
+   "short": "Longitudinal waves through matter; speed set by density and elasticity.",
+   "expl": "Particles vibrate back and forth in the direction the wave travels. Sound travels FASTER in water than air, and it cannot travel at all in a vacuum — the exact opposite of the vacuum trap option.",
+   "cite": "FAA-H-8083-30B p. 5-30, 5-31",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "e6646cd1bb",
+   "q": "Why is liquid (dye) penetrant inspection used?",
+   "options": [
+    "To measure the thickness of paint or plating on a part",
+    "To find subsurface flaws buried deep inside a casting",
+    "To find cracks in ferrous metals only, using a magnetic field",
+    "To find defects that are OPEN TO THE SURFACE in any nonporous material"
+   ],
+   "correct": 3,
+   "short": "Finds surface-open defects (cracks, porosity) in any nonporous material.",
+   "expl": "Works on aluminum, magnesium, brass, stainless, titanium — even ceramics, plastics, and glass. Its big limitation: the defect MUST reach the surface. For magnetic materials, magnetic particle inspection is preferred.",
+   "cite": "FAA-H-8083-30B p. 10-18",
+   "topic": "Inspection / NDT",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "34bd0bf84c",
+   "q": "What is the difference between potential and kinetic energy?",
+   "options": [
+    "Potential energy is electrical; kinetic energy is mechanical",
+    "Potential energy is stored energy (energy at rest); kinetic energy is energy in motion",
+    "They are the same quantity expressed in different units",
+    "Potential energy is energy of motion; kinetic energy is stored energy"
+   ],
+   "correct": 1,
+   "short": "Potential = stored / at rest; kinetic = in motion. Both in foot-pounds.",
+   "expl": "Potential comes from position, distortion of an elastic body, or chemical energy (fuel). Kinetic = an airplane rolling down the runway, a spinning flywheel. The first wrong option is the classic reversal — read carefully on the exam.",
+   "cite": "FAA-H-8083-30B p. 5-2, 5-3",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "823e553d7a",
+   "q": "What is the specific gravity of air?",
+   "options": [
+    "14.7",
+    "1.0 — air is the standard for gases",
+    "0.0012",
+    "0.075"
+   ],
+   "correct": 1,
+   "short": "1.0 — air is the reference standard for gases (like water for liquids/solids).",
+   "expl": "Specific gravity compares a substance's weight to an equal volume of the STANDARD — so the standard itself is always 1. 14.7 is sea-level pressure in psi; 0.075 is air density in lb/ft³ — different facts.",
+   "cite": "FAA-H-8083-30B p. 5-2",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "a6bb163de4",
+   "q": "On a helicopter, what do the collective and cyclic controls do?",
+   "options": [
+    "Both control engine rpm — collective is coarse adjustment, cyclic is fine",
+    "Collective tilts the rotor disc for direction; cyclic raises all blade angles for vertical lift",
+    "Collective controls the tail rotor; cyclic controls the engine throttle",
+    "Collective raises the blade angle of ALL rotor blades uniformly (vertical lift); cyclic tilts the rotor disc to move the helicopter in the desired direction"
+   ],
+   "correct": 3,
+   "short": "Collective = all blades evenly (vertical); cyclic = tilts the disc (direction).",
+   "expl": "The collective is the lever by the pilot's seat (its twist-grip is the throttle); the cyclic is the stick in front, like a yoke. The first wrong option is the straight reversal — the exam's favorite trick.",
+   "cite": "FAA-H-8083-30B p. 5-53",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "b3d6e026e2",
+   "q": "Why are wheel chocks used?",
+   "options": [
+    "To take the aircraft's weight off the tires during long-term parking",
+    "To keep a parked aircraft from rolling — placed fore and aft of each wheel",
+    "To protect the tires from fuel and oil spills on the ramp",
+    "To provide a static-electricity ground path for the airframe"
+   ],
+   "correct": 1,
+   "short": "Chocks fore and aft of the wheels keep a parked aircraft from rolling.",
+   "expl": "Chock ahead of AND behind each wheel whenever the aircraft is parked, tied down, or being serviced. (The instructor's shorthand said \"chalks\" — dictation garble for chocks.)",
+   "cite": "FAA-H-8083-30B p. 1-8, 1-10/1-11",
+   "topic": "Cleaning & Servicing",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "0230b76746",
+   "q": "A 10-tooth pinion gear drives a 40-tooth spur gear. The spur gear turns at 160 rpm. How fast does the pinion turn?",
+   "options": [
+    "160 rpm",
+    "640 rpm",
+    "40 rpm",
+    "400 rpm"
+   ],
+   "correct": 1,
+   "short": "640 rpm — fewer teeth = spins faster (inverse tooth ratio).",
+   "expl": "Teeth(pinion) ÷ Teeth(spur) = Speed(spur) ÷ Speed(pinion). So pinion speed = (40 × 160) ÷ 10 = 640 rpm. The 40-rpm trap comes from dividing instead of multiplying.",
+   "cite": "FAA-H-8083-30B p. 3-8",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "4cb76ed4a9",
+   "q": "What are the 3 corrosion-inspection environment categories and how often must each be inspected?",
+   "options": [
+    "Severe — every 7 days; moderate — every 30 days; mild — every 60 days",
+    "All environments — every 30 days, regardless of severity",
+    "Severe environment — every 15 calendar-days; moderate — every 45 days; mild — every 90 days",
+    "Severe — every 30 days; moderate — every 60 days; mild — every 120 days"
+   ],
+   "correct": 2,
+   "short": "Severe 15 days / moderate 45 / mild 90. Wash the aircraft before any corrosion inspection.",
+   "expl": "Primary reading of the instructor's shorthand. ALTERNATE reading: the 3 DEPTHS of corrosion inspection — daily/preflight, in-depth (panels removed), annual (AC 43-4B ¶5.3). Memorize 15/45/90 first; confirm with the instructor which he wants.",
+   "cite": "AC 43-4B ¶5.2 (p. 5-1); ¶5.3 (p. 5-2)",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "2b709a3705",
+   "q": "What do centerlines look like on a drawing?",
+   "options": [
+    "A series of short, evenly spaced dashes",
+    "Solid freehand lines with zigzags",
+    "Thick lines with arrowheads showing where a cut was taken",
+    "Alternating long and short dashes"
+   ],
+   "correct": 3,
+   "short": "Alternating long and short dashes; where centerlines cross, the short dashes intersect.",
+   "expl": "The wrong options are the other line types: evenly spaced short dashes = HIDDEN lines; freehand/zigzag = BREAK lines; thick with arrowheads = CUTTING-PLANE lines. The exam loves swapping these.",
+   "cite": "FAA-H-8083-30B p. 4-16",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "81991d1cb5",
+   "q": "Why is titanium special as an aircraft metal?",
+   "options": [
+    "It is the heaviest aircraft metal but completely fireproof",
+    "It is cheaper and easier to machine than aluminum",
+    "It is highly magnetic, which makes it easy to inspect",
+    "It is light, strong, and corrosion-resistant — between aluminum and stainless steel in weight and strength"
+   ],
+   "correct": 3,
+   "short": "Light + strong + corrosion-resistant; sits between aluminum and stainless steel.",
+   "expl": "A protective oxide film forms on contact with air. About 60% heavier than aluminum but 50% lighter than stainless. It is NONmagnetic, resists stress-corrosion cracking, and handles enough heat for firewalls.",
+   "cite": "FAA-H-8083-30B p. 7-9, 7-10; AC 43-4B ¶6.92",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "1699a67cef",
+   "q": "What is a perspective drawing?",
+   "options": [
+    "A pictorial view in which all lines stay parallel and dimensions are accurate to scale",
+    "A pictorial view showing the object as it appears to the eye, like a photograph — so actual angles and dimensions are NOT accurate",
+    "A diagram of components relative to each other, used for troubleshooting",
+    "A multi-view drawing showing exact size and shape from six possible views"
+   ],
+   "correct": 1,
+   "short": "Like a photograph — angles and dimensions are not accurate.",
+   "expl": "Because of perspective, some lines are not parallel. The 4 pictorial types: perspective, isometric, oblique, exploded view. The accurate-to-scale option describes isometric-style drawing, not perspective.",
+   "cite": "FAA-H-8083-30B p. 4-11",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "db8188ab5f",
+   "q": "What is the most corrosion-prone metal used on aircraft?",
+   "options": [
+    "Aluminum",
+    "Titanium",
+    "Stainless steel",
+    "Magnesium"
+   ],
+   "correct": 3,
+   "short": "Magnesium — the most chemically active aircraft metal and the hardest to protect.",
+   "expl": "Most active metals = magnesium and aluminum; most noble = gold and silver. Aluminum is the runner-up trap — active, but not THE most.",
+   "cite": "FAA-H-8083-30B p. 8-19, 8-2",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "53937a1bf0",
+   "q": "Which list gives factors that affect the rate of corrosion?",
+   "options": [
+    "Only the thickness and color of the paint film",
+    "Altitude and airspeed — corrosion happens mostly in flight",
+    "Only the age of the aircraft and its total flight hours",
+    "Type of metal, heat-treatment and grain direction, dissimilar-metal contact, temperature, electrolytes, oxygen availability, biological organisms, and mechanical stress"
+   ],
+   "correct": 3,
+   "short": "Metal type, heat-treat/grain, dissimilar metals, anodic/cathodic areas, temperature, electrolytes, oxygen, organisms, stress.",
+   "expl": "Climate matters too — warm, salty, humid environments speed everything up. Corrosion is mostly a GROUND phenomenon driven by chemistry, not flight time.",
+   "cite": "FAA-H-8083-30B p. 8-1, 8-2",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "8757811ee0",
+   "q": "What is spark testing?",
+   "options": [
+    "Checking electrical bonding straps for resistance",
+    "Testing spark plugs for the correct electrode gap",
+    "Identifying FERROUS metals by the spark stream they throw when held against a revolving grinding stone",
+    "Checking magneto timing with a timing light"
+   ],
+   "correct": 2,
+   "short": "Ferrous-metal ID by spark stream on a grinding wheel.",
+   "expl": "Each ferrous metal throws its own spark pattern; most nonferrous metals don't spark at all. Special case worth memorizing: TITANIUM gives a brilliant white trace ending in a brilliant white burst.",
+   "cite": "FAA-H-8083-30B p. 7-2, 7-9",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "6848e4e5e3",
+   "q": "What is exfoliation corrosion?",
+   "options": [
+    "Deep, isolated pits that form holes in the surface",
+    "Uniform surface etching that dulls the metal's finish",
+    "Corrosion between two dissimilar metals in electrical contact",
+    "An advanced form of intergranular corrosion in which the surface grains are lifted up in layers (flaking) by expanding corrosion products at the grain boundaries below"
+   ],
+   "correct": 3,
+   "short": "Advanced intergranular corrosion — lifts surface grains like flaking pastry layers.",
+   "expl": "It is visible proof that intergranular corrosion is happening underneath. The wrong options describe uniform/direct chemical attack, pitting, and galvanic corrosion.",
+   "cite": "FAA-H-8083-30B p. 8-7",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "a71f3f231a",
+   "q": "What does over-torquing a bolt or nut do?",
+   "options": [
+    "It can fail the bolt or nut by overstressing the threaded areas, and it stretches the bolt",
+    "It has no effect as long as a self-locking nut is used",
+    "It work-hardens the threads and makes the joint stronger",
+    "It makes the nut easier to remove at the next inspection"
+   ],
+   "correct": 0,
+   "short": "Over-torque can fail the bolt/nut by overstressing the threads; it also stretches bolts.",
+   "expl": "It can also trap internal stress in the joint, which invites stress-corrosion cracking. Flip side for the exam: UNDER-torque causes unnecessary wear of nuts, bolts, and the parts they hold.",
+   "cite": "AC 43.13-1B ¶7-40 (p. 7-7); FAA-H-8083-30B p. 8-7",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "56b2590ca1",
+   "q": "How many strands are in a typical aircraft (control) cable?",
+   "options": [
+    "19 strands",
+    "3 strands",
+    "12 strands",
+    "7 strands"
+   ],
+   "correct": 3,
+   "short": "7 strands — six strands laid around a center strand.",
+   "expl": "The most common aircraft cables are 7×7 (7 strands of 7 wires each) and 7×19 (7 strands of 19 wires each). 19 is the WIRES-per-strand number in 7×19, not the strand count. Note: the shorthand said \"lock cable,\" which isn't a standard handbook term — 7 strands fits control/flexible cable; if the instructor meant safety cable, ask him.",
+   "cite": "FAA-H-8083-30B p. 7-72",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "8f382db531",
+   "q": "What is orthographic projection?",
+   "options": [
+    "A single pictorial view that shows the object as a photograph would",
+    "A multi-view drawing system that shows the exact size and shape of all parts of complex objects — with six possible views",
+    "A three-dimensional pictorial view drawn around 30-degree axes",
+    "A diagram that shows the principle of operation for troubleshooting"
+   ],
+   "correct": 1,
+   "short": "Multi-view system for exact size and shape; six possible views.",
+   "expl": "The six: front, top, bottom, rear, right side, left side — but one-, two-, and three-view drawings are the most common. The wrong options are perspective, schematic, and isometric.",
+   "cite": "FAA-H-8083-30B p. 4-9",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "22587c1f83",
+   "q": "Which statement best defines HARDNESS?",
+   "options": [
+    "The ability of a material to resist abrasion, penetration, cutting action, or permanent distortion",
+    "The property that allows a metal to be hammered, rolled, or pressed without cracking",
+    "The property of breaking or shattering with very little bending",
+    "The property that allows a metal to be drawn, bent, or twisted without breaking"
+   ],
+   "correct": 0,
+   "short": "Hardness = resists abrasion, penetration, cutting, permanent distortion.",
+   "expl": "The distractors are the definitions of DUCTILITY, MALLEABILITY, and BRITTLENESS — the FAA's favorite property swap. Hardness can be increased by cold-working and, in steel and some aluminum alloys, by heat treatment.",
+   "cite": "FAA-H-8083-30B p. 7-1",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "055955d765",
+   "q": "What is acoustic emission testing?",
+   "options": [
+    "The inspector taps the part with a coin and listens for a dull thud",
+    "Sensors are placed at various locations on the structure and a load or stress is applied — cracks and corroded areas emit sound/stress waves (ultrasonic pulses) the sensors pick up",
+    "A transducer sends sound into the part and measures the echo returning from the back wall",
+    "A microphone records engine noise during a runup to detect bearing wear"
+   ],
+   "correct": 1,
+   "short": "Sensors on the structure + applied stress; flaws \"cry out\" with ultrasonic pulses.",
+   "expl": "(\"Acoustic ems\" in the shorthand = acoustic EMISSION.) Don't confuse it with ultrasonic pulse-echo (option about back-wall echo) or coin-tap testing — different NDI methods.",
+   "cite": "FAA-H-8083-30B p. 10-28",
+   "topic": "Inspection / NDT",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "b82e274901",
+   "q": "Which statement best defines DUCTILITY?",
+   "options": [
+    "The ability to resist abrasion, penetration, cutting action, or permanent distortion",
+    "The property that allows a metal to be permanently drawn, bent, or twisted into shapes without breaking — essential for wire and tubing",
+    "The property that allows a metal to be hammered, rolled, or pressed into shapes without cracking",
+    "The ability of a metal to return to its original shape after the load is removed"
+   ],
+   "correct": 1,
+   "short": "Ductility = drawn/bent/twisted permanently without breaking (wire, tubing).",
+   "expl": "Distractors = HARDNESS, MALLEABILITY, and ELASTICITY. Ductile metals are preferred in aircraft for easy forming and resistance to shock-load failure; ductility is similar to (but not the same as) malleability.",
+   "cite": "FAA-H-8083-30B p. 7-1",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "e696cdbd07",
+   "q": "What are the 3 parts of a Jo-bolt?",
+   "options": [
+    "A stud, a castle nut, and a cotter pin",
+    "A rivet shank, a pulling mandrel, and a locking spindle",
+    "A pin, a collar, and a locking ring",
+    "A threaded steel-alloy bolt, a threaded steel nut, and an expandable stainless-steel sleeve"
+   ],
+   "correct": 3,
+   "short": "Threaded alloy bolt + threaded steel nut + expandable stainless sleeve (factory preassembled).",
+   "expl": "It's an internally threaded three-piece blind rivet. Caution from the handbook: don't use it where a loose part could be sucked into an engine intake.",
+   "cite": "FAA-H-8083-30B p. 7-39",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "ee1e0601ed",
+   "q": "Which diagrams are used most extensively in aircraft manuals?",
+   "options": [
+    "Detail and assembly drawings",
+    "Block and wiring diagrams",
+    "Schematic and installation diagrams",
+    "Perspective and exploded-view drawings"
+   ],
+   "correct": 2,
+   "short": "Schematic and installation — installation to find/identify components, schematic to troubleshoot.",
+   "expl": "The four classes a mechanic works with: installation, schematic, block, and wiring. The FAA doesn't crown a single winner — if the AIM slide named exactly one (likely \"schematic\" or \"installation\"), use the slide's word on the classroom test.",
+   "cite": "FAA-H-8083-30B p. 4-11, 4-12",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "7075609429",
+   "q": "What is the most common type of inspection?",
+   "options": [
+    "Eddy current inspection",
+    "Visual inspection",
+    "Dye penetrant inspection",
+    "Ultrasonic inspection"
+   ],
+   "correct": 1,
+   "short": "Visual — the most widely used inspection technique.",
+   "expl": "Eyes directly on the surface or at a low angle; flashlight, mirror, and 5×–10× magnifying glass; touch helps find hidden corrosion. The other three are specialized NDI follow-ups, not the everyday first look.",
+   "cite": "FAA-H-8083-30B p. 8-11; AC 43-4B ¶5.4.1.1",
+   "topic": "Inspection / NDT",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "970e2eb166",
+   "q": "What 4 conditions must exist for electrochemical corrosion to occur?",
+   "options": [
+    "Heat, fuel, oxygen, and a chain reaction",
+    "Two identical metals, water, sunlight, and time",
+    "An anode (metal that corrodes), a cathode (dissimilar conductive material), an electrolyte (conductive liquid path), and electrical contact between anode and cathode",
+    "An acid, a base, a salt, and a catalyst"
+   ],
+   "correct": 2,
+   "short": "Anode + cathode + electrolyte + electrical contact. Remove ANY ONE and corrosion stops.",
+   "expl": "The heat/fuel/oxygen option is the FIRE tetrahedron — a deliberate trap. Electrical contact is usually metal-to-metal, like rivets or bolts.",
+   "cite": "FAA-H-8083-30B p. 8-3",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "4a7049002f",
+   "q": "What is the maximum combined height of a washer stack under a nut or bolt head?",
+   "options": [
+    "1/16 inch",
+    "1/8 inch",
+    "1/4 inch",
+    "3/8 inch"
+   ],
+   "correct": 1,
+   "short": "1/8 inch maximum combined washer-stack height.",
+   "expl": "Washers may be added to compensate for grip length, but only up to 1/8 inch combined — that limits you to the next standard grip size.",
+   "cite": "AC 43.13-1B ¶7-37 (p. 7-6)",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "db7af85b87",
+   "q": "Why must wheel wells be inspected for corrosion?",
+   "options": [
+    "The wheel well takes more punishment than any other area (mud, water, salt, gravel, debris), and its complicated shapes make complete paint coverage almost impossible to maintain",
+    "Hydraulic fluid in the wheel well instantly dissolves protective coatings",
+    "Wheel wells are pressurized in flight, which accelerates corrosion",
+    "The FAA requires wheel-well inspection only after hard landings"
+   ],
+   "correct": 0,
+   "short": "Most-punished area on the aircraft; hard to keep fully painted.",
+   "expl": "Many complicated shapes and fittings, plus partially applied preservative can actually HIDE corrosion underneath it.",
+   "cite": "FAA-H-8083-30B p. 8-12",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "c78e8d738f",
+   "q": "What manual/document is used for corrosion control?",
+   "options": [
+    "The manufacturer's published corrosion-control/inspection program first; if none exists, AC 43-4B, Corrosion Control for Aircraft",
+    "The Type Certificate Data Sheet (TCDS)",
+    "14 CFR Part 39 — Airworthiness Directives",
+    "The Pilot's Operating Handbook (POH/AFM)"
+   ],
+   "correct": 0,
+   "short": "Manufacturer's program takes precedence; otherwise AC 43-4B.",
+   "expl": "AC 43-4B is the FAA's acceptable-means document for identifying and treating corrosion when the manufacturer hasn't published a program.",
+   "cite": "AC 43-4B ¶1.1 (p. 1-1)",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "001e5c2e26",
+   "q": "Which of the 4 electrochemical-corrosion conditions is the easiest to remove to stop corrosion?",
+   "options": [
+    "The cathode — remove all dissimilar metals from the aircraft",
+    "The electrical contact — insulate every rivet and bolt from the skin",
+    "The electrolyte — keep the metal clean, dry, and painted so moisture can't reach the surface",
+    "The anode — replace the corroding metal with gold or silver"
+   ],
+   "correct": 2,
+   "short": "The electrolyte — clean, dry, painted.",
+   "expl": "The FAA text says removing ANY one condition stops corrosion; a paint film keeping the electrolyte off the anode and cathode is the FAA's own example, and it's the one you can actually control with cleaning and paint. (\"Easiest\" is the instructor's framing.)",
+   "cite": "FAA-H-8083-30B p. 8-3; AC 43-4B ¶2.2.2 (p. 2-1)",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "ccf7a95d8f",
+   "q": "Why are blind rivets used?",
+   "options": [
+    "Because they're cheaper and faster, they're preferred everywhere on the airframe",
+    "For places where you can't reach both sides of the structure, or where there's no room to swing a bucking bar",
+    "They are required around engine intakes, where loose parts can't be tolerated",
+    "Where extra shear strength beyond solid rivets is required in primary structure"
+   ],
+   "correct": 1,
+   "short": "Only one side accessible / no room for a bucking bar; also many non-structural attachments.",
+   "expl": "Installed entirely from one side — \"blind\" to the far side. Used for interior furnishings, flooring, deice boots. The intake option is backwards: the handbook warns AGAINST fasteners that could shed parts into an intake.",
+   "cite": "FAA-H-8083-30B p. 7-56, 7-57",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "80bd00094e",
+   "q": "Why are soft-faced hammers used?",
+   "options": [
+    "For driving hardened steel pins and nails",
+    "For driving rivets when a rivet gun is not available",
+    "For forming soft metals and striking surfaces that are easily damaged",
+    "For striking chisels and punches in tight quarters"
+   ],
+   "correct": 2,
+   "short": "Forming soft metals; striking easily damaged surfaces.",
+   "expl": "Faces are wood, brass, lead, rawhide, hard rubber, or plastic. Never use them where the face could be damaged — e.g., striking nails or hardened parts.",
+   "cite": "FAA-H-8083-30B p. 11-1",
+   "topic": "Misc (W&B, Tools)",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "28c7f4fc30",
+   "q": "What is an installation drawing?",
+   "options": [
+    "A drawing of a single part with all dimensions and specifications for making it",
+    "A drawing showing the relationship of two or more parts to each other",
+    "A diagram showing how a system operates, for troubleshooting",
+    "A drawing with all the information needed for a part or assembly in its FINAL INSTALLED POSITION in the aircraft"
+   ],
+   "correct": 3,
+   "short": "All info for the part in its final installed position (plus locating/reference dimensions).",
+   "expl": "The wrong options are the DETAIL drawing, the ASSEMBLY drawing, and the SCHEMATIC — the same family the exam keeps shuffling.",
+   "cite": "FAA-H-8083-30B p. 4-2",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "85ffc62222",
+   "q": "What are nonmetallic materials used for on aircraft?",
+   "options": [
+    "Nonmetallic materials are not approved for use on certificated aircraft",
+    "Only interior items like carpet and seat cushions — never structure",
+    "Magnesium, titanium, and Monel components",
+    "Wood (early/restoration aircraft), transparent plastics (windshields, windows), composites/reinforced plastics (modern structure), and rubber (seals, hoses, vibration dampening, tires)"
+   ],
+   "correct": 3,
+   "short": "Wood, plastics (windshields), composites, rubber (seals/hoses/tires), fabric, leather.",
+   "expl": "Composites have replaced much of the aluminum in modern airframes — so \"never structure\" is flat wrong. Magnesium/titanium/Monel are METALS.",
+   "cite": "FAA-H-8083-30B p. 7-29 to 7-32",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "e6e259b297",
+   "q": "Why can't chemical corrosion removers be used on titanium?",
+   "options": [
+    "Chemicals make titanium magnetic, which interferes with compass calibration",
+    "Titanium is susceptible to hydrogen embrittlement, which can cause stress corrosion — so chlorinated solvents and chemical corrosion removers are prohibited; remove corrosion mechanically",
+    "Titanium dissolves completely in any acid solution within minutes",
+    "Chemical removers stain titanium purple, ruining its heat resistance"
+   ],
+   "correct": 1,
+   "short": "Hydrogen embrittlement → stress corrosion/pitting; chemical removers PROHIBITED on titanium.",
+   "expl": "(The shorthand said \"carrion remover\" — dictation garble for CORROSION remover.) Remove corrosion mechanically: stainless-steel wool, abrasive mats, glass-bead blasting, hand polish. Also never use steel wool or steel brushes on titanium.",
+   "cite": "AC 43.13-1B ¶6-181c (p. 6-44); FAA-H-8083-30B p. 8-20",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "78f9d05072",
+   "q": "What are calipers used for, and what does a vernier scale add?",
+   "options": [
+    "Calipers check surface hardness; the vernier scale compensates for temperature",
+    "Calipers measure torque; the vernier scale converts the reading to metric",
+    "Calipers measure inside and outside dimensions; the vernier scale lets you read the fraction of a division directly — down to thousandths of an inch",
+    "Calipers measure only hole depth; the vernier scale adds angle measurement"
+   ],
+   "correct": 2,
+   "short": "Calipers = ID/OD measurement; vernier scale = read thousandths directly.",
+   "expl": "A slide caliper reads on its scale, a dial, or an LCD — more accurate than a ruler, and some include a depth gauge. If the slide asked you to READ a vernier, practice with Figure 11-39's worked examples.",
+   "cite": "FAA-H-8083-30B p. 11-19, 11-23, 11-25",
+   "topic": "Misc (W&B, Tools)",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "1dbb44f60e",
+   "q": "Which is heavier — water vapor or dry air?",
+   "options": [
+    "They weigh exactly the same at the same temperature",
+    "Humid air is heavier — the water adds weight to the air",
+    "It depends on altitude — humid air is heavier only above 10,000 feet",
+    "Dry air is heavier — humid air is LESS dense than dry air"
+   ],
+   "correct": 3,
+   "short": "Dry air is heavier; humid air is less dense.",
+   "expl": "The intuitive answer (\"humid air is heavier\") is WRONG — water vapor displaces heavier air molecules. That's why takeoff gross weight is reduced and engine power drops on humid days: water vapor is incombustible and displaces air. (Shorthand \"heavy 65\" = dictation garble for \"heavier.\")",
+   "cite": "FAA-H-8083-30B p. 5-34, 5-35",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "22ca17b4ce",
+   "q": "What does METO power mean?",
+   "options": [
+    "Maximum Except TakeOff horsepower — the highest power allowed continuously",
+    "Maximum Emergency TakeOff power",
+    "Minimum En route Takeoff Operations power",
+    "Maximum Economy Throttle Operation"
+   ],
+   "correct": 0,
+   "short": "Maximum Except TakeOff hp — highest continuous power (takeoff power is higher but time-limited).",
+   "expl": "Weight-and-balance use: minimum fuel = 1/12 gallon per METO hp, or simply METO hp ÷ 2 = minimum fuel in POUNDS (avgas = 6 lb/gal).",
+   "cite": "FAA-H-8083-30B p. 6-5",
+   "topic": "Misc (W&B, Tools)",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "c8919df62d",
+   "q": "An oxygen concentration cell is what type of corrosion — and which area corrodes?",
+   "options": [
+    "Filiform corrosion under the paint film",
+    "Concentration cell (crevice) corrosion — the LOW-oxygen area becomes the anode and corrodes",
+    "Galvanic corrosion between two dissimilar metals",
+    "Concentration cell (crevice) corrosion — the HIGH-oxygen area corrodes"
+   ],
+   "correct": 1,
+   "short": "Concentration cell (crevice) corrosion — attack hits the LOW-oxygen area.",
+   "expl": "One of the three concentration-cell types (metal-ion, oxygen, active-passive). Oxygen cells form wherever air can't reach — under gaskets, wood, rubber, dirt. Stainless steel is especially susceptible. The \"high-oxygen\" option is the half-right trap.",
+   "cite": "FAA-H-8083-30B p. 8-6, 8-7",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "9a33b86660",
+   "q": "What is Newton's third law?",
+   "options": [
+    "For every action there is an equal and opposite reaction",
+    "Pressure decreases as the velocity of a fluid increases",
+    "A body at rest stays at rest unless acted on by an outside force",
+    "Force equals mass times acceleration"
+   ],
+   "correct": 0,
+   "short": "Action–reaction: every action has an equal and opposite reaction.",
+   "expl": "Jet exhaust shoots backward → thrust pushes forward. The distractors are Newton's FIRST law, Newton's SECOND law, and Bernoulli's principle.",
+   "cite": "FAA-H-8083-30B p. 5-17",
+   "topic": "Physics & Math",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "3229fac1ae",
+   "q": "What lines are used on a sectional view to show the parts that were cut?",
+   "options": [
+    "Phantom lines — showing an alternate position of a part",
+    "Centerlines — alternating long and short dashes",
+    "Hidden lines — short, evenly spaced dashes",
+    "Section lines (crosshatching)"
+   ],
+   "correct": 3,
+   "short": "Section (crosshatch) lines show what the cutting plane sliced through.",
+   "expl": "Sectional views reveal interior shape and construction; the crosshatching marks the material that was \"cut away\" at the cutting plane.",
+   "cite": "FAA-H-8083-30B p. 4-2, 4-17",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "8a30e8ad21",
+   "q": "What is the universal numbering system for drawings?",
+   "options": [
+    "A means of identifying standard drawing SIZES — the first digit of the drawing number (1, 2, 4, or 5) tells the drawing size",
+    "The ATA chapter numbering system used in maintenance manuals",
+    "A worldwide serial-number registry for every aircraft part",
+    "A code identifying the alloy and temper of sheet-metal stock"
+   ],
+   "correct": 0,
+   "short": "Identifies standard drawing sizes; first digit 1, 2, 4, or 5 = size.",
+   "expl": "Each drawing number has 6–7 digits: 1 = 8½″×11″, 2 = 11″×17″, 4 = 17″×22″, 5 = larger. (The \"abc\" in the shorthand is likely dictation noise; if it was a separate jot, titanium uses an A-B-C alloy classification — 30B p. 7-9 — ask the instructor.)",
+   "cite": "FAA-H-8083-30B p. 4-3",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "6ffe2602a5",
+   "q": "What are a nomogram and a flowchart?",
+   "options": [
+    "A nomogram is a graph of (usually) three sets of data — knowing any two lets you read the third; a flowchart illustrates a sequence or flow of events, step by step",
+    "A nomogram is a wiring diagram; a flowchart is a hydraulic-system diagram",
+    "Both are types of pictorial perspective drawings",
+    "A nomogram shows a step-by-step sequence; a flowchart graphs three variables"
+   ],
+   "correct": 0,
+   "short": "Nomogram = 3-scale graph (know 2, read the 3rd); flowchart = sequence of events.",
+   "expl": "(\"Nonogram\" in the shorthand = NOMOGRAM.) A nomogram is often three parallel scales read with a straightedge. The first wrong option is the straight swap.",
+   "cite": "FAA-H-8083-30B p. 4-23 (nomogram); p. 4-13 (flowchart)",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "3397a0e15b",
+   "q": "What are the 3 classes of aircraft drawings?",
+   "options": [
+    "Sketch, blueprint, and print",
+    "Perspective, isometric, and oblique",
+    "Detail, assembly, and installation",
+    "Schematic, block, and wiring"
+   ],
+   "correct": 2,
+   "short": "Detail, assembly, installation.",
+   "expl": "Detail = one single part with full specs; assembly = relationship of two or more parts; installation = the part in its final installed position. \"Schematic/block/wiring\" are DIAGRAM types — a different list on this same final.",
+   "cite": "FAA-H-8083-30B p. 4-2",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "a3fc2d6860",
+   "q": "When do you use the standard torque table?",
+   "options": [
+    "Only for bolts larger than 1/2-inch diameter",
+    "Always — the standard table overrides the manufacturer's listed torque values",
+    "Only when a calibrated torque wrench is unavailable",
+    "Whenever specific torque values are NOT called out in the maintenance procedures"
+   ],
+   "correct": 3,
+   "short": "Use the standard table when no specific torque is given in the maintenance procedures.",
+   "expl": "Related rules: ft-lb = in-lb ÷ 12; don't lubricate nuts/bolts before torquing unless they're corrosion-resistant or you're specifically instructed to.",
+   "cite": "FAA-H-8083-30B p. 7-50",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "4fa9692aa2",
+   "q": "What does \"grounding\" mean when it comes to electricity around aircraft?",
+   "options": [
+    "Connecting the battery's positive terminal directly to the airframe",
+    "Giving electricity a safe path into the earth so static charge drains away instead of sparking — the aircraft, fuel truck, and nozzle are all connected to ground points before fueling",
+    "Removing the aircraft from flight status until maintenance is complete",
+    "Disconnecting the battery so no current can flow during maintenance"
+   ],
+   "correct": 1,
+   "short": "Safe path to earth so static charge drains — ground aircraft, truck, and nozzle before fueling.",
+   "expl": "Flight and fuel flow build static charge in the airframe; grounding keeps it from sparking and igniting fuel vapor. Connect to bare metal/proper grounding points — never the propeller or exhaust. (If his class meant circuit theory: \"ground\" = the common return/reference point, often the airframe — confirm which sense the slide used.)",
+   "cite": "FAA-H-8083-30B p. 1-26, 1-28",
+   "topic": "Cleaning & Servicing",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "6c5a18d9a8",
+   "q": "What number is found in the title block of a drawing?",
+   "options": [
+    "The mechanic's certificate number",
+    "The aircraft registration (N) number",
+    "The part's manufacturing serial number",
+    "The drawing (print) number — in a number block in the lower right corner"
+   ],
+   "correct": 3,
+   "short": "The drawing/print number — lower right corner of the title block.",
+   "expl": "It identifies the print for filing and prevents mix-ups; it may repeat near the top border or on the reverse so it shows when the print is folded or rolled.",
+   "cite": "FAA-H-8083-30B p. 4-3",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "d95e45a43d",
+   "q": "Which statement describes a highly MALLEABLE metal?",
+   "options": [
+    "One that shatters or breaks with very little bending",
+    "One that can be drawn out into wire or tubing without breaking",
+    "One that can be hammered, rolled, or pressed into shapes without cracking or breaking — copper is the handbook's example",
+    "One that springs back to its original shape after the load is removed"
+   ],
+   "correct": 2,
+   "short": "Malleable = hammered/rolled/pressed without cracking; example: copper.",
+   "expl": "Needed for sheet metal worked into compound curves — cowlings, fairings, wingtips. The distractors are DUCTILITY, BRITTLENESS, and ELASTICITY — same property-swap trap as the hardness/ductility questions.",
+   "cite": "FAA-H-8083-30B p. 7-1",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "8ff352ee75",
+   "q": "What is \"purple plague\"?",
+   "options": [
+    "A brittle gold-aluminum compound that forms when gold is bonded to aluminum — its growth can fail microelectronic interconnection bonds",
+    "Heat discoloration of titanium exhaust components",
+    "Magnesium corrosion that appears as a purple powder",
+    "A purple fungus that grows in jet-fuel tanks"
+   ],
+   "correct": 0,
+   "short": "Brittle gold-aluminum compound; fails microelectronic bonds (avionics-level corrosion).",
+   "expl": "It shows up where gold bonding meets aluminum in microelectronics — an avionics corrosion problem, not an airframe one.",
+   "cite": "AC 43-4B ¶3.2.10.2 (p. 3-4)",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "eedd4bd240",
+   "q": "Besides the part number, what is another way to identify rivets?",
+   "options": [
+    "By weighing the rivet on a precision scale",
+    "By measuring the shank diameter — all alloys share the same head markings",
+    "By markings on the rivet head (raised teat, dimple, raised dashes, raised cross, etc.) for alloy/strength, and by the color of the protective coating for finish",
+    "By spark testing the rivet head against a grinding wheel"
+   ],
+   "correct": 2,
+   "short": "Head markings = alloy; coating color = finish.",
+   "expl": "(\"Rivers\" in the shorthand = RIVETS.) Coating colors: zinc chromate = yellow, anodized = pearl gray, metal-sprayed = silvery gray. Head marks: teat, two teats, dimple, pair of raised dashes, raised cross, triangle, single dash, or plain.",
+   "cite": "FAA-H-8083-30B p. 7-52, 7-54",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "a6ec90b59d",
+   "q": "What is the definition of grip length?",
+   "options": [
+    "The threaded portion of the bolt shank",
+    "The distance the nut travels from finger-tight to fully torqued",
+    "The full length of the bolt measured from under the head to the tip",
+    "The unthreaded portion of the bolt shank — generally, the thickness of the material the fastener is designed to hold"
+   ],
+   "correct": 3,
+   "short": "Grip = unthreaded shank portion = material thickness being held.",
+   "expl": "Math version: grip = shank length − threaded portion. If grip is slightly long, washers (up to 1/8-inch stack) make up the difference.",
+   "cite": "AC 43.13-1B ¶7-37 (p. 7-6); FAA-H-8083-30B p. 7-37",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "d39ba7ae96",
+   "q": "What determines how often corrosion inspections are done?",
+   "options": [
+    "Total airframe flight hours only",
+    "The severity of the aircraft's operating environment — mild, moderate, or severe — plus manufacturer recommendations",
+    "The age of the paint job",
+    "The number of passengers typically carried"
+   ],
+   "correct": 1,
+   "short": "Operating-environment severity (mild/moderate/severe) + manufacturer recommendations.",
+   "expl": "Think salty coastal air, industrial pollution, runway de-ice chemicals, humidity. Severe = 15 days, moderate = 45, mild = 90. Infrequently flown aircraft use a CALENDAR-based program, not flight hours — which is why \"flight hours only\" is wrong.",
+   "cite": "AC 43-4B ¶5.1.3, ¶5.2 (p. 5-1)",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "10ec90b9f2",
+   "q": "What is aliphatic naphtha used for?",
+   "options": [
+    "Wiping down cleaned surfaces just before painting; it is also safe for cleaning acrylics and rubber",
+    "Removing heavy carbon deposits from exhaust stacks",
+    "Cleaning oxygen-system parts and fittings",
+    "Stripping epoxy primer from aluminum skin"
+   ],
+   "correct": 0,
+   "short": "Pre-paint wipe-down; safe on acrylics and rubber; flash point about 80 °F.",
+   "expl": "Never confuse it with AROMATIC naphtha, which is toxic and ATTACKS acrylics and rubber — the exam loves that one-word difference.",
+   "cite": "FAA-H-8083-30B p. 8-27 (also 7-30)",
+   "topic": "Cleaning & Servicing",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "a1fa4a8fcf",
+   "q": "What is a half-section drawing?",
+   "options": [
+    "The bottom half of an orthographic front view",
+    "A sectional view where the cutting plane extends only halfway across the object — half shows the interior, the other half stays an exterior view; used on symmetrical objects",
+    "A view drawn at half scale to save space on the print",
+    "A full section with crosshatching applied to only half the parts"
+   ],
+   "correct": 1,
+   "short": "Cutting plane goes halfway — half interior, half exterior; for symmetrical objects.",
+   "expl": "It lets one view show inside and outside at the same time — only useful when the object is symmetrical.",
+   "cite": "FAA-H-8083-30B p. 4-2",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "97a2e07726",
+   "q": "What is case hardening?",
+   "options": [
+    "Hardening the entire part uniformly all the way through",
+    "Softening the surface of a part so it can be machined more easily",
+    "A heat treatment that produces a hard, wear-resistant SURFACE (the case) over a strong, tough CORE",
+    "Encasing the part in a protective plastic shell"
+   ],
+   "correct": 2,
+   "short": "Hard wear-resistant case over a tough core.",
+   "expl": "Ideal for parts that must resist surface wear but still take loads without snapping. Best suited to low-carbon and low-alloy steels. \"All the way through\" hardening is the trap — that's ordinary through-hardening, not case hardening.",
+   "cite": "FAA-H-8083-30B p. 7-20",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "f926afffe9",
+   "q": "The cotter pin holes don't line up with the castle nut slots. What do you do?",
+   "options": [
+    "Back the nut off slightly until a slot lines up with the hole",
+    "Tighten the nut past the torque limit until the next slot lines up",
+    "Never over-torque or loosen the nut to force alignment — remove the hardware, change the washer (or realign the hardware), and torque again within the recommended range",
+    "File the castle nut slots wider until the cotter pin fits"
+   ],
+   "correct": 2,
+   "short": "Never force it — remove, change the washer, re-torque within range.",
+   "expl": "Start a castle nut at minimum recommended torque plus friction drag. Both \"tighten past\" and \"back off\" are wrong — the torque must stay within the recommended range.",
+   "cite": "FAA-H-8083-30B p. 7-50; AC 43.13-1B ¶7-40f (p. 7-8)",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "63732d6f1b",
+   "q": "What happens to improperly heat-treated aluminum?",
+   "options": [
+    "High-strength alloys (2014, 2024, 7075) become more susceptible to INTERGRANULAR corrosion when exposed to a corrosive environment",
+    "It becomes magnetic and must be degaussed before use",
+    "It gains strength but loses electrical conductivity",
+    "It becomes immune to corrosion because of its thicker oxide layer"
+   ],
+   "correct": 0,
+   "short": "More susceptible to intergranular corrosion (2014/2024/7075).",
+   "expl": "Slow quenching lets precipitation form along the grain boundaries — exactly where intergranular corrosion attacks. Advanced cases become exfoliation.",
+   "cite": "FAA-H-8083-30B p. 8-7, 7-22",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "5f038cc4a9",
+   "q": "What is casting?",
+   "options": [
+    "Hammering or pressing hot metal into shape between dies",
+    "Machining a part from solid bar stock",
+    "Forming a part by melting metal and pouring it into a mold of the desired shape — no plastic deformation, so working doesn't alter the grain",
+    "Forcing metal through a die to produce long uniform shapes"
+   ],
+   "correct": 2,
+   "short": "Melt + pour into a mold; grain set by cooling rate, alloying, and thermal treatment.",
+   "expl": "The distractors are FORGING, EXTRUSION, and machining. Bonus fact: all metal products start as a casting — wrought metals are worked from cast ingots.",
+   "cite": "FAA-H-8083-30B p. 7-28",
+   "topic": "Materials & Processes",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "7e342c8592",
+   "q": "What does a single raised dash on a bolt head mean?",
+   "options": [
+    "Aluminum alloy",
+    "Titanium",
+    "Corrosion-resistant steel",
+    "High-strength alloy steel"
+   ],
+   "correct": 2,
+   "short": "Single raised dash = corrosion-resistant steel.",
+   "expl": "Full set: raised dash or asterisk = AN standard steel; SINGLE dash = corrosion-resistant steel; TWO raised dashes = aluminum alloy. Exam trap: the -30B handbook's sentence on p. 7-39 is garbled by an editing error — the AC 43.13-1B wording is the clean, correct version.",
+   "cite": "AC 43.13-1B ¶7-36a (p. 7-5)",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "74c7218d52",
+   "q": "The AN310 castle nut is used —",
+   "options": [
+    "Only on bolts that have a nylon self-locking insert",
+    "Where no safetying device is required",
+    "With drilled-shank AN hex bolts, clevis bolts, eyebolts, or studs; it takes large TENSION loads and its slots accept a cotter pin or lockwire",
+    "Only for shear loads — it must never carry tension"
+   ],
+   "correct": 2,
+   "short": "AN310: drilled-shank bolts, large tension loads, safetied by cotter pin or lockwire.",
+   "expl": "The shear-only option describes the AN320 castellated SHEAR nut (shallower, shear loads only) — the classic AN310/AN320 swap.",
+   "cite": "FAA-H-8083-30B p. 7-42",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "97b2f9b5d9",
+   "q": "What is a break line on a drawing?",
+   "options": [
+    "A thick line with arrowheads showing where a sectional cut was taken",
+    "Alternating long and short dashes marking the center of a part",
+    "A series of short, evenly spaced dashes showing hidden edges",
+    "A line indicating that a portion of the object is not shown — short breaks are solid freehand lines; long breaks are solid ruled lines with zigzags"
+   ],
+   "correct": 3,
+   "short": "Part of the object not shown; short = freehand, long = ruled with zigzags.",
+   "expl": "Distractors = hidden lines, centerlines, and cutting-plane lines — the same line-type lineup as the centerline question; learn all four together.",
+   "cite": "FAA-H-8083-30B p. 4-18",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "dad11607af",
+   "q": "What does corrosion look like on silver?",
+   "options": [
+    "White, powdery deposits like corroding aluminum",
+    "Red-orange rust like iron",
+    "A green patina like weathered copper",
+    "Silver tarnishes as a brown-to-black film in the presence of sulfur"
+   ],
+   "correct": 3,
+   "short": "Brown-to-black tarnish film (sulfur).",
+   "expl": "Silver doesn't corrode in the ordinary sense — it tarnishes. Bonus: silver plated over copper can cause \"red plague\" — brown-red powder on exposed copper.",
+   "cite": "AC 43-4B ¶3.2.10 (p. 3-3)",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "9de48939e5",
+   "q": "How many threads must protrude past the nut on an installed bolt?",
+   "options": [
+    "None — the bolt should end flush with the top of the nut",
+    "At least one thread protruding through the nut",
+    "At least 1/2 inch of thread",
+    "At least three full threads"
+   ],
+   "correct": 1,
+   "short": "At least ONE thread through the nut (self-locking or plain nuts).",
+   "expl": "The -30B adds detail: a chamfered-end bolt should extend at least the full round/chamfer through; a flat-end bolt at least 1/32 inch.",
+   "cite": "AC 43.13-1B ¶7-37 (p. 7-6); FAA-H-8083-30B p. 7-45",
+   "topic": "Hardware & Fasteners",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "d0166f13a5",
+   "q": "What is alodizing?",
+   "options": [
+    "A method of welding aluminum under inert gas",
+    "An electrolytic-bath process — the same thing as anodizing",
+    "An alkaline paint-stripping process",
+    "A simple CHEMICAL treatment for aluminum alloys that increases corrosion resistance and improves paint bonding"
+   ],
+   "correct": 3,
+   "short": "Simple chemical treatment for aluminum: corrosion resistance + paint bonding.",
+   "expl": "Because it's so simple (dip or spray — NO electric bath needed), it has been rapidly replacing anodizing in aircraft work. \"Same as anodizing\" is the trap: anodizing IS electrolytic; alodizing is not.",
+   "cite": "FAA-H-8083-30B p. 8-22",
+   "topic": "Corrosion",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "42d57c6621",
+   "q": "What is the \"application\" block near the title block for?",
+   "options": [
+    "It tells what specific aircraft, assembly, or sub-assembly the part is used on",
+    "It lists which personnel are authorized to use the drawing",
+    "It gives the scale and tolerance standards for the drawing",
+    "It records every revision that has been made to the drawing"
+   ],
+   "correct": 0,
+   "short": "What aircraft/assembly/sub-assembly the part is used on.",
+   "expl": "Example: \"Bracket Assy., Roll Servo, S-Tec autopilot installation.\" Revisions live in the REVISION block — a different block, and a different question on this final.",
+   "cite": "FAA-H-8083-30B p. 4-9",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
+   ]
+  },
+  {
+   "id": "d82af8b1e5",
+   "q": "Where is the identification of a print found on a drawing?",
+   "options": [
+    "On the back of the print only",
+    "In the title block — usually the lower right-hand corner of the print",
+    "In the revision block, with the change history",
+    "In the upper left corner, next to the scale"
+   ],
+   "correct": 1,
+   "short": "Title block — lower right-hand corner (sometimes a strip across the bottom).",
+   "expl": "Every print must have this identification, grouped in a prominent place.",
+   "cite": "FAA-H-8083-30B p. 4-3",
+   "topic": "Aircraft Drawings",
+   "block": "Block 2",
+   "sources": [
+    "Block 2 Final Exam — Must-Know Drill"
    ]
   },
   {
