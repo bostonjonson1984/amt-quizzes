@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<title>📘 Block 3 — Daily Learning Center</title>
+<style>
+  :root{--navy:#0d2a4a;--navy2:#15436e;--gold:#ffce4d;--bg:#eef2f8;--muted:#5a6678;
+        --line:#e3e8f0;--green:#1f9d57;--ink:#16243a;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);
+       color:var(--ink);padding:0 14px env(safe-area-inset-bottom);}
+  .wrap{max-width:820px;margin:0 auto;}
+  a.back{display:inline-block;margin:14px 0 0;color:var(--navy2);font-size:13px;font-weight:700;text-decoration:none;}
+  .head{padding:12px 0 2px;}
+  .head h1{font-size:24px;color:var(--navy);margin:0;}
+  .head p{font-size:13px;color:var(--muted);margin:4px 0 0;}
+
+  /* ---- TONIGHT / NEXT panel ---- */
+  .panel{background:linear-gradient(120deg,#0d2a4a,#15436e);color:#fff;border-radius:18px;
+         padding:20px 20px 22px;margin:16px 0 8px;box-shadow:0 10px 30px rgba(13,42,74,.22);}
+  .panel .kick{font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);}
+  .panel h2{font-size:22px;margin:6px 0 2px;line-height:1.25;}
+  .panel .when{font-size:14px;opacity:.92;font-weight:600;margin-bottom:12px;}
+  .panel .assign{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+         border-radius:12px;padding:13px 15px;margin:10px 0;}
+  .panel .assign .lab{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;opacity:.8;}
+  .panel .assign .big{font-size:18px;font-weight:800;margin-top:2px;}
+  .panel .assign .sm{font-size:13.5px;opacity:.92;margin-top:3px;}
+  .panel .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .panel .cta a{flex:1 1 auto;text-align:center;min-width:200px;background:var(--gold);color:#0d2240;
+         font-weight:800;text-decoration:none;padding:15px 18px;border-radius:13px;font-size:16.5px;
+         box-shadow:0 4px 14px rgba(255,206,77,.30);}
+  .panel .cta a.ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.3);
+         box-shadow:none;}
+  .panel .today{background:rgba(255,206,77,.16);border:1px solid rgba(255,206,77,.4);border-radius:12px;
+         padding:11px 14px;margin:0 0 12px;font-size:14px;}
+  .panel .today b{color:var(--gold);}
+  .panel .done{font-size:17px;font-weight:700;}
+
+  .assumenote{font-size:12px;color:#8a6d1a;background:#fff8e6;border:1px dashed #c9a227;border-radius:10px;
+         padding:9px 13px;margin:10px 0 4px;}
+
+  /* ---- calendar ---- */
+  h2.unit{font-size:14px;color:var(--navy2);text-transform:uppercase;letter-spacing:.6px;
+          margin:30px 0 12px;border-bottom:2px solid var(--line);padding-bottom:7px;}
+  .daygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
+  .day{background:#fff;border-radius:14px;padding:15px 16px 14px;border:1px solid #e7edf5;
+       box-shadow:0 4px 14px rgba(13,42,74,.06);}
+  .day.is-today{border:2px solid var(--gold);box-shadow:0 8px 22px rgba(201,162,39,.22);}
+  .day.is-next{border:2px solid var(--navy2);}
+  .dhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:7px;}
+  .dnum{font-size:16px;font-weight:800;color:var(--navy);}
+  .ddate{font-size:12.5px;font-weight:700;color:var(--muted);}
+  .dobj{font-size:14px;line-height:1.4;color:#1c2330;margin-bottom:9px;}
+  .drow{display:flex;gap:8px;font-size:12.5px;margin:4px 0;}
+  .dlab{flex:0 0 38px;font-weight:800;color:var(--navy2);text-transform:uppercase;font-size:10.5px;
+        letter-spacing:.4px;padding-top:1px;}
+  .dval{color:#3a4658;line-height:1.4;}
+  .dbtns{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;}
+  .readbtn{display:inline-block;background:var(--bg);color:var(--navy);font-weight:800;text-decoration:none;
+        padding:9px 12px;border-radius:10px;font-size:13px;border:1.5px solid #d8e0ec;}
+  .readbtn:hover{border-color:var(--navy2);}
+  .todaytag{display:inline-block;background:var(--gold);color:#0d2240;font-size:10.5px;font-weight:800;
+        padding:2px 8px;border-radius:20px;margin-left:7px;text-transform:uppercase;letter-spacing:.4px;}
+
+  /* ---- master pdf row ---- */
+  .master{display:block;background:#fff;border:1px solid #e7edf5;border-radius:14px;padding:15px 18px;
+        margin:22px 0 4px;text-decoration:none;color:var(--navy);box-shadow:0 4px 14px rgba(13,42,74,.06);}
+  .master b{color:var(--navy);} .master span{color:var(--muted);font-size:13px;display:block;margin-top:2px;}
+  .foot{max-width:820px;margin:30px auto 30px;color:#9aa6b8;font-size:12px;text-align:center;}
+</style></head><body>
+<div class="wrap">
+  <a class="back" href="../">← All quizzes</a>
+  <div class="head">
+    <h1>📘 Block 3 — Daily Learning Center</h1>
+    <p>General Science III · Mr. Walker · Mon–Thu 5:00–11:00 PM · 20 class days starting Mon Jun 15, 2026</p>
+  </div>
+
+  <div id="panel" class="panel"><div class="kick">loading…</div></div>
+
+  <div class="assumenote">📅 Dates assume the standard Mon–Thu schedule with <b>no school holidays</b>.
+     If AIM cancels a class, every day after it shifts one slot — tell me and I'll re-date the calendar.</div>
+
+  <a class="master" href="pdf/Block3-Master-Study-Guide.pdf">
+     <b>⬇︎ Block 3 Master Study Guide (PDF)</b>
+     <span>The full secondary download — every chapter in one file. The site above is your primary study tool.</span></a>
+
+  <h2 class="unit">Unit 1 — Maintenance Publications &amp; Regulations</h2><div class="daygrid"><div class="day" data-iso="2026-06-15" id="day1"><div class="dhead"><span class="dnum">Day 1</span><span class="ddate">Mon Jun 15</span></div><div class="dobj">Regs overview: Title 14 CFR Parts 3, 43, 91. What &#x27;airworthy&#x27; means; primary regulations.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.2, pp. 2-1 → 2-24</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Read Ch.2 pp. 2-1→2-24 before class.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a></div></div><div class="day" data-iso="2026-06-16" id="day2"><div class="dhead"><span class="dnum">Day 2</span><span class="ddate">Tue Jun 16</span></div><div class="dobj">Maintenance Pubs: CARs, SUP, AC / AD / SAIB / TCDS / STC.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.2, pp. 2-24 → 2-33</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Quiz #1 · Project G29.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a></div></div><div class="day" data-iso="2026-06-17" id="day3"><div class="dhead"><span class="dnum">Day 3</span><span class="ddate">Wed Jun 17</span></div><div class="dobj">Non-FAA docs, Forms (337), Records (91.417), LSA.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.2, pp. 2-33 → 2-47</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Quiz #2 · Projects G29 / G27.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a></div></div><div class="day" data-iso="2026-06-18" id="day4"><div class="dhead"><span class="dnum">Day 4</span><span class="ddate">Thu Jun 18</span></div><div class="dobj">Mechanic Cert: Part 65 Subparts A &amp; D, Inspection Authorization (IA), Ethics.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.13, pp. 13-1 → 13-10</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Quiz #3 · Projects G27 / G29.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch13.html">📖 Chapter 13</a></div></div><div class="day" data-iso="2026-06-22" id="day5"><div class="dhead"><span class="dnum">Day 5</span><span class="ddate">Mon Jun 22</span></div><div class="dobj">FARs Project Day — Projects G27/G29/G33/G26/G28. Review.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Projects G27/G29/G33/G26/G28 (in progress).</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a><a class="readbtn" href="chapters/ch13.html">📖 Chapter 13</a></div></div><div class="day" data-iso="2026-06-23" id="day6"><div class="dhead"><span class="dnum">Day 6</span><span class="ddate">Tue Jun 23</span></div><div class="dobj">Maintenance Pubs REVIEW. SMQ Review.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Projects G27/G29/G33/G26/G28 DUE · Quiz #4 (Teams #5) · SMQ Review.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a><a class="readbtn" href="chapters/ch13.html">📖 Chapter 13</a></div></div></div><h2 class="unit">Unit 2 — Fluid Lines &amp; Fittings</h2><div class="daygrid"><div class="day" data-iso="2026-06-24" id="day7"><div class="dhead"><span class="dnum">Day 7</span><span class="ddate">Wed Jun 24</span></div><div class="dobj">Fluid Lines: rigid tubing, materials, fabrication, flares, fittings.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.9, pp. 9-1 → 9-17</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Project G22 Part 1 (start).</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a></div></div><div class="day" data-iso="2026-06-25" id="day8"><div class="dhead"><span class="dnum">Day 8</span><span class="ddate">Thu Jun 25</span></div><div class="dobj">Rigid Line Project Hangar.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Projects G22 / G23 · Quiz #5.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a></div></div><div class="day" data-iso="2026-06-29" id="day9"><div class="dhead"><span class="dnum">Day 9</span><span class="ddate">Mon Jun 29</span></div><div class="dobj">Flexible hose fluid lines: materials, inspection, fittings, clamps.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.9, pp. 9-17 → 9-24</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">(reading only).</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a></div></div><div class="day" data-iso="2026-06-30" id="day10"><div class="dhead"><span class="dnum">Day 10</span><span class="ddate">Tue Jun 30</span></div><div class="dobj">Flexible Line Project Hangar. Project, quizzes completion day.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Project G22 Part 2 DUE.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a></div></div><div class="day" data-iso="2026-07-01" id="day11"><div class="dhead"><span class="dnum">Day 11</span><span class="ddate">Wed Jul 1</span></div><div class="dobj">Fluid Lines REVIEW.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Projects G22 / G23 DUE · Quiz #6 · SMQ #2.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a></div></div></div><h2 class="unit">Unit 3 — Safety, Ground Ops &amp; Servicing</h2><div class="daygrid"><div class="day" data-iso="2026-07-02" id="day12"><div class="dhead"><span class="dnum">Day 12</span><span class="ddate">Thu Jul 2</span></div><div class="dobj">Safety/Ground Ops: shop &amp; flight-line safety, fire protection &amp; extinguishers.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.1, pp. 1-1 → 1-9  + AIM Shop Safety Manual pp. 1-29</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">(reading only).</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a></div></div><div class="day" data-iso="2026-07-06" id="day13"><div class="dhead"><span class="dnum">Day 13</span><span class="ddate">Mon Jul 6</span></div><div class="dobj">Tie-downs, ground movement, engine start (recip / turbine / APU).</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.1, pp. 1-9 → 1-29</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Quiz #7 · Project G24.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a></div></div><div class="day" data-iso="2026-07-07" id="day14"><div class="dhead"><span class="dnum">Day 14</span><span class="ddate">Tue Jul 7</span></div><div class="dobj">Project / Preflight Inspection / Tiedown.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Project G24 DUE · Quiz #8.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a></div></div><div class="day" data-iso="2026-07-08" id="day15"><div class="dhead"><span class="dnum">Day 15</span><span class="ddate">Wed Jul 8</span></div><div class="dobj">Servicing: oxygen, fuel, ground support equipment (GSE).</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Project G24 DUE · Project G25.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a></div></div><div class="day" data-iso="2026-07-09" id="day16"><div class="dhead"><span class="dnum">Day 16</span><span class="ddate">Thu Jul 9</span></div><div class="dobj">Safety/Ground Ops REVIEW.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading assigned)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">SMQ #3 · Quiz #9.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a></div></div></div><h2 class="unit">Unit 4 — Human Factors</h2><div class="daygrid"><div class="day" data-iso="2026-07-13" id="day17"><div class="dhead"><span class="dnum">Day 17</span><span class="ddate">Mon Jul 13</span></div><div class="dobj">Human Factors: PEAR, MEDA, SHEL, the Dirty Dozen, human error.</div><div class="drow"><span class="dlab">Read</span><span class="dval">FAA-H-8083-30 Ch.14, pp. 14-1 → 14-34</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Project G30.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch14.html">📖 Chapter 14</a></div></div><div class="day" data-iso="2026-07-14" id="day18"><div class="dhead"><span class="dnum">Day 18</span><span class="ddate">Tue Jul 14</span></div><div class="dobj">Human Factors: Personal Minimums checklist, review.</div><div class="drow"><span class="dlab">Read</span><span class="dval">AC 43.13-1B Ch.13  (+ review Ch.14)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Quiz #10 · SMQ #4.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch14.html">📖 Chapter 14</a></div></div></div><h2 class="unit">Unit 5 — Cumulative Review &amp; Block Exam</h2><div class="daygrid"><div class="day" data-iso="2026-07-15" id="day19"><div class="dhead"><span class="dnum">Day 19</span><span class="ddate">Wed Jul 15</span></div><div class="dobj">CUMULATIVE EXAM REVIEW — all 4 units.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review all four units (no new reading)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Review any missed questions.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a><a class="readbtn" href="chapters/ch13.html">📖 Chapter 13</a><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a><a class="readbtn" href="chapters/ch14.html">📖 Chapter 14</a></div></div><div class="day" data-iso="2026-07-16" id="day20"><div class="dhead"><span class="dnum">Day 20</span><span class="ddate">Thu Jul 16</span></div><div class="dobj">Review + COMPREHENSIVE BLOCK EXAM.</div><div class="drow"><span class="dlab">Read</span><span class="dval">Review (no new reading)</span></div><div class="drow"><span class="dlab">Due</span><span class="dval">Comprehensive Block Exam.</span></div><div class="dbtns"><a class="readbtn" href="chapters/ch02.html">📖 Chapter 2</a><a class="readbtn" href="chapters/ch13.html">📖 Chapter 13</a><a class="readbtn" href="chapters/ch09.html">📖 Chapter 9</a><a class="readbtn" href="chapters/ch01.html">📖 Chapter 1</a><a class="readbtn" href="chapters/ch14.html">📖 Chapter 14</a></div></div></div>
+
+  <a class="master" href="pdf/Block3-Master-Study-Guide.pdf">
+     <b>⬇︎ Block 3 Master Study Guide (PDF)</b>
+     <span>Secondary: all five chapter summaries in one printable document.</span></a>
+
+  <div class="foot">amt-tutor · Matt's Agency · read on the site, on your phone · all content verified against the assigned FAA-H-8083-30 chapter PDFs</div>
+</div>
+
+<script>
+"use strict";
+var SCHED = [{"day": 1, "iso": "2026-06-15", "wd": "Mon", "unit": "Unit 1 — Maintenance Publications & Regulations", "reading": "FAA-H-8083-30 Ch.2, pp. 2-1 → 2-24", "obj": "Regs overview: Title 14 CFR Parts 3, 43, 91. What 'airworthy' means; primary regulations.", "due": "Read Ch.2 pp. 2-1→2-24 before class.", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}]}, {"day": 2, "iso": "2026-06-16", "wd": "Tue", "unit": "Unit 1 — Maintenance Publications & Regulations", "reading": "FAA-H-8083-30 Ch.2, pp. 2-24 → 2-33", "obj": "Maintenance Pubs: CARs, SUP, AC / AD / SAIB / TCDS / STC.", "due": "Quiz #1 · Project G29.", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}]}, {"day": 3, "iso": "2026-06-17", "wd": "Wed", "unit": "Unit 1 — Maintenance Publications & Regulations", "reading": "FAA-H-8083-30 Ch.2, pp. 2-33 → 2-47", "obj": "Non-FAA docs, Forms (337), Records (91.417), LSA.", "due": "Quiz #2 · Projects G29 / G27.", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}]}, {"day": 4, "iso": "2026-06-18", "wd": "Thu", "unit": "Unit 1 — Maintenance Publications & Regulations", "reading": "FAA-H-8083-30 Ch.13, pp. 13-1 → 13-10", "obj": "Mechanic Cert: Part 65 Subparts A & D, Inspection Authorization (IA), Ethics.", "due": "Quiz #3 · Projects G27 / G29.", "chaps": [{"slug": "ch13", "label": "Chapter 13", "title": "Chapter 13 — Mechanic Privileges & Limitations"}]}, {"day": 5, "iso": "2026-06-22", "wd": "Mon", "unit": "Unit 1 — Maintenance Publications & Regulations", "reading": "Review (no new reading assigned)", "obj": "FARs Project Day — Projects G27/G29/G33/G26/G28. Review.", "due": "Projects G27/G29/G33/G26/G28 (in progress).", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}, {"slug": "ch13", "label": "Chapter 13", "title": "Chapter 13 — Mechanic Privileges & Limitations"}]}, {"day": 6, "iso": "2026-06-23", "wd": "Tue", "unit": "Unit 1 — Maintenance Publications & Regulations", "reading": "Review (no new reading assigned)", "obj": "Maintenance Pubs REVIEW. SMQ Review.", "due": "Projects G27/G29/G33/G26/G28 DUE · Quiz #4 (Teams #5) · SMQ Review.", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}, {"slug": "ch13", "label": "Chapter 13", "title": "Chapter 13 — Mechanic Privileges & Limitations"}]}, {"day": 7, "iso": "2026-06-24", "wd": "Wed", "unit": "Unit 2 — Fluid Lines & Fittings", "reading": "FAA-H-8083-30 Ch.9, pp. 9-1 → 9-17", "obj": "Fluid Lines: rigid tubing, materials, fabrication, flares, fittings.", "due": "Project G22 Part 1 (start).", "chaps": [{"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}]}, {"day": 8, "iso": "2026-06-25", "wd": "Thu", "unit": "Unit 2 — Fluid Lines & Fittings", "reading": "Review (no new reading assigned)", "obj": "Rigid Line Project Hangar.", "due": "Projects G22 / G23 · Quiz #5.", "chaps": [{"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}]}, {"day": 9, "iso": "2026-06-29", "wd": "Mon", "unit": "Unit 2 — Fluid Lines & Fittings", "reading": "FAA-H-8083-30 Ch.9, pp. 9-17 → 9-24", "obj": "Flexible hose fluid lines: materials, inspection, fittings, clamps.", "due": "(reading only).", "chaps": [{"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}]}, {"day": 10, "iso": "2026-06-30", "wd": "Tue", "unit": "Unit 2 — Fluid Lines & Fittings", "reading": "Review (no new reading assigned)", "obj": "Flexible Line Project Hangar. Project, quizzes completion day.", "due": "Project G22 Part 2 DUE.", "chaps": [{"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}]}, {"day": 11, "iso": "2026-07-01", "wd": "Wed", "unit": "Unit 2 — Fluid Lines & Fittings", "reading": "Review (no new reading assigned)", "obj": "Fluid Lines REVIEW.", "due": "Projects G22 / G23 DUE · Quiz #6 · SMQ #2.", "chaps": [{"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}]}, {"day": 12, "iso": "2026-07-02", "wd": "Thu", "unit": "Unit 3 — Safety, Ground Ops & Servicing", "reading": "FAA-H-8083-30 Ch.1, pp. 1-1 → 1-9  + AIM Shop Safety Manual pp. 1-29", "obj": "Safety/Ground Ops: shop & flight-line safety, fire protection & extinguishers.", "due": "(reading only).", "chaps": [{"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}]}, {"day": 13, "iso": "2026-07-06", "wd": "Mon", "unit": "Unit 3 — Safety, Ground Ops & Servicing", "reading": "FAA-H-8083-30 Ch.1, pp. 1-9 → 1-29", "obj": "Tie-downs, ground movement, engine start (recip / turbine / APU).", "due": "Quiz #7 · Project G24.", "chaps": [{"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}]}, {"day": 14, "iso": "2026-07-07", "wd": "Tue", "unit": "Unit 3 — Safety, Ground Ops & Servicing", "reading": "Review (no new reading assigned)", "obj": "Project / Preflight Inspection / Tiedown.", "due": "Project G24 DUE · Quiz #8.", "chaps": [{"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}]}, {"day": 15, "iso": "2026-07-08", "wd": "Wed", "unit": "Unit 3 — Safety, Ground Ops & Servicing", "reading": "Review (no new reading assigned)", "obj": "Servicing: oxygen, fuel, ground support equipment (GSE).", "due": "Project G24 DUE · Project G25.", "chaps": [{"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}]}, {"day": 16, "iso": "2026-07-09", "wd": "Thu", "unit": "Unit 3 — Safety, Ground Ops & Servicing", "reading": "Review (no new reading assigned)", "obj": "Safety/Ground Ops REVIEW.", "due": "SMQ #3 · Quiz #9.", "chaps": [{"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}]}, {"day": 17, "iso": "2026-07-13", "wd": "Mon", "unit": "Unit 4 — Human Factors", "reading": "FAA-H-8083-30 Ch.14, pp. 14-1 → 14-34", "obj": "Human Factors: PEAR, MEDA, SHEL, the Dirty Dozen, human error.", "due": "Project G30.", "chaps": [{"slug": "ch14", "label": "Chapter 14", "title": "Chapter 14 — Human Factors"}]}, {"day": 18, "iso": "2026-07-14", "wd": "Tue", "unit": "Unit 4 — Human Factors", "reading": "AC 43.13-1B Ch.13  (+ review Ch.14)", "obj": "Human Factors: Personal Minimums checklist, review.", "due": "Quiz #10 · SMQ #4.", "chaps": [{"slug": "ch14", "label": "Chapter 14", "title": "Chapter 14 — Human Factors"}]}, {"day": 19, "iso": "2026-07-15", "wd": "Wed", "unit": "Unit 5 — Cumulative Review & Block Exam", "reading": "Review all four units (no new reading)", "obj": "CUMULATIVE EXAM REVIEW — all 4 units.", "due": "Review any missed questions.", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}, {"slug": "ch13", "label": "Chapter 13", "title": "Chapter 13 — Mechanic Privileges & Limitations"}, {"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}, {"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}, {"slug": "ch14", "label": "Chapter 14", "title": "Chapter 14 — Human Factors"}]}, {"day": 20, "iso": "2026-07-16", "wd": "Thu", "unit": "Unit 5 — Cumulative Review & Block Exam", "reading": "Review (no new reading)", "obj": "Review + COMPREHENSIVE BLOCK EXAM.", "due": "Comprehensive Block Exam.", "chaps": [{"slug": "ch02", "label": "Chapter 2", "title": "Chapter 2 — Regulations, Forms, Records & Publications"}, {"slug": "ch13", "label": "Chapter 13", "title": "Chapter 13 — Mechanic Privileges & Limitations"}, {"slug": "ch09", "label": "Chapter 9", "title": "Chapter 9 — Fluid Lines & Fittings"}, {"slug": "ch01", "label": "Chapter 1", "title": "Chapter 1 — Safety, Ground Operations & Servicing"}, {"slug": "ch14", "label": "Chapter 14", "title": "Chapter 14 — Human Factors"}]}];
+
+function todayISO(){
+  var d = new Date();
+  var m = String(d.getMonth()+1).padStart(2,"0");
+  var day = String(d.getDate()).padStart(2,"0");
+  return d.getFullYear()+"-"+m+"-"+day;
+}
+
+/* the next class day he should be preparing for: earliest date STRICTLY after today */
+function nextClassDay(iso){
+  for(var i=0;i<SCHED.length;i++){ if(SCHED[i].iso > iso) return SCHED[i]; }
+  return null;
+}
+function classDayOn(iso){
+  for(var i=0;i<SCHED.length;i++){ if(SCHED[i].iso === iso) return SCHED[i]; }
+  return null;
+}
+
+function fmt(iso){
+  var p = iso.split("-");
+  var d = new Date(+p[0], +p[1]-1, +p[2]);
+  return d.toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"});
+}
+
+function chapBtns(day, ghostFirst){
+  if(!day || !day.chaps.length) return "";
+  var h = "";
+  for(var i=0;i<day.chaps.length;i++){
+    var c = day.chaps[i];
+    var cls = (i===0 && !ghostFirst) ? "" : "ghost";
+    h += '<a class="'+cls+'" href="chapters/'+c.slug+'.html">📖 Read '+c.label+'</a>';
+  }
+  return h;
+}
+
+function render(){
+  var iso = todayISO();
+  var el = document.getElementById("panel");
+  var onToday = classDayOn(iso);
+  var nxt = nextClassDay(iso);
+
+  // After the block: no upcoming class day
+  if(!nxt){
+    el.innerHTML = '<div class="kick">Block 3 complete</div>'+
+      '<h2>You\'ve reached the end of the Block 3 calendar.</h2>'+
+      '<div class="when">Review every unit below for the Comprehensive Block Exam — good luck.</div>'+
+      '<div class="cta">'+chapBtns({chaps:SCHED[SCHED.length-1].chaps}, true)+'</div>';
+    highlight(onToday, null);
+    return;
+  }
+
+  var html = "";
+  if(onToday){
+    // it's a class day: show tonight's class + what to read for tomorrow
+    html += '<div class="today">Tonight is <b>Day '+onToday.day+'</b> ('+fmt(onToday.iso)+
+            ', 5–11 PM): '+esc(onToday.obj)+'</div>';
+    html += '<div class="kick">Read before your next class</div>';
+  } else {
+    html += '<div class="kick">Your next class · read this first</div>';
+  }
+  html += '<h2>Day '+nxt.day+' — '+esc(nxt.unit.split("—").slice(-1)[0].trim())+'</h2>';
+  html += '<div class="when">'+ (onToday ? "Next class: " : "Next class: ") +
+          fmt(nxt.iso)+', 5:00–11:00 PM</div>';
+  html += '<div class="assign"><div class="lab">Read this before '+fmt(nxt.iso)+'</div>'+
+          '<div class="big">'+esc(nxt.reading)+'</div>'+
+          '<div class="sm">'+esc(nxt.obj)+'</div></div>';
+  if(nxt.due && nxt.due.indexOf("reading only")===-1){
+    html += '<div class="assign"><div class="lab">Due / graded that day</div>'+
+            '<div class="sm">'+esc(nxt.due)+'</div></div>';
+  }
+  html += '<div class="cta">'+chapBtns(nxt, false)+'</div>';
+  el.innerHTML = html;
+
+  highlight(onToday, nxt);
+}
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function highlight(onToday, nxt){
+  if(onToday){
+    var t = document.getElementById("day"+onToday.day);
+    if(t){ t.classList.add("is-today");
+      var h = t.querySelector(".dnum");
+      if(h && !t.querySelector(".todaytag")){ h.insertAdjacentHTML("afterend",'<span class="todaytag">tonight</span>'); }
+    }
+  }
+  if(nxt){
+    var n = document.getElementById("day"+nxt.day);
+    if(n) n.classList.add("is-next");
+  }
+}
+
+render();
+</script>
+</body></html>
