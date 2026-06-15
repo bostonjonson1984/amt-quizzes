@@ -12,32 +12,50 @@
   @bottom-left { content: "amt-tutor — Matt's Agency"; font-size: 8pt; color: #888; font-family: Helvetica, Arial, sans-serif; }
   @bottom-right { content: "Page " counter(page) " of " counter(pages); font-size: 8pt; color: #888; font-family: Helvetica, Arial, sans-serif; }
 }
-body { font-family: Helvetica, Arial, sans-serif; font-size: 10.5pt; color: #1a1a2e; line-height: 1.42; }
-h1 { font-size: 18pt; margin: 0 0 2px 0; color: #0d2240; }
+body { font-family: Helvetica, Arial, sans-serif; font-size: 10.5pt; color: #1a1a2e; line-height: 1.5; }
+h1 { font-size: 19pt; margin: 0 0 2px 0; color: #0d2240; line-height: 1.15; }
 .subtitle { font-size: 10.5pt; color: #555; margin-bottom: 10px; }
-.meta { font-size: 8.5pt; color: #666; border-top: 2px solid #0d2240; border-bottom: 1px solid #ccc; padding: 5px 0; margin-bottom: 14px; }
-h2 { font-size: 13pt; color: #0d2240; border-bottom: 2px solid #c9a227; padding-bottom: 2px; margin: 18px 0 8px 0; }
+.meta { font-size: 8.7pt; color: #555; border-top: 2px solid #0d2240; border-bottom: 1px solid #ccc; padding: 6px 0; margin-bottom: 14px; line-height: 1.5; }
+h2 { font-size: 13.5pt; color: #0d2240; border-bottom: 2px solid #c9a227; padding-bottom: 3px; margin: 22px 0 9px 0; }
 h2 .num { color: #c9a227; }
-h3 { font-size: 11.5pt; color: #0d2240; margin: 12px 0 4px 0; }
-p { margin: 6px 0; }
+h3 { font-size: 11.5pt; color: #0d2240; margin: 15px 0 5px 0; }
+p { margin: 7px 0; }
 .cite { font-size: 8.5pt; color: #1f5f8b; font-style: italic; }
-.bigidea { background: #eef4fb; border-left: 4px solid #1f5f8b; padding: 9px 12px; border-radius: 0 6px 6px 0; margin: 8px 0; }
-.analogy { background: #f0faf0; border-left: 4px solid #2e7d32; padding: 9px 12px; border-radius: 0 6px 6px 0; margin: 8px 0; }
-table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.3pt; }
-th { background: #0d2240; color: #fff; padding: 5px 8px; text-align: left; font-size: 9pt; }
-td { border: 1px solid #ccc; padding: 5px 8px; vertical-align: top; }
+
+/* nav card — quick "what's in here" */
+.nav { background: #f5f7fa; border: 1px solid #d6deea; border-radius: 8px; padding: 10px 14px; margin: 10px 0 4px 0; }
+.nav b { color: #0d2240; }
+.nav ul { margin: 6px 0 0 0; padding-left: 18px; }
+.nav li { margin: 3px 0; }
+
+/* callout cards */
+.bigidea { background: #eef4fb; border-left: 4px solid #1f5f8b; padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; }
+.analogy { background: #f0faf0; border-left: 4px solid #2e7d32; padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; }
+.bigidea p:first-child, .analogy p:first-child { margin-top: 0; }
+.bigidea p:last-child, .analogy p:last-child { margin-bottom: 0; }
+
+/* reference tables */
+table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 9.4pt; }
+th { background: #0d2240; color: #fff; padding: 6px 8px; text-align: left; font-size: 9pt; }
+td { border: 1px solid #ccc; padding: 6px 9px; vertical-align: top; line-height: 1.45; }
 tr:nth-child(even) td { background: #f5f7fa; }
 td.sec { font-weight: bold; background: #eaeef3 !important; width: 13%; white-space: nowrap; color: #0d2240; }
 .subhead td { background: #c9a227 !important; color: #1a1a2e; font-weight: bold; font-size: 9.5pt; }
-.mustknow { background: #fdf2f2; border: 2px solid #c0392b; border-radius: 8px; padding: 10px 14px; margin: 12px 0; }
-.mustknow h3 { color: #c0392b; margin: 0 0 6px 0; font-size: 12pt; }
-.mustknow li { margin: 5px 0; }
-.allow { background: #f0faf0; border: 1px solid #b6dcb6; border-radius: 6px; padding: 9px 12px; margin: 8px 0; }
-.deny { background: #fdf2f2; border: 1px solid #e8b9b9; border-radius: 6px; padding: 9px 12px; margin: 8px 0; }
-ol li, ul li { margin: 3px 0; }
-.divnote { background: #fff8e6; border: 1px dashed #c9a227; border-radius: 6px; padding: 7px 10px; font-size: 9.5pt; margin: 8px 0; }
+
+/* must-know + may/may-not */
+.mustknow { background: #fdf2f2; border: 2px solid #c0392b; border-radius: 8px; padding: 12px 16px; margin: 14px 0; }
+.mustknow h3 { color: #c0392b; margin: 0 0 8px 0; font-size: 12.5pt; }
+.mustknow li { margin: 6px 0; line-height: 1.45; }
+.allow { background: #f0faf0; border: 1px solid #b6dcb6; border-radius: 6px; padding: 10px 14px; margin: 9px 0; }
+.deny { background: #fdf2f2; border: 1px solid #e8b9b9; border-radius: 6px; padding: 10px 14px; margin: 9px 0; }
+.allow b.lbl, .deny b.lbl { display: block; margin-bottom: 4px; font-size: 10.5pt; }
+.deny .lbl { color: #c0392b; }
+.allow .lbl { color: #2e7d32; }
+ol li, ul li { margin: 4px 0; }
+.divnote { background: #fff8e6; border: 1px dashed #c9a227; border-radius: 6px; padding: 9px 13px; font-size: 9.6pt; margin: 10px 0; line-height: 1.5; }
 .pagebreak { page-break-before: always; }
 b.hot { color: #c0392b; }
+.hook { background: #0d2240; color: #fff; border-radius: 5px; padding: 2px 7px; font-size: 9pt; white-space: nowrap; }
 
 
 
@@ -75,43 +93,70 @@ body{ background:var(--bg) !important; margin:0 !important; padding:0 !important
 <div class="lcdl"><a href="../pdf/Block3-Ch13-MechanicPrivileges_Summary.pdf">⬇︎ Download / print the PDF</a></div>
 <div class="lcwrap">
 
-<h1>Block 3 — Chapter 13: Mechanic Privileges &amp; Limitations</h1>
-<div class="subtitle">Plain-English Study Guide &mdash; read this instead of slogging the chapter, still know everything</div>
+<h1>Block 3 &mdash; Chapter 13: Mechanic Privileges &amp; Limitations</h1>
+<div class="subtitle">Plain-English study guide &mdash; read this instead of slogging the chapter, still know everything.</div>
+
 <div class="meta">
-<b>Block 3 — General</b> &nbsp;|&nbsp; Built 2026-06-14 &nbsp;|&nbsp;
-Source of truth: assigned chapter PDF <i>"Chapter 13 Mechanic Privileges and Limitations"</i> (8 pp.), built on
-<b>14 CFR Part 65</b> &mdash; Subpart A (General), Subpart D (Mechanics), and the Inspection Authorization sections.
-&nbsp;|&nbsp; <b>This chapter is reg-number heavy &mdash; the section numbers and timeframes get tested COLD. Memorize them.</b>
+<b>Block 3 &mdash; General</b> &nbsp;|&nbsp; Updated 2026-06-15 &nbsp;|&nbsp;
+Source: assigned chapter PDF <i>&ldquo;Chapter 13 Mechanic Privileges and Limitations&rdquo;</i> (8 pp.), built on
+<b>14 CFR Part 65</b> &mdash; Subpart A (General), Subpart D (Mechanics), and the Inspection Authorization sections.<br>
+<b>This chapter is reg-number heavy.</b> The section numbers and timeframes get tested COLD &mdash; memorize them.
+&nbsp;|&nbsp; <i>No figures in the source chapter (it&rsquo;s all text), so none are embedded here.</i>
 &nbsp;|&nbsp; SUMMARY ONLY (no quiz/flashcards yet, per your request).
 </div>
 
-<h2><span class="num">0.</span> The Big Picture (read this first)</h2>
-<div class="bigidea">
-<p><b>What Part 65 is:</b> Part 65 is the FAA rulebook for certifying <b>airmen who are NOT flight crew</b> &mdash;
-i.e., the people on the ground who keep airplanes legal and safe. (&ldquo;Airman&rdquo; here just means an FAA-certified
-person, not necessarily a pilot.) Part 65 has six subparts; this chapter only cares about <b>two of them</b>:
-<b>Subpart A = General rules</b> (apply to everybody) and <b>Subpart D = Mechanics</b> (the A&amp;P rules), plus the
-<b>Inspection Authorization (IA)</b> sections. <span class="cite">(p. 1)</span></p>
-<p><b>Two kinds of maintenance technician &mdash; know the difference cold:</b></p>
+<div class="nav">
+<b>What&rsquo;s in this chapter (and where to find it):</b>
 <ul>
-<li><b>Mechanic certificate (the A&amp;P)</b> = <b>transportable</b>. It belongs to YOU based on your training and knowledge,
+<li><b>0 &mdash; The Big Picture:</b> what Part 65 is; mechanic cert vs. repairman cert.</li>
+<li><b>1 &mdash; Subpart A (General):</b> the paperwork/honesty/testing rules &mdash; the &sect;65.1x block.</li>
+<li><b>2 &mdash; Subpart D (Mechanics):</b> becoming an A&amp;P + what you may/may not do &mdash; the &sect;65.7x&ndash;8x block.</li>
+<li><b>3 &mdash; Inspection Authorization (IA):</b> the next step up &mdash; the &sect;65.9x block.</li>
+<li><b>4 &mdash; Ethics:</b> the closing discussion (ice-shield + Goodrich brake stories).</li>
+<li>Then the <b>&#9888; MUST-KNOW box</b> &mdash; every number/fact that hits the written.</li>
+</ul>
+</div>
+
+<h2><span class="num">0.</span> The Big Picture (read this first)</h2>
+
+<div class="bigidea">
+<p><b>What Part 65 is.</b> Part 65 is the FAA rulebook for certifying <b>airmen who are NOT flight crew</b> &mdash;
+the people on the ground who keep airplanes legal and safe. (&ldquo;Airman&rdquo; here just means an FAA-certified
+person, not necessarily a pilot.)</p>
+
+<p>Part 65 has six subparts. This chapter only cares about <b>two</b>: <b>Subpart A = General rules</b> (apply to
+everybody) and <b>Subpart D = Mechanics</b> (the A&amp;P rules), plus the <b>Inspection Authorization (IA)</b>
+sections. <span class="cite">(p. 1)</span></p>
+</div>
+
+<h3>Two kinds of technician &mdash; know the difference cold</h3>
+<div class="bigidea">
+<ul>
+<li><b>Mechanic certificate (the A&amp;P) = transportable.</b> It belongs to YOU based on your training and knowledge,
 and it travels with you no matter where you work.</li>
-<li><b>Repairman certificate</b> = <b>tied to one location/employer</b>. It is issued to you only while you work at a
-<b>specific company at a specific address</b>, and that address is printed on it. When you leave that job, you must
+<li><b>Repairman certificate = tied to one location/employer.</b> It&rsquo;s issued only while you work at a
+<b>specific company at a specific address</b>, and that address is printed on it. When you leave that job, you
 <b>return the repairman certificate to the FSDO</b> (Flight Standards District Office) that issued it.</li>
 </ul>
 </div>
-<div class="analogy"><b>Analogy:</b> A mechanic certificate is like a <b>driver&rsquo;s license</b> &mdash; it&rsquo;s yours, it works
-anywhere. A repairman certificate is like a <b>building access badge</b> &mdash; it only works at the one company that
-issued it, and you hand it back at the door when you quit. <span class="cite">(p. 1)</span></div>
 
-<h2><span class="num">1.</span> Subpart A — General Rules (the &sect;65.1x block)</h2>
-<p>These apply to <b>all</b> Part 65 airmen, not just mechanics. They are the &ldquo;paperwork, honesty, and testing&rdquo;
-rules. The full reference table is below; the high-yield numbers are spelled out underneath it.</p>
+<div class="analogy">
+<p><b>Analogy.</b> A mechanic certificate is like a <b>driver&rsquo;s license</b> &mdash; it&rsquo;s yours, it works
+anywhere. A repairman certificate is like a <b>building access badge</b> &mdash; it only works at the one company
+that issued it, and you hand it back at the door when you quit. <span class="cite">(p. 1)</span></p>
+</div>
+
+<h2><span class="num">1.</span> Subpart A &mdash; General Rules (the &sect;65.1x block)</h2>
+
+<p>These apply to <b>all</b> Part 65 airmen, not just mechanics. They&rsquo;re the &ldquo;paperwork, honesty, and
+testing&rdquo; rules.</p>
+
+<p>The full reference table is below. The high-yield numbers are spelled out right after it &mdash; read the table
+once, then study the drill-down.</p>
 
 <table>
 <tr><th>14 CFR &sect;</th><th>Title (plain meaning)</th></tr>
-<tr class="subhead"><td colspan="2">SUBPART A — GENERAL &nbsp;(applies to all Part 65 certificate holders) &nbsp;&mdash;&nbsp; ch. pp. 1&ndash;3</td></tr>
+<tr class="subhead"><td colspan="2">SUBPART A &mdash; GENERAL &nbsp;(applies to all Part 65 certificate holders) &nbsp;&mdash;&nbsp; ch. pp. 1&ndash;3</td></tr>
 <tr><td class="sec">65.3</td><td><b>Certification of foreign airmen.</b> FAA normally issues these certificates only to <b>U.S. citizens or resident aliens</b>. Exception: it will issue to a person OUTSIDE the U.S. if needed for the operation/continued airworthiness of a <b>U.S.-registered civil aircraft</b>, if they meet the requirements.</td></tr>
 <tr><td class="sec">65.11</td><td><b>Application &amp; issue.</b> Apply on <b>FAA Form 8610-2</b> (Airman Certificate and/or Rating Application). If <b>SUSPENDED</b>, you may not apply for additional ratings during the suspension. If <b>REVOKED</b>, you may not apply for a certificate for <b>1 year</b> after the revocation.</td></tr>
 <tr><td class="sec">65.12</td><td><b>Offenses involving alcohol &amp; drugs.</b> A conviction for a drug offense (growing, processing, manufacturing, selling, disposing, possessing, transporting, or importing narcotics/marijuana/depressants/stimulants) can get your application <b>denied for up to 1 year</b> after the conviction date, and can cause <b>suspension or revocation</b> of a certificate you already hold.</td></tr>
@@ -126,30 +171,41 @@ rules. The full reference table is below; the high-yield numbers are spelled out
 <tr><td class="sec">65.21</td><td><b>Change of address.</b> Notify the FAA <b>in writing within 30 days</b> of a change of permanent residence (same Oklahoma City Airmen Certification Branch address).</td></tr>
 </table>
 
-<h3>Plain-words drill-down on the heavily-tested General sections</h3>
+<h3>Drill-down: the heavily-tested General sections</h3>
+
 <div class="bigidea">
-<p><b>The three &ldquo;states&rdquo; of a certificate (&sect;65.15) &mdash; the FAA loves to test these definitions:</b></p>
+<p><b>The three &ldquo;states&rdquo; of a certificate (&sect;65.15).</b> The FAA loves to test these definitions:</p>
 <ul>
 <li><b>SURRENDERED</b> = you gave it up <b>voluntarily</b>.</li>
-<li><b>SUSPENDED</b> = FAA pulled it <b>temporarily</b> (you can get it back). After a suspension &rarr; you can&rsquo;t apply for added ratings <i>during</i> the suspension (&sect;65.11).</li>
-<li><b>REVOKED</b> = FAA pulled it <b>permanently</b>. After a revocation &rarr; you can&rsquo;t even apply again for <b>1 year</b> (&sect;65.11).</li>
+<li><b>SUSPENDED</b> = FAA pulled it <b>temporarily</b> (you can get it back). During a suspension you can&rsquo;t apply for added ratings (&sect;65.11).</li>
+<li><b>REVOKED</b> = FAA pulled it <b>permanently</b>. After a revocation you can&rsquo;t even apply again for <b>1 year</b> (&sect;65.11).</li>
 </ul>
-<p><b>The two retesting paths (&sect;65.19):</b> Think of it as <b>&ldquo;wait or weight.&rdquo;</b> Either <b>WAIT 30 days</b>, or
-add the <b>WEIGHT</b> of a signed instructor statement and retest immediately. Those are the only two paths. <span class="cite">(p. 2)</span></p>
 </div>
 
-<div class="divnote"><b>Bonus topic the chapter folds in here (drug/alcohol testing &mdash; part 120, not part 65):</b>
-Refusing a required drug/alcohol test (under <b>14 CFR part 120</b>) can get your application denied and existing certificates suspended/revoked.
-<b>&sect;120.117</b> (drug program) requires a <b>urine sample</b>; <b>&sect;120.37</b> (misuse of alcohol) requires a <b>breath test</b>.
-Memorize the <b>seven times testing can be required:</b> <b>(1) pre-employment, (2) periodic, (3) random, (4) post-accident,
-(5) reasonable cause, (6) return-to-duty, (7) follow-up.</b> <span class="cite">(pp. 2&ndash;3)</span></div>
+<div class="bigidea">
+<p><b>The two retesting paths (&sect;65.19).</b> Think <span class="hook">&ldquo;wait or weight&rdquo;</span> &mdash;
+either <b>WAIT 30 days</b>, or add the <b>WEIGHT</b> of a signed instructor statement and retest immediately. Those
+are the only two paths. <span class="cite">(p. 2)</span></p>
+</div>
 
-<h2><span class="num">2.</span> Subpart D — Mechanics (the &sect;65.7x &amp; &sect;65.8x block)</h2>
-<p>This is the heart of the chapter &mdash; the rules for <b>becoming</b> an A&amp;P and what an A&amp;P <b>may and may not do</b>.</p>
+<div class="divnote">
+<b>Bonus topic the chapter folds in here</b> &mdash; drug/alcohol testing (part 120, NOT part 65):<br>
+Refusing a required drug/alcohol test (under <b>14 CFR part 120</b>) can get your application denied and existing
+certificates suspended/revoked.<br>
+&bull; <b>&sect;120.117</b> (drug program) requires a <b>urine sample</b>.<br>
+&bull; <b>&sect;120.37</b> (misuse of alcohol) requires a <b>breath test</b>.<br>
+Memorize the <b>seven times testing can be required:</b> (1) pre-employment, (2) periodic, (3) random,
+(4) post-accident, (5) reasonable cause, (6) return-to-duty, (7) follow-up. <span class="cite">(pp. 2&ndash;3)</span>
+</div>
+
+<h2><span class="num">2.</span> Subpart D &mdash; Mechanics (the &sect;65.7x &amp; &sect;65.8x block)</h2>
+
+<p>This is the heart of the chapter &mdash; the rules for <b>becoming</b> an A&amp;P and what an A&amp;P
+<b>may and may not do</b>.</p>
 
 <table>
 <tr><th>14 CFR &sect;</th><th>Title (plain meaning)</th></tr>
-<tr class="subhead"><td colspan="2">SUBPART D — MECHANICS &nbsp;(the A&amp;P rules) &nbsp;&mdash;&nbsp; ch. pp. 3&ndash;5</td></tr>
+<tr class="subhead"><td colspan="2">SUBPART D &mdash; MECHANICS &nbsp;(the A&amp;P rules) &nbsp;&mdash;&nbsp; ch. pp. 3&ndash;5</td></tr>
 <tr><td class="sec">65.71</td><td><b>Eligibility (general).</b> Must be <b>18+ years old</b>; <b>read/write/speak/understand English</b>; have passed all required tests <b>within the preceding 24 months</b>; and possess/demonstrate the right knowledge &amp; skill for the rating sought.</td></tr>
 <tr><td class="sec">65.73</td><td><b>Ratings.</b> Two ratings: <b>Airframe</b> and <b>Powerplant</b>. Can be earned separately or as a combined A&amp;P. Old <b>A or E certificates valid before June 15, 1952</b> can be exchanged for the current equivalents (A &amp; E &rarr; A&amp;P).</td></tr>
 <tr><td class="sec">65.75</td><td><b>Knowledge (written) requirements.</b> Pass written test(s) at <b>70%</b> (&sect;65.17). <b>Three tests:</b> <b>General = 60 questions</b>, <b>Airframe = 100</b>, <b>Powerplant = 100</b>. Includes applicable parts of <b>14 CFR 43 &amp; 91</b>; propeller install/maintenance basics are in the Powerplant test. <b>Must pass written BEFORE applying for the oral &amp; practical (&sect;65.79).</b></td></tr>
@@ -163,55 +219,74 @@ Memorize the <b>seven times testing can be required:</b> <b>(1) pre-employment, 
 <tr><td class="sec">65.89</td><td><b>Display of certificate.</b> Keep the certificate in the <b>immediate area</b> where you normally work, and <b>present it on request</b> to the FAA, NTSB, or any federal/state/local law-enforcement officer.</td></tr>
 </table>
 
-<h3>&sect;65.71 — Eligibility, spelled out (memorize the four)</h3>
+<h3>&sect;65.71 &mdash; Eligibility, spelled out (memorize the four)</h3>
 <div class="bigidea">
 <p><b>To get a mechanic certificate you must:</b></p>
 <ol>
 <li>Be at least <b>18 years old.</b></li>
-<li><b>Read, write, speak, and understand English.</b> (If you can&rsquo;t and you work outside the U.S. for a U.S. carrier, the cert is endorsed <b>&ldquo;valid only outside the United States.&rdquo;</b>)</li>
+<li><b>Read, write, speak, and understand English.</b> (If you can&rsquo;t, and you work outside the U.S. for a U.S. carrier, the cert is endorsed <b>&ldquo;valid only outside the United States.&rdquo;</b>)</li>
 <li>Have <b>passed all required tests (written, oral, practical) within the preceding 24 months.</b></li>
 <li><b>Possess and demonstrate</b> the appropriate knowledge and skill for the rating.</li>
 </ol>
-<p>Adding the second rating later? Same deal &mdash; meet &sect;65.77 experience and take written+oral+practical <b>within 24 months</b>.
-<b>Memory hook: &ldquo;18 / English / 24 months / know-and-show.&rdquo;</b> <span class="cite">(p. 3)</span></p>
+<p>Adding the second rating later? Same deal &mdash; meet &sect;65.77 experience and take written + oral + practical
+<b>within 24 months</b>.</p>
+<p><span class="hook">Memory hook: &ldquo;18 / English / 24 months / know-and-show.&rdquo;</span> <span class="cite">(p. 3)</span></p>
 </div>
 
-<h3>&sect;65.81 — General Privileges &amp; Limitations (the &ldquo;may / may NOT&rdquo; rule)</h3>
-<div class="allow"><b>An A&amp;P MAY:</b> <b>perform or supervise</b> the <b>maintenance, preventive maintenance, or alterations</b> of an aircraft
-or appliance (or part) <b>for which they are rated</b>. The mechanic must <b>have and understand the maintenance manuals /
-instructions for continued airworthiness</b> for the task.</div>
-<div class="deny"><b>An A&amp;P may NOT:</b>
+<h3>&sect;65.81 &mdash; General Privileges &amp; Limitations (the &ldquo;may / may NOT&rdquo; rule)</h3>
+
+<div class="allow">
+<b class="lbl">An A&amp;P MAY:</b>
+<b>perform or supervise</b> the <b>maintenance, preventive maintenance, or alterations</b> of an aircraft or appliance
+(or part) <b>for which they are rated</b>. The mechanic must <b>have and understand the maintenance manuals /
+instructions for continued airworthiness</b> for the task.
+</div>
+
+<div class="deny">
+<b class="lbl">An A&amp;P may NOT:</b>
 <ul>
 <li>Do a <b>major repair or major alteration to a PROPELLER.</b></li>
 <li>Do <b>ANY repair to, or alteration of, INSTRUMENTS.</b> (Props-major and instruments are reserved for <b>certificated repairmen at an authorized repair station.</b>)</li>
 <li><b>Supervise</b> a task <b>unless they have satisfactorily performed that same work at an earlier date.</b></li>
 </ul>
 </div>
-<div class="analogy"><b>Why the OJT log matters:</b> Because of that last rule, you can only <b>supervise</b> work you&rsquo;ve already
-<b>done yourself</b> and logged. That&rsquo;s why keeping an <b>On-the-Job-Training (OJT) log</b> is huge &mdash; it&rsquo;s your proof.
-<b>Memory hook for the two big NO&rsquo;s: &ldquo;No major PROP, no INSTRUMENTS&rdquo;</b> &mdash; PI (Props/Instruments) are off-limits. <span class="cite">(p. 4)</span></div>
 
-<h3>&sect;65.83 — Recent Experience (the &ldquo;6 of 24&rdquo; rule)</h3>
+<div class="analogy">
+<p><b>Why the OJT log matters.</b> Because of that last rule, you can only <b>supervise</b> work you&rsquo;ve already
+<b>done yourself</b> and logged. That&rsquo;s why keeping an <b>On-the-Job-Training (OJT) log</b> is huge &mdash;
+it&rsquo;s your proof.</p>
+<p><span class="hook">Two big NO&rsquo;s: &ldquo;No major PROP, no INSTRUMENTS&rdquo;</span> &mdash;
+<b>PI</b> (Props/Instruments) are off-limits. <span class="cite">(p. 4)</span></p>
+</div>
+
+<h3>&sect;65.83 &mdash; Recent Experience (the &ldquo;6 of 24&rdquo; rule)</h3>
 <div class="bigidea">
-<p>Your A&amp;P never <b>expires</b> (&sect;65.15) &mdash; but you can&rsquo;t <b>USE</b> it unless you&rsquo;ve been active as a mechanic for
-<b>at least 6 of the preceding 24 months.</b> &ldquo;Active&rdquo; counts if you did <b>any one (or a mix)</b> of:</p>
+<p>Your A&amp;P never <b>expires</b> (&sect;65.15) &mdash; but you can&rsquo;t <b>USE</b> it unless you&rsquo;ve been active
+as a mechanic for <b>at least 6 of the preceding 24 months.</b> &ldquo;Active&rdquo; counts if you did <b>any one
+(or a mix)</b> of:</p>
 <ul>
 <li>Served as a <b>mechanic</b> under the certificate and rating;</li>
 <li><b>Technically supervised</b> other mechanics;</li>
 <li><b>Supervised, in an executive capacity,</b> the maintenance or alteration of an aircraft.</li>
 </ul>
-<p><b>Memory hook: &ldquo;6 of 24 keeps it alive.&rdquo;</b> Don&rsquo;t confuse the certificate <b>existing</b> (forever, until surrendered/suspended/revoked)
-with the certificate being <b>exercisable</b> (only if 6-of-24 is met). The FAA loves that trap. <span class="cite">(p. 4)</span></p>
+<p><span class="hook">Memory hook: &ldquo;6 of 24 keeps it alive.&rdquo;</span> Don&rsquo;t confuse the certificate
+<b>existing</b> (forever, until surrendered/suspended/revoked) with the certificate being <b>exercisable</b> (only
+if 6-of-24 is met). The FAA loves that trap. <span class="cite">(p. 4)</span></p>
 </div>
 
-<div class="divnote"><b>&sect;65.85 / &sect;65.87 light-sport exception (know it exists):</b> An airframe (or powerplant) mechanic <b>can</b>
-approve &amp; return to service a <b>major</b> repair/alteration on a <b>special airworthiness certificate light-sport aircraft</b>
-(per part 21 &sect;21.190) <b>without an IA</b> &mdash; but only on products <b>not produced under FAA approval (not type certificated)</b>
-and done per manufacturer (or FAA-acceptable) instructions. For normal type-certificated aircraft, a <b>major</b> still needs IA sign-off. <span class="cite">(p. 4)</span></div>
+<div class="divnote">
+<b>&sect;65.85 / &sect;65.87 light-sport exception (know it exists):</b> An airframe (or powerplant) mechanic
+<b>can</b> approve &amp; return to service a <b>major</b> repair/alteration on a <b>special airworthiness certificate
+light-sport aircraft</b> (per part 21 &sect;21.190) <b>without an IA</b> &mdash; but only on products <b>not produced
+under FAA approval (not type certificated)</b> and done per manufacturer (or FAA-acceptable) instructions. For
+normal type-certificated aircraft, a <b>major</b> still needs IA sign-off. <span class="cite">(p. 4)</span>
+</div>
 
-<h2><span class="num">3.</span> Inspection Authorization — IA (the &sect;65.9x block)</h2>
-<p>The IA is the <b>next step up</b> from A&amp;P. It lets you <b>approve major repairs/alterations for return to service</b> and
-perform <b>annual inspections</b> &mdash; things a plain A&amp;P can&rsquo;t finish alone. These four sections are <b>heavily tested.</b></p>
+<h2><span class="num">3.</span> Inspection Authorization &mdash; IA (the &sect;65.9x block)</h2>
+
+<p>The IA is the <b>next step up</b> from A&amp;P. It lets you <b>approve major repairs/alterations for return to
+service</b> and perform <b>annual inspections</b> &mdash; things a plain A&amp;P can&rsquo;t finish alone. These four
+sections are <b>heavily tested.</b></p>
 
 <table>
 <tr><th>14 CFR &sect;</th><th>Title (plain meaning)</th></tr>
@@ -222,16 +297,17 @@ perform <b>annual inspections</b> &mdash; things a plain A&amp;P can&rsquo;t fin
 <tr><td class="sec">65.95</td><td><b>IA &mdash; privileges &amp; limitations.</b> May do an <b>annual</b> inspection; perform/supervise a <b>progressive</b> inspection; and <b>approve for return to service</b> after a <b>major repair or alteration</b> &mdash; <b>EXCEPT</b> aircraft on a continuous-airworthiness program under <b>part 121</b>. Keep certificate available for: aircraft owner, A&amp;P, FAA, NTSB, or any law-enforcement officer. If you <b>move your fixed base</b>, notify the new <b>FSDO in writing BEFORE</b> exercising IA privileges there.</td></tr>
 </table>
 
-<h3>&sect;65.91 — Getting the IA, spelled out</h3>
+<h3>&sect;65.91 &mdash; Getting the IA, spelled out</h3>
 <div class="bigidea">
-<p><b>The &ldquo;3 and 2&rdquo; rule:</b> hold the A&amp;P <b>3 years</b>, and be <b>active the last 2 years.</b> Plus:
-a <b>fixed base of operation</b> (a place you can be reached in person or by phone during a normal work week &mdash; it does
-NOT have to be where you actually do inspections); the <b>equipment, facilities, and inspection data</b> to properly inspect;
-apply on <b>Form 8610-1</b>; then <b>pass the written at 70%.</b> <b>Fail = 90-day wait</b> before retesting, and (unlike the
-A&amp;P test) <b>extra training does NOT shorten the wait.</b> <span class="cite">(p. 5)</span></p>
+<p><b>The &ldquo;3 and 2&rdquo; rule:</b> hold the A&amp;P <b>3 years</b>, and be <b>active the last 2 years.</b></p>
+<p>Plus: a <b>fixed base of operation</b> (a place you can be reached in person or by phone during a normal work week
+&mdash; it does NOT have to be where you actually do inspections); the <b>equipment, facilities, and inspection
+data</b> to properly inspect; apply on <b>Form 8610-1</b>; then <b>pass the written at 70%.</b></p>
+<p><b>Fail = 90-day wait</b> before retesting &mdash; and (unlike the A&amp;P test) <b>extra training does NOT shorten
+the wait.</b> <span class="cite">(p. 5)</span></p>
 </div>
 
-<h3>&sect;65.93 — Renewing the IA</h3>
+<h3>&sect;65.93 &mdash; Renewing the IA</h3>
 <div class="bigidea">
 <p>Each year, do <b>ANY ONE</b> of these (you cannot <b>mix</b> them):</p>
 <ul>
@@ -241,13 +317,14 @@ A&amp;P test) <b>extra training does NOT shorten the wait.</b> <span class="cite
 <li>Complete a <b>refresher course of at least 8 hours</b> acceptable to the Administrator;</li>
 <li>Pass an <b>oral test</b> by an FAA inspector (the &ldquo;last resort&rdquo; method).</li>
 </ul>
-<p><b>The cumulative trick the chapter calls out:</b> the <b>4 annuals / 8 major-inspections</b> are <b>cumulative by March 31</b>,
-not required in each individual 90-day chunk. You could go 11 months doing nothing, then do all 4 annuals (or all 8 337-inspections)
-in March. But you <b>cannot mix</b> methods (e.g., 2 annuals + 4 Form 337s does not count). <span class="cite">(pp. 5&ndash;6)</span></p>
+<p><b>The cumulative trick the chapter calls out:</b> the <b>4 annuals / 8 major-inspections</b> are <b>cumulative by
+March 31</b>, not required in each individual 90-day chunk. You could go 11 months doing nothing, then do all 4
+annuals (or all 8 337-inspections) in March. But you <b>cannot mix</b> methods (e.g., 2 annuals + 4 Form 337s does
+not count). <span class="cite">(pp. 5&ndash;6)</span></p>
 </div>
 
 <div class="mustknow">
-<h3>&#9888; MUST KNOW — memorize these numbers &amp; facts COLD</h3>
+<h3>&#9888; MUST KNOW &mdash; memorize these numbers &amp; facts COLD</h3>
 <ul>
 <li><b>70%</b> = minimum passing score on every test (&sect;65.13, &sect;65.17, &sect;65.75, &sect;65.91).</li>
 <li><b>120 days</b> = max validity of a <b>temporary certificate</b> (&sect;65.13).</li>
@@ -268,27 +345,42 @@ in March. But you <b>cannot mix</b> methods (e.g., 2 annuals + 4 Form 337s does 
 </div>
 
 <h2><span class="num">4.</span> Ethics (the closing discussion)</h2>
+
 <div class="bigidea">
-<p><b>What it is:</b> <b>&ldquo;Ethics&rdquo;</b> comes from the Greek <b>&ldquo;ethos&rdquo;</b> (character / custom) and means
-<b>&ldquo;the study of standards of conduct and moral judgment.&rdquo;</b> For an A&amp;P, ethics is doing the right, legal,
-airworthy thing even when the boss, the schedule, or the bottom line pushes you to cut corners. <span class="cite">(p. 6)</span></p>
+<p><b>What it is.</b> &ldquo;Ethics&rdquo; comes from the Greek <b>&ldquo;ethos&rdquo;</b> (character / custom) and means
+<b>&ldquo;the study of standards of conduct and moral judgment.&rdquo;</b> For an A&amp;P, ethics is doing the right,
+legal, airworthy thing even when the boss, the schedule, or the bottom line pushes you to cut corners.
+<span class="cite">(p. 6)</span></p>
 </div>
-<p><b>The ice-shield scenario (the lesson):</b> A tech removed a damaged fuselage ice shield believing a replacement was in
-stock; inventory was wrong. <b>Key rule:</b> once a damaged part is removed, it becomes <b>unairworthy and CANNOT be reinstalled</b>
-&mdash; even if it&rsquo;s deferrable on the <b>MEL (Minimum Equipment List)</b>. The inspector told him to reinstall it, then to do an
-unauthorized epoxy patch the shop wasn&rsquo;t authorized to make. The tech <b>refused and walked away</b>; someone else compromised
-standards and the aircraft <b>departed illegally and unairworthy.</b> Lesson: <b>it&rsquo;s the mechanic&rsquo;s responsibility to follow
-the regs and question a supervisor who circumvents them for an on-time departure.</b> <span class="cite">(pp. 6&ndash;7)</span></p>
-<p><b>The B.F. Goodrich brake scandal (the second example):</b> A classic <b>whistle-blowing</b> case &mdash; a brake system
-that failed testing <b>14 times</b> was pushed toward qualification &ldquo;no matter what,&rdquo; under a culture of intimidation,
-leading to a <b>1969 congressional hearing.</b> Point: a <b>company culture of intimidation/distrust</b> transcends every industry,
-and <b>trust</b> is the foundation of long-term success. <span class="cite">(pp. 7&ndash;8)</span></p>
-<div class="divnote"><b>Two checklists worth remembering:</b><br>
-<b>Seven-step ethical-decision checklist:</b> (1) recognize/clarify the dilemma, (2) get all the facts, (3) list ALL options,
-(4) test each (Is it legal? Is it right? Is it beneficial?), (5) decide, (6) double-check (How would I feel if family knew? if it hit the newspaper?), (7) take action.<br>
-<b>Four common ways people rationalize bad behavior:</b> pretending it isn&rsquo;t unethical/illegal; claiming it&rsquo;s in the org&rsquo;s best interest;
-assuming no one will find out; expecting superiors to protect you (&mdash; they won&rsquo;t; in court they&rsquo;ll swear they always told you to work &ldquo;by the book&rdquo;).
-The chapter closes with the <b>PAMA Code of Ethics</b> &mdash; never approve work beyond your knowledge, and never let money or a superior push you to pass doubtful work as airworthy. <span class="cite">(pp. 8)</span></div>
+
+<h3>The ice-shield scenario (the lesson)</h3>
+<p>A tech removed a damaged fuselage ice shield believing a replacement was in stock; inventory was wrong.</p>
+<p><b>Key rule:</b> once a damaged part is removed, it becomes <b>unairworthy and CANNOT be reinstalled</b> &mdash;
+even if it&rsquo;s deferrable on the <b>MEL (Minimum Equipment List)</b>.</p>
+<p>The inspector told him to reinstall it, then to do an unauthorized epoxy patch the shop wasn&rsquo;t authorized to
+make. The tech <b>refused and walked away</b>; someone else compromised standards and the aircraft <b>departed
+illegally and unairworthy.</b></p>
+<p><b>Lesson:</b> it&rsquo;s the mechanic&rsquo;s responsibility to follow the regs and question a supervisor who
+circumvents them for an on-time departure. <span class="cite">(pp. 6&ndash;7)</span></p>
+
+<h3>The B.F. Goodrich brake scandal (the second example)</h3>
+<p>A classic <b>whistle-blowing</b> case &mdash; a brake system that failed testing <b>14 times</b> was pushed toward
+qualification &ldquo;no matter what,&rdquo; under a culture of intimidation, leading to a <b>1969 congressional
+hearing.</b></p>
+<p><b>Point:</b> a <b>company culture of intimidation/distrust</b> transcends every industry, and <b>trust</b> is the
+foundation of long-term success. <span class="cite">(pp. 7&ndash;8)</span></p>
+
+<div class="divnote">
+<b>Two checklists worth remembering:</b><br><br>
+<b>Seven-step ethical-decision checklist:</b> (1) recognize/clarify the dilemma, (2) get all the facts, (3) list ALL
+options, (4) test each (Is it legal? Is it right? Is it beneficial?), (5) decide, (6) double-check (How would I feel
+if family knew? if it hit the newspaper?), (7) take action.<br><br>
+<b>Four common ways people rationalize bad behavior:</b> pretending it isn&rsquo;t unethical/illegal; claiming
+it&rsquo;s in the org&rsquo;s best interest; assuming no one will find out; expecting superiors to protect you (they
+won&rsquo;t &mdash; in court they&rsquo;ll swear they always told you to work &ldquo;by the book&rdquo;).<br><br>
+The chapter closes with the <b>PAMA Code of Ethics</b> &mdash; never approve work beyond your knowledge, and never
+let money or a superior push you to pass doubtful work as airworthy. <span class="cite">(p. 8)</span>
+</div>
 
 </div>
 <div class="lcfoot">amt-tutor · Matt's Agency · Block 3 Daily Learning Center · content verified against the assigned FAA-H-8083-30 chapter PDF</div>
