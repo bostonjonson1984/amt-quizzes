@@ -1,6 +1,6 @@
 {
  "built": "2026-06-15",
- "total": 2283,
+ "total": 2354,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -21,6 +21,7 @@
   "Corrosion Notes — 50Q Test": 167,
   "NDT — Non-Destructive Testing (Complete)": 135,
   "Project 2-11 — Corrosion Control Quiz": 105,
+  "Block 3 · Day 1 — Federal Aviation Regulations (FARs)": 71,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 336,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -28628,6 +28629,1355 @@
    "block": "Block 2",
    "sources": [
     "Project 2-11 — Corrosion Control Quiz"
+   ]
+  },
+  {
+   "id": "70a2f3f945",
+   "q": "What 1926 law was the first federal legislation regulating civil aviation?",
+   "options": [
+    "The Air Commerce Act of 1926",
+    "The Federal Aviation Act of 1926",
+    "The Civil Aeronautics Act of 1926",
+    "The Wright Act of 1926"
+   ],
+   "correct": 0,
+   "short": "Air Commerce Act of 1926",
+   "expl": "The deck's 'FAA Story' timeline starts with the 1926 Air Commerce Act — the first federal law to regulate civil aviation.",
+   "cite": "AIM Day-1 slide 'FAA Story' 2-2 · FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "FAA history",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "7ad89b6a9f",
+   "q": "The Air Commerce Act was repealed and replaced in 1938 by the Civil Aeronautics Act, which created which TWO bodies?",
+   "options": [
+    "FAA and DOT",
+    "Civil Aeronautics Administration (CAA) and Civil Aeronautics Board (CAB)",
+    "CAB and NTSB",
+    "CAA and the Bureau of Air Commerce"
+   ],
+   "correct": 1,
+   "short": "CAA and CAB",
+   "expl": "1938 Civil Aeronautics Act created the Civil Aeronautics Administration (CAA) and the Civil Aeronautics Board (CAB).",
+   "cite": "AIM Day-1 slide 'FAA Story' 2-2 · FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "FAA history",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "5bfffcf7f7",
+   "q": "The 1958 Federal Aviation Act replaced the CAA and created what agency?",
+   "options": [
+    "The Federal Aviation Administration",
+    "The Federal Aviation Agency",
+    "The Department of Transportation",
+    "The Civil Aeronautics Board"
+   ],
+   "correct": 1,
+   "short": "Federal Aviation Agency",
+   "expl": "In 1958 the Federal Aviation Act replaced the CAA and created the Federal Aviation AGENCY (not yet 'Administration'). Exam trap: 1958 = Agency; 1966 = Administration.",
+   "cite": "AIM Day-1 slide 'FAA Story' 2-2 · FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "FAA history",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "ebd7b24f2d",
+   "q": "In 1966, what happened to the Federal Aviation Agency?",
+   "options": [
+    "It was abolished",
+    "DOT took it over and renamed it the Federal Aviation Administration (FAA)",
+    "It merged with the CAB",
+    "It became part of the NTSB"
+   ],
+   "correct": 1,
+   "short": "DOT took over; renamed Federal Aviation Administration",
+   "expl": "1966: the Department of Transportation (DOT) took over the agency and renamed it the Federal Aviation ADMINISTRATION (FAA) — its current name.",
+   "cite": "AIM Day-1 slide 'FAA Story' 2-2 · FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "FAA history",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "4074093d79",
+   "q": "Per the FAA historical-background chart, which year marks the codification of the CARs (Civil Air Regulations) into the FARs?",
+   "options": [
+    "1958",
+    "1965",
+    "1966",
+    "1938"
+   ],
+   "correct": 1,
+   "short": "1965",
+   "expl": "Figure 2-1 in the deck shows '1965 — Codification of CARs to FARs'. Older CAR Part 3 / CAR 4b rules became today's 14 CFR Parts 23/25/27/29.",
+   "cite": "AIM Day-1 slide 'FAA Story' Fig 2-1 · FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "FAA history",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "c7557c0bec",
+   "q": "On the FAA regional-boundaries map, which region covers Atlanta and the southeastern U.S.?",
+   "options": [
+    "ASO (Southern)",
+    "AEA (Eastern)",
+    "ASW (Southwest)",
+    "ACE (Central)"
+   ],
+   "correct": 0,
+   "short": "ASO (Southern)",
+   "expl": "Atlanta sits in the ASO — Southern region. (AEA Eastern = Atlantic City; ASW Southwest = Ft. Worth; ACE Central = Kansas City.)",
+   "cite": "AIM Day-1 slide 'FAA Regional Boundaries'",
+   "topic": "FAA regions",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "80a3320674",
+   "q": "What are the PRIMARY regulatory tools the FAA uses to govern manufacturing, operation, and maintenance of aircraft?",
+   "options": [
+    "Advisory Circulars",
+    "The Federal Aviation Regulations (FARs)",
+    "Airworthiness Directives",
+    "Technical Standard Orders"
+   ],
+   "correct": 1,
+   "short": "The FARs",
+   "expl": "The deck states the FAA's primary regulatory tools are the Federal Aviation Regulations (FARs).",
+   "cite": "AIM Day-1 slide 'The FAA has broad powers' · FAA-H-8083-30B Ch.2",
+   "topic": "Rulemaking",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "9163cf7af9",
+   "q": "When the FAA wants a new rule, it prepares a document and publishes it for public review/comment. What is that document called?",
+   "options": [
+    "A Special Federal Aviation Regulation (SFAR)",
+    "A Notice of Proposed Rule Making (NPRM)",
+    "An Advisory Circular (AC)",
+    "A Technical Standard Order (TSO)"
+   ],
+   "correct": 1,
+   "short": "Notice of Proposed Rule Making (NPRM)",
+   "expl": "A Notice of Proposed Rule Making (NPRM) is prepared when the FAA wants a new rule and is published for review, comments, and suggestions.",
+   "cite": "AIM Day-1 slide 'The FAA has broad powers' · FAA-H-8083-30B Ch.2",
+   "topic": "Rulemaking",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "be1e99a973",
+   "q": "Where is a proposed rule (NPRM) published so the public can review and comment on it?",
+   "options": [
+    "The Code of Federal Regulations",
+    "The Federal Register",
+    "The Airworthiness Directive database",
+    "FAA Order 8083"
+   ],
+   "correct": 1,
+   "short": "The Federal Register",
+   "expl": "The NPRM is published in the FEDERAL REGISTER for review, comments, and suggestions from the public.",
+   "cite": "AIM Day-1 slide 'The FAA has broad powers' · FAA-H-8083-30B Ch.2",
+   "topic": "Rulemaking",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "d2b4417105",
+   "q": "Once adopted, FAA rules are printed in which Title of the Code of Federal Regulations, thereby becoming federal law (the FARs)?",
+   "options": [
+    "Title 49",
+    "Title 14",
+    "Title 21",
+    "Title 91"
+   ],
+   "correct": 1,
+   "short": "Title 14",
+   "expl": "Adopted rules are printed in TITLE 14 of the Code of Federal Regulations (14 CFR), becoming federal law — the FARs. FARs are divided into PARTS.",
+   "cite": "AIM Day-1 slide 'The FAA has broad powers' · FAA-H-8083-30B Ch.2",
+   "topic": "Rulemaking",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "eba8a6d729",
+   "q": "The FARs are subdivided into what primary organizational unit?",
+   "options": [
+    "Sections",
+    "Parts",
+    "Subchapters",
+    "Chapters"
+   ],
+   "correct": 1,
+   "short": "Parts",
+   "expl": "The deck ends the rulemaking slide with: 'FARs are divided into PARTS.' (Parts then divide into subparts and sections, e.g. 91.409.)",
+   "cite": "AIM Day-1 slide 'The FAA has broad powers' · 14 CFR organization",
+   "topic": "Rulemaking",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "e308e965fe",
+   "q": "According to the deck, what is the single overriding goal / primary function of the FAA?",
+   "options": [
+    "Profit",
+    "Safety",
+    "Speed",
+    "Efficiency"
+   ],
+   "correct": 1,
+   "short": "Safety",
+   "expl": "The 'FAA Goal' slide reduces it to one word: SAFETY — the safe and orderly conduct of all civil flight operations and continued surveillance of flight and maintenance activities.",
+   "cite": "AIM Day-1 slide 'FAA Goal'",
+   "topic": "FAA goal",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "4d92185f1b",
+   "q": "What does 14 CFR Part 1 contain?",
+   "options": [
+    "Maintenance recording rules",
+    "Definitions and Abbreviations used in interpreting the FARs",
+    "Airworthiness Directives",
+    "Mechanic certification requirements"
+   ],
+   "correct": 1,
+   "short": "Definitions and Abbreviations",
+   "expl": "FAR Part 1 — Definitions and Abbreviations — contains the official meaning of terms and abbreviations used for interpreting the FARs.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-5 · 14 CFR Part 1",
+   "topic": "Part 1",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "4eccb0a192",
+   "q": "14 CFR Part 3 Subpart A covers General Requirements, including definitions for statements about products, parts, appliances, and materials. Which section number does the deck cite for these definitions?",
+   "options": [
+    "3.3",
+    "3.5",
+    "3.9",
+    "3.15"
+   ],
+   "correct": 1,
+   "short": "Section 3.5",
+   "expl": "The deck cites 14 CFR part 3, section 3.5 — 'Statements about products, parts, appliances and materials.'",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-4 · 14 CFR 3.5",
+   "topic": "Part 3",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "237d33a02d",
+   "q": "Per the Part 3 definitions on the deck, what does AIRWORTHY mean?",
+   "options": [
+    "The aircraft is clean and freshly painted",
+    "The aircraft conforms to its type design AND is in a condition for safe operation",
+    "The aircraft has a current registration",
+    "The aircraft has passed a preflight inspection"
+   ],
+   "correct": 1,
+   "short": "Conforms to type design AND is in condition for safe operation",
+   "expl": "Airworthy = (1) the aircraft conforms to its type design, AND (2) is in a condition for safe operation. Exam trap: BOTH conditions are required — not one or the other.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-4 · 14 CFR Part 3",
+   "topic": "Part 3 / definitions",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "33e6c4b4e5",
+   "q": "Under the Part 3 definitions, the term PRODUCT means specifically:",
+   "options": [
+    "Any aircraft part or appliance",
+    "An aircraft, aircraft engine, or aircraft propeller",
+    "Any material used in manufacturing",
+    "An aircraft and its avionics"
+   ],
+   "correct": 1,
+   "short": "An aircraft, aircraft engine, or aircraft propeller",
+   "expl": "PRODUCT = an aircraft, aircraft ENGINE, or aircraft PROPELLER. (Parts and appliances are NOT 'products' — a common exam distractor.)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-4 · 14 CFR Part 3",
+   "topic": "Part 3 / definitions",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "465c0ee731",
+   "q": "Under the Part 3 definitions, RECORD means:",
+   "options": [
+    "Only a written logbook entry",
+    "Any writing, drawing, map, recording, tape, film, photograph or other documentary material by which information is preserved",
+    "An FAA-approved maintenance manual only",
+    "A digital file stored on FAA servers"
+   ],
+   "correct": 1,
+   "short": "Any documentary material by which information is preserved",
+   "expl": "RECORD = any writing, drawing, map, recording, tape, film, photograph, or other documentary material by which information is preserved.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-4 · 14 CFR Part 3",
+   "topic": "Part 3 / definitions",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "20492daaf4",
+   "q": "Part 3 Subpart B covers Security Threat Disqualification. When the TSA notifies the FAA that an applicant poses (or is suspected of posing) a risk of air piracy or terrorism, what does the FAA do?",
+   "options": [
+    "Immediately denies the application",
+    "Holds the individual's certificate applications in abeyance pending further notification from the TSA",
+    "Issues the certificate but flags it",
+    "Refers the case to the FBI"
+   ],
+   "correct": 1,
+   "short": "Holds applications in abeyance pending further TSA notification",
+   "expl": "On a SUSPECTED threat, the FAA holds the applications in ABEYANCE pending further word from TSA. Contrast: on a FINAL TSA threat determination, the FAA DENIES all the applications.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-5 · 14 CFR Part 3 Subpart B",
+   "topic": "Part 3 / security",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "7107b87f73",
+   "q": "If the TSA makes a FINAL security threat determination about an individual, what must the FAA do?",
+   "options": [
+    "Hold the applications in abeyance",
+    "Deny all the individual's certificate applications",
+    "Continue processing normally",
+    "Issue a temporary certificate"
+   ],
+   "correct": 1,
+   "short": "Deny all the individual's certificate applications",
+   "expl": "On a FINAL TSA threat determination, the FAA DENIES all the individual's applications. If TSA later WITHDRAWS the determination, the FAA resumes processing.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-5 · 14 CFR Part 3 Subpart B",
+   "topic": "Part 3 / security",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "58dc62d4df",
+   "q": "14 CFR Part 21 covers Certification Procedures for Products and Parts. What does it do?",
+   "options": [
+    "Sets mechanic privileges",
+    "Describes the administrative procedures for obtaining FAA approval of products and parts, and the technical standards an aircraft/part must meet before type certification",
+    "Lists required inspections",
+    "Governs aircraft registration only"
+   ],
+   "correct": 1,
+   "short": "Administrative procedures + technical standards for FAA approval/type certification",
+   "expl": "Part 21 describes the administrative procedures for FAA approval of products and parts and prescribes the technical standards a product must meet before type certification.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-5 · 14 CFR Part 21",
+   "topic": "Part 21",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "0dad9c91c5",
+   "q": "What is a Technical Standard Order (TSO)?",
+   "options": [
+    "A repair manual",
+    "A minimum performance standard for specified materials, parts, and appliances used on civil aircraft",
+    "An airworthiness directive",
+    "A maintenance recording form"
+   ],
+   "correct": 1,
+   "short": "A minimum performance standard for materials, parts, and appliances",
+   "expl": "A TSO is a MINIMUM PERFORMANCE STANDARD for specified materials, parts, and appliances used on civil aircraft.",
+   "cite": "AIM Day-1 slide 'Technical Standard Order (TSO)' 2-5 · 14 CFR Part 21 Subpart O",
+   "topic": "TSO/PMA",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "391b93141f",
+   "q": "Receiving a TSO Authorization grants which approvals?",
+   "options": [
+    "Approval to install and use the article only",
+    "Both design AND production approval",
+    "Design approval only",
+    "Type certification of the whole aircraft"
+   ],
+   "correct": 1,
+   "short": "Both design and production approval",
+   "expl": "A TSO Authorization is BOTH design and production approval. Exam trap (next question): it is NOT approval to install/use the article in the aircraft.",
+   "cite": "AIM Day-1 slide 'Technical Standard Order (TSO)' 2-5 · 14 CFR Part 21",
+   "topic": "TSO/PMA",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "47384db3d8",
+   "q": "A TSO Authorization by itself does NOT do which of the following?",
+   "options": [
+    "Confirm the article meets the specific TSO",
+    "Authorize the applicant to manufacture the article",
+    "Approve the article to be installed and used in the aircraft",
+    "Grant production approval"
+   ],
+   "correct": 2,
+   "short": "It does NOT approve installation/use in the aircraft",
+   "expl": "A TSO Authorization is not approval to install and use the article — it means the article meets the TSO and the holder may manufacture it. Installation approval still needs testing and the PMA authorization phase.",
+   "cite": "AIM Day-1 slide 'Technical Standard Order (TSO)' 2-5 · 14 CFR Part 21",
+   "topic": "TSO/PMA",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "62edea931c",
+   "q": "On the Part 21 graphic, PMA stands for what — the approval needed to produce replacement/modification parts?",
+   "options": [
+    "Primary Maintenance Authority",
+    "Parts Manufacturer Approval",
+    "Production Material Approval",
+    "Part Modification Authorization"
+   ],
+   "correct": 1,
+   "short": "Parts Manufacturer Approval",
+   "expl": "PMA = Parts Manufacturer Approval (14 CFR 21 Subpart K), the approval to PRODUCE and SELL replacement or modification parts. The deck shows PMA branching off Part 21.",
+   "cite": "AIM Day-1 slide 'Overview of Publication Part 21' Fig 2-5 · 14 CFR 21 Subpart K",
+   "topic": "TSO/PMA",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "c2a06f5a34",
+   "q": "14 CFR Part 23 prescribes airworthiness standards for type certificates of which airplanes — generally called the 'General Aviation' section?",
+   "options": [
+    "Transport category airplanes",
+    "Normal, Utility, Acrobatic (and Commuter) category airplanes",
+    "Aircraft engines",
+    "Rotorcraft"
+   ],
+   "correct": 1,
+   "short": "Normal, Utility, Acrobatic and Commuter category airplanes",
+   "expl": "Part 23 = airworthiness standards for Normal, Utility, Acrobatic and Commuter category airplanes — generally referred to as the 'General Aviation' section.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-8 · 14 CFR Part 23",
+   "topic": "Airworthiness standards",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "0f214fec47",
+   "q": "14 CFR Part 25 covers airworthiness standards for Transport Category Airplanes — generally those over what takeoff weight?",
+   "options": [
+    "6,000 pounds",
+    "12,500 pounds",
+    "9,000 pounds",
+    "5,700 pounds"
+   ],
+   "correct": 1,
+   "short": "12,500 pounds",
+   "expl": "Part 25 = Transport Category airplanes, usually over 12,500 lb takeoff weight (commercial aviation). Memorize the 12,500-lb line — it also defines large-aircraft continuous inspection programs.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-8 · 14 CFR Part 25",
+   "topic": "Airworthiness standards",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "0a95ac29b9",
+   "q": "Which FAR Part prescribes the airworthiness standards (type certificates) for AIRCRAFT ENGINES?",
+   "options": [
+    "Part 23",
+    "Part 33",
+    "Part 35",
+    "Part 25"
+   ],
+   "correct": 1,
+   "short": "Part 33",
+   "expl": "Part 33 = Airworthiness Standards: Aircraft ENGINES. (Mnemonic from the deck's football-jersey images: 33 = engines, 35 = propellers.)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-8 · 14 CFR Part 33",
+   "topic": "Airworthiness standards",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "24b89472bd",
+   "q": "Which FAR Part prescribes the airworthiness standards for AIRCRAFT PROPELLERS?",
+   "options": [
+    "Part 33",
+    "Part 35",
+    "Part 23",
+    "Part 27"
+   ],
+   "correct": 1,
+   "short": "Part 35",
+   "expl": "Part 35 = Airworthiness Standards: Aircraft PROPELLERS. (Engines = 33, Propellers = 35.)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-8 · 14 CFR Part 35",
+   "topic": "Airworthiness standards",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "c10c580788",
+   "q": "14 CFR Part 39 covers what?",
+   "options": [
+    "Maintenance records",
+    "The Airworthiness Directives (AD) program and how ADs are given FAR status",
+    "Repair stations",
+    "Aircraft registration"
+   ],
+   "correct": 1,
+   "short": "Airworthiness Directives program",
+   "expl": "Part 39 describes the Airworthiness Directives (AD) program and how ADs are given FAR (regulatory) status. ADs are mandatory.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-10/2-30 · 14 CFR Part 39",
+   "topic": "Part 39",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "df5e51041b",
+   "q": "Which FAR Part deals with Maintenance, Preventive Maintenance, Rebuilding and Alterations — the administrative procedures, scope, and recording of maintenance on type-certificated aircraft?",
+   "options": [
+    "Part 65",
+    "Part 43",
+    "Part 91",
+    "Part 21"
+   ],
+   "correct": 1,
+   "short": "Part 43",
+   "expl": "Part 43 = Maintenance, Preventive Maintenance, Rebuilding and Alteration — it governs the procedures, scope, and recording of maintenance on type-certificated aircraft. (ACS: AM.I.I.K8)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-10 · 14 CFR Part 43",
+   "topic": "Part 43",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "81e8811708",
+   "q": "Which FAR section tells you WHO may perform maintenance?",
+   "options": [
+    "43.9",
+    "43.3",
+    "43.15",
+    "43.13"
+   ],
+   "correct": 1,
+   "short": "43.3",
+   "expl": "FAR 43.3 = 'Persons authorized to perform maintenance' (WHO can perform maintenance). The deck pairs it with 43.9. Exam trap: 43.3 = WHO; 43.9 = the RECORD/entry.",
+   "cite": "AIM Day-1 slide 'Types of Maintenance' · 14 CFR 43.3",
+   "topic": "Part 43",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "c0f60bf12a",
+   "q": "Which FAR section lists the items REQUIRED for a maintenance record (logbook) entry?",
+   "options": [
+    "43.3",
+    "43.9",
+    "43.5",
+    "43.7"
+   ],
+   "correct": 1,
+   "short": "43.9",
+   "expl": "FAR 43.9 = content/recordkeeping requirements for the maintenance entry (the items required for a maintenance entry). 43.3 = who can perform; 43.9 = the record.",
+   "cite": "AIM Day-1 slide 'Types of Maintenance' · 14 CFR 43.9",
+   "topic": "Part 43",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "1ed6e9c36d",
+   "q": "In which location of Part 43 are major alterations, major repairs, and preventive maintenance defined/listed?",
+   "options": [
+    "Part 43 Appendix D",
+    "Part 43 Appendix A",
+    "Part 43 Appendix E",
+    "Part 43 Subpart C"
+   ],
+   "correct": 1,
+   "short": "Part 43 Appendix A",
+   "expl": "Major alterations, minor alterations, major repairs, minor repairs, and preventive maintenance are all found under FAR Part 43, APPENDIX A.",
+   "cite": "AIM Day-1 slide 'Types of Maintenance' · 14 CFR Part 43 App. A",
+   "topic": "Part 43 / types of maintenance",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "3dc26232be",
+   "q": "A certificated PRIVATE PILOT may perform what category of work on an aircraft they own, per FAR 43.3?",
+   "options": [
+    "Major repairs",
+    "Preventive maintenance",
+    "Annual inspections",
+    "100-hour inspections"
+   ],
+   "correct": 1,
+   "short": "Preventive maintenance",
+   "expl": "Per the deck (and FAR 43.3(g)/43.7), a private pilot may perform PREVENTIVE MAINTENANCE on an aircraft they own (not used in commercial ops). They may NOT do major repairs or required inspections.",
+   "cite": "AIM Day-1 slide 'Preflight Inspections cont.' · 14 CFR 43.3(g)",
+   "topic": "Part 43 / privileges",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "7f1473e64e",
+   "q": "14 CFR Part 45 covers what?",
+   "options": [
+    "Aircraft registration",
+    "Identification and Registration Marking (size/location of ID marks and N-numbers, plus replacement & modification part marking)",
+    "Mechanic certification",
+    "Repair stations"
+   ],
+   "correct": 1,
+   "short": "Identification and Registration Marking",
+   "expl": "Part 45 = Identification and Registration Marks — size and location of identifying marks and registration numbers on aircraft, plus marking of replacement and modification parts.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-10 · 14 CFR Part 45",
+   "topic": "Part 45",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "ed0b1c739f",
+   "q": "14 CFR Part 47 prescribes the requirements for what?",
+   "options": [
+    "Registering aircraft",
+    "Marking aircraft",
+    "Inspecting aircraft",
+    "Certifying mechanics"
+   ],
+   "correct": 0,
+   "short": "Registering aircraft",
+   "expl": "Part 47 = Aircraft Registration — it prescribes the requirements for registering aircraft. (Don't confuse with Part 45 = marking.)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-10 · 14 CFR Part 47",
+   "topic": "Part 47",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "25123b81a5",
+   "q": "Which FAR Part contains the eligibility requirements, privileges, and limitations for maintenance technicians, inspectors, and repairmen (airmen other than flight crew)?",
+   "options": [
+    "Part 43",
+    "Part 65",
+    "Part 145",
+    "Part 147"
+   ],
+   "correct": 1,
+   "short": "Part 65",
+   "expl": "Part 65 = Certification: Airmen Other Than Flight Crewmembers — eligibility, privileges, and limitations for mechanics, inspectors, and repairmen. (Subpart D = Mechanics; ACS AM.I.I.K8)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-10 · 14 CFR Part 65",
+   "topic": "Part 65",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "96248aba60",
+   "q": "14 CFR Part 91 (General Operating and Flight Rules) applies primarily to whom?",
+   "options": [
+    "Mechanics and repairmen",
+    "Pilots, owners, or lessees of the aircraft",
+    "Manufacturers",
+    "Repair stations"
+   ],
+   "correct": 1,
+   "short": "Pilots, owners, or lessees",
+   "expl": "Part 91 applies to pilots, owners, or lessees. Subpart E covers maintenance and inspections and describes the owner's responsibility to keep the aircraft in an airworthy condition.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-11 · 14 CFR Part 91",
+   "topic": "Part 91",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "5360ccd871",
+   "q": "Which subpart of Part 91 covers Maintenance, Preventive Maintenance, and Alterations / inspection requirements and the owner's airworthiness responsibility?",
+   "options": [
+    "Subpart A",
+    "Subpart E",
+    "Subpart C",
+    "Subpart F"
+   ],
+   "correct": 1,
+   "short": "Subpart E",
+   "expl": "Part 91 Subpart E = Maintenance, Preventive Maintenance, and Alterations — it lays out inspection requirements and the owner's duty to keep the aircraft airworthy.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-11 · 14 CFR Part 91 Subpart E",
+   "topic": "Part 91",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "49b866be63",
+   "q": "14 CFR Part 121 is most often used by whom?",
+   "options": [
+    "General aviation pilots",
+    "Large commercial airlines operating large multiengine, turbine-powered aircraft in passenger service",
+    "Small air taxi charter operators",
+    "AMT schools"
+   ],
+   "correct": 1,
+   "short": "Large commercial airlines (large multiengine turbine passenger service)",
+   "expl": "Part 121 = Domestic, Flag, and Supplemental air carriers — the large commercial airlines operating large multiengine, turbine-powered aircraft in passenger service.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-12 · 14 CFR Part 121",
+   "topic": "Part 121",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "4f7f24add7",
+   "q": "14 CFR Part 135 applies to small commuter airlines and air taxi/charter. Per the deck, what passenger limit characterizes these commuter operations?",
+   "options": [
+    "Less than 9 passengers",
+    "Less than 20 passengers",
+    "Less than 30 passengers",
+    "Less than 50 passengers"
+   ],
+   "correct": 1,
+   "short": "Less than 20 passengers",
+   "expl": "Part 135 = Commuter and On-Demand (Air Taxi) operations — small commuter airlines with less than 20-passenger capacity, or nonscheduled air-taxi/charter service.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-13 · 14 CFR Part 135",
+   "topic": "Part 135",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "1b7f57ad16",
+   "q": "14 CFR Part 145 covers the certification, operation, and limitations of what?",
+   "options": [
+    "AMT schools",
+    "Repair stations",
+    "Mechanics",
+    "Designees"
+   ],
+   "correct": 1,
+   "short": "Repair stations",
+   "expl": "Part 145 = Repair Stations — certification, operation, and limitations of FAA-certificated repair stations.",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-14 · 14 CFR Part 145",
+   "topic": "Part 145",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "f517d6606b",
+   "q": "Which FAR Part covers the requirements for establishing and conducting an AMT training facility — the Part under which your school (AIM) operates?",
+   "options": [
+    "Part 65",
+    "Part 147",
+    "Part 145",
+    "Part 141"
+   ],
+   "correct": 1,
+   "short": "Part 147",
+   "expl": "Part 147 = Aviation Maintenance Technician Schools — the requirements for an AMT training facility. The deck notes: 'It is the FAR under which YOUR school operates.'",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-14 · 14 CFR Part 147",
+   "topic": "Part 147",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "06760b4a6e",
+   "q": "14 CFR Part 183 (Representatives of the Administrator) covers designees such as DMEs and DARs. What does a DME do?",
+   "options": [
+    "Designated Maintenance Engineer — approves repairs",
+    "Designated Mechanic Examiner — tests applicants for mechanic certificates",
+    "Designated Manufacturing Engineer",
+    "Designated Materials Examiner"
+   ],
+   "correct": 1,
+   "short": "Designated Mechanic Examiner — tests mechanic-certificate applicants",
+   "expl": "Part 183 designates private persons to act for the Administrator in examining/inspecting/testing persons and aircraft. A DME = Designated Mechanic Examiner. (Also AME, DAR, DMIR, pilot examiners.)",
+   "cite": "AIM Day-1 slide 'Overview of Publication' 2-14 · 14 CFR Part 183",
+   "topic": "Part 183",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "c914c74ff3",
+   "q": "The deck lists five categories of work under 'Types of Maintenance.' Which is NOT one of them?",
+   "options": [
+    "Major alterations",
+    "Minor repairs",
+    "Preventive maintenance",
+    "Continuous inspection"
+   ],
+   "correct": 3,
+   "short": "Continuous inspection (that is an inspection type, not maintenance)",
+   "expl": "The five 'Types of Maintenance' are: major alterations, minor alterations, major repairs, minor repairs, and preventive maintenance. 'Continuous inspection' is a TYPE OF INSPECTION, not a type of maintenance.",
+   "cite": "AIM Day-1 slide 'Types of Maintenance' · 14 CFR 43 App. A",
+   "topic": "Types of maintenance",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "0906b652c6",
+   "q": "Which inspection is performed by 'everyone' (the pilot) before each flight, using the checklist's walk-around section?",
+   "options": [
+    "Annual inspection",
+    "Preflight inspection",
+    "100-hour inspection",
+    "Progressive inspection"
+   ],
+   "correct": 1,
+   "short": "Preflight inspection",
+   "expl": "Preflight inspection = performed by everyone (the pilot) before flight. The checklist's walk-around section lists items the pilot visually checks; the pilot also verifies fuel/oil levels and that nothing is contaminated.",
+   "cite": "AIM Day-1 slide 'Types of Inspections' · 14 CFR Part 91",
+   "topic": "Inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "71c33ee98e",
+   "q": "With some exceptions, ALL aircraft must have a complete inspection how often?",
+   "options": [
+    "Every 100 hours",
+    "Annually (every 12 calendar months)",
+    "Every 24 calendar months",
+    "Every 90 days"
+   ],
+   "correct": 1,
+   "short": "Annually — every 12 calendar months",
+   "expl": "With some exceptions, all aircraft must have a complete ANNUAL inspection. 14 CFR 91.409 requires it every 12 calendar months.",
+   "cite": "AIM Day-1 slide 'Types of Inspections' · 14 CFR 91.409",
+   "topic": "Inspections / annual",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "948095b73a",
+   "q": "An annual inspection done on May 5, 2015 is next due by what date (it is good through the last day of the 12th calendar month)?",
+   "options": [
+    "May 5, 2016",
+    "May 31, 2016",
+    "April 30, 2016",
+    "May 4, 2016"
+   ],
+   "correct": 1,
+   "short": "May 31, 2016",
+   "expl": "An annual is due within 12 CALENDAR months — it runs to the LAST DAY of that month. May 5, 2015 -> due by May 31, 2016. This 'last day of the month' rule is a classic exam question.",
+   "cite": "AIM Day-1 slide 'Annual Inspection' · 14 CFR 91.409(a)(1)",
+   "topic": "Inspections / annual",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "411bef8831",
+   "q": "Who is authorized to perform an ANNUAL inspection?",
+   "options": [
+    "Any A&P mechanic",
+    "An A&P mechanic holding an Inspection Authorization (IA), a certificated repair station, or the aircraft manufacturer",
+    "A private pilot owner",
+    "Any certificated repairman"
+   ],
+   "correct": 1,
+   "short": "A&P with IA, certificated repair station, or the manufacturer",
+   "expl": "An annual must be performed by: an A&P with Inspection Authorization (IA), a certificated repair station, OR the aircraft manufacturer. Exam trap: a plain A&P (no IA) CANNOT sign off an annual.",
+   "cite": "AIM Day-1 slide 'Annual Inspection' · 14 CFR 91.409 / 43.7",
+   "topic": "Inspections / annual",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "7f59faf0ab",
+   "q": "If an aircraft is out of annual, what can be obtained to ferry it to the location where the inspection/repairs will be done?",
+   "options": [
+    "A 100-hour extension",
+    "A special flight permit (ferry permit)",
+    "A progressive inspection waiver",
+    "A continuous airworthiness exemption"
+   ],
+   "correct": 1,
+   "short": "A special flight permit (ferry permit)",
+   "expl": "A SPECIAL FLIGHT PERMIT (ferry permit) lets you fly an aircraft that doesn't currently meet airworthiness requirements to the location where repairs/inspection will be made.",
+   "cite": "AIM Day-1 slide 'Annual Inspection' · 14 CFR 21.197 / 91.409",
+   "topic": "Inspections / annual",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "1aaec00fd4",
+   "q": "The 100-hour inspection is required on aircraft used for what purpose?",
+   "options": [
+    "Personal use only",
+    "Aircraft used for hire (carrying persons for hire or giving flight instruction for hire)",
+    "All aircraft",
+    "Aircraft over 12,500 lb"
+   ],
+   "correct": 1,
+   "short": "Aircraft used for hire",
+   "expl": "A 100-hour inspection is required on aircraft used FOR HIRE (and for flight instruction given for hire). The deck notes commercial-use aircraft fly more and must be inspected every 100 hours.",
+   "cite": "AIM Day-1 slide '100 Hour Inspection' · 14 CFR 91.409(b)",
+   "topic": "Inspections / 100-hour",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "607940be80",
+   "q": "Each person performing a 100-hour inspection must use an FAA-approved checklist according to which FAR section?",
+   "options": [
+    "43.9",
+    "43.15(c)",
+    "43.3",
+    "91.409"
+   ],
+   "correct": 1,
+   "short": "43.15(c)",
+   "expl": "Per the deck, each person performing a 100-hour inspection must use an FAA-approved checklist according to FAR 43.15(c).",
+   "cite": "AIM Day-1 slide '100 Hour Inspection' · 14 CFR 43.15(c)",
+   "topic": "Inspections / 100-hour",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "45c4967038",
+   "q": "The scope and detail of items to be included in ANNUAL and 100-HOUR inspections is given in which appendix of Part 43?",
+   "options": [
+    "Appendix A",
+    "Appendix D",
+    "Appendix E",
+    "Appendix F"
+   ],
+   "correct": 1,
+   "short": "Appendix D",
+   "expl": "Scope and detail for annual/100-hour inspections = 14 CFR Part 43, APPENDIX D. (App. A = major/minor work & preventive maint.; App. E = altimeter/static; App. F = transponder.)",
+   "cite": "AIM Day-1 slide 'Annual/100 Hour Inspection' · 14 CFR 43 App. D",
+   "topic": "Inspections / appendices",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "dc5fbbf4ee",
+   "q": "How much may a 100-hour inspection time be exceeded, and only under what condition?",
+   "options": [
+    "10 hours, only while en route to reach a place where the inspection can be done",
+    "25 hours, for any reason",
+    "No overflight is ever allowed",
+    "10 days, with FAA approval"
+   ],
+   "correct": 0,
+   "short": "10-hour grace period, only en route to the inspection",
+   "expl": "The 100-hour limit may be exceeded by not more than 10 hours, and only while en route to a place where the inspection can be done. Those excess hours are deducted from the next 100-hour interval.",
+   "cite": "AIM Day-1 slide '100 Hour Inspection' · 14 CFR 91.409(b)",
+   "topic": "Inspections / 100-hour",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "6a8d0a367a",
+   "q": "Which FAR section governs the inspection programs including progressive inspections?",
+   "options": [
+    "91.213",
+    "91.409",
+    "43.15",
+    "21.197"
+   ],
+   "correct": 1,
+   "short": "91.409",
+   "expl": "14 CFR 91.409 covers inspections — annual, 100-hour, progressive, and approved continuous/inspection programs.",
+   "cite": "AIM Day-1 slide 'Types of Inspections' / 'Progressive Inspections' · 14 CFR 91.409",
+   "topic": "Inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "c806b8bcc2",
+   "q": "What must happen BEFORE an owner can begin a progressive inspection program?",
+   "options": [
+    "Nothing — it starts automatically",
+    "Prior FAA approval is required, and the aircraft must be completely inspected before the program starts",
+    "Only a logbook entry is needed",
+    "A special flight permit must be obtained"
+   ],
+   "correct": 1,
+   "short": "Prior FAA approval + a complete inspection before the program starts",
+   "expl": "A progressive inspection requires PRIOR FAA approval, and the aircraft must be COMPLETELY inspected before the program begins. It is then divided into segments (detailed + routine inspections).",
+   "cite": "AIM Day-1 slide 'Progressive Inspections' · 14 CFR 91.409(d)",
+   "topic": "Inspections / progressive",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "7546da2634",
+   "q": "In a progressive inspection program, each segment must be accomplished within what interval?",
+   "options": [
+    "Every 100 hours or 12 months",
+    "Every 90 days or every 25 hours",
+    "Every 50 hours",
+    "Every 24 calendar months"
+   ],
+   "correct": 1,
+   "short": "Every 90 days or every 25 hours",
+   "expl": "Each progressive-inspection SEGMENT must be accomplished every 90 days OR every 25 hours, AND a complete inspection of the aircraft must occur within each 12 calendar months.",
+   "cite": "AIM Day-1 slide 'Progressive Inspections cont.' · 14 CFR 91.409(d)",
+   "topic": "Inspections / progressive",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "b50ffad19d",
+   "q": "A progressive inspection must be conducted or supervised by whom?",
+   "options": [
+    "Any A&P working alone",
+    "An IA holder, a certificated repair station, or the aircraft manufacturer",
+    "A private pilot",
+    "Only the FAA"
+   ],
+   "correct": 1,
+   "short": "IA, certificated repair station, or manufacturer (A&P may work under supervision)",
+   "expl": "Progressive inspections are conducted or supervised by an Inspection Authorization (IA), a certificated repair station, or the aircraft manufacturer. An A&P may perform the inspection UNDER supervision.",
+   "cite": "AIM Day-1 slide 'Progressive Inspections cont.' · 14 CFR 91.409(d)",
+   "topic": "Inspections / progressive",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "a92041d77d",
+   "q": "A Continuous Airworthiness Inspection Program is designed for owners of what kind of aircraft?",
+   "options": [
+    "Single-engine trainers",
+    "Large aircraft of 12,500 lb gross takeoff weight or more, multi-engine jet or turboprop airplanes",
+    "Experimental aircraft",
+    "Light sport aircraft"
+   ],
+   "correct": 1,
+   "short": "Large aircraft (12,500 lb+), multiengine jet or turboprop",
+   "expl": "Continuous Airworthiness Inspection Programs are for large aircraft (12,500 lb or more gross takeoff weight), multiengine jets or turboprops — broken into sections, each an inspection period. Requires a large maintenance organization.",
+   "cite": "AIM Day-1 slide 'Continuous Airworthiness Inspection Program' · 14 CFR 91.409(f)",
+   "topic": "Inspections / continuous",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "db4653a70f",
+   "q": "Continuous inspection programs are most associated with operations under which Parts (per the 'Types of Inspections' slide)?",
+   "options": [
+    "Parts 23, 25, 27",
+    "Parts 121, 129, 135",
+    "Parts 43, 45, 47",
+    "Parts 65, 145, 147"
+   ],
+   "correct": 1,
+   "short": "Parts 121, 129, 135",
+   "expl": "The deck lists Continuous Inspections under FAR Parts 121, 129, and 135 — the air carrier / commercial operators that run approved continuous airworthiness maintenance programs.",
+   "cite": "AIM Day-1 slide 'Types of Inspections' · 14 CFR 121/129/135",
+   "topic": "Inspections / continuous",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "2d30171f54",
+   "q": "The altimeter and static-pressure system check is required for aircraft operating in controlled airspace under IFR. How often must it be done?",
+   "options": [
+    "Every 12 calendar months",
+    "Every 24 calendar months",
+    "Every 100 hours",
+    "Every 6 months"
+   ],
+   "correct": 1,
+   "short": "Every 24 calendar months",
+   "expl": "Altimeter/static system check = required every 24 CALENDAR MONTHS for IFR ops in controlled airspace. (Same 24-month interval as the transponder test — easy to confuse with the 12-month ELT.)",
+   "cite": "AIM Day-1 slide '14CFR 91 Special Inspections' · 14 CFR 91.411",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "8c46b697f2",
+   "q": "The detailed test and standards for the altimeter and static system check are specified in which appendix of Part 43?",
+   "options": [
+    "Appendix D",
+    "Appendix E",
+    "Appendix F",
+    "Appendix A"
+   ],
+   "correct": 1,
+   "short": "Appendix E",
+   "expl": "Altimeter/static system test details = Part 43 APPENDIX E (which further refers to 23.1325 or 25.1325 for procedures and standards/limits).",
+   "cite": "AIM Day-1 slide 'Special Inspections' · 14 CFR 43 App. E",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "dc9cebaaa9",
+   "q": "Who may perform the static system test/inspection (leak test) portion of the check?",
+   "options": [
+    "Only an instrument-rated repair station",
+    "A mechanic with an Airframe (A) rating",
+    "Only the manufacturer",
+    "Any A&P with a Powerplant rating"
+   ],
+   "correct": 1,
+   "short": "A mechanic with an Airframe (A) rating",
+   "expl": "The static system test (leak test) may be performed by a mechanic with an AIRFRAME (A) rating; details are in Part 43 Appendix E. (The full altimeter correspondence test requires an appropriately rated repair station / manufacturer.)",
+   "cite": "AIM Day-1 slide 'Special Inspections' · 14 CFR 43 App. E",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "9482e03828",
+   "q": "The ATC transponder test is required how often, and the test standards are found where?",
+   "options": [
+    "12 months; Part 43 Appendix E",
+    "24 calendar months; Part 43 Appendix F",
+    "100 hours; Part 43 Appendix D",
+    "24 months; Part 43 Appendix A"
+   ],
+   "correct": 1,
+   "short": "Every 24 calendar months; Part 43 Appendix F",
+   "expl": "The ATC transponder test is required every 24 calendar months; details/standards are in Part 43 APPENDIX F. It must be performed by a repair station with a RADIO rating.",
+   "cite": "AIM Day-1 slide 'Special Inspections' (ATC Transponder) · 14 CFR 91.413 / 43 App. F",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "080b476aa6",
+   "q": "The Emergency Locator Transmitter (ELT) must be inspected how often?",
+   "options": [
+    "Every 24 calendar months",
+    "Every 12 calendar months",
+    "Every 100 hours",
+    "Before each flight"
+   ],
+   "correct": 1,
+   "short": "Every 12 calendar months",
+   "expl": "The ELT must be inspected every 12 CALENDAR MONTHS for: (1) proper installation, (2) battery corrosion, (3) operation of controls and crash sensor, and (4) sufficient signal strength. Exam trap: ELT = 12 months, not 24.",
+   "cite": "AIM Day-1 slide 'Special Inspections' (ELT) · 14 CFR 91.207",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "2d93f7b9e7",
+   "q": "Which of the following is NOT one of the four items the ELT 12-month inspection checks?",
+   "options": [
+    "Proper installation",
+    "Battery for corrosion",
+    "Operation of controls and crash sensor",
+    "Antenna paint condition"
+   ],
+   "correct": 3,
+   "short": "Antenna paint condition",
+   "expl": "The four ELT inspection items are: proper installation, battery for corrosion, operation of the controls and crash sensor, and sufficient signal strength. Antenna paint is not one of them.",
+   "cite": "AIM Day-1 slide 'Special Inspections' (ELT) · 14 CFR 91.207",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "0a26aa5db8",
+   "q": "After a sudden engine stoppage (e.g., a propeller strike), where does the deck say you find instructions for the special inspection?",
+   "options": [
+    "FAA-H-8083-32B Ch.1",
+    "AC 43.13-1B, Chapter 14",
+    "Part 43 Appendix D",
+    "AC 43.13-2B"
+   ],
+   "correct": 1,
+   "short": "AC 43.13-1B, Chapter 14",
+   "expl": "Per the deck, AC 43.13-1B, Chapter 14 contains instructions for sudden-stoppage inspections; complete disassembly of the engine is sometimes required. (Hard landing, severe turbulence, and hot start/stack fire are other special-inspection triggers.)",
+   "cite": "AIM Day-1 slide 'Special Inspections' · AC 43.13-1B Ch.14",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "d206a6852d",
+   "q": "Which of these is listed as a 'special inspection' trigger on the deck?",
+   "options": [
+    "Routine oil change",
+    "Overweight or hard landing",
+    "Annual due date",
+    "100-hour interval"
+   ],
+   "correct": 1,
+   "short": "Overweight or hard landing",
+   "expl": "Special-inspection triggers on the deck: overweight/hard landing, severe turbulence, and hot start / stack fires / sudden stoppage. These are condition-driven, not calendar/hour-driven.",
+   "cite": "AIM Day-1 slide 'Special Inspections'",
+   "topic": "Special inspections",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "ec4482d934",
+   "q": "14 CFR 91.213 covers Inoperative Instruments and Equipment. What document lets an operator fly with certain equipment inoperative?",
+   "options": [
+    "Airworthiness Directive (AD)",
+    "Minimum Equipment List (MEL)",
+    "Technical Standard Order (TSO)",
+    "Special Flight Permit"
+   ],
+   "correct": 1,
+   "short": "Minimum Equipment List (MEL)",
+   "expl": "Under 91.213, a Minimum Equipment List (MEL) defines which inoperative instruments/equipment an aircraft may legally fly with. Inoperative items must be deactivated and PLACARDED 'Inoperative.'",
+   "cite": "AIM Day-1 slide 'Special Inspections' (91.213) · 14 CFR 91.213",
+   "topic": "Inoperative equipment / MEL",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "fdad7a5a0f",
+   "q": "Per 91.213, how must inoperative equipment that is allowed to remain in the aircraft be handled?",
+   "options": [
+    "Removed entirely before flight",
+    "Deactivated and placarded 'Inoperative'",
+    "Repaired within 100 hours",
+    "Reported to the FAA within 24 hours"
+   ],
+   "correct": 1,
+   "short": "Deactivated and placarded 'Inoperative'",
+   "expl": "Inoperative equipment must be deactivated and PLACARDED 'Inoperative' (and recorded/handled per the MEL or 91.213 procedure) before the aircraft may be operated.",
+   "cite": "AIM Day-1 slide 'Special Inspections' (91.213) · 14 CFR 91.213",
+   "topic": "Inoperative equipment / MEL",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
+   ]
+  },
+  {
+   "id": "313fed6083",
+   "q": "Per the Day-1 course description/objectives, this course's coverage includes all of the following EXCEPT:",
+   "options": [
+    "FAA publications and forms",
+    "Records and maintenance personnel regulations",
+    "Demonstrating working knowledge of regulatory and non-regulatory publications",
+    "Designing aircraft type certificates"
+   ],
+   "correct": 3,
+   "short": "Designing aircraft type certificates",
+   "expl": "The course description covers technical literature, FAA publications, forms, records, and regulations regarding maintenance personnel — plus properly executing FAA forms. It is NOT about designing/issuing type certificates.",
+   "cite": "AIM Day-1 slides 'Course Description' / 'Objectives' · FAA-H-8083-30B Ch.2",
+   "topic": "Course framing",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 · Day 1 — Federal Aviation Regulations (FARs)"
    ]
   },
   {
