@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Block 3 Academy — Unit 1</title>
+<style>
+  :root{--navy:#0d2a4a;--navy2:#15436e;--gold:#ffce4d;--ink:#1c2330;--bg:#eef2f8;--card:#fff;
+        --green:#1f9d57;--greenbg:#e7f7ee;--red:#d6453d;--redbg:#fdecea;--line:#e3e8f0;--muted:#5a6678;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--ink);
+       min-height:100vh;padding:0 16px env(safe-area-inset-bottom);}
+  .wrap{max-width:780px;margin:0 auto;}
+  a{color:var(--navy2);}
+  .top{position:sticky;top:0;z-index:20;background:var(--bg);padding:14px 0 8px;}
+  .toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .brand{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.3px;line-height:1.1;}
+  .brand small{font-weight:600;color:var(--muted);font-size:12px;display:block;}
+  .ovr{height:8px;background:#dbe3ee;border-radius:6px;margin-top:9px;overflow:hidden;}
+  .ovrf{height:100%;width:0;background:linear-gradient(90deg,var(--navy2),var(--gold));transition:width .4s;}
+  .ovrlbl{font-size:11.5px;color:var(--muted);margin-top:5px;font-weight:600;}
+  .link{background:none;border:none;color:var(--navy2);font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;padding:6px 2px;}
+  /* cards (modules + sections share .mod) */
+  .cards{display:flex;flex-direction:column;gap:11px;margin:14px 0 20px;}
+  .mod{display:flex;align-items:center;gap:13px;background:var(--card);border-radius:13px;padding:15px 16px;
+       box-shadow:0 5px 18px rgba(13,42,74,.07);border:1.5px solid transparent;cursor:pointer;transition:transform .1s,border-color .1s;}
+  .mod:hover{transform:translateY(-2px);border-color:var(--navy2);}
+  .mod.locked{opacity:.55;cursor:not-allowed;}
+  .mod.locked:hover{transform:none;border-color:transparent;}
+  .mnum{flex:0 0 44px;height:44px;border-radius:11px;background:#eef2f8;color:var(--navy);font-weight:800;
+        font-size:15px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.05;}
+  .mod.passed .mnum{background:var(--green);color:#fff;}
+  .mbody{flex:1;min-width:0;}
+  .mtitle{font-size:15.5px;font-weight:700;line-height:1.25;}
+  .mstd{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .secprog{font-size:11.5px;color:var(--muted);margin-top:4px;font-weight:700;}
+  .mbadge{font-size:12px;font-weight:800;white-space:nowrap;padding:5px 11px;border-radius:11px;}
+  .b-start{background:var(--navy);color:#fff;}
+  .b-lock{background:#e6ecf4;color:var(--muted);}
+  .b-pass{background:var(--greenbg);color:var(--green);}
+  .b-review{background:#fff6e6;color:#8a5a00;}
+  .b-cont{background:#e7eefb;color:var(--navy2);}
+  /* reader */
+  .screen{background:var(--card);border-radius:16px;padding:22px 20px 26px;margin:14px 0 30px;box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .crumbs{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:10px;}
+  .lesson h2{font-size:21px;color:var(--navy);margin:2px 0 4px;}
+  .lesson h3{font-size:16px;color:var(--navy2);margin:20px 0 7px;border-left:4px solid var(--gold);padding-left:9px;}
+  .lesson p{font-size:15px;line-height:1.55;margin:8px 0;}
+  .lesson ul,.lesson ol{font-size:15px;line-height:1.5;padding-left:20px;}
+  .lesson li{margin:4px 0;}
+  .lesson table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .lesson th{background:var(--navy);color:#fff;text-align:left;padding:6px 9px;}
+  .lesson td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .lesson .box{background:#f3f7fc;border:1px solid #d6e2f0;border-radius:10px;padding:12px 14px;margin:13px 0;font-size:14px;}
+  .lesson .box.key{background:#fdf2f2;border:2px solid #c0392b;}
+  .lesson .box.key .bt{color:#c0392b;}
+  .lesson .box.ex{background:#eef7f1;border-color:#bfe3cc;}
+  .lesson .box b,.lesson .box strong{color:var(--navy);}
+  .lesson .box .bt{font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:var(--navy2);display:block;margin-bottom:4px;}
+  .lesson .cite{font-size:12px;color:var(--muted);font-style:italic;}
+  .lesson code{background:#eef2f8;padding:1px 5px;border-radius:4px;font-size:13.5px;}
+  .lesson figure.fig{margin:14px auto;padding:8px;border:1px solid #d4d9e0;border-radius:8px;background:#fbfcfd;text-align:center;max-width:100%;}
+  .lesson figure.fig img{display:block;max-width:100%;height:auto;margin:0 auto 6px;border-radius:3px;}
+  .lesson figure.fig.medium{max-width:88%;}
+  .lesson figure.fig.narrow{max-width:66%;}
+  .lesson figure.fig figcaption{font-size:11.5px;color:#555;font-style:italic;line-height:1.3;}
+  .figmiss{font-size:12px;color:var(--muted);font-style:italic;margin:8px 0;}
+  /* quiz */
+  .qtag{display:inline-block;background:#eef2f8;color:var(--navy2);font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:11px;text-transform:uppercase;}
+  .stem{font-size:18px;line-height:1.4;font-weight:600;margin:12px 0 16px;color:#0d1b2a;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;background:#f7f9fc;border:1.5px solid var(--line);
+       border-radius:11px;padding:13px 14px;font-size:15.5px;line-height:1.35;cursor:pointer;color:var(--ink);transition:border-color .1s,background .1s;}
+  .opt:hover:not(.locked){border-color:var(--navy2);background:#fff;}
+  .opt .L{flex:0 0 25px;height:25px;border-radius:50%;background:#e6ecf4;color:var(--navy);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .opt .T{flex:1;padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green);background:var(--greenbg);}
+  .opt.correct .L{background:var(--green);color:#fff;}
+  .opt.wrong{border-color:var(--red);background:var(--redbg);}
+  .opt.wrong .L{background:var(--red);color:#fff;}
+  .opt .mk{margin-left:auto;font-weight:800;align-self:center;}
+  .opt.correct .mk{color:var(--green);}.opt.wrong .mk{color:var(--red);}
+  .fb{margin-top:14px;border-radius:11px;padding:14px 15px;display:none;}
+  .fb.show{display:block;}
+  .fb.ok{background:var(--greenbg);border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg);border:1px solid #f3c6c2;}
+  .fb .v{font-weight:800;font-size:15px;margin-bottom:4px;}
+  .fb.ok .v{color:var(--green);}.fb.no .v{color:var(--red);}
+  .fb .e{font-size:14px;line-height:1.5;}
+  .fb .c{margin-top:8px;font-size:12px;color:var(--muted);font-style:italic;}
+  .nav{display:flex;gap:10px;margin-top:18px;}
+  .btn{flex:1;border:none;border-radius:11px;padding:14px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .btn.primary{background:var(--navy);color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4;cursor:default;}
+  .qbar{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:8px;}
+  .prog{height:7px;background:#dbe3ee;border-radius:6px;overflow:hidden;margin-bottom:4px;}
+  .progf{height:100%;width:0;background:linear-gradient(90deg,var(--navy2),var(--gold));transition:width .3s;}
+  .bigscore{font-size:54px;font-weight:800;color:var(--navy);line-height:1;margin:6px 0;text-align:center;}
+  .bigscore small{font-size:20px;color:var(--muted);}
+  .pct{text-align:center;font-size:16px;font-weight:700;margin-bottom:14px;}
+  .pass{color:var(--green);}.fail{color:var(--red);}
+  .hint{text-align:center;font-size:11.5px;color:var(--muted);margin:10px 0 0;}
+  .gatebar{background:#fff8e6;border:1px solid #f3d28a;border-radius:10px;padding:10px 13px;font-size:13px;color:#7a5a00;margin:10px 0 0;}
+  .foot{text-align:center;color:#9aa6b8;font-size:11px;margin:8px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="toprow">
+      <div class="brand" id="brand">📘 Block 3 Academy</div>
+      <button class="link" id="backbtn" style="display:none"></button>
+    </div>
+    <div class="ovr"><div class="ovrf" id="ovrf"></div></div>
+    <div class="ovrlbl" id="ovrlbl"></div>
+  </div>
+  <div id="view"></div>
+  <div class="foot" id="foot">amt-tutor · Matt's Agency · your progress is saved on this device · content verified against FAA-H-8083-30 Ch.2 & Ch.13</div>
+</div>
+
+<script src="block3-course-data.js"></script>
+<script>
+"use strict";
+var C    = window.B3COURSE || {modules:[]};
+var PASS = C.passMark || 0.70;
+var MODS = C.modules || [];
+var KEY  = C.storeKey || "block3-academy-v1";
+
+/* ---------------- progress store (localStorage) ---------------- */
+var Store = {
+  load:function(){ try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};} },
+  save:function(p){ try{localStorage.setItem(KEY,JSON.stringify(p));}catch(e){} },
+  /* per-section state keyed by section id */
+  get:function(id){ return this.load()[id] || {status:"new",best:0}; },
+  set:function(id,o){ var p=this.load(); p[id]=Object.assign(this.get(id),o); this.save(p); },
+  reset:function(){ localStorage.removeItem(KEY); }
+};
+
+function esc(s){ var d=document.createElement('div'); d.textContent=(s==null?'':s); return d.innerHTML; }
+
+/* ---------------- gate logic (section-level) ----------------
+   A section is UNLOCKED if it's the first section of a module, or the PREVIOUS
+   section in that module is PASSED. (Modules themselves unlock when the prior
+   module is fully complete — see moduleUnlocked.) */
+function sectionPassed(sec){ return Store.get(sec.id).status === "passed"; }
+
+function moduleSectionsPassed(mod){
+  var n=0; mod.sections.forEach(function(s){ if(sectionPassed(s)) n++; }); return n;
+}
+function moduleComplete(mod){ return moduleSectionsPassed(mod) === mod.sections.length; }
+
+function sectionUnlocked(mod, idx){
+  if(idx===0) return true;
+  return sectionPassed(mod.sections[idx-1]);
+}
+function moduleUnlocked(mi){
+  if(mi===0) return true;
+  return moduleComplete(MODS[mi-1]);
+}
+function totalSections(){ var n=0; MODS.forEach(function(m){ n+=m.sections.length; }); return n; }
+function totalPassed(){ var n=0; MODS.forEach(function(m){ n+=moduleSectionsPassed(m); }); return n; }
+
+/* ---------------- App ---------------- */
+var App = {
+  cur:null,        // current module object
+  curIdx:0,        // current module index
+  sec:null,        // current section object
+  secIdx:0,        // current section index
+  q:null,          // quiz state
+
+  setHeader:function(mode){
+    var done=totalPassed(), total=totalSections();
+    document.getElementById('ovrf').style.width = (total? done/total*100:0)+'%';
+    document.getElementById('ovrlbl').textContent =
+      done+' of '+total+' sections passed (≥'+Math.round(PASS*100)+'% each)';
+    var back=document.getElementById('backbtn');
+    if(mode==='home'){ back.style.display='none'; document.getElementById('brand').innerHTML='📘 Block 3 Academy <small>Unit 1 · Days 1–4</small>'; }
+    else if(mode==='module'){ back.style.display=''; back.textContent='‹ All modules'; back.onclick=function(){App.home();}; }
+    else { back.style.display=''; back.textContent='‹ '+App.cur.day+' sections'; back.onclick=function(){App.openModule(App.curIdx);}; }
+  },
+
+  /* ---------- dashboard: list of modules ---------- */
+  home:function(){
+    this.setHeader('home');
+    var cards='';
+    MODS.forEach(function(m,mi){
+      var open=moduleUnlocked(mi), done=moduleComplete(m), passed=moduleSectionsPassed(m);
+      var badge,cls='';
+      if(done){ badge='<span class="mbadge b-pass">✓ Complete</span>'; cls='passed'; }
+      else if(!open){ badge='<span class="mbadge b-lock">🔒 Locked</span>'; cls='locked'; }
+      else if(passed>0){ badge='<span class="mbadge b-cont">▶ Continue</span>'; }
+      else{ badge='<span class="mbadge b-start">▶ Start</span>'; }
+      cards += '<div class="mod '+cls+'" '+(open?'onclick="App.openModule('+mi+')"':'')+'>'+
+        '<div class="mnum">'+(done?'✓':esc(m.day))+'</div>'+
+        '<div class="mbody"><div class="mtitle">'+esc(m.title)+'</div>'+
+        '<div class="mstd">'+esc(m.ref)+'</div>'+
+        '<div class="secprog">'+passed+' / '+m.sections.length+' sections passed</div></div>'+
+        badge+'</div>';
+    });
+    document.getElementById('view').innerHTML='<div class="cards">'+cards+'</div>'+
+      '<div style="text-align:center;margin-bottom:26px"><button class="link" onclick="App.resetAll()">Reset all progress</button></div>';
+    window.scrollTo({top:0});
+  },
+
+  /* ---------- module: list of its sections ---------- */
+  openModule:function(mi){
+    this.cur=MODS[mi]; this.curIdx=mi;
+    this.setHeader('module');
+    var m=this.cur, cards='';
+    m.sections.forEach(function(s,si){
+      var open=sectionUnlocked(m,si), st=Store.get(s.id);
+      var badge,cls='';
+      if(st.status==="passed"){ badge='<span class="mbadge b-pass">✓ '+Math.round(st.best*100)+'%</span>'; cls='passed'; }
+      else if(!open){ badge='<span class="mbadge b-lock">🔒 Locked</span>'; cls='locked'; }
+      else if(st.status==="failed"){ badge='<span class="mbadge b-review">Review · '+Math.round(st.best*100)+'%</span>'; }
+      else{ badge='<span class="mbadge b-start">▶ Read</span>'; }
+      cards += '<div class="mod '+cls+'" '+(open?'onclick="App.openSection('+si+')"':'')+'>'+
+        '<div class="mnum">'+(st.status==="passed"?'✓':'S'+(si+1))+'</div>'+
+        '<div class="mbody"><div class="mtitle">'+esc(s.title)+'</div>'+
+        '<div class="mstd">'+s.quiz.length+'-question gate quiz · ≥'+Math.round(PASS*100)+'% to unlock next</div></div>'+
+        badge+'</div>';
+    });
+    document.getElementById('view').innerHTML=
+      '<div class="screen" style="padding:18px 18px 8px"><div class="crumbs">'+esc(m.day)+' · Module '+m.n+'</div>'+
+      '<h2 style="margin:0 0 2px;color:var(--navy);font-size:20px">'+esc(m.title)+'</h2>'+
+      '<p style="color:var(--muted);font-size:13px;margin:4px 0 2px">'+esc(m.ref)+
+      ' · '+m.sections.length+' sections (~1 hour). Pass each section\'s quiz at '+Math.round(PASS*100)+'% to open the next.</p></div>'+
+      '<div class="cards">'+cards+'</div>';
+    window.scrollTo({top:0});
+  },
+
+  /* ---------- section reader ---------- */
+  openSection:function(si){
+    this.sec=this.cur.sections[si]; this.secIdx=si;
+    this.lesson();
+  },
+  lesson:function(){
+    this.setHeader('section');
+    var m=this.cur, s=this.sec, st=Store.get(s.id);
+    var reviewbar = (st.status==="failed")
+      ? '<div class="gatebar">📋 You scored '+Math.round(st.best*100)+'% last time — under '+Math.round(PASS*100)+'%. Re-read this section, then retake the quiz. The next section stays locked until you pass.</div>'
+      : '';
+    document.getElementById('view').innerHTML=
+      '<div class="screen"><div class="crumbs">'+esc(m.day)+' · Section '+(this.secIdx+1)+' of '+m.sections.length+'</div>'+
+      '<div class="lesson"><h2>'+esc(s.title)+'</h2>'+ s.lesson +'</div>'+
+      reviewbar+
+      '<div class="nav">'+
+        '<button class="btn ghost" onclick="App.openModule('+this.curIdx+')">‹ Sections</button>'+
+        '<button class="btn primary" onclick="App.startQuiz()">Take the gate quiz →</button>'+
+      '</div></div>';
+    window.scrollTo({top:0});
+  },
+
+  /* ---------- quiz engine (mirrors AET) ---------- */
+  startQuiz:function(){
+    var q=this.sec.quiz.slice();
+    this.q={items:q,order:q.map(function(_,i){return i;}),i:0,score:0,answered:0,locked:false};
+    this.renderQ();
+  },
+  renderQ:function(){
+    var Q=this.q, item=Q.items[Q.order[Q.i]], total=Q.order.length, opts='';
+    item.options.forEach(function(o,li){
+      opts+='<button class="opt" onclick="App.pick('+li+')"><span class="L">'+'ABCD'[li]+'</span><span class="T">'+esc(o)+'</span><span class="mk"></span></button>';
+    });
+    document.getElementById('view').innerHTML='<div class="screen">'+
+      '<div class="qbar"><span>'+esc(this.sec.title)+' · Q'+(Q.i+1)+' of '+total+'</span><span>Score '+Q.score+'/'+Q.answered+'</span></div>'+
+      '<div class="prog"><div class="progf" style="width:'+(Q.i/total*100)+'%"></div></div>'+
+      '<span class="qtag">'+esc(item.topic||this.sec.title)+'</span>'+
+      '<div class="stem">'+esc(item.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div>'+
+      '<div class="nav"><button class="btn primary" id="nx" onclick="App.nextQ()" disabled>Next →</button></div>'+
+      '<div class="hint">Press A–D or 1–4 · Enter for next</div></div>';
+    Q.locked=false; window.scrollTo({top:0});
+  },
+  pick:function(li){
+    var Q=this.q; if(Q.locked)return; Q.locked=true;
+    var item=Q.items[Q.order[Q.i]], wrap=document.getElementById('opts'); wrap.classList.add('locked');
+    var ok=(li===item.correct);
+    wrap.querySelectorAll('.opt').forEach(function(b,bi){
+      if(bi===item.correct){b.classList.add('correct');b.querySelector('.mk').textContent='✓';}
+      if(bi===li&&!ok){b.classList.add('wrong');b.querySelector('.mk').textContent='✗';}
+    });
+    Q.answered++; if(ok)Q.score++;
+    var fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML='<div class="v">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="e"><b>'+'ABCD'[item.correct]+'.</b> '+esc(item.short)+(item.expl?' — '+esc(item.expl):'')+'</div>'+
+      (item.cite?'<div class="c">📖 '+esc(item.cite)+'</div>':'');
+    document.getElementById('nx').disabled=false;
+  },
+  nextQ:function(){
+    var Q=this.q; Q.i++;
+    if(Q.i>=Q.order.length){ this.finishQuiz(); return; }
+    this.renderQ();
+  },
+  finishQuiz:function(){
+    var Q=this.q, pct=Q.answered? Q.score/Q.answered:0, passed=pct>=PASS;
+    var prev=Store.get(this.sec.id);
+    Store.set(this.sec.id,{status:passed?"passed":"failed",best:Math.max(prev.best||0,pct)});
+    var m=this.cur, nextSec=(this.secIdx+1<m.sections.length)? m.sections[this.secIdx+1]:null;
+    var modDone=moduleComplete(m), nextModIdx=this.curIdx+1, nextMod=(nextModIdx<MODS.length)?MODS[nextModIdx]:null;
+    this.setHeader('section');
+    var html='<div class="screen">'+
+      '<h2 style="text-align:center;color:var(--navy);margin:4px 0">'+(passed?'Section passed! 🎉':'Not yet — back to review 📋')+'</h2>'+
+      '<div class="bigscore">'+Q.score+'<small>/'+Q.answered+'</small></div>'+
+      '<div class="pct '+(passed?'pass':'fail')+'">'+Math.round(pct*100)+'% '+(passed?'· cleared the '+Math.round(PASS*100)+'% gate':'· need '+Math.round(PASS*100)+'% to advance')+'</div>';
+    if(passed){
+      if(nextSec){
+        html+='<div class="nav"><button class="btn primary" onclick="App.openSection('+(this.secIdx+1)+')">Next section →</button>'+
+              '<button class="btn ghost" onclick="App.openModule('+this.curIdx+')">All sections</button></div>'+
+              '<div class="hint">Next section is now unlocked.</div>';
+      } else if(modDone && nextMod){
+        html+='<div class="nav"><button class="btn primary" onclick="App.openModule('+nextModIdx+')">'+esc(nextMod.day)+' →</button>'+
+              '<button class="btn ghost" onclick="App.home()">Dashboard</button></div>'+
+              '<div class="hint">Module complete! '+esc(nextMod.day)+' is now unlocked.</div>';
+      } else {
+        html+='<div class="nav"><button class="btn primary" onclick="App.home()">Back to dashboard</button></div>'+
+              '<div class="hint">'+(modDone?'Module complete! 🏆':'')+'</div>';
+      }
+    } else {
+      html+='<div class="gatebar">You must score at least '+Math.round(PASS*100)+'% to unlock the next section. Re-read the section (the must-know red box covers every quiz fact), then retake.</div>'+
+            '<div class="nav"><button class="btn primary" onclick="App.lesson()">Review the section</button>'+
+            '<button class="btn ghost" onclick="App.startQuiz()">Retake now</button></div>';
+    }
+    html+='</div>';
+    document.getElementById('view').innerHTML=html;
+    window.scrollTo({top:0});
+  },
+
+  resetAll:function(){ if(confirm('Reset ALL Block 3 Academy progress on this device?')){ Store.reset(); this.home(); } }
+};
+
+document.addEventListener('keydown',function(e){
+  if(!App.q)return;
+  var k=e.key.toLowerCase();
+  if(['a','b','c','d'].indexOf(k)>=0) App.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].indexOf(k)>=0) App.pick((+k)-1);
+  else if(e.key==='Enter'){ var nx=document.getElementById('nx'); if(nx&&!nx.disabled)App.nextQ(); }
+});
+
+/* deep-link: #m1..#m4 opens that module's section list (if unlocked); else home */
+function bootFromHash(){
+  var h=(location.hash||'').replace('#','');
+  var mm=h.match(/^m(\d+)$/);
+  if(mm){
+    var n=+mm[1];
+    for(var i=0;i<MODS.length;i++){
+      if(MODS[i].n===n){ if(moduleUnlocked(i)){ App.openModule(i); return true; } break; }
+    }
+  }
+  return false;
+}
+
+if(!MODS.length){
+  document.getElementById('view').innerHTML='<div class="screen"><p>Course content hasn\'t been published yet.</p></div>';
+}else if(!bootFromHash()){
+  App.home();
+}
+window.addEventListener('hashchange',function(){ if(!bootFromHash())App.home(); });
+</script>
+</body>
+</html>
