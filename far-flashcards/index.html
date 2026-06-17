@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<title>Block 3 — FAR-Part Flashcards</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --bg:#eef2f8;
+    --paper:#fffdf7; --paperline:#e9e2cf;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif; background:var(--bg);
+       color:var(--ink); min-height:100vh; display:flex; flex-direction:column; align-items:center;
+       padding:0 14px env(safe-area-inset-bottom);}
+  .wrap{width:100%; max-width:680px; margin:0 auto;}
+  a.back{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px; font-weight:700; text-decoration:none;}
+  .head{padding:14px 0 6px;}
+  .head h1{font-size:21px; color:var(--navy); margin:0;}
+  .head p{font-size:12.5px; color:var(--muted); margin:3px 0 0;}
+
+  /* controls */
+  .controls{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; align-items:center;}
+  select,.pill{font-family:inherit; font-size:13px; font-weight:700; border-radius:10px;
+      border:1.5px solid var(--line); background:#fff; color:var(--navy); padding:9px 12px;}
+  .pill{cursor:pointer;} .pill:hover{border-color:var(--navy2);}
+  .pill.gold{background:var(--gold); border-color:var(--gold); color:#0d2a4a;}
+
+  /* HUD */
+  .hud{display:flex; justify-content:space-between; align-items:center; gap:8px;
+       margin:10px 0 4px; font-size:12.5px; font-weight:700; color:var(--muted);}
+  .hud .b{color:var(--navy);}
+  .hud .streak{color:#b9760a;}
+  .prog{height:9px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+  .mastery{font-size:11.5px; color:var(--muted); margin-top:5px; text-align:right;}
+  .mastery b{color:var(--green);}
+
+  /* the flashcard */
+  .stage{perspective:1600px; margin:16px 0 6px;}
+  .card{position:relative; width:100%; min-height:320px; cursor:pointer;
+        transform-style:preserve-3d; transition:transform .55s cubic-bezier(.4,.1,.2,1);}
+  .card.flipped{transform:rotateY(180deg);}
+  .face{position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+        border-radius:16px; padding:26px 24px 56px; display:flex; flex-direction:column;
+        background:var(--paper);
+        background-image:repeating-linear-gradient(transparent,transparent 33px,var(--paperline) 33px,var(--paperline) 34px);
+        background-position:0 60px;
+        box-shadow:0 10px 30px rgba(13,42,74,.16), 0 2px 0 #d9d2bf inset;
+        border:1px solid #ece4cf;}
+  .face::before{content:""; position:absolute; left:46px; top:0; bottom:0; width:2px; background:#f0a9a0; opacity:.45;}
+  .face .corner{position:absolute; top:14px; right:16px; font-size:10.5px; font-weight:800;
+        letter-spacing:.6px; text-transform:uppercase; color:#b08a18;}
+  .face .kind{font-size:10.5px; font-weight:800; letter-spacing:.7px; text-transform:uppercase;
+        color:var(--navy2); margin-bottom:8px;}
+  .front .q{font-size:21px; line-height:1.4; font-weight:700; color:#10243d; margin:auto 0;}
+  .front .tap{position:absolute; left:0; right:0; bottom:16px; text-align:center; font-size:12px;
+        color:#a98c2e; font-weight:700;}
+  .back{transform:rotateY(180deg);}
+  .back .a{font-size:17px; line-height:1.5; font-weight:600; color:#16243a; margin:6px 0 auto; overflow:auto;}
+  .back .cite{margin-top:12px; font-size:12.5px; font-style:italic; color:var(--navy2); font-weight:700;}
+  .back .tap{position:absolute; left:0; right:0; bottom:16px; text-align:center; font-size:11.5px;
+        color:#9aa6b8; font-weight:600;}
+
+  /* grade buttons */
+  .grade{display:flex; gap:11px; margin:14px 0 8px;}
+  .gbtn{flex:1; border:none; border-radius:13px; padding:17px; font-size:16.5px; font-weight:800;
+        cursor:pointer; font-family:inherit; color:#fff;}
+  .gbtn.got{background:var(--green);} .gbtn.got:active{filter:brightness(.94);}
+  .gbtn.miss{background:var(--red);} .gbtn.miss:active{filter:brightness(.94);}
+  .gbtn:disabled{opacity:.35; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); min-height:16px; margin-bottom:18px;}
+
+  /* end screen */
+  .screen{background:#fff; border-radius:16px; padding:28px 22px; margin-top:18px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h2{font-size:23px; color:var(--navy); margin:0 0 4px;}
+  .screen .lvl{font-size:13px; color:var(--muted); margin-bottom:14px;}
+  .stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0 18px;}
+  .stat{background:var(--bg); border-radius:12px; padding:14px;}
+  .stat .n{font-size:26px; font-weight:800; color:var(--navy);}
+  .stat .l{font-size:11.5px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.4px;}
+  .screen .again{background:var(--navy); color:#fff; border:none; border-radius:13px; padding:15px 26px;
+        font-size:16px; font-weight:800; cursor:pointer; font-family:inherit; margin:4px 6px;}
+  .screen .again.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .foot{margin:26px 0 14px; color:#9aa6b8; font-size:11px; text-align:center;}
+</style></head><body>
+<div class="wrap">
+  <a class="back" href="../">← All quizzes</a>
+  <div class="head">
+    <h1>🗂️ FAR-Part Flashcards</h1>
+    <p>Block 3 · 23 flip cards · your 18 FAR parts + the 5 Part-43 appendices · tap to flip · self-grade</p>
+  </div>
+
+  <div class="controls">
+    <select id="deckPick" aria-label="Choose a deck"></select>
+    <button class="pill gold" id="shuffleBtn">🔀 Shuffle &amp; start</button>
+    <button class="pill" id="resetBtn" title="Clear saved mastery">Reset progress</button>
+  </div>
+
+  <div id="play" style="display:none;">
+    <div class="hud">
+      <span>Card <span class="b" id="posNow">1</span>/<span id="posTot">0</span></span>
+      <span>Session <span class="b" id="score">0</span> right</span>
+      <span class="streak">🔥 <span id="streak">0</span></span>
+    </div>
+    <div class="prog"><div class="progfill" id="progfill"></div></div>
+    <div class="mastery">Mastered <b id="mastN">0</b>/<span id="mastTot">0</span> · best streak <b id="bestStreak">0</b> · Lvl <span id="xpLvl">1</span> (<span id="xpPts">0</span> XP)</div>
+
+    <div class="stage"><div class="card" id="card" role="button" tabindex="0" aria-label="Flip card">
+      <div class="face front">
+        <span class="corner" id="fCorner">PART 65</span>
+        <div class="kind">Prompt</div>
+        <div class="q" id="frontTxt"></div>
+        <div class="tap">tap to flip →</div>
+      </div>
+      <div class="face back">
+        <span class="corner" id="bCorner">PART 65</span>
+        <div class="kind">Answer</div>
+        <div class="a" id="backTxt"></div>
+        <div class="cite" id="citeTxt"></div>
+        <div class="tap">how’d you do?</div>
+      </div>
+    </div></div>
+
+    <div class="grade">
+      <button class="gbtn miss" id="missBtn" disabled>Missed it</button>
+      <button class="gbtn got" id="gotBtn" disabled>Got it ✓</button>
+    </div>
+    <div class="hint" id="hint">Tap the card to reveal the answer.</div>
+  </div>
+
+  <div id="end" class="screen" style="display:none;">
+    <h2 id="endTitle">Round complete!</h2>
+    <div class="lvl" id="endLvl"></div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="eScore">0</div><div class="l">Got it</div></div>
+      <div class="stat"><div class="n" id="eTot">0</div><div class="l">Cards seen</div></div>
+      <div class="stat"><div class="n" id="eStreak">0</div><div class="l">Longest streak</div></div>
+      <div class="stat"><div class="n" id="eMast">0</div><div class="l">Mastered (deck)</div></div>
+    </div>
+    <div id="eLearn" class="lvl"></div>
+    <button class="again" id="againBtn">Play again 🔁</button>
+    <button class="again ghost" id="missedBtn">Drill the ones I missed</button>
+  </div>
+
+  <div class="foot">amt-tutor · Matt's Agency · every answer carries its § cite · mastery saved on this device</div>
+</div>
+
+<script>
+"use strict";
+/* ----- verified deck (embedded; no network) ----- */
+var DATA = [{"part": "FARPART", "front": "Part 1 — what does it cover?", "back": "Definitions & Abbreviations.\n\nOfficial title: Definitions and Abbreviations", "cite": "14 CFR Part 1", "label": "Part 1"}, {"part": "FARPART", "front": "Part 3 — what does it cover?", "back": "Sub A — General Requirements (products, parts, appliances & materials). Sub B — Security Threat Disqualification.\n\nOfficial title: General Requirements (§3.5 defines airworthy, product, record)\n\nEXAM NOTE: On the written, the AIRMAN security-threat/disqualification rule lives in Part 65 (§65.14) + TSA 49 CFR 1540 — not 14 CFR Part 3. Part 3 itself = 'General Requirements.' [verify Subpart B label with instructor]", "cite": "14 CFR Part 3", "label": "Part 3"}, {"part": "FARPART", "front": "Part 21 — what does it cover?", "back": "Certification Procedures for Products & Parts (FAA approval of products & parts).\n\nOfficial title: Certification Procedures for Products and Parts", "cite": "14 CFR Part 21", "label": "Part 21"}, {"part": "FARPART", "front": "Part 23 — what does it cover?", "back": "Airworthiness Standards: Normal, Utility & Acrobatic category ('General Aviation'); weigh LESS than 12,500 lb takeoff weight.\n\nOfficial title: Airworthiness Standards: Normal, Utility, Acrobatic, and Commuter Category Airplanes\n\nEXAM NOTE: Add COMMUTER to the category name. Since 2017 (Amdt 23-64) it's one 'normal category' performance standard; the 12,500-lb line is legacy. Seating 9 or fewer, except commuter up to 19.", "cite": "14 CFR Part 23", "label": "Part 23"}, {"part": "FARPART", "front": "Part 25 — what does it cover?", "back": "Airworthiness Standards: Transport Category Airplanes; MORE than 12,500 lb takeoff weight / major airlines.\n\nOfficial title: Airworthiness Standards: Transport Category Airplanes", "cite": "14 CFR Part 25", "label": "Part 25"}, {"part": "FARPART", "front": "Part 33 — what does it cover?", "back": "Airworthiness Standards: Aircraft Engines.\n\nOfficial title: Airworthiness Standards: Aircraft Engines", "cite": "14 CFR Part 33", "label": "Part 33"}, {"part": "FARPART", "front": "Part 35 — what does it cover?", "back": "Airworthiness Standards: Aircraft Propellers.\n\nOfficial title: Airworthiness Standards: Aircraft Propellers", "cite": "14 CFR Part 35", "label": "Part 35"}, {"part": "FARPART", "front": "Part 39 — what does it cover?", "back": "Airworthiness Directives.\n\nOfficial title: Airworthiness Directives\n\nEXAM NOTE: ADs are MANDATORY, the owner/operator's responsibility, issued bi-weekly; look them up by Make/Model.", "cite": "14 CFR Part 39", "label": "Part 39"}, {"part": "FARPART", "front": "Part 43 — what does it cover?", "back": "Maintenance, Preventive Maintenance, Rebuilding & Alterations.\n\nOfficial title: Maintenance, Preventive Maintenance, Rebuilding, and Alteration", "cite": "14 CFR Part 43", "label": "Part 43"}, {"part": "APP43", "front": "Part 43 — Appendix A — what does it cover?", "back": "Major Alterations, Major Repairs & Preventive Maintenance.\n\nOfficial title: Major Alterations, Major Repairs, and Preventive Maintenance (the lists)", "cite": "14 CFR Part 43, Appendix A", "label": "Part 43 — Appendix A"}, {"part": "APP43", "front": "Part 43 — Appendix B — what does it cover?", "back": "Recording of Repairs & Major Alterations.\n\nOfficial title: Recording of Major Repairs and Major Alterations (Form 337 / data)", "cite": "14 CFR Part 43, Appendix B", "label": "Part 43 — Appendix B"}, {"part": "APP43", "front": "Part 43 — Appendix D — what does it cover?", "back": "Scope & Detail of items to be included in Annual & 100-Hour Inspection.\n\nOfficial title: Scope and Detail of Items to be Included in Annual and 100-Hour Inspections", "cite": "14 CFR Part 43, Appendix D", "label": "Part 43 — Appendix D"}, {"part": "APP43", "front": "Part 43 — Appendix E — what does it cover?", "back": "Altimeter System Test & Inspection.\n\nOfficial title: Altimeter System Test and Inspection (every 24 cal. months)", "cite": "14 CFR Part 43, Appendix E", "label": "Part 43 — Appendix E"}, {"part": "APP43", "front": "Part 43 — Appendix F — what does it cover?", "back": "ATC Transponder Test & Inspection.\n\nOfficial title: ATC Transponder Tests and Inspections (every 24 cal. months)", "cite": "14 CFR Part 43, Appendix F", "label": "Part 43 — Appendix F"}, {"part": "FARPART", "front": "Part 45 — what does it cover?", "back": "Identification & Registration Marks ('N#').\n\nOfficial title: Identification and Registration Marking", "cite": "14 CFR Part 45", "label": "Part 45"}, {"part": "FARPART", "front": "Part 47 — what does it cover?", "back": "Aircraft Registration ('registration' ~ like a title).\n\nOfficial title: Aircraft Registration", "cite": "14 CFR Part 47", "label": "Part 47"}, {"part": "FARPART", "front": "Part 65 — what does it cover?", "back": "Certification: Airmen other than flight crew members (eligibility requirements). Repairman: no A&P, not certified. Maintenance Tech: has an A&P.\n\nOfficial title: Certification: Airmen Other Than Flight Crewmembers\n\nEXAM NOTE: More precisely: a Repairman IS certificated (Subpart E) but is NOT an A&P and is limited to a specific job/employer; an A&P mechanic is certificated under Subpart D. Both hold a certificate — the difference is scope, not 'certified vs not.'", "cite": "14 CFR Part 65", "label": "Part 65"}, {"part": "FARPART", "front": "Part 91 — what does it cover?", "back": "General Operation & Flight Rules (pilots, owners, or lessees of aircraft).\n\nOfficial title: General Operating and Flight Rules", "cite": "14 CFR Part 91", "label": "Part 91"}, {"part": "FARPART", "front": "Part 121 — what does it cover?", "back": "Certification & operations: Domestic, Flag & Supplemental air carriers & commercial operators of large aircraft (large multiengine).\n\nOfficial title: Operating Requirements: Domestic, Flag, and Supplemental Operations", "cite": "14 CFR Part 121", "label": "Part 121"}, {"part": "FARPART", "front": "Part 135 — what does it cover?", "back": "Air Taxi Operators & Commercial Operations (less than 20 passengers); charter flights.\n\nOfficial title: Operating Requirements: Commuter and On-Demand Operations\n\nEXAM NOTE: Modern regulatory name = 'Commuter and On-Demand.' 'Air taxi/charter, <20 pax' is the plain-English description.", "cite": "14 CFR Part 135", "label": "Part 135"}, {"part": "FARPART", "front": "Part 145 — what does it cover?", "back": "Repair Stations (specialty shops).\n\nOfficial title: Repair Stations", "cite": "14 CFR Part 145", "label": "Part 145"}, {"part": "FARPART", "front": "Part 147 — what does it cover?", "back": "Aviation Maintenance Technician Schools ('Aviation Schools').\n\nOfficial title: Aviation Maintenance Technician Schools", "cite": "14 CFR Part 147", "label": "Part 147"}, {"part": "FARPART", "front": "Part 183 — what does it cover?", "back": "Representatives of the Administrator; DME = Designated Mechanical Examiner.\n\nOfficial title: Representatives of the Administrator", "cite": "14 CFR Part 183", "label": "Part 183"}];
+var LABELS = {"FARPART": "FAR Parts — Block 3", "APP43": "Part 43 Appendices (A/B/D/E/F)"};
+var LS = "far-flashcards.";            // localStorage key prefix
+
+/* ----- pure game logic (mirrored in test_reg_card_game.py) ----- */
+function cardId(c){ return c.part + "|" + c.front; }       // stable id
+
+function loadMastery(){
+  try { return JSON.parse(localStorage.getItem(LS+"mastery") || "{}"); }
+  catch(e){ return {}; }
+}
+function saveMastery(m){ try{ localStorage.setItem(LS+"mastery", JSON.stringify(m)); }catch(e){} }
+function getBest(){ return parseInt(localStorage.getItem(LS+"bestStreak")||"0",10)||0; }
+function setBest(v){ try{ localStorage.setItem(LS+"bestStreak", String(v)); }catch(e){} }
+function getXP(){ return parseInt(localStorage.getItem(LS+"xp")||"0",10)||0; }
+function setXP(v){ try{ localStorage.setItem(LS+"xp", String(v)); }catch(e){} }
+function levelFor(xp){ return Math.floor(xp/100)+1; }      // 100 XP per level
+
+/* a card is "mastered" when correctStreak >= 2 (right 2x in a row) */
+function isMastered(m,id){ return (m[id] && m[id].streak >= 2) === true; }
+
+/* update mastery record for one card given got/missed; returns new record */
+function applyGrade(rec, got){
+  rec = rec || {streak:0, seen:0, right:0};
+  rec.seen += 1;
+  if(got){ rec.right += 1; rec.streak += 1; }
+  else   { rec.streak = 0; }
+  return rec;
+}
+
+/* count mastered cards in a deck-subset under a mastery map */
+function countMastered(deck, m){
+  var n=0; for(var i=0;i<deck.length;i++){ if(isMastered(m, cardId(deck[i]))) n++; } return n;
+}
+
+/* Fisher–Yates shuffle (pure) */
+function shuffle(arr, rnd){
+  rnd = rnd || Math.random;
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+
+/* build the play queue: missed cards are re-queued so they come back more
+   often within the session. Returns an array of indexes into `deck`. */
+function buildQueue(deck, rnd){
+  return shuffle(deck.map(function(_,i){return i;}), rnd);
+}
+
+/* expose for the Python mirror / any test harness */
+if (typeof module !== "undefined" && module.exports){
+  module.exports = {cardId,applyGrade,isMastered,countMastered,shuffle,buildQueue,levelFor};
+}
+
+/* ----- UI state ----- */
+var deck=[], queue=[], pos=0, flipped=false, graded=false;
+var sScore=0, sStreak=0, sLongest=0, sSeen=0, sMissed=[], sMissedCards=[];
+var mastery = loadMastery();
+
+var $ = function(id){ return document.getElementById(id); };
+
+function partList(){
+  var parts=[]; for(var k in LABELS){ parts.push(k); }
+  return parts;
+}
+function fillPicker(){
+  var sel=$("deckPick"), opts="";
+  opts += '<option value="ALL">All Parts ('+DATA.length+' cards)</option>';
+  partList().forEach(function(p){
+    var n=DATA.filter(function(c){return c.part===p;}).length;
+    opts += '<option value="'+p+'">'+LABELS[p].replace(/&/g,"&amp;")+' ('+n+')</option>';
+  });
+  sel.innerHTML=opts;
+}
+
+function startRound(reqDeck){
+  deck = reqDeck;
+  queue = buildQueue(deck);
+  pos=0; sScore=0; sStreak=0; sLongest=0; sSeen=0; sMissed=[]; sMissedCards=[];
+  $("play").style.display="block"; $("end").style.display="none";
+  $("posTot").textContent = queue.length;
+  $("mastTot").textContent = DATA.length;
+  $("bestStreak").textContent = getBest();
+  render();
+}
+
+function curCard(){ return deck[queue[pos]]; }
+
+function render(){
+  var c=curCard();
+  flipped=false; graded=false;
+  $("card").classList.remove("flipped");
+  $("frontTxt").textContent=c.front;
+  $("backTxt").textContent=c.back;
+  $("citeTxt").textContent=c.cite;
+  var lbl = (c.label || LABELS[c.part].split("—")[0].trim()).toUpperCase();
+  $("fCorner").textContent=lbl; $("bCorner").textContent=lbl;
+  $("posNow").textContent = (pos+1);
+  $("gotBtn").disabled=true; $("missBtn").disabled=true;
+  $("hint").textContent="Tap the card to reveal the answer.";
+  updateHUD();
+}
+
+function updateHUD(){
+  $("score").textContent=sScore;
+  $("streak").textContent=sStreak;
+  var done=pos; // cards finished
+  $("progfill").style.width = (queue.length? (done/queue.length*100):0)+"%";
+  var mN=countMastered(DATA, mastery);
+  $("mastN").textContent=mN; $("mastTot").textContent=DATA.length;
+  var xp=getXP(); $("xpLvl").textContent=levelFor(xp); $("xpPts").textContent=xp%100;
+  $("bestStreak").textContent=getBest();
+}
+
+function flip(){
+  if(graded) return;
+  flipped=!flipped;
+  $("card").classList.toggle("flipped", flipped);
+  if(flipped){
+    $("gotBtn").disabled=false; $("missBtn").disabled=false;
+    $("hint").textContent="Be honest — did you know it?";
+  }
+}
+
+function grade(got){
+  if(!flipped || graded) return;
+  graded=true;
+  var c=curCard(), id=cardId(c);
+  mastery[id]=applyGrade(mastery[id], got);
+  saveMastery(mastery);
+  sSeen++;
+  if(got){
+    sScore++; sStreak++; if(sStreak>sLongest) sLongest=sStreak;
+    if(sStreak>getBest()) setBest(sStreak);
+    setXP(getXP()+10);
+  }else{
+    sStreak=0;
+    sMissed.push(queue[pos]);
+    if(sMissedCards.indexOf(c)===-1) sMissedCards.push(c);
+    // re-queue a missed card ~3 positions ahead so it comes back this session
+    var insertAt = Math.min(queue.length, pos+3);
+    queue.splice(insertAt, 0, queue[pos]);
+    $("posTot").textContent=queue.length;
+  }
+  $("gotBtn").disabled=true; $("missBtn").disabled=true;
+  updateHUD();
+  setTimeout(next, 230);
+}
+
+function next(){
+  pos++;
+  if(pos>=queue.length){ finish(); return; }
+  render();
+}
+
+function finish(){
+  $("play").style.display="none";
+  var end=$("end"); end.style.display="block";
+  $("eScore").textContent=sScore;
+  $("eTot").textContent=sSeen;
+  $("eStreak").textContent=sLongest;
+  var mN=countMastered(DATA, mastery);
+  $("eMast").textContent=mN;
+  var stillLearning = DATA.length - mN;
+  $("eLearn").textContent = stillLearning+" card"+(stillLearning===1?"":"s")+" still learning across the whole deck.";
+  var xp=getXP();
+  $("endLvl").textContent = "Level "+levelFor(xp)+" · "+xp+" XP total · best streak "+getBest();
+  var pct = sSeen? Math.round(sScore/sSeen*100):0;
+  $("endTitle").textContent = pct>=90?"Nailed it! "+pct+"%": pct>=70?"Solid — "+pct+"%":"Round complete — "+pct+"%";
+  $("missedBtn").style.display = sMissed.length? "inline-block":"none";
+}
+
+/* ----- wire up ----- */
+function deckFor(val){
+  if(val==="ALL") return DATA.slice();
+  return DATA.filter(function(c){return c.part===val;});
+}
+$("shuffleBtn").addEventListener("click", function(){ startRound(deckFor($("deckPick").value)); });
+$("deckPick").addEventListener("change", function(){ startRound(deckFor(this.value)); });
+$("card").addEventListener("click", flip);
+$("card").addEventListener("keydown", function(e){ if(e.key===" "||e.key==="Enter"){ e.preventDefault(); flip(); }});
+$("gotBtn").addEventListener("click", function(){ grade(true); });
+$("missBtn").addEventListener("click", function(){ grade(false); });
+$("againBtn").addEventListener("click", function(){ startRound(deck.slice()); });
+$("missedBtn").addEventListener("click", function(){
+  startRound(sMissedCards.length ? sMissedCards.slice() : deck.slice());
+});
+$("resetBtn").addEventListener("click", function(){
+  if(confirm("Clear saved mastery, best streak, and XP on this device?")){
+    try{ localStorage.removeItem(LS+"mastery"); localStorage.removeItem(LS+"bestStreak"); localStorage.removeItem(LS+"xp"); }catch(e){}
+    mastery=loadMastery(); updateHUD(); alert("Progress cleared.");
+  }
+});
+
+fillPicker();
+updateHUD();
+</script>
+</body></html>

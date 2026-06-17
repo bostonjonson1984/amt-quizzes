@@ -1,6 +1,6 @@
 {
  "built": "2026-06-17",
- "total": 2283,
+ "total": 2409,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -21,6 +21,7 @@
   "Corrosion Notes — 50Q Test": 167,
   "NDT — Non-Destructive Testing (Complete)": 135,
   "Project 2-11 — Corrosion Control Quiz": 105,
+  "Block 3 — Comprehensive Test": 126,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 336,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -28628,6 +28629,2300 @@
    "block": "Block 2",
    "sources": [
     "Project 2-11 — Corrosion Control Quiz"
+   ]
+  },
+  {
+   "id": "2134dd7ef5",
+   "q": "In 1966 the agency was placed under a new department and renamed the FAA. What department took it over?",
+   "options": [
+    "Department of Commerce",
+    "Department of Transportation (DOT)",
+    "Department of Defense",
+    "Department of Homeland Security"
+   ],
+   "correct": 1,
+   "short": "Department of Transportation (DOT)",
+   "expl": "Correct answer: Department of Transportation (DOT).",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-2 (FAA history)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "b85ac28902",
+   "q": "The FAA's single primary goal is:",
+   "options": [
+    "Efficiency",
+    "Revenue",
+    "Safety",
+    "Speed"
+   ],
+   "correct": 2,
+   "short": "Safety",
+   "expl": "Correct answer: Safety.",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "114df0ee5f",
+   "q": "The FAA's primary mandatory tools — the rules it enforces — are called:",
+   "options": [
+    "ACs",
+    "FARs (the 14 CFR parts)",
+    "TSOs",
+    "SAIBs"
+   ],
+   "correct": 1,
+   "short": "FARs (the 14 CFR parts)",
+   "expl": "Correct answer: FARs (the 14 CFR parts).",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-3; 14 CFR Title 14",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "2f14aaa432",
+   "q": "Which statement is TRUE about CFRs vs FARs?",
+   "options": [
+    "CFRs apply only to aviation",
+    "CFRs cover the entire body of U.S. federal regulation; FARs are the 14 CFR aviation parts",
+    "FARs are non-mandatory",
+    "CFRs are advisory only"
+   ],
+   "correct": 1,
+   "short": "CFRs cover the entire body of U.S. federal regulation; FARs are the 14 CFR aviation parts",
+   "expl": "Correct answer: CFRs cover the entire body of U.S. federal regulation; FARs are the 14 CFR aviation parts.",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-3",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "fb97d159f4",
+   "q": "'Regulatory' means ____ and 'non-regulatory' means ____.",
+   "options": [
+    "Mandatory / non-mandatory",
+    "Advisory / mandatory",
+    "Optional / required",
+    "Federal / state"
+   ],
+   "correct": 0,
+   "short": "Mandatory / non-mandatory",
+   "expl": "Correct answer: Mandatory / non-mandatory.",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-3",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "36aa43d5a2",
+   "q": "The correct 'Order of Maintenance' is:",
+   "options": [
+    "Document it, then fix it",
+    "Fix it, find it, ignore it",
+    "Something is broken -> fix it -> document it",
+    "Inspect it -> sell it -> document it"
+   ],
+   "correct": 2,
+   "short": "Something is broken -> fix it -> document it",
+   "expl": "Correct answer: Something is broken -> fix it -> document it.",
+   "cite": "FAA-H-8083-30B Ch.2 (maintenance recordkeeping, 43.9)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "47b2fc23c3",
+   "q": "Which FAR part contains Definitions and Abbreviations?",
+   "options": [
+    "Part 3",
+    "Part 1",
+    "Part 21",
+    "Part 43"
+   ],
+   "correct": 1,
+   "short": "Part 1",
+   "expl": "Correct answer: Part 1.",
+   "cite": "14 CFR Part 1",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "5cf12ad600",
+   "q": "Per the FAA handbook, 'airworthy' means an aircraft:",
+   "options": [
+    "Has a current registration only",
+    "Conforms to its type design AND is in a condition for safe operation",
+    "Has passed an annual only",
+    "Is newer than 12 years old"
+   ],
+   "correct": 1,
+   "short": "Conforms to its type design AND is in a condition for safe operation",
+   "expl": "Correct answer: Conforms to its type design AND is in a condition for safe operation.  EXAM CORRECTION: The handbook quotes this definition under PART 3, §3.5 (not Part 1). Part 1 is Definitions/Abbreviations generally; the verbatim 'airworthy' definition lives in §3.5.",
+   "cite": "14 CFR §3.5; FAA-H-8083-30B Ch.2 p.2-4",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "22a8f5cd15",
+   "q": "'Product' is defined as:",
+   "options": [
+    "Any aircraft part",
+    "An aircraft, aircraft engine, or aircraft propeller",
+    "An appliance",
+    "A raw material"
+   ],
+   "correct": 1,
+   "short": "An aircraft, aircraft engine, or aircraft propeller",
+   "expl": "Correct answer: An aircraft, aircraft engine, or aircraft propeller.",
+   "cite": "14 CFR §3.5 / §1.1; FAA-H-8083-30B Ch.2 p.2-4",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "60023ff31e",
+   "q": "A 'record' is any writing, drawing, map, recording, tape, film, photograph, or other documentary material by which information is:",
+   "options": [
+    "Sold",
+    "Preserved",
+    "Destroyed",
+    "Encrypted"
+   ],
+   "correct": 1,
+   "short": "Preserved",
+   "expl": "Correct answer: Preserved.",
+   "cite": "14 CFR §3.5; FAA-H-8083-30B Ch.2 p.2-4",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "04357ce4c1",
+   "q": "Per Matthew's notes, FAR Part 3 Subpart A covers General Requirements and Subpart B covers:",
+   "options": [
+    "Annual inspections",
+    "Security Threat Disqualification",
+    "Propeller standards",
+    "Registration marks"
+   ],
+   "correct": 1,
+   "short": "Security Threat Disqualification",
+   "expl": "Correct answer: Security Threat Disqualification.  EXAM CORRECTION: Heads up: in current 14 CFR, the 'Security Threat Assessment / disqualification' language for AIRMEN lives in Part 65 (§65.14) and TSA's 49 CFR Part 1540, not 14 CFR Part 3. Keep your instructor's 'Part 3 = General Requirements (§3.5 definitions)' framing for the worksheet, but expect Part 3 = 'General Requirements' on the written. [verify exact Subpart B label with instructor]",
+   "cite": "14 CFR Part 3 (General Requirements); cf. Part 3 structure",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "83556587d7",
+   "q": "Part 21 covers:",
+   "options": [
+    "Airworthiness Directives",
+    "Certification Procedures for Products and Parts",
+    "Aircraft Registration",
+    "Repair Stations"
+   ],
+   "correct": 1,
+   "short": "Certification Procedures for Products and Parts",
+   "expl": "Correct answer: Certification Procedures for Products and Parts.",
+   "cite": "14 CFR Part 21",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "9acbb7118f",
+   "q": "Part 23 (general aviation airplanes) historically applied to airplanes weighing:",
+   "options": [
+    "More than 12,500 lb",
+    "Less than 12,500 lb takeoff weight",
+    "Exactly 12,500 lb",
+    "Any weight"
+   ],
+   "correct": 1,
+   "short": "Less than 12,500 lb takeoff weight",
+   "expl": "Correct answer: Less than 12,500 lb takeoff weight.  EXAM CORRECTION: Two corrections for the written: (1) Part 23's full title is 'Airworthiness Standards: Normal, Utility, Acrobatic, AND COMMUTER Category Airplanes' — your notes left COMMUTER off. (2) The 2017 rewrite (Amdt 23-64) replaced the category list with a single 'normal category' performance-based standard, so the strict 12,500-lb line is legacy. Seating is 9 or fewer except commuter (up to 19).",
+   "cite": "14 CFR Part 23; FAA-H-8083-30B Ch.2 p.2-4",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c151fbe457",
+   "q": "Part 25 covers Transport Category Airplanes — generally those weighing:",
+   "options": [
+    "Less than 12,500 lb",
+    "More than 12,500 lb takeoff weight (major airlines)",
+    "Under 6,000 lb",
+    "Gliders only"
+   ],
+   "correct": 1,
+   "short": "More than 12,500 lb takeoff weight (major airlines)",
+   "expl": "Correct answer: More than 12,500 lb takeoff weight (major airlines).",
+   "cite": "14 CFR Part 25; FAA-H-8083-30B Ch.2 p.2-5",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "4ad5aae2e5",
+   "q": "Airworthiness standards for aircraft ENGINES are in:",
+   "options": [
+    "Part 33",
+    "Part 35",
+    "Part 23",
+    "Part 39"
+   ],
+   "correct": 0,
+   "short": "Part 33",
+   "expl": "Correct answer: Part 33.",
+   "cite": "14 CFR Part 33",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "0c1d396f4e",
+   "q": "Airworthiness standards for aircraft PROPELLERS are in:",
+   "options": [
+    "Part 33",
+    "Part 35",
+    "Part 25",
+    "Part 45"
+   ],
+   "correct": 1,
+   "short": "Part 35",
+   "expl": "Correct answer: Part 35.",
+   "cite": "14 CFR Part 35",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "81d34d272d",
+   "q": "Airworthiness Directives (ADs) are issued under:",
+   "options": [
+    "Part 21",
+    "Part 39",
+    "Part 43",
+    "Part 91"
+   ],
+   "correct": 1,
+   "short": "Part 39",
+   "expl": "Correct answer: Part 39.",
+   "cite": "14 CFR Part 39",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c42b35bd87",
+   "q": "Part 43 covers:",
+   "options": [
+    "Registration marks",
+    "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+    "Pilot flight rules",
+    "Repair station ratings"
+   ],
+   "correct": 1,
+   "short": "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+   "expl": "Correct answer: Maintenance, Preventive Maintenance, Rebuilding, and Alteration.",
+   "cite": "14 CFR Part 43",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "ece61fef38",
+   "q": "In Part 43, which appendix lists Major Alterations, Major Repairs, and Preventive Maintenance?",
+   "options": [
+    "Appendix A",
+    "Appendix B",
+    "Appendix D",
+    "Appendix E"
+   ],
+   "correct": 0,
+   "short": "Appendix A",
+   "expl": "Correct answer: Appendix A.",
+   "cite": "14 CFR Part 43, Appendix A",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "1cfd7bfaf3",
+   "q": "Which Part 43 appendix covers the Recording of major repairs and major alterations?",
+   "options": [
+    "Appendix A",
+    "Appendix B",
+    "Appendix D",
+    "Appendix F"
+   ],
+   "correct": 1,
+   "short": "Appendix B",
+   "expl": "Correct answer: Appendix B.",
+   "cite": "14 CFR Part 43, Appendix B",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a57985d614",
+   "q": "Which Part 43 appendix gives the Scope and Detail of items in an Annual and 100-Hour inspection?",
+   "options": [
+    "Appendix A",
+    "Appendix B",
+    "Appendix D",
+    "Appendix E"
+   ],
+   "correct": 2,
+   "short": "Appendix D",
+   "expl": "Correct answer: Appendix D.",
+   "cite": "14 CFR Part 43, Appendix D",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "1911293cb8",
+   "q": "The Altimeter System test and inspection requirements are in Part 43:",
+   "options": [
+    "Appendix D",
+    "Appendix E",
+    "Appendix F",
+    "Appendix A"
+   ],
+   "correct": 1,
+   "short": "Appendix E",
+   "expl": "Correct answer: Appendix E.",
+   "cite": "14 CFR Part 43, Appendix E",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "422298fb5c",
+   "q": "The ATC Transponder test and inspection requirements are in Part 43:",
+   "options": [
+    "Appendix D",
+    "Appendix E",
+    "Appendix F",
+    "Appendix B"
+   ],
+   "correct": 2,
+   "short": "Appendix F",
+   "expl": "Correct answer: Appendix F.",
+   "cite": "14 CFR Part 43, Appendix F",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "05537f08f6",
+   "q": "Part 45 covers:",
+   "options": [
+    "Aircraft Registration",
+    "Identification and Registration Marks ('N#')",
+    "Repair Stations",
+    "Definitions"
+   ],
+   "correct": 1,
+   "short": "Identification and Registration Marks ('N#')",
+   "expl": "Correct answer: Identification and Registration Marks ('N#').",
+   "cite": "14 CFR Part 45",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a3b3c0afcf",
+   "q": "Part 47 covers Aircraft Registration — which Matthew likens to:",
+   "options": [
+    "A driver's license",
+    "A title",
+    "An inspection sticker",
+    "A logbook"
+   ],
+   "correct": 1,
+   "short": "A title",
+   "expl": "Correct answer: A title.",
+   "cite": "14 CFR Part 47",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "931d9427eb",
+   "q": "Part 65 covers Certification of Airmen OTHER THAN flight crewmembers. Per his notes, the difference between a Repairman and a Maintenance Technician is:",
+   "options": [
+    "Both hold an A&P",
+    "Repairman is not A&P-certificated; the maintenance tech holds an A&P",
+    "Repairman holds an A&P; the tech does not",
+    "There is no difference"
+   ],
+   "correct": 1,
+   "short": "Repairman is not A&P-certificated; the maintenance tech holds an A&P",
+   "expl": "Correct answer: Repairman is not A&P-certificated; the maintenance tech holds an A&P.",
+   "cite": "14 CFR Part 65 (Subpart E Repairmen, Subpart D Mechanics)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "af6abadf24",
+   "q": "General Operating and Flight Rules — pilots, owners, lessees — are in:",
+   "options": [
+    "Part 61",
+    "Part 91",
+    "Part 121",
+    "Part 135"
+   ],
+   "correct": 1,
+   "short": "Part 91",
+   "expl": "Correct answer: Part 91.",
+   "cite": "14 CFR Part 91",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "f12af7ab18",
+   "q": "Part 121 covers Domestic, Flag, and Supplemental air carriers and commercial operators of large aircraft. These are typically:",
+   "options": [
+    "Single-engine trainers",
+    "Large multiengine airline aircraft",
+    "Gliders",
+    "Ultralights"
+   ],
+   "correct": 1,
+   "short": "Large multiengine airline aircraft",
+   "expl": "Correct answer: Large multiengine airline aircraft.",
+   "cite": "14 CFR Part 121",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c8a16e27f7",
+   "q": "Part 135 (air taxi / charter) generally covers operations carrying:",
+   "options": [
+    "More than 50 passengers",
+    "Fewer than 20 passengers",
+    "Cargo only",
+    "Exactly 30 passengers"
+   ],
+   "correct": 1,
+   "short": "Fewer than 20 passengers",
+   "expl": "Correct answer: Fewer than 20 passengers.  EXAM CORRECTION: On the written, Part 135's modern title is 'Operating Requirements: COMMUTER AND ON-DEMAND Operations.' 'Air taxi/charter' is the plain-English description; commuter & on-demand is the regulatory name.",
+   "cite": "14 CFR Part 135",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c5584a38fd",
+   "q": "Repair Stations (specialty shops) are certificated under:",
+   "options": [
+    "Part 121",
+    "Part 145",
+    "Part 147",
+    "Part 183"
+   ],
+   "correct": 1,
+   "short": "Part 145",
+   "expl": "Correct answer: Part 145.",
+   "cite": "14 CFR Part 145",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "80f74eb804",
+   "q": "Aviation Maintenance Technician Schools are certificated under:",
+   "options": [
+    "Part 145",
+    "Part 147",
+    "Part 65",
+    "Part 183"
+   ],
+   "correct": 1,
+   "short": "Part 147",
+   "expl": "Correct answer: Part 147.",
+   "cite": "14 CFR Part 147",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "3d544df30b",
+   "q": "Part 183 covers Representatives of the Administrator. A DME is a:",
+   "options": [
+    "Designated Medical Examiner",
+    "Designated Mechanical Examiner",
+    "Direct Maintenance Entry",
+    "Daily Maintenance Endorsement"
+   ],
+   "correct": 1,
+   "short": "Designated Mechanical Examiner",
+   "expl": "Correct answer: Designated Mechanical Examiner.",
+   "cite": "14 CFR Part 183",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "91562dffd0",
+   "q": "An ANNUAL inspection may be returned to service (RTS) only by:",
+   "options": [
+    "Any A&P mechanic",
+    "An A&P holding an Inspection Authorization (IA)",
+    "The pilot",
+    "A repairman"
+   ],
+   "correct": 1,
+   "short": "An A&P holding an Inspection Authorization (IA)",
+   "expl": "Correct answer: An A&P holding an Inspection Authorization (IA).",
+   "cite": "14 CFR §§43.7, 91.409; Part 65 (IA)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "224b38fde2",
+   "q": "A 100-HOUR inspection may be returned to service by:",
+   "options": [
+    "Only an IA",
+    "An A&P mechanic (AMP)",
+    "The owner",
+    "A repair station only"
+   ],
+   "correct": 1,
+   "short": "An A&P mechanic (AMP)",
+   "expl": "Correct answer: An A&P mechanic (AMP).",
+   "cite": "14 CFR §§43.7, 91.409",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "e05b134021",
+   "q": "In a PROGRESSIVE inspection, who can return the aircraft to service?",
+   "options": [
+    "Any A&P, no supervision",
+    "The IA (an A&P can do the work but cannot RTS)",
+    "The pilot",
+    "The manufacturer's sales rep"
+   ],
+   "correct": 1,
+   "short": "The IA (an A&P can do the work but cannot RTS)",
+   "expl": "Correct answer: The IA (an A&P can do the work but cannot RTS).",
+   "cite": "14 CFR §91.409(d)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a25e31b290",
+   "q": "Each segment (routine + detailed) of a progressive inspection must be accomplished every:",
+   "options": [
+    "30 days or 10 hours",
+    "90 days or 25 hours",
+    "12 months or 100 hours",
+    "24 months or 50 hours"
+   ],
+   "correct": 1,
+   "short": "90 days or 25 hours",
+   "expl": "Correct answer: 90 days or 25 hours.",
+   "cite": "14 CFR §91.409(d)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "7f1d18e8b1",
+   "q": "A 100-hour inspection may be exceeded by not more than ____ while en route to a place where the inspection can be done.",
+   "options": [
+    "5 hours",
+    "10 hours",
+    "25 hours",
+    "30 minutes"
+   ],
+   "correct": 1,
+   "short": "10 hours",
+   "expl": "Correct answer: 10 hours.",
+   "cite": "14 CFR §91.409(b)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "906596d322",
+   "q": "Altimeter/static system checks and ATC transponder tests must each be done every:",
+   "options": [
+    "12 calendar months",
+    "24 calendar months",
+    "100 flight hours",
+    "36 calendar months"
+   ],
+   "correct": 1,
+   "short": "24 calendar months",
+   "expl": "Correct answer: 24 calendar months.",
+   "cite": "14 CFR §§91.411, 91.413; Part 43 App. E & F",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c8124aea46",
+   "q": "An ELT (Emergency Locator Transmitter) must be inspected every:",
+   "options": [
+    "6 calendar months",
+    "12 calendar months",
+    "24 calendar months",
+    "100 hours"
+   ],
+   "correct": 1,
+   "short": "12 calendar months",
+   "expl": "Correct answer: 12 calendar months.",
+   "cite": "14 CFR §91.207(d)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "5426196c83",
+   "q": "In the AC number AC 25-42-C, the 'C' means:",
+   "options": [
+    "The 3rd revision (C = third)",
+    "Cancelled",
+    "Category C aircraft",
+    "Chapter C"
+   ],
+   "correct": 0,
+   "short": "The 3rd revision (C = third)",
+   "expl": "Correct answer: The 3rd revision (C = third).",
+   "cite": "FAA AC numbering system; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "8f2ea8d1d5",
+   "q": "Reading the AD number AD-2001-23-S1 back to front, the '2001' is the ____ and '23' is the ____.",
+   "options": [
+    "Part number / appendix",
+    "Year / biweekly session (23rd of 26)",
+    "Revision / chapter",
+    "Model / make"
+   ],
+   "correct": 1,
+   "short": "Year / biweekly session (23rd of 26)",
+   "expl": "Correct answer: Year / biweekly session (23rd of 26).",
+   "cite": "FAA AD numbering system; 14 CFR Part 39; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "186e43e4b5",
+   "q": "A Special Flight Permit (ferry permit) is used to:",
+   "options": [
+    "Carry passengers for hire",
+    "Ferry an aircraft to a location where repairs are to be made",
+    "Skip an annual inspection",
+    "Register an aircraft"
+   ],
+   "correct": 1,
+   "short": "Ferry an aircraft to a location where repairs are to be made",
+   "expl": "Correct answer: Ferry an aircraft to a location where repairs are to be made.",
+   "cite": "14 CFR §21.197",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "5f7e0ba70e",
+   "q": "Compliance with Airworthiness Directives is ultimately the responsibility of the:",
+   "options": [
+    "A&P mechanic at all times",
+    "Aircraft owner/operator",
+    "FAA inspector",
+    "Manufacturer"
+   ],
+   "correct": 1,
+   "short": "Aircraft owner/operator",
+   "expl": "Correct answer: Aircraft owner/operator.",
+   "cite": "14 CFR §§39.7, 91.403",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "db2010bbca",
+   "q": "ADs are issued on what schedule (per his notes)?",
+   "options": [
+    "Daily",
+    "Bi-weekly (the biweekly AD session, 26 per year)",
+    "Annually",
+    "Only after accidents"
+   ],
+   "correct": 1,
+   "short": "Bi-weekly (the biweekly AD session, 26 per year)",
+   "expl": "Correct answer: Bi-weekly (the biweekly AD session, 26 per year).",
+   "cite": "14 CFR Part 39; FAA AD biweekly publication",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "e99437d737",
+   "q": "'Approved data' is data that has been:",
+   "options": [
+    "Written by any mechanic",
+    "Formally reviewed/approved by the FAA (used for major repairs & alterations)",
+    "Printed in any service manual",
+    "Posted on a forum"
+   ],
+   "correct": 1,
+   "short": "Formally reviewed/approved by the FAA (used for major repairs & alterations)",
+   "expl": "Correct answer: Formally reviewed/approved by the FAA (used for major repairs & alterations).",
+   "cite": "14 CFR §43.13; AC 43.13-1B",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a8d6a16938",
+   "q": "A TCDS (Type Certificate Data Sheet) covers which three categories?",
+   "options": [
+    "Pilot, owner, mechanic",
+    "Airframe, Powerplant (engine), Propeller",
+    "Normal, Utility, Acrobatic",
+    "Wood, fabric, metal"
+   ],
+   "correct": 1,
+   "short": "Airframe, Powerplant (engine), Propeller",
+   "expl": "Correct answer: Airframe, Powerplant (engine), Propeller.",
+   "cite": "FAA TCDS; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "d0834f9ec0",
+   "q": "A TSO (Technical Standard Order) is:",
+   "options": [
+    "Approval to install and use an article on the aircraft",
+    "A minimum performance standard for specified materials, parts & appliances (it is NOT, by itself, approval to install)",
+    "An Airworthiness Directive",
+    "A registration document"
+   ],
+   "correct": 1,
+   "short": "A minimum performance standard for specified materials, parts & appliances (it is NOT, by itself, approval to install)",
+   "expl": "Correct answer: A minimum performance standard for specified materials, parts & appliances (it is NOT, by itself, approval to install).",
+   "cite": "14 CFR Part 21 Subpart O; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a1ef2851cc",
+   "q": "PMA stands for:",
+   "options": [
+    "Pilot Maintenance Authorization",
+    "Parts Manufacturer Approval",
+    "Preventive Maintenance Allowance",
+    "Primary Maintenance Action"
+   ],
+   "correct": 1,
+   "short": "Parts Manufacturer Approval",
+   "expl": "Correct answer: Parts Manufacturer Approval.",
+   "cite": "14 CFR Part 21 Subpart K",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "0abe7d1523",
+   "q": "Per his notes, the three legal ways to modify an aircraft are FAA Form 337, an STC, and:",
+   "options": [
+    "A logbook entry",
+    "An Airworthiness Directive (AD)",
+    "A TSO",
+    "A registration"
+   ],
+   "correct": 1,
+   "short": "An Airworthiness Directive (AD)",
+   "expl": "Correct answer: An Airworthiness Directive (AD).  EXAM CORRECTION: Note: a Form 337 documents a major repair/alteration; an STC (Form 8110-2) approves a design change; an AD is a MANDATORY corrective action ordered by the FAA. All three are FAA-approved/documented, which is why his deck groups them.",
+   "cite": "14 CFR §43.9 / Part 21 / Part 39",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "d271991398",
+   "q": "FAA Form 8110-2 is associated with a:",
+   "options": [
+    "Major Repair/Alteration (337)",
+    "Supplemental Type Certificate (STC)",
+    "Registration",
+    "Weight & balance"
+   ],
+   "correct": 1,
+   "short": "Supplemental Type Certificate (STC)",
+   "expl": "Correct answer: Supplemental Type Certificate (STC).",
+   "cite": "FAA Form 8110-2; 14 CFR Part 21 Subpart E (STC)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "91cc6ae317",
+   "q": "To USE an existing STC on your aircraft, you must:",
+   "options": [
+    "Just install the part",
+    "Contact the STC holder to obtain rights/permission to use the STC",
+    "Call the FAA region",
+    "File an AD"
+   ],
+   "correct": 1,
+   "short": "Contact the STC holder to obtain rights/permission to use the STC",
+   "expl": "Correct answer: Contact the STC holder to obtain rights/permission to use the STC.",
+   "cite": "14 CFR Part 21 Subpart E; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "fdfeefb5bc",
+   "q": "An SAIB (Special Airworthiness Information Bulletin):",
+   "options": [
+    "Is mandatory like an AD",
+    "Alerts/educates/recommends to the aviation community but does NOT meet the criteria of an AD (non-mandatory)",
+    "Replaces the TCDS",
+    "Is a registration form"
+   ],
+   "correct": 1,
+   "short": "Alerts/educates/recommends to the aviation community but does NOT meet the criteria of an AD (non-mandatory)",
+   "expl": "Correct answer: Alerts/educates/recommends to the aviation community but does NOT meet the criteria of an AD (non-mandatory).",
+   "cite": "FAA SAIB program; 14 CFR Part 39 (contrast)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "15f2c9ca0c",
+   "q": "The FAA 'Aircraft Listing' section is used when there are how many of a particular type/model on the registry?",
+   "options": [
+    "More than 1,000",
+    "50 or fewer",
+    "Exactly 100",
+    "Any number"
+   ],
+   "correct": 1,
+   "short": "50 or fewer",
+   "expl": "Correct answer: 50 or fewer.",
+   "cite": "FAA Aircraft Listing; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "75e6dba8e8",
+   "q": "MEL stands for:",
+   "options": [
+    "Maximum Engine Limit",
+    "Minimum Equipment List",
+    "Mandatory Equipment Log",
+    "Maintenance Entry Log"
+   ],
+   "correct": 1,
+   "short": "Minimum Equipment List",
+   "expl": "Correct answer: Minimum Equipment List.",
+   "cite": "14 CFR §91.213; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c2d270cb6a",
+   "q": "The only time an A&P mechanic is REQUIRED to check for ADs is:",
+   "options": [
+    "Every preflight",
+    "During an inspection",
+    "Never",
+    "Only at sale"
+   ],
+   "correct": 1,
+   "short": "During an inspection",
+   "expl": "Correct answer: During an inspection.",
+   "cite": "14 CFR §§43.13, 91.403; FAA-H-8083-30B Ch.2",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "00f2ce6770",
+   "q": "A private pilot, on their own aircraft, may legally perform:",
+   "options": [
+    "Any major repair",
+    "Preventive maintenance",
+    "An annual inspection",
+    "An STC installation"
+   ],
+   "correct": 1,
+   "short": "Preventive maintenance",
+   "expl": "Correct answer: Preventive maintenance.",
+   "cite": "14 CFR §43.3(g); Part 43 App. A(c)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "5930c5b9bd",
+   "q": "A DETAILED inspection differs from a ROUTINE inspection in that it:",
+   "options": [
+    "Is only visual",
+    "Is more thorough and could require disassembly",
+    "Is done by the pilot",
+    "Skips the engine"
+   ],
+   "correct": 1,
+   "short": "Is more thorough and could require disassembly",
+   "expl": "Correct answer: Is more thorough and could require disassembly.",
+   "cite": "FAA-H-8083-30B Ch.2 (inspection types)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "acce0a701e",
+   "q": "A SPECIAL inspection is best described as a:",
+   "options": [
+    "Scheduled annual",
+    "Conditional inspection (e.g., hard landing, lightning, sudden stoppage)",
+    "100-hour",
+    "Preflight"
+   ],
+   "correct": 1,
+   "short": "Conditional inspection (e.g., hard landing, lightning, sudden stoppage)",
+   "expl": "Correct answer: Conditional inspection (e.g., hard landing, lightning, sudden stoppage).",
+   "cite": "FAA-H-8083-30B Ch.2 (special/conditional inspections)",
+   "topic": "Part A · Multiple Choice",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a389d5ec27",
+   "q": "KNOW IT COLD — say it from memory, then self-check: In 1966 the ____ took over the agency and renamed it the FAA.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Department of Transportation (DOT)",
+   "expl": "From memory you should have written: Department of Transportation (DOT)",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "0c08c48f8b",
+   "q": "KNOW IT COLD — say it from memory, then self-check: The FAA's primary goal is ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "SAFETY",
+   "expl": "From memory you should have written: SAFETY",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-2",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "7c17ae93a2",
+   "q": "KNOW IT COLD — say it from memory, then self-check: The FAA's primary mandatory tools are called ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "FARs (Federal Aviation Regulations = the 14 CFR parts)",
+   "expl": "From memory you should have written: FARs (Federal Aviation Regulations = the 14 CFR parts)",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-3",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "7aa0a93b66",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Regulatory = ____ ; Non-regulatory = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Mandatory ; Non-mandatory",
+   "expl": "From memory you should have written: Mandatory ; Non-mandatory",
+   "cite": "FAA-H-8083-30B Ch.2 p.2-3",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "48315e1b21",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Order of Maintenance: something is broken -> ____ -> ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "fix it -> document it",
+   "expl": "From memory you should have written: fix it -> document it",
+   "cite": "FAA-H-8083-30B Ch.2 (43.9 recordkeeping)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "dd46eeb5da",
+   "q": "KNOW IT COLD — say it from memory, then self-check: FAR Part ____ covers Definitions and Abbreviations.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "1",
+   "expl": "From memory you should have written: 1",
+   "cite": "14 CFR Part 1",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "e627077547",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Define 'airworthy.'",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Conforms to its type design AND is in a condition for safe operation.",
+   "expl": "From memory you should have written: Conforms to its type design AND is in a condition for safe operation.  EXAM CORRECTION: The verbatim definition is in §3.5 (Part 3), which the handbook quotes; Part 1 is the general Definitions part.",
+   "cite": "14 CFR §3.5; FAA-H-8083-30B p.2-4",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "8602f2cbae",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Define 'product.'",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "An aircraft, aircraft engine, or aircraft propeller.",
+   "expl": "From memory you should have written: An aircraft, aircraft engine, or aircraft propeller.",
+   "cite": "14 CFR §3.5 / §1.1",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "ed4b3022ce",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Define 'record.'",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Any writing, drawing, map, recording, tape, film, photograph, or other documentary material by which information is preserved.",
+   "expl": "From memory you should have written: Any writing, drawing, map, recording, tape, film, photograph, or other documentary material by which information is preserved.",
+   "cite": "14 CFR §3.5",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c2987188c2",
+   "q": "KNOW IT COLD — say it from memory, then self-check: His notes: Repair = to return an aircraft to an airworthy condition after ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "alteration (his notes' wording)",
+   "expl": "From memory you should have written: alteration (his notes' wording)  EXAM CORRECTION: A REPAIR restores an aircraft to airworthy after DAMAGE or DETERIORATION. Part 1 distinguishes MAINTENANCE (inspection/repair/preservation/parts replacement) from ALTERATION (a change to the type design). Keep his wording for the worksheet; know the corrected version for the written.",
+   "cite": "14 CFR §1.1 (contrast)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "19371e1d58",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 21 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Certification Procedures for Products and Parts",
+   "expl": "From memory you should have written: Certification Procedures for Products and Parts",
+   "cite": "14 CFR Part 21",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "f12e27d1ef",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 23 weight cutoff: airplanes weighing ____ takeoff weight (legacy 'general aviation').",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "less than 12,500 lb",
+   "expl": "From memory you should have written: less than 12,500 lb  EXAM CORRECTION: Add 'and Commuter' to the category name; post-2017 it's a single 'normal category.'",
+   "cite": "14 CFR Part 23",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a50cef7852",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 25 = Transport Category Airplanes, generally ____ takeoff weight.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "more than 12,500 lb",
+   "expl": "From memory you should have written: more than 12,500 lb",
+   "cite": "14 CFR Part 25",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "035e22c484",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 33 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Airworthiness Standards: Aircraft Engines",
+   "expl": "From memory you should have written: Airworthiness Standards: Aircraft Engines",
+   "cite": "14 CFR Part 33",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c3729ee39b",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 35 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Airworthiness Standards: Aircraft Propellers",
+   "expl": "From memory you should have written: Airworthiness Standards: Aircraft Propellers",
+   "cite": "14 CFR Part 35",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "3af274825f",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 39 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Airworthiness Directives",
+   "expl": "From memory you should have written: Airworthiness Directives",
+   "cite": "14 CFR Part 39",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "f761fc53cf",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 43 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+   "expl": "From memory you should have written: Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+   "cite": "14 CFR Part 43",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "b500ab7dea",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 43 Appendix A = ____ ; B = ____ ; D = ____ ; E = ____ ; F = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "A: Major Alterations, Major Repairs & Preventive Maintenance ; B: Recording of major repairs & major alterations ; D: Scope & Detail of Annual/100-hr items ; E: Altimeter System Test & Inspection ; F: ATC Transponder Test & Inspection",
+   "expl": "From memory you should have written: A: Major Alterations, Major Repairs & Preventive Maintenance ; B: Recording of major repairs & major alterations ; D: Scope & Detail of Annual/100-hr items ; E: Altimeter System Test & Inspection ; F: ATC Transponder Test & Inspection",
+   "cite": "14 CFR Part 43, App. A/B/D/E/F",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "8070b9f412",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 45 = ____ ('N#').",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Identification and Registration Marks",
+   "expl": "From memory you should have written: Identification and Registration Marks",
+   "cite": "14 CFR Part 45",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "4a9ad7b7c6",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 47 = ____ (like a 'title').",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Aircraft Registration",
+   "expl": "From memory you should have written: Aircraft Registration",
+   "cite": "14 CFR Part 47",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "8569b2305a",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 65 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Certification: Airmen Other Than Flight Crewmembers",
+   "expl": "From memory you should have written: Certification: Airmen Other Than Flight Crewmembers",
+   "cite": "14 CFR Part 65",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "67b48982c2",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 91 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "General Operating and Flight Rules",
+   "expl": "From memory you should have written: General Operating and Flight Rules",
+   "cite": "14 CFR Part 91",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "32e9205f07",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 121 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Operating Requirements: Domestic, Flag, and Supplemental Operations (large multiengine air carriers)",
+   "expl": "From memory you should have written: Operating Requirements: Domestic, Flag, and Supplemental Operations (large multiengine air carriers)",
+   "cite": "14 CFR Part 121",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "67b52d5b52",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 135 = ____ (air taxi / charter; fewer than 20 pax).",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Operating Requirements: Commuter and On-Demand Operations",
+   "expl": "From memory you should have written: Operating Requirements: Commuter and On-Demand Operations",
+   "cite": "14 CFR Part 135",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "425fe28b64",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 145 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Repair Stations",
+   "expl": "From memory you should have written: Repair Stations",
+   "cite": "14 CFR Part 145",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "4a001d3845",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 147 = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Aviation Maintenance Technician Schools",
+   "expl": "From memory you should have written: Aviation Maintenance Technician Schools",
+   "cite": "14 CFR Part 147",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "98870d0b14",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Part 183 = ____ ; a DME is a ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Representatives of the Administrator ; Designated Mechanical Examiner",
+   "expl": "From memory you should have written: Representatives of the Administrator ; Designated Mechanical Examiner",
+   "cite": "14 CFR Part 183",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "61768122ad",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Annual inspection: due every ____, on the last day of that month; RTS only by ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "12 calendar months ; an IA (Inspection Authorization holder)",
+   "expl": "From memory you should have written: 12 calendar months ; an IA (Inspection Authorization holder)",
+   "cite": "14 CFR §§91.409(a), 43.7",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "2eb4685057",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Every single aircraft must have a complete inspection ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "annually (within the preceding 12 calendar months)",
+   "expl": "From memory you should have written: annually (within the preceding 12 calendar months)",
+   "cite": "14 CFR §91.409(a)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "530ba4b037",
+   "q": "KNOW IT COLD — say it from memory, then self-check: 100-hour inspection: RTS by an ____ ; grace period of ____ while en route.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "A&P mechanic (AMP) ; 10 hours",
+   "expl": "From memory you should have written: A&P mechanic (AMP) ; 10 hours",
+   "cite": "14 CFR §91.409(b), §43.7",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "600043eae0",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Progressive inspection: an AMP may do the work but ____ RTS; the ____ can RTS; each segment every ____ days or ____ hours; full cycle within ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "cannot ; IA ; 90 days ; 25 hours ; 12 calendar months",
+   "expl": "From memory you should have written: cannot ; IA ; 90 days ; 25 hours ; 12 calendar months",
+   "cite": "14 CFR §91.409(d)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "c8a66c95a0",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Altimeter/static & transponder checks: every ____ ; altimeter done by ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "24 calendar months ; the airplane manufacturer or an instrument-rated repair station (transponder: repair station with a radio rating)",
+   "expl": "From memory you should have written: 24 calendar months ; the airplane manufacturer or an instrument-rated repair station (transponder: repair station with a radio rating)",
+   "cite": "14 CFR §§91.411, 91.413; Part 43 App. E & F",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "505e708314",
+   "q": "KNOW IT COLD — say it from memory, then self-check: ELT inspected every ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "12 calendar months",
+   "expl": "From memory you should have written: 12 calendar months",
+   "cite": "14 CFR §91.207(d)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "18bebdeccd",
+   "q": "KNOW IT COLD — say it from memory, then self-check: MEL = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Minimum Equipment List",
+   "expl": "From memory you should have written: Minimum Equipment List",
+   "cite": "14 CFR §91.213",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a820402982",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Special Flight Permit purpose: ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "To ferry the aircraft to a location where repairs are to be made.",
+   "expl": "From memory you should have written: To ferry the aircraft to a location where repairs are to be made.",
+   "cite": "14 CFR §21.197",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "3313309c97",
+   "q": "KNOW IT COLD — say it from memory, then self-check: ADs are the ____'s responsibility and are issued ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "owner/operator's ; bi-weekly",
+   "expl": "From memory you should have written: owner/operator's ; bi-weekly",
+   "cite": "14 CFR §§39.7, 91.403",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "449debfc3a",
+   "q": "KNOW IT COLD — say it from memory, then self-check: The only time an AMP is REQUIRED to check ADs is ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "during an inspection",
+   "expl": "From memory you should have written: during an inspection",
+   "cite": "14 CFR §§43.13, 91.403",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "d545bf3196",
+   "q": "KNOW IT COLD — say it from memory, then self-check: A private pilot may perform ____ on their own aircraft.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "preventive maintenance",
+   "expl": "From memory you should have written: preventive maintenance",
+   "cite": "14 CFR §43.3(g)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "42d02d562c",
+   "q": "KNOW IT COLD — say it from memory, then self-check: AC 25-42-C: 25 = ____ ; 42 = ____ ; C = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "referenced FAR part ; subject area ; revision sequence (C = 3rd revision)",
+   "expl": "From memory you should have written: referenced FAR part ; subject area ; revision sequence (C = 3rd revision)",
+   "cite": "FAA AC numbering system",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "6fd8686dc3",
+   "q": "KNOW IT COLD — say it from memory, then self-check: AD-2001-23-S1 (read back to front): 2001 = ____ ; 23 = ____ ; S1 = ____. Look up ADs by ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "year (pre-2000 used 2 digits, e.g., 84=1984) ; biweekly session (23rd of 26) ; the sequence/AD issued that period ; Make/Model",
+   "expl": "From memory you should have written: year (pre-2000 used 2 digits, e.g., 84=1984) ; biweekly session (23rd of 26) ; the sequence/AD issued that period ; Make/Model",
+   "cite": "FAA AD numbering system; 14 CFR Part 39",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "b22984c011",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Approved data = data formally ____ by the FAA; used for ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "reviewed/approved ; major repairs and alterations",
+   "expl": "From memory you should have written: reviewed/approved ; major repairs and alterations",
+   "cite": "14 CFR §43.13; AC 43.13-1B",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "5f325a235c",
+   "q": "KNOW IT COLD — say it from memory, then self-check: TCDS = ____ ; covers three categories: ____, ____, ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Type Certificate Data Sheet (the spec) ; Airframe, Powerplant (engine), Propeller",
+   "expl": "From memory you should have written: Type Certificate Data Sheet (the spec) ; Airframe, Powerplant (engine), Propeller",
+   "cite": "FAA TCDS",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "723f8ca203",
+   "q": "KNOW IT COLD — say it from memory, then self-check: TSO = ____ ; a TSO is NOT ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Technical Standard Order — a minimum performance standard for specified materials/parts/appliances ; approval to install and use the article on the aircraft",
+   "expl": "From memory you should have written: Technical Standard Order — a minimum performance standard for specified materials/parts/appliances ; approval to install and use the article on the aircraft",
+   "cite": "14 CFR Part 21 Subpart O",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "f419dba4ce",
+   "q": "KNOW IT COLD — say it from memory, then self-check: PMA = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Parts Manufacturer Approval",
+   "expl": "From memory you should have written: Parts Manufacturer Approval",
+   "cite": "14 CFR Part 21 Subpart K",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "a2ffd4b5e2",
+   "q": "KNOW IT COLD — say it from memory, then self-check: The 3 legal ways to modify an aircraft: ____, ____, ____ — all must be ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "FAA Form 337 (Major Repair/Alteration) ; FAA Form 8110-2 (STC) ; Airworthiness Directive (AD) ; documented & approved by the FAA",
+   "expl": "From memory you should have written: FAA Form 337 (Major Repair/Alteration) ; FAA Form 8110-2 (STC) ; Airworthiness Directive (AD) ; documented & approved by the FAA",
+   "cite": "14 CFR §43.9 / Part 21 / Part 39",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "e652dba485",
+   "q": "KNOW IT COLD — say it from memory, then self-check: STC: to use one you must ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "contact the STC holder to obtain the rights to use the STC",
+   "expl": "From memory you should have written: contact the STC holder to obtain the rights to use the STC",
+   "cite": "14 CFR Part 21 Subpart E",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "65ea4a1296",
+   "q": "KNOW IT COLD — say it from memory, then self-check: SAIB = ____ ; it does NOT ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "Special Airworthiness Information Bulletin (alerts/educates/recommends) ; meet the criteria of an AD (it is non-mandatory)",
+   "expl": "From memory you should have written: Special Airworthiness Information Bulletin (alerts/educates/recommends) ; meet the criteria of an AD (it is non-mandatory)",
+   "cite": "FAA SAIB program",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "bc721e5f48",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Aircraft Listing section is used when there are ____ of a particular type/model on the FAA registry.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "50 or fewer",
+   "expl": "From memory you should have written: 50 or fewer",
+   "cite": "FAA Aircraft Listing",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "00babedb24",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Repairman vs Maintenance Technician: a Repairman ____ ; a Maintenance Tech ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "is not A&P-certificated ; holds an A&P certificate",
+   "expl": "From memory you should have written: is not A&P-certificated ; holds an A&P certificate",
+   "cite": "14 CFR Part 65 (Subparts D & E)",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "ab35aef001",
+   "q": "KNOW IT COLD — say it from memory, then self-check: Detailed = ____ ; Routine = ____ ; Special = ____.",
+   "options": [
+    "✓ I knew it",
+    "✗ I didn't know it"
+   ],
+   "correct": 0,
+   "short": "more thorough, could require disassembly ; visual, no disassembly ; a conditional inspection",
+   "expl": "From memory you should have written: more thorough, could require disassembly ; visual, no disassembly ; a conditional inspection",
+   "cite": "FAA-H-8083-30B Ch.2",
+   "topic": "Part B · Know It Cold (self-check)",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "72905cb977",
+   "q": "Match the FAR part to its subject — which is Part 1?",
+   "options": [
+    "General Operating and Flight Rules",
+    "Definitions and Abbreviations",
+    "Certification Procedures for Products and Parts",
+    "Maintenance, Preventive Maintenance, Rebuilding, and Alteration"
+   ],
+   "correct": 1,
+   "short": "Definitions and Abbreviations",
+   "expl": "Part 1 = Definitions and Abbreviations",
+   "cite": "14 CFR Part 1",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "dff6ad8659",
+   "q": "Match the FAR part to its subject — which is Part 3?",
+   "options": [
+    "Airworthiness Standards: Normal, Utility, Acrobatic & Commuter Category Airplanes (<12,500 lb / GA)",
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+    "Operating Requirements: Domestic, Flag & Supplemental (large multiengine air carriers)",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)"
+   ],
+   "correct": 3,
+   "short": "General Requirements (incl. §3.5 definitions: airworthy, product, record)",
+   "expl": "Part 3 = General Requirements (incl. §3.5 definitions: airworthy, product, record)",
+   "cite": "14 CFR Part 3",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "aafb9558a9",
+   "q": "Match the FAR part to its subject — which is Part 21?",
+   "options": [
+    "Certification Procedures for Products and Parts",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)",
+    "Aircraft Registration (like a title)",
+    "Identification and Registration Marks (the 'N#')"
+   ],
+   "correct": 0,
+   "short": "Certification Procedures for Products and Parts",
+   "expl": "Part 21 = Certification Procedures for Products and Parts",
+   "cite": "14 CFR Part 21",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "bb941f7ca1",
+   "q": "Match the FAR part to its subject — which is Part 23?",
+   "options": [
+    "Airworthiness Standards: Normal, Utility, Acrobatic & Commuter Category Airplanes (<12,500 lb / GA)",
+    "Aviation Maintenance Technician Schools",
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+    "Airworthiness Standards: Aircraft Engines"
+   ],
+   "correct": 0,
+   "short": "Airworthiness Standards: Normal, Utility, Acrobatic & Commuter Category Airplanes (<12,500 lb / GA)",
+   "expl": "Part 23 = Airworthiness Standards: Normal, Utility, Acrobatic & Commuter Category Airplanes (<12,500 lb / GA)",
+   "cite": "14 CFR Part 23",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "3af0d05e5b",
+   "q": "Match the FAR part to its subject — which is Part 25?",
+   "options": [
+    "Airworthiness Standards: Normal, Utility, Acrobatic & Commuter Category Airplanes (<12,500 lb / GA)",
+    "Identification and Registration Marks (the 'N#')",
+    "Airworthiness Standards: Transport Category Airplanes (>12,500 lb / airlines)",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)"
+   ],
+   "correct": 2,
+   "short": "Airworthiness Standards: Transport Category Airplanes (>12,500 lb / airlines)",
+   "expl": "Part 25 = Airworthiness Standards: Transport Category Airplanes (>12,500 lb / airlines)",
+   "cite": "14 CFR Part 25",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "bab7a47a75",
+   "q": "Match the FAR part to its subject — which is Part 33?",
+   "options": [
+    "Airworthiness Directives",
+    "Airworthiness Standards: Aircraft Engines",
+    "Airworthiness Standards: Aircraft Propellers",
+    "Aircraft Registration (like a title)"
+   ],
+   "correct": 1,
+   "short": "Airworthiness Standards: Aircraft Engines",
+   "expl": "Part 33 = Airworthiness Standards: Aircraft Engines",
+   "cite": "14 CFR Part 33",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "9c74a6b064",
+   "q": "Match the FAR part to its subject — which is Part 35?",
+   "options": [
+    "Airworthiness Standards: Aircraft Propellers",
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+    "Aviation Maintenance Technician Schools",
+    "Identification and Registration Marks (the 'N#')"
+   ],
+   "correct": 0,
+   "short": "Airworthiness Standards: Aircraft Propellers",
+   "expl": "Part 35 = Airworthiness Standards: Aircraft Propellers",
+   "cite": "14 CFR Part 35",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "ee63ce5964",
+   "q": "Match the FAR part to its subject — which is Part 39?",
+   "options": [
+    "Identification and Registration Marks (the 'N#')",
+    "Airworthiness Directives",
+    "Operating Requirements: Domestic, Flag & Supplemental (large multiengine air carriers)",
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)"
+   ],
+   "correct": 1,
+   "short": "Airworthiness Directives",
+   "expl": "Part 39 = Airworthiness Directives",
+   "cite": "14 CFR Part 39",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "2532d4ec47",
+   "q": "Match the FAR part to its subject — which is Part 43?",
+   "options": [
+    "Aviation Maintenance Technician Schools",
+    "Certification Procedures for Products and Parts",
+    "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)"
+   ],
+   "correct": 2,
+   "short": "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+   "expl": "Part 43 = Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+   "cite": "14 CFR Part 43",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "4d74563f34",
+   "q": "Match the FAR part to its subject — which is Part 45?",
+   "options": [
+    "Airworthiness Directives",
+    "Airworthiness Standards: Aircraft Engines",
+    "Identification and Registration Marks (the 'N#')",
+    "Airworthiness Standards: Normal, Utility, Acrobatic & Commuter Category Airplanes (<12,500 lb / GA)"
+   ],
+   "correct": 2,
+   "short": "Identification and Registration Marks (the 'N#')",
+   "expl": "Part 45 = Identification and Registration Marks (the 'N#')",
+   "cite": "14 CFR Part 45",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "d1960fc14b",
+   "q": "Match the FAR part to its subject — which is Part 47?",
+   "options": [
+    "Aircraft Registration (like a title)",
+    "Identification and Registration Marks (the 'N#')",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)",
+    "Certification: Airmen Other Than Flight Crewmembers"
+   ],
+   "correct": 0,
+   "short": "Aircraft Registration (like a title)",
+   "expl": "Part 47 = Aircraft Registration (like a title)",
+   "cite": "14 CFR Part 47",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "cbc3481e0c",
+   "q": "Match the FAR part to its subject — which is Part 65?",
+   "options": [
+    "Definitions and Abbreviations",
+    "Certification: Airmen Other Than Flight Crewmembers",
+    "Operating Requirements: Commuter and On-Demand (air taxi / charter, <20 pax)",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)"
+   ],
+   "correct": 1,
+   "short": "Certification: Airmen Other Than Flight Crewmembers",
+   "expl": "Part 65 = Certification: Airmen Other Than Flight Crewmembers",
+   "cite": "14 CFR Part 65",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "402743679b",
+   "q": "Match the FAR part to its subject — which is Part 91?",
+   "options": [
+    "Airworthiness Standards: Aircraft Propellers",
+    "General Operating and Flight Rules",
+    "Aircraft Registration (like a title)",
+    "Maintenance, Preventive Maintenance, Rebuilding, and Alteration"
+   ],
+   "correct": 1,
+   "short": "General Operating and Flight Rules",
+   "expl": "Part 91 = General Operating and Flight Rules",
+   "cite": "14 CFR Part 91",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "fa6586327f",
+   "q": "Match the FAR part to its subject — which is Part 121?",
+   "options": [
+    "Definitions and Abbreviations",
+    "Operating Requirements: Domestic, Flag & Supplemental (large multiengine air carriers)",
+    "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)"
+   ],
+   "correct": 1,
+   "short": "Operating Requirements: Domestic, Flag & Supplemental (large multiengine air carriers)",
+   "expl": "Part 121 = Operating Requirements: Domestic, Flag & Supplemental (large multiengine air carriers)",
+   "cite": "14 CFR Part 121",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "6bc4085ed9",
+   "q": "Match the FAR part to its subject — which is Part 135?",
+   "options": [
+    "Operating Requirements: Commuter and On-Demand (air taxi / charter, <20 pax)",
+    "General Operating and Flight Rules",
+    "Airworthiness Directives",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)"
+   ],
+   "correct": 0,
+   "short": "Operating Requirements: Commuter and On-Demand (air taxi / charter, <20 pax)",
+   "expl": "Part 135 = Operating Requirements: Commuter and On-Demand (air taxi / charter, <20 pax)",
+   "cite": "14 CFR Part 135",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "5ea81c23e2",
+   "q": "Match the FAR part to its subject — which is Part 145?",
+   "options": [
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+    "Airworthiness Directives",
+    "Certification Procedures for Products and Parts",
+    "Repair Stations (specialty shops)"
+   ],
+   "correct": 3,
+   "short": "Repair Stations (specialty shops)",
+   "expl": "Part 145 = Repair Stations (specialty shops)",
+   "cite": "14 CFR Part 145",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "6a6c2f745b",
+   "q": "Match the FAR part to its subject — which is Part 147?",
+   "options": [
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+    "Operating Requirements: Commuter and On-Demand (air taxi / charter, <20 pax)",
+    "Aviation Maintenance Technician Schools",
+    "Aircraft Registration (like a title)"
+   ],
+   "correct": 2,
+   "short": "Aviation Maintenance Technician Schools",
+   "expl": "Part 147 = Aviation Maintenance Technician Schools",
+   "cite": "14 CFR Part 147",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
+   ]
+  },
+  {
+   "id": "0391da8cb3",
+   "q": "Match the FAR part to its subject — which is Part 183?",
+   "options": [
+    "Airworthiness Directives",
+    "Aircraft Registration (like a title)",
+    "General Requirements (incl. §3.5 definitions: airworthy, product, record)",
+    "Representatives of the Administrator (DME = Designated Mechanical Examiner)"
+   ],
+   "correct": 3,
+   "short": "Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+   "expl": "Part 183 = Representatives of the Administrator (DME = Designated Mechanical Examiner)",
+   "cite": "14 CFR Part 183",
+   "topic": "Part C · FAR-Part Matching",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Comprehensive Test"
    ]
   },
   {
