@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 3 — Homework #1: FAR Part 65</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 3 — Homework #1: FAR Part 65</h1>
+    <div class="sub">Mechanic certification, currency, ratings &amp; Inspection Authorization · every answer cites its 14 CFR §65 sub-paragraph</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "How long is a temporary airman's certificate good for?", "options": ["Not more than 30 days", "Not more than 90 days", "Not more than 120 days", "Not more than 24 months"], "correct": 2, "short": "Not more than 120 days", "expl": "Worksheet answer: Not more than 120 days.  —  A certificate and ratings effective for a period of NOT MORE THAN 120 DAYS may be issued to a qualified applicant, pending review of the application and the issue of the permanent certificate.", "cite": "§65.13", "topic": "FAR Part 65 — Homework #1"}, {"q": "What is the duration of an A&P (mechanic) certificate?", "options": ["It expires every 24 calendar months", "It expires on March 31 of each odd-numbered year", "It is good for 120 days, then must be renewed", "No expiration — effective until surrendered, suspended, or revoked"], "correct": 3, "short": "Effective until surrendered, suspended, or revoked", "expl": "Worksheet answer: No expiration — effective until surrendered, suspended, or revoked.  —  Except for repairman certificates issued under §65.101, a certificate or rating issued under Part 65 is EFFECTIVE UNTIL IT IS SURRENDERED, SUSPENDED, OR REVOKED. An A&P (mechanic) certificate therefore has no expiration date.", "cite": "§65.15(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "How many days do you have to notify the FAA of a change in your permanent mailing address?", "options": ["10 days", "30 days", "60 days", "90 days"], "correct": 1, "short": "30 days", "expl": "Worksheet answer: 30 days.  —  Within 30 DAYS after any change in his permanent mailing address, the holder of a certificate issued under Part 65 must notify the FAA Airman Certification Branch, in writing, of his new address.", "cite": "§65.21", "topic": "FAR Part 65 — Homework #1"}, {"q": "May an A&P mechanic return to service work which he/she has NEVER done before, under supervision?", "options": ["No — he may never return to service unfamiliar work under any circumstances", "Yes — but only after the FAA tests him on it first", "Yes — under the DIRECT SUPERVISION of a certificated, appropriately rated mechanic (or repairman) who has experience in that specific operation", "Yes — any other A&P may supervise, experience is not required"], "correct": 2, "short": "Yes — under direct supervision of someone experienced in that operation", "expl": "Worksheet answer: Yes — under the DIRECT SUPERVISION of a certificated, appropriately rated mechanic (or certificated repairman) who has had previous experience in that specific operation.  —  A mechanic may NOT supervise the maintenance, preventive maintenance, or alteration of, or approve and return to service, any aircraft or appliance for which he is rated UNLESS he has satisfactorily performed the work concerned at an earlier date. If he has NOT done it before, he may show the ability to do it by performing it to the satisfaction of the Administrator OR under the DIRECT SUPERVISION of a certificated and appropriately rated mechanic (or certificated repairman) who HAS had previous experience in the specific operation concerned.  ⚑ Nuance: 'under supervision' is the key. He CANNOT return it to service solo if he's never done it; he can do/return it under the direct supervision of someone experienced in that exact operation. Strictly, the supervisor's prior experience is what makes the RTS valid.", "cite": "§65.81(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "How many months out of each 24 months must a mechanic exercise the privileges of his/her rating to maintain currency?", "options": ["3 months", "6 months", "12 months", "18 months"], "correct": 1, "short": "6 months", "expl": "Worksheet answer: 6 months (within the preceding 24 months).  —  A certificated mechanic may not exercise the privileges of his certificate and rating unless, within the PRECEDING 24 MONTHS, the Administrator has found him able to do that work, OR he has, FOR AT LEAST 6 MONTHS, served as a mechanic under his certificate and rating, technically supervised other mechanics, supervised maintenance/alteration in an executive capacity, or any combination of these.", "cite": "§65.83", "topic": "FAR Part 65 — Homework #1"}, {"q": "May an 'A' (airframe) rated mechanic perform the 100-hour inspection of an AIRFRAME?", "options": ["No — only an IA may perform a 100-hour inspection", "No — he needs both A and P ratings", "Yes — and approve the airframe for return to service", "Only if a powerplant mechanic supervises him"], "correct": 2, "short": "Yes — and approve the airframe for return to service", "expl": "Worksheet answer: Yes.  —  A certificated mechanic with an AIRFRAME rating may perform the 100-hour inspection required by Part 91 on an AIRFRAME, or any related part or appliance, and approve and return it to service.", "cite": "§65.85(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "May a 'P' (powerplant) rated mechanic perform the 100-hour inspection of a POWERPLANT?", "options": ["No — only an A&P with both ratings can", "Yes — and approve the powerplant for return to service", "No — only an IA can inspect a powerplant", "Only with airframe-mechanic supervision"], "correct": 1, "short": "Yes — and approve the powerplant for return to service", "expl": "Worksheet answer: Yes to BOTH — a 'P' mechanic may perform the 100-hour inspection of a powerplant AND of a propeller.  —  A certificated mechanic with a POWERPLANT rating may perform the 100-hour inspection required by Part 91 on a POWERPLANT OR PROPELLER, or any part thereof, and approve and return it to service. The propeller falls under the powerplant rating, NOT the airframe rating.  ⚑ Exam trap: the propeller goes with the POWERPLANT (P) rating, not the airframe (A) rating. §65.87 names 'a powerplant OR propeller.' Many students wrongly put the prop under 'A'.", "cite": "§65.87(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "Follow-up to the previous question: a PROPELLER 100-hour inspection falls under which rating?", "options": ["The airframe (A) rating", "The powerplant (P) rating", "Neither — only an IA may inspect a propeller", "It requires a separate propeller rating"], "correct": 1, "short": "The powerplant (P) rating", "expl": "Worksheet answer: Yes to BOTH — a 'P' mechanic may perform the 100-hour inspection of a powerplant AND of a propeller.  —  A certificated mechanic with a POWERPLANT rating may perform the 100-hour inspection required by Part 91 on a POWERPLANT OR PROPELLER, or any part thereof, and approve and return it to service. The propeller falls under the powerplant rating, NOT the airframe rating.  ⚑ Exam trap: the propeller goes with the POWERPLANT (P) rating, not the airframe (A) rating. §65.87 names 'a powerplant OR propeller.' Many students wrongly put the prop under 'A'.  §65.87 names 'a powerplant OR propeller' — so a P mechanic CAN do the 100-hour inspection of a propeller. The propeller does NOT go with the airframe rating.", "cite": "§65.87(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "Must an A&P mechanic have his certificate available while exercising the privileges of his rating?", "options": ["No — it stays filed with the FAA", "Yes — but only a photocopy is required", "Yes — he must keep it within the immediate area where he works and present it on request", "No — only when applying for an IA"], "correct": 2, "short": "Yes — keep it within the immediate work area and present it on request", "expl": "Worksheet answer: Yes — he must keep it within the immediate area where he normally exercises the privileges, and present it on request.  —  Each person who holds a mechanic certificate must KEEP IT WITHIN THE IMMEDIATE AREA where he normally exercises the privileges of the certificate and must present it for inspection upon the request of the Administrator, an authorized NTSB representative, or any Federal, State, or local law enforcement officer.  ⚑ Wording trap: the reg says 'keep it within the immediate area' / 'display,' NOT 'carry it on his person.' Available in the work area is the standard.", "cite": "§65.89", "topic": "FAR Part 65 — Homework #1"}, {"q": "Could an 'A' rated mechanic perform the airframe 100-hour inspection WHILE a 'P' rated mechanic performed the powerplant 100-hour inspection on the same aircraft?", "options": ["No — one person must do the entire 100-hour inspection", "Yes — each works within his own rating and approves only his portion", "No — only an A&P holding both ratings may sign any part of it", "Only if both also hold an Inspection Authorization"], "correct": 1, "short": "Yes — each works within his own rating", "expl": "Worksheet answer: Yes — each works within his own rating.  —  Yes. An AIRFRAME-rated mechanic may do the 100-hour inspection of the AIRFRAME (§65.85) and a separate POWERPLANT-rated mechanic may do the 100-hour inspection of the POWERPLANT/PROPELLER (§65.87) on the SAME aircraft at the same time. Each may approve and return to service only the portion covered by his own rating; together they complete the full 100-hour inspection.  ⚑ This is why an 'A&P' (both ratings) can sign off the whole 100-hour alone — but two single-rated mechanics splitting it is equally legal, each within his rating.", "cite": "§65.85(a) & §65.87(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "How many years must one hold an A&P certificate (both ratings, currently effective) to be eligible for the Inspection Authorization?", "options": ["1 year", "2 years", "3 years", "5 years"], "correct": 2, "short": "3 years", "expl": "Worksheet answer: 3 years.  —  To be eligible for an Inspection Authorization, the applicant must HOLD A CURRENTLY EFFECTIVE MECHANIC CERTIFICATE WITH BOTH AN AIRFRAME AND A POWERPLANT RATING, each of which has been in effect for a total of AT LEAST 3 YEARS.", "cite": "§65.91(c)(1)", "topic": "FAR Part 65 — Homework #1"}, {"q": "How many years of actual work experience (actively engaged in maintaining aircraft) are necessary to be eligible for the Inspection Authorization?", "options": ["1 year", "2 years", "3 years", "4 years"], "correct": 1, "short": "2 years", "expl": "Worksheet answer: 2 years.  —  The applicant must have been ACTIVELY ENGAGED, for AT LEAST THE 2-YEAR PERIOD before the date he applies, in maintaining aircraft certificated and maintained in accordance with 14 CFR.", "cite": "§65.91(c)(2)", "topic": "FAR Part 65 — Homework #1"}, {"q": "When does the Inspection Authorization expire (current 14 CFR)?", "options": ["December 31 of each year", "March 31 of each year", "March 31 of each odd-numbered year", "It does not expire"], "correct": 2, "short": "March 31 of each odd-numbered year", "expl": "Worksheet answer: March 31 of each odd-numbered year.  —  Each Inspection Authorization EXPIRES ON MARCH 31 OF EACH ODD-NUMBERED YEAR. The holder may exercise its privileges only while he holds a currently effective mechanic certificate with both a currently effective airframe AND powerplant rating.  ⚑ AIM DIVERGENCE FLAG: Current 14 CFR §65.92(a) = 'March 31 of each ODD-NUMBERED YEAR' (a 2-year cycle since the 2007 rule change). Older AIM slides/textbooks sometimes still say 'March 31 of EACH YEAR' (the pre-2007 1-year cycle). If your instructor's slide says 'March 31 each year,' write that on the worksheet; the FAA written exam answer is 'March 31 of each odd-numbered year.' [confirm which wording your instructor wants]", "cite": "§65.92(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "To RENEW the IA via annual inspections, how many annual inspections must the I.A. have performed?", "options": ["At least one for each 30 days held", "At least one for each 90 days held (8 over the 2-year period)", "Exactly 4 per year", "At least 25 total"], "correct": 1, "short": "One annual inspection for each 90 days held (= 8 over 2 years)", "expl": "Worksheet answer: At least one annual inspection for each 90 days he held the authority (= 8 annual inspections over the 2-year period).  —  To RENEW, one renewal option is that the applicant has PERFORMED AT LEAST ONE ANNUAL INSPECTION FOR EACH 90 DAYS that he held the current authority. Over a full 24-month authorization that works out to 8 annual inspections. (Renewal may alternatively be met by 2 major repairs/alterations per 90 days, performing/supervising one progressive inspection, an 8-hour refresher course, or passing an oral test.)  ⚑ Watch the wording: the reg states it as a RATE — 'one annual inspection for each 90 days.' The '8' is the 2-year total. AIM may ask either the rate or the total.", "cite": "§65.93(a)(1)", "topic": "FAR Part 65 — Homework #1"}, {"q": "Which is NOT one of the four additional privileges of the Inspection Authorization (§65.95)?", "options": ["Inspect & approve for return to service after a MAJOR REPAIR", "Inspect & approve for return to service after a MAJOR ALTERATION", "Perform an ANNUAL inspection and approve for return to service", "Issue a brand-new airworthiness certificate to a homebuilt aircraft"], "correct": 3, "short": "Issuing a new airworthiness certificate is NOT an IA privilege", "expl": "Worksheet answer: The IA may: (1) inspect & approve for return to service after a MAJOR REPAIR; (2) inspect & approve for return to service after a MAJOR ALTERATION (both per FAA-approved data, on FAA Form 337); (3) perform an ANNUAL inspection and approve for return to service; (4) perform or supervise a PROGRESSIVE inspection.  —  Per §65.95(a), the holder of an Inspection Authorization may — (1) INSPECT AND APPROVE FOR RETURN TO SERVICE any aircraft or related part/appliance after a MAJOR REPAIR, if done in accordance with technical data approved by the Administrator; (2) INSPECT AND APPROVE FOR RETURN TO SERVICE after a MAJOR ALTERATION, again per FAA-approved data (documented on FAA Form 337); (3) PERFORM AN ANNUAL INSPECTION and approve for return to service; and (4) PERFORM OR SUPERVISE A PROGRESSIVE INSPECTION per §§43.13 and 43.15. (Limitation: NOT aircraft maintained under a Part 121 continuous airworthiness program.)  ⚑ Note on counting to FOUR: the CFR lists §65.95(a)(1) (return to service after major repair OR major alteration) and §65.95(a)(2) (annual / progressive inspection) — literally TWO numbered items. AIM teaches it as FOUR by splitting (a)(1) into 'major repair' + 'major alteration' and (a)(2) into 'annual' + 'progressive.' That 4-part split is the worksheet's expected answer; just know the CFR groups them as 2 numbered paragraphs.  The four IA privileges are: major repair RTS, major alteration RTS, annual inspection, and perform/supervise progressive inspection.", "cite": "§65.95(a)", "topic": "FAR Part 65 — Homework #1"}, {"q": "Besides approving major repairs/alterations and performing annual inspections, the fourth IA privilege is to perform or supervise a ___ inspection.", "options": ["preflight", "100-hour", "progressive", "altimeter-system"], "correct": 2, "short": "progressive", "expl": "Worksheet answer: The IA may: (1) inspect & approve for return to service after a MAJOR REPAIR; (2) inspect & approve for return to service after a MAJOR ALTERATION (both per FAA-approved data, on FAA Form 337); (3) perform an ANNUAL inspection and approve for return to service; (4) perform or supervise a PROGRESSIVE inspection.  —  Per §65.95(a), the holder of an Inspection Authorization may — (1) INSPECT AND APPROVE FOR RETURN TO SERVICE any aircraft or related part/appliance after a MAJOR REPAIR, if done in accordance with technical data approved by the Administrator; (2) INSPECT AND APPROVE FOR RETURN TO SERVICE after a MAJOR ALTERATION, again per FAA-approved data (documented on FAA Form 337); (3) PERFORM AN ANNUAL INSPECTION and approve for return to service; and (4) PERFORM OR SUPERVISE A PROGRESSIVE INSPECTION per §§43.13 and 43.15. (Limitation: NOT aircraft maintained under a Part 121 continuous airworthiness program.)  ⚑ Note on counting to FOUR: the CFR lists §65.95(a)(1) (return to service after major repair OR major alteration) and §65.95(a)(2) (annual / progressive inspection) — literally TWO numbered items. AIM teaches it as FOUR by splitting (a)(1) into 'major repair' + 'major alteration' and (a)(2) into 'annual' + 'progressive.' That 4-part split is the worksheet's expected answer; just know the CFR groups them as 2 numbered paragraphs.  §65.95(a)(2): the IA may perform or supervise a PROGRESSIVE inspection per §§43.13 and 43.15.", "cite": "§65.95(a)", "topic": "FAR Part 65 — Homework #1"}];
+const DRILL = [{"label": "Drill", "text": "Temporary certificate = NOT MORE THAN 120 DAYS (§65.13)."}, {"label": "Drill", "text": "A&P certificate = NO expiration; effective until surrendered, suspended, or revoked (§65.15)."}, {"label": "Drill", "text": "Change of address = notify FAA in writing within 30 DAYS (§65.21)."}, {"label": "Drill", "text": "Never-done-it work: do it under DIRECT SUPERVISION of an experienced, appropriately rated mechanic/repairman (§65.81)."}, {"label": "Drill", "text": "Currency = at least 6 MONTHS of the preceding 24 MONTHS (§65.83)."}, {"label": "Drill", "text": "PROPELLER 100-hour goes with the POWERPLANT (P) rating — §65.87 says 'powerplant OR propeller.'"}, {"label": "Drill", "text": "IA eligibility = A&P held at least 3 YEARS (§65.91(c)(1)) + 2 YEARS active experience (§65.91(c)(2))."}, {"label": "Drill", "text": "IA expires MARCH 31 of each ODD-NUMBERED YEAR (§65.92(a))."}, {"label": "Drill", "text": "IA renewal: one annual inspection per 90 DAYS held = 8 over 2 years (§65.93(a)(1))."}, {"label": "Drill", "text": "IA's 4 privileges (§65.95): RTS after major repair, RTS after major alteration, perform ANNUAL, perform/supervise PROGRESSIVE."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
