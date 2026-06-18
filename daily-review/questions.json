@@ -1,6 +1,6 @@
 {
  "built": "2026-06-17",
- "total": 2425,
+ "total": 2477,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -23,6 +23,8 @@
   "Project 2-11 — Corrosion Control Quiz": 105,
   "Block 3 — Comprehensive Test": 126,
   "Block 3 — Homework #1: FAR Part 65": 16,
+  "Block 3 — Homework #2: FAR Part 91": 14,
+  "Block 3 — Records, Forms & Certificates": 38,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 336,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -31228,6 +31230,994 @@
    "block": "Block 3",
    "sources": [
     "Block 3 — Homework #1: FAR Part 65"
+   ]
+  },
+  {
+   "id": "1d8da4877f",
+   "q": "Who is responsible for determining whether an aircraft is in condition for safe flight?",
+   "options": [
+    "The owner or operator",
+    "The certificated mechanic who last signed it off",
+    "The pilot in command (PIC)",
+    "The FAA principal maintenance inspector"
+   ],
+   "correct": 2,
+   "short": "The pilot in command (PIC)",
+   "expl": "Worksheet answer: The PILOT IN COMMAND (PIC).  —  §91.7(b): 'The pilot in command of a civil aircraft is responsible for determining whether that aircraft is in condition for safe flight.' The PIC must discontinue the flight when unairworthy conditions occur. (Distinct from §91.3, which makes the PIC the final authority for the OPERATION of the flight.)  ⚑ Don't confuse the two: §91.7(b) = PIC determines CONDITION FOR SAFE FLIGHT. §91.3(a) = PIC is the FINAL AUTHORITY as to the OPERATION of the aircraft. This question is §91.7(b).",
+   "cite": "§91.7(b)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "5eb41fd165",
+   "q": "Who is PRIMARILY responsible for maintaining an aircraft in airworthy condition (including AD compliance)?",
+   "options": [
+    "The pilot in command",
+    "The owner or operator",
+    "The repair station",
+    "The Administrator"
+   ],
+   "correct": 1,
+   "short": "The owner or operator",
+   "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.403(a): 'The owner or operator of an aircraft is PRIMARILY RESPONSIBLE for maintaining that aircraft in an airworthy condition, including compliance with part 39 of this chapter' (Airworthiness Directives).",
+   "cite": "§91.403(a)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "052861af2a",
+   "q": "Who is responsible for seeing that maintenance/return-to-service entries are properly recorded in the aircraft records?",
+   "options": [
+    "The pilot in command",
+    "The IA only",
+    "The owner or operator",
+    "The FAA"
+   ],
+   "correct": 2,
+   "short": "The owner or operator",
+   "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.405(b): the owner or operator 'shall ensure that maintenance personnel make appropriate entries in the aircraft maintenance records indicating the aircraft has been approved for return to service.' (The mechanic actually writes the entry per §43.9/§43.11 — but the OWNER/OPERATOR is responsible for SEEING THAT it gets done.)",
+   "cite": "§91.405(b)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "37c15be87d",
+   "q": "Who is responsible to see that all Airworthiness Directives (Part 39) are accomplished?",
+   "options": [
+    "The owner or operator",
+    "The pilot in command",
+    "The aircraft manufacturer",
+    "The FAA Flight Standards District Office"
+   ],
+   "correct": 0,
+   "short": "The owner or operator",
+   "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.403(a): the owner/operator is primarily responsible for maintaining the aircraft in airworthy condition, 'INCLUDING COMPLIANCE WITH PART 39 OF THIS CHAPTER' — Part 39 is the Airworthiness Directives part. AD compliance status is then recorded in the maintenance records per §91.417(a)(2)(v).  ⚑ AD authority lives in Part 39; the OWNER/OPERATOR responsibility to comply is §91.403(a); the recordkeeping (current AD status) is §91.417(a)(2)(v). If the worksheet wants the records cite, use §91.417; for 'who is responsible,' the answer is §91.403(a).",
+   "cite": "§91.403(a)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "2c2f24bc28",
+   "q": "What is the title of 14 CFR Part 91?",
+   "options": [
+    "Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+    "General Operating and Flight Rules",
+    "Airworthiness Directives",
+    "Certification: Airmen Other Than Flight Crewmembers"
+   ],
+   "correct": 1,
+   "short": "General Operating and Flight Rules",
+   "expl": "Worksheet answer: \"General Operating and Flight Rules.\"  —  14 CFR Part 91 is titled 'GENERAL OPERATING AND FLIGHT RULES.' It governs the operation of aircraft within the United States and contains the airworthiness and inspection responsibilities (Subpart E, §§91.401-91.419).",
+   "cite": "Part 91 (title)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "d45bc67593",
+   "q": "The Airworthiness Limitations section requires an aft pressure bulkhead inspection at 5000 hours TIS. Excluding a special flight permit, may the aircraft be operated PAST 5000 hours without that inspection?",
+   "options": [
+    "Yes — Airworthiness Limitations are only recommendations",
+    "Yes — up to 10 additional hours are allowed",
+    "No — Airworthiness Limitations are mandatory; it may not be operated past the interval",
+    "Only if a 100-hour inspection is current"
+   ],
+   "correct": 2,
+   "short": "No — Airworthiness Limitations are mandatory",
+   "expl": "Worksheet answer: NO — it is NOT legal.  —  §91.403(c): 'No person may operate an aircraft for which a manufacturer's maintenance manual or instructions for continued airworthiness has been issued that contains an AIRWORTHINESS LIMITATIONS SECTION unless the mandatory replacement times, INSPECTION INTERVALS, and related procedures specified in that section ... have been complied with.' Airworthiness Limitations are MANDATORY. So once the 5000-hour inspection comes due, you may not operate past it without doing the inspection (a special flight permit / ferry permit under §21.197 would be the only exception, which the question excludes).  ⚑ Exam trap: Airworthiness Limitations are MANDATORY (not advisory). The only way to legally fly past a due Airworthiness Limitation without doing it is a special flight permit (§21.197) — and the question excludes that, so the answer is a flat NO.",
+   "cite": "§91.403(c)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "7aed43648c",
+   "q": "Who is responsible to see that all required inspections are accomplished?",
+   "options": [
+    "The pilot in command",
+    "The owner or operator",
+    "The mechanic on duty",
+    "The Administrator"
+   ],
+   "correct": 1,
+   "short": "The owner or operator",
+   "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.403(a) makes the owner/operator primarily responsible for airworthiness, and §91.405(a) states the owner/operator 'shall have that aircraft inspected as prescribed in subpart E of this part' (annual, 100-hour, etc.). So the OWNER/OPERATOR is responsible for seeing that required inspections get done.  ⚑ Either §91.403(a) (primary responsibility) or §91.405(a) (shall have the aircraft inspected) is defensible. AIM typically wants §91.405(a) for the 'inspections' question. Write §91.405(a).",
+   "cite": "§91.405(a)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "52c0b250c3",
+   "q": "An outboard wing section is replaced after damage. How is this work classified, and what data must be used?",
+   "options": [
+    "A minor repair — any acceptable data may be used",
+    "Preventive maintenance — no special data required",
+    "A major repair — it must be performed using FAA-APPROVED data",
+    "An alteration — only the pilot may approve it"
+   ],
+   "correct": 2,
+   "short": "A major repair — performed using FAA-approved data",
+   "expl": "Worksheet answer: It is a MAJOR REPAIR: it must be performed using FAA-APPROVED DATA, recorded on FAA Form 337, a maintenance-record entry made, and APPROVED FOR RETURN TO SERVICE by an appropriately rated person (an IA for the inspection/RTS of a major repair). If flight characteristics may have changed, an operational check flight is also required.  —  §91.407 requires that, before operating after maintenance, the aircraft has (a)(1) been APPROVED FOR RETURN TO SERVICE by a person authorized under §43.7, and (a)(2) the maintenance record entry required by §43.9 or §43.11 has been made. A wing-structure replacement after damage is a MAJOR REPAIR (Part 43 Appendix A) — so it must use APPROVED DATA, be documented on FAA FORM 337 (§43.9, §43.5), and be inspected/approved for RTS by an IA (§65.95(a)(1)). Per §91.407(b), if the work 'may have appreciably changed its flight characteristics,' an appropriately rated pilot must make an operational check flight and log it before carrying passengers.  ⚑ This blends Part 91 + Part 43 + Part 65. The Part 91 cite the worksheet wants is §91.407 (operation after maintenance). The supporting facts: major repair → approved data + Form 337 (§43.9/§43.5), IA return to service (§65.95(a)(1)), possible op-check flight (§91.407(b)).",
+   "cite": "§91.407(a)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "faae524857",
+   "q": "Follow-up: after that major wing repair, what is required before the aircraft is returned to service?",
+   "options": [
+    "Only a logbook entry by the pilot",
+    "An FAA Form 337 + maintenance record entry, approved for return to service by an appropriately rated person (IA) — and an operational check flight if flight characteristics may have changed",
+    "Nothing — replacing a wing is not recorded",
+    "A new airworthiness certificate from the FAA"
+   ],
+   "correct": 1,
+   "short": "Form 337 + record entry + IA return to service (op-check flight if needed)",
+   "expl": "Worksheet answer: It is a MAJOR REPAIR: it must be performed using FAA-APPROVED DATA, recorded on FAA Form 337, a maintenance-record entry made, and APPROVED FOR RETURN TO SERVICE by an appropriately rated person (an IA for the inspection/RTS of a major repair). If flight characteristics may have changed, an operational check flight is also required.  —  §91.407 requires that, before operating after maintenance, the aircraft has (a)(1) been APPROVED FOR RETURN TO SERVICE by a person authorized under §43.7, and (a)(2) the maintenance record entry required by §43.9 or §43.11 has been made. A wing-structure replacement after damage is a MAJOR REPAIR (Part 43 Appendix A) — so it must use APPROVED DATA, be documented on FAA FORM 337 (§43.9, §43.5), and be inspected/approved for RTS by an IA (§65.95(a)(1)). Per §91.407(b), if the work 'may have appreciably changed its flight characteristics,' an appropriately rated pilot must make an operational check flight and log it before carrying passengers.  ⚑ This blends Part 91 + Part 43 + Part 65. The Part 91 cite the worksheet wants is §91.407 (operation after maintenance). The supporting facts: major repair → approved data + Form 337 (§43.9/§43.5), IA return to service (§65.95(a)(1)), possible op-check flight (§91.407(b)).  §91.407(a): approved for RTS (§43.7) + the §43.9/§43.11 record entry. Major repair = Form 337 (§43.9). §91.407(b): op-check flight by an appropriately rated pilot if flight characteristics may have changed.",
+   "cite": "§91.407",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "32dcfcb0bb",
+   "q": "A privately operated aircraft (under 12,500 lb max certificated takeoff weight) must have what type of inspection every 12 calendar months?",
+   "options": [
+    "A 100-hour inspection",
+    "A progressive inspection",
+    "An annual inspection",
+    "A preflight inspection"
+   ],
+   "correct": 2,
+   "short": "An annual inspection",
+   "expl": "Worksheet answer: An ANNUAL inspection.  —  §91.409(a)(1): no person may operate an aircraft unless, within the preceding 12 CALENDAR MONTHS, it has had an ANNUAL INSPECTION in accordance with Part 43 and been approved for return to service by a person authorized by §43.7. (The annual must be signed by an IA per §65.95.)",
+   "cite": "§91.409(a)(1)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "4ead10cdf9",
+   "q": "An aircraft's annual inspection was completed on 05/03/93. When is the next annual inspection due?",
+   "options": [
+    "May 3, 1994",
+    "May 31, 1994",
+    "April 30, 1994",
+    "May 3, 1995"
+   ],
+   "correct": 1,
+   "short": "May 31, 1994 — the last day of the 12th calendar month",
+   "expl": "Worksheet answer: MAY 31, 1994 (the last day of the 12th calendar month after the inspection).  —  §91.409(a) is keyed to 'the preceding 12 CALENDAR MONTHS.' A calendar-month inspection is good through the LAST DAY of the 12th month. An annual done anytime in MAY 1993 is therefore due by the end of MAY 1994 — i.e., MAY 31, 1994. The aircraft may be operated through 5/31/94.  ⚑ Calendar-month math: count 12 months forward, then go to the LAST DAY of that month. May 1993 → due 5/31/1994 (NOT 5/3/1994). The day of the month doesn't matter for a calendar-month interval.",
+   "cite": "§91.409(a)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "58561ce4f4",
+   "q": "In addition to the annual, what inspection is required if the aircraft is operated for hire or for flight instruction for compensation?",
+   "options": [
+    "A 50-hour inspection",
+    "A 100-hour inspection",
+    "A second annual inspection",
+    "An altimeter/transponder check"
+   ],
+   "correct": 1,
+   "short": "A 100-hour inspection",
+   "expl": "Worksheet answer: A 100-HOUR inspection.  —  §91.409(b): no person may operate an aircraft carrying any person (other than a crewmember) FOR HIRE, or give flight instruction for hire in an aircraft they provide, unless within the preceding 100 HOURS of time in service it has had an annual OR 100-HOUR inspection and been approved for return to service.",
+   "cite": "§91.409(b)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "4ba7c0a160",
+   "q": "By how many hours may the 100-hour inspection be exceeded while en route to a place where the inspection can be performed?",
+   "options": [
+    "Not more than 5 hours",
+    "Not more than 10 hours",
+    "Not more than 25 hours",
+    "It may never be exceeded"
+   ],
+   "correct": 1,
+   "short": "Not more than 10 hours",
+   "expl": "Worksheet answer: NOT MORE THAN 10 HOURS (en route).  —  §91.409(b): 'The 100-hour limitation may be EXCEEDED BY NOT MORE THAN 10 HOURS while en route to reach a place where the inspection can be done. The excess time used to reach a place where the inspection can be done MUST BE INCLUDED IN COMPUTING THE NEXT 100 HOURS of time in service.'  ⚑ Exam trap: the 10 overflight hours are NOT free — they get SUBTRACTED from the next 100-hour interval (you don't get back to a full 100). The 10-hour allowance applies ONLY to the 100-hour inspection, NOT to the annual.",
+   "cite": "§91.409(b)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "a750f48273",
+   "q": "You flew 8 of the allowable 10 overflight hours to reach the shop. How is that excess time treated for the NEXT 100-hour interval?",
+   "options": [
+    "It is free — the next interval is a full 100 hours",
+    "The excess time must be SUBTRACTED — it is included in computing the next 100 hours (next interval = 92 hours)",
+    "The aircraft is grounded for 8 hours",
+    "It doubles the next inspection interval"
+   ],
+   "correct": 1,
+   "short": "Subtracted — the excess counts toward the next 100 hours",
+   "expl": "Worksheet answer: NOT MORE THAN 10 HOURS (en route).  —  §91.409(b): 'The 100-hour limitation may be EXCEEDED BY NOT MORE THAN 10 HOURS while en route to reach a place where the inspection can be done. The excess time used to reach a place where the inspection can be done MUST BE INCLUDED IN COMPUTING THE NEXT 100 HOURS of time in service.'  ⚑ Exam trap: the 10 overflight hours are NOT free — they get SUBTRACTED from the next 100-hour interval (you don't get back to a full 100). The 10-hour allowance applies ONLY to the 100-hour inspection, NOT to the annual.  §91.409(b): 'The excess time used to reach a place where the inspection can be done must be INCLUDED IN COMPUTING THE NEXT 100 HOURS of time in service.' So 8 overflight hours → next interval is 100 − 8 = 92 hours.",
+   "cite": "§91.409(b)",
+   "topic": "FAR Part 91 — Homework #2",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Homework #2: FAR Part 91"
+   ]
+  },
+  {
+   "id": "e89f134706",
+   "q": "Under §43.11, an inspection (annual/100-hour/progressive) record entry must include the aircraft's ____ and an airworthy/unairworthy statement.",
+   "options": [
+    "empty weight",
+    "TOTAL TIME IN SERVICE",
+    "registration number",
+    "fuel capacity"
+   ],
+   "correct": 1,
+   "short": "TOTAL TIME IN SERVICE",
+   "expl": "Correct: TOTAL TIME IN SERVICE.",
+   "cite": "§43.11(a)(2)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "192996933f",
+   "q": "Besides total time in service, what statement must a §43.11 inspection record entry contain?",
+   "options": [
+    "A statement of fuel remaining",
+    "A statement that the aircraft is AIRWORTHY (or a list of discrepancies / unairworthy items)",
+    "The pilot's signature",
+    "The next due date only"
+   ],
+   "correct": 1,
+   "short": "A statement that the aircraft is AIRWORTHY (or a list of discrepancies / unairworthy items)",
+   "expl": "Correct: A statement that the aircraft is AIRWORTHY (or a list of discrepancies / unairworthy items).",
+   "cite": "§43.11(a)(5)/(6)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "095c4ddcdd",
+   "q": "In maintenance recordkeeping, TTIS (Total Time In Service) refers to:",
+   "options": [
+    "Engine running hours only",
+    "FLIGHT hours / flight time",
+    "Hours on the ground",
+    "Calendar months since new"
+   ],
+   "correct": 1,
+   "short": "FLIGHT hours / flight time",
+   "expl": "Correct: FLIGHT hours / flight time.  EXAM CORRECTION: by §1.1, 'time in service' for AIRFRAME logs = the time from the moment the aircraft leaves the surface until it touches down (airborne time). Your note 'flight hours/time' is right.",
+   "cite": "§1.1 'time in service'; §43.11",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "6c4d7ca8a8",
+   "q": "TACH (tachometer) time most directly tracks:",
+   "options": [
+    "Airframe airborne time",
+    "ENGINE hours / engine running time",
+    "Landings",
+    "Pressurization cycles"
+   ],
+   "correct": 1,
+   "short": "ENGINE hours / engine running time",
+   "expl": "Correct: ENGINE hours / engine running time.  EXAM CORRECTION: tach time is ENGINE time and is RPM-referenced — it does not equal clock time at all power settings. It's used to track engine/component times, NOT airframe time-in-service.",
+   "cite": "Industry practice; cf. §91.417 records",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "d0f72facd9",
+   "q": "A TEMPORARY maintenance record is good for how long?",
+   "options": [
+    "Forever",
+    "ONLY 1 YEAR, or until the work is repeated or superseded",
+    "90 days",
+    "Until the next annual"
+   ],
+   "correct": 1,
+   "short": "ONLY 1 YEAR, or until the work is repeated or superseded",
+   "expl": "Correct: ONLY 1 YEAR, or until the work is repeated or superseded.  EXAM CORRECTION: §91.417(b)(1) — these temporary records (the §43.9/§43.11 entries for maintenance, preventive maintenance, and 100-hour/annual inspections) must be kept until the work is REPEATED, SUPERSEDED, or for 1 YEAR after the work is done.",
+   "cite": "§91.417(b)(1)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "064b9dd9ed",
+   "q": "A PERMANENT maintenance record (e.g., total time in service, current AD status, major repair/alteration records, current inspection status):",
+   "options": [
+    "Is discarded after 1 year",
+    "Is kept FOREVER and TRANSFERS WITH THE AIRCRAFT when it is sold",
+    "Stays with the previous owner",
+    "Is filed only with the FAA"
+   ],
+   "correct": 1,
+   "short": "Is kept FOREVER and TRANSFERS WITH THE AIRCRAFT when it is sold",
+   "expl": "Correct: Is kept FOREVER and TRANSFERS WITH THE AIRCRAFT when it is sold.  EXAM CORRECTION: §91.417(b)(2) — these records are retained and transferred with the aircraft at sale (§91.419). 'Kept forever, goes with the aircraft' is correct.",
+   "cite": "§91.417(b)(2) & §91.419",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "2aaec75d91",
+   "q": "'ATA' stands for:",
+   "options": [
+    "Aircraft Technical Authority",
+    "AIR TRANSPORT ASSOCIATION",
+    "Approved Type Alteration",
+    "Avionics Test Apparatus"
+   ],
+   "correct": 1,
+   "short": "AIR TRANSPORT ASSOCIATION",
+   "expl": "Correct: AIR TRANSPORT ASSOCIATION.",
+   "cite": "FAA-H-8083-30B Ch.2 (Publications)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "4f64eeb7cf",
+   "q": "The ATA standard that organizes technical data on large/complex aircraft by a classification of maintenance actions (1997, now electronic) is:",
+   "options": [
+    "TSO C-129",
+    "ATA iSpec 2200",
+    "AC 43.13-1B",
+    "MIL-STD-1553"
+   ],
+   "correct": 1,
+   "short": "ATA iSpec 2200",
+   "expl": "Correct: ATA iSpec 2200.",
+   "cite": "FAA-H-8083-30B Ch.2; ATA iSpec 2200",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "314558f021",
+   "q": "A key benefit of ATA chapter numbers is that:",
+   "options": [
+    "They change with every aircraft model",
+    "The SEQUENTIAL chapter numbers are CONSISTENT regardless of the aircraft",
+    "They apply only to engines",
+    "They replace the FARs"
+   ],
+   "correct": 1,
+   "short": "The SEQUENTIAL chapter numbers are CONSISTENT regardless of the aircraft",
+   "expl": "Correct: The SEQUENTIAL chapter numbers are CONSISTENT regardless of the aircraft.",
+   "cite": "FAA-H-8083-30B Ch.2; ATA iSpec 2200",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "49436b23f2",
+   "q": "'AMM' is the:",
+   "options": [
+    "Aircraft Modification Memo",
+    "AIRCRAFT MAINTENANCE MANUAL",
+    "Approved Materials Manual",
+    "Annual Maintenance Minimum"
+   ],
+   "correct": 1,
+   "short": "AIRCRAFT MAINTENANCE MANUAL",
+   "expl": "Correct: AIRCRAFT MAINTENANCE MANUAL.",
+   "cite": "FAA-H-8083-30B Ch.2",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "b57f202e35",
+   "q": "'CMM' is the:",
+   "options": [
+    "Component Maintenance Manual",
+    "Cabin Management Module",
+    "Composite Material Manual",
+    "Continuous Maintenance Memo"
+   ],
+   "correct": 0,
+   "short": "Component Maintenance Manual",
+   "expl": "Correct: Component Maintenance Manual.",
+   "cite": "FAA-H-8083-30B Ch.2",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "f220b4a32f",
+   "q": "'SRM' is the:",
+   "options": [
+    "Service Reliability Memo",
+    "STRUCTURAL REPAIR MANUAL",
+    "Standard Rivet Manual",
+    "System Reference Map"
+   ],
+   "correct": 1,
+   "short": "STRUCTURAL REPAIR MANUAL",
+   "expl": "Correct: STRUCTURAL REPAIR MANUAL.",
+   "cite": "FAA-H-8083-30B Ch.2",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "23d744eb26",
+   "q": "Aircraft structure is classified as primary and secondary. The aircraft SKIN is an example of:",
+   "options": [
+    "Primary structure",
+    "SECONDARY structure",
+    "Tertiary structure",
+    "Non-structure"
+   ],
+   "correct": 1,
+   "short": "SECONDARY structure",
+   "expl": "Correct: SECONDARY structure.  EXAM CORRECTION: be careful — PRIMARY structure carries flight/ground/pressurization loads and its failure is catastrophic; SECONDARY structure carries lighter loads. Some pressurized fuselage skin IS primary structure. Your note 'skin = secondary' is the general-case example; the classification depends on the load the part carries.",
+   "cite": "FAA-H-8083-31B (structures)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "6268c4451c",
+   "q": "OVERHAULED means the item was disassembled, cleaned, inspected, repaired as necessary, reassembled, and tested to:",
+   "options": [
+    "Like-new (zero-time) standards",
+    "CURRENT / serviceable standards approved for that item",
+    "No standard",
+    "Manufacturer's marketing specs"
+   ],
+   "correct": 1,
+   "short": "CURRENT / serviceable standards approved for that item",
+   "expl": "Correct: CURRENT / serviceable standards approved for that item.",
+   "cite": "§43.2(a)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "7dd6b25fb2",
+   "q": "REBUILT means the item was disassembled, cleaned, inspected, repaired, reassembled, and tested to:",
+   "options": [
+    "Current serviceable limits only",
+    "THE SAME TOLERANCES AND LIMITS AS A NEW ITEM (like-new), using new or used parts",
+    "Whatever the owner accepts",
+    "Half of new tolerances"
+   ],
+   "correct": 1,
+   "short": "THE SAME TOLERANCES AND LIMITS AS A NEW ITEM (like-new), using new or used parts",
+   "expl": "Correct: THE SAME TOLERANCES AND LIMITS AS A NEW ITEM (like-new), using new or used parts.",
+   "cite": "§43.2(b)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "b08e457a35",
+   "q": "Who may use a NEW maintenance record with ZERO TIME for a rebuilt aircraft ENGINE?",
+   "options": [
+    "Any A&P mechanic",
+    "Any IA",
+    "The MANUFACTURER, or an AGENCY APPROVED BY THE MANUFACTURER",
+    "The owner at any time"
+   ],
+   "correct": 2,
+   "short": "The MANUFACTURER, or an AGENCY APPROVED BY THE MANUFACTURER",
+   "expl": "Correct: The MANUFACTURER, or an AGENCY APPROVED BY THE MANUFACTURER.  EXAM CORRECTION: the 'zero-time' authority is in §91.421 (rebuilt engine maintenance records), NOT §43.2. §43.2 only DEFINES overhauled vs rebuilt. Per §91.421, only an engine rebuilt by the MANUFACTURER or an agency APPROVED by the manufacturer may start a new record at zero time. Your star note is correct — just cite §91.421.",
+   "cite": "§91.421(a)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "ec57441ee1",
+   "q": "FAA Form 337 is the:",
+   "options": [
+    "Application for Airman Certificate",
+    "MAJOR REPAIR AND ALTERATION form",
+    "Aircraft Bill of Sale",
+    "Malfunction/Defect Report"
+   ],
+   "correct": 1,
+   "short": "MAJOR REPAIR AND ALTERATION form",
+   "expl": "Correct: MAJOR REPAIR AND ALTERATION form.",
+   "cite": "§43.9(d); Part 43 App. B",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "12e3544f06",
+   "q": "A standard Form 337 is executed in duplicate. After return to service, the FAA's copy must be forwarded to the FAA within:",
+   "options": [
+    "24 hours",
+    "48 HOURS",
+    "10 days",
+    "30 days"
+   ],
+   "correct": 1,
+   "short": "48 HOURS",
+   "expl": "Correct: 48 HOURS.",
+   "cite": "Part 43 App. B(a)(2)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "a61a008c5c",
+   "q": "For a MAJOR REPAIR performed by a certificated REPAIR STATION, what may be used in lieu of FAA Form 337?",
+   "options": [
+    "A logbook sticker",
+    "The customer's WORK ORDER (with a signed maintenance release)",
+    "Nothing — Form 337 is always required",
+    "An AD"
+   ],
+   "correct": 1,
+   "short": "The customer's WORK ORDER (with a signed maintenance release)",
+   "expl": "Correct: The customer's WORK ORDER (with a signed maintenance release).",
+   "cite": "Part 43 App. B(b)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "d3c7e2067c",
+   "q": "Form 337 / major-repair paperwork must be kept (retained) for at least:",
+   "options": [
+    "6 months",
+    "1 year",
+    "2 YEARS",
+    "Forever, no exceptions"
+   ],
+   "correct": 2,
+   "short": "2 YEARS",
+   "expl": "Correct: 2 YEARS.  EXAM CORRECTION: the repair-station 2-year retention is in Part 43 App. B(b). Note: the Form 337 RECORD of a major repair/alteration is itself a PERMANENT record that transfers with the aircraft (§91.417(b)(2)). The '2 years' is the repair station's duplicate-copy retention.",
+   "cite": "Part 43 App. B(b); §91.417",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "5fc68dcb68",
+   "q": "The ONE-TIME exception where FAA Form 337 is done in THREE copies (triplicate) is for:",
+   "options": [
+    "Engine overhaul",
+    "EXTENDED-RANGE (AUXILIARY) FUEL TANKS installed in the passenger/baggage compartment",
+    "Propeller replacement",
+    "An annual inspection"
+   ],
+   "correct": 1,
+   "short": "EXTENDED-RANGE (AUXILIARY) FUEL TANKS installed in the passenger/baggage compartment",
+   "expl": "Correct: EXTENDED-RANGE (AUXILIARY) FUEL TANKS installed in the passenger/baggage compartment.",
+   "cite": "Part 43 App. B(d)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "0b24bc4612",
+   "q": "On that triplicate Form 337 for cabin/baggage-compartment fuel tanks, the THIRD copy must be:",
+   "options": [
+    "Mailed to the manufacturer",
+    "Carried ON BOARD the aircraft",
+    "Posted at the FSDO",
+    "Destroyed"
+   ],
+   "correct": 1,
+   "short": "Carried ON BOARD the aircraft",
+   "expl": "Correct: Carried ON BOARD the aircraft.",
+   "cite": "Part 43 App. B(d)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "da4f991044",
+   "q": "FAA Form 8010-4 is the:",
+   "options": [
+    "Major Repair & Alteration form",
+    "MALFUNCTION OR DEFECT REPORT (M or D)",
+    "Application for Aircraft Registration",
+    "Airworthiness Certificate"
+   ],
+   "correct": 1,
+   "short": "MALFUNCTION OR DEFECT REPORT (M or D)",
+   "expl": "Correct: MALFUNCTION OR DEFECT REPORT (M or D).",
+   "cite": "AC 20-109 / FAA M or D program",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "8080681de1",
+   "q": "AC 43-16 ('General Aviation Airworthiness Alerts') is published:",
+   "options": [
+    "Annually",
+    "MONTHLY",
+    "Weekly",
+    "Only after accidents"
+   ],
+   "correct": 1,
+   "short": "MONTHLY",
+   "expl": "Correct: MONTHLY.  EXAM CORRECTION: the current advisory circular is AC 43-16A; the Airworthiness Alerts were published MONTHLY. They are built from the Malfunction or Defect Reports (Form 8010-4) the field submits.",
+   "cite": "AC 43-16A",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "d392e6b865",
+   "q": "Which of the following is REQUIRED content of a §43.9 maintenance record entry?",
+   "options": [
+    "The aircraft's paint color",
+    "The DATE, a DESCRIPTION of the work, the person's NAME, SIGNATURE, certificate (license) TYPE, and certificate NUMBER",
+    "The weather that day",
+    "The owner's phone number"
+   ],
+   "correct": 1,
+   "short": "The DATE, a DESCRIPTION of the work, the person's NAME, SIGNATURE, certificate (license) TYPE, and certificate NUMBER",
+   "expl": "Correct: The DATE, a DESCRIPTION of the work, the person's NAME, SIGNATURE, certificate (license) TYPE, and certificate NUMBER.  EXAM CORRECTION: §43.9(a) names four items — (1) a DESCRIPTION (or reference to acceptable data) of work performed, (2) DATE of completion, (3) NAME of the person (if other than the approver), and (4) SIGNATURE, CERTIFICATE NUMBER, and KIND OF CERTIFICATE held. Your six-item list (date/description/printed name/signature/license type/license number) maps onto these correctly.",
+   "cite": "§43.9(a)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "9ea4dc0882",
+   "q": "In a §43.9 entry, 'kind of certificate held' and 'certificate number' correspond to your note's:",
+   "options": [
+    "Date and description",
+    "LICENSE TYPE and LICENSE NUMBER",
+    "Name and signature",
+    "Form 337 and AD number"
+   ],
+   "correct": 1,
+   "short": "LICENSE TYPE and LICENSE NUMBER",
+   "expl": "Correct: LICENSE TYPE and LICENSE NUMBER.",
+   "cite": "§43.9(a)(4)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "290f9699cc",
+   "q": "'OEM' stands for:",
+   "options": [
+    "Original Equipment Manufacturer",
+    "Operator Engine Maintenance",
+    "Overhaul Engineering Memo",
+    "Official Equipment Marking"
+   ],
+   "correct": 0,
+   "short": "Original Equipment Manufacturer",
+   "expl": "Correct: Original Equipment Manufacturer.",
+   "cite": "FAA-H-8083-30B (publications/parts)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "522de445d4",
+   "q": "Service Bulletins (SBs) are:",
+   "options": [
+    "Mandatory federal regulations",
+    "Issued by the MANUFACTURER; good info, strongly recommended, but NOT mandatory unless made so by an AD",
+    "Issued by the FAA",
+    "Optional only for experimental aircraft"
+   ],
+   "correct": 1,
+   "short": "Issued by the MANUFACTURER; good info, strongly recommended, but NOT mandatory unless made so by an AD",
+   "expl": "Correct: Issued by the MANUFACTURER; good info, strongly recommended, but NOT mandatory unless made so by an AD.  EXAM CORRECTION: an SB becomes MANDATORY only when the FAA adopts it into an Airworthiness Directive (Part 39). On its own a manufacturer's SB is recommended, not legally required (Part 91 operators).",
+   "cite": "FAA-H-8083-30B Ch.2",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "2e605f0a7f",
+   "q": "Your note says 'an aircraft operated in inclement weather must be inspected every 15 days.' Which is the CORRECT exam position?",
+   "options": [
+    "True — it's a 14 CFR requirement",
+    "There is NO general 14 CFR rule requiring a 15-day inclement-weather inspection — VERIFY this note with your instructor; required inspections are annual (12 cal. months) and 100-hour (§91.409)",
+    "It applies only to seaplanes",
+    "It's an AD on all aircraft"
+   ],
+   "correct": 1,
+   "short": "There is NO general 14 CFR rule requiring a 15-day inclement-weather inspection — VERIFY this note with your instructor; required inspections are annual (12 cal. months) and 100-hour (§91.409)",
+   "expl": "Correct: There is NO general 14 CFR rule requiring a 15-day inclement-weather inspection — VERIFY this note with your instructor; required inspections are annual (12 cal. months) and 100-hour (§91.409).  EXAM CORRECTION: ⚑ FLAG — no general 14 CFR section requires inspecting an aircraft 'every 15 days' for inclement-weather operation. The recurring inspection requirements are the ANNUAL (every 12 calendar months) and the 100-HOUR (§91.409). Ask your instructor what the slide meant (it may be a specific operator program, a corrosion-control note, or a transcription slip). Do NOT memorize '15 days' for the FAA written.",
+   "cite": "§91.409 (no 15-day rule exists)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "2e2266715b",
+   "q": "The STANDARD Airworthiness Certificate is FAA Form ____ and is good for how long?",
+   "options": [
+    "8130-7; 1 year",
+    "8100-2; until SURRENDERED, SUSPENDED, or REVOKED (no expiration, while the aircraft is maintained airworthy)",
+    "8050-3; 3 years",
+    "337; 2 years"
+   ],
+   "correct": 1,
+   "short": "8100-2; until SURRENDERED, SUSPENDED, or REVOKED (no expiration, while the aircraft is maintained airworthy)",
+   "expl": "Correct: 8100-2; until SURRENDERED, SUSPENDED, or REVOKED (no expiration, while the aircraft is maintained airworthy).  EXAM CORRECTION: per §21.181, a STANDARD airworthiness certificate is effective as long as the maintenance, preventive maintenance, and alterations are done per Parts 43 and 91 and the aircraft is registered in the U.S. — it doesn't 'expire' but is effective only while the aircraft stays airworthy. Your 'like an A&P license — until surrendered/suspended/revoked' analogy is the right idea.",
+   "cite": "FAA Form 8100-2; §21.181",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "1c7258c21d",
+   "q": "The SPECIAL Airworthiness Certificate is FAA Form ____ and is good for:",
+   "options": [
+    "8100-2; forever",
+    "8130-7; 1 YEAR or the period the Administrator prescribes",
+    "8050-1; 90 days",
+    "337; 6 months"
+   ],
+   "correct": 1,
+   "short": "8130-7; 1 YEAR or the period the Administrator prescribes",
+   "expl": "Correct: 8130-7; 1 YEAR or the period the Administrator prescribes.  EXAM CORRECTION: §21.181(b) — special airworthiness certificates (e.g., experimental, special flight permit, restricted/limited categories) are effective for the duration the FAA prescribes; experimental ones are commonly issued for up to 1 year. Your '1 year or time prescribed by the Administrator' is correct.",
+   "cite": "FAA Form 8130-7; §21.181(b)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "fc76abfe55",
+   "q": "Your note lists TWO documents that must be aboard when operating: the Airworthiness Certificate and the Aircraft Registration. What's the FULLER exam answer?",
+   "options": [
+    "Just those two, always",
+    "ARROW — Airworthiness cert, Registration, Radio station license (if required), Operating limitations, and Weight & balance data",
+    "Only the registration",
+    "Pilot certificate and logbook"
+   ],
+   "correct": 1,
+   "short": "ARROW — Airworthiness cert, Registration, Radio station license (if required), Operating limitations, and Weight & balance data",
+   "expl": "Correct: ARROW — Airworthiness cert, Registration, Radio station license (if required), Operating limitations, and Weight & balance data.  EXAM CORRECTION: ⚑ the full set is the ARROW memory aid — Airworthiness, Registration, Radio station license (only if required, e.g., flying internationally), Operating limitations, Weight & balance. NOTE the Airworthiness Certificate must be DISPLAYED at the cabin/cockpit entrance (§91.203(b)); the Registration must be ABOARD. Your 2 are the two CERTIFICATES — just know the full ARROW list for the written.",
+   "cite": "§91.203 + §91.9 (ARROW)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "0c968ce3d2",
+   "q": "The Aircraft Registration (the certificate carried aboard) is FAA Form:",
+   "options": [
+    "8050-1",
+    "8050-2",
+    "8050-3",
+    "8130-7"
+   ],
+   "correct": 2,
+   "short": "8050-3",
+   "expl": "Correct: 8050-3.",
+   "cite": "FAA Form 8050-3",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "a6fa7c63f5",
+   "q": "FAA Form 8050-1 is the:",
+   "options": [
+    "Aircraft Registration certificate",
+    "APPLICATION FOR AIRCRAFT REGISTRATION",
+    "Aircraft Bill of Sale",
+    "Major Repair & Alteration form"
+   ],
+   "correct": 1,
+   "short": "APPLICATION FOR AIRCRAFT REGISTRATION",
+   "expl": "Correct: APPLICATION FOR AIRCRAFT REGISTRATION.",
+   "cite": "FAA Form 8050-1",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "2710200f77",
+   "q": "FAA Form 8050-2 is the:",
+   "options": [
+    "Application for Aircraft Registration",
+    "Aircraft Registration certificate",
+    "AIRCRAFT BILL OF SALE",
+    "Malfunction or Defect Report"
+   ],
+   "correct": 2,
+   "short": "AIRCRAFT BILL OF SALE",
+   "expl": "Correct: AIRCRAFT BILL OF SALE.",
+   "cite": "FAA Form 8050-2",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "5fd6eb97af",
+   "q": "An FCC Radio Station License is required when the aircraft has radios AND:",
+   "options": [
+    "It is flown at night",
+    "It will be flown OUTSIDE the boundaries of the United States (internationally)",
+    "It carries passengers for hire",
+    "It is over 12,500 lb"
+   ],
+   "correct": 1,
+   "short": "It will be flown OUTSIDE the boundaries of the United States (internationally)",
+   "expl": "Correct: It will be flown OUTSIDE the boundaries of the United States (internationally).  EXAM CORRECTION: the radio station license is an FCC requirement (not FAA), and per the ARROW list it's only carried when REQUIRED — i.e., for INTERNATIONAL flight. Purely domestic U.S. operations generally don't need it.",
+   "cite": "FCC rules; §91.203 (note)",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "28466ba550",
+   "q": "FAA Form 337 (Major Repairs & Alterations) applies to which products?",
+   "options": [
+    "Airframe only",
+    "AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE",
+    "Engines only",
+    "Avionics only"
+   ],
+   "correct": 1,
+   "short": "AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE",
+   "expl": "Correct: AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE.  EXAM CORRECTION: Part 43 App. A defines major repairs/alterations for AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE — the same four products a Form 337 documents. Your four-item list is correct.",
+   "cite": "Part 43 App. A; §43.9",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "70fa769ee3",
+   "q": "Your note says to inspect assemblies for deterioration 'every 100 hours.' What is the exam-safe way to state this?",
+   "options": [
+    "All assemblies must be replaced every 100 hours",
+    "It ties to the 100-HOUR INSPECTION (§91.409(b)) for for-hire/instruction aircraft and to manufacturer/ICA inspection intervals — inspect per the applicable schedule, not a blanket 100-hour rule for every aircraft",
+    "Only engines are inspected",
+    "Deterioration is never inspected"
+   ],
+   "correct": 1,
+   "short": "It ties to the 100-HOUR INSPECTION (§91.409(b)) for for-hire/instruction aircraft and to manufacturer/ICA inspection intervals — inspect per the applicable schedule, not a blanket 100-hour rule for every aircraft",
+   "expl": "Correct: It ties to the 100-HOUR INSPECTION (§91.409(b)) for for-hire/instruction aircraft and to manufacturer/ICA inspection intervals — inspect per the applicable schedule, not a blanket 100-hour rule for every aircraft.  EXAM CORRECTION: '100 hours' = the §91.409(b) 100-hour inspection (only required for aircraft carrying persons for hire or used for flight instruction). A privately operated aircraft uses the ANNUAL. Inspect for deterioration on the schedule that applies to that aircraft.",
+   "cite": "§91.409(b); manufacturer ICA",
+   "topic": "Records, Forms & Certificates",
+   "block": "Block 3",
+   "sources": [
+    "Block 3 — Records, Forms & Certificates"
    ]
   },
   {

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 3 — Homework #2: FAR Part 91</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 3 — Homework #2: FAR Part 91</h1>
+    <div class="sub">General Operating &amp; Flight Rules · auto-graded · every answer cites its §91 sub-paragraph</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Who is responsible for determining whether an aircraft is in condition for safe flight?", "options": ["The owner or operator", "The certificated mechanic who last signed it off", "The pilot in command (PIC)", "The FAA principal maintenance inspector"], "correct": 2, "short": "The pilot in command (PIC)", "expl": "Worksheet answer: The PILOT IN COMMAND (PIC).  —  §91.7(b): 'The pilot in command of a civil aircraft is responsible for determining whether that aircraft is in condition for safe flight.' The PIC must discontinue the flight when unairworthy conditions occur. (Distinct from §91.3, which makes the PIC the final authority for the OPERATION of the flight.)  ⚑ Don't confuse the two: §91.7(b) = PIC determines CONDITION FOR SAFE FLIGHT. §91.3(a) = PIC is the FINAL AUTHORITY as to the OPERATION of the aircraft. This question is §91.7(b).", "cite": "§91.7(b)", "topic": "FAR Part 91 — Homework #2"}, {"q": "Who is PRIMARILY responsible for maintaining an aircraft in airworthy condition (including AD compliance)?", "options": ["The pilot in command", "The owner or operator", "The repair station", "The Administrator"], "correct": 1, "short": "The owner or operator", "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.403(a): 'The owner or operator of an aircraft is PRIMARILY RESPONSIBLE for maintaining that aircraft in an airworthy condition, including compliance with part 39 of this chapter' (Airworthiness Directives).", "cite": "§91.403(a)", "topic": "FAR Part 91 — Homework #2"}, {"q": "Who is responsible for seeing that maintenance/return-to-service entries are properly recorded in the aircraft records?", "options": ["The pilot in command", "The IA only", "The owner or operator", "The FAA"], "correct": 2, "short": "The owner or operator", "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.405(b): the owner or operator 'shall ensure that maintenance personnel make appropriate entries in the aircraft maintenance records indicating the aircraft has been approved for return to service.' (The mechanic actually writes the entry per §43.9/§43.11 — but the OWNER/OPERATOR is responsible for SEEING THAT it gets done.)", "cite": "§91.405(b)", "topic": "FAR Part 91 — Homework #2"}, {"q": "Who is responsible to see that all Airworthiness Directives (Part 39) are accomplished?", "options": ["The owner or operator", "The pilot in command", "The aircraft manufacturer", "The FAA Flight Standards District Office"], "correct": 0, "short": "The owner or operator", "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.403(a): the owner/operator is primarily responsible for maintaining the aircraft in airworthy condition, 'INCLUDING COMPLIANCE WITH PART 39 OF THIS CHAPTER' — Part 39 is the Airworthiness Directives part. AD compliance status is then recorded in the maintenance records per §91.417(a)(2)(v).  ⚑ AD authority lives in Part 39; the OWNER/OPERATOR responsibility to comply is §91.403(a); the recordkeeping (current AD status) is §91.417(a)(2)(v). If the worksheet wants the records cite, use §91.417; for 'who is responsible,' the answer is §91.403(a).", "cite": "§91.403(a)", "topic": "FAR Part 91 — Homework #2"}, {"q": "What is the title of 14 CFR Part 91?", "options": ["Maintenance, Preventive Maintenance, Rebuilding, and Alteration", "General Operating and Flight Rules", "Airworthiness Directives", "Certification: Airmen Other Than Flight Crewmembers"], "correct": 1, "short": "General Operating and Flight Rules", "expl": "Worksheet answer: \"General Operating and Flight Rules.\"  —  14 CFR Part 91 is titled 'GENERAL OPERATING AND FLIGHT RULES.' It governs the operation of aircraft within the United States and contains the airworthiness and inspection responsibilities (Subpart E, §§91.401-91.419).", "cite": "Part 91 (title)", "topic": "FAR Part 91 — Homework #2"}, {"q": "The Airworthiness Limitations section requires an aft pressure bulkhead inspection at 5000 hours TIS. Excluding a special flight permit, may the aircraft be operated PAST 5000 hours without that inspection?", "options": ["Yes — Airworthiness Limitations are only recommendations", "Yes — up to 10 additional hours are allowed", "No — Airworthiness Limitations are mandatory; it may not be operated past the interval", "Only if a 100-hour inspection is current"], "correct": 2, "short": "No — Airworthiness Limitations are mandatory", "expl": "Worksheet answer: NO — it is NOT legal.  —  §91.403(c): 'No person may operate an aircraft for which a manufacturer's maintenance manual or instructions for continued airworthiness has been issued that contains an AIRWORTHINESS LIMITATIONS SECTION unless the mandatory replacement times, INSPECTION INTERVALS, and related procedures specified in that section ... have been complied with.' Airworthiness Limitations are MANDATORY. So once the 5000-hour inspection comes due, you may not operate past it without doing the inspection (a special flight permit / ferry permit under §21.197 would be the only exception, which the question excludes).  ⚑ Exam trap: Airworthiness Limitations are MANDATORY (not advisory). The only way to legally fly past a due Airworthiness Limitation without doing it is a special flight permit (§21.197) — and the question excludes that, so the answer is a flat NO.", "cite": "§91.403(c)", "topic": "FAR Part 91 — Homework #2"}, {"q": "Who is responsible to see that all required inspections are accomplished?", "options": ["The pilot in command", "The owner or operator", "The mechanic on duty", "The Administrator"], "correct": 1, "short": "The owner or operator", "expl": "Worksheet answer: The OWNER or OPERATOR.  —  §91.403(a) makes the owner/operator primarily responsible for airworthiness, and §91.405(a) states the owner/operator 'shall have that aircraft inspected as prescribed in subpart E of this part' (annual, 100-hour, etc.). So the OWNER/OPERATOR is responsible for seeing that required inspections get done.  ⚑ Either §91.403(a) (primary responsibility) or §91.405(a) (shall have the aircraft inspected) is defensible. AIM typically wants §91.405(a) for the 'inspections' question. Write §91.405(a).", "cite": "§91.405(a)", "topic": "FAR Part 91 — Homework #2"}, {"q": "An outboard wing section is replaced after damage. How is this work classified, and what data must be used?", "options": ["A minor repair — any acceptable data may be used", "Preventive maintenance — no special data required", "A major repair — it must be performed using FAA-APPROVED data", "An alteration — only the pilot may approve it"], "correct": 2, "short": "A major repair — performed using FAA-approved data", "expl": "Worksheet answer: It is a MAJOR REPAIR: it must be performed using FAA-APPROVED DATA, recorded on FAA Form 337, a maintenance-record entry made, and APPROVED FOR RETURN TO SERVICE by an appropriately rated person (an IA for the inspection/RTS of a major repair). If flight characteristics may have changed, an operational check flight is also required.  —  §91.407 requires that, before operating after maintenance, the aircraft has (a)(1) been APPROVED FOR RETURN TO SERVICE by a person authorized under §43.7, and (a)(2) the maintenance record entry required by §43.9 or §43.11 has been made. A wing-structure replacement after damage is a MAJOR REPAIR (Part 43 Appendix A) — so it must use APPROVED DATA, be documented on FAA FORM 337 (§43.9, §43.5), and be inspected/approved for RTS by an IA (§65.95(a)(1)). Per §91.407(b), if the work 'may have appreciably changed its flight characteristics,' an appropriately rated pilot must make an operational check flight and log it before carrying passengers.  ⚑ This blends Part 91 + Part 43 + Part 65. The Part 91 cite the worksheet wants is §91.407 (operation after maintenance). The supporting facts: major repair → approved data + Form 337 (§43.9/§43.5), IA return to service (§65.95(a)(1)), possible op-check flight (§91.407(b)).", "cite": "§91.407(a)", "topic": "FAR Part 91 — Homework #2"}, {"q": "Follow-up: after that major wing repair, what is required before the aircraft is returned to service?", "options": ["Only a logbook entry by the pilot", "An FAA Form 337 + maintenance record entry, approved for return to service by an appropriately rated person (IA) — and an operational check flight if flight characteristics may have changed", "Nothing — replacing a wing is not recorded", "A new airworthiness certificate from the FAA"], "correct": 1, "short": "Form 337 + record entry + IA return to service (op-check flight if needed)", "expl": "Worksheet answer: It is a MAJOR REPAIR: it must be performed using FAA-APPROVED DATA, recorded on FAA Form 337, a maintenance-record entry made, and APPROVED FOR RETURN TO SERVICE by an appropriately rated person (an IA for the inspection/RTS of a major repair). If flight characteristics may have changed, an operational check flight is also required.  —  §91.407 requires that, before operating after maintenance, the aircraft has (a)(1) been APPROVED FOR RETURN TO SERVICE by a person authorized under §43.7, and (a)(2) the maintenance record entry required by §43.9 or §43.11 has been made. A wing-structure replacement after damage is a MAJOR REPAIR (Part 43 Appendix A) — so it must use APPROVED DATA, be documented on FAA FORM 337 (§43.9, §43.5), and be inspected/approved for RTS by an IA (§65.95(a)(1)). Per §91.407(b), if the work 'may have appreciably changed its flight characteristics,' an appropriately rated pilot must make an operational check flight and log it before carrying passengers.  ⚑ This blends Part 91 + Part 43 + Part 65. The Part 91 cite the worksheet wants is §91.407 (operation after maintenance). The supporting facts: major repair → approved data + Form 337 (§43.9/§43.5), IA return to service (§65.95(a)(1)), possible op-check flight (§91.407(b)).  §91.407(a): approved for RTS (§43.7) + the §43.9/§43.11 record entry. Major repair = Form 337 (§43.9). §91.407(b): op-check flight by an appropriately rated pilot if flight characteristics may have changed.", "cite": "§91.407", "topic": "FAR Part 91 — Homework #2"}, {"q": "A privately operated aircraft (under 12,500 lb max certificated takeoff weight) must have what type of inspection every 12 calendar months?", "options": ["A 100-hour inspection", "A progressive inspection", "An annual inspection", "A preflight inspection"], "correct": 2, "short": "An annual inspection", "expl": "Worksheet answer: An ANNUAL inspection.  —  §91.409(a)(1): no person may operate an aircraft unless, within the preceding 12 CALENDAR MONTHS, it has had an ANNUAL INSPECTION in accordance with Part 43 and been approved for return to service by a person authorized by §43.7. (The annual must be signed by an IA per §65.95.)", "cite": "§91.409(a)(1)", "topic": "FAR Part 91 — Homework #2"}, {"q": "An aircraft's annual inspection was completed on 05/03/93. When is the next annual inspection due?", "options": ["May 3, 1994", "May 31, 1994", "April 30, 1994", "May 3, 1995"], "correct": 1, "short": "May 31, 1994 — the last day of the 12th calendar month", "expl": "Worksheet answer: MAY 31, 1994 (the last day of the 12th calendar month after the inspection).  —  §91.409(a) is keyed to 'the preceding 12 CALENDAR MONTHS.' A calendar-month inspection is good through the LAST DAY of the 12th month. An annual done anytime in MAY 1993 is therefore due by the end of MAY 1994 — i.e., MAY 31, 1994. The aircraft may be operated through 5/31/94.  ⚑ Calendar-month math: count 12 months forward, then go to the LAST DAY of that month. May 1993 → due 5/31/1994 (NOT 5/3/1994). The day of the month doesn't matter for a calendar-month interval.", "cite": "§91.409(a)", "topic": "FAR Part 91 — Homework #2"}, {"q": "In addition to the annual, what inspection is required if the aircraft is operated for hire or for flight instruction for compensation?", "options": ["A 50-hour inspection", "A 100-hour inspection", "A second annual inspection", "An altimeter/transponder check"], "correct": 1, "short": "A 100-hour inspection", "expl": "Worksheet answer: A 100-HOUR inspection.  —  §91.409(b): no person may operate an aircraft carrying any person (other than a crewmember) FOR HIRE, or give flight instruction for hire in an aircraft they provide, unless within the preceding 100 HOURS of time in service it has had an annual OR 100-HOUR inspection and been approved for return to service.", "cite": "§91.409(b)", "topic": "FAR Part 91 — Homework #2"}, {"q": "By how many hours may the 100-hour inspection be exceeded while en route to a place where the inspection can be performed?", "options": ["Not more than 5 hours", "Not more than 10 hours", "Not more than 25 hours", "It may never be exceeded"], "correct": 1, "short": "Not more than 10 hours", "expl": "Worksheet answer: NOT MORE THAN 10 HOURS (en route).  —  §91.409(b): 'The 100-hour limitation may be EXCEEDED BY NOT MORE THAN 10 HOURS while en route to reach a place where the inspection can be done. The excess time used to reach a place where the inspection can be done MUST BE INCLUDED IN COMPUTING THE NEXT 100 HOURS of time in service.'  ⚑ Exam trap: the 10 overflight hours are NOT free — they get SUBTRACTED from the next 100-hour interval (you don't get back to a full 100). The 10-hour allowance applies ONLY to the 100-hour inspection, NOT to the annual.", "cite": "§91.409(b)", "topic": "FAR Part 91 — Homework #2"}, {"q": "You flew 8 of the allowable 10 overflight hours to reach the shop. How is that excess time treated for the NEXT 100-hour interval?", "options": ["It is free — the next interval is a full 100 hours", "The excess time must be SUBTRACTED — it is included in computing the next 100 hours (next interval = 92 hours)", "The aircraft is grounded for 8 hours", "It doubles the next inspection interval"], "correct": 1, "short": "Subtracted — the excess counts toward the next 100 hours", "expl": "Worksheet answer: NOT MORE THAN 10 HOURS (en route).  —  §91.409(b): 'The 100-hour limitation may be EXCEEDED BY NOT MORE THAN 10 HOURS while en route to reach a place where the inspection can be done. The excess time used to reach a place where the inspection can be done MUST BE INCLUDED IN COMPUTING THE NEXT 100 HOURS of time in service.'  ⚑ Exam trap: the 10 overflight hours are NOT free — they get SUBTRACTED from the next 100-hour interval (you don't get back to a full 100). The 10-hour allowance applies ONLY to the 100-hour inspection, NOT to the annual.  §91.409(b): 'The excess time used to reach a place where the inspection can be done must be INCLUDED IN COMPUTING THE NEXT 100 HOURS of time in service.' So 8 overflight hours → next interval is 100 − 8 = 92 hours.", "cite": "§91.409(b)", "topic": "FAR Part 91 — Homework #2"}];
+const DRILL = [{"label": "Drill", "text": "Condition for SAFE FLIGHT = PILOT IN COMMAND (§91.7(b)). Final authority for OPERATION = PIC (§91.3(a))."}, {"label": "Drill", "text": "Maintaining airworthy condition / AD compliance = OWNER or OPERATOR (§91.403(a), incl. Part 39)."}, {"label": "Drill", "text": "Seeing that records / return-to-service entries are made = OWNER/OPERATOR (§91.405(b))."}, {"label": "Drill", "text": "Seeing that required inspections are done = OWNER/OPERATOR (§91.405(a))."}, {"label": "Drill", "text": "Part 91 title = 'GENERAL OPERATING AND FLIGHT RULES.'"}, {"label": "Drill", "text": "AIRWORTHINESS LIMITATIONS are MANDATORY (§91.403(c)) — no flying past one without a special flight permit (§21.197)."}, {"label": "Drill", "text": "ANNUAL = every 12 CALENDAR MONTHS (§91.409(a)(1)); good through the LAST DAY of the 12th month."}, {"label": "Drill", "text": "100-HOUR = required when carrying persons FOR HIRE or giving flight instruction for hire (§91.409(b))."}, {"label": "Drill", "text": "100-hour may be exceeded by NOT MORE THAN 10 HOURS en route — and that excess is SUBTRACTED from the next 100 (§91.409(b))."}, {"label": "Drill", "text": "Major repair RTS chain: approved data + Form 337 (§43.9) → IA approval (§65.95(a)(1)) → op-check flight if flight characteristics may change (§91.407(b))."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

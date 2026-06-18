@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 3 — Records, Forms &amp; Certificates</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 3 — Records, Forms &amp; Certificates</h1>
+    <div class="sub">From today&#x27;s class notes · §43.11/§43.9 · ATA/iSpec · Form 337 · Airworthiness &amp; Registration · auto-graded with FAA citations</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Under §43.11, an inspection (annual/100-hour/progressive) record entry must include the aircraft's ____ and an airworthy/unairworthy statement.", "options": ["empty weight", "TOTAL TIME IN SERVICE", "registration number", "fuel capacity"], "correct": 1, "short": "TOTAL TIME IN SERVICE", "expl": "Correct: TOTAL TIME IN SERVICE.", "cite": "§43.11(a)(2)", "topic": "Records, Forms & Certificates"}, {"q": "Besides total time in service, what statement must a §43.11 inspection record entry contain?", "options": ["A statement of fuel remaining", "A statement that the aircraft is AIRWORTHY (or a list of discrepancies / unairworthy items)", "The pilot's signature", "The next due date only"], "correct": 1, "short": "A statement that the aircraft is AIRWORTHY (or a list of discrepancies / unairworthy items)", "expl": "Correct: A statement that the aircraft is AIRWORTHY (or a list of discrepancies / unairworthy items).", "cite": "§43.11(a)(5)/(6)", "topic": "Records, Forms & Certificates"}, {"q": "In maintenance recordkeeping, TTIS (Total Time In Service) refers to:", "options": ["Engine running hours only", "FLIGHT hours / flight time", "Hours on the ground", "Calendar months since new"], "correct": 1, "short": "FLIGHT hours / flight time", "expl": "Correct: FLIGHT hours / flight time.  EXAM CORRECTION: by §1.1, 'time in service' for AIRFRAME logs = the time from the moment the aircraft leaves the surface until it touches down (airborne time). Your note 'flight hours/time' is right.", "cite": "§1.1 'time in service'; §43.11", "topic": "Records, Forms & Certificates"}, {"q": "TACH (tachometer) time most directly tracks:", "options": ["Airframe airborne time", "ENGINE hours / engine running time", "Landings", "Pressurization cycles"], "correct": 1, "short": "ENGINE hours / engine running time", "expl": "Correct: ENGINE hours / engine running time.  EXAM CORRECTION: tach time is ENGINE time and is RPM-referenced — it does not equal clock time at all power settings. It's used to track engine/component times, NOT airframe time-in-service.", "cite": "Industry practice; cf. §91.417 records", "topic": "Records, Forms & Certificates"}, {"q": "A TEMPORARY maintenance record is good for how long?", "options": ["Forever", "ONLY 1 YEAR, or until the work is repeated or superseded", "90 days", "Until the next annual"], "correct": 1, "short": "ONLY 1 YEAR, or until the work is repeated or superseded", "expl": "Correct: ONLY 1 YEAR, or until the work is repeated or superseded.  EXAM CORRECTION: §91.417(b)(1) — these temporary records (the §43.9/§43.11 entries for maintenance, preventive maintenance, and 100-hour/annual inspections) must be kept until the work is REPEATED, SUPERSEDED, or for 1 YEAR after the work is done.", "cite": "§91.417(b)(1)", "topic": "Records, Forms & Certificates"}, {"q": "A PERMANENT maintenance record (e.g., total time in service, current AD status, major repair/alteration records, current inspection status):", "options": ["Is discarded after 1 year", "Is kept FOREVER and TRANSFERS WITH THE AIRCRAFT when it is sold", "Stays with the previous owner", "Is filed only with the FAA"], "correct": 1, "short": "Is kept FOREVER and TRANSFERS WITH THE AIRCRAFT when it is sold", "expl": "Correct: Is kept FOREVER and TRANSFERS WITH THE AIRCRAFT when it is sold.  EXAM CORRECTION: §91.417(b)(2) — these records are retained and transferred with the aircraft at sale (§91.419). 'Kept forever, goes with the aircraft' is correct.", "cite": "§91.417(b)(2) & §91.419", "topic": "Records, Forms & Certificates"}, {"q": "'ATA' stands for:", "options": ["Aircraft Technical Authority", "AIR TRANSPORT ASSOCIATION", "Approved Type Alteration", "Avionics Test Apparatus"], "correct": 1, "short": "AIR TRANSPORT ASSOCIATION", "expl": "Correct: AIR TRANSPORT ASSOCIATION.", "cite": "FAA-H-8083-30B Ch.2 (Publications)", "topic": "Records, Forms & Certificates"}, {"q": "The ATA standard that organizes technical data on large/complex aircraft by a classification of maintenance actions (1997, now electronic) is:", "options": ["TSO C-129", "ATA iSpec 2200", "AC 43.13-1B", "MIL-STD-1553"], "correct": 1, "short": "ATA iSpec 2200", "expl": "Correct: ATA iSpec 2200.", "cite": "FAA-H-8083-30B Ch.2; ATA iSpec 2200", "topic": "Records, Forms & Certificates"}, {"q": "A key benefit of ATA chapter numbers is that:", "options": ["They change with every aircraft model", "The SEQUENTIAL chapter numbers are CONSISTENT regardless of the aircraft", "They apply only to engines", "They replace the FARs"], "correct": 1, "short": "The SEQUENTIAL chapter numbers are CONSISTENT regardless of the aircraft", "expl": "Correct: The SEQUENTIAL chapter numbers are CONSISTENT regardless of the aircraft.", "cite": "FAA-H-8083-30B Ch.2; ATA iSpec 2200", "topic": "Records, Forms & Certificates"}, {"q": "'AMM' is the:", "options": ["Aircraft Modification Memo", "AIRCRAFT MAINTENANCE MANUAL", "Approved Materials Manual", "Annual Maintenance Minimum"], "correct": 1, "short": "AIRCRAFT MAINTENANCE MANUAL", "expl": "Correct: AIRCRAFT MAINTENANCE MANUAL.", "cite": "FAA-H-8083-30B Ch.2", "topic": "Records, Forms & Certificates"}, {"q": "'CMM' is the:", "options": ["Component Maintenance Manual", "Cabin Management Module", "Composite Material Manual", "Continuous Maintenance Memo"], "correct": 0, "short": "Component Maintenance Manual", "expl": "Correct: Component Maintenance Manual.", "cite": "FAA-H-8083-30B Ch.2", "topic": "Records, Forms & Certificates"}, {"q": "'SRM' is the:", "options": ["Service Reliability Memo", "STRUCTURAL REPAIR MANUAL", "Standard Rivet Manual", "System Reference Map"], "correct": 1, "short": "STRUCTURAL REPAIR MANUAL", "expl": "Correct: STRUCTURAL REPAIR MANUAL.", "cite": "FAA-H-8083-30B Ch.2", "topic": "Records, Forms & Certificates"}, {"q": "Aircraft structure is classified as primary and secondary. The aircraft SKIN is an example of:", "options": ["Primary structure", "SECONDARY structure", "Tertiary structure", "Non-structure"], "correct": 1, "short": "SECONDARY structure", "expl": "Correct: SECONDARY structure.  EXAM CORRECTION: be careful — PRIMARY structure carries flight/ground/pressurization loads and its failure is catastrophic; SECONDARY structure carries lighter loads. Some pressurized fuselage skin IS primary structure. Your note 'skin = secondary' is the general-case example; the classification depends on the load the part carries.", "cite": "FAA-H-8083-31B (structures)", "topic": "Records, Forms & Certificates"}, {"q": "OVERHAULED means the item was disassembled, cleaned, inspected, repaired as necessary, reassembled, and tested to:", "options": ["Like-new (zero-time) standards", "CURRENT / serviceable standards approved for that item", "No standard", "Manufacturer's marketing specs"], "correct": 1, "short": "CURRENT / serviceable standards approved for that item", "expl": "Correct: CURRENT / serviceable standards approved for that item.", "cite": "§43.2(a)", "topic": "Records, Forms & Certificates"}, {"q": "REBUILT means the item was disassembled, cleaned, inspected, repaired, reassembled, and tested to:", "options": ["Current serviceable limits only", "THE SAME TOLERANCES AND LIMITS AS A NEW ITEM (like-new), using new or used parts", "Whatever the owner accepts", "Half of new tolerances"], "correct": 1, "short": "THE SAME TOLERANCES AND LIMITS AS A NEW ITEM (like-new), using new or used parts", "expl": "Correct: THE SAME TOLERANCES AND LIMITS AS A NEW ITEM (like-new), using new or used parts.", "cite": "§43.2(b)", "topic": "Records, Forms & Certificates"}, {"q": "Who may use a NEW maintenance record with ZERO TIME for a rebuilt aircraft ENGINE?", "options": ["Any A&P mechanic", "Any IA", "The MANUFACTURER, or an AGENCY APPROVED BY THE MANUFACTURER", "The owner at any time"], "correct": 2, "short": "The MANUFACTURER, or an AGENCY APPROVED BY THE MANUFACTURER", "expl": "Correct: The MANUFACTURER, or an AGENCY APPROVED BY THE MANUFACTURER.  EXAM CORRECTION: the 'zero-time' authority is in §91.421 (rebuilt engine maintenance records), NOT §43.2. §43.2 only DEFINES overhauled vs rebuilt. Per §91.421, only an engine rebuilt by the MANUFACTURER or an agency APPROVED by the manufacturer may start a new record at zero time. Your star note is correct — just cite §91.421.", "cite": "§91.421(a)", "topic": "Records, Forms & Certificates"}, {"q": "FAA Form 337 is the:", "options": ["Application for Airman Certificate", "MAJOR REPAIR AND ALTERATION form", "Aircraft Bill of Sale", "Malfunction/Defect Report"], "correct": 1, "short": "MAJOR REPAIR AND ALTERATION form", "expl": "Correct: MAJOR REPAIR AND ALTERATION form.", "cite": "§43.9(d); Part 43 App. B", "topic": "Records, Forms & Certificates"}, {"q": "A standard Form 337 is executed in duplicate. After return to service, the FAA's copy must be forwarded to the FAA within:", "options": ["24 hours", "48 HOURS", "10 days", "30 days"], "correct": 1, "short": "48 HOURS", "expl": "Correct: 48 HOURS.", "cite": "Part 43 App. B(a)(2)", "topic": "Records, Forms & Certificates"}, {"q": "For a MAJOR REPAIR performed by a certificated REPAIR STATION, what may be used in lieu of FAA Form 337?", "options": ["A logbook sticker", "The customer's WORK ORDER (with a signed maintenance release)", "Nothing — Form 337 is always required", "An AD"], "correct": 1, "short": "The customer's WORK ORDER (with a signed maintenance release)", "expl": "Correct: The customer's WORK ORDER (with a signed maintenance release).", "cite": "Part 43 App. B(b)", "topic": "Records, Forms & Certificates"}, {"q": "Form 337 / major-repair paperwork must be kept (retained) for at least:", "options": ["6 months", "1 year", "2 YEARS", "Forever, no exceptions"], "correct": 2, "short": "2 YEARS", "expl": "Correct: 2 YEARS.  EXAM CORRECTION: the repair-station 2-year retention is in Part 43 App. B(b). Note: the Form 337 RECORD of a major repair/alteration is itself a PERMANENT record that transfers with the aircraft (§91.417(b)(2)). The '2 years' is the repair station's duplicate-copy retention.", "cite": "Part 43 App. B(b); §91.417", "topic": "Records, Forms & Certificates"}, {"q": "The ONE-TIME exception where FAA Form 337 is done in THREE copies (triplicate) is for:", "options": ["Engine overhaul", "EXTENDED-RANGE (AUXILIARY) FUEL TANKS installed in the passenger/baggage compartment", "Propeller replacement", "An annual inspection"], "correct": 1, "short": "EXTENDED-RANGE (AUXILIARY) FUEL TANKS installed in the passenger/baggage compartment", "expl": "Correct: EXTENDED-RANGE (AUXILIARY) FUEL TANKS installed in the passenger/baggage compartment.", "cite": "Part 43 App. B(d)", "topic": "Records, Forms & Certificates"}, {"q": "On that triplicate Form 337 for cabin/baggage-compartment fuel tanks, the THIRD copy must be:", "options": ["Mailed to the manufacturer", "Carried ON BOARD the aircraft", "Posted at the FSDO", "Destroyed"], "correct": 1, "short": "Carried ON BOARD the aircraft", "expl": "Correct: Carried ON BOARD the aircraft.", "cite": "Part 43 App. B(d)", "topic": "Records, Forms & Certificates"}, {"q": "FAA Form 8010-4 is the:", "options": ["Major Repair & Alteration form", "MALFUNCTION OR DEFECT REPORT (M or D)", "Application for Aircraft Registration", "Airworthiness Certificate"], "correct": 1, "short": "MALFUNCTION OR DEFECT REPORT (M or D)", "expl": "Correct: MALFUNCTION OR DEFECT REPORT (M or D).", "cite": "AC 20-109 / FAA M or D program", "topic": "Records, Forms & Certificates"}, {"q": "AC 43-16 ('General Aviation Airworthiness Alerts') is published:", "options": ["Annually", "MONTHLY", "Weekly", "Only after accidents"], "correct": 1, "short": "MONTHLY", "expl": "Correct: MONTHLY.  EXAM CORRECTION: the current advisory circular is AC 43-16A; the Airworthiness Alerts were published MONTHLY. They are built from the Malfunction or Defect Reports (Form 8010-4) the field submits.", "cite": "AC 43-16A", "topic": "Records, Forms & Certificates"}, {"q": "Which of the following is REQUIRED content of a §43.9 maintenance record entry?", "options": ["The aircraft's paint color", "The DATE, a DESCRIPTION of the work, the person's NAME, SIGNATURE, certificate (license) TYPE, and certificate NUMBER", "The weather that day", "The owner's phone number"], "correct": 1, "short": "The DATE, a DESCRIPTION of the work, the person's NAME, SIGNATURE, certificate (license) TYPE, and certificate NUMBER", "expl": "Correct: The DATE, a DESCRIPTION of the work, the person's NAME, SIGNATURE, certificate (license) TYPE, and certificate NUMBER.  EXAM CORRECTION: §43.9(a) names four items — (1) a DESCRIPTION (or reference to acceptable data) of work performed, (2) DATE of completion, (3) NAME of the person (if other than the approver), and (4) SIGNATURE, CERTIFICATE NUMBER, and KIND OF CERTIFICATE held. Your six-item list (date/description/printed name/signature/license type/license number) maps onto these correctly.", "cite": "§43.9(a)", "topic": "Records, Forms & Certificates"}, {"q": "In a §43.9 entry, 'kind of certificate held' and 'certificate number' correspond to your note's:", "options": ["Date and description", "LICENSE TYPE and LICENSE NUMBER", "Name and signature", "Form 337 and AD number"], "correct": 1, "short": "LICENSE TYPE and LICENSE NUMBER", "expl": "Correct: LICENSE TYPE and LICENSE NUMBER.", "cite": "§43.9(a)(4)", "topic": "Records, Forms & Certificates"}, {"q": "'OEM' stands for:", "options": ["Original Equipment Manufacturer", "Operator Engine Maintenance", "Overhaul Engineering Memo", "Official Equipment Marking"], "correct": 0, "short": "Original Equipment Manufacturer", "expl": "Correct: Original Equipment Manufacturer.", "cite": "FAA-H-8083-30B (publications/parts)", "topic": "Records, Forms & Certificates"}, {"q": "Service Bulletins (SBs) are:", "options": ["Mandatory federal regulations", "Issued by the MANUFACTURER; good info, strongly recommended, but NOT mandatory unless made so by an AD", "Issued by the FAA", "Optional only for experimental aircraft"], "correct": 1, "short": "Issued by the MANUFACTURER; good info, strongly recommended, but NOT mandatory unless made so by an AD", "expl": "Correct: Issued by the MANUFACTURER; good info, strongly recommended, but NOT mandatory unless made so by an AD.  EXAM CORRECTION: an SB becomes MANDATORY only when the FAA adopts it into an Airworthiness Directive (Part 39). On its own a manufacturer's SB is recommended, not legally required (Part 91 operators).", "cite": "FAA-H-8083-30B Ch.2", "topic": "Records, Forms & Certificates"}, {"q": "Your note says 'an aircraft operated in inclement weather must be inspected every 15 days.' Which is the CORRECT exam position?", "options": ["True — it's a 14 CFR requirement", "There is NO general 14 CFR rule requiring a 15-day inclement-weather inspection — VERIFY this note with your instructor; required inspections are annual (12 cal. months) and 100-hour (§91.409)", "It applies only to seaplanes", "It's an AD on all aircraft"], "correct": 1, "short": "There is NO general 14 CFR rule requiring a 15-day inclement-weather inspection — VERIFY this note with your instructor; required inspections are annual (12 cal. months) and 100-hour (§91.409)", "expl": "Correct: There is NO general 14 CFR rule requiring a 15-day inclement-weather inspection — VERIFY this note with your instructor; required inspections are annual (12 cal. months) and 100-hour (§91.409).  EXAM CORRECTION: ⚑ FLAG — no general 14 CFR section requires inspecting an aircraft 'every 15 days' for inclement-weather operation. The recurring inspection requirements are the ANNUAL (every 12 calendar months) and the 100-HOUR (§91.409). Ask your instructor what the slide meant (it may be a specific operator program, a corrosion-control note, or a transcription slip). Do NOT memorize '15 days' for the FAA written.", "cite": "§91.409 (no 15-day rule exists)", "topic": "Records, Forms & Certificates"}, {"q": "The STANDARD Airworthiness Certificate is FAA Form ____ and is good for how long?", "options": ["8130-7; 1 year", "8100-2; until SURRENDERED, SUSPENDED, or REVOKED (no expiration, while the aircraft is maintained airworthy)", "8050-3; 3 years", "337; 2 years"], "correct": 1, "short": "8100-2; until SURRENDERED, SUSPENDED, or REVOKED (no expiration, while the aircraft is maintained airworthy)", "expl": "Correct: 8100-2; until SURRENDERED, SUSPENDED, or REVOKED (no expiration, while the aircraft is maintained airworthy).  EXAM CORRECTION: per §21.181, a STANDARD airworthiness certificate is effective as long as the maintenance, preventive maintenance, and alterations are done per Parts 43 and 91 and the aircraft is registered in the U.S. — it doesn't 'expire' but is effective only while the aircraft stays airworthy. Your 'like an A&P license — until surrendered/suspended/revoked' analogy is the right idea.", "cite": "FAA Form 8100-2; §21.181", "topic": "Records, Forms & Certificates"}, {"q": "The SPECIAL Airworthiness Certificate is FAA Form ____ and is good for:", "options": ["8100-2; forever", "8130-7; 1 YEAR or the period the Administrator prescribes", "8050-1; 90 days", "337; 6 months"], "correct": 1, "short": "8130-7; 1 YEAR or the period the Administrator prescribes", "expl": "Correct: 8130-7; 1 YEAR or the period the Administrator prescribes.  EXAM CORRECTION: §21.181(b) — special airworthiness certificates (e.g., experimental, special flight permit, restricted/limited categories) are effective for the duration the FAA prescribes; experimental ones are commonly issued for up to 1 year. Your '1 year or time prescribed by the Administrator' is correct.", "cite": "FAA Form 8130-7; §21.181(b)", "topic": "Records, Forms & Certificates"}, {"q": "Your note lists TWO documents that must be aboard when operating: the Airworthiness Certificate and the Aircraft Registration. What's the FULLER exam answer?", "options": ["Just those two, always", "ARROW — Airworthiness cert, Registration, Radio station license (if required), Operating limitations, and Weight & balance data", "Only the registration", "Pilot certificate and logbook"], "correct": 1, "short": "ARROW — Airworthiness cert, Registration, Radio station license (if required), Operating limitations, and Weight & balance data", "expl": "Correct: ARROW — Airworthiness cert, Registration, Radio station license (if required), Operating limitations, and Weight & balance data.  EXAM CORRECTION: ⚑ the full set is the ARROW memory aid — Airworthiness, Registration, Radio station license (only if required, e.g., flying internationally), Operating limitations, Weight & balance. NOTE the Airworthiness Certificate must be DISPLAYED at the cabin/cockpit entrance (§91.203(b)); the Registration must be ABOARD. Your 2 are the two CERTIFICATES — just know the full ARROW list for the written.", "cite": "§91.203 + §91.9 (ARROW)", "topic": "Records, Forms & Certificates"}, {"q": "The Aircraft Registration (the certificate carried aboard) is FAA Form:", "options": ["8050-1", "8050-2", "8050-3", "8130-7"], "correct": 2, "short": "8050-3", "expl": "Correct: 8050-3.", "cite": "FAA Form 8050-3", "topic": "Records, Forms & Certificates"}, {"q": "FAA Form 8050-1 is the:", "options": ["Aircraft Registration certificate", "APPLICATION FOR AIRCRAFT REGISTRATION", "Aircraft Bill of Sale", "Major Repair & Alteration form"], "correct": 1, "short": "APPLICATION FOR AIRCRAFT REGISTRATION", "expl": "Correct: APPLICATION FOR AIRCRAFT REGISTRATION.", "cite": "FAA Form 8050-1", "topic": "Records, Forms & Certificates"}, {"q": "FAA Form 8050-2 is the:", "options": ["Application for Aircraft Registration", "Aircraft Registration certificate", "AIRCRAFT BILL OF SALE", "Malfunction or Defect Report"], "correct": 2, "short": "AIRCRAFT BILL OF SALE", "expl": "Correct: AIRCRAFT BILL OF SALE.", "cite": "FAA Form 8050-2", "topic": "Records, Forms & Certificates"}, {"q": "An FCC Radio Station License is required when the aircraft has radios AND:", "options": ["It is flown at night", "It will be flown OUTSIDE the boundaries of the United States (internationally)", "It carries passengers for hire", "It is over 12,500 lb"], "correct": 1, "short": "It will be flown OUTSIDE the boundaries of the United States (internationally)", "expl": "Correct: It will be flown OUTSIDE the boundaries of the United States (internationally).  EXAM CORRECTION: the radio station license is an FCC requirement (not FAA), and per the ARROW list it's only carried when REQUIRED — i.e., for INTERNATIONAL flight. Purely domestic U.S. operations generally don't need it.", "cite": "FCC rules; §91.203 (note)", "topic": "Records, Forms & Certificates"}, {"q": "FAA Form 337 (Major Repairs & Alterations) applies to which products?", "options": ["Airframe only", "AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE", "Engines only", "Avionics only"], "correct": 1, "short": "AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE", "expl": "Correct: AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE.  EXAM CORRECTION: Part 43 App. A defines major repairs/alterations for AIRFRAME, POWERPLANT, PROPELLER, and APPLIANCE — the same four products a Form 337 documents. Your four-item list is correct.", "cite": "Part 43 App. A; §43.9", "topic": "Records, Forms & Certificates"}, {"q": "Your note says to inspect assemblies for deterioration 'every 100 hours.' What is the exam-safe way to state this?", "options": ["All assemblies must be replaced every 100 hours", "It ties to the 100-HOUR INSPECTION (§91.409(b)) for for-hire/instruction aircraft and to manufacturer/ICA inspection intervals — inspect per the applicable schedule, not a blanket 100-hour rule for every aircraft", "Only engines are inspected", "Deterioration is never inspected"], "correct": 1, "short": "It ties to the 100-HOUR INSPECTION (§91.409(b)) for for-hire/instruction aircraft and to manufacturer/ICA inspection intervals — inspect per the applicable schedule, not a blanket 100-hour rule for every aircraft", "expl": "Correct: It ties to the 100-HOUR INSPECTION (§91.409(b)) for for-hire/instruction aircraft and to manufacturer/ICA inspection intervals — inspect per the applicable schedule, not a blanket 100-hour rule for every aircraft.  EXAM CORRECTION: '100 hours' = the §91.409(b) 100-hour inspection (only required for aircraft carrying persons for hire or used for flight instruction). A privately operated aircraft uses the ANNUAL. Inspect for deterioration on the schedule that applies to that aircraft.", "cite": "§91.409(b); manufacturer ICA", "topic": "Records, Forms & Certificates"}];
+const DRILL = [{"label": "Drill", "text": "§43.11 inspection record = TOTAL TIME IN SERVICE + airworthy/unairworthy statement."}, {"label": "Drill", "text": "Temporary records = 1 YEAR or until repeated/superseded (§91.417(b)(1)). Permanent records = forever, transfer with the aircraft (§91.417(b)(2))."}, {"label": "Drill", "text": "OVERHAULED = to current/serviceable standards (§43.2(a)). REBUILT = to like-NEW tolerances (§43.2(b))."}, {"label": "Drill", "text": "ZERO-TIME a rebuilt engine = MANUFACTURER or agency APPROVED by the manufacturer (§91.421) — NOT §43.2."}, {"label": "Drill", "text": "FAA Form 337 = Major Repair & Alteration. Duplicate; FAA copy within 48 HOURS; repair station may use a WORK ORDER in lieu; keep 2 YEARS."}, {"label": "Drill", "text": "Form 337 in TRIPLICATE (3 copies) ONLY for extended-range fuel tanks in the baggage/passenger compartment — 3rd copy stays ABOARD (Part 43 App. B(d))."}, {"label": "Drill", "text": "Form 8010-4 = Malfunction or Defect Report. AC 43-16(A) = GA Airworthiness Alerts, published MONTHLY."}, {"label": "Drill", "text": "§43.9 entry = DATE, DESCRIPTION, NAME, SIGNATURE, certificate (license) TYPE + NUMBER."}, {"label": "Drill", "text": "Standard Airworthiness Cert = FAA Form 8100-2 (no expiration while airworthy, §21.181). Special = FAA Form 8130-7 (1 yr or as Administrator prescribes)."}, {"label": "Drill", "text": "Registration = 8050-3; Application = 8050-1; Bill of Sale = 8050-2. Form 337 covers Airframe, Powerplant, Propeller, Appliance."}, {"label": "Drill", "text": "Documents aboard = ARROW: Airworthiness, Registration, Radio license (if intl/required), Operating limits, Weight & balance (§91.203/§91.9)."}, {"label": "Drill", "text": "⚑ FLAG: there is NO 14 CFR '15-day inclement-weather inspection' rule — verify with instructor. Recurring inspections = annual + 100-hour (§91.409)."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
