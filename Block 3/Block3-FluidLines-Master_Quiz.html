@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fluid Lines &amp; Fittings — Master Quiz</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Fluid Lines &amp; Fittings — Master Quiz</h1>
+    <div class="sub">Block 3 · Worksheet 1 + full class notes · know it cold</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Replacement tubing must be of the same size and material as the original tubing. The PRIMARY reasons are:", "options": ["Cost and availability", "Weight and compatibility with the substance going through the line", "Color matching", "To use up old stock"], "correct": 1, "short": "Weight & fluid compatibility", "expl": "Notes: replacement tubing must be same size & material as original because of weight and compatibility of the substance going through the line. FAA: replacement tubing should be of the same size and material as the original.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Copper tubing becomes hard and brittle from vibration. To restore it to a soft condition it must be __________.", "options": ["work-hardened", "annealed", "swaged", "beaded"], "correct": 1, "short": "Annealed", "expl": "WORKSHEET Q1. Anneal brass, copper, and aluminum by heating to a dull red and cooling rapidly in cold water. Annealing restores the soft (workable) condition.", "cite": "FAA-H-8083-31B p. 9-5", "topic": "1. Materials"}, {"q": "Which aluminum alloy tubing is used for GENERAL PURPOSE lines of LOW or NEGLIGIBLE fluid pressure (e.g., instrument lines, ventilating conduits)?", "options": ["2024-T3 and 6061-T6", "1100 H14 (1/2-hard) or 3003 H14 (1/2-hard)", "5052-O only", "CRES 304"], "correct": 1, "short": "1100 H14 or 3003 H14 (1/2-hard)", "expl": "Notes: 1100 H14 (1/2 hard) or 3003 H14 (1/2 hard) = general purpose, low/negligible pressures.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Which aluminum alloys are used for general-purpose LOW and MEDIUM pressure systems (hydraulic/pneumatic 1,000–1,500 psi, fuel and oil lines)?", "options": ["1100 H14 and 3003 H14", "Copper and brass", "2024-T3, 5052-O, and 6061-T6", "CRES 321 and titanium"], "correct": 2, "short": "2024-T3, 5052-O, 6061-T6", "expl": "Notes & FAA: 2024-T3, 5052-O, and 6061-T6 aluminum alloy = low and medium pressure systems.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "How is the alloy designation shown on SMALL aluminum tubing (vs. large tubing)?", "options": ["Stamped on the surface (same as large)", "By a printed dash number", "By a painted color code (large tubing is stamped)", "It is never marked"], "correct": 2, "short": "Color code (large = stamped)", "expl": "Notes: large aluminum tubing — designation stamped on tubing; small tubing — designation by color code (band not more than 4\" wide, at the ends and midway).", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "CRES stands for:", "options": ["Copper-Reinforced Steel", "Corrosion-Resistant Steel", "Chrome-Resistant Element Stock", "Cryogenic Resistant Steel"], "correct": 1, "short": "Corrosion-Resistant Steel", "expl": "Notes: CRES = Corrosion Resistant Steel. Use CRES when exposed to the elements / risk of FOD (landing gear, wheel wells).", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Corrosion-resistant steel (CRES 304, 321, or 304 1/8-hard) is used in HIGH-PRESSURE hydraulic systems of what pressure, for landing gear, flaps, brakes, and fire zones?", "options": ["1,000 psi or more", "1,500 psi or more", "3,000 psi or more", "250 psi or more"], "correct": 2, "short": "3,000 psi or more", "expl": "Notes & FAA: CRES used in high-pressure hydraulic systems (3,000 psi or more) for landing gear, flaps, brakes, and fire zones. NUMERIC: 3,000 psi.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Titanium 3AL-2.5V tubing is used in transport-category/high-performance hydraulic systems at pressures ABOVE what value?", "options": ["1,000 psi", "1,500 psi", "3,000 psi", "5,000 psi"], "correct": 1, "short": "Above 1,500 psi", "expl": "Notes & FAA: titanium used for pressures above 1,500 psi. NUMERIC: 1,500 psi.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Compared to steel, titanium 3AL-2.5V is approximately:", "options": ["30% weaker and 50% heavier", "30% stronger and 50% lighter", "50% stronger and 30% lighter", "the same strength but 30% lighter"], "correct": 1, "short": "30% stronger, 50% lighter than steel", "expl": "Notes & FAA: titanium is 30 percent stronger than steel and 50 percent lighter than steel. NUMERIC: 30% / 50%.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Which fittings are used with TITANIUM tubing?", "options": ["AN flared only", "Cryofit or swaged fittings", "Beaded clamp fittings only", "Pipe-thread fittings only"], "correct": 1, "short": "Cryofit or swaged fittings", "expl": "Notes & FAA: Cryofit fittings or swaged fittings are used with titanium tubing.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "True or False: Titanium tubing and fittings may be used in an oxygen system as long as the system is clean.", "options": ["True", "False"], "correct": 1, "short": "FALSE — never use titanium in any oxygen system", "expl": "Notes (!!!) & FAA: DO NOT use titanium tubing or fittings in any oxygen system assembly. Titanium is oxygen-reactive; a freshly formed surface can spontaneously combust in gaseous oxygen even at low pressure.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "1. Materials"}, {"q": "Rigid metal tubing size is determined by its __________ diameter.", "options": ["inside", "outside", "average", "nominal pipe"], "correct": 1, "short": "Outside (OD)", "expl": "WORKSHEET Q2. Metal tubing is sized by outside diameter (OD), measured fractionally in sixteenths (1/16) of an inch. (Wall thickness, in thousandths, is also specified.)", "cite": "FAA-H-8083-31B p. 9-2", "topic": "2. Sizing & Formulas"}, {"q": "To find the INSIDE diameter of rigid tubing, twice the wall thickness is subtracted from the __________ diameter.", "options": ["inside", "outside", "nominal", "mean"], "correct": 1, "short": "Outside (ID = OD − 2·WT)", "expl": "WORKSHEET Q3. ID = OD − 2(WT). Notes formulas: ID = OD − 2(WT); OD = ID + 2(WT); TWT = OD − ID; one WT = (OD − ID)/2.", "cite": "FAA-H-8083-31B p. 9-2", "topic": "2. Sizing & Formulas"}, {"q": "CALCULATION: A No. 10 tube (OD = 0.625\") has a wall thickness of 0.063\". What is its inside diameter?", "options": ["0.562\"", "0.499\"", "0.625\"", "0.751\""], "correct": 1, "short": "0.499\"", "expl": "ID = OD − 2(WT) = 0.625 − 2(0.063) = 0.625 − 0.126 = 0.499\". This is the exact example in the handbook.", "cite": "FAA-H-8083-31B p. 9-2", "topic": "2. Sizing & Formulas"}, {"q": "CALCULATION: A tube has OD 0.500\" and ID 0.402\". What is ONE wall thickness?", "options": ["0.098\"", "0.049\"", "0.196\"", "0.902\""], "correct": 1, "short": "0.049\"", "expl": "One WT = (OD − ID)/2 = (0.500 − 0.402)/2 = 0.098/2 = 0.049\". (Total wall thickness TWT = OD − ID = 0.098\".)", "cite": "Notes formula (FAA-H-8083-31B p. 9-2)", "topic": "2. Sizing & Formulas"}, {"q": "Outside-diameter tube sizes are given in increments of:", "options": ["1/8 inch", "1/16 inch", "1/32 inch", "thousandths of an inch"], "correct": 1, "short": "1/16 inch", "expl": "Notes & FAA: OD sizes are in 1/16\" increments — e.g., No. 6 = 6/16\" (3/8\"), No. 8 = 8/16\" (1/2\"). (Wall thickness is printed in thousandths.)", "cite": "FAA-H-8083-31B p. 9-2", "topic": "2. Sizing & Formulas"}, {"q": "When cutting SOFT tubing, the preferred tool is the roll (wheel) cutter. If a hacksaw is used instead, how many teeth per inch are preferred?", "options": ["8 to 12", "14 to 18", "24 to 32 (FAA prefers 32)", "40 to 50"], "correct": 2, "short": "24–32 teeth/inch (32 preferred)", "expl": "Notes: roll cutter best for soft material; fine-tooth hacksaw OK, prefer 24–32 teeth per inch. FAA specifies preferably 32 teeth per inch. A saw reduces work-hardening of the tube.", "cite": "FAA-H-8083-31B p. 9-2", "topic": "3. Cutting & Fabrication"}, {"q": "A new piece of replacement tubing should be cut about how much LONGER than the tube being replaced, to allow for bending variations?", "options": ["About 5% longer", "About 10% longer", "About 25% longer", "Exactly the same length"], "correct": 1, "short": "About 10% longer", "expl": "Notes & FAA: cut a new piece approximately 10 percent longer than the tube to be replaced to provide for minor variations in bending. NUMERIC: 10%.", "cite": "FAA-H-8083-31B p. 9-3", "topic": "3. Cutting & Fabrication"}, {"q": "When cutting and deburring tubing, the burr should be removed toward the __________, and the objective is a square end free of burrs.", "options": ["closed end", "open end", "flared end", "beaded end"], "correct": 1, "short": "Open end", "expl": "Notes: always burr toward the open end; objective is a square end free from burrs. Deburr carefully so the wall thickness at the end is not reduced (prevents defective flares).", "cite": "FAA-H-8083-31B p. 9-2", "topic": "3. Cutting & Fabrication"}, {"q": "All runs of rigid tubing must have at least how many bend(s) between the fittings, to absorb strain / vibration and allow for expansion?", "options": ["No bends are required", "At least one bend", "At least two bends", "At least three bends"], "correct": 1, "short": "At least one bend", "expl": "WORKSHEET Q13 & notes. Never select a straight path: bends are necessary to absorb strain and vibration and to allow expansion/contraction with temperature. At least ONE bend between fittings.", "cite": "FAA-H-8083-31B p. 9-16", "topic": "4. Bending"}, {"q": "Tubing UNDER what diameter can usually be bent by hand without a bending tool?", "options": ["1/8 inch", "1/4 inch", "1/2 inch", "1 inch"], "correct": 1, "short": "Under 1/4 inch", "expl": "Notes & FAA: tubing under 1/4\" in diameter usually can be bent without a bending tool. NUMERIC: 1/4\".", "cite": "FAA-H-8083-31B p. 9-2", "topic": "4. Bending"}, {"q": "A small amount of flattening in a bend is acceptable, but the small (flattened) diameter must NOT be less than what percent of the original OD?", "options": ["50%", "60%", "75%", "90%"], "correct": 2, "short": "75% of original OD", "expl": "Notes & FAA: the small diameter of the flattened portion must not be less than 75% of the original outside diameter — i.e., flattening of not more than 25%. NUMERIC: 75% / 25%.", "cite": "FAA-H-8083-31B p. 9-2", "topic": "4. Bending"}, {"q": "How many basic tube END FINISHES are there?", "options": ["Two: single flare, double flare", "Three: single flare, double flare, beading", "Four: single flare, double flare, flareless, beading", "Five"], "correct": 2, "short": "Four: single flare, double flare, flareless, beading", "expl": "Notes: 4 end finishes — single flare, double flare, flareless, beading. Double flares are more resistant to damage.", "cite": "FAA-H-8083-31B p. 9-3 to 9-7", "topic": "5. End Finishes & Flares"}, {"q": "True or False: A double flare is more resistant to damage (shearing/torque) than a single flare.", "options": ["True", "False"], "correct": 0, "short": "TRUE", "expl": "Notes & FAA: a double flare is smoother and more concentric, seals better, and is more resistant to the shearing effect of torque. Used on soft aluminum tubing 3/8\" OD and under.", "cite": "FAA-H-8083-31B p. 9-5", "topic": "5. End Finishes & Flares"}, {"q": "What is the flare cone angle for AVIATION fittings?", "options": ["35°", "37°", "45°", "90°"], "correct": 1, "short": "37°", "expl": "WORKSHEET Q4 & notes. Aircraft flaring dies are ground to 35°–37° (commonly stated/labeled 37°). EXAM TRAP: the automotive flaring tool makes a 45° flare and is NEVER permitted on aircraft tubing.", "cite": "FAA-H-8083-31B p. 9-4", "topic": "5. End Finishes & Flares"}, {"q": "Match the flare standard to its angle. Which is CORRECT (per the class notes)?", "options": ["AN = 45°", "AC (Air Corps) = 35°", "AUTO (automotive) = 0°", "MS = 37°"], "correct": 1, "short": "AC (Air Corps) = 35°", "expl": "Notes flare-angle table: AN = 37°, AC (Air Corps) = 35°, MS = 0° (flareless — no flare), AUTO = 45°. Only 'AC = 35°' is correct as written.", "cite": "Notes (FAA-H-8083-31B p. 9-4)", "topic": "5. End Finishes & Flares"}, {"q": "An AN FLARED fitting is made up of which two parts?", "options": ["A body and a nut", "A sleeve and a nut", "A sleeve and a body", "A nipple and a socket"], "correct": 1, "short": "A sleeve and a nut", "expl": "Notes & FAA: a flared (AN) tube fitting consists of a sleeve and a nut (AN819 sleeve + AN818 nut). The nut draws the flare against the male cone to seal.", "cite": "FAA-H-8083-31B p. 9-8", "topic": "5. End Finishes & Flares"}, {"q": "Fill in the blank: The flare and the heel of a bend must be free from cracks, dents, nicks, scratches, or any other __________.", "options": ["lubricant", "defects", "color codes", "torque marks"], "correct": 1, "short": "Defects", "expl": "Notes & FAA: the flare and tubing must be free from cracks, dents, nicks, scratches, or any other defects. Any crack or deformity in a flare is cause for rejection.", "cite": "FAA-H-8083-31B p. 9-4 / 9-14", "topic": "5. End Finishes & Flares"}, {"q": "Although flareless fittings eliminate flaring the tube, another operation referred to as __________ is necessary prior to installing a NEW flareless tube assembly.", "options": ["swaging", "presetting", "beading", "annealing"], "correct": 1, "short": "Presetting", "expl": "WORKSHEET Q5 & notes. The correct term is PRESETTING, not swaging. 'Another operation, referred to as presetting, is necessary prior to installation of a new flareless tube assembly.' Presetting forms a tight seal between sleeve and tube without damaging the connector. ⚑ Don't confuse with swaging (a permanent fitting process).", "cite": "FAA-H-8083-31B p. 9-5", "topic": "6. Flareless & Presetting"}, {"q": "An MS FLARELESS fitting consists of which three parts?", "options": ["Sleeve, nut, flare", "Body, sleeve, nut", "Nipple, socket, gasket", "Body, nut, washer"], "correct": 1, "short": "Body, sleeve, nut", "expl": "WORKSHEET Q19-related & notes. MS flareless fitting = body, sleeve, nut. The body's internal design causes the sleeve to cut into the tube OD when body and nut are joined. Designed for 3,000 psi systems with severe vibration.", "cite": "FAA-H-8083-31B p. 9-9", "topic": "6. Flareless & Presetting"}, {"q": "MS (flareless) fittings are usually tightened by:", "options": ["A specific torque value only", "Number of turns / flats", "Hand-tight only", "A color-coded wrench"], "correct": 1, "short": "Number of turns (flats)", "expl": "Notes: MS fittings usually tightened by number of turns. FAA flareless install: run the nut down, then at first bottoming turn 1/6 turn (one flat); never beyond 1/3 turn (two flats). AN flared fittings, by contrast, use specific torque values.", "cite": "FAA-H-8083-31B p. 9-12", "topic": "6. Flareless & Presetting"}, {"q": "Which wire material is used with MS (flareless) fittings?", "options": ["Copper wire", "CRES (corrosion-resistant steel) wire", "Aluminum wire", "Brass wire"], "correct": 1, "short": "CRES wire", "expl": "Notes: CRES wire is used with MS, known as flareless. Swaged or MS flareless fittings are used with corrosion-resistant tubing.", "cite": "FAA-H-8083-31B p. 9-1 / 9-9", "topic": "6. Flareless & Presetting"}, {"q": "AN fittings usually have a specific __________ value (unlike MS flareless, which use turns).", "options": ["color", "torque", "dash-number", "lubricant"], "correct": 1, "short": "Torque", "expl": "Notes: AN fittings usually have a specific torque value. See Figure 9-20 flared-fitting torque table. Always use a torque wrench to avoid over/under-tightening.", "cite": "FAA-H-8083-31B p. 9-9 / Fig. 9-20", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "What COLOR DYE identifies STEEL fittings of AN or MS design?", "options": ["Blue", "Black", "Natural / cadmium", "Grey"], "correct": 1, "short": "Black", "expl": "WORKSHEET Q12 & notes. AN steel fittings = BLACK; AN aluminum fittings = BLUE. EXAM TRAP: steel = black, aluminum = blue.", "cite": "FAA-H-8083-31B p. 9-8", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "Per the class color-code table, ALUMINUM ALLOY tube fittings are colored:", "options": ["Black", "Blue", "Natural", "Grey"], "correct": 1, "short": "Blue", "expl": "Notes color-code table: Aluminum Alloy = BLUE, Carbon Steel = BLACK, CRES = NATURAL, Aluminum Bronze = CADMIUM plate, Titanium = GREY. ⚑ FAA handbook explicitly names black (steel), blue (aluminum), and cadmium/natural (aluminum bronze); the CRES=natural / titanium=grey rows are AIM-deck additions — use the AIM table for the worksheet.", "cite": "FAA-H-8083-31B p. 9-8 (AIM deck table)", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "Per the class color-code table, ALUMINUM BRONZE fittings are:", "options": ["Black", "Blue", "Cadmium plated (natural appearance)", "Grey"], "correct": 2, "short": "Cadmium plated", "expl": "Notes: Aluminum Bronze = CADMIUM plate. FAA: aluminum bronze fittings are cadmium plated and natural in appearance.", "cite": "FAA-H-8083-31B p. 9-8", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "Per the class color-code table, TITANIUM fittings are:", "options": ["Blue", "Black", "Grey", "Red"], "correct": 2, "short": "Grey", "expl": "Notes color-code table: Titanium = GREY. (AIM-deck value; FAA handbook does not list a titanium fitting color explicitly — use the AIM table on the worksheet.)", "cite": "AIM deck table (FAA-H-8083-31B p. 9-8)", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "True or False: You may apply thread/sealing compound to the FACES of the fitting or the flare to improve the seal.", "options": ["True", "False"], "correct": 1, "short": "FALSE", "expl": "Notes & FAA: NEVER apply compound to the faces of the fitting or the flare — it destroys the metal-to-metal contact needed to produce the seal and creates a bad seal.", "cite": "FAA-H-8083-31B p. 9-15", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "CAUTION: If an ALUMINUM-ALLOY FLARED tube assembly still leaks after being tightened to the required torque, you should:", "options": ["Keep tightening past torque until it stops", "Apply sealant to the flare faces", "Disassemble it for repair or replacement (do NOT overtighten)", "Heat the fitting"], "correct": 2, "short": "Disassemble for repair/replacement", "expl": "Notes CAUTION & FAA: do not pull the joint tight with torque. If a flared aluminum-alloy assembly leaks after correct torque, disassemble for repair or replacement. Overtightening cuts off the flare or ruins the sleeve/nut.", "cite": "FAA-H-8083-31B p. 9-12 / 9-15", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "If a FLARELESS tube assembly leaks after being torqued, by how much may the nut be further tightened?", "options": ["Up to a full additional turn", "Up to 1/6 turn beyond the noted torque (max total 1/3 turn)", "It may never be tightened further", "Up to 1/2 turn"], "correct": 1, "short": "Up to 1/6 turn more (1/3 turn max total)", "expl": "Notes & FAA: if a flareless connection leaks, it may be tightened an additional 1/6 turn (total of 1/3 turn). Never beyond 1/3 turn (two flats) — that is the max without permanently damaging the sleeve and nut.", "cite": "FAA-H-8083-31B p. 9-12", "topic": "7. Fittings, Torque & Color Codes"}, {"q": "Are SWAGED (Permaswage) fittings reusable?", "options": ["Yes, they unscrew and reinstall", "No — they are permanent (remove by cutting the tube)", "Only on aluminum tubing", "Only twice"], "correct": 1, "short": "No — permanent / not reusable", "expl": "WORKSHEET Q11 & notes. Swaged fittings create a PERMANENT, virtually maintenance-free connection. If they must be disconnected, cut the tubing with a tube cutter. Therefore swaged fittings are NOT reusable.", "cite": "FAA-H-8083-31B p. 9-9 to 9-10", "topic": "8. Swaged, Permanent & Cryofit"}, {"q": "A popular repair system for connecting/repairing hydraulic lines on transport-category aircraft uses permanent (Permaswage) fittings because they create a connection that is:", "options": ["Easily disconnected for inspection", "Virtually maintenance-free and permanent", "Reusable many times", "Color-coded for the fluid"], "correct": 1, "short": "Permanent & virtually maintenance-free", "expl": "Notes & FAA: Permaswage permanent fittings create a permanent connection that is virtually maintenance-free; used where routine disconnections are not required; often used with titanium and CRES tubing.", "cite": "FAA-H-8083-31B p. 9-9", "topic": "8. Swaged, Permanent & Cryofit"}, {"q": "Permanent (swaged) fittings are installed with:", "options": ["A standard torque wrench", "Portable hydraulically-powered tooling (compact for tight spaces)", "Hand pressure only", "A heat gun"], "correct": 1, "short": "Portable hydraulically-powered tooling", "expl": "Notes & FAA: permanent fittings are installed with portable hydraulically-powered tooling, compact enough to be used in tight spaces.", "cite": "FAA-H-8083-31B p. 9-9", "topic": "8. Swaged, Permanent & Cryofit"}, {"q": "Fill in the blank: Cryofit fittings are standard fittings with a __________ sleeve.", "options": ["rubber", "cryogenic (shape-memory alloy, Tinel)", "cadmium-plated", "Teflon"], "correct": 1, "short": "Cryogenic (shape-memory) sleeve", "expl": "Notes & FAA: Cryofit fittings are standard fittings with a cryogenic sleeve made of shape-memory alloy (Tinel). Made 3% small, frozen in liquid nitrogen and expanded 5% larger, then it contracts onto the tube during a 10–15 second warm-up. Removed only by cutting the tube.", "cite": "FAA-H-8083-31B p. 9-9 to 9-10", "topic": "8. Swaged, Permanent & Cryofit"}, {"q": "Scratches or nicks in ALUMINUM-ALLOY tubing may be repaired by burnishing if they are no deeper than what percent of the wall thickness (and not in the heel of a bend)?", "options": ["5%", "10%", "20%", "25%"], "correct": 1, "short": "10% of wall thickness", "expl": "WORKSHEET Q16 & notes. Scratches/nicks not deeper than 10% of the wall thickness in aluminum-alloy tubing, not in the heel of a bend, may be repaired by burnishing with hand tools. NUMERIC: 10%.", "cite": "FAA-H-8083-31B p. 9-14", "topic": "9. Repair Limits"}, {"q": "A DENT in a tube is acceptable if it is LESS than what percent of the tube/line diameter (and not in the heel of a bend)?", "options": ["10%", "20%", "25%", "50%"], "correct": 1, "short": "20% of tube diameter", "expl": "WORKSHEET Q17 & notes. A dent of less than 20% of the tube diameter is not objectionable unless it is in the heel of a (short-radius) bend. NUMERIC: 20%. ⚑ Don't confuse with the 10% scratch/nick limit.", "cite": "FAA-H-8083-31B p. 9-14", "topic": "9. Repair Limits"}, {"q": "How are dents removed from soft tubing?", "options": ["Heat and quench", "Draw/push a 'bullet' (ball or slug) through the tube", "Squeeze with pliers", "Re-flare both ends"], "correct": 1, "short": "Draw a 'bullet' through the tube", "expl": "FAA: remove dents by drawing a bullet (ball bearing/slug) through the tube with a cable, or pushing it through with a dowel. For soft aluminum, a hardwood slug may be used.", "cite": "FAA-H-8083-31B p. 9-14", "topic": "9. Repair Limits"}, {"q": "Lines carrying physically dangerous materials such as OXYGEN, NITROGEN, or FREON may be marked:", "options": ["FLAM", "TOXIC", "PHDAN", "DANGER"], "correct": 2, "short": "PHDAN", "expl": "WORKSHEET Q15 & notes. Physically dangerous materials (oxygen, nitrogen, Freon) = PHDAN. Compare: fuel = FLAM, toxic materials = TOXIC.", "cite": "FAA-H-8083-31B p. 9-7", "topic": "10. Line Identification"}, {"q": "A line marked FLAM indicates the line carries:", "options": ["Toxic material", "Fuel (flammable)", "Oxygen", "Hydraulic fluid"], "correct": 1, "short": "Fuel (flammable)", "expl": "Notes & FAA: if you see a line marked FLAM there is fuel in that line. Toxic = TOXIC; physically dangerous = PHDAN.", "cite": "FAA-H-8083-31B p. 9-7", "topic": "10. Line Identification"}, {"q": "Per the notes, FUEL lines are identified by which color and geometric symbol?", "options": ["Blue & yellow / circle", "Red / star", "Green / rectangle", "Brown / diamond"], "correct": 1, "short": "Red / star", "expl": "Notes line-ID code: Fuel = RED, symbol STAR.", "cite": "FAA-H-8083-31B p. 9-7 (Fig. 9-16)", "topic": "10. Line Identification"}, {"q": "Per the notes, HYDRAULIC lines are identified by which color and symbol?", "options": ["Red / star", "Blue & yellow / circle", "Green / rectangle", "Brown / diamond"], "correct": 1, "short": "Blue & yellow / circle", "expl": "Notes line-ID code: Hydraulics = BLUE & YELLOW, symbol CIRCLE.", "cite": "FAA-H-8083-31B p. 9-7 (Fig. 9-16)", "topic": "10. Line Identification"}, {"q": "Per the notes, OXYGEN lines are identified by which color and symbol?", "options": ["Red / star", "Green / rectangle", "Brown / diamond", "Blue & yellow / circle"], "correct": 1, "short": "Green / rectangle", "expl": "Notes line-ID code: Oxygen = GREEN, symbol RECTANGLE.", "cite": "FAA-H-8083-31B p. 9-7 (Fig. 9-16)", "topic": "10. Line Identification"}, {"q": "Per the notes, FIRE PROTECTION lines (rigid lines) are identified by which color and symbol?", "options": ["Brown / diamond", "Red / star", "Green / rectangle", "Blue & yellow / circle"], "correct": 0, "short": "Brown / diamond", "expl": "Notes line-ID code: Fire Protection (rigid lines) = BROWN, symbol DIAMOND.", "cite": "FAA-H-8083-31B p. 9-7 (Fig. 9-16)", "topic": "10. Line Identification"}, {"q": "Where are tapes/decals identifying a fluid line normally placed?", "options": ["Once, anywhere on the line", "On both ends and at least once in each compartment the line runs through", "Only at valves", "Only at the firewall"], "correct": 1, "short": "Both ends + once per compartment", "expl": "FAA: tapes and decals are placed on both ends of a line and at least once in each compartment, plus adjacent to each valve, regulator, filter, or accessory. Manufacturer installs originally; the mechanic replaces them.", "cite": "FAA-H-8083-31B p. 9-7", "topic": "10. Line Identification"}, {"q": "Deep, permanent impressions in a hose caused by over-tightened hose clamps (or supports) are known as:", "options": ["cold flow", "cold work", "necking", "creep set"], "correct": 0, "short": "Cold flow", "expl": "WORKSHEET Q6 & FAA. 'Cold flow' describes the deep, permanent impressions in a hose produced by the pressure of hose clamps or supports. It is a sign of deterioration / reason for replacement.", "cite": "FAA-H-8083-31B p. 9-16", "topic": "11. Flexible Hose"}, {"q": "Which flexible hose liner is compatible with PHOSPHATE ESTER based hydraulic fluid (Skydrol)?", "options": ["Buna-N", "Neoprene", "Butyl", "Natural rubber"], "correct": 2, "short": "Butyl", "expl": "WORKSHEET Q7 & FAA. Butyl is excellent with phosphate ester (Skydrol) but must NOT be used with petroleum. Buna-N and Neoprene are the opposite — good for petroleum, NOT for Skydrol. (Teflon is also Skydrol-compatible.) ⚑ Your relayed note said 'Teflon for Skydrol' — Butyl is the rubber-liner answer the worksheet pairs with Skydrol.", "cite": "FAA-H-8083-31B p. 9-16", "topic": "11. Flexible Hose"}, {"q": "Which flexible hose liner is compatible with NEARLY EVERY liquid/substance used in aircraft?", "options": ["Buna-N", "Neoprene", "Butyl", "Teflon (TFE)"], "correct": 3, "short": "Teflon (TFE)", "expl": "WORKSHEET Q8 & FAA. Teflon (tetrafluoroethylene) 'is compatible with nearly every substance or agent used,' range −65°F to +450°F, practically unlimited shelf life. ⚑ CORRECTION: your relayed note said 'Buna-N/Butyl' for nearly every liquid — that is WRONG. Buna-N is petroleum-only and must NOT touch Skydrol. The universal liner is TEFLON.", "cite": "FAA-H-8083-31B p. 9-17", "topic": "11. Flexible Hose"}, {"q": "Buna-N and Neoprene hose liners have good resistance to petroleum products but must NOT be used with:", "options": ["fuel", "oil", "phosphate ester fluid (Skydrol)", "coolant"], "correct": 2, "short": "Skydrol (phosphate ester)", "expl": "FAA: Buna-N has excellent resistance to petroleum products; do not use for phosphate ester (Skydrol). Neoprene is similar (better abrasion resistance, slightly less petroleum resistance); also not for Skydrol.", "cite": "FAA-H-8083-31B p. 9-16", "topic": "11. Flexible Hose"}, {"q": "Teflon hose has what broad operating TEMPERATURE range?", "options": ["−40°F to +250°F", "−65°F to +450°F", "0°F to +300°F", "−100°F to +600°F"], "correct": 1, "short": "−65°F to +450°F", "expl": "FAA: Teflon operating range is −65°F to +450°F. NUMERIC.", "cite": "FAA-H-8083-31B p. 9-17", "topic": "11. Flexible Hose"}, {"q": "The stripe running the length of a flexible hose that contains identifying information is called the __________ line.", "options": ["center", "lay", "FLAM", "datum"], "correct": 1, "short": "Lay line", "expl": "WORKSHEET Q9 & FAA. The lay line indicates the natural lay (no twist) of the hose and carries the identification markings. A twisted lay line means the hose was installed with a twist (a defect).", "cite": "FAA-H-8083-31B p. 9-16", "topic": "11. Flexible Hose"}, {"q": "A MEDIUM-pressure flexible hose has what kind of outer cover (vs. the fabric-braid cover of low-pressure hose)?", "options": ["A rough cloth-braid cover", "A smooth (rubber) outer cover", "No cover", "A stainless-steel braid only"], "correct": 1, "short": "Smooth outer cover", "expl": "WORKSHEET Q10. Medium-pressure rubber hose has ONE wire-braid reinforcement and a smooth (non-cloth) rubber outer cover; low-pressure hose has a fabric-braid (rough/cloth) cover. ⚑ Confirm the exact word your slide uses if it differs.", "cite": "FAA-H-8083-31B p. 9-16", "topic": "11. Flexible Hose"}, {"q": "LOW-pressure flexible hose is rated below what pressure, with fabric-braid reinforcement?", "options": ["250 psi", "1,500 psi", "3,000 psi", "5,000 psi"], "correct": 0, "short": "Below 250 psi", "expl": "FAA: low pressure = below 250 psi (fabric braid). Medium = up to 3,000 psi (one wire braid; larger sizes up to 1,500 psi). High = all sizes up to 3,000 psi operating.", "cite": "FAA-H-8083-31B p. 9-16", "topic": "11. Flexible Hose"}, {"q": "Flexible fluid lines must have between what two percentages of SLACK between fittings?", "options": ["1 and 3 percent", "5 and 8 percent", "10 and 15 percent", "0 and 2 percent"], "correct": 1, "short": "5 to 8 percent", "expl": "WORKSHEET Q14. The FAA handbook does not give a number here; AC 43.13-1B Par 9-30 states the hose length should provide about 5 to 8 percent slack. A hose stretched tight will overstress and fail. NUMERIC: 5–8%.", "cite": "AC 43.13-1B Ch. 9, Par 9-30", "topic": "11. Flexible Hose"}, {"q": "True or False: REUSABLE end fittings for flexible hose normally have THREE pieces.", "options": ["True", "False"], "correct": 1, "short": "FALSE", "expl": "WORKSHEET Q19. Reusable (detachable) MS-type hose end fittings are normally TWO pieces — a socket and a nipple. (Three pieces — body, sleeve, nut — describes the MS FLARELESS rigid-tube fitting, not the hose end fitting.) ⚑ If your slide deck calls flareless the '3-piece reusable' answer, flag it.", "cite": "FAA-H-8083-31B p. 9-18 to 9-19", "topic": "11. Flexible Hose"}, {"q": "When a flexible hose with SWAGED (factory) end fittings fails, what must be done?", "options": ["Replace just the fitting", "Re-swage the same fitting", "Replace the entire hose assembly", "Cut and re-flare it"], "correct": 2, "short": "Replace the entire assembly", "expl": "FAA: when failure occurs in a hose with swaged end fittings, the entire assembly must be replaced. Hose with reusable end fittings can be re-fabricated using new hose.", "cite": "FAA-H-8083-31B p. 9-17", "topic": "11. Flexible Hose"}, {"q": "The proof-pressure test medium for all tube assemblies EXCEPT oxygen should be:", "options": ["Compressed air", "A liquid medium such as hydraulic fluid, water, or oil", "Dry nitrogen", "Helium"], "correct": 1, "short": "Liquid: hydraulic fluid, water, or oil", "expl": "Notes: proof-pressure testing of all tube assemblies (except oxygen) uses a liquid medium such as hydraulic fluid, water, or oil. Air/instrument lines may be tested with dry oil-free air or nitrogen; gas tests are done underwater.", "cite": "Notes (FAA-H-8083-31B p. 9-19)", "topic": "12. Proof Testing"}, {"q": "OXYGEN tubing must be proof-tested using:", "options": ["Hydraulic fluid", "Water", "Dry nitrogen only", "Compressed shop air"], "correct": 2, "short": "Dry nitrogen only", "expl": "Notes: oxygen tubing should be tested using DRY NITROGEN only. (Oxygen reacts with petroleum/oil — never use oil-based media or petroleum lubricants on oxygen systems.)", "cite": "Notes (FAA-H-8083-31B p. 9-19)", "topic": "12. Proof Testing"}, {"q": "A repaired/overhauled flexible hose should be tested to at least how many times system pressure before installation?", "options": ["1.0×", "1.5×", "2.0×", "3.0×"], "correct": 1, "short": "1.5× system pressure", "expl": "FAA: when a flexible hose is repaired/overhauled with existing hardware and new hose, test it to at least 1.5 times system pressure before installing. NUMERIC: 1.5×.", "cite": "FAA-H-8083-31B p. 9-19", "topic": "12. Proof Testing"}, {"q": "True or False: The workability, resistance to corrosion, and light weight of aluminum are major factors in its adoption for aircraft plumbing.", "options": ["True", "False"], "correct": 0, "short": "TRUE", "expl": "WORKSHEET Q18. Aluminum alloy tubing is widely used for low/medium-pressure fuel, oil, hydraulic, and pneumatic lines precisely because of its workability, corrosion resistance, and light weight.", "cite": "FAA-H-8083-31B p. 9-1 to 9-2", "topic": "13. Worksheet Carry-Overs"}, {"q": "Rigid tube is / is NOT limited to use only in areas where a long straight run is possible. Which is correct?", "options": ["It IS limited to long straight runs only", "It is NOT limited to long straight runs", "It may only be used on the engine", "It may only be used in the cabin"], "correct": 1, "short": "Is NOT limited", "expl": "WORKSHEET Q20. Rigid tubing is USED where long, relatively straight runs are possible, but it is NOT LIMITED to only those areas — it is bent and routed throughout, and must have at least one bend between fittings. ⚑ If your slide framed it as 'rigid tube IS used where straight runs are possible,' the intended word may flip to 'is' — read the slide wording.", "cite": "FAA-H-8083-31B p. 9-1", "topic": "13. Worksheet Carry-Overs"}, {"q": "AN flared and MS flareless fittings are NOT interchangeable. How do you tell them apart by sight?", "options": ["AN has a straight end; MS has a cone", "AN has a cone at the end; MS flareless has a straight end", "They look identical", "AN is grey; MS is blue"], "correct": 1, "short": "AN = cone end; MS flareless = straight end", "expl": "FAA: AN flared fittings have a cone at the end (matches the tube flare); MS flareless fittings have a straight end. They are different and not interchangeable.", "cite": "FAA-H-8083-31B p. 9-9", "topic": "13. Worksheet Carry-Overs"}];
+const DRILL = [{"label": "Drill", "text": "Tube sizing: by OUTSIDE DIAMETER (OD) in 1/16\" increments. ID = OD − 2×WT; one WT = (OD − ID)/2."}, {"label": "Drill", "text": "Flare angle: AN = 37°, AC = 35°, MS = 0° (flareless), AUTO = 45° (NEVER on aircraft)."}, {"label": "Drill", "text": "Flareless prep word = PRESETTING (not swaging). AN flared = sleeve+nut. MS flareless = body+sleeve+nut."}, {"label": "Drill", "text": "Pressures: CRES (high-press hydraulics) = 3,000 psi+; Titanium = above 1,500 psi (30% stronger, 50% lighter than steel)."}, {"label": "Drill", "text": "NEVER use titanium tubing/fittings in any oxygen system (oxygen-reactive)."}, {"label": "Drill", "text": "Bend flattening limit: flattened diameter not less than 75% of OD (≤25% flat). Hand-bend tubing under 1/4\". Cut 10% extra."}, {"label": "Drill", "text": "Repair limits: scratch/nick ≤ 10% wall thickness; dent < 20% diameter (neither in the heel of a bend)."}, {"label": "Drill", "text": "Hose liners: SKYDROL = Butyl (rubber) or Teflon; PETROLEUM = Buna-N / Neoprene; UNIVERSAL = Teflon (−65°F to +450°F)."}, {"label": "Drill", "text": "Hose: lay line (no-twist stripe); medium-press = smooth cover + 1 wire braid (to 3,000 psi); slack 5–8% (AC 43.13-1B Par 9-30)."}, {"label": "Drill", "text": "Markings: PHDAN = O2/N2/Freon; FLAM = fuel; TOXIC = toxic. Cold flow = clamp impressions in hose."}, {"label": "Drill", "text": "Fitting colors: STEEL=black, ALUMINUM=blue, Al-bronze=cadmium/natural, CRES=natural, Titanium=grey (AIM deck)."}, {"label": "Drill", "text": "Swaged/Permaswage/Cryofit = PERMANENT (not reusable); remove by cutting the tube. Reusable hose fitting = 2 pieces (socket+nipple)."}, {"label": "Drill", "text": "Leaks: flared aluminum past torque → DISASSEMBLE (don't overtighten); flareless → up to 1/6 more turn (1/3 total max)."}, {"label": "Drill", "text": "Proof test: all tubes except O2 = liquid (hyd fluid/water/oil); OXYGEN = dry nitrogen only; repaired hose = 1.5× system pressure."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem"><div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
