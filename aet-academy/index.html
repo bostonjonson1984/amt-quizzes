@@ -60,6 +60,21 @@
   .lesson .box b,.lesson .box strong{color:var(--navy);}
   .lesson .box .bt{font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:var(--navy2);display:block;margin-bottom:4px;}
   .lesson code{background:#eef2f8;padding:1px 5px;border-radius:4px;font-size:13.5px;}
+  /* resistor illustrations (Module 3) */
+  .lesson td.rtype{width:152px;min-width:112px;}
+  .lesson td.rtype svg{width:100%;max-width:152px;height:auto;display:block;border-radius:9px;margin:2px 0 7px;box-shadow:0 3px 10px rgba(13,42,74,.18);}
+  .lesson svg.chip{vertical-align:-3px;margin-right:7px;flex:none;}
+  .lesson td:has(svg.chip){white-space:nowrap;}
+  .lesson .vargrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;margin:12px 0 6px;}
+  .lesson .varcell{text-align:center;font-size:12.5px;font-weight:800;color:var(--navy2);}
+  .lesson .varcell svg{width:100%;height:auto;display:block;border-radius:9px;margin-bottom:5px;box-shadow:0 3px 10px rgba(13,42,74,.18);}
+  .lesson .varcell span{display:block;font-weight:600;font-size:11.5px;color:var(--muted);}
+  @media(max-width:480px){
+    /* wide tables scroll inside themselves instead of stretching the page */
+    .lesson table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .lesson td.rtype{width:118px;min-width:96px;}
+    .lesson td.rtype svg{max-width:118px;}
+  }
   .selfq{background:#fbfcfe;border:1px dashed #c5d2e2;border-radius:9px;padding:10px 13px;margin:9px 0;font-size:14px;}
   .selfq .a{color:var(--green);font-weight:700;margin-top:5px;display:block;}
   .vids{margin:20px 0 4px;}
