@@ -122,10 +122,10 @@
     <div class="ovrlbl" id="ovrlbl"></div>
   </div>
   <div id="view"></div>
-  <div class="foot" id="foot"><a href="../index.html" style="font-weight:700">← All quizzes</a> · amt-tutor · Matt's Agency · your progress is saved on this device · content verified against FAA-H-8083-30 Ch.2 & Ch.13</div>
+  <div class="foot" id="foot"><a href="../index.html" style="font-weight:700">← All quizzes</a> · amt-tutor · Matt's Agency · your progress is saved on this device · content verified against FAA-H-8083-30B Ch.12</div>
 </div>
 
-<script src="block4-course-data.js"></script>
+<script src="block4-course-data.js?v=df6293a5"></script>
 <script>
 "use strict";
 var C    = window.B4COURSE || {modules:[]};
@@ -181,7 +181,7 @@ var App = {
     document.getElementById('ovrlbl').textContent =
       done+' of '+total+' sections passed (≥'+Math.round(PASS*100)+'% each)';
     var back=document.getElementById('backbtn');
-    if(mode==='home'){ back.style.display='none'; document.getElementById('brand').innerHTML='⚡ Block 4 Academy <small>Unit 1 · Days 1–4</small>'; }
+    if(mode==='home'){ back.style.display='none'; document.getElementById('brand').innerHTML='⚡ Block 4 Academy <small>Electricity &amp; Electronics · FAA-H-8083-30B Ch.12</small>'; }
     else if(mode==='module'){ back.style.display=''; back.textContent='‹ All modules'; back.onclick=function(){App.home();}; }
     else { back.style.display=''; back.textContent='‹ '+App.cur.day+' sections'; back.onclick=function(){App.openModule(App.curIdx);}; }
   },
@@ -281,8 +281,11 @@ var App = {
     Q.locked=false; window.scrollTo({top:0});
   },
   pick:function(li){
-    var Q=this.q; if(Q.locked)return; Q.locked=true;
-    var item=Q.items[Q.order[Q.i]], wrap=document.getElementById('opts'); wrap.classList.add('locked');
+    var Q=this.q; if(Q.locked)return;
+    var item=Q.items[Q.order[Q.i]];
+    if(li>=item.options.length)return;   /* 3-option (FAA-written-style) items: ignore D/4 */
+    Q.locked=true;
+    var wrap=document.getElementById('opts'); wrap.classList.add('locked');
     var ok=(li===item.correct);
     wrap.querySelectorAll('.opt').forEach(function(b,bi){
       if(bi===item.correct){b.classList.add('correct');b.querySelector('.mk').textContent='✓';}
