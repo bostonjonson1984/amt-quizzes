@@ -1,6 +1,6 @@
 {
  "built": "2026-08-01",
- "total": 2569,
+ "total": 2609,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -26,6 +26,7 @@
   "Block 3 — Homework #1: FAR Part 65": 16,
   "Block 3 — Homework #2: FAR Part 91": 14,
   "Block 3 — Records, Forms & Certificates": 38,
+  "Block 4 · G33 Symbol Identification": 40,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 357,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -33558,6 +33559,726 @@
    "block": "Block 3",
    "sources": [
     "Block 3 — Records, Forms & Certificates"
+   ]
+  },
+  {
+   "id": "9c8106bc0e",
+   "q": "G33 #1 — A wire ends in the symbol shown: three horizontal bars, each shorter than the one above. It identifies—",
+   "options": [
+    "a ground connection",
+    "a fuse",
+    "an antenna"
+   ],
+   "correct": 0,
+   "short": "A ground connection.",
+   "expl": "The shrinking three-bar 'rake' is the ground symbol — the point where the circuit returns through the aircraft's metal structure. An antenna symbol points UP with a T/fan shape; a fuse is a wavy line between terminals.",
+   "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "51653f6b54",
+   "q": "G33 #2 — The zigzag symbol shown represents—",
+   "options": [
+    "a fixed resistor",
+    "a fuse",
+    "an inductor (coil)"
+   ],
+   "correct": 0,
+   "short": "A fixed resistor.",
+   "expl": "The sharp zigzag is a fixed resistor — 'the general use of a resistor in a circuit is to limit the amount of current flow' (p. 12-24). An inductor is drawn with round humps, and a fuse is one smooth S-wave.",
+   "cite": "FAA-H-8083-30B, Fig. 12-48, pp. 12-24–12-25; Fig. 4-29, p. 4-24",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "fe5762579b",
+   "q": "G33 #3 — Two coils separated by a pair of parallel lines (the core) form the symbol for—",
+   "options": [
+    "a transformer",
+    "a dual inductor with no core",
+    "two fuses in parallel"
+   ],
+   "correct": 0,
+   "short": "A transformer.",
+   "expl": "A transformer 'consists of two coils that are not electrically connected' — energy crosses through the magnetic core, drawn as the parallel lines between the windings (p. 12-65). One coil alone would be an inductor.",
+   "cite": "FAA-H-8083-30B, p. 12-65 (Transformers); Fig. 4-29, p. 4-24",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "847f5c3596",
+   "q": "G33 #4 — Two terminals bridged by a rounded, resettable bump (amp rating printed above) is the symbol for—",
+   "options": [
+    "a circuit breaker",
+    "a capacitor",
+    "a fuse"
+   ],
+   "correct": 0,
+   "short": "A circuit breaker.",
+   "expl": "'Unlike the fuse, the circuit breaker can be reset; whereas the fuse or current limiter must be replaced' (p. 12-29). The bump = a reset button riding over the contacts. Fig. 12-68 is the schematic symbol.",
+   "cite": "FAA-H-8083-30B, Fig. 12-68, p. 12-30; text p. 12-29",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "067b237204",
+   "q": "G33 #5 — Two parallel plates of EQUAL length with a gap between them (wire enters each plate) is—",
+   "options": [
+    "a battery",
+    "a capacitor (condenser)",
+    "a set of relay contacts"
+   ],
+   "correct": 1,
+   "short": "A capacitor — legacy name 'condenser.'",
+   "expl": "Equal-length plates with a gap = capacitor; it stores charge measured in farads (pp. 12-51–12-53). The Fig. 4-29 chart still labels it 'CONDENSER' — know both names. A battery's plates ALTERNATE long/short.",
+   "cite": "FAA-H-8083-30B, pp. 12-51–12-53; Fig. 4-29, p. 4-24 ('condenser')",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "c5195f67ec",
+   "q": "G33 #6 — A zigzag resistor with an arrow drawn diagonally through it is—",
+   "options": [
+    "a fusible link",
+    "a fixed precision resistor",
+    "a variable resistor (rheostat)"
+   ],
+   "correct": 2,
+   "short": "A variable resistor — the rheostat.",
+   "expl": "'A rheostat is a variable resistor used to vary the amount of current flowing in a circuit' (p. 12-26). The arrow = the movable slider. Drawn with a third wiper terminal instead, it's a potentiometer.",
+   "cite": "FAA-H-8083-30B, Fig. 12-58, pp. 12-26–12-27; Fig. 4-29, p. 4-24",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "6721a7c75d",
+   "q": "G33 #7 — A solid triangle pointing into a straight bar is the symbol for—",
+   "options": [
+    "a transistor",
+    "a thermocouple",
+    "a diode"
+   ],
+   "correct": 2,
+   "short": "A diode.",
+   "expl": "Triangle = anode, bar = cathode; conventional (+) current flows the way the triangle points and is blocked the other way. Fig. 12-218 shows general-purpose diodes; Fig. 12-219 the special-purpose family.",
+   "cite": "FAA-H-8083-30B, Figs. 12-218/12-219, pp. 12-106–12-107",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "ecd00d4ac8",
+   "q": "G33 #8 — Two solid triangles meeting point-to-point, marked 10A, is the symbol for—",
+   "options": [
+    "a circuit breaker",
+    "a current limiter",
+    "a full-wave rectifier"
+   ],
+   "correct": 1,
+   "short": "A current limiter (this exact 10A symbol is on the Fig. 4-29 chart).",
+   "expl": "The current limiter 'is very much like the fuse. However, the current limiter link is usually made of copper and will stand a considerable overload for a short period of time' (p. 12-29). Symbol: Fig. 12-67B.",
+   "cite": "FAA-H-8083-30B, Fig. 12-67B, p. 12-30; text p. 12-29; Fig. 4-29, p. 4-24",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "56eab2f3d8",
+   "q": "G33 #9 — Two ganged switch blades (dashed link), each blade able to reach two contacts, is a—",
+   "options": [
+    "DPST switch",
+    "SPDT switch",
+    "DPDT switch"
+   ],
+   "correct": 2,
+   "short": "A double-pole, double-throw (DPDT) switch.",
+   "expl": "Count poles = blades (2), throws = contacts per blade (2). The dashed line means both blades move together. Fig. 12-74 is the DPDT schematic symbol; Figs. 12-71–12-73 show SPST, SPDT, and DPST.",
+   "cite": "FAA-H-8083-30B, Fig. 12-74, p. 12-32",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "40876d4d1d",
+   "q": "G33 #10 — Alternating LONG and SHORT parallel lines with + and − marks is the symbol for—",
+   "options": [
+    "a battery (the circuit's source)",
+    "a bus bar",
+    "a capacitor"
+   ],
+   "correct": 0,
+   "short": "A battery — the long line is the positive plate.",
+   "expl": "The battery/source symbol alternates long and short plates (long = +). It sits beside the BUS symbol on the Fig. 4-29 chart. A capacitor's two plates are EQUAL length — that's the classic trap.",
+   "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "704b0910fc",
+   "q": "G33 #11 — This transistor symbol's emitter arrow points AWAY from the base bar. It is—",
+   "options": [
+    "a PNP bipolar transistor",
+    "an NPN bipolar transistor",
+    "a unijunction transistor"
+   ],
+   "correct": 1,
+   "short": "NPN — arrow Not Pointing iN.",
+   "expl": "'The transistors are classified as either NPN or PNP according to the arrangement of their N and P-materials' (p. 12-105). Mnemonic: NPN = Not Pointing iN; PNP = Points iN Proudly. Symbols: Fig. 12-221.",
+   "cite": "FAA-H-8083-30B, p. 12-105; Fig. 12-221, p. 12-106",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "37ec47fc94",
+   "q": "G33 #12 — This transistor symbol's emitter arrow points IN toward the base bar. It is—",
+   "options": [
+    "a PNP bipolar transistor",
+    "an NPN bipolar transistor",
+    "a field-effect transistor"
+   ],
+   "correct": 0,
+   "short": "PNP — the arrow Points iN Proudly.",
+   "expl": "PNP = a thin N-region between two P-regions; its emitter arrow points in toward the base. NPN is the mirror image (arrow out). Same figure, opposite arrow: Fig. 12-221, p. 12-106.",
+   "cite": "FAA-H-8083-30B, p. 12-105; Fig. 12-221, p. 12-106",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "401896591c",
+   "q": "G33 #13 — A gate with a single CURVED back, curved sides meeting at a point, and a plain output is—",
+   "options": [
+    "an AND gate",
+    "a NOR gate",
+    "an OR gate"
+   ],
+   "correct": 2,
+   "short": "An OR gate.",
+   "expl": "The OR gate 'has two or more inputs and one output'; a high on ANY input produces a high output (p. 12-122). Curved back + pointed nose + NO bubble = plain OR.",
+   "cite": "FAA-H-8083-30B, pp. 12-122, 12-125 (Fig. 12-262)",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "6058a98220",
+   "q": "G33 #14 — A gate with a FLAT back and a rounded (D-shaped) nose, no bubble, is—",
+   "options": [
+    "an OR gate",
+    "an AND gate",
+    "a NAND gate"
+   ],
+   "correct": 1,
+   "short": "An AND gate.",
+   "expl": "'The AND gate is made up of two or more inputs and a single output' — all inputs must be high for a high output. Flat back + round nose = the D-shaped AND symbol of Fig. 12-255.",
+   "cite": "FAA-H-8083-30B, Fig. 12-255, p. 12-121",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "bd4f90219e",
+   "q": "G33 #15 — An OR-shaped gate with a small circle added on its output is—",
+   "options": [
+    "an X-NOR gate",
+    "an OR gate",
+    "a NOR gate"
+   ],
+   "correct": 2,
+   "short": "A NOR gate — NOT + OR.",
+   "expl": "'The term NOR is a combination of the NOT and OR' (p. 12-122): the bubble inverts the OR output. Single input arc (not doubled), bubble on the nose: Fig. 12-263.",
+   "cite": "FAA-H-8083-30B, Fig. 12-263, pp. 12-122, 12-126",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "8a38561508",
+   "q": "G33 #16 — CAREFUL (this is the one to fix on your sheet): an OR-shaped gate with a DOUBLED curved line across the inputs and NO circle on the output is—",
+   "options": [
+    "an X-OR (exclusive OR) gate",
+    "an X-NOR (exclusive NOR) gate",
+    "a NOR gate"
+   ],
+   "correct": 0,
+   "short": "X-OR. No output bubble = no inversion — this is NOT an X-NOR.",
+   "expl": "The exclusive OR 'produces a 1 output when only one of the inputs is a 1' (p. 12-122). Double input arc = eXclusive; the bubble is what turns it into X-NOR (Fig. 12-265). G33 #16 has no bubble, so the answer is X-OR — not XNOR as written.",
+   "cite": "FAA-H-8083-30B, Fig. 12-264, pp. 12-122, 12-126",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "5f9ea3548a",
+   "q": "G33 #17 — A diode symbol whose cathode bar has BENT ends (little Z-wings) is—",
+   "options": [
+    "an ordinary rectifier diode",
+    "an LED",
+    "a zener diode"
+   ],
+   "correct": 2,
+   "short": "A zener diode — the bent bar is the giveaway.",
+   "expl": "Zener diodes ('breakdown diodes') 'are designed so that they break down (allow current to pass) when the circuit potential is equal to or in excess of' a chosen reverse voltage (p. 12-103) — that's why they regulate voltage. Symbol: Fig. 12-219.",
+   "cite": "FAA-H-8083-30B, p. 12-103; Fig. 12-219, p. 12-107",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "8ed151160b",
+   "q": "G33 #18 — A diode symbol with two small arrows pointing AWAY from the junction is—",
+   "options": [
+    "a light-emitting diode (LED)",
+    "a zener diode",
+    "a photodiode"
+   ],
+   "correct": 0,
+   "short": "An LED — the arrows are light radiating OUT.",
+   "expl": "In a forward-biased LED, electrons falling into holes 'radiate energy' as light (p. 12-103). Arrows OUT = emitting. A photodiode's arrows point IN (it receives light) — both are in Fig. 12-219.",
+   "cite": "FAA-H-8083-30B, p. 12-103; Fig. 12-219, p. 12-107",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "86ac599adf",
+   "q": "G33 #19 — A 16-pin component drawn as two parallel rows of 8 pins with a notch marking pin 1 (like your sheet's pinout diagram) is an IC in a—",
+   "options": [
+    "Dual In-line Parallel switch",
+    "Dual In-line Package (DIP)",
+    "Distributed Integrated Panel"
+   ],
+   "correct": 1,
+   "short": "Dual In-line Package — the standard IC package. (Fix the wording on your sheet.)",
+   "expl": "The two-row pinout diagrams on p. 12-127 are ICs in Dual In-line PACKAGES. Heads-up: the handbook's p. 12-33 term 'Dual In-Line Parallel (DIP) switch' applies to a bank of tiny switches in that same package shape — not to an IC pinout. For an IC, say Dual In-line Package.",
+   "cite": "FAA-H-8083-30B, p. 12-127 (IC pinouts); p. 12-33 (DIP switches); AIM G33 #19",
+   "topic": "Symbol ID",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "e2da409c8e",
+   "q": "The older name you will still see (even on the FAA's own Fig. 4-29 chart) for a capacitor is—",
+   "options": [
+    "condenser",
+    "accumulator",
+    "reactor"
+   ],
+   "correct": 0,
+   "short": "Condenser.",
+   "expl": "The Fig. 4-29 symbol chart literally labels the capacitor symbols 'CONDENSERS,' and Ch. 12 still works condenser problems (p. 12-55). Same device, two names — G33 #5 accepts either.",
+   "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24; p. 12-55",
+   "topic": "Terminology",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "abf1858a4a",
+   "q": "A zener diode differs from a rectifier diode because it is designed to—",
+   "options": [
+    "amplify small signals",
+    "block current in both directions until gated on",
+    "conduct in reverse once the voltage reaches its breakdown value"
+   ],
+   "correct": 2,
+   "short": "Conduct in reverse at its breakdown voltage.",
+   "expl": "Zeners 'break down (allow current to pass) when the circuit potential is equal to or in excess of' the design voltage (p. 12-103) — which makes them voltage regulators. A rectifier diode is chosen to never operate in breakdown.",
+   "cite": "FAA-H-8083-30B, p. 12-103",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "0c18072d72",
+   "q": "A light-emitting diode radiates light when it is—",
+   "options": [
+    "reverse biased",
+    "forward biased",
+    "heated above ambient temperature"
+   ],
+   "correct": 1,
+   "short": "Forward biased.",
+   "expl": "'In a forward biased diode, electrons cross the junction and fall into holes. As the electrons fall into the valence band, they radiate energy' (p. 12-103). In an LED that energy leaves as visible light.",
+   "cite": "FAA-H-8083-30B, p. 12-103",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "f6a937c2d1",
+   "q": "Compared with a fuse, the current limiter's link—",
+   "options": [
+    "melts instantly at the slightest overload",
+    "is usually copper and stands a considerable overload for a short time",
+    "resets itself when it cools"
+   ],
+   "correct": 1,
+   "short": "Copper link; tolerates a brief overload.",
+   "expl": "'The current limiter link is usually made of copper and will stand a considerable overload for a short period of time' (p. 12-29). Like a fuse — and unlike a breaker — once it opens it must be REPLACED.",
+   "cite": "FAA-H-8083-30B, p. 12-29",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "2df4cfa6f9",
+   "q": "The FAA handbook calls the potentiometer—",
+   "options": [
+    "a two-terminal device",
+    "a three-terminal device",
+    "a polarized device"
+   ],
+   "correct": 1,
+   "short": "'The potentiometer is considered a three-terminal device.'",
+   "expl": "Terminals 1 and 2 carry the full resistance; terminal 3 is the wiper (p. 12-27). That third wiper terminal is exactly what separates its symbol from a rheostat's.",
+   "cite": "FAA-H-8083-30B, p. 12-27; Fig. 12-60",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "343681eaab",
+   "q": "A rheostat is used in a circuit to—",
+   "options": [
+    "vary the amount of current flowing",
+    "store a charge for the ignition system",
+    "divide voltage between three terminals"
+   ],
+   "correct": 0,
+   "short": "Vary current — it's a two-terminal variable resistor.",
+   "expl": "'A rheostat is a variable resistor used to vary the amount of current flowing in a circuit' (p. 12-26). It uses two terminals; wire a potentiometer's wiper + one end and you've made one (Fig. 12-62).",
+   "cite": "FAA-H-8083-30B, p. 12-26; Fig. 12-58, p. 12-27",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "8b9ac3ae49",
+   "q": "A transformer changes—",
+   "options": [
+    "mechanical energy into electrical energy",
+    "AC into DC by rectification",
+    "electrical energy of a given voltage into electrical energy at a different voltage level"
+   ],
+   "correct": 2,
+   "short": "Voltage level — via two magnetically-coupled coils.",
+   "expl": "'A transformer changes electrical energy of a given voltage into electrical energy at a different voltage level. It consists of two coils that are not electrically connected' (p. 12-65). Rectifying is the diode's job; converting mechanical energy is the generator's.",
+   "cite": "FAA-H-8083-30B, p. 12-65",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "651c095abc",
+   "q": "After a circuit breaker trips and is reset once, it trips again. You should—",
+   "options": [
+    "keep resetting it until it holds",
+    "replace it with the next-higher amp rating",
+    "troubleshoot for the cause instead of resetting it again"
+   ],
+   "correct": 2,
+   "short": "Stop resetting — find the fault.",
+   "expl": "'It is usually not advisable to continue resetting the circuit breaker, but to initiate troubleshooting' — repeated resetting risks damage 'or worse, the possibility of a fire' (p. 12-29). Also: 'Automatic reset type circuit breakers are not allowed in aircraft.'",
+   "cite": "FAA-H-8083-30B, p. 12-29",
+   "topic": "Function",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "6476cc9b2c",
+   "q": "Per the FAA handbook, the acronym in 'DIP switch' stands for—",
+   "options": [
+    "Dual In-line Package",
+    "Dual In-Line Parallel",
+    "Double Insulated Pole"
+   ],
+   "correct": 1,
+   "short": "Dual In-Line Parallel — for the SWITCH bank (p. 12-33).",
+   "expl": "'The acronym “DIP” switch is defined as Dual In-Line Parallel switch in reference to the physical layout' (p. 12-33). But an IC in that same two-row shape (G33 #19) is a Dual In-line PACKAGE. Switch bank = Parallel; IC = Package.",
+   "cite": "FAA-H-8083-30B, p. 12-33",
+   "topic": "Terminology",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "8fcc7e5bff",
+   "q": "Mnemonic check: 'Points iN Proudly' tells you that the emitter arrow pointing INTO the base bar means—",
+   "options": [
+    "photodiode",
+    "NPN transistor",
+    "PNP transistor"
+   ],
+   "correct": 2,
+   "short": "PNP — Points iN Proudly.",
+   "expl": "Arrow in = PNP; arrow out = NPN (Not Pointing iN). One glance at the emitter arrow settles G33 #11 vs #12 every time (Fig. 12-221).",
+   "cite": "FAA-H-8083-30B, Fig. 12-221, p. 12-106",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "0317d1a9e7",
+   "q": "Which transistor symbol has the emitter arrow pointing OUT, away from the base?",
+   "options": [
+    "PNP — 'Points iN Proudly'",
+    "Both NPN and PNP",
+    "NPN — 'Not Pointing iN'"
+   ],
+   "correct": 2,
+   "short": "NPN.",
+   "expl": "NPN = N-P-N sandwich, arrow out. If you remember only one thing for the written: the arrow always sits on the EMITTER, and it points in only for PNP.",
+   "cite": "FAA-H-8083-30B, p. 12-105; Fig. 12-221, p. 12-106",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "46a552c648",
+   "q": "Diode family lineup — the ONE feature that marks the zener symbol apart from a standard diode is—",
+   "options": [
+    "the bent (Z-shaped) ends on the cathode bar",
+    "a circle drawn around the whole symbol",
+    "two arrows pointing away from the junction"
+   ],
+   "correct": 0,
+   "short": "The bent cathode bar.",
+   "expl": "Fig. 12-219 lines them up: straight bar = standard diode, bent-wing bar = zener, arrows OUT = LED, arrows IN = photodiode. Answer G33 #7/#17/#18 by that one detail.",
+   "cite": "FAA-H-8083-30B, Fig. 12-219, p. 12-107",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "1aec0b784d",
+   "q": "On the LED symbol, the two small arrows point—",
+   "options": [
+    "away from the diode — it emits light",
+    "into the diode — it senses light",
+    "along the wire — direction of current"
+   ],
+   "correct": 0,
+   "short": "Away: light leaving the device.",
+   "expl": "Arrows out = LED (emitter); arrows in = photodiode (receiver). Both appear side-by-side in Fig. 12-219, and the direction of those arrows is the ONLY difference.",
+   "cite": "FAA-H-8083-30B, Fig. 12-219, p. 12-107",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "db08e9be18",
+   "q": "A logic-gate outline with a CURVED input edge (curved back) always belongs to the—",
+   "options": [
+    "inverter family (NOT, buffer)",
+    "OR family (OR, NOR, X-OR, X-NOR)",
+    "AND family (AND, NAND)"
+   ],
+   "correct": 1,
+   "short": "OR family.",
+   "expl": "Shape sorts the families: curved back = OR family; flat back + D-nose = AND family; plain triangle = buffer/NOT. Then bubbles and double arcs pick the exact member.",
+   "cite": "FAA-H-8083-30B, pp. 12-121–12-122 (Figs. 12-255…12-265)",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "530ef0df3a",
+   "q": "The small circle (bubble) drawn on a gate's output means the output is—",
+   "options": [
+    "connected to ground",
+    "inverted — it adds NOT (OR→NOR, AND→NAND, X-OR→X-NOR)",
+    "amplified to a higher logic voltage"
+   ],
+   "correct": 1,
+   "short": "Inverted — bubble = NOT.",
+   "expl": "The handbook introduces the bubble on the NOT function ('a small circle on the output,' p. 12-121), and every N-gate is built that way: 'the term NOR is a combination of the NOT and OR' (p. 12-122).",
+   "cite": "FAA-H-8083-30B, pp. 12-121–12-122",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "0b9bb85a16",
+   "q": "Add an output bubble to an X-OR gate and the symbol becomes—",
+   "options": [
+    "a NOR gate",
+    "an X-NOR gate",
+    "a NAND gate"
+   ],
+   "correct": 1,
+   "short": "X-NOR (Fig. 12-265).",
+   "expl": "'The exclusive NOR (X-NOR) gate is nothing more than an X-OR' with the output inverted (p. 12-122). This is exactly the G33 #16 trap in reverse: bubble = X-NOR, no bubble = X-OR.",
+   "cite": "FAA-H-8083-30B, Fig. 12-265, pp. 12-122, 12-126",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "dd22f4fe4f",
+   "q": "The DOUBLED curved line across a gate's inputs marks the gate as—",
+   "options": [
+    "exclusive (X-OR / X-NOR family)",
+    "inverting",
+    "a buffer with extra drive"
+   ],
+   "correct": 0,
+   "short": "eXclusive — the double arc.",
+   "expl": "The X-OR 'is different from the standard OR gate' — output 1 only when the inputs DIFFER (p. 12-122) — and its symbol says so with the second input arc (Fig. 12-264). Double arc = X; bubble = N.",
+   "cite": "FAA-H-8083-30B, Fig. 12-264, pp. 12-122, 12-126",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "e2a51882c2",
+   "q": "Symbol trap from the Fig. 4-29 chart: how do you tell the capacitor from the battery at a glance?",
+   "options": [
+    "The capacitor has more plates than the battery",
+    "You can't — context alone decides",
+    "Capacitor plates are the SAME length; battery plates alternate long/short"
+   ],
+   "correct": 2,
+   "short": "Equal plates = capacitor; long/short pairs = battery.",
+   "expl": "Both are parallel-line symbols, which is why G33 pairs them. The capacitor (condenser) shows two equal plates with a gap; the battery alternates long (+) and short (−) plates. Both sit on the Fig. 4-29 chart.",
+   "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "70dcb64f58",
+   "q": "This smooth S-shaped wavy line between two terminals — often confused with the current limiter and breaker — is—",
+   "options": [
+    "a current limiter",
+    "a circuit breaker",
+    "a fuse"
+   ],
+   "correct": 2,
+   "short": "A fuse (Fig. 12-67A).",
+   "expl": "Protection-device lineup: S-wave = fuse, point-to-point triangles = current limiter (Fig. 12-67B), bridge bump with a reset = circuit breaker (Fig. 12-68). Fuse and limiter get replaced; the breaker resets.",
+   "cite": "FAA-H-8083-30B, Fig. 12-67A, p. 12-30",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "99eb5f7521",
+   "q": "You can tell a potentiometer's schematic symbol from a rheostat's because the potentiometer—",
+   "options": [
+    "shows a third (wiper) terminal connected into the circuit",
+    "has its arrow crossed out",
+    "is drawn inside a circle"
+   ],
+   "correct": 0,
+   "short": "Three connections vs. the rheostat's two.",
+   "expl": "Rheostat (Fig. 12-58): resistor + arrow, two terminals, controls current. Potentiometer (Fig. 12-60): 'a three-terminal device' — both ends plus the wiper — used to pick off a voltage.",
+   "cite": "FAA-H-8083-30B, Figs. 12-58/12-60, p. 12-27",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "3b90ea347e",
+   "q": "A single coil of round humps on a wire — with NO second coil and NO core lines — is—",
+   "options": [
+    "a resistor",
+    "an inductor",
+    "a transformer"
+   ],
+   "correct": 1,
+   "short": "An inductor. Add a second coil + core lines and it becomes a transformer.",
+   "expl": "One coil = inductor. The transformer symbol (G33 #3) is literally two of these facing each other across the core's parallel lines (p. 12-65). The resistor is pointed zigzag, not round humps.",
+   "cite": "FAA-H-8083-30B, p. 12-65; Fig. 4-29, p. 4-24",
+   "topic": "Confusable pair",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · G33 Symbol Identification"
    ]
   },
   {
