@@ -1,6 +1,6 @@
 {
- "built": "2026-08-01",
- "total": 2609,
+ "built": "2026-08-03",
+ "total": 2655,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -27,6 +27,7 @@
   "Block 3 — Homework #2: FAR Part 91": 14,
   "Block 3 — Records, Forms & Certificates": 38,
   "Block 4 · G33 Symbol Identification": 40,
+  "Block 4 · Metric Conversion Drill — Hop the Decimal": 46,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 357,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -34279,6 +34280,834 @@
    "block": "Block 4",
    "sources": [
     "Block 4 · G33 Symbol Identification"
+   ]
+  },
+  {
+   "id": "9e39a6177b",
+   "q": "470 pF = ? µF",
+   "options": [
+    "0.00047 µF",
+    "470,000,000 µF",
+    "0.47 µF"
+   ],
+   "correct": 0,
+   "short": "0.00047 µF",
+   "expl": "p→µ is 6 hops left: 470 pF → 0.00047 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Farad hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "7291630a15",
+   "q": "0.0015 µF = ? pF",
+   "options": [
+    "1,500,000 pF",
+    "1,500 pF",
+    "0.0000000015 pF"
+   ],
+   "correct": 1,
+   "short": "1,500 pF",
+   "expl": "µ→p is 6 hops right: 0.0015 µF → 1,500 pF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Farad hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "ab79e457c5",
+   "q": "0.000047 F = ? µF",
+   "options": [
+    "47,000 µF",
+    "0.000000000047 µF",
+    "47 µF"
+   ],
+   "correct": 2,
+   "short": "47 µF",
+   "expl": "base→µ is 6 hops right: 0.000047 F → 47 µF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Farad hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "583525b872",
+   "q": "220,000 pF = ? µF",
+   "options": [
+    "0.22 µF",
+    "220,000,000,000 µF",
+    "220 µF"
+   ],
+   "correct": 0,
+   "short": "0.22 µF",
+   "expl": "p→µ is 6 hops left: 220,000 pF → 0.22 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Farad hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "05925fb5e0",
+   "q": "100 nF = ? µF (pF↔µF hops secretly pass through nano — own it)",
+   "options": [
+    "100 µF",
+    "0.1 µF",
+    "100,000 µF"
+   ],
+   "correct": 1,
+   "short": "0.1 µF",
+   "expl": "n→µ is 3 hops left: 100 nF → 0.1 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Farad hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "8ef0057c27",
+   "q": "0.047 µF = ? nF",
+   "options": [
+    "0.000047 nF",
+    "47,000 nF",
+    "47 nF"
+   ],
+   "correct": 2,
+   "short": "47 nF",
+   "expl": "µ→n is 3 hops right: 0.047 µF → 47 nF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Farad hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "61919b8745",
+   "q": "0.02 A = ? mA",
+   "options": [
+    "20 mA",
+    "20,000 mA",
+    "0.00002 mA"
+   ],
+   "correct": 0,
+   "short": "20 mA",
+   "expl": "base→m is 3 hops right: 0.02 A → 20 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Amp hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "2d2dd6317c",
+   "q": "250 mA = ? A",
+   "options": [
+    "250 A",
+    "0.25 A",
+    "250,000 A"
+   ],
+   "correct": 1,
+   "short": "0.25 A",
+   "expl": "m→base is 3 hops left: 250 mA → 0.25 A. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Amp hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "e3c8abf4f2",
+   "q": "3,300 µA = ? mA",
+   "options": [
+    "3,300,000 mA",
+    "3,300 mA",
+    "3.3 mA"
+   ],
+   "correct": 2,
+   "short": "3.3 mA",
+   "expl": "µ→m is 3 hops left: 3,300 µA → 3.3 mA. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Amp hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "7d48e7cc99",
+   "q": "15 µA = ? A",
+   "options": [
+    "0.000015 A",
+    "0.015 A",
+    "15,000,000 A"
+   ],
+   "correct": 0,
+   "short": "0.000015 A",
+   "expl": "µ→base is 6 hops left: 15 µA → 0.000015 A. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Amp hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "243154e603",
+   "q": "500 mV = ? V",
+   "options": [
+    "500 V",
+    "0.5 V",
+    "500,000 V"
+   ],
+   "correct": 1,
+   "short": "0.5 V",
+   "expl": "m→base is 3 hops left: 500 mV → 0.5 V. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Volt hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "0566975fd1",
+   "q": "24 V = ? kV",
+   "options": [
+    "24,000 kV",
+    "24 kV",
+    "0.024 kV"
+   ],
+   "correct": 2,
+   "short": "0.024 kV",
+   "expl": "base→k is 3 hops left: 24 V → 0.024 kV. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Volt hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "613907c56d",
+   "q": "1.5 kV = ? V",
+   "options": [
+    "1,500 V",
+    "0.0015 V",
+    "1,500,000 V"
+   ],
+   "correct": 0,
+   "short": "1,500 V",
+   "expl": "k→base is 3 hops right: 1.5 kV → 1,500 V. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Volt hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "94d4234fd7",
+   "q": "2.2 kΩ = ? Ω",
+   "options": [
+    "2,200,000 Ω",
+    "2,200 Ω",
+    "0.0022 Ω"
+   ],
+   "correct": 1,
+   "short": "2,200 Ω",
+   "expl": "k→base is 3 hops right: 2.2 kΩ → 2,200 Ω. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Ohm hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "cd8cc7de16",
+   "q": "68,000 Ω = ? kΩ",
+   "options": [
+    "68,000,000 kΩ",
+    "68,000 kΩ",
+    "68 kΩ"
+   ],
+   "correct": 2,
+   "short": "68 kΩ",
+   "expl": "base→k is 3 hops left: 68,000 Ω → 68 kΩ. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Ohm hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "fb5ed4127c",
+   "q": "4.7 MΩ = ? kΩ",
+   "options": [
+    "4,700 kΩ",
+    "4,700,000 kΩ",
+    "0.0047 kΩ"
+   ],
+   "correct": 0,
+   "short": "4,700 kΩ",
+   "expl": "M→k is 3 hops right: 4.7 MΩ → 4,700 kΩ. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Ohm hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "525a0a4f38",
+   "q": "2,200,000 Ω = ? MΩ",
+   "options": [
+    "2,200 MΩ",
+    "2.2 MΩ",
+    "2,200,000,000,000 MΩ"
+   ],
+   "correct": 1,
+   "short": "2.2 MΩ",
+   "expl": "base→M is 6 hops left: 2,200,000 Ω → 2.2 MΩ. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Ohm hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "7f971504c9",
+   "q": "8 mH = ? µH",
+   "options": [
+    "8,000,000 µH",
+    "0.008 µH",
+    "8,000 µH"
+   ],
+   "correct": 2,
+   "short": "8,000 µH",
+   "expl": "m→µ is 3 hops right: 8 mH → 8,000 µH. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Henry hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "dff7b2a286",
+   "q": "350 µH = ? mH",
+   "options": [
+    "0.35 mH",
+    "350,000 mH",
+    "350 mH"
+   ],
+   "correct": 0,
+   "short": "0.35 mH",
+   "expl": "µ→m is 3 hops left: 350 µH → 0.35 mH. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Henry hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "c12f7396c5",
+   "q": "0.025 H = ? mH",
+   "options": [
+    "0.000025 mH",
+    "25 mH",
+    "25,000 mH"
+   ],
+   "correct": 1,
+   "short": "25 mH",
+   "expl": "base→m is 3 hops right: 0.025 H → 25 mH. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Henry hops",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "b6e4f2ea01",
+   "q": "A capacitor is marked 1,500 pF. What is its value in microfarads?",
+   "options": [
+    "1,500,000,000 µF",
+    "1.5 µF",
+    "0.0015 µF"
+   ],
+   "correct": 2,
+   "short": "0.0015 µF",
+   "expl": "p→µ is 6 hops left: 1,500 pF → 0.0015 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller. This is the FAA's favorite capacitor phrasing — pF on the part, µF on the answer sheet.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "7bd7f59769",
+   "q": "A capacitor is marked 0.05 µF. What is its value in picofarads?",
+   "options": [
+    "50,000 pF",
+    "0.00000005 pF",
+    "50,000,000 pF"
+   ],
+   "correct": 0,
+   "short": "50,000 pF",
+   "expl": "µ→p is 6 hops right: 0.05 µF → 50,000 pF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "cfbd53f37c",
+   "q": "You need a 4,700 pF capacitor and the parts drawer is labeled in microfarads. Which drawer do you pull?",
+   "options": [
+    "4,700,000,000 µF",
+    "0.0047 µF",
+    "4.7 µF"
+   ],
+   "correct": 1,
+   "short": "0.0047 µF",
+   "expl": "p→µ is 6 hops left: 4,700 pF → 0.0047 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "bd0f2fde0a",
+   "q": "An ammeter reads 0.75 A. Expressed in milliamps, that current is—",
+   "options": [
+    "750,000 mA",
+    "0.00075 mA",
+    "750 mA"
+   ],
+   "correct": 2,
+   "short": "750 mA",
+   "expl": "base→m is 3 hops right: 0.75 A → 750 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "ef5eed0d25",
+   "q": "A transistor data sheet lists a base current of 150 µA. In milliamps that is—",
+   "options": [
+    "0.15 mA",
+    "150 mA",
+    "150,000 mA"
+   ],
+   "correct": 0,
+   "short": "0.15 mA",
+   "expl": "µ→m is 3 hops left: 150 µA → 0.15 mA. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "87e712345f",
+   "q": "A temperature sensor outputs 350 mV. Expressed in volts, the signal is—",
+   "options": [
+    "350 V",
+    "0.35 V",
+    "350,000 V"
+   ],
+   "correct": 1,
+   "short": "0.35 V",
+   "expl": "m→base is 3 hops left: 350 mV → 0.35 V. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "972aab461b",
+   "q": "A resistor's color bands decode to 1,200,000 Ω. The schematic will label it—",
+   "options": [
+    "1,200,000,000,000 MΩ",
+    "1,200 MΩ",
+    "1.2 MΩ"
+   ],
+   "correct": 2,
+   "short": "1.2 MΩ",
+   "expl": "base→M is 6 hops left: 1,200,000 Ω → 1.2 MΩ. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "4387144339",
+   "q": "A coil is marked 2.5 mH. Its inductance in microhenries is—",
+   "options": [
+    "2,500 µH",
+    "0.0025 µH",
+    "2,500,000 µH"
+   ],
+   "correct": 0,
+   "short": "2,500 µH",
+   "expl": "m→µ is 3 hops right: 2.5 mH → 2,500 µH. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Exam wording",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "7490dfdc65",
+   "q": "Which is the LARGEST capacitance: 4,700 pF, 0.005 µF, or 0.0000047 F?",
+   "options": [
+    "4,700 pF",
+    "0.0000047 F",
+    "0.005 µF"
+   ],
+   "correct": 1,
+   "short": "0.0000047 F",
+   "expl": "Line them all up in pF first: 4,700 pF stays 4,700 pF; 0.005 µF → (µ→p, 6 hops right) 5,000 pF; 0.0000047 F → (base→p, 12 hops right) 4,700,000 pF. Most pF buckets wins → 0.0000047 F. (Same-prefix numbers compare instantly — that's the whole trick.)",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Which is largest?",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "7ea11f8e66",
+   "q": "Which is the LARGEST current: 0.5 A, 400 mA, or 45,000 µA?",
+   "options": [
+    "45,000 µA",
+    "400 mA",
+    "0.5 A"
+   ],
+   "correct": 2,
+   "short": "0.5 A",
+   "expl": "Line them all up in µA first: 0.5 A → (base→µ, 6 hops right) 500,000 µA; 400 mA → (m→µ, 3 hops right) 400,000 µA; 45,000 µA stays 45,000 µA. Most µA buckets wins → 0.5 A. (Same-prefix numbers compare instantly — that's the whole trick.)",
+   "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Which is largest?",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "c89622169a",
+   "q": "Which is the SMALLEST capacitance: 1,000 pF, 0.0009 µF, or 0.0000000012 F?",
+   "options": [
+    "0.0009 µF",
+    "1,000 pF",
+    "0.0000000012 F"
+   ],
+   "correct": 0,
+   "short": "0.0009 µF",
+   "expl": "Line them all up in pF first: 1,000 pF stays 1,000 pF; 0.0009 µF → (µ→p, 6 hops right) 900 pF; 0.0000000012 F → (base→p, 12 hops right) 1,200 pF. Most pF buckets wins → 0.0009 µF. (Same-prefix numbers compare instantly — that's the whole trick.)",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Which is smallest?",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "dce367b783",
+   "q": "Which is the LARGEST resistance: 470 kΩ, 0.5 MΩ, or 499,000 Ω?",
+   "options": [
+    "470 kΩ",
+    "0.5 MΩ",
+    "499,000 Ω"
+   ],
+   "correct": 1,
+   "short": "0.5 MΩ",
+   "expl": "Line them all up in Ω first: 470 kΩ → (k→base, 3 hops right) 470,000 Ω; 0.5 MΩ → (M→base, 6 hops right) 500,000 Ω; 499,000 Ω stays 499,000 Ω. Most Ω buckets wins → 0.5 MΩ. (Same-prefix numbers compare instantly — that's the whole trick.)",
+   "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Which is largest?",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "fab3057033",
+   "q": "Which is the LARGEST voltage: 3,300 mV, 3.4 V, or 0.003 kV?",
+   "options": [
+    "3,300 mV",
+    "0.003 kV",
+    "3.4 V"
+   ],
+   "correct": 2,
+   "short": "3.4 V",
+   "expl": "Line them all up in mV first: 3,300 mV stays 3,300 mV; 3.4 V → (base→m, 3 hops right) 3,400 mV; 0.003 kV → (k→m, 6 hops right) 3,000 mV. Most mV buckets wins → 3.4 V. (Same-prefix numbers compare instantly — that's the whole trick.)",
+   "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Which is largest?",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "2a0d471159",
+   "q": "Before using XC = 1/(2πfC), a 200 µF capacitor must be entered as how many farads?",
+   "options": [
+    "0.0002 F",
+    "0.2 F",
+    "200,000,000 F"
+   ],
+   "correct": 0,
+   "short": "0.0002 F",
+   "expl": "µ→base is 6 hops left: 200 µF → 0.0002 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller. The handbook works this exact number on p. 12-61 — formulas eat BASE units only.",
+   "cite": "FAA-H-8083-30B, p. 12-61 (XC worked example: 200 µF → 0.000200 farad) · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "41950a2310",
+   "q": "To compute XC for a 2 µF capacitor, C in the formula must be—",
+   "options": [
+    "0.002 F",
+    "0.000002 F",
+    "2,000,000 F"
+   ],
+   "correct": 1,
+   "short": "0.000002 F",
+   "expl": "µ→base is 6 hops left: 2 µF → 0.000002 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-61 (XC worked example: 200 µF → 0.000200 farad) · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "0e0df075d3",
+   "q": "A 470 pF capacitor goes into XC = 1/(2πfC) as how many farads?",
+   "options": [
+    "470,000,000,000,000 F",
+    "0.00000047 F",
+    "0.00000000047 F"
+   ],
+   "correct": 2,
+   "short": "0.00000000047 F",
+   "expl": "p→base is 12 hops left: 470 pF → 0.00000000047 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller. Yes, it's ugly — that's why the pico row exists. Count all 12 hops.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "6218445bee",
+   "q": "For the RC time constant (τ = R × C), a 100 µF capacitor is entered as—",
+   "options": [
+    "0.0001 F",
+    "0.1 F",
+    "100,000,000 F"
+   ],
+   "correct": 0,
+   "short": "0.0001 F",
+   "expl": "µ→base is 6 hops left: 100 µF → 0.0001 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "6d75666663",
+   "q": "Before using XL = 2πfL, an 8 mH inductor must be entered as how many henries?",
+   "options": [
+    "8,000 H",
+    "0.008 H",
+    "8 H"
+   ],
+   "correct": 1,
+   "short": "0.008 H",
+   "expl": "m→base is 3 hops left: 8 mH → 0.008 H. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.",
+   "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "855b5bef9e",
+   "q": "To use I = E ÷ R, a 4.7 kΩ resistor goes into the formula as—",
+   "options": [
+    "4,700,000 Ω",
+    "0.0047 Ω",
+    "4,700 Ω"
+   ],
+   "correct": 2,
+   "short": "4,700 Ω",
+   "expl": "k→base is 3 hops right: 4.7 kΩ → 4,700 Ω. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "b5cb8802ce",
+   "q": "A capacitance formula spits out 0.000047 F. To pick the part from a µF-labeled drawer, that is—",
+   "options": [
+    "47 µF",
+    "0.000000000047 µF",
+    "47,000 µF"
+   ],
+   "correct": 0,
+   "short": "47 µF",
+   "expl": "base→µ is 6 hops right: 0.000047 F → 47 µF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2",
+   "topic": "Formula feed",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "e548b3a000",
+   "q": "12 V is applied across a 2 kΩ resistor. The current is—",
+   "options": [
+    "0.006 mA",
+    "6 mA",
+    "6,000 mA"
+   ],
+   "correct": 1,
+   "short": "6 mA",
+   "expl": "Hop the givens to base units first: 2 kΩ → (k→base, 3 hops right) 2,000 Ω. I = E ÷ R = 12 ÷ 2,000 = 0.006 A. Then base→m is 3 hops right: 0.006 A → 6 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Ohm's law + prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "b653705fc9",
+   "q": "24 V across 1.2 kΩ produces a current of—",
+   "options": [
+    "0.02 mA",
+    "20,000 mA",
+    "20 mA"
+   ],
+   "correct": 2,
+   "short": "20 mA",
+   "expl": "Hop the givens to base units first: 1.2 kΩ → (k→base, 3 hops right) 1,200 Ω. I = E ÷ R = 24 ÷ 1,200 = 0.02 A. Then base→m is 3 hops right: 0.02 A → 20 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Ohm's law + prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "c38d65583e",
+   "q": "A 9 V source feeds a 4.5 kΩ resistor. Meter reading in milliamps—",
+   "options": [
+    "2 mA",
+    "0.002 mA",
+    "2,000 mA"
+   ],
+   "correct": 0,
+   "short": "2 mA",
+   "expl": "Hop the givens to base units first: 4.5 kΩ → (k→base, 3 hops right) 4,500 Ω. I = E ÷ R = 9 ÷ 4,500 = 0.002 A. Then base→m is 3 hops right: 0.002 A → 2 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Ohm's law + prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "c2ddfa5643",
+   "q": "15 mA flows through a 2 kΩ resistor. The voltage drop is—",
+   "options": [
+    "0.03 V",
+    "30 V",
+    "30,000 V"
+   ],
+   "correct": 1,
+   "short": "30 V",
+   "expl": "Hop the givens to base units first: 15 mA → (m→base, 3 hops left) 0.015 A; 2 kΩ → (k→base, 3 hops right) 2,000 Ω. E = I × R = 0.015 × 2,000 = 30 V.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Ohm's law + prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "f2cae0d776",
+   "q": "A 28 V bus feeds a unit drawing 56 mA. The unit's resistance is—",
+   "options": [
+    "0.5 Ω",
+    "500,000 Ω",
+    "500 Ω"
+   ],
+   "correct": 2,
+   "short": "500 Ω",
+   "expl": "Hop the givens to base units first: 56 mA → (m→base, 3 hops left) 0.056 A. R = E ÷ I = 28 ÷ 0.056 = 500 Ω.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Ohm's law + prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "e5972bd8e1",
+   "q": "33 V across a 3.3 MΩ insulation path leaks a current of—",
+   "options": [
+    "10 µA",
+    "10,000 µA",
+    "0.01 µA"
+   ],
+   "correct": 0,
+   "short": "10 µA",
+   "expl": "Hop the givens to base units first: 3.3 MΩ → (M→base, 6 hops right) 3,300,000 Ω. I = E ÷ R = 33 ÷ 3,300,000 = 0.00001 A. Then base→µ is 6 hops right: 0.00001 A → 10 µA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.",
+   "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2",
+   "topic": "Ohm's law + prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Metric Conversion Drill — Hop the Decimal"
    ]
   },
   {

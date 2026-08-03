@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 4 · Metric Conversion Drill — Hop the Decimal</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 4 · Metric Conversion Drill — Hop the Decimal</h1>
+    <div class="sub">HOP CHART: M ← k ← base → m → µ → n → p — each step is 3 hops (µ↔p = 6, base↔µ = 6, base↔p = 12). Toward a smaller prefix = smaller bucket, MORE buckets: the number gets BIGGER. 46 computed drills: farads, amps, volts, ohms, henries + the formula-feed and Ohm&#x27;s-law traps. Full chart in the Drill Box on your results screen.</div>
+    <div id="startmeta" class="sub"></div>
+    <div id="shuffleToggle" class="opt toggle"><span class="T">🔀&nbsp; Shuffle question order</span></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "470 pF = ? µF", "options": ["0.00047 µF", "470,000,000 µF", "0.47 µF"], "correct": 0, "short": "0.00047 µF", "expl": "p→µ is 6 hops left: 470 pF → 0.00047 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Farad hops", "fig": ""}, {"q": "0.0015 µF = ? pF", "options": ["1,500,000 pF", "1,500 pF", "0.0000000015 pF"], "correct": 1, "short": "1,500 pF", "expl": "µ→p is 6 hops right: 0.0015 µF → 1,500 pF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Farad hops", "fig": ""}, {"q": "0.000047 F = ? µF", "options": ["47,000 µF", "0.000000000047 µF", "47 µF"], "correct": 2, "short": "47 µF", "expl": "base→µ is 6 hops right: 0.000047 F → 47 µF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Farad hops", "fig": ""}, {"q": "220,000 pF = ? µF", "options": ["0.22 µF", "220,000,000,000 µF", "220 µF"], "correct": 0, "short": "0.22 µF", "expl": "p→µ is 6 hops left: 220,000 pF → 0.22 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Farad hops", "fig": ""}, {"q": "100 nF = ? µF (pF↔µF hops secretly pass through nano — own it)", "options": ["100 µF", "0.1 µF", "100,000 µF"], "correct": 1, "short": "0.1 µF", "expl": "n→µ is 3 hops left: 100 nF → 0.1 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Farad hops", "fig": ""}, {"q": "0.047 µF = ? nF", "options": ["0.000047 nF", "47,000 nF", "47 nF"], "correct": 2, "short": "47 nF", "expl": "µ→n is 3 hops right: 0.047 µF → 47 nF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Farad hops", "fig": ""}, {"q": "0.02 A = ? mA", "options": ["20 mA", "20,000 mA", "0.00002 mA"], "correct": 0, "short": "20 mA", "expl": "base→m is 3 hops right: 0.02 A → 20 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Amp hops", "fig": ""}, {"q": "250 mA = ? A", "options": ["250 A", "0.25 A", "250,000 A"], "correct": 1, "short": "0.25 A", "expl": "m→base is 3 hops left: 250 mA → 0.25 A. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Amp hops", "fig": ""}, {"q": "3,300 µA = ? mA", "options": ["3,300,000 mA", "3,300 mA", "3.3 mA"], "correct": 2, "short": "3.3 mA", "expl": "µ→m is 3 hops left: 3,300 µA → 3.3 mA. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Amp hops", "fig": ""}, {"q": "15 µA = ? A", "options": ["0.000015 A", "0.015 A", "15,000,000 A"], "correct": 0, "short": "0.000015 A", "expl": "µ→base is 6 hops left: 15 µA → 0.000015 A. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Amp hops", "fig": ""}, {"q": "500 mV = ? V", "options": ["500 V", "0.5 V", "500,000 V"], "correct": 1, "short": "0.5 V", "expl": "m→base is 3 hops left: 500 mV → 0.5 V. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Volt hops", "fig": ""}, {"q": "24 V = ? kV", "options": ["24,000 kV", "24 kV", "0.024 kV"], "correct": 2, "short": "0.024 kV", "expl": "base→k is 3 hops left: 24 V → 0.024 kV. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Volt hops", "fig": ""}, {"q": "1.5 kV = ? V", "options": ["1,500 V", "0.0015 V", "1,500,000 V"], "correct": 0, "short": "1,500 V", "expl": "k→base is 3 hops right: 1.5 kV → 1,500 V. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Volt hops", "fig": ""}, {"q": "2.2 kΩ = ? Ω", "options": ["2,200,000 Ω", "2,200 Ω", "0.0022 Ω"], "correct": 1, "short": "2,200 Ω", "expl": "k→base is 3 hops right: 2.2 kΩ → 2,200 Ω. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Ohm hops", "fig": ""}, {"q": "68,000 Ω = ? kΩ", "options": ["68,000,000 kΩ", "68,000 kΩ", "68 kΩ"], "correct": 2, "short": "68 kΩ", "expl": "base→k is 3 hops left: 68,000 Ω → 68 kΩ. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Ohm hops", "fig": ""}, {"q": "4.7 MΩ = ? kΩ", "options": ["4,700 kΩ", "4,700,000 kΩ", "0.0047 kΩ"], "correct": 0, "short": "4,700 kΩ", "expl": "M→k is 3 hops right: 4.7 MΩ → 4,700 kΩ. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Ohm hops", "fig": ""}, {"q": "2,200,000 Ω = ? MΩ", "options": ["2,200 MΩ", "2.2 MΩ", "2,200,000,000,000 MΩ"], "correct": 1, "short": "2.2 MΩ", "expl": "base→M is 6 hops left: 2,200,000 Ω → 2.2 MΩ. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Ohm hops", "fig": ""}, {"q": "8 mH = ? µH", "options": ["8,000,000 µH", "0.008 µH", "8,000 µH"], "correct": 2, "short": "8,000 µH", "expl": "m→µ is 3 hops right: 8 mH → 8,000 µH. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Henry hops", "fig": ""}, {"q": "350 µH = ? mH", "options": ["0.35 mH", "350,000 mH", "350 mH"], "correct": 0, "short": "0.35 mH", "expl": "µ→m is 3 hops left: 350 µH → 0.35 mH. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Henry hops", "fig": ""}, {"q": "0.025 H = ? mH", "options": ["0.000025 mH", "25 mH", "25,000 mH"], "correct": 1, "short": "25 mH", "expl": "base→m is 3 hops right: 0.025 H → 25 mH. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Henry hops", "fig": ""}, {"q": "A capacitor is marked 1,500 pF. What is its value in microfarads?", "options": ["1,500,000,000 µF", "1.5 µF", "0.0015 µF"], "correct": 2, "short": "0.0015 µF", "expl": "p→µ is 6 hops left: 1,500 pF → 0.0015 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller. This is the FAA's favorite capacitor phrasing — pF on the part, µF on the answer sheet.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "A capacitor is marked 0.05 µF. What is its value in picofarads?", "options": ["50,000 pF", "0.00000005 pF", "50,000,000 pF"], "correct": 0, "short": "50,000 pF", "expl": "µ→p is 6 hops right: 0.05 µF → 50,000 pF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "You need a 4,700 pF capacitor and the parts drawer is labeled in microfarads. Which drawer do you pull?", "options": ["4,700,000,000 µF", "0.0047 µF", "4.7 µF"], "correct": 1, "short": "0.0047 µF", "expl": "p→µ is 6 hops left: 4,700 pF → 0.0047 µF. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "An ammeter reads 0.75 A. Expressed in milliamps, that current is—", "options": ["750,000 mA", "0.00075 mA", "750 mA"], "correct": 2, "short": "750 mA", "expl": "base→m is 3 hops right: 0.75 A → 750 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "A transistor data sheet lists a base current of 150 µA. In milliamps that is—", "options": ["0.15 mA", "150 mA", "150,000 mA"], "correct": 0, "short": "0.15 mA", "expl": "µ→m is 3 hops left: 150 µA → 0.15 mA. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "A temperature sensor outputs 350 mV. Expressed in volts, the signal is—", "options": ["350 V", "0.35 V", "350,000 V"], "correct": 1, "short": "0.35 V", "expl": "m→base is 3 hops left: 350 mV → 0.35 V. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "A resistor's color bands decode to 1,200,000 Ω. The schematic will label it—", "options": ["1,200,000,000,000 MΩ", "1,200 MΩ", "1.2 MΩ"], "correct": 2, "short": "1.2 MΩ", "expl": "base→M is 6 hops left: 1,200,000 Ω → 1.2 MΩ. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "A coil is marked 2.5 mH. Its inductance in microhenries is—", "options": ["2,500 µH", "0.0025 µH", "2,500,000 µH"], "correct": 0, "short": "2,500 µH", "expl": "m→µ is 3 hops right: 2.5 mH → 2,500 µH. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Exam wording", "fig": ""}, {"q": "Which is the LARGEST capacitance: 4,700 pF, 0.005 µF, or 0.0000047 F?", "options": ["4,700 pF", "0.0000047 F", "0.005 µF"], "correct": 1, "short": "0.0000047 F", "expl": "Line them all up in pF first: 4,700 pF stays 4,700 pF; 0.005 µF → (µ→p, 6 hops right) 5,000 pF; 0.0000047 F → (base→p, 12 hops right) 4,700,000 pF. Most pF buckets wins → 0.0000047 F. (Same-prefix numbers compare instantly — that's the whole trick.)", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Which is largest?", "fig": ""}, {"q": "Which is the LARGEST current: 0.5 A, 400 mA, or 45,000 µA?", "options": ["45,000 µA", "400 mA", "0.5 A"], "correct": 2, "short": "0.5 A", "expl": "Line them all up in µA first: 0.5 A → (base→µ, 6 hops right) 500,000 µA; 400 mA → (m→µ, 3 hops right) 400,000 µA; 45,000 µA stays 45,000 µA. Most µA buckets wins → 0.5 A. (Same-prefix numbers compare instantly — that's the whole trick.)", "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Which is largest?", "fig": ""}, {"q": "Which is the SMALLEST capacitance: 1,000 pF, 0.0009 µF, or 0.0000000012 F?", "options": ["0.0009 µF", "1,000 pF", "0.0000000012 F"], "correct": 0, "short": "0.0009 µF", "expl": "Line them all up in pF first: 1,000 pF stays 1,000 pF; 0.0009 µF → (µ→p, 6 hops right) 900 pF; 0.0000000012 F → (base→p, 12 hops right) 1,200 pF. Most pF buckets wins → 0.0009 µF. (Same-prefix numbers compare instantly — that's the whole trick.)", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Which is smallest?", "fig": ""}, {"q": "Which is the LARGEST resistance: 470 kΩ, 0.5 MΩ, or 499,000 Ω?", "options": ["470 kΩ", "0.5 MΩ", "499,000 Ω"], "correct": 1, "short": "0.5 MΩ", "expl": "Line them all up in Ω first: 470 kΩ → (k→base, 3 hops right) 470,000 Ω; 0.5 MΩ → (M→base, 6 hops right) 500,000 Ω; 499,000 Ω stays 499,000 Ω. Most Ω buckets wins → 0.5 MΩ. (Same-prefix numbers compare instantly — that's the whole trick.)", "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Which is largest?", "fig": ""}, {"q": "Which is the LARGEST voltage: 3,300 mV, 3.4 V, or 0.003 kV?", "options": ["3,300 mV", "0.003 kV", "3.4 V"], "correct": 2, "short": "3.4 V", "expl": "Line them all up in mV first: 3,300 mV stays 3,300 mV; 3.4 V → (base→m, 3 hops right) 3,400 mV; 0.003 kV → (k→m, 6 hops right) 3,000 mV. Most mV buckets wins → 3.4 V. (Same-prefix numbers compare instantly — that's the whole trick.)", "cite": "FAA-H-8083-30B, Fig. 3-33, p. 3-23 (mega…nano…pico) & p. 12-4 (Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Which is largest?", "fig": ""}, {"q": "Before using XC = 1/(2πfC), a 200 µF capacitor must be entered as how many farads?", "options": ["0.0002 F", "0.2 F", "200,000,000 F"], "correct": 0, "short": "0.0002 F", "expl": "µ→base is 6 hops left: 200 µF → 0.0002 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller. The handbook works this exact number on p. 12-61 — formulas eat BASE units only.", "cite": "FAA-H-8083-30B, p. 12-61 (XC worked example: 200 µF → 0.000200 farad) · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "To compute XC for a 2 µF capacitor, C in the formula must be—", "options": ["0.002 F", "0.000002 F", "2,000,000 F"], "correct": 1, "short": "0.000002 F", "expl": "µ→base is 6 hops left: 2 µF → 0.000002 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-61 (XC worked example: 200 µF → 0.000200 farad) · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "A 470 pF capacitor goes into XC = 1/(2πfC) as how many farads?", "options": ["470,000,000,000,000 F", "0.00000047 F", "0.00000000047 F"], "correct": 2, "short": "0.00000000047 F", "expl": "p→base is 12 hops left: 470 pF → 0.00000000047 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller. Yes, it's ugly — that's why the pico row exists. Count all 12 hops.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "For the RC time constant (τ = R × C), a 100 µF capacitor is entered as—", "options": ["0.0001 F", "0.1 F", "100,000,000 F"], "correct": 0, "short": "0.0001 F", "expl": "µ→base is 6 hops left: 100 µF → 0.0001 F. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "Before using XL = 2πfL, an 8 mH inductor must be entered as how many henries?", "options": ["8,000 H", "0.008 H", "8 H"], "correct": 1, "short": "0.008 H", "expl": "m→base is 3 hops left: 8 mH → 0.008 H. Hopping left = bigger bucket, so it takes FEWER buckets — the number gets smaller.", "cite": "FAA-H-8083-30B, p. 12-4 (Metric Based Prefixes Used for Electrical Calculations; Fig. 12-5) · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "To use I = E ÷ R, a 4.7 kΩ resistor goes into the formula as—", "options": ["4,700,000 Ω", "0.0047 Ω", "4,700 Ω"], "correct": 2, "short": "4,700 Ω", "expl": "k→base is 3 hops right: 4.7 kΩ → 4,700 Ω. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "A capacitance formula spits out 0.000047 F. To pick the part from a µF-labeled drawer, that is—", "options": ["47 µF", "0.000000000047 µF", "47,000 µF"], "correct": 0, "short": "47 µF", "expl": "base→µ is 6 hops right: 0.000047 F → 47 µF. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F) & Fig. 3-33, p. 3-23 · AET Math Toolkit skill 2", "topic": "Formula feed", "fig": ""}, {"q": "12 V is applied across a 2 kΩ resistor. The current is—", "options": ["0.006 mA", "6 mA", "6,000 mA"], "correct": 1, "short": "6 mA", "expl": "Hop the givens to base units first: 2 kΩ → (k→base, 3 hops right) 2,000 Ω. I = E ÷ R = 12 ÷ 2,000 = 0.006 A. Then base→m is 3 hops right: 0.006 A → 6 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Ohm's law + prefixes", "fig": ""}, {"q": "24 V across 1.2 kΩ produces a current of—", "options": ["0.02 mA", "20,000 mA", "20 mA"], "correct": 2, "short": "20 mA", "expl": "Hop the givens to base units first: 1.2 kΩ → (k→base, 3 hops right) 1,200 Ω. I = E ÷ R = 24 ÷ 1,200 = 0.02 A. Then base→m is 3 hops right: 0.02 A → 20 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Ohm's law + prefixes", "fig": ""}, {"q": "A 9 V source feeds a 4.5 kΩ resistor. Meter reading in milliamps—", "options": ["2 mA", "0.002 mA", "2,000 mA"], "correct": 0, "short": "2 mA", "expl": "Hop the givens to base units first: 4.5 kΩ → (k→base, 3 hops right) 4,500 Ω. I = E ÷ R = 9 ÷ 4,500 = 0.002 A. Then base→m is 3 hops right: 0.002 A → 2 mA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Ohm's law + prefixes", "fig": ""}, {"q": "15 mA flows through a 2 kΩ resistor. The voltage drop is—", "options": ["0.03 V", "30 V", "30,000 V"], "correct": 1, "short": "30 V", "expl": "Hop the givens to base units first: 15 mA → (m→base, 3 hops left) 0.015 A; 2 kΩ → (k→base, 3 hops right) 2,000 Ω. E = I × R = 0.015 × 2,000 = 30 V.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Ohm's law + prefixes", "fig": ""}, {"q": "A 28 V bus feeds a unit drawing 56 mA. The unit's resistance is—", "options": ["0.5 Ω", "500,000 Ω", "500 Ω"], "correct": 2, "short": "500 Ω", "expl": "Hop the givens to base units first: 56 mA → (m→base, 3 hops left) 0.056 A. R = E ÷ I = 28 ÷ 0.056 = 500 Ω.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Ohm's law + prefixes", "fig": ""}, {"q": "33 V across a 3.3 MΩ insulation path leaks a current of—", "options": ["10 µA", "10,000 µA", "0.01 µA"], "correct": 0, "short": "10 µA", "expl": "Hop the givens to base units first: 3.3 MΩ → (M→base, 6 hops right) 3,300,000 Ω. I = E ÷ R = 33 ÷ 3,300,000 = 0.00001 A. Then base→µ is 6 hops right: 0.00001 A → 10 µA. Hopping right = smaller bucket, so it takes MORE buckets — the number gets bigger.", "cite": "FAA-H-8083-30B, p. 12-17 (Ohm's Law) & p. 12-4 (prefixes) · AET Math Toolkit skill 2", "topic": "Ohm's law + prefixes", "fig": ""}];
+const DRILL = [{"label": "THE HOP CHART", "text": "M ← k ← base → m → µ → n → p — every neighbor step is 3 hops. So: k↔base = 3 · m↔µ = 3 · µ↔n = 3 · n↔p = 3 · µ↔p = 6 · base↔µ = 6 · base↔p = 12 · M↔base = 6. — Fig. 3-33 p. 3-23; Fig. 12-5 p. 12-4"}, {"label": "Which way do I hop?", "text": "Toward a SMALLER prefix = smaller bucket, so it takes MORE buckets: the number gets BIGGER (decimal hops RIGHT). Toward a BIGGER prefix = bigger bucket, fewer buckets: number gets SMALLER (hops LEFT)."}, {"label": "The two capacitor units", "text": "µF = 6 hops below base, pF = 12 below — 'the microfarad (μF), which is 10-6 farad, and the picofarad (pF), which is 10-12 farad.' µF↔pF is always 6 hops. — p. 12-51"}, {"label": "Formulas eat base units", "text": "XC = 1/(2πfC), XL = 2πfL, τ = RC, I = E÷R all want F, H, Ω, A, V — hop FIRST, compute SECOND. The handbook's own example: 200 µF → 0.000200 farad before XC. — p. 12-61"}, {"label": "The written's favorite trap", "text": "V ÷ kΩ gives mA directly (and V ÷ MΩ gives µA) — because the 3 hops in kilo cancel the 3 hops in milli. Check: 12 V ÷ 2 kΩ = 6 mA. — p. 12-17 + p. 12-4"}, {"label": "Sanity check every answer", "text": "Converting to a smaller unit and your number got SMALLER? You hopped the wrong way. 470 pF can never be 470,000,000 µF — a pico-anything is tiny."}];
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], shuffle:false,
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited';
+    const t=document.getElementById('shuffleToggle');
+    t.onclick=()=>{ this.shuffle=!this.shuffle; t.classList.toggle('on',this.shuffle); };
+  },
+
+  start(){
+    this.order = DATA.map((_,k)=>k);
+    if(this.shuffle){ for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    if(missedOnly && this.missed.length){ const m=this.missed.slice(); this.order=m; }
+    else { this.order = DATA.map((_,k)=>k); if(this.shuffle){for(let j=this.order.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[this.order[j],this.order[k]]=[this.order[k],this.order[j]];}} }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=DATA[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=DATA[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=DATA[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
