@@ -145,6 +145,22 @@ var Store = {
 
 function esc(s){ var d=document.createElement('div'); d.textContent=(s==null?'':s); return d.innerHTML; }
 
+/* Fisher-Yates in place */
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+/* Per-session option shuffle: clone the question, reshuffle its options with a FRESH
+   Math.random(), and recompute `correct` by tracking the correct option's IDENTITY (a
+   flag that travels with the option through the shuffle) — never its old index. Answer,
+   highlight, scoring and explanation all still line up; layout can't be memorized. Any
+   extra keys (topic, fig, cite, ...) are preserved. */
+function shuffleOpts(q){
+  var pairs=q.options.map(function(o,i){return {t:o,c:i===q.correct};});
+  shuffle(pairs);
+  var o=Object.assign({},q);
+  o.options=pairs.map(function(p){return p.t;});
+  o.correct=pairs.map(function(p){return !!p.c;}).indexOf(true);
+  return o;
+}
+
 /* ---------------- gate logic (section-level) ----------------
    A section is UNLOCKED if it's the first section of a module, or the PREVIOUS
    section in that module is PASSED. (Modules themselves unlock when the prior
@@ -260,8 +276,12 @@ var App = {
 
   /* ---------- quiz engine (mirrors AET) ---------- */
   startQuiz:function(){
-    var q=this.sec.quiz.slice();
-    this.q={items:q,order:q.map(function(_,i){return i;}),i:0,score:0,answered:0,locked:false};
+    /* fresh per-session shuffle: each option order re-randomized (correct tracked by
+       identity) AND the question order re-randomized. Built once here, frozen for the
+       attempt (renderQ never reshuffles), so a run is stable but a retake re-randomizes. */
+    var q=this.sec.quiz.map(shuffleOpts);
+    var order=q.map(function(_,i){return i;}); shuffle(order);
+    this.q={items:q,order:order,i:0,score:0,answered:0,locked:false};
     this.renderQ();
   },
   renderQ:function(){
