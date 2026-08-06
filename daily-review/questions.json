@@ -1,6 +1,6 @@
 {
  "built": "2026-08-06",
- "total": 2725,
+ "total": 2771,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -27,6 +27,7 @@
   "Block 3 — Homework #2: FAR Part 91": 14,
   "Block 3 — Records, Forms & Certificates": 38,
   "Block 4 · AC Theory (Quiz #3 companion)": 40,
+  "Block 4 · Aircraft Batteries (DC Quiz #6 companion)": 46,
   "Block 4 · G33 Symbol Identification": 40,
   "Block 4 · Metric Conversion Drill — Hop the Decimal": 46,
   "Block 4 · Capacitance & Electronics (Quiz #5 companion)": 30,
@@ -34282,6 +34283,834 @@
    "block": "Block 4",
    "sources": [
     "Block 4 · AC Theory (Quiz #3 companion)"
+   ]
+  },
+  {
+   "id": "01825f15dd",
+   "q": "A storage battery is a group of electrochemical cells. Inside a cell that is DELIVERING power, the energy conversion taking place is—",
+   "options": [
+    "chemical energy into electrical energy",
+    "mechanical energy into electrical energy",
+    "electrical energy into chemical energy"
+   ],
+   "correct": 0,
+   "short": "Chemical → electrical.",
+   "expl": "'Chemical energy can be converted into electricity; the most common form of this is the battery.' A cell frees more electrons on one metal than on the other, building a voltage that pushes current the moment you close the circuit. The REVERSE — electrical → chemical — is what happens while you CHARGE a secondary cell, but a battery's own job (delivering power) is chemical → electrical. So a statement that says 'a battery converts electrical energy into chemical energy' is FALSE as a description of what a battery does.",
+   "cite": "FAA-H-8083-30B, p. 12-23 (Chemical Source); p. 12-87 (Batteries)",
+   "topic": "Fundamentals",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "bda449ebd3",
+   "q": "A primary cell differs from a secondary cell in that a primary cell—",
+   "options": [
+    "cannot be recharged, because its chemical reaction is not reversible",
+    "delivers alternating current instead of direct current",
+    "can be recharged hundreds of times"
+   ],
+   "correct": 0,
+   "short": "Primary = NOT rechargeable.",
+   "expl": "In a primary cell one of the metals is consumed as the cell discharges, and 'because of this consumption, the charging process is not reversible.' The handbook warns that trying to recharge a primary cell 'is usually dangerous and can lead to a battery explosion.' A secondary cell's reaction IS reversible, so it recharges. Every battery makes DC, so the AC option is a throwaway.",
+   "cite": "FAA-H-8083-30B, p. 12-87 (Primary Cell / Secondary Cell)",
+   "topic": "Primary vs Secondary",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "4d5e4b2c62",
+   "q": "The type of cell used in both the lead-acid and the nickel-cadmium aircraft battery — the kind whose reaction is reversible so it can be recharged, and the most common type today — is the—",
+   "options": [
+    "dry cell",
+    "secondary cell",
+    "primary cell"
+   ],
+   "correct": 1,
+   "short": "Secondary cell — reversible / rechargeable.",
+   "expl": "'A secondary cell is any kind of electrolytic cell in which the electrochemical reaction that releases energy is reversible.' You recharge it by pushing current backward through it. Both the lead-acid and the nickel-cadmium aircraft batteries are secondary cells. The dry cell is the everyday PRIMARY (flashlight) cell — it can't be recharged.",
+   "cite": "FAA-H-8083-30B, p. 12-87 (Secondary Cell)",
+   "topic": "Primary vs Secondary",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "97fffa3d2c",
+   "q": "On the worksheet, the three primary-cell types listed are carbon-zinc, alkaline, and—",
+   "options": [
+    "lead-acid",
+    "nickel-cadmium",
+    "mercury"
+   ],
+   "correct": 2,
+   "short": "Worksheet trio: carbon-zinc, alkaline, mercury.",
+   "expl": "Your AIM sheet drills the classic primary-cell trio carbon-zinc / alkaline / mercury. Divergence to know: the FAA handbook's own examples of 'the most common primary cells today' are alkaline, silver-oxide, and lithium (plus the older carbon-zinc) — it does NOT list mercury. Lead-acid and nickel-cadmium are wrong here regardless, because both are SECONDARY (rechargeable) cells, not primary. Use the worksheet trio on the AIM sheet; know the FAA examples for the written.",
+   "cite": "FAA-H-8083-30B, p. 12-87 (Primary Cell)",
+   "topic": "Primary vs Secondary",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "8818ac40fd",
+   "q": "The electrolyte in a lead-acid storage battery is—",
+   "options": [
+    "sulfuric acid and water",
+    "potassium hydroxide and water",
+    "distilled water only"
+   ],
+   "correct": 0,
+   "short": "Sulfuric acid (battery acid) + distilled water.",
+   "expl": "'The electrolyte is sulfuric acid (battery acid)' mixed with distilled water — about 30% acid, 70% water by volume in a new, fully charged cell. Potassium hydroxide is the OTHER battery's electrolyte (nickel-cadmium), so it's the classic swap trap. Pure water alone carries no charge — the acid is what makes the ions.",
+   "cite": "FAA-H-8083-30B, p. 12-87 (Secondary Cell); p. 12-89 (electrolyte)",
+   "topic": "Lead-Acid Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "8a52ddc387",
+   "q": "In a fully CHARGED lead-acid cell, the positive plate is made of—",
+   "options": [
+    "lead sulfate",
+    "lead peroxide (lead dioxide, PbO2)",
+    "spongy (pure) lead"
+   ],
+   "correct": 1,
+   "short": "Positive plate charged = lead peroxide / PbO2.",
+   "expl": "In a charged lead-acid cell 'the positive electrode is lead peroxide, and the negative electrode is lead' — the negative plate is spongy lead. Lead sulfate (PbSO4) is what BOTH plates turn into as the cell DISCHARGES, so it's the trap for 'charged.' Memory hook: charged positive = the OXIDE (lead peroxide/dioxide); charged negative = plain lead.",
+   "cite": "FAA-H-8083-30B, p. 12-87 (Secondary Cell); p. 12-89 (plates)",
+   "topic": "Lead-Acid Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "56d994fb20",
+   "q": "As a lead-acid cell DISCHARGES, both the positive and negative plates gradually change into—",
+   "options": [
+    "lead peroxide, while the electrolyte gets stronger",
+    "spongy lead, while the electrolyte turns to acid",
+    "lead sulfate, while the electrolyte weakens toward water"
+   ],
+   "correct": 2,
+   "short": "Discharge → lead sulfate on BOTH plates; electrolyte dilutes toward water.",
+   "expl": "On discharge the sulfate ions leave the acid and join the lead in both plates to form lead sulfate (PbSO4), while oxygen and hydrogen combine into water (H2O). So the acid gets used up — the electrolyte weakens toward water — and the specific gravity falls from about 1.270 down toward 1.150. Charging drives the reaction backward: sulfate goes back into solution, the acid strengthens, and the plates return to lead peroxide and lead.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (discharge chemistry)",
+   "topic": "Lead-Acid Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "c77f5d92b2",
+   "q": "Space is deliberately left in the bottom of a lead-acid cell case, below the plates, in order to—",
+   "options": [
+    "give shed material (sediment) room to collect without shorting the plates",
+    "hold a reserve of extra electrolyte for the cell",
+    "let the plates expand downward when the cell heats up"
+   ],
+   "correct": 0,
+   "short": "Sediment space prevents shorting.",
+   "expl": "As a cell ages, active material sheds off the plates. The ribbed separators 'provide a path for sediment to settle to the bottom of the cell,' and the well below the plates lets that debris pile up clear of the plate edges. If sediment ever bridges the bottoms of a positive and a negative plate, it shorts the cell internally and kills its output — the empty space is what buys time before that happens.",
+   "cite": "FAA-H-8083-30B, p. 12-88 (separators / sediment)",
+   "topic": "Lead-Acid Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "28c56f6110",
+   "q": "A lead-acid battery rated at 12 volts is built from—",
+   "options": [
+    "3 cells in series, each about 4 volts",
+    "6 cells in series, each about 2 volts",
+    "12 cells in series, each about 1 volt"
+   ],
+   "correct": 1,
+   "short": "12 V = 6 cells × ~2 V (24 V = 12 cells).",
+   "expl": "'A lead-acid cell is normally rated at approximately 2 volts,' so a 12-volt battery is six cells in series and a 24-volt battery is twelve. (Fresh off the charger a cell reads about 2.2 V, but it settles to ~2 V.) Contrast the nickel-cadmium cell, which is only about 1.25 V — so a 24-volt ni-cad needs about 19-20 cells, not 12.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (Battery Ratings)",
+   "topic": "Lead-Acid Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "f85f8985b4",
+   "q": "The state of charge of a lead-acid battery is checked with a hydrometer, an instrument that measures the electrolyte's—",
+   "options": [
+    "voltage under load",
+    "temperature",
+    "specific gravity (its weight compared with water)"
+   ],
+   "correct": 2,
+   "short": "Hydrometer = specific gravity of the electrolyte.",
+   "expl": "'The state of charge of a battery is indicated by the density of the electrolyte and is checked by a hydrometer, an instrument that measures the specific gravity.' The float rides high in dense (charged) acid and sinks in weak (discharged) acid. This trick works ONLY on lead-acid: as it discharges the acid genuinely weakens, so specific gravity tracks the charge. (A nickel-cadmium's specific gravity barely moves, so a hydrometer tells you nothing about its charge.)",
+   "cite": "FAA-H-8083-30B, p. 12-90 (Lead-Acid Battery Testing Methods)",
+   "topic": "Lead-Acid Testing",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "b97bda7967",
+   "q": "A hydrometer reading of about 1.270-1.300 on a lead-acid cell indicates the cell is—",
+   "options": [
+    "in a high state of charge",
+    "about half charged",
+    "fully discharged"
+   ],
+   "correct": 0,
+   "short": "~1.300-1.275 = high charge; ~1.150 = discharged.",
+   "expl": "The handbook's own ranges: 1.300-1.275 = high state of charge, 1.275-1.240 = medium, 1.240-1.200 = low. A new, fully charged aircraft cell reads about 1.300 (roughly 1.270 warm); after discharge the specific gravity drops to about 1.150. So a reading up near 1.3 means charged, and a reading down near 1.15 means flat.",
+   "cite": "FAA-H-8083-30B, p. 12-90 (specific-gravity ranges); p. 12-89 (~1.150 discharged)",
+   "topic": "Lead-Acid Testing",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "c4e5417808",
+   "q": "The open-circuit voltage of a single lead-acid cell can be estimated from its specific gravity using the shop rule cell voltage ≈ specific gravity + 0.84. A cell reading 1.265 therefore develops about—",
+   "options": [
+    "12 volts",
+    "2.1 volts",
+    "1.2 volts"
+   ],
+   "correct": 1,
+   "short": "1.265 + 0.84 ≈ 2.1 V per cell.",
+   "expl": "Add about 0.84 to the specific-gravity number and you land near the cell's open-circuit voltage: 1.265 + 0.84 ≈ 2.10 V, which matches the handbook's '~2 volts per lead-acid cell.' Heads-up: this SG-plus-0.84 formula is a shop rule of thumb — it is not printed word-for-word in FAA-H-8083-30B, but it lines up with the handbook's cell-voltage figure. About 1.2 V is the NICKEL-CADMIUM cell value; 12 V is a whole six-cell battery, not one cell.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (~2 V/cell) — SG+0.84 is a shop rule of thumb, not verbatim in -30B",
+   "topic": "Lead-Acid Testing",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "20b3de944d",
+   "q": "When taking a hydrometer reading, distilled water that is needed to top off the cells should be added—",
+   "options": [
+    "just before the reading, so the level is correct",
+    "only while the battery is on charge and gassing",
+    "after the reading is taken, never just before"
+   ],
+   "correct": 2,
+   "short": "Read FIRST, then add water.",
+   "expl": "'Always take hydrometer readings before adding distilled water, never after.' Fresh water sits on top and hasn't mixed in yet, so a sample drawn right after topping off is watered-down and reads falsely low — it doesn't represent the true strength of the electrolyte. Give the charge time to stir it in, or simply read before you fill.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (take readings before adding water)",
+   "topic": "Lead-Acid Testing",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "c542dcfbd2",
+   "q": "A hydrometer reading must be temperature-corrected because the electrolyte's apparent specific gravity changes with temperature. Per the FAA handbook, correction is needed when the electrolyte temperature is—",
+   "options": [
+    "outside the 70 °F to 90 °F band (above 90 °F or below 70 °F)",
+    "anywhere below 100 °F",
+    "exactly 80 °F, the reference point"
+   ],
+   "correct": 0,
+   "short": "No correction 70-90 °F; correct outside that band (80 °F midpoint).",
+   "expl": "'No correction is necessary when the temperature is between 70 °F and 90 °F... When temperatures are greater than 90 °F or less than 70 °F, it is necessary to apply a correction factor.' Hot acid reads low, cold acid reads high, so corrections are ADDED or SUBTRACTED per the manufacturer's chart. Note the AIM/industry shortcut uses 80 °F as the reference temperature — that's simply the midpoint of the handbook's no-correction band, not a separate rule.",
+   "cite": "FAA-H-8083-30B, p. 12-90 (temperature correction) — 80 °F reference is the industry midpoint of the FAA 70-90 °F band",
+   "topic": "Lead-Acid Testing",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "b4e487f809",
+   "q": "Spilled lead-acid electrolyte, or acid on the skin, is neutralized with—",
+   "options": [
+    "vinegar",
+    "sodium bicarbonate (baking soda)",
+    "boric acid"
+   ],
+   "correct": 1,
+   "short": "Lead-acid → baking soda (sodium bicarbonate).",
+   "expl": "Acid is neutralized with a base: 'if the acid does contact the skin, wash the area thoroughly with water and then apply bicarbonate of soda,' and the battery sump pad is soaked in a sodium-bicarbonate solution to catch acid gases. Do NOT reach for boric acid or vinegar here — those are ACIDS, used to neutralize the nickel-cadmium's ALKALINE spills. Matching the neutralizer to the electrolyte is a favorite exam trap.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (bicarbonate of soda); pp. 12-87-12-88 (sump)",
+   "topic": "Lead-Acid Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "96416e8bab",
+   "q": "When a lead-acid battery is being charged, the gas it gives off is—",
+   "options": [
+    "harmless water vapor only",
+    "inert nitrogen",
+    "an explosive mixture of hydrogen and oxygen"
+   ],
+   "correct": 2,
+   "short": "Charging makes explosive H2 + O2 — no sparks, loosen the caps.",
+   "expl": "'When a storage battery is being charged, it generates a certain amount of hydrogen and oxygen. Since this is an explosive mixture, it is important to take steps to prevent ignition.' Loosen the vent caps and leave them in place so pressure can escape, keep open flame and sparks away, and switch the charger off with a remote switch BEFORE connecting or disconnecting leads so you don't strike an arc at the terminals.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (Charging Methods — gas hazard)",
+   "topic": "Charging",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "565ef66665",
+   "q": "In the constant-VOLTAGE charging method, as the battery approaches full charge the charging current—",
+   "options": [
+    "automatically tapers off, dropping to about 1 ampere",
+    "climbs steadily higher until the battery is full",
+    "stays exactly the same the whole time"
+   ],
+   "correct": 0,
+   "short": "Constant voltage → current starts high, tapers to ~1 A.",
+   "expl": "'In the constant voltage method... the current at the start of the process is high but automatically tapers off, reaching a value of approximately 1 ampere when the battery is fully charged.' As the cell fills, its own voltage rises to meet the fixed source voltage, so less and less current is forced through — the battery throttles itself. That self-limiting is why constant voltage 'requires less time and supervision.'",
+   "cite": "FAA-H-8083-30B, p. 12-91 (Constant voltage method)",
+   "topic": "Charging",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "fd9457b84b",
+   "q": "Which charging method takes LESS time and needs less supervision, but must NOT be used to charge batteries of different states of charge together on one line?",
+   "options": [
+    "the constant-current method",
+    "the constant-voltage method",
+    "the trickle-discharge method"
+   ],
+   "correct": 1,
+   "short": "Constant voltage = fastest / least supervision.",
+   "expl": "'The constant voltage method requires less time and supervision than does the constant current method.' Because it holds voltage fixed and lets current find its own level, each battery on the line draws whatever current its state of charge calls for — so batteries in constant-voltage charging are connected in PARALLEL (same voltage), and mixing wildly different states of charge lets a low battery hog current. The constant-current method instead risks OVERcharging near the end and takes longer.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (constant voltage vs constant current)",
+   "topic": "Charging",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "f57d1e1f6c",
+   "q": "The constant-CURRENT charging method holds the current steady the entire time. Its main danger is—",
+   "options": [
+    "never reaching a full charge",
+    "producing no gassing at all",
+    "overcharging the battery toward the end of the charge"
+   ],
+   "correct": 2,
+   "short": "Constant current → overcharge risk near the end.",
+   "expl": "'In the constant current method, the current remains almost constant during the entire charging process. This method requires a longer time to charge a battery fully and, toward the end of the process, presents the danger of overcharging, if care is not exercised.' Because current keeps being forced in after the cells are full, the extra energy just heats the battery and boils the electrolyte. Batteries in constant-current charging are wired in SERIES so the same current passes through each.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (Constant current method)",
+   "topic": "Charging",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "b93594b33b",
+   "q": "In a constant-current charging setup, the batteries being charged are connected—",
+   "options": [
+    "in series, so the same current flows through each one",
+    "in a series-parallel bank matched by capacity",
+    "in parallel, so each sees the same voltage"
+   ],
+   "correct": 0,
+   "short": "Constant current = SERIES; constant voltage = PARALLEL.",
+   "expl": "Constant-current charging forces one fixed current down a single path, so the batteries sit in SERIES — the identical current passes through every cell in the string. Constant-VOLTAGE charging instead holds one voltage across the batteries, so they hang in PARALLEL and each draws its own current. Quick pair to memorize: constant CURRENT → series; constant VOLTAGE → parallel. (This series/parallel detail is standard shop practice; the handbook describes the two methods on p. 12-91.)",
+   "cite": "FAA-H-8083-30B, p. 12-91 (charging methods)",
+   "topic": "Charging",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "d5e169f4ee",
+   "q": "In the aircraft, the storage battery is kept charged by the engine-driven generating system. That system charges the battery by the—",
+   "options": [
+    "constant-current method, because the generator output current is fixed",
+    "constant-voltage method, because a voltage regulator holds the generator voltage steady",
+    "pulsed-discharge method controlled by the battery relay"
+   ],
+   "correct": 1,
+   "short": "Aircraft charging = constant VOLTAGE (regulator holds voltage).",
+   "expl": "'In the aircraft, the storage battery is charged by direct current from the aircraft generator system. This method of charging is the constant voltage method, since the generator voltage is held constant by use of a voltage regulator.' The regulator pins the bus at a set voltage; the battery then draws a big current when low and almost none when full — exactly the self-tapering behavior of constant-voltage charging.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (aircraft = constant voltage)",
+   "topic": "Charging",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "d1791a8d59",
+   "q": "Connecting two identical batteries in PARALLEL (positive to positive, negative to negative) increases the—",
+   "options": [
+    "both the voltage and the capacity together",
+    "voltage, while the capacity stays the same",
+    "ampere-hour capacity, while the voltage stays the same"
+   ],
+   "correct": 2,
+   "short": "Parallel → more capacity, same voltage. Series → more voltage, same capacity.",
+   "expl": "'Connecting batteries in parallel increases ampere-hour capacity. Connecting batteries in series increases the total voltage but not the ampere-hour capacity.' Think of parallel as adding more plate area / more fuel tanks at the same pressure (voltage). Series stacks the voltages but the same single current path limits capacity. This is also why constant-voltage chargers wire batteries in parallel and constant-current chargers wire them in series.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (Battery Ratings — series vs parallel)",
+   "topic": "Battery Ratings",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "aeaa9011fc",
+   "q": "A battery's capacity is given as an ampere-hour rating. Per FAA-H-8083-30B, the discharge time used as the basis for rating AIRPLANE battery capacity is—",
+   "options": [
+    "the 5-hour discharge rate",
+    "the 1-hour discharge rate",
+    "the 20-hour discharge rate"
+   ],
+   "correct": 0,
+   "short": "FAA handbook: 5-hour rate for airplane batteries.",
+   "expl": "'For airplane batteries, a period of 5 hours has been established as the discharge time in rating battery capacity.' A 1 ampere-hour battery could supply 1 amp for 1 hour (or 2 amps for half an hour), but heavy discharge heats the battery and lowers the total output, so a standard rating time is fixed. IMPORTANT DIVERGENCE: some nickel-cadmium and industry references rate capacity at the 1-HOUR (C1) rate — but the -30B General handbook (what the written is built from) says 5 hours, so 5-hour is the handbook-supported answer.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (5-hour airplane rating basis)",
+   "topic": "Battery Ratings",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "73fa6f8c7b",
+   "q": "A battery with a capacity of 1 ampere-hour should be able to supply—",
+   "options": [
+    "60 amps for 1 hour, guaranteed",
+    "1 amp for 1 hour, or 2 amps for half an hour, before being fully discharged",
+    "1 amp for 60 hours"
+   ],
+   "correct": 1,
+   "short": "Amp-hour = amps × hours it can be delivered.",
+   "expl": "'A battery with a capacity of 1 ampere-hour should be able to continuously supply a current of 1 amp to a load for exactly 1 hour, or 2 amps for 1/2 hour, or 1/3 amp for 3 hours.' The rating is just current multiplied by time. Real output shrinks under heavy loads — a hard, fast discharge heats the battery and cuts the total ampere-hours you actually get.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (ampere-hour rating)",
+   "topic": "Battery Ratings",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "ddec80a0c2",
+   "q": "The electrolyte in a nickel-cadmium battery is—",
+   "options": [
+    "sulfuric acid",
+    "lead peroxide",
+    "potassium hydroxide (an alkaline solution)"
+   ],
+   "correct": 2,
+   "short": "Ni-cad → potassium hydroxide (KOH), alkaline.",
+   "expl": "'The electrolyte is a potassium hydroxide (KOH) solution' — about 20-34% KOH in distilled water. It is an ALKALI (a base), the chemical opposite of the lead-acid battery's sulfuric ACID — which is exactly why the two batteries need opposite neutralizers and must never share a service area. Lead peroxide isn't an electrolyte at all; it's the lead-acid positive PLATE.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (Ni-Cad Chemistry and Construction)",
+   "topic": "Ni-Cad Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "092ad26c89",
+   "q": "In a charged nickel-cadmium cell, the active materials are—",
+   "options": [
+    "nickel hydroxide on the positive plate and metallic cadmium on the negative plate",
+    "carbon on the positive plate and zinc on the negative plate",
+    "lead peroxide on the positive plate and spongy lead on the negative plate"
+   ],
+   "correct": 0,
+   "short": "Ni-cad charged: positive = nickel hydroxide, negative = cadmium.",
+   "expl": "'Active materials in nickel-cadmium cells are nickel hydroxide (NiOOH) in the charged positive plate and sponge cadmium (Cd) in the charged negative plate.' The name tells you both: NICKEL (hydroxide) positive, CADMIUM negative. Lead peroxide/lead is the LEAD-ACID pair; carbon/zinc is the old dry (primary) cell.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (Ni-Cad Chemistry and Construction)",
+   "topic": "Ni-Cad Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "40c0ecbfe2",
+   "q": "The open-circuit voltage of a single nickel-cadmium cell is approximately—",
+   "options": [
+    "2.0 volts",
+    "1.25 volts",
+    "6 volts"
+   ],
+   "correct": 1,
+   "short": "Ni-cad cell ≈ 1.25 V (lead-acid cell ≈ 2 V).",
+   "expl": "'The typical open circuit cell voltage of a nickel-cadmium battery is about 1.25 volts.' That's noticeably lower than the lead-acid cell's ~2 volts, so a nickel-cadmium battery needs MORE cells for the same bus voltage — roughly 19-20 cells for a 24-volt ni-cad versus 12 cells for a 24-volt lead-acid.",
+   "cite": "FAA-H-8083-30B, p. 12-91 (Ni-Cad cell voltage)",
+   "topic": "Ni-Cad Chemistry",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "c2f2a1ace5",
+   "q": "Unlike a lead-acid battery, the specific gravity of a nickel-cadmium battery's electrolyte—",
+   "options": [
+    "falls steadily as the battery discharges, just like lead-acid",
+    "rises steadily as the battery discharges",
+    "does not change appreciably with state of charge, so it can't be used to judge the charge"
+   ],
+   "correct": 2,
+   "short": "Ni-cad SG barely moves → useless for state of charge.",
+   "expl": "In a ni-cad, the potassium-hydroxide electrolyte only carries ions between the plates; it isn't consumed the way sulfuric acid is, so its specific gravity stays nearly constant whether the battery is full or flat. That means a hydrometer tells you almost nothing about a ni-cad's charge. (This SG-doesn't-move behavior is standard ni-cad knowledge; the handbook makes the same point by saying a ni-cad's true energy can only be found by a scheduled discharge on the bench, p. 12-93.)",
+   "cite": "FAA-H-8083-30B, pp. 12-92-12-93 (Ni-Cad operation / bench energy test) — SG-constant is standard ni-cad behavior",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "e129bb1f4f",
+   "q": "The ONLY reliable way to determine a nickel-cadmium battery's true state of charge is by—",
+   "options": [
+    "performing a measured discharge (a capacity/energy test)",
+    "measuring the open-circuit terminal voltage",
+    "reading the electrolyte specific gravity with a hydrometer"
+   ],
+   "correct": 0,
+   "short": "Ni-cad charge = measured discharge, not SG, not voltage.",
+   "expl": "A ni-cad's specific gravity barely moves and its terminal voltage stays nearly flat almost all the way down, so neither reveals the real charge. The handbook notes a ni-cad's 'voltage depression' (mis-called 'memory') 'is only detectable when a full discharge is attempted,' and that 'Ni-Cads must have a scheduled energy test performed on the bench' because you can't read their energy level on the aircraft. Bottom line: to KNOW the charge, you discharge it and measure.",
+   "cite": "FAA-H-8083-30B, p. 12-93 (voltage depression / bench energy test)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "32ccf01f38",
+   "q": "Because a nickel-cadmium cell's terminal voltage stays nearly constant through most of the discharge, its discharge voltage curve is—",
+   "options": [
+    "rising the whole time it discharges",
+    "nearly flat, dropping off sharply only near the very end",
+    "a steady, even downhill slope from full to empty"
+   ],
+   "correct": 1,
+   "short": "Ni-cad discharge voltage is nearly flat, then a cliff.",
+   "expl": "A ni-cad holds its voltage up almost all the way down, then falls off a cliff near the end. That flat curve is great for equipment (steady voltage) but terrible for a fuel gauge — the voltage doesn't sag enough to warn you the battery is nearly empty, which (together with an unchanging specific gravity) is why the real state of charge can only be found by a measured discharge. (The flat-curve trait is standard ni-cad behavior; the handbook covers ni-cad operation on p. 12-92.)",
+   "cite": "FAA-H-8083-30B, p. 12-92 (Operation of Nickel-Cadmium Cells) — flat discharge curve is standard ni-cad behavior",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "e36f5ecf69",
+   "q": "The electrolyte level in a nickel-cadmium cell is HIGHEST when the battery is—",
+   "options": [
+    "at exactly half charge",
+    "fully discharged",
+    "fully charged"
+   ],
+   "correct": 2,
+   "short": "Level rises on charge → HIGHEST at full charge; LOWEST discharged.",
+   "expl": "'During discharge, the plates absorb a quantity of the electrolyte. On recharge, the level of the electrolyte rises and, at full charge, the electrolyte is at its highest level.' So a ni-cad's level swings the opposite way you might guess: high when charged, low when discharged. This single fact drives the watering rule in the next question.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (Operation of Nickel-Cadmium Cells)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "8a84b3c4fb",
+   "q": "Distilled water should be added to a nickel-cadmium battery ONLY when the battery is—",
+   "options": [
+    "fully charged",
+    "fully discharged",
+    "warm from a hard discharge"
+   ],
+   "correct": 0,
+   "short": "Water a ni-cad ONLY when fully charged — else it spews on charge.",
+   "expl": "'Water should be added only when the battery is fully charged,' because that's when the electrolyte is at its highest level. If you top a ni-cad off while it's discharged (low level), the level then RISES as you charge it and pushes electrolyte out the vents — messy, corrosive, and it strips the cell. So charge first, then water. (This is the exact opposite of the trap answer 'add water when discharged.')",
+   "cite": "FAA-H-8083-30B, p. 12-92 (add water only when fully charged)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "04620f9c21",
+   "q": "Spilled nickel-cadmium electrolyte, or the alkali on skin or clothes, is neutralized with—",
+   "options": [
+    "sodium bicarbonate (baking soda)",
+    "boric acid solution (or vinegar)",
+    "ammonia and baking soda mixed"
+   ],
+   "correct": 1,
+   "short": "Ni-cad (alkaline) → boric acid or vinegar (an acid).",
+   "expl": "The ni-cad's electrolyte is a caustic ALKALI, so you neutralize it with an ACID: 'neutralize the alkali immediately with vinegar or dilute boric acid solution... then rinse with clear water.' The sump pad is soaked in 3% boric acid, and a compartment being converted from lead-acid is neutralized with ammonia or boric acid. Do NOT use baking soda here — that's the base you use on the ACID (lead-acid) battery. Opposite battery, opposite neutralizer.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (neutralize alkali with vinegar or boric acid)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "4423c742a5",
+   "q": "A small amount of white crystalline deposit (\"white moss\") found around a nickel-cadmium cell's vent caps is—",
+   "options": [
+    "potassium hydroxide crystals that mean the cell is ruined",
+    "sulfate that must be neutralized with baking soda",
+    "potassium carbonate, a normal by-product that should be cleaned off with distilled water"
+   ],
+   "correct": 2,
+   "short": "White moss = potassium carbonate (K2CO3) — normal; clean with distilled water.",
+   "expl": "'White moss around vent cap seals is potassium carbonate (K2CO3). Clean up these surfaces with distilled water and dry.' It forms when a little KOH electrolyte creeps out and reacts with carbon dioxide in the air — a small amount is normal housekeeping, not a death sentence. It DOES matter because 'electrolyte spillage can form grounding paths,' so you wipe it off. (Sulfate/baking soda belongs to the lead-acid world.)",
+   "cite": "FAA-H-8083-30B, p. 12-92 (General Maintenance — K2CO3)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "15d88ab3f8",
+   "q": "Inter-cell connectors (cell links) on a nickel-cadmium battery must be kept at the correct torque because a loose or over-tight link—",
+   "options": [
+    "creates high resistance at the joint, which overheats and can leave burn marks",
+    "changes the battery's rated voltage",
+    "reverses the polarity of that cell"
+   ],
+   "correct": 0,
+   "short": "Wrong link torque → resistive heating → burn/scorch marks.",
+   "expl": "General ni-cad maintenance requires you to 'maintain inter-cell connectors at proper torque values.' A loose (or improperly made) link is a high-resistance joint, and current through resistance makes heat — enough to discolor, scorch, or burn the hardware and the cell tops, and in the worst case start the runaway chain. Correct torque keeps the joint low-resistance and cool. Torque can't change a cell's voltage or flip its polarity.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (torque inter-cell connectors)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "9b509033fb",
+   "q": "As a nickel-cadmium cell heats up, its internal resistance falls, which lets it draw even more current and heat further. This dangerous self-feeding cycle is—",
+   "options": [
+    "voltage depression (memory effect)",
+    "thermal runaway",
+    "sulfation"
+   ],
+   "correct": 1,
+   "short": "Rising temp → falling internal resistance → thermal runaway.",
+   "expl": "Heat lowers a ni-cad's internal resistance; lower resistance lets more charging current through; more current makes more heat — a loop that can feed on itself until cells vent, rupture, or (worst case) explode. That's thermal runaway, and it's why ni-cad chargers watch temperature. Don't confuse it with 'voltage depression / memory' (a capacity illusion, cured by a deep discharge) or 'sulfation' (a LEAD-ACID problem). (Thermal runaway is standard ni-cad behavior; the handbook describes the heat/pressure danger of cell reversal on p. 12-93.)",
+   "cite": "FAA-H-8083-30B, p. 12-93 (cell reversal → high pressure and heat) — thermal runaway is standard ni-cad behavior",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "766800f689",
+   "q": "A nickel-cadmium battery normally emits gas—",
+   "options": [
+    "only while it sits idle and self-discharges",
+    "steadily the entire time it discharges",
+    "toward the end of the charging cycle (and if overcharged)"
+   ],
+   "correct": 2,
+   "short": "Ni-cad gasses toward the END of charge.",
+   "expl": "'Toward the end of the charging cycle, the cells emit gas. This also occurs if the cells are overcharged.' The gas is hydrogen and oxygen from water in the electrolyte breaking down — an explosive mix, vented by the cell relief valves. A little gassing at the end of charge is normal (and uses up a little water, which is why you re-water). Heavy gassing early or all the time signals a charging problem.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (cells emit gas toward end of charge)",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "9dea5ca18b",
+   "q": "A common way to FAST-charge a nickel-cadmium battery is the constant-current method, in which—",
+   "options": [
+    "the current is held constant while the charging voltage is allowed to vary",
+    "both current and voltage are held perfectly constant",
+    "the voltage is held constant while the current is allowed to vary"
+   ],
+   "correct": 0,
+   "short": "Ni-cad fast charge = constant current (voltage varies).",
+   "expl": "In constant-current (fast) charging the charger forces a fixed current in and lets whatever voltage is needed appear across the battery — the voltage climbs as the cells fill. That's the mirror image of constant-voltage charging, where the VOLTAGE is fixed and the current tapers. Constant current fills a ni-cad quickly but must be watched near the end, since holding current after the cells are full drives gassing, heat, and overcharge. (The current-fixed/voltage-varies description is standard; the handbook contrasts the two methods on p. 12-91.)",
+   "cite": "FAA-H-8083-30B, p. 12-91 (constant-current vs constant-voltage) — fast-charge = constant current is standard ni-cad practice",
+   "topic": "Ni-Cad Service",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "6d1f95d3eb",
+   "q": "Which battery uses an ALKALINE electrolyte (potassium hydroxide) rather than an acid one?",
+   "options": [
+    "the sealed lead-acid (SLA) battery",
+    "the nickel-cadmium battery",
+    "the lead-acid battery"
+   ],
+   "correct": 1,
+   "short": "Ni-cad = alkaline (KOH); lead-acid = acid (H2SO4).",
+   "expl": "Straight discrimination: the nickel-cadmium battery's electrolyte is potassium hydroxide, an ALKALI. Both the flooded lead-acid and the sealed lead-acid (SLA) batteries use sulfuric ACID. That single acid-vs-alkali split drives almost every difference between them — opposite neutralizers, opposite watering rules, and the hard rule that you never service the two types in the same area.",
+   "cite": "FAA-H-8083-30B, p. 12-87 (lead-acid = sulfuric acid); p. 12-91 (ni-cad = KOH)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "7955d1aed1",
+   "q": "A technician neutralizes a battery spill with VINEGAR or dilute BORIC ACID. The spill came from a—",
+   "options": [
+    "primary carbon-zinc dry cell",
+    "lead-acid battery (acid electrolyte)",
+    "nickel-cadmium battery (alkaline electrolyte)"
+   ],
+   "correct": 2,
+   "short": "Acid neutralizer (vinegar/boric acid) → alkaline ni-cad spill.",
+   "expl": "You neutralize a base with an acid, so vinegar or boric acid means you're cleaning up the ALKALINE nickel-cadmium electrolyte. A lead-acid (sulfuric acid) spill is the reverse — you'd reach for the BASE, baking soda. Lock the pairs together: lead-acid ACID → baking-soda BASE; ni-cad ALKALI → boric-acid/vinegar ACID. Mixing them up is the single most-tested battery-safety trap.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (ni-cad → vinegar/boric acid); p. 12-91 (lead-acid → baking soda)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "26a4de2ae1",
+   "q": "For which battery does a rising electrolyte level indicate the battery is approaching FULL charge?",
+   "options": [
+    "the nickel-cadmium battery",
+    "the lead-acid battery",
+    "both, equally"
+   ],
+   "correct": 0,
+   "short": "Ni-cad level RISES toward full charge — that's its watering cue.",
+   "expl": "The ni-cad is the odd one: its plates soak up electrolyte on discharge and give it back on charge, so 'at full charge, the electrolyte is at its highest level' — and that's exactly why you water a ni-cad only when it's fully charged. A lead-acid cell's level mainly falls from gassing and evaporation and is topped off differently, and its charge is read by SPECIFIC GRAVITY, not level. Don't let the two watering rules blur together.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (ni-cad level highest at full charge)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "066e020793",
+   "q": "A hydrometer (specific-gravity check) is a valid state-of-charge test for—",
+   "options": [
+    "both batteries equally",
+    "the lead-acid battery only",
+    "the nickel-cadmium battery only"
+   ],
+   "correct": 1,
+   "short": "SG check works on lead-acid ONLY; ni-cad SG doesn't move.",
+   "expl": "Only the lead-acid battery burns up acid as it discharges, so only its specific gravity tracks the charge — that's what the hydrometer reads. A ni-cad's KOH electrolyte holds a nearly constant specific gravity full or flat, so a hydrometer is useless on it; you find a ni-cad's charge by a measured discharge on the bench instead. Match the test to the battery.",
+   "cite": "FAA-H-8083-30B, p. 12-90 (lead-acid hydrometer); p. 12-93 (ni-cad bench test)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "5390c1ef77",
+   "q": "Why should lead-acid and nickel-cadmium batteries never be serviced or charged in the same room?",
+   "options": [
+    "they would draw current from each other and self-discharge",
+    "their charging voltages are identical and would conflict",
+    "acid fumes from one destroy the electrolyte of the other (cross-contamination)"
+   ],
+   "correct": 2,
+   "short": "Cross-contamination: acid kills alkaline, and vice versa.",
+   "expl": "Their electrolytes are chemical opposites — sulfuric ACID versus potassium-hydroxide ALKALI — so airborne acid fumes settling on a ni-cad (or alkaline mist on a lead-acid) neutralize and ruin the other's electrolyte. The handbook drives this home in the conversion procedure: a compartment must be 'clean, dry, and free of all traces of acid from the old battery,' washed and neutralized before a ni-cad goes in. Separate tools, separate areas, separate everything.",
+   "cite": "FAA-H-8083-30B, p. 12-92 (compartment must be free of all traces of acid)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "ab4cbcb1a3",
+   "q": "Which statement about lead-acid versus nickel-cadmium CELL VOLTAGE is correct?",
+   "options": [
+    "a lead-acid cell is about 2 volts and a nickel-cadmium cell is about 1.25 volts",
+    "a lead-acid cell is about 1.25 volts and a nickel-cadmium cell is about 2 volts",
+    "both cells are about 2 volts"
+   ],
+   "correct": 0,
+   "short": "Lead-acid ≈ 2 V/cell; ni-cad ≈ 1.25 V/cell.",
+   "expl": "The lead-acid cell sits at about 2 volts (12-volt battery = 6 cells); the nickel-cadmium cell is lower, about 1.25 volts, so a ni-cad needs more cells for the same bus voltage. Getting the two cell voltages backward is a classic swap trap — anchor it: the ACID cell is the higher-voltage one.",
+   "cite": "FAA-H-8083-30B, p. 12-89 (lead-acid ~2 V); p. 12-91 (ni-cad ~1.25 V)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "fc253f146c",
+   "q": "A light general-aviation trainer most commonly carries which battery type, while turbine transport aircraft historically favored the other?",
+   "options": [
+    "primary dry cells in both",
+    "lead-acid in the light trainer; nickel-cadmium historically on turbine aircraft",
+    "nickel-cadmium in the light trainer; lead-acid on turbine aircraft"
+   ],
+   "correct": 1,
+   "short": "Light GA = lead-acid; turbine/transport historically = ni-cad.",
+   "expl": "Both are secondary (rechargeable) aircraft batteries, so 'most common' honestly depends on the aircraft. Light piston trainers overwhelmingly use lead-acid (cheap, simple, and now sealed-lead-acid too). Nickel-cadmium earned its place on turbine and transport aircraft because it delivers huge starting current and takes fast charge/high-cycle service well — though the handbook notes SLA batteries are now 'gaining in use over flooded lead acid and Ni-Cad.' The handbook describes both without crowning one winner, so teach both and pick by aircraft.",
+   "cite": "FAA-H-8083-30B, pp. 12-87-12-93 (lead-acid, ni-cad, and SLA batteries)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
+   ]
+  },
+  {
+   "id": "dec739037d",
+   "q": "A sealed lead-acid (SLA) battery avoids one troublesome nickel-cadmium trait: the false 'memory' in which a ni-cad seems fully charged but isn't. The handbook's correct name for that trait is—",
+   "options": [
+    "sulfation",
+    "thermal runaway",
+    "voltage depression"
+   ],
+   "correct": 2,
+   "short": "'Memory effect' is really voltage depression.",
+   "expl": "'This characteristic is only detectable when a full discharge is attempted... it is technically known as \"voltage depression\" and commonly but erroneously called \"memory effect.\"' Constant overcharge with infrequent deep discharges causes it, so you can believe a full charge exists when it doesn't. SLA batteries don't have it, so they need no scheduled deep-cycle maintenance. (Thermal runaway is the heat loop; sulfation is a lead-acid problem.)",
+   "cite": "FAA-H-8083-30B, p. 12-93 (voltage depression / memory effect)",
+   "topic": "Contrast Drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Aircraft Batteries (DC Quiz #6 companion)"
    ]
   },
   {
