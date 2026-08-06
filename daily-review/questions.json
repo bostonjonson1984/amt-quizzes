@@ -1,6 +1,6 @@
 {
- "built": "2026-08-05",
- "total": 2695,
+ "built": "2026-08-06",
+ "total": 2725,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -29,6 +29,7 @@
   "Block 4 · AC Theory (Quiz #3 companion)": 40,
   "Block 4 · G33 Symbol Identification": 40,
   "Block 4 · Metric Conversion Drill — Hop the Decimal": 46,
+  "Block 4 · Capacitance & Electronics (Quiz #5 companion)": 30,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 357,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -35829,6 +35830,546 @@
    "block": "Block 4",
    "sources": [
     "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "2e3b4a776c",
+   "q": "Worksheet #1 — The ability of a component to store an electric charge is called—",
+   "options": [
+    "capacitance",
+    "reactance",
+    "inductance"
+   ],
+   "correct": 0,
+   "short": "Capacitance — a capacitor's ability to store charge (symbol C).",
+   "expl": "'The measure of a capacitor's ability to store charge is its capacitance. The symbol used for capacitance is the letter C.' Picture a stretchy balloon on the end of the wire: pump charge in and it stores it, ready to give back later. Inductance is the coil's opposition to a CHANGE in current, and reactance is the AC opposition those parts create — different jobs.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (Capacitance; The RC Time Constant)",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "e78ac74b36",
+   "q": "Worksheet #2 — In older electrical texts, a capacitor is referred to by what other name?",
+   "options": [
+    "commutator",
+    "condenser",
+    "conductor"
+   ],
+   "correct": 1,
+   "short": "Condenser — the old-school name for a capacitor.",
+   "expl": "'Condenser' is the vintage word for a capacitor — the FAA handbook still slips into it, naming the 80-microfarad capacitor in its own reactance sample problem 'a condenser' (p. 12-54). Don't confuse it with a conductor (a wire that carries current) or a commutator (the split ring on a DC generator/motor).",
+   "cite": "FAA-H-8083-30B, p. 12-54 (Xc sample problem — 'the capacitance of a condenser is 80 µF')",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "7a4839b72d",
+   "q": "Worksheet #3 — The opposition that an INDUCTOR (coil) offers to alternating current is called—",
+   "options": [
+    "capacitive reactance",
+    "resistance",
+    "inductive reactance"
+   ],
+   "correct": 2,
+   "short": "Inductive reactance (XL) — a coil's opposition to AC.",
+   "expl": "'This opposition is called inductive reactance, symbolized by XL, and is measured in ohms just as resistance is measured.' A coil fights any CHANGE in current, and AC is nothing but constant change, so the coil pushes back the whole time. Capacitive reactance is the capacitor's version of the same idea, and plain resistance opposes both AC and DC alike.",
+   "cite": "FAA-H-8083-30B, p. 12-58 (Inductive Reactance)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "9a5cf11156",
+   "q": "Worksheet #4 — The time required for a capacitor to charge to about 63.2% of the supply voltage is one—",
+   "options": [
+    "RC time constant (τ)",
+    "period",
+    "cycle"
+   ],
+   "correct": 0,
+   "short": "RC time constant — τ = R × C.",
+   "expl": "'The time constant of a series resistor/capacitor (RC) circuit... equals the product of the resistance in ohms and the capacitance in farad and is symbolized by the Greek letter tau (τ). τ = RC.' The FAA rounds it to 'charge to 63 percent of the source' (p. 12-50); your worksheet's 63.2% is the exact figure (1 − 1/e). Same milestone — after five time constants (5τ) the capacitor is ~99% full. Think of filling a surge tank through a narrow pipe: the fatter the tank (C) or the tighter the pipe (R), the longer it takes.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (The Resistor/Capacitor (RC) Time Constant)",
+   "topic": "RC Time Constant",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "62d49733e2",
+   "q": "Worksheet #5 — The NONCONDUCTIVE material placed between the two plates of a capacitor is the—",
+   "options": [
+    "diode",
+    "dielectric",
+    "electrolyte bridge"
+   ],
+   "correct": 1,
+   "short": "Dielectric — the insulator between the plates. NOT 'diode.'",
+   "expl": "'The capacitor is constructed of two parallel plates separated by a nonconductor called a dielectric.' The look-alike trap is DIODE — a one-way electronic valve, a totally different part. The dielectric's whole job is to insulate: it keeps the plates from touching so they can hold opposite charges facing each other. Air, paper, mica, ceramic, and oxide films are all dielectrics.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (Capacitance — parallel plates separated by a dielectric)",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "52638a296d",
+   "q": "Worksheet #6 — The opposition a CAPACITOR offers to alternating current as it charges and discharges is called—",
+   "options": [
+    "inductive reactance",
+    "impedance",
+    "capacitive reactance"
+   ],
+   "correct": 2,
+   "short": "Capacitive reactance (Xc) — a capacitor's opposition to AC.",
+   "expl": "As AC charges and discharges a capacitor every alternation, the capacitor builds an opposing charge that fights the current — 'the actual AC reactance Xc, which just like resistance, is measured in ohms.' Inductive reactance is the coil's version; impedance is the grand total of resistance AND reactance combined, not the capacitor's part alone.",
+   "cite": "FAA-H-8083-30B, p. 12-54 (Capacitive Reactance Xc)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "ee1c4d3dee",
+   "q": "Worksheet #7 — The maximum DC voltage a capacitor can withstand before its dielectric is damaged is its—",
+   "options": [
+    "working voltage",
+    "instantaneous voltage",
+    "peak voltage"
+   ],
+   "correct": 0,
+   "short": "Working voltage — the max safe DC across the plates. NOT 'peak.'",
+   "expl": "'The voltage rating... specifies the maximum DC voltage that can be applied without the risk of damage to the device. This voltage rating is typically called the breakdown voltage, the working voltage, or simply the voltage rating.' Push past it and 'the dielectric breaks down and arcing occurs between the plates.' The trap is PEAK voltage — that's the top of an AC sine wave, a different idea entirely; you actually pick a working voltage well ABOVE the peak the cap will see.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (Voltage Rating of a Capacitor)",
+   "topic": "Working Voltage",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "2d529ac55a",
+   "q": "Worksheet #8 — The effective value of an AC voltage — the value that differs from its peak and equals 0.707 × peak — is the—",
+   "options": [
+    "average voltage",
+    "RMS (root mean square) voltage",
+    "breakdown voltage"
+   ],
+   "correct": 1,
+   "short": "RMS = effective value = 0.707 × peak.",
+   "expl": "The effective value is the RMS (root mean square) value — the DC-equivalent 'heating' value of the AC. It matters for capacitors because ratings are DC but AC swings higher than its RMS reading: 'An alternating voltage of 500 volts (RMS) has a peak voltage of 707 volts, and a capacitor to which it is applied should have a working voltage of at least 750 volts.' So RMS and peak are NOT the same number, and the working voltage must clear the peak with margin.",
+   "cite": "FAA-H-8083-30B, p. 12-49 (Effective Value); p. 12-51 (500 V RMS → 707 V peak)",
+   "topic": "Values of AC",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "e0f3532455",
+   "q": "Worksheet #9 — A fixed capacitor that uses a mineral for its dielectric and is prized for high stability at higher voltages is the—",
+   "options": [
+    "variable (tuning) capacitor",
+    "electrolytic capacitor",
+    "mica capacitor"
+   ],
+   "correct": 2,
+   "short": "Mica capacitor — metal-foil plates separated by mica sheets.",
+   "expl": "'The fixed mica capacitor is made of metal foil plates that are separated by sheets of mica, which form the dielectric... Mica is an excellent dielectric and withstands higher voltages than paper without allowing arcing between the plates.' Mica (a natural mineral) is stable and moisture-sealed in molded plastic. Contrast: the electrolytic packs huge capacitance but is polarized and DC-only; the variable cap is the small tunable radio part.",
+   "cite": "FAA-H-8083-30B, pp. 12-51–12-52 (Fixed Capacitors — Mica)",
+   "topic": "Capacitor Types",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "b801828b78",
+   "q": "Worksheet #10 — A capacitor whose capacitance can be changed by the operator — as in a radio tuner — is a—",
+   "options": [
+    "variable capacitor",
+    "fixed capacitor",
+    "electrolytic capacitor"
+   ],
+   "correct": 0,
+   "short": "Variable capacitor — adjustable, a.k.a. 'tuning capacitor.'",
+   "expl": "'Variable capacitors are mostly used in radio tuning circuits, and they are sometimes called tuning capacitors.' You change the capacitance by sliding one set of plates in or out of mesh with the other, which changes the effective plate area (Factor #1 of capacitance). A fixed capacitor is locked at one value; an electrolytic is fixed AND polarized.",
+   "cite": "FAA-H-8083-30B, p. 12-53 (Variable Capacitors)",
+   "topic": "Capacitor Types",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "a54dae5246",
+   "q": "Worksheet #11 — Which statement best defines a CAPACITOR?",
+   "options": [
+    "a one-way device that allows current to flow in only one direction",
+    "two conductive plates separated by a dielectric, used to store an electric charge",
+    "a coil of wire that opposes any change in the current through it"
+   ],
+   "correct": 1,
+   "short": "Capacitor = two plates + a dielectric = a charge storehouse.",
+   "expl": "'In its most basic form, the capacitor is constructed of two parallel plates separated by a nonconductor called a dielectric. In an electrical circuit, a capacitor serves as a reservoir or storehouse for electricity.' The coil-that-opposes-change is an INDUCTOR; the one-way device is a DIODE. Only the capacitor is built as plates + dielectric to bank charge.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (Capacitance)",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "5921cfda57",
+   "q": "Worksheet #12 — Which statement best defines REACTANCE?",
+   "options": [
+    "the opposition to any current caused by the resistance of the conductor",
+    "the total combined opposition of resistance and reactance together",
+    "the opposition to alternating current caused by inductance or capacitance"
+   ],
+   "correct": 2,
+   "short": "Reactance = AC opposition from inductance OR capacitance.",
+   "expl": "Reactance comes in two flavors — inductive reactance (XL) from coils and capacitive reactance (Xc) from capacitors — and both 'oppose current flow only in AC circuits, not in DC circuits' (p. 12-49). Plain resistance opposes ALL current; impedance is resistance and reactance ADDED together. Reactance is specifically the AC-only, coil-or-cap part.",
+   "cite": "FAA-H-8083-30B, p. 12-49; pp. 12-54, 12-58 (Capacitive/Inductive Reactance)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "9e68b4fb68",
+   "q": "Worksheet #13 — Which statement best defines a FIXED CAPACITOR?",
+   "options": [
+    "a capacitor with a constant capacitance value that cannot be adjusted",
+    "a capacitor that stores no charge until it is manually set",
+    "a capacitor whose value is changed by moving its plates"
+   ],
+   "correct": 0,
+   "short": "Fixed capacitor — one permanent, unchangeable value.",
+   "expl": "A fixed capacitor is manufactured at one set capacitance and stays there — mica, ceramic, electrolytic, oil, and polyester film are all fixed types, 'further divided according to the type of dielectric used.' The one you CAN change by moving plates is the variable (tuning) capacitor — that's exactly what makes it variable.",
+   "cite": "FAA-H-8083-30B, pp. 12-51–12-52 (Fixed Capacitors)",
+   "topic": "Capacitor Types",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "58958e83a0",
+   "q": "Worksheet #14 — Which statement best defines a capacitor's WORKING VOLTAGE?",
+   "options": [
+    "the peak voltage the AC source reaches on each cycle",
+    "the maximum voltage the capacitor can safely handle in normal operation",
+    "the exact voltage at which the capacitor stores the most charge"
+   ],
+   "correct": 1,
+   "short": "Working voltage = the max SAFE operating voltage.",
+   "expl": "The working voltage 'specifies the maximum DC voltage that can be applied without the risk of damage to the device.' It's a safety ceiling, not a sweet spot and not a property of the source. The rule of thumb: 'the capacitor should be selected so that its working voltage is at least 50 percent greater than the highest voltage to be applied.' Stay under the ceiling with margin and the dielectric survives.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (Voltage Rating of a Capacitor)",
+   "topic": "Working Voltage",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "dcc37ed670",
+   "q": "Worksheet #15 — The FARAD is the basic unit of—",
+   "options": [
+    "inductance",
+    "reactance",
+    "capacitance"
+   ],
+   "correct": 2,
+   "short": "Farad (F) — the unit of capacitance.",
+   "expl": "'The basic unit of capacitance is the farad and is given by the letter f. By definition, one farad is one coulomb of charge stored with one volt across the plates of the capacitor.' Inductance is measured in HENRIES and reactance in OHMS — three different quantities, three different units. One farad is huge, so real parts read in microfarads (µF) and picofarads (pF).",
+   "cite": "FAA-H-8083-30B, pp. 12-50–12-51 (Units of Capacitance)",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "1fb35ed058",
+   "q": "Worksheet #16 — Which statement best describes a VARIABLE CAPACITOR?",
+   "options": [
+    "one whose capacitance can be adjusted, typically by moving one set of plates relative to the other",
+    "one sealed at a single capacitance that never changes",
+    "one that must be replaced to obtain a different capacitance"
+   ],
+   "correct": 0,
+   "short": "Variable cap — move the plates, change the capacitance.",
+   "expl": "Sliding one plate set in or out of mesh changes how much plate area faces across the gap, and since capacitance is directly proportional to plate area (Factor #1), the value tracks the knob. That's why they're the 'tuning capacitors' of radio circuits (100–500 pF). A part that never changes is a fixed capacitor.",
+   "cite": "FAA-H-8083-30B, p. 12-53 (Variable Capacitors); p. 12-51 (Factors Affecting Capacitance)",
+   "topic": "Capacitor Types",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "79b35bbe49",
+   "q": "Worksheet #17 — CAPACITIVE REACTANCE is best defined as—",
+   "options": [
+    "the opposition to current in a DC circuit caused by resistors",
+    "the opposition to current in an AC circuit caused by capacitors",
+    "the opposition to current in an AC circuit caused by inductors"
+   ],
+   "correct": 1,
+   "short": "Capacitive reactance (Xc) — AC opposition from capacitors.",
+   "expl": "As a capacitor charges and discharges on AC it builds an opposing voltage that limits the current — measured in ohms as Xc = 1/(2πfC). Coils give INDUCTIVE reactance (XL); resistors give resistance, which acts in DC too. Reactance of either kind is an AC-only effect.",
+   "cite": "FAA-H-8083-30B, p. 12-54 (Capacitive Reactance Xc)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "4441533410",
+   "q": "Worksheet #18 — A DIELECTRIC is best described as—",
+   "options": [
+    "a conductor that carries charge from one plate to the other",
+    "a semiconductor that lets charge flow one way only",
+    "an insulator (nonconductor) placed between the plates of a capacitor"
+   ],
+   "correct": 2,
+   "short": "Dielectric = the insulator between the plates.",
+   "expl": "'Two parallel plates separated by a nonconductor called a dielectric.' Its job is to INSULATE — hold the plates apart so opposite charges can face each other without shorting. If it conducted, the plates would neutralize and store nothing. Every dielectric has a breakdown limit; exceed the working voltage and it arcs through.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (Capacitance); p. 12-51 (dielectric breakdown)",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "232c410a9b",
+   "q": "Worksheet #19 — The RC TIME CONSTANT is defined as the time for a capacitor's voltage to reach about—",
+   "options": [
+    "63.2% of the source (supply) voltage",
+    "50% of the source voltage",
+    "100% of the source voltage"
+   ],
+   "correct": 0,
+   "short": "One τ ≈ 63% (worksheet: 63.2%) of supply; 5τ ≈ 99%.",
+   "expl": "'The time in the formula is the time required to charge to 63 percent of the voltage of the source' — the FAA's rounding of the exact 63.2% (1 − 1/e) your worksheet uses. It reaches ~99% (essentially full) only after FIVE time constants, so one τ is nowhere near 100%, and it's well past the halfway 50% mark. τ = R × C.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (The RC Time Constant; 5τ ≈ 99%)",
+   "topic": "RC Time Constant",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "44e692b798",
+   "q": "Worksheet #20 — INDUCTIVE REACTANCE is best defined as—",
+   "options": [
+    "the opposition to alternating current caused by the electric field of a capacitor",
+    "the opposition to alternating current caused by the magnetic field of an inductor",
+    "the opposition to direct current caused by the resistance of a coil's wire"
+   ],
+   "correct": 1,
+   "short": "Inductive reactance (XL) — AC opposition from a coil's magnetic field.",
+   "expl": "'The effects of the magnetic fields are a continuously inducted voltage opposition to the current in the circuit. This opposition is called inductive reactance, symbolized by XL.' It comes from the coil's collapsing/building MAGNETIC field, not a capacitor's electric field, and it exists only in AC — the coil's plain wire resistance is what opposes DC.",
+   "cite": "FAA-H-8083-30B, p. 12-58 (Inductive Reactance)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "06d5976b6e",
+   "q": "A capacitor of 20 µF charges through a 10 kΩ resistor. The RC time constant (τ) of the circuit is—",
+   "options": [
+    "200 seconds",
+    "0.002 second",
+    "0.2 second"
+   ],
+   "correct": 2,
+   "short": "τ = RC = 10,000 Ω × 0.000020 F = 0.2 s.",
+   "expl": "τ = R × C, but the formula only speaks BASE units — ohms and FARADS. Hop the capacitor down the ladder first: 20 µF, µ→base is 6 hops left, = 0.000020 F. Now multiply: 10,000 × 0.000020 = 0.2 second. After that one τ the cap is ~63% charged; five of them (1.0 s) gets it to ~99%. Forgetting the µF→F hop is what produces the 200-second monster.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (τ = RC); p. 12-51 (µF = 10⁻⁶ F)",
+   "topic": "Math drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "554fa4cccc",
+   "q": "Find the capacitive reactance of an 80 µF capacitor at 60 cps (the handbook's own sample problem). Xc = 1/(2πfC) equals about—",
+   "options": [
+    "33.2 ohms",
+    "33,200 ohms",
+    "0.33 ohm"
+   ],
+   "correct": 0,
+   "short": "80 µF → 0.000080 F; Xc = 1/(6.28×60×0.000080) ≈ 33.2 Ω.",
+   "expl": "Straight from p. 12-54: 'First, the capacitance, 80 µF, is changed to farads by dividing 80 by 1,000,000... This quotient equals 0.000080 farad.' Then Xc = 1/(6.28 × 60 × 0.000080) = 33.2 ohms. The whole problem hinges on the µF→F hop (6 places) — skip it and your answer is off by a factor of a million, which is exactly where 33,200 comes from.",
+   "cite": "FAA-H-8083-30B, p. 12-54 (Xc sample problem, 80 µF / 60 cps)",
+   "topic": "Math drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "78cea62a56",
+   "q": "In the formula Xc = 1/(2πfC), if the frequency INCREASES, the capacitive reactance—",
+   "options": [
+    "increases",
+    "decreases",
+    "stays the same"
+   ],
+   "correct": 1,
+   "short": "Xc is INVERSE to frequency — freq up, Xc down.",
+   "expl": "Frequency sits in the DENOMINATOR of Xc = 1/(2πfC), so raising it shrinks Xc: at high frequency the capacitor barely opposes the current (it passes AC easily); at low frequency it opposes a lot; at DC (f = 0) it blocks completely. 'A good capacitor blocks DC and passes the effects of pulsing DC or AC' (p. 12-50). This is the opposite behavior from an inductor.",
+   "cite": "FAA-H-8083-30B, p. 12-54 (Xc = 1/(2πfC)); p. 12-50 (blocks DC, passes AC)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "029faf4a07",
+   "q": "In the formula XL = 2πfL, if the frequency INCREASES, the inductive reactance—",
+   "options": [
+    "stays the same",
+    "decreases",
+    "increases"
+   ],
+   "correct": 2,
+   "short": "XL is DIRECT with frequency — freq up, XL up.",
+   "expl": "'The inductive reactance of a component is directly proportional to the inductance... and the applied frequency. By increasing either the inductance or applied frequency, the inductive reactance likewise increases.' Frequency multiplies in the NUMERATOR of XL = 2πfL, the mirror image of the capacitor: a coil passes low frequencies (and DC) easily but chokes high frequencies. Memory pair — coil chokes fast AC, cap passes fast AC.",
+   "cite": "FAA-H-8083-30B, pp. 12-58–12-59 (XL = 2πfL, directly proportional)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "225e6baf98",
+   "q": "An old service manual calls a component a 'condenser.' On a modern schematic you would find this same part labeled a—",
+   "options": [
+    "capacitor",
+    "inductor",
+    "resistor"
+   ],
+   "correct": 0,
+   "short": "Condenser = the old name for a capacitor.",
+   "expl": "Same part, older word. The FAA handbook itself does it — its capacitive-reactance sample problem reads 'the capacitance of a condenser is 80 µF' (p. 12-54). So a 'condenser' stores charge between plates just like any capacitor. An inductor is a coil and a resistor is a current-limiter — neither is a condenser.",
+   "cite": "FAA-H-8083-30B, p. 12-54 ('condenser' = capacitor, sample problem)",
+   "topic": "Definitions",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "fe1b50b704",
+   "q": "A capacitor's rating that says the dielectric will physically fail (arc through) if exceeded is its BREAKDOWN voltage. How does it relate to the WORKING voltage a technician selects?",
+   "options": [
+    "the working voltage and breakdown voltage are the same number, used interchangeably",
+    "the working voltage is chosen with margin — at least 50% above the highest voltage to be applied — so the capacitor never reaches breakdown",
+    "the working voltage is set higher than the breakdown voltage for extra safety"
+   ],
+   "correct": 1,
+   "short": "Pick working V ≥ 50% above the applied — safely below breakdown.",
+   "expl": "'If the voltage applied across the plates is too great, the dielectric breaks down and arcing occurs' — that's breakdown. To stay clear of it, 'the capacitor should be selected so that its working voltage is at least 50 percent greater than the highest voltage to be applied.' The FAA lists 'breakdown voltage, working voltage, or simply the voltage rating' together as the maximum-safe number, but the design habit is to leave a 50% cushion, never to run a cap AT its limit — and you can't exceed the breakdown, so a working V set above it makes no sense.",
+   "cite": "FAA-H-8083-30B, p. 12-51 (Voltage Rating; 50% margin rule)",
+   "topic": "Working Voltage",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "962e085b45",
+   "q": "You need a large capacitance (hundreds of µF) in a small can for a DC power-supply filter, and the part is marked with '+' and '−' leads. Which type is it?",
+   "options": [
+    "variable (tuning) capacitor",
+    "mica capacitor",
+    "electrolytic capacitor"
+   ],
+   "correct": 2,
+   "short": "Electrolytic — big µF, small size, polarized (+/−), DC only.",
+   "expl": "'Electrolytic capacitors provide large capacitance in small physical sizes. Their values range from 1 to about 1,500 microfarads. Unlike the other types, electrolytic capacitors are generally polarized, with the positive lead marked +... and should only be subjected to direct voltage.' The '+/−' marking is the giveaway. Mica is a small, stable, non-polarized part (≤ ~0.05 µF); a variable cap is a tiny tunable radio part (100–500 pF).",
+   "cite": "FAA-H-8083-30B, p. 12-52 (Electrolytic capacitors)",
+   "topic": "Capacitor Types",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "517f3ecb5e",
+   "q": "Why is there NO continuous current THROUGH a good capacitor on a steady DC circuit, even though current flows in the wires while it charges?",
+   "options": [
+    "the dielectric is an insulator, so charge builds on the plates but cannot cross the gap between them",
+    "the plates are too far apart for electrons to travel between them at any voltage",
+    "the capacitor converts the DC into heat until the current stops"
+   ],
+   "correct": 0,
+   "short": "The dielectric insulates — charge parks on the plates, none crosses.",
+   "expl": "'There can be no continuous movement of DC through a capacitor. A good capacitor blocks DC and passes the effects of pulsing DC or AC.' Current flows in the external wires only WHILE the plates are charging or discharging; once charged to the source voltage, it stops — 'even though the circuit is broken by the gap between the capacitor plates.' The dielectric's insulating job is the whole reason: it lets opposite charges face each other without a path across.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (Capacitors in Direct Current; blocks DC)",
+   "topic": "RC Time Constant",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "b938f2b924",
+   "q": "A capacitor is marked 1 µF. Expressed in picofarads, that is—",
+   "options": [
+    "1,000 pF",
+    "1,000,000 pF",
+    "0.000001 pF"
+   ],
+   "correct": 1,
+   "short": "µ→p is 6 hops right: 1 µF = 1,000,000 pF.",
+   "expl": "The two common capacitor units bracket the farad: microfarad (µF) = 10⁻⁶ F and picofarad (pF) = 10⁻¹² F. From µ to p is six decimal places — hop the point six places RIGHT (smaller bucket, so MORE of them): 1 µF → 1,000,000 pF. Going the other way, 1,500 pF would be 0.0015 µF. Keep the ladder handy: it's the same hop that trips people on Xc and τ problems.",
+   "cite": "FAA-H-8083-30B, pp. 12-50–12-51 (µF = 10⁻⁶ F, pF = 10⁻¹² F)",
+   "topic": "Math drill",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "3aeb4a390e",
+   "q": "About how many time constants must pass before a charging capacitor reaches essentially full charge (~99% of source voltage)?",
+   "options": [
+    "one time constant (1τ)",
+    "sixty-three time constants",
+    "five time constants (5τ)"
+   ],
+   "correct": 2,
+   "short": "5τ ≈ 99% (full); 1τ is only ~63%.",
+   "expl": "'The time required to bring the charge to about 99 percent of the source voltage is approximately 5 τ.' One τ gets you only to ~63% (the worksheet's 63.2%); the curve keeps flattening — ~86% at 2τ, ~95% at 3τ, ~98% at 4τ, ~99% at 5τ. The '63' in '63 percent' is a percentage, not a count of time constants, which is the trap in the 63-time-constants answer.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (5τ ≈ 99%); Fig. 12-115 charging curve",
+   "topic": "RC Time Constant",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
    ]
   },
   {
