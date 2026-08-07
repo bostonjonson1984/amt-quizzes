@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 4 — Batteries, Transformers &amp; Circuit Faults</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 4 — Batteries, Transformers &amp; Circuit Faults</h1>
+    <div class="sub">The Worksheet #2 (Q19-25) subject cluster: battery fundamentals (primary vs secondary), memory effect &amp; the ni-cad -&gt; sealed-lead-acid replacement, lead-acid vs nickel-cadmium specs and the &#x27;opposites&#x27; logic, circuit malfunctions (open / short / ground), transformer concepts (leakage flux, eddy current, iron loss, inverter, rectifier), and AC phase relationships (ELI the ICE man). 3-option FAA written style; every explanation ORIGINAL and cited to the public-domain FAA-H-8083-30B Ch. 12.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "A battery cell whose chemical reaction is NOT reversible — so once its active material is used up it cannot be recharged — is called a—", "options": ["primary cell", "secondary cell", "storage cell"], "correct": 0, "short": "Primary cell = one-way reaction, not rechargeable.", "expl": "In a primary cell one of the metals is consumed as the cell discharges, and that consumption is a one-way street — the reaction cannot be run backward, so the cell cannot be recharged. A secondary (storage) cell is the opposite: its reaction IS reversible, so pushing current backward through it recharges it. Both aircraft batteries — lead-acid and nickel-cadmium — are secondary cells.", "cite": "FAA-H-8083-30B, p. 12-87 (Primary Cell / Secondary Cell)", "topic": "Battery Fundamentals", "fig": ""}, {"q": "The everyday flashlight-type 'dry cell' — the most common cell of its kind — is an example of a—", "options": ["primary cell", "storage cell", "secondary cell"], "correct": 0, "short": "Dry cell = the most common PRIMARY cell.", "expl": "The dry cell is the classic non-rechargeable cell — it is the most common primary cell. 'Dry' refers to its immobilized (paste) electrolyte, not to a lack of electrolyte. Because it is a primary cell, its reaction is not reversible; trying to recharge one is dangerous and can rupture it. A storage (secondary) cell is the rechargeable kind, which the dry cell is not.", "cite": "FAA-H-8083-30B, p. 12-87 (Primary Cell)", "topic": "Battery Fundamentals", "fig": ""}, {"q": "Another name for a secondary cell — the rechargeable kind used in both aircraft batteries — is a—", "options": ["primary cell", "storage cell", "dry cell"], "correct": 1, "short": "Secondary cell = storage cell (rechargeable).", "expl": "A secondary cell is any cell whose energy-releasing reaction is reversible, so you can recharge it by forcing current backward through it — that reversibility is why it can STORE and return energy, hence 'storage cell.' A primary cell (like the dry cell) can't be recharged, so it is never a storage cell.", "cite": "FAA-H-8083-30B, p. 12-87 (Secondary Cell)", "topic": "Battery Fundamentals", "fig": ""}, {"q": "The difference between a 'dry' cell and a 'wet' cell is that a dry cell uses—", "options": ["no electrolyte at all, while a wet cell uses acid", "a solid metal electrolyte, while a wet cell uses a gas", "a paste (immobilized) electrolyte, while a wet cell uses a free liquid electrolyte"], "correct": 2, "short": "Dry = paste electrolyte; wet = liquid electrolyte.", "expl": "Both kinds have electrolyte — the difference is its form. A dry cell holds its electrolyte as a thick paste so it can't spill (a flashlight cell). A wet cell carries a free liquid electrolyte, like the sulfuric-acid solution sloshing inside a flooded lead-acid battery. So 'dry' never means 'no electrolyte'; it means the electrolyte is immobilized.", "cite": "FAA-H-8083-30B, p. 12-87 (cells and electrolytes)", "topic": "Battery Fundamentals", "fig": ""}, {"q": "Memory effect (and the maintenance headaches that come with it) has caused nickel-cadmium batteries to be replaced in many applications by ___ batteries.", "options": ["sealed lead-acid (SLA)", "primary dry-cell", "flooded (vented) lead-acid"], "correct": 0, "short": "Ni-cad replaced by SEALED lead-acid (SLA).", "expl": "The handbook notes that in many applications sealed lead-acid batteries 'are gaining in use over flooded lead acid and Ni-Cad batteries,' precisely because SLA batteries do not suffer the ni-cad's voltage-depression ('memory') trait and so need no scheduled deep-cycle maintenance. Plain flooded lead-acid is the OLD vented type SLA improves on, and a primary dry-cell isn't even rechargeable — so the replacement is specifically the SEALED lead-acid battery. (Industry also calls it valve-regulated lead-acid / VRLA; the -30B term is 'sealed lead acid / SLA.')", "cite": "FAA-H-8083-30B, pp. 12-92-12-93 (Sealed Lead Acid batteries gaining over ni-cad)", "topic": "Memory Effect & Replacement", "fig": ""}, {"q": "The nickel-cadmium 'memory effect' is best described as—", "options": ["a permanent GAIN in capacity earned by deep-cycling the battery", "a loss of usable capacity after repeated shallow (partial) discharges, so the battery seems full but really isn't", "the battery electronically storing its own serial number for tracking"], "correct": 1, "short": "Memory effect = lost usable capacity from repeated shallow discharge.", "expl": "When a ni-cad is repeatedly recharged after only partial (shallow) discharges — the classic standby/overcharge pattern — it starts acting as if its full capacity is only the small slice it habitually uses. The handbook explains this shows up 'only when a full discharge is attempted,' so 'it is possible to believe a full charge exists, while in fact it does not.' It is a LOSS of usable capacity, never a gain, and it has nothing to do with electronic tracking.", "cite": "FAA-H-8083-30B, p. 12-93 (voltage depression / memory effect)", "topic": "Memory Effect & Replacement", "fig": ""}, {"q": "The handbook's technically correct name for what is commonly (and erroneously) called the nickel-cadmium 'memory effect' is—", "options": ["sulfation", "thermal runaway", "voltage depression"], "correct": 2, "short": "'Memory effect' is really VOLTAGE DEPRESSION.", "expl": "The handbook states the trait 'is technically known as \"voltage depression\" and commonly but erroneously called \"memory effect.\"' It comes from constant overcharge with infrequent deep discharges. Don't confuse it with thermal runaway (a heat/resistance loop) or sulfation (a lead-acid plate problem) — both are different ni-cad or lead-acid faults.", "cite": "FAA-H-8083-30B, p. 12-93 (voltage depression / memory effect)", "topic": "Memory Effect & Replacement", "fig": ""}, {"q": "When a nickel-cadmium battery shows voltage depression ('memory'), the standard corrective action is to—", "options": ["deep-cycle it: fully discharge each cell, then recharge (recondition it)", "add sulfuric acid to restore its lost capacity", "swap its potassium hydroxide electrolyte for baking soda"], "correct": 0, "short": "Fix memory / voltage depression by deep-cycling (reconditioning).", "expl": "Because voltage depression comes from never fully discharging the cells, the cure is to do exactly that: run a full, deep discharge and then a complete recharge (reconditioning), which restores the usable capacity. This is why the handbook says ni-cads require 'scheduled deep cycle maintenance' while SLA batteries do not. You never pour sulfuric acid into a ni-cad (its electrolyte is an alkali, KOH), and baking soda is a neutralizer, not an electrolyte.", "cite": "FAA-H-8083-30B, p. 12-93 (ni-cads require scheduled deep-cycle maintenance) — deep-cycle reconditioning is standard ni-cad practice", "topic": "Memory Effect & Replacement", "fig": ""}, {"q": "The electrolyte in a lead-acid battery is—", "options": ["potassium hydroxide mixed with water", "sulfuric acid mixed with water", "boric acid mixed with water"], "correct": 1, "short": "Lead-acid electrolyte = sulfuric acid + water (an ACID).", "expl": "A lead-acid cell's electrolyte is sulfuric acid (battery acid) in distilled water — roughly 30% acid, 70% water in a fresh, charged cell. Potassium hydroxide is the NICKEL-CADMIUM battery's electrolyte (an alkali), the classic swap trap. Boric acid isn't an electrolyte here at all — it's what you'd use to NEUTRALIZE a ni-cad spill.", "cite": "FAA-H-8083-30B, pp. 12-87, 12-89 (lead-acid electrolyte = sulfuric acid)", "topic": "Lead-Acid Specs", "fig": ""}, {"q": "A spill of lead-acid electrolyte, or battery acid on the skin, is neutralized with—", "options": ["vinegar", "boric acid", "baking soda (sodium bicarbonate)"], "correct": 2, "short": "Lead-acid (acid) -> baking soda (a BASE).", "expl": "You neutralize an acid with a base: the handbook has you apply bicarbonate of soda (baking soda) to spilled sulfuric-acid electrolyte, and the battery sump pad is soaked in a sodium-bicarbonate solution. Boric acid and vinegar are themselves ACIDS — those are for the ni-cad's ALKALINE spills, not lead-acid. Matching the neutralizer to the electrolyte is a favorite exam trap.", "cite": "FAA-H-8083-30B, p. 12-91 (neutralize acid with bicarbonate of soda)", "topic": "Lead-Acid Specs", "fig": ""}, {"q": "Each individual cell of a lead-acid battery produces about—", "options": ["2 volts", "1.2 volts", "6 volts"], "correct": 0, "short": "Lead-acid cell ~= 2 V (12 V = 6 cells, 24 V = 12 cells).", "expl": "A lead-acid cell is rated at about 2 volts (roughly 2.1 fresh off the charger). So a 12-volt battery is six cells in series and a 24-volt battery is twelve cells. The 1.2-volt figure belongs to the NICKEL-CADMIUM cell, which is why a 24-volt ni-cad needs about 19-20 cells instead of 12. Anchor it: the acid cell is the higher-voltage cell.", "cite": "FAA-H-8083-30B, p. 12-89 (Battery Ratings — ~2 V per lead-acid cell)", "topic": "Lead-Acid Specs", "fig": ""}, {"q": "The state of charge of a lead-acid battery is checked with a hydrometer, which measures the electrolyte's—", "options": ["potassium content", "specific gravity", "temperature"], "correct": 1, "short": "Hydrometer reads SPECIFIC GRAVITY (~1.275 charged).", "expl": "As a lead-acid cell discharges, the sulfuric acid is used up and the electrolyte weakens toward water, so its specific gravity (its weight compared with water) genuinely tracks the charge — about 1.275-1.300 fully charged, dropping toward 1.150 discharged. A hydrometer floats higher in dense (charged) acid. This trick works only on lead-acid; a ni-cad's specific gravity barely moves, so a hydrometer can't tell you a ni-cad's charge.", "cite": "FAA-H-8083-30B, p. 12-90 (hydrometer / specific gravity = state of charge)", "topic": "Lead-Acid Specs", "fig": ""}, {"q": "In the aircraft, a lead-acid battery is kept charged by the—", "options": ["pulsed-discharge method controlled by the battery relay", "constant-current method, because the generator output current is fixed", "constant-voltage method, because a voltage regulator holds the generator voltage steady"], "correct": 2, "short": "Aircraft charging = CONSTANT VOLTAGE (regulator holds voltage).", "expl": "The handbook states the aircraft charges its battery by the constant-voltage method, 'since the generator voltage is held constant by use of a voltage regulator.' With voltage pinned, the battery draws a big current when low and almost none when full — it self-tapers. Constant CURRENT (fixed current, series-connected batteries) is the bench/fast-charge method and risks overcharge near the end; there is no 'pulsed-discharge' charging.", "cite": "FAA-H-8083-30B, p. 12-91 (aircraft = constant-voltage charging)", "topic": "Lead-Acid Specs", "fig": ""}, {"q": "The electrolyte in a nickel-cadmium battery is—", "options": ["potassium hydroxide (an alkaline solution)", "boric acid", "sulfuric acid"], "correct": 0, "short": "Ni-cad electrolyte = potassium hydroxide (KOH), an ALKALI.", "expl": "A ni-cad's electrolyte is potassium hydroxide (KOH) in distilled water — an ALKALI (a base), the chemical opposite of the lead-acid battery's sulfuric ACID. That single acid-vs-alkali split is why the two batteries need opposite neutralizers and must never share a service area. Boric acid isn't the electrolyte — it's what you use to neutralize a ni-cad spill.", "cite": "FAA-H-8083-30B, p. 12-91 (ni-cad electrolyte = potassium hydroxide)", "topic": "Nickel-Cadmium Specs", "fig": ""}, {"q": "A spill of nickel-cadmium electrolyte, or the alkali on skin or clothing, is neutralized with—", "options": ["baking soda (sodium bicarbonate, a base)", "boric acid solution or vinegar (an acid)", "more potassium hydroxide"], "correct": 1, "short": "Ni-cad (alkaline) -> boric acid or vinegar (an ACID).", "expl": "The ni-cad electrolyte is a caustic alkali, so you neutralize it with an ACID — the handbook calls for vinegar or a dilute boric-acid solution, then a clear-water rinse. Baking soda is a BASE (that's for the lead-acid ACID spill), and adding more potassium hydroxide would just make the spill worse. Opposite battery, opposite neutralizer.", "cite": "FAA-H-8083-30B, p. 12-92 (neutralize alkali with vinegar or boric acid)", "topic": "Nickel-Cadmium Specs", "fig": ""}, {"q": "Each individual cell of a nickel-cadmium battery produces about—", "options": ["3.6 volts", "2 volts", "1.2 volts"], "correct": 2, "short": "Ni-cad cell ~= 1.2-1.25 V (24 V needs ~19-20 cells).", "expl": "A ni-cad cell's open-circuit voltage is about 1.25 volts — noticeably lower than the lead-acid cell's ~2 volts. Because each cell is lower, a ni-cad needs MORE cells for the same bus voltage: roughly 19-20 cells for a 24-volt ni-cad versus 12 cells for a 24-volt lead-acid. The 2-volt figure is the lead-acid cell (the swap trap).", "cite": "FAA-H-8083-30B, p. 12-91 (ni-cad cell ~1.25 V); p. 12-93 (~twenty cells matched)", "topic": "Nickel-Cadmium Specs", "fig": ""}, {"q": "For a nickel-cadmium battery, the specific gravity of the electrolyte—", "options": ["does NOT indicate the state of charge, because it barely changes", "is read with a hydrometer to find the exact charge", "falls steadily as the battery discharges, just like a lead-acid battery"], "correct": 0, "short": "Ni-cad SG barely moves -> useless for state of charge.", "expl": "In a ni-cad the potassium-hydroxide electrolyte only ferries ions between the plates; it isn't consumed the way sulfuric acid is, so its specific gravity stays nearly constant whether the battery is full or flat. That means a hydrometer tells you almost nothing about a ni-cad's charge — the handbook says a ni-cad's true energy can only be found by a scheduled discharge on the bench. Only the lead-acid battery's specific gravity tracks its charge.", "cite": "FAA-H-8083-30B, p. 12-93 (ni-cad charge found by bench discharge, not SG)", "topic": "Nickel-Cadmium Specs", "fig": ""}, {"q": "A nickel-cadmium battery is commonly FAST-charged by the—", "options": ["constant-voltage method (voltage held steady, current allowed to fall)", "constant-current method (current held steady, voltage allowed to rise)", "specific-gravity method"], "correct": 1, "short": "Ni-cad fast charge = CONSTANT CURRENT (voltage varies).", "expl": "In constant-current (fast) charging the charger forces a fixed current in and lets whatever voltage is needed appear across the battery. That's the mirror image of the aircraft's constant-VOLTAGE lead-acid charging, where voltage is fixed and current tapers. Constant current fills a ni-cad quickly but must be watched near the end, since holding current after the cells are full drives heat and gassing. 'Specific-gravity' is a test method, not a charging method.", "cite": "FAA-H-8083-30B, p. 12-91 (constant-current vs constant-voltage) — ni-cad fast charge = constant current is standard practice", "topic": "Nickel-Cadmium Specs", "fig": ""}, {"q": "A nickel-cadmium hazard the sealed lead-acid battery avoids: rising cell temperature lowers the cell's internal resistance, which pulls even more current and makes even more heat — a self-feeding loop called—", "options": ["sulfation", "voltage depression (memory effect)", "thermal runaway"], "correct": 2, "short": "Rising temp -> falling internal resistance -> THERMAL RUNAWAY.", "expl": "Heat lowers a ni-cad's internal resistance; lower resistance lets more charging current through; more current makes still more heat — a loop that can feed on itself until cells vent, rupture, or explode. That's thermal runaway, and it's a big reason ni-cads need careful temperature-watched charging. Voltage depression is the capacity illusion cured by deep discharge; sulfation is a LEAD-ACID plate problem.", "cite": "FAA-H-8083-30B, p. 12-93 (cell reversal -> high pressure and heat) — thermal runaway is standard ni-cad behavior", "topic": "Nickel-Cadmium Specs", "fig": ""}, {"q": "You always neutralize a battery's electrolyte with a chemical of the OPPOSITE type. So an ACID electrolyte (like a lead-acid battery's) is neutralized with a—", "options": ["base, such as baking soda (sodium bicarbonate)", "salt, such as ordinary table salt", "stronger acid, such as boric acid"], "correct": 0, "short": "Acid electrolyte -> neutralize with a BASE (baking soda).", "expl": "Neutralizing is chemical opposites: acids are canceled by bases and bases are canceled by acids. The lead-acid battery holds sulfuric ACID, so you neutralize it with the BASE baking soda. The nickel-cadmium battery holds an alkaline base (KOH), so you neutralize IT with an acid (vinegar or boric acid). Adding another acid to acid, or salt, does nothing useful.", "cite": "FAA-H-8083-30B, p. 12-91 (lead-acid -> baking soda); p. 12-92 (ni-cad -> boric acid/vinegar)", "topic": "Opposites Logic", "fig": ""}, {"q": "A mechanic measures about 2 volts across a single healthy cell. That cell belongs to a—", "options": ["nickel-cadmium battery", "lead-acid battery", "primary dry cell"], "correct": 1, "short": "~2 V/cell = LEAD-ACID; ~1.2 V/cell = ni-cad.", "expl": "Cell voltage is a quick tell: a lead-acid cell sits at about 2 volts, while a nickel-cadmium cell is only about 1.2-1.25 volts. So a 2-volt reading points to lead-acid. A common dry (primary) cell is about 1.5 volts and isn't a rechargeable aircraft cell anyway. Anchor the pair: 2 V = lead-acid, 1.2 V = ni-cad.", "cite": "FAA-H-8083-30B, p. 12-89 (lead-acid ~2 V); p. 12-91 (ni-cad ~1.25 V)", "topic": "Opposites Logic", "fig": ""}, {"q": "Infinitely large resistance, with no current able to flow, is an example of which type of circuit malfunction?", "options": ["a ground fault", "a short circuit", "an open circuit"], "correct": 2, "short": "Infinite resistance / broken path = OPEN circuit.", "expl": "The handbook defines an open circuit as 'a circuit that is not a complete or continuous path,' and states plainly that 'an open circuit represents an infinitely large resistance.' The path is broken, so no current flows. A short circuit is the opposite — a near-zero-resistance path with EXCESSIVE current — and a ground fault is a specific unintended path to structure. Broken path + infinite resistance = open.", "cite": "FAA-H-8083-30B, p. 12-79 (open circuit = infinitely large resistance)", "topic": "Circuit Malfunctions", "fig": ""}, {"q": "A short circuit is best described as—", "options": ["an unintentional low-resistance path that lets excessive current flow", "a break in the path, so no current flows at all", "a normal path carrying exactly its rated current"], "correct": 0, "short": "Short = unintentional LOW-resistance path -> excessive current.", "expl": "The handbook defines a short circuit as 'an unintentional low resistance path between two components... or between a component/conductor and ground,' and warns it 'usually creates high current flow, which burns out or causes damage.' Near-zero resistance means Ohm's law forces a huge current. The broken-path/no-current description is an OPEN circuit — the exact opposite fault.", "cite": "FAA-H-8083-30B, p. 12-78 (short circuit = unintentional low-resistance path)", "topic": "Circuit Malfunctions", "fig": ""}, {"q": "An unintended low-resistance path from a live conductor to the aircraft structure (ground) is called a—", "options": ["open circuit", "grounded circuit (ground fault)", "an in-phase circuit"], "correct": 1, "short": "Conductor-to-structure short = grounded circuit / ground fault.", "expl": "A ground fault is a short circuit whose unintended low-resistance path runs from a conductor to ground/structure — the handbook's short-circuit definition specifically includes a path 'between a component/conductor and ground.' It causes high current, just like any short. An open circuit is a broken path (no current), and 'in-phase' is an AC waveform relationship, not a fault at all.", "cite": "FAA-H-8083-30B, p. 12-78 (short circuit to ground = grounded circuit)", "topic": "Circuit Malfunctions", "fig": ""}, {"q": "The portion of a transformer's magnetic flux that escapes the core and does NOT link both windings is called—", "options": ["eddy current", "iron loss", "leakage flux"], "correct": 2, "short": "Flux that escapes / doesn't couple both coils = LEAKAGE FLUX.", "expl": "No transformer is perfect: the handbook explains that not all the magnetic lines set up by the primary cut across the secondary, and 'a certain amount of the magnetic flux, called leakage flux, leaks out of the magnetic circuit.' How well the primary's flux couples into the secondary is the 'coefficient of coupling.' Eddy currents are swirling currents induced IN the core; iron loss is a heat loss — neither is the flux that escapes.", "cite": "FAA-H-8083-30B, p. 12-65 (leakage flux)", "topic": "Transformer Concepts", "fig": ""}, {"q": "The swirling currents induced in a transformer's iron core — reduced by building the core from thin, insulated laminations — are the—", "options": ["eddy currents", "leakage flux", "copper loss"], "correct": 0, "short": "Swirling induced core currents = EDDY CURRENTS (cut by laminations).", "expl": "The handbook says eddy-current loss 'is caused by electric currents (eddy currents) induced in the transformer core by the varying magnetic fields,' and 'to reduce eddy current losses, cores are made of laminations coated with an insulation, which reduces the circulation of induced currents.' Leakage flux is flux that escapes the core; copper loss is the heat from the windings' own resistance — a different loss entirely.", "cite": "FAA-H-8083-30B, p. 12-67 (eddy current loss, reduced by laminations)", "topic": "Transformer Concepts", "fig": ""}, {"q": "In a transformer, the hysteresis loss plus the eddy-current loss together make up the—", "options": ["copper loss", "iron (core) loss", "leakage flux"], "correct": 1, "short": "Hysteresis + eddy current = IRON (core) loss.", "expl": "The handbook splits transformer losses into 'copper' and 'iron' losses, and states 'the iron losses are of two types: hysteresis loss and eddy current loss.' Hysteresis is the energy to keep re-magnetizing the core each half-cycle; eddy-current loss is from induced core currents. Copper loss instead comes from the winding wire's own resistance, and leakage flux is escaped flux, not a heat loss.", "cite": "FAA-H-8083-30B, p. 12-67 (iron losses = hysteresis + eddy current)", "topic": "Transformer Concepts", "fig": ""}, {"q": "A transformer will operate on—", "options": ["steady (pure) direct current only", "either AC or steady DC equally well", "alternating current (or pulsating DC), because it needs a changing magnetic field"], "correct": 2, "short": "Transformer needs a CHANGING field -> AC (or pulsating DC), not pure DC.", "expl": "A transformer works by mutual induction — the primary's changing magnetic field induces a voltage in the secondary. The handbook says a transformer 'can also be used with pulsating DC, but a pure DC voltage cannot be used, since only a varying voltage creates the varying magnetic field that is the basis of the mutual induction process.' Steady DC makes a steady (unchanging) field, which induces nothing in the secondary.", "cite": "FAA-H-8083-30B, p. 12-65 (transformer needs a varying field; not pure DC)", "topic": "Transformer Concepts", "fig": ""}, {"q": "A device used to change (convert) DC into AC — for example, to run 400-cycle AC instruments from an aircraft's DC bus — is a(n)—", "options": ["inverter", "transformer", "rectifier"], "correct": 0, "short": "DC -> AC is an INVERTER.", "expl": "The handbook says an inverter 'is used in some aircraft systems to convert a portion of the aircraft's DC power to AC,' typically 400-cycle AC for instruments, radios, and lighting. Don't mix it up: a rectifier goes the OTHER way (AC into DC), and a transformer only changes AC from one voltage level to another — it can't change DC into AC.", "cite": "FAA-H-8083-30B, p. 12-93 (Inverters — DC to AC)", "topic": "Transformer Concepts", "fig": ""}, {"q": "A device that transforms AC into DC — by allowing current to flow in only one direction — is a(n)—", "options": ["inverter", "rectifier", "transformer"], "correct": 1, "short": "AC -> DC is a RECTIFIER.", "expl": "The handbook states 'a rectifier is a device that transforms AC into DC by limiting or regulating the direction of current flow' (most modern ones are solid-state diodes). Remember the pair by direction: a rectifier takes AC to DC, while an inverter takes DC to AC. A transformer changes only the voltage level of AC and does not rectify.", "cite": "FAA-H-8083-30B, pp. 12-100-12-101 (Rectifiers — AC to DC)", "topic": "Transformer Concepts", "fig": ""}, {"q": "In a purely CAPACITIVE AC circuit, the current—", "options": ["is exactly in phase with the voltage", "lags the voltage", "leads the voltage"], "correct": 2, "short": "Capacitive: current LEADS voltage (the ICE half of ELI-the-ICE-man).", "expl": "In a capacitor, current leads voltage — a capacitor draws its charging current first, before the voltage across it builds up. The mnemonic ELI the ICE man captures it: in the 'ICE' half, current comes before voltage across the capacitor, so current leads. In an INDUCTOR the current instead lags. Heads-up: FAA-H-8083-30B teaches the lead/lag concept and capacitive reactance on pp. 12-47-12-48 and 12-54 but does not print the ELI-the-ICE-man mnemonic itself — it's a standard electronics memory aid.", "cite": "FAA-H-8083-30B, pp. 12-47-12-48 (phase / lead & lag) — ELI-the-ICE-man is a standard AC mnemonic, not verbatim in -30B", "topic": "AC Phase Relationships", "fig": ""}, {"q": "In a purely INDUCTIVE AC circuit, the current—", "options": ["lags the voltage", "is exactly in phase with the voltage", "leads the voltage"], "correct": 0, "short": "Inductive: current LAGS voltage / voltage leads (the ELI half).", "expl": "In an inductor, voltage leads the current — the coil opposes any change in current, so the current is slow to build and lags behind the applied voltage. The mnemonic ELI the ICE man captures it: in the 'ELI' half, voltage comes before current across the inductor, so voltage leads and current lags. A capacitor is the reverse, where current leads. The lead/lag concept is in -30B on pp. 12-47-12-48 and 12-58; the mnemonic is a standard electronics aid.", "cite": "FAA-H-8083-30B, pp. 12-47-12-48, 12-58 (phase / inductive reactance) — ELI-the-ICE-man is a standard AC mnemonic, not verbatim in -30B", "topic": "AC Phase Relationships", "fig": ""}, {"q": "In a purely RESISTIVE AC circuit (only resistance, no capacitance or inductance), the voltage and current are—", "options": ["180 degrees out of phase", "in phase with each other", "90 degrees out of phase"], "correct": 1, "short": "Resistive: voltage and current are IN PHASE.", "expl": "A pure resistance has no reactance to delay or advance anything, so the current rises and falls in lockstep with the voltage — they reach their peaks and zeros at the same time, which is what 'in phase' means. The 90-degree shifts belong to reactive parts (leading in a capacitor, lagging in an inductor), not to a plain resistor.", "cite": "FAA-H-8083-30B, pp. 12-47-12-48 (in-phase / out-of-phase)", "topic": "AC Phase Relationships", "fig": ""}, {"q": "The memory aid 'ELI the ICE man' packs in two facts: in an inductor (L) voltage (E) leads current (I), and in a capacitor (C) current (I) leads voltage (E). So the 'ICE' half of the phrase describes a—", "options": ["inductive circuit, where voltage leads current", "resistive circuit, where voltage and current are in phase", "capacitive circuit, where current leads voltage"], "correct": 2, "short": "'ICE' = capacitive, current leads; 'ELI' = inductive, voltage leads.", "expl": "Read the letters in order. In the word ICE, current sits before voltage with the capacitor between them — so in a capacitor, current leads voltage. In the word ELI, voltage sits before current around the inductor — so in an inductor, voltage leads current. A resistor keeps voltage and current in phase and isn't part of the phrase. The mnemonic is a standard electronics aid; -30B teaches the underlying lead/lag on pp. 12-47-12-48.", "cite": "FAA-H-8083-30B, pp. 12-47-12-48 (lead & lag) — ELI-the-ICE-man is a standard AC mnemonic, not verbatim in -30B", "topic": "AC Phase Relationships", "fig": ""}];
+const DRILL = [{"label": "Primary vs secondary", "text": "PRIMARY cell = reaction NOT reversible, cannot be recharged; the dry cell is the most common primary cell ('dry' = paste electrolyte). SECONDARY (storage) cell = reversible, rechargeable; both aircraft batteries (lead-acid & ni-cad) are secondary. — p. 12-87"}, {"label": "Memory effect", "text": "Repeated shallow discharges make a ni-cad lose usable capacity (seems full but isn't). Correct name = VOLTAGE DEPRESSION ('memory effect' is the common wrong name). Fix = deep-cycle / recondition. — p. 12-93"}, {"label": "Ni-cad -> SLA replacement", "text": "Memory effect + high maintenance + thermal-runaway risk led ni-cads to be replaced in many roles by SEALED LEAD-ACID (SLA / VRLA) batteries, which have no voltage depression and need no scheduled deep cycling. — pp. 12-92-12-93"}, {"label": "LEAD-ACID specs", "text": "Electrolyte = sulfuric acid + water (ACID). Neutralize with BAKING SODA (a base). ~2 V/cell (12 V = 6 cells, 24 V = 12 cells). Charge = specific gravity via HYDROMETER (~1.275 charged). Aircraft charges it by CONSTANT VOLTAGE (regulator). — pp. 12-87, 12-89, 12-90, 12-91"}, {"label": "NICKEL-CADMIUM specs", "text": "Electrolyte = potassium hydroxide (KOH, ALKALINE). Neutralize with BORIC ACID or VINEGAR (an acid). ~1.2 V/cell (24 V needs ~19-20 cells). SG does NOT show charge -> find it by a bench discharge. Fast charge = CONSTANT CURRENT. Watch for thermal runaway. — pp. 12-91, 12-92, 12-93"}, {"label": "The opposites rule", "text": "Neutralize with the OPPOSITE: acid electrolyte -> base neutralizer (lead-acid -> baking soda); alkaline electrolyte -> acid neutralizer (ni-cad -> boric acid/vinegar). VOLTAGE TELL: 2 V/cell = lead-acid, 1.2 V/cell = ni-cad. — pp. 12-89, 12-91, 12-92"}, {"label": "Circuit malfunctions", "text": "OPEN = broken/non-continuous path = INFINITELY large resistance, NO current (e.g. burned-out bulb). SHORT = unintentional LOW-resistance path = EXCESSIVE current. GROUND FAULT = a short from a conductor to structure/ground. — pp. 12-78-12-79"}, {"label": "Transformer losses & flux", "text": "LEAKAGE FLUX = magnetic flux that escapes and doesn't link both windings. EDDY CURRENTS = swirling currents induced in the core, cut down by laminations. IRON (core) loss = hysteresis + eddy-current loss; COPPER loss = winding-resistance heat. — pp. 12-65, 12-67"}, {"label": "Transformer / inverter / rectifier", "text": "TRANSFORMER = changes AC voltage level only; needs a CHANGING field, so AC (or pulsating DC), NOT pure DC. INVERTER = DC -> AC (e.g. 400-cycle instrument power). RECTIFIER = AC -> DC. — pp. 12-65, 12-93, 12-100"}, {"label": "AC phase — ELI the ICE man", "text": "CAPACITIVE: current LEADS voltage (the ICE half). INDUCTIVE: current LAGS / voltage leads (the ELI half). RESISTIVE: voltage & current IN PHASE. -30B teaches lead/lag on pp. 12-47-12-48; the mnemonic itself is a standard electronics aid, not in the handbook. — pp. 12-47-12-48, 12-54, 12-58"}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
