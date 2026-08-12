@@ -1,6 +1,6 @@
 {
  "built": "2026-08-12",
- "total": 2952,
+ "total": 2989,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -28,6 +28,7 @@
   "Block 3 — Records, Forms & Certificates": 38,
   "Block 4 · AC Theory (Quiz #3 companion)": 40,
   "Block 4 · Basic Electricity Quiz #10": 31,
+  "Block 4 · Basic Electricity Quiz #9": 37,
   "Block 4 · Basic Electricity Symbols Quiz #8": 20,
   "Block 4 — Batteries, Transformers & Circuit Faults": 34,
   "Block 4 · Aircraft Batteries (DC Quiz #6 companion)": 45,
@@ -34877,6 +34878,709 @@
    "block": "Block 4",
    "sources": [
     "Block 4 · Basic Electricity Quiz #10"
+   ]
+  },
+  {
+   "id": "11027c6a39",
+   "q": "1. A vacuum tube built with just two elements — a plate and a cathode — is known as a ______.",
+   "options": [
+    "Tetrode",
+    "Triode",
+    "Pentode",
+    "Diode"
+   ],
+   "correct": 3,
+   "short": "A diode (two-element tube).",
+   "expl": "Vacuum tubes are grouped by how many working elements they contain: two elements (plate + cathode) make a diode, three (add one grid) a triode, four a tetrode, and five a pentode. The two-element tube is the diode, and like a semiconductor diode it passes current in only one direction.",
+   "cite": "FAA-H-8083-30B, p. 12-224 (vacuum tube families: diode, triode, tetrode, pentode)",
+   "topic": "Diode",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "4838410482",
+   "q": "2. The one semiconductor device that acts as an electron 'check valve' — letting current pass in one direction only — is the ______.",
+   "options": [
+    "Transistor",
+    "Diode",
+    "Resistor",
+    "Capacitor"
+   ],
+   "correct": 1,
+   "short": "The diode.",
+   "expl": "A diode is a two-element PN-junction device that conducts in only one direction, exactly like a mechanical check valve lets fluid flow one way. Forward biased it passes current; reverse biased it blocks it. A transistor is a three-element control device, not a one-way valve.",
+   "cite": "FAA-H-8083-30B, p. 12-211 (two-element PN-junction diode; one-way conduction)",
+   "topic": "Diode",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "4d85fbe8c4",
+   "q": "3. If a semiconductor diode is forward biased, electrons ______ flow through it.",
+   "options": [
+    "Cannot",
+    "Never",
+    "Can",
+    "Can only for a split second"
+   ],
+   "correct": 2,
+   "short": "They CAN flow (a forward-biased diode conducts).",
+   "expl": "Forward bias pushes the majority carriers across the PN junction, so the junction conducts and electrons flow freely. Reverse bias would widen the depletion region and block the flow. So a forward-biased diode is the 'on' state — current can flow.",
+   "cite": "FAA-H-8083-30B, p. 12-211 / 12-219 (forward-biased diode conducts)",
+   "topic": "Diode",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "9bd7aa1a30",
+   "q": "4. A diode is FORWARD biased (it conducts) when the battery is hooked up so that the ______.",
+   "options": [
+    "N-material connects to the battery + terminal and the P-material to the − terminal",
+    "P-material connects to the battery + terminal and the N-material to the − terminal",
+    "P-material and N-material both connect to the + terminal",
+    "diode is placed across the battery with no polarity"
+   ],
+   "correct": 1,
+   "short": "P-material to +, N-material to − = forward bias.",
+   "expl": "Forward bias means the positive terminal drives the P-side and the negative terminal drives the N-side, which collapses the depletion region and lets current pass. Reverse that hookup — P to minus, N to plus — and the diode blocks. This polarity rule is exactly what decides which of two drawn diodes is the conducting one.",
+   "cite": "FAA-H-8083-30B, p. 12-211 / 12-212 (forward vs reverse biased diode)",
+   "topic": "Diode Bias",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "61c4a44efa",
+   "q": "5. Two identical diodes are wired to batteries connected in opposite directions. If one diode is REVERSE biased, the other diode must be ______.",
+   "options": [
+    "Forward biased (conducting)",
+    "Open-circuited",
+    "Short-circuited",
+    "Also reverse biased"
+   ],
+   "correct": 0,
+   "short": "Forward biased — the opposite battery polarity forward-biases it.",
+   "expl": "Bias direction is set entirely by how the battery polarity meets the P and N material. If one diode sees a polarity that reverse-biases it, an identical diode wired to the opposite polarity sees the forward-bias condition and conducts. They are complementary — one blocks, the other passes.",
+   "cite": "FAA-H-8083-30B, p. 12-211 / 12-212 (bias direction set by battery polarity)",
+   "topic": "Diode Bias",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "9ace915335",
+   "q": "6. When a specific reverse voltage is reached, a ______ diode breaks down and begins to conduct in its reverse direction.",
+   "options": [
+    "Zener",
+    "Light-emitting",
+    "Rectifier",
+    "Photo"
+   ],
+   "correct": 0,
+   "short": "A zener diode.",
+   "expl": "An ordinary rectifier diode blocks in reverse. A zener is specially made so that at a precise reverse voltage — its zener voltage — it breaks down and conducts, then holds that voltage steady. That controlled reverse breakdown is what makes it useful as a voltage reference/regulator.",
+   "cite": "FAA-H-8083-30B, p. 12-218 (zener diode reverse breakdown)",
+   "topic": "Zener",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "e2f8e85eab",
+   "q": "7. A zener diode is used as a ______-sensitive solid-state voltage regulator.",
+   "options": [
+    "Voltage",
+    "Frequency",
+    "Temperature",
+    "Current"
+   ],
+   "correct": 0,
+   "short": "Voltage-sensitive.",
+   "expl": "Once the reverse voltage across a zener reaches its zener value, it conducts and clamps that voltage nearly constant even as current changes. It responds to VOLTAGE, holding the output steady, which is exactly the job of a voltage regulator.",
+   "cite": "FAA-H-8083-30B, p. 12-218 (zener as voltage regulator)",
+   "topic": "Zener",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "6c7af3978d",
+   "q": "8. Identify this symbol (a diode whose cathode bar is bent into little 'Z' wings):",
+   "options": [
+    "Standard rectifier diode",
+    "Zener diode",
+    "Light-emitting diode",
+    "Photodiode"
+   ],
+   "correct": 1,
+   "short": "Zener diode (bent-bar cathode).",
+   "expl": "The bent cathode bar — the little Z-shaped wings on the line the triangle points to — is the mark of a zener diode. A plain diode has a straight bar; the bent bar tells you it is designed to conduct at a set reverse voltage.",
+   "cite": "FAA-H-8083-30B, p. 12-218 (zener diode symbol)",
+   "topic": "Zener",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "7ff896d71f",
+   "q": "9. A three-element solid-state device (a transistor) can be used as a ______ valve in a circuit.",
+   "options": [
+    "Control",
+    "One-way",
+    "Check",
+    "Relief"
+   ],
+   "correct": 0,
+   "short": "A control valve (small signal controls a large one).",
+   "expl": "A two-element diode is a check valve — it only passes current one way. A three-element transistor is a CONTROL valve: a small base current (or voltage) controls a much larger current between the other two electrodes, just like a small handle controls a big flow.",
+   "cite": "FAA-H-8083-30B, p. 12-223 (transistor as a current-controlling device)",
+   "topic": "Transistor",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "ae506b063c",
+   "q": "10. On a transistor symbol, you can tell it is an NPN transistor because its emitter arrow points ______.",
+   "options": [
+    "Straight up to the collector",
+    "Outward, away from the base bar",
+    "Inward, toward the base bar",
+    "It has no arrow"
+   ],
+   "correct": 1,
+   "short": "NPN = emitter arrow points OUT (Not Pointing iN).",
+   "expl": "The classifying arrow sits on the emitter lead. If it points OUT, away from the base bar, the device is NPN. If it points IN, toward the base, it is PNP. Handy memory: NPN = 'Not Pointing iN.'",
+   "cite": "FAA-H-8083-30B, p. 12-223 (NPN vs PNP arrangement; emitter-arrow rule)",
+   "topic": "Transistor",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "843c003202",
+   "q": "11. On a transistor symbol like this one, the electrode drawn with the arrow on it is the ______.",
+   "options": [
+    "Collector",
+    "Base",
+    "Emitter",
+    "Gate"
+   ],
+   "correct": 2,
+   "short": "The emitter carries the arrow.",
+   "expl": "The arrow always rides on the EMITTER lead — its direction (in or out) also tells you PNP vs NPN. The flat bar in the middle is the base, and the remaining plain lead is the collector. A gate belongs to FETs/SCRs, not a bipolar transistor.",
+   "cite": "FAA-H-8083-30B, p. 12-223 (transistor electrodes; arrow on emitter)",
+   "topic": "Transistor",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "2fcfd6fb2c",
+   "q": "12. The three electrodes of a bipolar transistor are the ______.",
+   "options": [
+    "Plate, grid, and cathode",
+    "Emitter, base, and collector",
+    "Anode, cathode, and gate",
+    "Source, drain, and gate"
+   ],
+   "correct": 1,
+   "short": "Emitter, base, collector.",
+   "expl": "A bipolar transistor has three electrodes: the emitter (with the arrow), the base (the control element in the middle), and the collector. Anode/cathode/gate belong to an SCR; source/drain/gate to a FET; plate/grid/cathode to a vacuum tube.",
+   "cite": "FAA-H-8083-30B, p. 12-223 (emitter, base, and collector)",
+   "topic": "Transistor",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "9af4cf99d6",
+   "q": "13. For a PNP transistor's emitter-base junction to be forward biased so the transistor conducts, the emitter must be ______ relative to the base.",
+   "options": [
+    "Negative",
+    "Positive",
+    "At the same potential",
+    "Grounded through a resistor"
+   ],
+   "correct": 1,
+   "short": "Emitter POSITIVE relative to base (for PNP).",
+   "expl": "In a PNP the emitter is P-material and the base is N-material, so forward-biasing that junction needs the emitter more POSITIVE than the base (P to +, N to −). That is the mirror image of an NPN, which conducts with the base positive and emitter negative.",
+   "cite": "FAA-H-8083-30B, p. 12-223 (PNP operation; emitter positive relative to base)",
+   "topic": "Transistor Bias",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "8411b11408",
+   "q": "14. This symbol is a silicon controlled rectifier (SCR). Terminal 1 — the flat back of the triangle where current enters — is the ______.",
+   "options": [
+    "Gate",
+    "Drain",
+    "Cathode",
+    "Anode"
+   ],
+   "correct": 3,
+   "short": "Anode (current enters the flat side of the triangle).",
+   "expl": "An SCR is drawn like a diode (triangle into a bar) with an extra gate lead. Current enters at the anode — the flat back of the triangle (terminal 1) — and leaves at the cathode — the bar the triangle points to (terminal 2). The third lead off the cathode side is the gate (terminal 3).",
+   "cite": "FAA-H-8083-30B, Ch. 12 semiconductor section (pp. 12-211…12-225) — the SCR is NOT named in the FAA handbook; standard electronics [verify with AIM slides]",
+   "topic": "SCR",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "af48c3932f",
+   "q": "15. The three terminals of a silicon controlled rectifier (SCR) are the ______.",
+   "options": [
+    "Source, drain, and gate",
+    "MT1, MT2, and gate",
+    "Anode, cathode, and gate",
+    "Emitter, base, and collector"
+   ],
+   "correct": 2,
+   "short": "Anode, cathode, and gate.",
+   "expl": "An SCR has an anode and a cathode like a diode, plus a gate that triggers it into conduction. (Emitter/base/collector is a transistor; source/drain/gate is a FET; MT1/MT2/gate is a triac.)",
+   "cite": "FAA-H-8083-30B, Ch. 12 semiconductor section (pp. 12-211…12-225) — SCR not named in the FAA handbook; standard electronics [verify with instructor]",
+   "topic": "SCR",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "a93f947f2c",
+   "q": "16. A pulse of ______ voltage applied to the gate of an SCR causes it to start conducting.",
+   "options": [
+    "Alternating",
+    "Positive",
+    "Zero",
+    "Negative"
+   ],
+   "correct": 1,
+   "short": "A positive gate pulse triggers the SCR.",
+   "expl": "An SCR stays off until a small POSITIVE trigger pulse hits its gate; that pulse fires it into conduction, and it then latches on (keeps conducting) until the anode current drops toward zero. The gate only needs a brief positive kick to turn it on.",
+   "cite": "FAA-H-8083-30B, Ch. 12 semiconductor section — SCR gate triggering not covered in the FAA handbook; standard electronics [verify with instructor]",
+   "topic": "SCR",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "4d172aa926",
+   "q": "17. Identify this symbol — two triangles pointing opposite ways with terminals labeled MT1, MT2 and a gate:",
+   "options": [
+    "SCR",
+    "Bipolar transistor",
+    "Rectifier diode",
+    "Triac"
+   ],
+   "correct": 3,
+   "short": "A triac (bidirectional — MT1, MT2, gate).",
+   "expl": "The two anti-parallel triangles mean current can pass in EITHER direction once triggered, and the terminals are named MT1 and MT2 (main terminals) plus a gate. That two-way, gate-triggered device is the triac. An SCR conducts only one way and uses anode/cathode.",
+   "cite": "FAA-H-8083-30B, Ch. 12 semiconductor section — the triac is NOT named in the FAA handbook; standard electronics [verify with AIM slides]",
+   "topic": "Triac",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "8b8c66e7c0",
+   "q": "18. A junction field-effect transistor (JFET) controls the load current flowing through it by the ______ on its gate.",
+   "options": [
+    "Voltage",
+    "Current",
+    "Resistance",
+    "Frequency"
+   ],
+   "correct": 0,
+   "short": "Gate VOLTAGE controls the channel current.",
+   "expl": "Unlike a bipolar transistor (controlled by base CURRENT), a JFET is controlled by the VOLTAGE on its gate. The gate voltage widens or narrows the conducting channel between source and drain, throttling the load current — with almost no gate current drawn.",
+   "cite": "FAA-H-8083-30B, p. 12-225 (FET/JFET gate voltage controls channel current)",
+   "topic": "FET",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "0246f804c7",
+   "q": "19. Identify this symbol — a channel bar with a source and drain on one side and a gate whose arrow points toward the channel:",
+   "options": [
+    "Triac",
+    "Bipolar transistor",
+    "Silicon controlled rectifier",
+    "Field-effect transistor (JFET)"
+   ],
+   "correct": 3,
+   "short": "A JFET (field-effect transistor).",
+   "expl": "Source and drain tie to the two ends of the channel bar, and the gate sits opposite with an arrow pointing at the channel (arrow toward the channel = N-channel). That layout — source, drain, gate on a channel — is the field-effect transistor, not a bipolar transistor (which uses emitter/base/collector).",
+   "cite": "FAA-H-8083-30B, p. 12-225 (junction field-effect transistor, JFET)",
+   "topic": "FET",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "82ee65c700",
+   "q": "20. In a magnetic amplifier, a small amount of ______ current is used to control a large amount of ______ current.",
+   "options": [
+    "Direct (DC) control current … alternating (AC) load current",
+    "Direct (DC) control current … direct (DC) load current",
+    "Alternating (AC) control current … alternating (AC) load current",
+    "Alternating (AC) control current … direct (DC) load current"
+   ],
+   "correct": 0,
+   "short": "A small DC control current governs a large AC load current.",
+   "expl": "A magnetic amplifier (saturable-core reactor) uses a small DC control current to change how deeply the iron core saturates. That changes the AC reactance of the load winding, so a tiny DC input controls a large AC output current — the essence of magnetic amplification.",
+   "cite": "FAA-H-8083-30B, p. 12-248 (saturable-core reactor / magnetic amplifier) & p. 12-119",
+   "topic": "Magnetic Amplifier",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "02949fd179",
+   "q": "21. In the magnetic-amplifier alternator control, as the DC control voltage INCREASES (saturating the core more), the alternator field current will ______.",
+   "options": [
+    "Stay exactly the same",
+    "Reverse direction",
+    "Decrease",
+    "Increase"
+   ],
+   "correct": 3,
+   "short": "Increase (more saturation → less AC reactance → more field current).",
+   "expl": "More DC control current drives the core further toward saturation, which LOWERS the AC reactance of the load (field) winding. Lower reactance lets MORE current through, so the alternator field current rises as the control voltage rises. [Note: a regulator can be arranged for the reverse action — verify the exact circuit with your instructor.]",
+   "cite": "FAA-H-8083-30B, p. 12-248 (saturable reactor: control current changes core permeability & reactance)",
+   "topic": "Magnetic Amplifier",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "bdd154e8e6",
+   "q": "22. Identify this symbol — an emitter plus two bases labeled B1 and B2:",
+   "options": [
+    "Unijunction transistor (UJT)",
+    "Junction field-effect transistor",
+    "Bipolar transistor",
+    "Silicon controlled rectifier"
+   ],
+   "correct": 0,
+   "short": "A unijunction transistor (one emitter, two bases).",
+   "expl": "Having a single emitter and TWO bases (B1 and B2) is the fingerprint of the unijunction transistor. A bipolar transistor has one base; a FET has source/drain/gate; an SCR has anode/cathode/gate. Two bases = UJT.",
+   "cite": "FAA-H-8083-30B, Ch. 12 semiconductor section — the unijunction transistor (UJT) is NOT named in the FAA handbook; standard electronics [verify with AIM slides]",
+   "topic": "UJT",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "5bdc156500",
+   "q": "23. Identify this symbol — a diode inside a circle with two arrows pointing IN toward the junction:",
+   "options": [
+    "Zener diode",
+    "Rectifier diode",
+    "Light-emitting diode (LED)",
+    "Photodiode"
+   ],
+   "correct": 3,
+   "short": "A photodiode (light striking it = arrows pointing IN).",
+   "expl": "Arrows pointing INTO the diode mean light is being received: the photodiode. Light energy frees carriers in the junction and changes its reverse current, so it senses light. An LED is the mirror image — arrows pointing OUT because it emits light.",
+   "cite": "FAA-H-8083-30B, p. 12-214 (photodiode — light produces carriers in a diode)",
+   "topic": "Photodiode",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "cb93d42b88",
+   "q": "24. Identify this symbol — a diode inside a circle with two arrows pointing OUT (away from the junction):",
+   "options": [
+    "Photodiode",
+    "Silicon controlled rectifier",
+    "Zener diode",
+    "Light-emitting diode (LED)"
+   ],
+   "correct": 3,
+   "short": "A light-emitting diode (LED).",
+   "expl": "Arrows pointing OUT mean the device gives OFF light: the LED. When it is forward biased, electrons falling into holes radiate energy as light. Arrows pointing in would make it a photodiode (a light receiver).",
+   "cite": "FAA-H-8083-30B, p. 12-219 (light-emitting diode, LED)",
+   "topic": "LED",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "cc9b6fc189",
+   "q": "25. In the amplifier schematic, component #1 — the cone-shaped output device fed by the output transformer — is a ______.",
+   "options": [
+    "Antenna",
+    "Motor",
+    "Microphone",
+    "Speaker (loudspeaker)"
+   ],
+   "correct": 3,
+   "short": "A loudspeaker.",
+   "expl": "The cone/voice-coil symbol at the very output of an audio amplifier is the loudspeaker — it turns the amplified electrical signal back into sound. It is driven through the output (matching) transformer.",
+   "cite": "FAA-H-8083-30B, p. 12-44 (loudspeaker); symbol chart Fig. 4-29 p. 4-24",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "31c9c42060",
+   "q": "26. In the amplifier schematic, component #2 — two coils sharing an iron core, sitting between the output tube and the speaker — is a ______.",
+   "options": [
+    "Inductor",
+    "Transformer",
+    "Relay",
+    "Capacitor"
+   ],
+   "correct": 1,
+   "short": "A transformer (output/matching transformer).",
+   "expl": "Two coils drawn around a common iron core (the parallel lines between them) is a transformer. Here it is the output transformer that matches the tube's high impedance to the speaker's low impedance.",
+   "cite": "FAA-H-8083-30B, p. 12-142 (transformer turns ratio); symbol chart Fig. 4-29 p. 4-24",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "85dd5ac2a2",
+   "q": "27. In the amplifier schematic, component #3 — a resistor with an adjustable arrow drawn through it — is a ______.",
+   "options": [
+    "Fixed resistor",
+    "Rheostat / variable resistor (potentiometer)",
+    "Fuse",
+    "Diode"
+   ],
+   "correct": 1,
+   "short": "A rheostat / variable resistor.",
+   "expl": "A resistor with an arrow (a movable wiper) is a variable resistor — a rheostat when used with two terminals to vary current, a potentiometer when the wiper is a third terminal used to vary voltage. Either way it is an adjustable resistance, used here for bias/volume adjustment.",
+   "cite": "FAA-H-8083-30B, p. 12-59 (rheostat) / p. 12-61 (potentiometer)",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "0f5edeef63",
+   "q": "28. In the amplifier schematic, component #4 — two parallel plates with a gap between them — is a ______.",
+   "options": [
+    "Diode",
+    "Battery",
+    "Capacitor",
+    "Resistor"
+   ],
+   "correct": 2,
+   "short": "A capacitor.",
+   "expl": "Two parallel plates separated by a gap is the capacitor symbol. In this amplifier it couples the AC signal between stages while blocking the DC bias, or bypasses AC to ground.",
+   "cite": "FAA-H-8083-30B, p. 12-50 (capacitor / capacitance); symbol chart Fig. 4-29 p. 4-24",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "c30aba996a",
+   "q": "29. In the amplifier schematic, component #5 — a coil with an adjustable arrow drawn through it — is a ______.",
+   "options": [
+    "Capacitor",
+    "Transformer",
+    "Variable inductor (adjustable coil)",
+    "Fixed resistor"
+   ],
+   "correct": 2,
+   "short": "A variable (adjustable) inductor.",
+   "expl": "A coil is an inductor; the arrow through it means its value is adjustable — a variable inductor. It stores energy in a magnetic field and, being tunable, is used to tune a stage. (Two such coils coupled together would form a tuned transformer.)",
+   "cite": "FAA-H-8083-30B, p. 12-127 (inductor symbol, Fig. 12-127)",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "2d1d12de46",
+   "q": "30. In the amplifier schematic, components #6, #7, and #9 — plain zig-zag lines — are ______.",
+   "options": [
+    "Resistors",
+    "Diodes",
+    "Capacitors",
+    "Inductors"
+   ],
+   "correct": 0,
+   "short": "Resistors.",
+   "expl": "The zig-zag (or rectangular box) line is the fixed-resistor symbol. In this amplifier they set bias, act as plate/cathode loads, and drop voltage. A plain zig-zag with no arrow is always a fixed resistor.",
+   "cite": "FAA-H-8083-30B, p. 12-24 (resistors); symbol chart Fig. 4-29 p. 4-24",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "2214eb481b",
+   "q": "31. In the amplifier schematic, component #8 — alternating long and short parallel lines — is a ______.",
+   "options": [
+    "Capacitor",
+    "Resistor",
+    "Battery",
+    "Transformer"
+   ],
+   "correct": 2,
+   "short": "A battery (DC source).",
+   "expl": "Alternating long and short parallel lines make the battery/cell symbol: the long line is the + terminal, the short line the −. It supplies the DC bias voltage in the circuit. (A capacitor, by contrast, is two EQUAL-length plates.)",
+   "cite": "FAA-H-8083-30B, Ch. 12 (cells/batteries, pp. 12-23, 12-184); symbol chart Fig. 4-29 p. 4-24",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "6982f841d1",
+   "q": "32. In the amplifier schematic, component #10 — a coil pair whose center-tapped secondary feeds the rectifier tube — is a ______.",
+   "options": [
+    "Power transformer",
+    "Speaker",
+    "Filter choke",
+    "Capacitor"
+   ],
+   "correct": 0,
+   "short": "The power (supply) transformer.",
+   "expl": "Two windings on a common core, with the secondary center-tapped to feed the rectifier tube, is the power transformer of the supply — it steps the AC line voltage to what the rectifier needs. The center tap is the classic full-wave rectifier arrangement.",
+   "cite": "FAA-H-8083-30B, p. 12-142 (transformer); symbol chart Fig. 4-29 p. 4-24",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "43376d0287",
+   "q": "33. In the amplifier schematic, component #11 — a coil sitting between two filter capacitors in the power supply — is a ______.",
+   "options": [
+    "Capacitor",
+    "Inductor (filter choke)",
+    "Transformer",
+    "Resistor"
+   ],
+   "correct": 1,
+   "short": "An inductor used as a filter choke.",
+   "expl": "A single coil placed between two filter capacitors in a power supply is the filter choke (an inductor). It opposes changes in current, smoothing the pulsing DC from the rectifier into steadier DC — the L in an LC 'pi' filter.",
+   "cite": "FAA-H-8083-30B, p. 12-127 (inductor / choke symbol, Fig. 12-127)",
+   "topic": "Schematic",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "e054ca8149",
+   "q": "34. A vacuum tube drawn with only a plate and a cathode (no grid) is a ______ — used in this schematic's power supply as the full-wave rectifier.",
+   "options": [
+    "Triode",
+    "Diode (rectifier tube)",
+    "Tetrode",
+    "Pentode"
+   ],
+   "correct": 1,
+   "short": "A diode (two-element rectifier tube).",
+   "expl": "No grid means two elements — plate and cathode — which is a DIODE. In the power supply it works with the center-tapped transformer as a full-wave rectifier, converting AC to pulsing DC. Adding grids would make it a triode, tetrode, or pentode.",
+   "cite": "FAA-H-8083-30B, p. 12-224 (two-element vacuum tube = diode)",
+   "topic": "Vacuum Tube",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "eb08635e2e",
+   "q": "35. A vacuum tube with ONE grid (a single dashed line between plate and cathode) is a ______.",
+   "options": [
+    "Triode",
+    "Tetrode",
+    "Diode",
+    "Pentode"
+   ],
+   "correct": 0,
+   "short": "A triode (three elements: plate, one grid, cathode).",
+   "expl": "One grid added to the diode's plate and cathode makes THREE elements — a triode. The grid controls the electron stream, so the triode can amplify. Two grids would be a tetrode; three, a pentode.",
+   "cite": "FAA-H-8083-30B, p. 12-224 (triode = three-element vacuum tube)",
+   "topic": "Vacuum Tube",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "c13ee44a6c",
+   "q": "36. A vacuum tube with THREE grids (three dashed lines between plate and cathode) is a ______.",
+   "options": [
+    "Pentode",
+    "Diode",
+    "Tetrode",
+    "Triode"
+   ],
+   "correct": 0,
+   "short": "A pentode (five elements: plate + 3 grids + cathode).",
+   "expl": "Count the elements: plate, three grids, and cathode = five, which is a pentode. Its three grids (control, screen, suppressor) give it high gain and stability. Two grids would make it a tetrode; one, a triode.",
+   "cite": "FAA-H-8083-30B, p. 12-224 (pentode = five-element vacuum tube)",
+   "topic": "Vacuum Tube",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
+   ]
+  },
+  {
+   "id": "9f81815ad5",
+   "q": "37. What do we call the opposition (resistance) to alternating current that is produced by capacitors?",
+   "options": [
+    "Capacitive reactance",
+    "Mutual capacitance",
+    "Mutual inductance",
+    "Inductive reactance"
+   ],
+   "correct": 0,
+   "short": "Capacitive reactance (Xc).",
+   "expl": "A capacitor opposes AC by an amount called capacitive reactance, Xc = 1/(2 pi f C). It only opposes AC (not steady DC) and DROPS as frequency rises. Inductive reactance is the coil's version; mutual inductance is transformer coupling.",
+   "cite": "FAA-H-8083-30B, p. 12-54 (capacitive reactance Xc)",
+   "topic": "Reactance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Basic Electricity Quiz #9"
    ]
   },
   {
