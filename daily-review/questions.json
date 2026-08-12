@@ -35,8 +35,7 @@
   "Block 4 · Metric Conversion Drill — Hop the Decimal": 46,
   "Block 4 · Capacitance & Electronics (Quiz #5 companion)": 30,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 357,
-  "Block 6 · Avionics, Communication & Navigation": 27,
-  "Block 6 · Basic / Aircraft Electricity": 45,
+  "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
   "AET Academy M3 — Resistors": 36,
@@ -45398,492 +45397,6 @@
    ]
   },
   {
-   "id": "d9dd91bfb6",
-   "q": "To send useful information through the atmosphere, radio transmitters and receivers manipulate the—",
-   "options": [
-    "carrier wave (by modulating it)",
-    "ionosphere itself",
-    "aircraft ground plane"
-   ],
-   "correct": 0,
-   "short": "They modulate the carrier wave.",
-   "expl": "A plain radio wave carries no information — it is a carrier wave. Transmitters add the voice or data by modulating (altering) that carrier's amplitude or frequency; the receiver demodulates it to recover the signal. They manipulate the carrier wave, not the atmosphere or the airframe.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
-   "topic": "Radio Fundamentals",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "0a40c2af2a",
-   "q": "Radio waves that bounce (refract) off the ionosphere layer of the atmosphere, extending range far beyond line-of-sight, are—",
-   "options": [
-    "space waves (VHF and above)",
-    "sky waves (high frequency, HF)",
-    "ground waves (low frequency)"
-   ],
-   "correct": 1,
-   "short": "Sky waves (HF) bounce off the ionosphere.",
-   "expl": "High-frequency (HF, roughly 2–25 MHz) sky waves refract off the ionosphere and return to earth well past the horizon, which is why transoceanic aircraft use HF radios. Ground waves follow the earth's curvature; space waves (VHF and up) travel only line-of-sight and do not refract.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
-   "topic": "Radio Fundamentals",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "96a37af119",
-   "q": "Ground waves are radio waves that—",
-   "options": [
-    "refract off the ionosphere back to earth",
-    "travel only in a straight line of sight",
-    "follow the curvature of the earth from transmitter to receiver (VLF/LF/MF)"
-   ],
-   "correct": 2,
-   "short": "Ground waves hug the earth's curve.",
-   "expl": "Ground waves are the low-frequency band (VLF/LF/MF) that follow the earth's curvature from the broadcast antenna to the receiver — good for long-distance work like ADF and LORAN. Refracting off the ionosphere is the sky wave's trait; line-of-sight only is the space wave's.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-30",
-   "topic": "Radio Fundamentals",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "fba19163e5",
-   "q": "Which lists the frequency ranges of ground, sky, and space waves correctly?",
-   "options": [
-    "ground ≈ 3 kHz–3 MHz (VLF/LF/MF); sky ≈ 2–25 MHz (HF); space = VHF/UHF/SHF (30 MHz–30 GHz)",
-    "ground = VHF; sky = UHF; space = VLF",
-    "all three are the same VHF band, 30–300 MHz"
-   ],
-   "correct": 0,
-   "short": "Ground = low kHz-MHz; sky = HF; space = VHF & up.",
-   "expl": "Ground waves live in the low bands (VLF/LF/MF, about 3 kHz–3 MHz), sky waves in HF (about 2–25 MHz), and space waves above HF — VHF (30–300 MHz), UHF (300 MHz–3 GHz), and SHF (3–30 GHz). Most aircraft comm/nav gear rides space waves, which are line-of-sight.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-30 to 11-31",
-   "topic": "Radio Fundamentals",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "ed0cba890c",
-   "q": "AM, in reference to modulation, means the information is carried by varying the carrier wave's—",
-   "options": [
-    "frequency, while amplitude stays constant",
-    "amplitude (its height), while frequency stays constant",
-    "phase only, in discrete pulses"
-   ],
-   "correct": 1,
-   "short": "AM = amplitude varies, frequency constant.",
-   "expl": "Amplitude modulation impresses the signal on the carrier by varying its amplitude (height) while the frequency is held steady — the method used by aircraft VHF communication radios. Varying the frequency instead would be FM.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
-   "topic": "Modulation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "a213b5d79b",
-   "q": "On the study guide, 'PM' in reference to modulation is best given as—",
-   "options": [
-    "Power Modulation — varying transmitter output power",
-    "Polarity Modulation — flipping antenna polarity",
-    "Phase Modulation — varying the carrier's phase (timing) with amplitude constant — while noting some courses mean Pulse Modulation (timed bursts, as DME/transponders use)"
-   ],
-   "correct": 2,
-   "short": "PM = Phase Modulation (or Pulse Modulation — confirm).",
-   "expl": "The 8083 series defines only AM and FM by name, so 'PM' is ambiguous: Phase Modulation varies the carrier's phase/timing with amplitude held constant (a close cousin of FM), while some avionics courses use 'PM' for Pulse Modulation — sending the carrier in short timed bursts, the method DME, transponders, and radar use. Neither 'power' nor 'polarity' modulation is a standard term. Confirm which meaning your instructor grades.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
-   "topic": "Modulation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "a708079d32",
-   "q": "Aircraft antennas are frequently mounted at a slight angle (canted) in order to—",
-   "options": [
-    "improve reception / signal strength",
-    "reduce aerodynamic drag to zero",
-    "make them easier to de-ice"
-   ],
-   "correct": 0,
-   "short": "Canted antennas = better reception.",
-   "expl": "Many antennas are canted — tilted at a slight angle — for better reception of the signal. The small angle is about signal pickup, not drag reduction or de-icing.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-39",
-   "topic": "Antennas",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "70e08033cd",
-   "q": "One of the OLDEST and most useful navigational aids, still in wide use, is the—",
-   "options": [
-    "GPS (Global Positioning System)",
-    "VOR (Very-High-Frequency Omnidirectional Range)",
-    "TCAS (Traffic Collision Avoidance System)"
-   ],
-   "correct": 1,
-   "short": "VOR = oldest / most useful navaid.",
-   "expl": "The handbook names the very-high-frequency omnidirectional range (VOR) as one of the oldest and most useful navigational aids — built after WWII and still flown today on the Victor airway network. GPS is far newer, and TCAS is a collision-avoidance system, not a navigation aid.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-40",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "c4f98c4c6f",
-   "q": "If an aircraft has no dedicated VOR gauge (OBS/CDI), the VOR information is instead displayed on—",
-   "options": [
-    "the marker-beacon lights",
-    "the transponder control head",
-    "an RMI, HSI, EFIS display, or EADI"
-   ],
-   "correct": 2,
-   "short": "VOR info moves to RMI / HSI / EFIS / EADI.",
-   "expl": "As panels evolved, VOR course and bearing information was integrated into other displays — the radio magnetic indicator (RMI), the HSI, an EFIS display, or the EADI — rather than a stand-alone VOR gauge. The transponder head and marker lights do entirely different jobs.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-42 to 11-43",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "8bf0e213d2",
-   "q": "DME, in reference to aircraft navigation, is—",
-   "options": [
-    "Distance Measuring Equipment — it shows the distance from the aircraft to the ground station",
-    "Directional Magnetic Equipment — a backup compass",
-    "Dual Mode Encoder — an altitude reporter"
-   ],
-   "correct": 0,
-   "short": "DME = Distance Measuring Equipment.",
-   "expl": "DME (Distance Measuring Equipment) calculates and displays the slant distance from the aircraft to the DME/VORTAC ground station, and can also give groundspeed and time-to-station. It operates in the UHF band (962–1213 MHz). It is not a compass or an altitude encoder.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-50",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "2fa50695b4",
-   "q": "Pairing a VOR bearing with a co-located DME lets a pilot—",
-   "options": [
-    "receive the ATIS weather broadcast",
-    "fix the aircraft's exact position (a bearing plus a distance)",
-    "measure engine vibration"
-   ],
-   "correct": 1,
-   "short": "VOR bearing + DME distance = a position fix.",
-   "expl": "The VOR gives the bearing to the station and the co-located DME gives the distance to it — together a bearing and a range pin down the aircraft's exact location. That's why VOR/DME and VORTAC stations are so useful. It has nothing to do with engine monitoring or weather broadcasts.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-50",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "59f930e4dc",
-   "q": "An ILS (Instrument Landing System) guides an aircraft to the runway in poor visibility using three radio elements: a localizer, marker beacons, and a—",
-   "options": [
-    "transponder (for altitude reporting)",
-    "radio altimeter (for AGL height)",
-    "glideslope (for vertical guidance down the correct descent angle)"
-   ],
-   "correct": 2,
-   "short": "ILS = localizer + glideslope + marker beacons.",
-   "expl": "The ILS combines a localizer (horizontal guidance to the runway centerline), a glideslope (vertical guidance down the ~3° descent path), and marker beacons (distance from the runway). A transponder and a radio altimeter are separate systems, not part of the ILS itself.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-47",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "bebd9fa7a4",
-   "q": "Within the ILS, horizontal guidance to the runway centerline is provided by the localizer, and vertical guidance is provided by the—",
-   "options": [
-    "glideslope",
-    "compass locator",
-    "marker beacon"
-   ],
-   "correct": 0,
-   "short": "Localizer = left/right; glideslope = up/down.",
-   "expl": "The localizer keeps you lined up left-to-right on the centerline; the glideslope brings you down the correct vertical descent angle. Marker beacons only mark distance from the runway, and a compass locator is an NDB that helps you intercept the approach — neither gives vertical guidance.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-47 to 11-48",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "6846809d17",
-   "q": "The purpose of a marker beacon in an ILS is to—",
-   "options": [
-    "transmit the aircraft's altitude to ATC",
-    "indicate the aircraft's position/distance along the glidepath to the runway",
-    "provide the vertical descent angle"
-   ],
-   "correct": 1,
-   "short": "Marker beacon = distance-along-the-approach marker.",
-   "expl": "A marker beacon transmits a narrow upward 75 MHz signal that lights a cockpit light and sounds a tone as the aircraft passes over it, marking its position/distance along the approach (outer = blue/400 Hz, middle = amber/1300 Hz, inner = white/3000 Hz). The glideslope gives the descent angle; the transponder reports altitude.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-48",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "c05113fd54",
-   "q": "RNAV (Area Navigation) allows an aircraft to—",
-   "options": [
-    "detect nearby traffic and issue evasive commands",
-    "land automatically with no pilot input",
-    "fly a direct point-to-point route using computed waypoints, not just over ground navaids"
-   ],
-   "correct": 2,
-   "short": "RNAV = direct point-to-point via waypoints.",
-   "expl": "Area navigation lets the aircraft fly direct between computed waypoints — defined by VOR radial/distance pairs or by GPS/INS/FMS — instead of zig-zagging station to station. It is a routing method, not an autoland system or a collision-avoidance system.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-52",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "627d367951",
-   "q": "WAAS (Wide Area Augmentation System) improves navigation by—",
-   "options": [
-    "correcting GPS signals (via ground stations and satellites) to sharpen accuracy to about 1–3 meters",
-    "jamming interfering radio frequencies",
-    "replacing GPS with ground-based VOR stations"
-   ],
-   "correct": 0,
-   "short": "WAAS = corrections that sharpen GPS to ~1–3 m.",
-   "expl": "WAAS uses about 25 surveyed ground stations that measure GPS errors and, through geostationary satellites, broadcast corrections to WAAS-enabled receivers — tightening accuracy to roughly 1–3 meters and enabling precision approaches. It augments GPS, it doesn't replace it or jam anything.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-69",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "08229f71d5",
-   "q": "An IRS (Inertial Reference System) determines position by—",
-   "options": [
-    "receiving corrections from WAAS ground stations",
-    "using self-contained accelerometers and gyros from a known start point, with NO ground/radio signals",
-    "triangulating VOR radials"
-   ],
-   "correct": 1,
-   "short": "IRS = self-contained inertial, no outside signals.",
-   "expl": "An inertial reference system (a modern INS) continuously computes position, velocity, and attitude from its own accelerometers and gyros, starting from a known initialized point — needing no ground station or radio input at all. That self-contained trait is the whole point; WAAS and VOR both rely on outside signals.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-70",
-   "topic": "Nav Aids",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "b82bb2972d",
-   "q": "The component used to locate personnel after a crash — triggered by the excessive G-forces of impact — is the—",
-   "options": [
-    "radio altimeter",
-    "Cockpit Voice Recorder (CVR)",
-    "Emergency Locator Transmitter (ELT)"
-   ],
-   "correct": 2,
-   "short": "ELT = G-force-triggered crash locator beacon.",
-   "expl": "The ELT carries a built-in G-force (impact) sensor aligned with the aircraft's longitudinal axis; a crash trips it and it transmits a distress/location signal (406 MHz, with 121.5 MHz for homing) so search and rescue can find the site and its occupants. A CVR records audio; a radio altimeter measures height.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-63 to 11-64",
-   "topic": "Surveillance",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "3600f39dd9",
-   "q": "For onboard collision-avoidance systems, the transponder mode type used is—",
-   "options": [
-    "Mode S (mode select)",
-    "Mode A (identity code only)",
-    "Mode 1 (military only)"
-   ],
-   "correct": 0,
-   "short": "Collision avoidance uses Mode S.",
-   "expl": "Mode S ('mode select') is a data-packet protocol also used by onboard collision-avoidance systems; TCAS interrogates other aircraft with Mode C and Mode S at 1030 MHz and gets 1090 MHz replies. Mode 3/A returns only an identity code, and there's no civilian collision-avoidance 'Mode 1.'",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-54 to 11-56",
-   "topic": "Surveillance",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "2a13cd9e5f",
-   "q": "A TCAS TA (Traffic Advisory)—",
-   "options": [
-    "is issued only by TCAS II",
-    "alerts the pilot to nearby traffic to aid visual acquisition, with no evasive command; issued by TCAS I and II",
-    "commands a specific vertical evasive maneuver"
-   ],
-   "correct": 1,
-   "short": "TA = 'traffic's out there, look for it' — no command.",
-   "expl": "A Traffic Advisory simply warns the pilot of an intruder nearby so they can see and avoid it — no maneuver is commanded — and it's issued by both TCAS I and TCAS II. TCAS I identifies traffic within about a 35–40 mile range and is mandated on aircraft with 10–30 seats; a TA fires roughly 25–48 seconds before projected contact. Commanding an evasive maneuver is the RA's job.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-56 to 11-58",
-   "topic": "Surveillance",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "636021485e",
-   "q": "A TCAS RA (Resolution Advisory)—",
-   "options": [
-    "is issued by both TCAS I and II as a visual-only alert",
-    "tells ATC to reroute the intruder aircraft",
-    "is issued only by TCAS II and commands a specific vertical evasive maneuver (e.g., CLIMB/DESCEND)"
-   ],
-   "correct": 2,
-   "short": "RA = TCAS II vertical evasive command.",
-   "expl": "A Resolution Advisory is issued only by TCAS II when a collision is imminent; it aurally commands a specific vertical maneuver (CLIMB or DESCEND), coordinated so the other TCAS II aircraft is told to go the opposite way. Pilots must follow an RA even over an ATC instruction. TCAS II is required above 30 seats or 15,000 kg, with the RA firing ~within 35 seconds of contact.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-56 to 11-58",
-   "topic": "Surveillance",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "2ea14e5b0d",
-   "q": "A transponder must be inspected and tested every 24 calendar months, and that requirement comes from which part of 14 CFR?",
-   "options": [
-    "Part 91 (§91.413) — tested per Part 43, Appendix F",
-    "Part 65 (mechanic certification)",
-    "Part 21 (product certification)"
-   ],
-   "correct": 0,
-   "short": "Transponder check: every 24 mo., 14 CFR Part 91.",
-   "expl": "14 CFR §91.413 (Part 91) requires transponders in controlled airspace to be inspected and tested every 24 calendar months, done in accordance with Part 43, Appendix F. Part 65 covers mechanic certificates and Part 21 covers product/parts certification — neither drives the transponder check.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-55",
-   "topic": "Surveillance",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "034d718c96",
-   "q": "EGPWS stands for, and does, the following:",
-   "options": [
-    "Engine Ground Power Warning System — warns of low APU power",
-    "Enhanced Ground Proximity Warning System — adds a terrain database and GPS for forward-looking terrain alerts",
-    "Electronic Glideslope Path Warning System — an ILS backup"
-   ],
-   "correct": 1,
-   "short": "EGPWS = enhanced terrain-awareness warning.",
-   "expl": "The enhanced ground proximity warning system builds on GPWS by adding a terrain/obstacle database and GPS position, giving the crew earlier forward-looking warnings of dangerous terrain — the modern defense against controlled flight into terrain. It has nothing to do with APU power or the glideslope.",
-   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-60",
-   "topic": "Surveillance",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "614e3859c8",
-   "q": "An HSI (Horizontal Situation Indicator) is an instrument that—",
-   "options": [
-    "measures height above the terrain",
-    "shows only engine RPM and temperatures",
-    "combines the heading indicator with VOR/ILS course-deviation information in one display"
-   ],
-   "correct": 2,
-   "short": "HSI = heading + course deviation in one gauge.",
-   "expl": "The HSI merges the heading indicator (compass card) with VOR/ILS course-deviation (and glideslope) information, showing the aircraft's position relative to a selected course on a single face — reducing pilot workload. It's a navigation display, not an engine gauge or an altimeter.",
-   "cite": "FAA-H-8083-31B, Ch. 10, Page 10-66",
-   "topic": "Instrument Displays",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "f1f4615a31",
-   "q": "An EFIS (Electronic Flight Instrument System) is—",
-   "options": [
-    "a system that displays flight-instrument information on electronic screens (PFD and navigation display)",
-    "the engine fuel-injection controller",
-    "an emergency floatation inflation system"
-   ],
-   "correct": 0,
-   "short": "EFIS = flight instruments on electronic screens.",
-   "expl": "EFIS presents the flight instruments on electronic CRT/LCD screens — the primary flight display and the navigation display — replacing individual mechanical gauges. It's the heart of the glass cockpit, not an engine controller or a floatation system.",
-   "cite": "FAA-H-8083-31B, Ch. 10, Page 10-68",
-   "topic": "Instrument Displays",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "6634646739",
-   "q": "An EADI (Electronic Attitude Director Indicator) displays—",
-   "options": [
-    "only the outside air temperature",
-    "aircraft attitude plus flight-director command guidance on a screen",
-    "distance to the next DME station"
-   ],
-   "correct": 1,
-   "short": "EADI = electronic attitude + flight-director bars.",
-   "expl": "The EADI is the electronic version of the attitude director indicator: it shows the aircraft's attitude (pitch and bank) together with flight-director command bars and related guidance on a screen. Outside air temperature and DME distance are shown elsewhere.",
-   "cite": "FAA-H-8083-31B, Ch. 10, Page 10-64",
-   "topic": "Instrument Displays",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
-   "id": "4fc87583df",
-   "q": "The acronym RAT, in aircraft systems, stands for—",
-   "options": [
-    "Rudder Actuation Transducer",
-    "Radio Antenna Tuner",
-    "Ram Air Turbine — an emergency air-driven turbine for backup power"
-   ],
-   "correct": 2,
-   "short": "RAT = Ram Air Turbine (emergency power).",
-   "expl": "A Ram Air Turbine deploys into the slipstream to drive an emergency generator and/or hydraulic pump, providing backup power when the normal generators fail. It is not a radio tuner or a rudder sensor.",
-   "cite": "FAA-H-8083-31B, Ch. 12, Page 12-33",
-   "topic": "Misc",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Avionics, Communication & Navigation"
-   ]
-  },
-  {
    "id": "7769664910",
    "q": "A drawing that shows the principle of operation of a system — locating components relative to each other with standard symbols, but NOT their size, shape, or physical location — is a—",
    "options": [
@@ -45898,7 +45411,7 @@
    "topic": "Diagrams",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -45916,7 +45429,7 @@
    "topic": "Diagrams",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -45934,7 +45447,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -45952,7 +45465,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -45970,7 +45483,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -45988,7 +45501,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46006,7 +45519,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46024,7 +45537,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46042,7 +45555,7 @@
    "topic": "Ohm's Law",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46060,7 +45573,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46078,7 +45591,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46096,7 +45609,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46114,7 +45627,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46132,7 +45645,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46150,7 +45663,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46168,7 +45681,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46186,7 +45699,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46204,7 +45717,7 @@
    "topic": "Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46222,7 +45735,7 @@
    "topic": "Semiconductors",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46240,7 +45753,7 @@
    "topic": "Semiconductors",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46258,7 +45771,7 @@
    "topic": "Diodes",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46276,7 +45789,7 @@
    "topic": "Diodes",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46294,7 +45807,7 @@
    "topic": "Switches",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46312,7 +45825,7 @@
    "topic": "Switches",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46330,7 +45843,7 @@
    "topic": "Switches",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46348,7 +45861,7 @@
    "topic": "Circuit Protection",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46366,7 +45879,7 @@
    "topic": "Circuit Protection",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46384,7 +45897,7 @@
    "topic": "Conductors",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46402,7 +45915,7 @@
    "topic": "Conductors",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46420,7 +45933,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46438,7 +45951,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46456,7 +45969,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46474,7 +45987,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46492,7 +46005,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46510,7 +46023,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46528,7 +46041,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46546,7 +46059,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46564,7 +46077,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46582,7 +46095,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46600,7 +46113,7 @@
    "topic": "Wiring Install",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46618,7 +46131,7 @@
    "topic": "Grounding/Bonding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46636,7 +46149,7 @@
    "topic": "Grounding/Bonding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46654,7 +46167,7 @@
    "topic": "Grounding/Bonding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46672,7 +46185,7 @@
    "topic": "Grounding/Bonding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
@@ -46690,7 +46203,493 @@
    "topic": "Misc",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Basic / Aircraft Electricity"
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "d9dd91bfb6",
+   "q": "To send useful information through the atmosphere, radio transmitters and receivers manipulate the—",
+   "options": [
+    "carrier wave (by modulating it)",
+    "ionosphere itself",
+    "aircraft ground plane"
+   ],
+   "correct": 0,
+   "short": "They modulate the carrier wave.",
+   "expl": "A plain radio wave carries no information — it is a carrier wave. Transmitters add the voice or data by modulating (altering) that carrier's amplitude or frequency; the receiver demodulates it to recover the signal. They manipulate the carrier wave, not the atmosphere or the airframe.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
+   "topic": "Radio Fundamentals",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "0a40c2af2a",
+   "q": "Radio waves that bounce (refract) off the ionosphere layer of the atmosphere, extending range far beyond line-of-sight, are—",
+   "options": [
+    "space waves (VHF and above)",
+    "sky waves (high frequency, HF)",
+    "ground waves (low frequency)"
+   ],
+   "correct": 1,
+   "short": "Sky waves (HF) bounce off the ionosphere.",
+   "expl": "High-frequency (HF, roughly 2–25 MHz) sky waves refract off the ionosphere and return to earth well past the horizon, which is why transoceanic aircraft use HF radios. Ground waves follow the earth's curvature; space waves (VHF and up) travel only line-of-sight and do not refract.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
+   "topic": "Radio Fundamentals",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "96a37af119",
+   "q": "Ground waves are radio waves that—",
+   "options": [
+    "refract off the ionosphere back to earth",
+    "travel only in a straight line of sight",
+    "follow the curvature of the earth from transmitter to receiver (VLF/LF/MF)"
+   ],
+   "correct": 2,
+   "short": "Ground waves hug the earth's curve.",
+   "expl": "Ground waves are the low-frequency band (VLF/LF/MF) that follow the earth's curvature from the broadcast antenna to the receiver — good for long-distance work like ADF and LORAN. Refracting off the ionosphere is the sky wave's trait; line-of-sight only is the space wave's.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-30",
+   "topic": "Radio Fundamentals",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "fba19163e5",
+   "q": "Which lists the frequency ranges of ground, sky, and space waves correctly?",
+   "options": [
+    "ground ≈ 3 kHz–3 MHz (VLF/LF/MF); sky ≈ 2–25 MHz (HF); space = VHF/UHF/SHF (30 MHz–30 GHz)",
+    "ground = VHF; sky = UHF; space = VLF",
+    "all three are the same VHF band, 30–300 MHz"
+   ],
+   "correct": 0,
+   "short": "Ground = low kHz-MHz; sky = HF; space = VHF & up.",
+   "expl": "Ground waves live in the low bands (VLF/LF/MF, about 3 kHz–3 MHz), sky waves in HF (about 2–25 MHz), and space waves above HF — VHF (30–300 MHz), UHF (300 MHz–3 GHz), and SHF (3–30 GHz). Most aircraft comm/nav gear rides space waves, which are line-of-sight.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-30 to 11-31",
+   "topic": "Radio Fundamentals",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "ed0cba890c",
+   "q": "AM, in reference to modulation, means the information is carried by varying the carrier wave's—",
+   "options": [
+    "frequency, while amplitude stays constant",
+    "amplitude (its height), while frequency stays constant",
+    "phase only, in discrete pulses"
+   ],
+   "correct": 1,
+   "short": "AM = amplitude varies, frequency constant.",
+   "expl": "Amplitude modulation impresses the signal on the carrier by varying its amplitude (height) while the frequency is held steady — the method used by aircraft VHF communication radios. Varying the frequency instead would be FM.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
+   "topic": "Modulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "a213b5d79b",
+   "q": "On the study guide, 'PM' in reference to modulation is best given as—",
+   "options": [
+    "Power Modulation — varying transmitter output power",
+    "Polarity Modulation — flipping antenna polarity",
+    "Phase Modulation — varying the carrier's phase (timing) with amplitude constant — while noting some courses mean Pulse Modulation (timed bursts, as DME/transponders use)"
+   ],
+   "correct": 2,
+   "short": "PM = Phase Modulation (or Pulse Modulation — confirm).",
+   "expl": "The 8083 series defines only AM and FM by name, so 'PM' is ambiguous: Phase Modulation varies the carrier's phase/timing with amplitude held constant (a close cousin of FM), while some avionics courses use 'PM' for Pulse Modulation — sending the carrier in short timed bursts, the method DME, transponders, and radar use. Neither 'power' nor 'polarity' modulation is a standard term. Confirm which meaning your instructor grades.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-31",
+   "topic": "Modulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "a708079d32",
+   "q": "Aircraft antennas are frequently mounted at a slight angle (canted) in order to—",
+   "options": [
+    "improve reception / signal strength",
+    "reduce aerodynamic drag to zero",
+    "make them easier to de-ice"
+   ],
+   "correct": 0,
+   "short": "Canted antennas = better reception.",
+   "expl": "Many antennas are canted — tilted at a slight angle — for better reception of the signal. The small angle is about signal pickup, not drag reduction or de-icing.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-39",
+   "topic": "Antennas",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "70e08033cd",
+   "q": "One of the OLDEST and most useful navigational aids, still in wide use, is the—",
+   "options": [
+    "GPS (Global Positioning System)",
+    "VOR (Very-High-Frequency Omnidirectional Range)",
+    "TCAS (Traffic Collision Avoidance System)"
+   ],
+   "correct": 1,
+   "short": "VOR = oldest / most useful navaid.",
+   "expl": "The handbook names the very-high-frequency omnidirectional range (VOR) as one of the oldest and most useful navigational aids — built after WWII and still flown today on the Victor airway network. GPS is far newer, and TCAS is a collision-avoidance system, not a navigation aid.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-40",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "c4f98c4c6f",
+   "q": "If an aircraft has no dedicated VOR gauge (OBS/CDI), the VOR information is instead displayed on—",
+   "options": [
+    "the marker-beacon lights",
+    "the transponder control head",
+    "an RMI, HSI, EFIS display, or EADI"
+   ],
+   "correct": 2,
+   "short": "VOR info moves to RMI / HSI / EFIS / EADI.",
+   "expl": "As panels evolved, VOR course and bearing information was integrated into other displays — the radio magnetic indicator (RMI), the HSI, an EFIS display, or the EADI — rather than a stand-alone VOR gauge. The transponder head and marker lights do entirely different jobs.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-42 to 11-43",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "8bf0e213d2",
+   "q": "DME, in reference to aircraft navigation, is—",
+   "options": [
+    "Distance Measuring Equipment — it shows the distance from the aircraft to the ground station",
+    "Directional Magnetic Equipment — a backup compass",
+    "Dual Mode Encoder — an altitude reporter"
+   ],
+   "correct": 0,
+   "short": "DME = Distance Measuring Equipment.",
+   "expl": "DME (Distance Measuring Equipment) calculates and displays the slant distance from the aircraft to the DME/VORTAC ground station, and can also give groundspeed and time-to-station. It operates in the UHF band (962–1213 MHz). It is not a compass or an altitude encoder.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-50",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "2fa50695b4",
+   "q": "Pairing a VOR bearing with a co-located DME lets a pilot—",
+   "options": [
+    "receive the ATIS weather broadcast",
+    "fix the aircraft's exact position (a bearing plus a distance)",
+    "measure engine vibration"
+   ],
+   "correct": 1,
+   "short": "VOR bearing + DME distance = a position fix.",
+   "expl": "The VOR gives the bearing to the station and the co-located DME gives the distance to it — together a bearing and a range pin down the aircraft's exact location. That's why VOR/DME and VORTAC stations are so useful. It has nothing to do with engine monitoring or weather broadcasts.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-50",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "59f930e4dc",
+   "q": "An ILS (Instrument Landing System) guides an aircraft to the runway in poor visibility using three radio elements: a localizer, marker beacons, and a—",
+   "options": [
+    "transponder (for altitude reporting)",
+    "radio altimeter (for AGL height)",
+    "glideslope (for vertical guidance down the correct descent angle)"
+   ],
+   "correct": 2,
+   "short": "ILS = localizer + glideslope + marker beacons.",
+   "expl": "The ILS combines a localizer (horizontal guidance to the runway centerline), a glideslope (vertical guidance down the ~3° descent path), and marker beacons (distance from the runway). A transponder and a radio altimeter are separate systems, not part of the ILS itself.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-47",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "bebd9fa7a4",
+   "q": "Within the ILS, horizontal guidance to the runway centerline is provided by the localizer, and vertical guidance is provided by the—",
+   "options": [
+    "glideslope",
+    "compass locator",
+    "marker beacon"
+   ],
+   "correct": 0,
+   "short": "Localizer = left/right; glideslope = up/down.",
+   "expl": "The localizer keeps you lined up left-to-right on the centerline; the glideslope brings you down the correct vertical descent angle. Marker beacons only mark distance from the runway, and a compass locator is an NDB that helps you intercept the approach — neither gives vertical guidance.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-47 to 11-48",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "6846809d17",
+   "q": "The purpose of a marker beacon in an ILS is to—",
+   "options": [
+    "transmit the aircraft's altitude to ATC",
+    "indicate the aircraft's position/distance along the glidepath to the runway",
+    "provide the vertical descent angle"
+   ],
+   "correct": 1,
+   "short": "Marker beacon = distance-along-the-approach marker.",
+   "expl": "A marker beacon transmits a narrow upward 75 MHz signal that lights a cockpit light and sounds a tone as the aircraft passes over it, marking its position/distance along the approach (outer = blue/400 Hz, middle = amber/1300 Hz, inner = white/3000 Hz). The glideslope gives the descent angle; the transponder reports altitude.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-48",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "c05113fd54",
+   "q": "RNAV (Area Navigation) allows an aircraft to—",
+   "options": [
+    "detect nearby traffic and issue evasive commands",
+    "land automatically with no pilot input",
+    "fly a direct point-to-point route using computed waypoints, not just over ground navaids"
+   ],
+   "correct": 2,
+   "short": "RNAV = direct point-to-point via waypoints.",
+   "expl": "Area navigation lets the aircraft fly direct between computed waypoints — defined by VOR radial/distance pairs or by GPS/INS/FMS — instead of zig-zagging station to station. It is a routing method, not an autoland system or a collision-avoidance system.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-52",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "627d367951",
+   "q": "WAAS (Wide Area Augmentation System) improves navigation by—",
+   "options": [
+    "correcting GPS signals (via ground stations and satellites) to sharpen accuracy to about 1–3 meters",
+    "jamming interfering radio frequencies",
+    "replacing GPS with ground-based VOR stations"
+   ],
+   "correct": 0,
+   "short": "WAAS = corrections that sharpen GPS to ~1–3 m.",
+   "expl": "WAAS uses about 25 surveyed ground stations that measure GPS errors and, through geostationary satellites, broadcast corrections to WAAS-enabled receivers — tightening accuracy to roughly 1–3 meters and enabling precision approaches. It augments GPS, it doesn't replace it or jam anything.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-69",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "08229f71d5",
+   "q": "An IRS (Inertial Reference System) determines position by—",
+   "options": [
+    "receiving corrections from WAAS ground stations",
+    "using self-contained accelerometers and gyros from a known start point, with NO ground/radio signals",
+    "triangulating VOR radials"
+   ],
+   "correct": 1,
+   "short": "IRS = self-contained inertial, no outside signals.",
+   "expl": "An inertial reference system (a modern INS) continuously computes position, velocity, and attitude from its own accelerometers and gyros, starting from a known initialized point — needing no ground station or radio input at all. That self-contained trait is the whole point; WAAS and VOR both rely on outside signals.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-70",
+   "topic": "Nav Aids",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "b82bb2972d",
+   "q": "The component used to locate personnel after a crash — triggered by the excessive G-forces of impact — is the—",
+   "options": [
+    "radio altimeter",
+    "Cockpit Voice Recorder (CVR)",
+    "Emergency Locator Transmitter (ELT)"
+   ],
+   "correct": 2,
+   "short": "ELT = G-force-triggered crash locator beacon.",
+   "expl": "The ELT carries a built-in G-force (impact) sensor aligned with the aircraft's longitudinal axis; a crash trips it and it transmits a distress/location signal (406 MHz, with 121.5 MHz for homing) so search and rescue can find the site and its occupants. A CVR records audio; a radio altimeter measures height.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-63 to 11-64",
+   "topic": "Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "3600f39dd9",
+   "q": "For onboard collision-avoidance systems, the transponder mode type used is—",
+   "options": [
+    "Mode S (mode select)",
+    "Mode A (identity code only)",
+    "Mode 1 (military only)"
+   ],
+   "correct": 0,
+   "short": "Collision avoidance uses Mode S.",
+   "expl": "Mode S ('mode select') is a data-packet protocol also used by onboard collision-avoidance systems; TCAS interrogates other aircraft with Mode C and Mode S at 1030 MHz and gets 1090 MHz replies. Mode 3/A returns only an identity code, and there's no civilian collision-avoidance 'Mode 1.'",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-54 to 11-56",
+   "topic": "Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "2a13cd9e5f",
+   "q": "A TCAS TA (Traffic Advisory)—",
+   "options": [
+    "is issued only by TCAS II",
+    "alerts the pilot to nearby traffic to aid visual acquisition, with no evasive command; issued by TCAS I and II",
+    "commands a specific vertical evasive maneuver"
+   ],
+   "correct": 1,
+   "short": "TA = 'traffic's out there, look for it' — no command.",
+   "expl": "A Traffic Advisory simply warns the pilot of an intruder nearby so they can see and avoid it — no maneuver is commanded — and it's issued by both TCAS I and TCAS II. TCAS I identifies traffic within about a 35–40 mile range and is mandated on aircraft with 10–30 seats; a TA fires roughly 25–48 seconds before projected contact. Commanding an evasive maneuver is the RA's job.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-56 to 11-58",
+   "topic": "Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "636021485e",
+   "q": "A TCAS RA (Resolution Advisory)—",
+   "options": [
+    "is issued by both TCAS I and II as a visual-only alert",
+    "tells ATC to reroute the intruder aircraft",
+    "is issued only by TCAS II and commands a specific vertical evasive maneuver (e.g., CLIMB/DESCEND)"
+   ],
+   "correct": 2,
+   "short": "RA = TCAS II vertical evasive command.",
+   "expl": "A Resolution Advisory is issued only by TCAS II when a collision is imminent; it aurally commands a specific vertical maneuver (CLIMB or DESCEND), coordinated so the other TCAS II aircraft is told to go the opposite way. Pilots must follow an RA even over an ATC instruction. TCAS II is required above 30 seats or 15,000 kg, with the RA firing ~within 35 seconds of contact.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-56 to 11-58",
+   "topic": "Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "2ea14e5b0d",
+   "q": "A transponder must be inspected and tested every 24 calendar months, and that requirement comes from which part of 14 CFR?",
+   "options": [
+    "Part 91 (§91.413) — tested per Part 43, Appendix F",
+    "Part 65 (mechanic certification)",
+    "Part 21 (product certification)"
+   ],
+   "correct": 0,
+   "short": "Transponder check: every 24 mo., 14 CFR Part 91.",
+   "expl": "14 CFR §91.413 (Part 91) requires transponders in controlled airspace to be inspected and tested every 24 calendar months, done in accordance with Part 43, Appendix F. Part 65 covers mechanic certificates and Part 21 covers product/parts certification — neither drives the transponder check.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-55",
+   "topic": "Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "034d718c96",
+   "q": "EGPWS stands for, and does, the following:",
+   "options": [
+    "Engine Ground Power Warning System — warns of low APU power",
+    "Enhanced Ground Proximity Warning System — adds a terrain database and GPS for forward-looking terrain alerts",
+    "Electronic Glideslope Path Warning System — an ILS backup"
+   ],
+   "correct": 1,
+   "short": "EGPWS = enhanced terrain-awareness warning.",
+   "expl": "The enhanced ground proximity warning system builds on GPWS by adding a terrain/obstacle database and GPS position, giving the crew earlier forward-looking warnings of dangerous terrain — the modern defense against controlled flight into terrain. It has nothing to do with APU power or the glideslope.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Page 11-60",
+   "topic": "Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "614e3859c8",
+   "q": "An HSI (Horizontal Situation Indicator) is an instrument that—",
+   "options": [
+    "measures height above the terrain",
+    "shows only engine RPM and temperatures",
+    "combines the heading indicator with VOR/ILS course-deviation information in one display"
+   ],
+   "correct": 2,
+   "short": "HSI = heading + course deviation in one gauge.",
+   "expl": "The HSI merges the heading indicator (compass card) with VOR/ILS course-deviation (and glideslope) information, showing the aircraft's position relative to a selected course on a single face — reducing pilot workload. It's a navigation display, not an engine gauge or an altimeter.",
+   "cite": "FAA-H-8083-31B, Ch. 10, Page 10-66",
+   "topic": "Instrument Displays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "f1f4615a31",
+   "q": "An EFIS (Electronic Flight Instrument System) is—",
+   "options": [
+    "a system that displays flight-instrument information on electronic screens (PFD and navigation display)",
+    "the engine fuel-injection controller",
+    "an emergency floatation inflation system"
+   ],
+   "correct": 0,
+   "short": "EFIS = flight instruments on electronic screens.",
+   "expl": "EFIS presents the flight instruments on electronic CRT/LCD screens — the primary flight display and the navigation display — replacing individual mechanical gauges. It's the heart of the glass cockpit, not an engine controller or a floatation system.",
+   "cite": "FAA-H-8083-31B, Ch. 10, Page 10-68",
+   "topic": "Instrument Displays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "6634646739",
+   "q": "An EADI (Electronic Attitude Director Indicator) displays—",
+   "options": [
+    "only the outside air temperature",
+    "aircraft attitude plus flight-director command guidance on a screen",
+    "distance to the next DME station"
+   ],
+   "correct": 1,
+   "short": "EADI = electronic attitude + flight-director bars.",
+   "expl": "The EADI is the electronic version of the attitude director indicator: it shows the aircraft's attitude (pitch and bank) together with flight-director command bars and related guidance on a screen. Outside air temperature and DME distance are shown elsewhere.",
+   "cite": "FAA-H-8083-31B, Ch. 10, Page 10-64",
+   "topic": "Instrument Displays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
+   ]
+  },
+  {
+   "id": "4fc87583df",
+   "q": "The acronym RAT, in aircraft systems, stands for—",
+   "options": [
+    "Rudder Actuation Transducer",
+    "Radio Antenna Tuner",
+    "Ram Air Turbine — an emergency air-driven turbine for backup power"
+   ],
+   "correct": 2,
+   "short": "RAT = Ram Air Turbine (emergency power).",
+   "expl": "A Ram Air Turbine deploys into the slipstream to drive an emergency generator and/or hydraulic pump, providing backup power when the normal generators fail. It is not a radio tuner or a rudder sensor.",
+   "cite": "FAA-H-8083-31B, Ch. 12, Page 12-33",
+   "topic": "Misc",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 — Study Guide (Electricity + Avionics/Navigation)"
    ]
   },
   {
