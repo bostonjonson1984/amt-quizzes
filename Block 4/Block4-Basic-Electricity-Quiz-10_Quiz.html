@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 4 · Basic Electricity Quiz #10</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 4 · Basic Electricity Quiz #10</h1>
+    <div class="sub">AIM worksheet &#x27;AMTBLK04 Basic Electricity Quiz #10&#x27; (AC theory, reactance/impedance, semiconductors, transformers, motors + landing-gear circuit logic), reworked into the interactive engine. Options &amp; question order reshuffle every session; Q1-29 cite FAA-H-8083-30B Ch.12, the two gear items cite -31B Ch.13.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "1. Alternating current has several advantages over DC. Name one.", "options": ["Alternating current can produce more than one horsepower with only 746 watts of power", "Alternating current's voltage and current values can be changed easily", "Alternating current is safer than DC", "Alternating current creates less heat in a resistor for a given current flow"], "correct": 1, "short": "Its voltage and current can be changed easily (by a transformer).", "expl": "The big practical advantage of AC is that a simple transformer can step its voltage and current up or down with almost no loss — something you cannot do with DC. That is why power is generated and distributed as AC. AC is not inherently safer, it does not make less heat for a given current, and 746 watts is still one horsepower whether it is AC or DC.", "cite": "FAA-H-8083-30B, Ch. 12 (advantages of AC / transformers, pp. 12-43, 12-65)", "topic": "AC Theory", "fig": ""}, {"q": "2. Unless otherwise specified, AC values for voltage and current are given in ______ values.", "options": ["Peak", "Equivalent", "Effective", "Average"], "correct": 2, "short": "Effective (RMS) values.", "expl": "When an AC voltage or current is stated without any qualifier — like '115 volts AC' — it means the effective, or RMS, value. The effective value is the one that does the same heating work as an equal DC value, so it is the meaningful number for real circuits. Peak and average are only used when specifically named.", "cite": "FAA-H-8083-30B, p. 12-49 (effective / RMS value)", "topic": "AC Values", "fig": ""}, {"q": "3. The Alternating Current waveform produced by a rotating generator is called a ______.", "options": ["Sine Wave", "Square Wave", "Cosine Wave", "Tangent Wave"], "correct": 0, "short": "A sine wave.", "expl": "As the generator loop rotates through the magnetic field, the induced voltage rises and falls smoothly following the sine of the rotation angle — zero, up to a peak, back through zero, down to the opposite peak, and back. That smooth curve is the sine wave, the natural output of a rotating generator.", "cite": "FAA-H-8083-30B, p. 12-46 (sine wave)", "topic": "AC Theory", "fig": ""}, {"q": "4. In certain circuits, the voltage and current of the AC waveform do not line up. What do we call the distance between the waveforms?", "options": ["Waveform Distortion", "Phase Angle", "Phase Distance", "Wave Anomaly"], "correct": 1, "short": "The phase angle.", "expl": "When reactance is present, the current and voltage waves cross zero at different times — they are out of step. The angular amount they are shifted apart is the phase angle. Its cosine is the power factor, so it directly ties into how much real power the circuit uses.", "cite": "FAA-H-8083-30B, p. 12-62 (phase angle)", "topic": "AC Theory", "fig": ""}, {"q": "5. The ratio of true power to apparent power is called the ______.", "options": ["Power Ratio", "Power factor", "Truly Apparent Power", "R.M.S. Value"], "correct": 1, "short": "The power factor.", "expl": "True power (the watts actually consumed) divided by apparent power (volts times amps, in volt-amps) gives the power factor. It runs from 0 to 1 and equals the cosine of the phase angle. A purely resistive circuit has a power factor of 1; adding reactance drops it below 1.", "cite": "FAA-H-8083-30B, p. 12-64 (power factor)", "topic": "AC Theory", "fig": ""}, {"q": "6. Transformers change the values of Voltage and Current using the principle of ______.", "options": ["Mutual Inductance", "Capacitive Reactance", "Mutual Capacitance", "Inductive Reactance"], "correct": 0, "short": "Mutual inductance.", "expl": "The changing current in the primary makes a changing magnetic field that links the secondary winding and induces a voltage in it. That linking of one coil's field into another coil is mutual inductance — the operating principle of every transformer. No physical connection is needed between the two windings.", "cite": "FAA-H-8083-30B, p. 12-65 (transformers / mutual inductance)", "topic": "Transformers", "fig": ""}, {"q": "7. What do we call the resistance to AC produced by a back voltage generated in a coil of wire?", "options": ["Capacitive Reactance", "Mutual Inductance", "Inductive Reactance", "Mutual Capacitance"], "correct": 2, "short": "Inductive reactance.", "expl": "A coil fights any change in its current by inducing a counter-EMF (back voltage) that opposes the source. That opposition to AC is inductive reactance, XL. It grows with frequency and with inductance (XL = 2 x pi x f x L), so a coil chokes higher-frequency AC more strongly.", "cite": "FAA-H-8083-30B, pp. 12-56-12-58 (inductive reactance / counter-EMF)", "topic": "Reactance", "fig": ""}, {"q": "8. A capacitor's working voltage should be at least ______% over the highest voltage applied in the circuit.", "options": ["75", "50", "25", "100"], "correct": 1, "short": "50 percent.", "expl": "The handbook rule is that a capacitor should be chosen so its working voltage is at least 50 percent greater than the highest voltage that will be applied. That margin covers voltage surges and the fact that an AC or pulsating source has a peak well above its RMS value, keeping the dielectric from breaking down.", "cite": "FAA-H-8083-30B, p. 12-51 (capacitor working voltage)", "topic": "Capacitance", "fig": ""}, {"q": "9. What is the frequency at which a circuit's capacitive reactance and inductive reactance are equal?", "options": ["RMS Frequency", "Effective Frequency", "Resident Frequency", "Resonant Frequency"], "correct": 3, "short": "The resonant frequency.", "expl": "As frequency rises, inductive reactance (XL) climbs while capacitive reactance (XC) falls. The one frequency where they are exactly equal is the resonant frequency. At resonance XL and XC cancel, so the circuit's opposition is just its resistance and the phase angle is zero.", "cite": "FAA-H-8083-30B, p. 12-63 (resonance / resonant frequency)", "topic": "Resonance", "fig": ""}, {"q": "10. When it is necessary to get the maximum amount of power from AC, it is typically of this type. This type of AC also makes better DC because the power pulses overlap and never drop to an instantaneous value of zero.", "options": ["Pulsating DC", "400 Hz AC", "Alternating Current", "3 phase AC"], "correct": 3, "short": "Three-phase AC.", "expl": "Three-phase AC is three sine waves offset by 120 degrees. Because their peaks are staggered, the combined power is far more constant than a single phase and delivers more power for a given size machine. When rectified, the overlapping phases keep the DC from ever falling to zero, giving a much smoother DC than single-phase rectification.", "cite": "FAA-H-8083-30B, Ch. 12 (three-phase AC, ~p. 12-108)", "topic": "AC Theory", "fig": ""}, {"q": "11. Vacuum tubes ushered in the age of electronics. However, they have been replaced almost entirely by solid-state transistors because:", "options": ["Tubes are heavy, hot, consume a lot of power, and are very large", "Tubes cannot be used as electron control devices", "Transistors “sound better” in an audio circuit", "Transistors can handle higher power levels"], "correct": 0, "short": "Tubes are heavy, hot, power-hungry, and large.", "expl": "A vacuum tube needs a heated filament and a bulky glass envelope, so it runs hot, draws a lot of power, and takes up space. A transistor does the same electron-control job while being tiny, cool, rugged, and efficient — which is exactly why solid-state devices replaced tubes. Tubes CAN control electron flow; that is not the problem.", "cite": "FAA-H-8083-30B, Ch. 12 (solid-state vs. vacuum-tube devices, ~pp. 12-95-12-96)", "topic": "Semiconductors", "fig": ""}, {"q": "12. Semiconductor Diodes will conduct electricity when ______.", "options": ["They are connected in series in a circuit", "Diodes should never conduct electricity, they are check valves", "They are in a circuit with the P-Type material connected to Positive, and the N-Type connected to Negative", "They are Reverse Biased"], "correct": 2, "short": "P-type to positive, N-type to negative (forward biased).", "expl": "A diode conducts only when it is forward biased: the P-side (anode) tied toward positive and the N-side (cathode) tied toward negative. That polarity pushes the carriers across the junction and it turns on. Reverse it and the junction blocks. The check-valve image is right in spirit — a diode passes current one way — but it does conduct in that forward direction.", "cite": "FAA-H-8083-30B, p. 12-98 (forward-biased diode)", "topic": "Semiconductors", "fig": ""}, {"q": "13. What can we use to change the entire AC waveform into DC? (Not just the positive pulses)", "options": ["Full wave bridge rectifier", "Inverter", "Half wave rectifier", "Transformer"], "correct": 0, "short": "A full-wave bridge rectifier.", "expl": "A full-wave bridge uses four diodes so that BOTH halves of the AC wave are steered through the load in the same direction — the negative half is flipped up instead of thrown away. A half-wave rectifier keeps only the positive pulses. An inverter does the opposite job (DC to AC), and a transformer only changes AC voltage, it does not rectify.", "cite": "FAA-H-8083-30B, p. 12-102 (full-wave bridge rectifier)", "topic": "Rectifiers", "fig": ""}, {"q": "14. Zener diodes will conduct electricity when they are reverse biased if the reverse voltage exceeds ______.", "options": ["No diode will conduct electricity if it is reverse biased unless it is broken", "The diode's capacitance value", "the Zener voltage", "400 Hz"], "correct": 2, "short": "The Zener voltage.", "expl": "A zener is built to break down and conduct in reverse at a precise, repeatable voltage — its Zener voltage. Below that it blocks like a normal diode; once the reverse voltage reaches the Zener voltage it conducts and holds that voltage nearly constant. This is by design (not damage), which is what makes a zener a voltage regulator/reference.", "cite": "FAA-H-8083-30B, p. 12-103 (zener diode)", "topic": "Semiconductors", "fig": ""}, {"q": "15. When will a PNP transistor conduct electricity?", "options": ["When you connect the base to positive and the emitter to negative", "When you connect the base and the emitter to negative", "When you connect the base to negative and the emitter to positive", "When you connect the base and the emitter to positive"], "correct": 2, "short": "Base to negative, emitter to positive.", "expl": "A PNP transistor turns on when its emitter-base junction is forward biased, which for PNP means the emitter is more positive than the base — emitter to positive, base to negative. (An NPN is the mirror image: base positive, emitter negative.) Getting the polarity backward is the classic PNP/NPN trap.", "cite": "FAA-H-8083-30B, p. 12-107 (PNP transistor biasing)", "topic": "Semiconductors", "fig": ""}, {"q": "16. A certain transformer has an input voltage of 1000V and an output voltage of 100V. If you can get 10 amps off of the secondary coil, how many amps are going into the primary coil?", "options": ["10 amps", "100 amps", "1 amp", "2 amps"], "correct": 2, "short": "1 amp.", "expl": "Power in equals power out (ideal transformer): Vp x Ip = Vs x Is. So 1000 x Ip = 100 x 10 = 1000 volt-amps, which gives Ip = 1000 / 1000 = 1 amp. Voltage stepped DOWN 10-to-1 means current stepped UP 10-to-1: 1 amp in the high-voltage primary supplies 10 amps out of the low-voltage secondary.", "cite": "FAA-H-8083-30B, p. 12-65 (transformer power / turns ratio)", "topic": "Transformers", "fig": ""}, {"q": "17. A transformer has more windings on the secondary side than on the primary side. What kind of transformer is this?", "options": ["Neutral", "It is impossible to tell", "Step Up", "Step Down"], "correct": 2, "short": "A step-up transformer.", "expl": "Output voltage follows the turns ratio: more turns on the secondary than the primary means the secondary voltage is higher than the primary voltage — that is a step-up transformer. (Current goes the other way: the higher-voltage secondary carries less current.)", "cite": "FAA-H-8083-30B, p. 12-65 (step-up / step-down transformers)", "topic": "Transformers", "fig": ""}, {"q": "18. How can we test a diode for proper operation?", "options": ["Use a voltmeter to determine the zener voltage", "Use an ohmmeter; the diode should have low resistance in both directions", "Use an ohmmeter; the diode should have low resistance when forward biased, and infinite resistance when reverse biased", "Use an ohmmeter; the diode should have high resistance in both directions"], "correct": 2, "short": "Ohmmeter: low R forward, infinite R reverse.", "expl": "A good diode is a one-way valve, so an ohmmeter should read LOW resistance one way (forward biased) and very HIGH / infinite resistance the other way (reverse biased). Low both ways means it is shorted; high both ways means it is open. Either same-both-directions result is a failed diode.", "cite": "FAA-H-8083-30B, pp. 12-98, 12-104 (diode operation / testing)", "topic": "Semiconductors", "fig": ""}, {"q": "19. Anytime we have a conductor move through a magnetic field, we will induce a voltage. What can we do to increase the induced EMF?", "options": ["Reduce the speed of conductor motion and increase the magnetic field strength", "Increase the distance between the conductor and the magnetic field", "Increase the size of the conductor", "Increase the rate at which lines of magnetic flux are cut"], "correct": 3, "short": "Increase the rate at which flux lines are cut.", "expl": "Induced voltage depends on how fast the conductor cuts magnetic flux lines — the more lines cut per second, the more EMF. You raise that rate by moving faster, using a stronger field, or adding turns. Slowing the motion (option b) works against you, and increasing the size or the distance does not increase the rate of cutting.", "cite": "FAA-H-8083-30B, pp. 12-44, 12-56 (generating an EMF / induction)", "topic": "Magnetism", "fig": ""}, {"q": "20. Which of the following values of AC current and voltage produces the same amount of heat as a corresponding amount of DC?", "options": ["Peak Values", "Effective Values", "Average Values", "Peak to Peak Values"], "correct": 1, "short": "Effective (RMS) values.", "expl": "The effective value of AC is DEFINED as the value that produces the same heating in a resistor as an equal amount of steady DC — that is exactly why it is also called the RMS value. Peak and average do not match DC heating; the effective value does.", "cite": "FAA-H-8083-30B, p. 12-49 (effective value = DC-equivalent heating)", "topic": "AC Values", "fig": ""}, {"q": "21. If the voltage and current in an AC circuit are not in phase:", "options": ["There will be a power factor of 1", "True power will be less than apparent power", "True power will be more than apparent power", "True power and apparent power will cancel each other out"], "correct": 1, "short": "True power will be less than apparent power.", "expl": "When voltage and current are out of phase, some energy sloshes back and forth in the reactance instead of being consumed. So the real power used (true power) is less than the volts-times-amps product (apparent power), and the power factor falls below 1. Only when they ARE in phase do true and apparent power become equal (PF = 1).", "cite": "FAA-H-8083-30B, p. 12-64 (true power vs. apparent power)", "topic": "AC Power", "fig": ""}, {"q": "22. The total opposition to current flow in an AC circuit is called:", "options": ["Impedance", "Impotence", "Inductance", "Resistance"], "correct": 0, "short": "Impedance.", "expl": "Impedance (Z) is the total opposition to AC — it combines resistance with inductive and capacitive reactance. Because resistance and reactance act at right angles, they add like the sides of a right triangle: Z is the hypotenuse, Z = square root of (R squared + X squared). Resistance alone is only the DC part of the opposition.", "cite": "FAA-H-8083-30B, p. 12-59 (impedance)", "topic": "Impedance", "fig": ""}, {"q": "23. What do we call the resistance to AC caused by capacitors in a circuit?", "options": ["Capacitive Reactance", "Inductive Reactance", "Mutual Inductance", "Mutual Capacitance"], "correct": 0, "short": "Capacitive reactance.", "expl": "A capacitor's opposition to AC is capacitive reactance, XC = 1 / (2 x pi x f x C). Unlike a resistor, this opposition DROPS as frequency rises, so a capacitor passes high-frequency AC more easily and blocks DC (zero frequency) completely.", "cite": "FAA-H-8083-30B, p. 12-54 (capacitive reactance)", "topic": "Reactance", "fig": ""}, {"q": "24. A certain A.C. circuit has an inductance of .005 Henries, a capacitance of .0000057 Farads, a frequency of 400 Hz, and an applied voltage of 115V. What is the Inductive Reactance for this circuit?", "options": ["1.26 ohms", "56.84 ohms", "12.57 ohms", "6.28 ohms"], "correct": 2, "short": "XL = 12.57 ohms.", "expl": "Inductive reactance uses only L and f: XL = 2 x pi x f x L = 2 x 3.1416 x 400 x 0.005. Work it in steps: 2 x pi = 6.283; x 400 = 2513.3; x 0.005 = 12.57 ohms. The capacitance, voltage, and resistance in the problem are distractors — XL does not use them. (6.28 drops the factor of 2; 56.84 is the capacitive reactance, not inductive.)", "cite": "FAA-H-8083-30B, p. 12-58 (inductive reactance, XL = 2(pi)fL)", "topic": "Reactance", "fig": ""}, {"q": "25. A certain A.C. circuit has a capacitance of .000007 Farads, a resistance of 225 ohms, an inductance of .03 Henrys, and a frequency of 400 Hz. What is the Capacitive Reactance for this circuit?", "options": ["56.84 ohms", "75.40 ohms", "28.42 ohms", "0.0176 ohms"], "correct": 0, "short": "XC = 56.84 ohms.", "expl": "Capacitive reactance uses only C and f: XC = 1 / (2 x pi x f x C). Bottom first: 2 x pi x 400 = 2513.3; x 0.000007 = 0.017593. Then invert: 1 / 0.017593 = 56.84 ohms. Watch the trap answers: 0.0176 is the denominator before you invert, and 75.40 is the INDUCTIVE reactance of the .03 H coil, not the capacitive reactance.", "cite": "FAA-H-8083-30B, p. 12-54 (capacitive reactance, XC = 1/[2(pi)fC])", "topic": "Reactance", "fig": ""}, {"q": "26. If a Parallel A.C. Circuit has an XL of 25 ohms, an XC of 40 ohms, and a Resistance of 50 ohms, what is this circuit's Impedance? (Z = 1 / sqrt[ (1/R)^2 + (1/XL - 1/XC)^2 ])", "options": ["40 ohms", "20 ohms", "33.3 ohms", "50 ohms"], "correct": 0, "short": "Z = 40 ohms.", "expl": "Use the parallel-circuit impedance formula. Reciprocals first: 1/R = 1/50 = 0.02; 1/XL = 1/25 = 0.04; 1/XC = 1/40 = 0.025. The reactive part is (0.04 - 0.025) = 0.015. Square and add: 0.02^2 = 0.0004, 0.015^2 = 0.000225, sum = 0.000625. Square root = 0.025. Invert: 1 / 0.025 = 40 ohms. (50 ohms is just R — the trap for forgetting the reactive branches.)", "cite": "FAA-H-8083-30B, pp. 12-59-12-61 (impedance in parallel AC circuits)", "topic": "Impedance", "fig": ""}, {"q": "27. How can we determine the phase angle of an A.C. Circuit?", "options": ["The ratio of True Power over Apparent Power", "Use an oscilloscope to measure the phase angle of an A.C. Circuit", "The cosine of the phase angle will be equal to the Power Factor", "The ratio of the voltage drop across the resistor to the total voltage in a parallel circuit"], "correct": 2, "short": "Its cosine equals the power factor.", "expl": "The cleanest link is that the cosine of the phase angle equals the power factor, so knowing the power factor gives you the angle. Note the other choices are actually true statements too — an oscilloscope really can display the phase shift, and True Power / Apparent Power really is the power factor. The voltage-drop-ratio statement is wrong only because it specifies a PARALLEL circuit: the resistor-drop-to-total-voltage ratio gives the power factor in a SERIES circuit, not a parallel one.", "cite": "FAA-H-8083-30B, p. 12-64 (power factor = cosine of phase angle)", "topic": "AC Theory", "fig": ""}, {"q": "28. If an A.C. circuit has more Inductive Reactance than Capacitive Reactance, then Current ______ Voltage.", "options": ["Leads", "Lags", "Cancels", "Is in phase with"], "correct": 1, "short": "Lags.", "expl": "More inductive than capacitive reactance makes the circuit net inductive, and in an inductive circuit the current LAGS the voltage. Remember ELI the ICE man: in an inductor (L), voltage E leads current I — same thing said the other way, the current lags. (A net-capacitive circuit would be the reverse: current leads.)", "cite": "FAA-H-8083-30B, p. 12-62 (inductive circuit: current lags voltage)", "topic": "AC Theory", "fig": ""}, {"q": "29. There are 2 instances where an A.C. Circuit will have a Power factor of 1. Name one.", "options": ["When the circuit is purely capacitive with no resistance", "When the inductive reactance is double the capacitive reactance", "When the circuit is purely resistive, or when it is at resonance (XL = XC)", "When the apparent power is much greater than the true power"], "correct": 2, "short": "Purely resistive, OR at resonance (XL = XC).", "expl": "Power factor is 1 only when voltage and current are in phase, which happens in two cases: (1) a purely resistive circuit, which has no reactance to shift the phase, and (2) a circuit at resonance, where the inductive and capacitive reactances are equal and cancel each other out. Either one leaves only resistance, so the phase angle is zero and PF = 1.", "cite": "FAA-H-8083-30B, pp. 12-63-12-64 (power factor / resonance)", "topic": "AC Power", "fig": ""}, {"q": "30. In a typical electrically-operated retractable landing gear, trace the raise-gear circuit: after the pilot selects gear UP, which switch must be closed before current can reach the gear motor to retract, and what stops the motor once the gear is fully up?", "options": ["The down-limit switch must be closed while on the ground, and the warning horn relay stops the motor", "No switch is needed — the gear handle feeds the motor directly and the motor simply stalls when the gear is fully up", "The nose-gear down switch must be closed, and the throttle switch stops the motor", "The gear safety (squat) switch must be closed — which happens only when the aircraft is airborne with the weight off the wheels — and the up-limit switches open to stop the motor at the full-up position"], "correct": 3, "short": "Squat switch closed (airborne) feeds the motor; up-limit switches stop it.", "expl": "The gear safety switch (squat / weight-on-wheels switch) sits on a landing gear strut. On the ground the compressed strut holds it in the GROUND position and the gear CANNOT retract. Once airborne the strut extends, the squat switch moves to FLIGHT, and now selecting UP lets current through to the gear motor. When each gear reaches full up, its up-limit switch opens to cut the motor so it does not keep running against the stops.", "cite": "FAA-H-8083-31B, Ch. 13 (Aircraft Landing Gear Systems — gear safety/squat switch & up-limit switches, p. 13-33)", "topic": "Landing Gear", "fig": ""}, {"q": "31. In a landing-gear warning system, under what condition does the gear-warning horn sound (an unsafe mismatch)?", "options": ["Only when the aircraft is airborne with the gear handle in the DOWN position", "When the gear handle is UP while the squat switch senses weight-on-wheels — i.e., the gear is selected up while the aircraft is still on the ground", "When the red and green gear-position lights are both illuminated together in flight", "Whenever the gear is fully down and locked"], "correct": 1, "short": "Gear handle UP while the squat switch says weight-on-wheels (on the ground).", "expl": "The squat switch tells the system whether the aircraft is on the ground or in flight. If the aircraft is on the ground (weight on wheels) and the gear handle is moved to the UP position, that is a dangerous mismatch, so the warning horn sounds to alert the pilot. (The same horn also sounds in flight if the throttle is retarded for landing while the gear is not down and locked.)", "cite": "FAA-H-8083-31B, Ch. 13 (Aircraft Landing Gear Systems — squat switch & warning horn logic, p. 13-33)", "topic": "Landing Gear", "fig": ""}];
+const DRILL = [{"label": "Effective (RMS) value", "text": "The AC value that heats a resistor the same as an equal DC value. It is the default when AC is stated without a qualifier. Peak = 1.41 x effective. — p. 12-49"}, {"label": "Reactance direction", "text": "XL = 2(pi)fL grows with frequency; XC = 1/[2(pi)fC] shrinks with frequency. Where XL = XC you have RESONANCE. — pp. 12-54, 12-58, 12-63"}, {"label": "Impedance", "text": "Total opposition to AC. Series: Z = sqrt(R^2 + X^2) (right-triangle hypotenuse). Parallel: Z = 1 / sqrt[(1/R)^2 + (1/XL - 1/XC)^2]. — pp. 12-59-12-61"}, {"label": "Power factor", "text": "PF = true power / apparent power = cosine of the phase angle. PF = 1 when purely resistive OR at resonance (XL = XC). Out of phase => true power < apparent power. — pp. 12-63-12-64"}, {"label": "ELI the ICE man", "text": "Inductive (L): E leads I => current LAGS voltage. Capacitive (C): I leads E => current LEADS voltage. Net-inductive circuit => current lags. — p. 12-62"}, {"label": "Transformer balance", "text": "Vp x Ip = Vs x Is (ideal). Step voltage DOWN 10:1 => step current UP 10:1. More secondary turns = step-UP. Principle = mutual inductance. — p. 12-65"}, {"label": "Capacitor working voltage", "text": "Pick a working voltage at least 50% GREATER than the highest voltage applied (covers surges + AC peak = 1.41 x RMS). — p. 12-51"}, {"label": "Diode / zener facts", "text": "Diode conducts forward biased (P->positive, N->negative). Test with ohmmeter: low R forward, infinite R reverse. Zener conducts in REVERSE once reverse V exceeds the Zener voltage. — pp. 12-98, 12-103"}, {"label": "PNP vs NPN", "text": "PNP conducts with emitter POSITIVE, base NEGATIVE. NPN is the mirror: base positive, emitter negative. — p. 12-107"}, {"label": "AC-to-DC", "text": "Full-wave BRIDGE rectifier (4 diodes) converts the ENTIRE waveform to DC. Half-wave keeps only positive pulses. Inverter does the opposite (DC->AC). 3-phase rectified never drops to zero = smoother DC. — pp. 12-102, 12-108"}, {"label": "Squat switch (gear)", "text": "Squat / weight-on-wheels switch: GROUND position blocks retraction; airborne it allows gear UP. Horn sounds if gear is selected UP while still on the ground. Up-limit switches stop the motor at full up. — FAA-H-8083-31B p. 13-33"}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
