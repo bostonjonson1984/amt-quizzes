@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 4 · DC Quiz #7</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 4 · DC Quiz #7</h1>
+    <div class="sub">AIM worksheet &#x27;AMTBLK04 DC Quiz #7&#x27; (25 items) — semiconductors, AC theory, transformers, motors, and batteries, reworked into the interactive engine. 4-option, options &amp; question order reshuffle every session; every answer cited to FAA-H-8083-30B Ch. 12.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "1. Which Bell Lab scientist invented the transistor in 1948?", "options": ["William Shockley", "John Bardeen", "All of them — Bardeen, Brattain, and Shockley", "Walter Brattain"], "correct": 2, "short": "All three of them.", "expl": "The transistor was the joint work of John Bardeen, Walter Brattain, and William Shockley at Bell Laboratories, so no single name is the answer. Heads-up: the FAA handbook teaches how the transistor works (NPN/PNP construction and biasing) but does not name its inventors — that history is AIM-lecture context, so the cite here points to the handbook's transistor section.", "cite": "FAA-H-8083-30B, Ch. 12 (Transistors, ~p. 12-105; Figs. 12-220/12-221)", "topic": "Semiconductors", "fig": ""}, {"q": "2. Electrical wiring may be made from many different types of metal. Of the four metals listed, the best conductor material is:", "options": ["Aluminum", "Silver", "Copper", "Steel"], "correct": 1, "short": "Silver.", "expl": "Silver has the lowest resistivity of common metals, so among silver, copper, aluminum, and steel it is the best conductor. The handbook ranks the metals directly: 'silver is the best conductor.' Copper is a close second and is used for most wiring because silver is far more expensive.", "cite": "FAA-H-8083-30B, Ch. 5 (conductors — silver ranks first); resistance of conductors Ch. 12, p. 12-23", "topic": "Conductors", "fig": ""}, {"q": "3. If the cross-sectional area of a conductor is doubled, the resistance to current flow will be what amount of the original resistance?", "options": ["78.6% of the original amount", "The same", "Twice as much", "Half as much"], "correct": 3, "short": "Half as much.", "expl": "Resistance is inversely proportional to cross-sectional area — a fatter wire gives electrons more room to move without collisions. The handbook states it plainly: 'If the cross-sectional area of a conductor is doubled, the resistance to current flow is reduced in half.' Double the area, halve the resistance.", "cite": "FAA-H-8083-30B, p. 12-23 (resistance vs. cross-sectional area)", "topic": "Resistance", "fig": ""}, {"q": "4. A lead-acid battery cell contains positive plates coated with:", "options": ["Zinc", "Chromium", "Lead Peroxide", "Lead"], "correct": 2, "short": "Lead peroxide (lead dioxide, PbO2).", "expl": "In a charged lead-acid cell the positive electrode is lead peroxide (PbO2) and the negative electrode is spongy metallic lead, both sitting in a sulfuric-acid electrolyte. During discharge both plates convert toward lead sulfate. The positive plate's active material is the lead peroxide.", "cite": "FAA-H-8083-30B, p. 12-87 (Secondary Cell / lead-acid construction)", "topic": "Batteries", "fig": ""}, {"q": "5. In theory, a 100-ampere battery will furnish:", "options": ["50 amperes for two hours", "100 amperes for one hour", "20 amperes for five hours", "All of these — each equals 100 ampere-hours"], "correct": 3, "short": "All of these are equal in theory.", "expl": "The ampere-hour rating is current multiplied by time. 100 A x 1 h, 50 A x 2 h, and 20 A x 5 h all equal 100 ampere-hours, so in theory each delivers the same total charge. (In practice a higher discharge current lowers the usable capacity a little, but the 'in theory' framing makes them equal.)", "cite": "FAA-H-8083-30B, p. 12-89 (ampere-hour rating)", "topic": "Battery Ratings", "fig": ""}, {"q": "6. The most commonly used reversible type motor in aircraft is:", "options": ["Reversible series", "Reversible shunt", "Reversible torque", "Reversible compound"], "correct": 0, "short": "Reversible series (split-field series) motor.", "expl": "The series-wound DC motor has very high starting torque and is compact, which is why the reversible split-field series motor is the one used for aircraft actuators — landing gear, flaps, and trim. The handbook lists series, shunt, and compound as the three DC-motor types; the series motor is favored for these high-torque reversing jobs.", "cite": "FAA-H-8083-30B, p. 12-138 (DC motor types — series motor)", "topic": "DC Motors", "fig": ""}, {"q": "7. The SCR (silicon-controlled rectifier) has what number of electrodes:", "options": ["Five", "Three", "Four"], "correct": 1, "short": "Three electrodes.", "expl": "The silicon-controlled rectifier is a three-terminal device: anode, cathode, and gate. A small gate current switches it on so it conducts from anode to cathode. Note: the FAA handbook covers diodes, transistors, and FETs but does not detail the SCR by name — the three-electrode fact is AIM-lecture / standard thyristor knowledge, so the cite points to the handbook's solid-state rectifier section.", "cite": "FAA-H-8083-30B, Ch. 12 (Semiconductor rectifiers, pp. 12-100–12-104)", "topic": "Semiconductors", "fig": ""}, {"q": "8. SCR (silicon-controlled rectifier) electrodes are labeled:", "options": ["Emitter, Base, Collector", "Drain, Gate, Source", "Cathode, Gate, Anode", "Anode, Cathode, Tetrode"], "correct": 2, "short": "Cathode, Gate, and Anode.", "expl": "The SCR's three terminals are the anode, the cathode, and the gate — current normally flows anode-to-cathode once the gate triggers it on. 'Drain/Gate/Source' names a FET, and 'Emitter/Base/Collector' names a bipolar transistor. As with the previous item, the FAA handbook does not name SCR terminals, so this is AIM/standard-electronics content cited to the rectifier section.", "cite": "FAA-H-8083-30B, Ch. 12 (Semiconductor rectifiers, pp. 12-100–12-104)", "topic": "Semiconductors", "fig": ""}, {"q": "9. The grid in a triode vacuum tube controls electron flow between the:", "options": ["Cathode and the plate", "Grid and anode", "Plate and the socket", "Anode and the pentode"], "correct": 0, "short": "Cathode and the plate.", "expl": "In a vacuum tube the heated cathode emits electrons and the plate (anode) collects them. The triode adds a control grid between those two; a small change in grid voltage throttles the electron stream flowing from cathode to plate. That control of the cathode-to-plate current is what lets a triode amplify.", "cite": "FAA-H-8083-30B, pp. 12-110–12-111 (vacuum tubes — triode)", "topic": "Vacuum Tubes", "fig": ""}, {"q": "10. The ratio between true power and apparent power is expressed as the power factor and may be found in a series circuit by dividing:", "options": ["Circuit resistance by impedance", "Average power by true power", "Circuit resistance by current flow in amperes", "True voltage by current in the circuit"], "correct": 0, "short": "Circuit resistance by impedance (R divided by Z).", "expl": "Power factor is true power divided by apparent power. In a series AC circuit that ratio equals the resistance divided by the impedance (PF = R/Z), because true power is dissipated only by the resistance while apparent power is set by the total impedance. So dividing R by Z gives the power factor directly.", "cite": "FAA-H-8083-30B, p. 12-49 (power factor)", "topic": "AC Theory", "fig": ""}, {"q": "11. The formula for finding impedance (total opposition to current flow in an AC circuit) can be found by using:", "options": ["Neither of those methods", "Pythagorean theorem", "The law of right triangles", "Both the law of right triangles and the Pythagorean theorem"], "correct": 3, "short": "Both — they are the same right-triangle relationship.", "expl": "Impedance combines resistance and reactance at right angles, so Z is the hypotenuse of a right triangle: Z = square root of (R squared + X squared). That is exactly the Pythagorean theorem, which is the law of right triangles — the two names describe the same method, so both apply.", "cite": "FAA-H-8083-30B, p. 12-49 (opposition to current flow of AC / impedance)", "topic": "AC Theory", "fig": ""}, {"q": "12. In a solid state diode, current flow will increase if:", "options": ["Forward bias is decreased", "Forward bias is increased", "Bias becomes excessive", "Thermal bias is reversed"], "correct": 1, "short": "Forward bias is increased.", "expl": "A diode conducts when it is forward biased — the applied voltage pushes carriers across the junction. Increasing that forward bias lowers the junction's effective resistance and lets more current through. Decreasing forward bias, or reverse biasing, chokes the current off.", "cite": "FAA-H-8083-30B, p. 12-98 (forward biased diode)", "topic": "Semiconductors", "fig": ""}, {"q": "13. If an AC voltage is applied to the primary of an iron core transformer, the iron core will be magnetized and demagnetized at the same frequency as that of the:", "options": ["Applied voltage", "Induced amplification", "None of these", "Applied Current"], "correct": 0, "short": "The applied voltage.", "expl": "The alternating primary voltage drives an alternating magnetic flux in the iron core. Because the flux follows that source, the core magnetizes and demagnetizes once per cycle of the applied AC voltage — so the core's magnetic reversal frequency equals the frequency of the voltage applied to the primary.", "cite": "FAA-H-8083-30B, p. 12-65 (transformers)", "topic": "Transformers", "fig": ""}, {"q": "14. For all induction motors, the principle of operation is a:", "options": ["Rotating magnetic field", "Rotating coils", "Rotating slip rings", "Rotating polarity"], "correct": 0, "short": "A rotating magnetic field.", "expl": "Both single-phase and three-phase induction motors work by producing a rotating magnetic field in the stator. That moving field drags the rotor along with it, just as a rotating horseshoe magnet makes a compass needle follow. No brushes or slip rings feed the rotor — the field itself does the work.", "cite": "FAA-H-8083-30B, p. 12-148 (rotating magnetic field / induction motors)", "topic": "AC Motors", "fig": ""}, {"q": "15. In a step-down transformer, the resistance of the secondary winding will be:", "options": ["Twice as much as the primary winding", "Less than that of the primary winding", "The same as that of the primary winding", "More than that of the primary winding"], "correct": 1, "short": "Less than that of the primary winding.", "expl": "A step-down transformer has fewer turns on the secondary than on the primary, and because the secondary carries the higher current it is wound with heavier (thicker) wire. Fewer turns of larger-diameter wire means less total wire resistance, so the secondary winding's resistance is lower than the primary's.", "cite": "FAA-H-8083-30B, p. 12-65 (transformers — turns ratio)", "topic": "Transformers", "fig": ""}, {"q": "16. If a transformer winding is completely short-circuited, several things may occur if power is applied:", "options": ["All of these can occur", "Strong burnt odor", "The transformer overheats", "The voltage reading across the secondary is zero"], "correct": 0, "short": "All of these can occur.", "expl": "A dead short in a winding lets excessive current flow, which drives the temperature up (overheating), collapses the output so a meter across the secondary reads zero, and cooks the insulation, giving off a strong burnt odor. Because a short can produce every one of these symptoms, the complete answer is all of them.", "cite": "FAA-H-8083-30B, p. 12-65 (transformers — winding faults)", "topic": "Transformers", "fig": ""}, {"q": "17. Microswitches are used primarily as:", "options": ["Radio switches", "Limit switches", "Momentary switches", "Light switches"], "correct": 1, "short": "Limit switches.", "expl": "A microswitch trips on a very small movement of its actuator, which makes it ideal as a limit switch — it senses when a moving part (landing gear, flap, door) reaches the end of its travel and signals or stops it. The handbook describes the microswitch opening or closing a circuit with a very small motion, exactly the limit-switch job.", "cite": "FAA-H-8083-30B, p. 12-31 (microswitches)", "topic": "Switches", "fig": ""}, {"q": "18. A resistor having the value of 2700 ohms would be color coded this way:", "options": ["First band yellow, second band violet, third band green", "First band red, second band violet, third band red", "First band red, second band violet, third band green", "First band blue, second band brown, third band green"], "correct": 1, "short": "Red, violet, red.", "expl": "Read the bands as first-digit, second-digit, multiplier. 2700 ohms = 27 x 100, so the digits are 2 and 7 and the multiplier is 100 (two zeros). On the color code 2 = red, 7 = violet, and x100 = red. So the bands are red, violet, red.", "cite": "FAA-H-8083-30B, p. 12-25 (resistor color code, Fig. 12-49)", "topic": "Resistors", "fig": ""}, {"q": "19. When a storage battery is being charged, what two gases are generated?", "options": ["Sulphur Dioxide and Oxygen", "Oxygen and Nitrogen", "Carbon dioxide and oxygen", "Hydrogen and oxygen"], "correct": 3, "short": "Hydrogen and oxygen.", "expl": "Charging electrolyzes some of the water in the electrolyte, releasing hydrogen at one plate and oxygen at the other. Hydrogen is explosive, which is why battery areas must be well ventilated and kept clear of sparks and flame during charging.", "cite": "FAA-H-8083-30B, p. 12-91 (charging — gassing)", "topic": "Batteries", "fig": ""}, {"q": "20. A battery's state of charge is indicated by:", "options": ["Both the electrolyte density and a hydrometer reading", "A hygrometer", "Density of the electrolyte", "A hydrometer"], "correct": 0, "short": "Both the electrolyte density and a hydrometer reading.", "expl": "As a lead-acid battery discharges the sulfuric acid is used up and the electrolyte gets less dense (lower specific gravity). A hydrometer is the tool that measures that specific gravity, so the electrolyte's density and the hydrometer reading are two ways of saying the same thing — together they indicate state of charge. (A hygrometer measures humidity — the trap answer.)", "cite": "FAA-H-8083-30B, p. 12-90 (lead-acid testing — hydrometer/specific gravity)", "topic": "Batteries", "fig": ""}, {"q": "21. To reverse the direction of rotation in a DC motor:", "options": ["Reverse the direction of current in the armature windings", "Reverse the direction of current in the field windings", "Reverse the direction of current in the armature windings and field windings", "Reverse the direction of current in the armature windings or the field windings"], "correct": 3, "short": "Reverse the current in the armature OR the field — but not both.", "expl": "Reversing the current in EITHER the armature or the field flips the torque and reverses rotation. If you reverse BOTH at once, the two reversals cancel and the motor keeps turning the same way — which is exactly why simply swapping the two supply leads does not reverse a DC motor. So the answer is armature or field, one of them.", "cite": "FAA-H-8083-30B, p. 12-139 (reversing motor direction)", "topic": "DC Motors", "fig": ""}, {"q": "22. Zener diodes are used primarily for:", "options": ["Voltage regulation", "Positive bias", "Current regulation", "Rectification"], "correct": 0, "short": "Voltage regulation.", "expl": "A zener is run in reverse breakdown, where it holds a nearly constant voltage across itself even as the current through it changes. That fixed drop makes it a voltage reference/regulator. Ordinary rectifier diodes are the ones used to convert AC to DC.", "cite": "FAA-H-8083-30B, p. 12-103 (zener diodes)", "topic": "Semiconductors", "fig": ""}, {"q": "23. Photo diodes are light-activated variable:", "options": ["Transistors", "Switches", "Resistors", "Transformers"], "correct": 2, "short": "Resistors (a light-controlled variable resistance).", "expl": "A photodiode's reverse current rises as more light strikes its junction — brighter light creates more carriers, which is the same as its resistance dropping. Because its opposition to current varies with light, it behaves as a light-activated variable resistance in a detecting circuit. (The handbook describes the light-controlled reverse current; AIM groups this behavior as a light-variable resistor.)", "cite": "FAA-H-8083-30B, p. 12-104 (photodiode)", "topic": "Semiconductors", "fig": ""}, {"q": "24. A bridge-type, full-wave rectifier has:", "options": ["Two diodes", "Four diodes", "No diodes", "Three diodes"], "correct": 1, "short": "Four diodes.", "expl": "A full-wave bridge rectifier uses four diodes (D1 through D4). On each half-cycle one diagonal pair conducts while the other pair blocks, so both halves of the AC waveform are steered through the load in the same direction — giving continuous full-wave DC.", "cite": "FAA-H-8083-30B, p. 12-101 (full-wave bridge rectifier, Fig. 12-216)", "topic": "Semiconductors", "fig": ""}, {"q": "25. Rheostats and potentiometers are examples of:", "options": ["Capacitors", "Transformers", "Variable transistors", "Variable resistors"], "correct": 3, "short": "Variable resistors.", "expl": "Both are adjustable resistors. A rheostat is a two-terminal variable resistor used to control current; a potentiometer is a three-terminal version used to divide voltage. Either way, they vary resistance, so they belong to the variable-resistor family.", "cite": "FAA-H-8083-30B, pp. 12-26–12-27 (rheostat / potentiometer)", "topic": "Resistors", "fig": ""}];
+const DRILL = [{"label": "Ampere-hour", "text": "A-h = current x time. A '100-ampere-hour' battery gives 100 A for 1 h = 50 A for 2 h = 20 A for 5 h — all the same total charge. — p. 12-89"}, {"label": "Cross-section vs. resistance", "text": "Resistance is INVERSELY proportional to cross-sectional area: double the area, halve the resistance. (Double the LENGTH instead and resistance doubles.) — p. 12-23"}, {"label": "Power factor (series AC)", "text": "PF = true power / apparent power = R / Z. Impedance Z is the right-triangle hypotenuse: Z = sqrt(R^2 + X^2) (Pythagorean theorem). — p. 12-49"}, {"label": "Lead-acid plates", "text": "Positive plate = lead peroxide (PbO2); negative plate = spongy lead; electrolyte = sulfuric acid. Charging gasses off HYDROGEN + oxygen (ventilate!). — pp. 12-87, 12-91"}, {"label": "State of charge", "text": "Measured with a HYDROMETER = specific gravity (density) of the electrolyte. A hygrometer measures humidity — don't confuse them. — p. 12-90"}, {"label": "Reverse a DC motor", "text": "Reverse the current in EITHER the armature OR the field — not both. Reversing both (e.g., just swapping the two leads) leaves rotation unchanged. — p. 12-139"}, {"label": "Color code (2700 ohm)", "text": "27 x 100 -> red (2), violet (7), red (x100). Digit colors: 0 blk,1 brn,2 red,3 org,4 yel,5 grn,6 blu,7 vio,8 gry,9 wht. — p. 12-25"}, {"label": "SCR = 3 electrodes", "text": "Anode, Cathode, Gate. A gate pulse latches it ON (anode->cathode). (FET = Drain/Gate/Source; transistor = Emitter/Base/Collector.) — AIM lecture; handbook covers diodes/transistors/FETs, pp. 12-100–12-104"}, {"label": "Bridge rectifier", "text": "Full-wave BRIDGE = FOUR diodes. Each half-cycle one diagonal pair conducts, the other blocks -> both AC halves go through the load one direction. — p. 12-101"}, {"label": "Induction motor", "text": "Runs on a ROTATING MAGNETIC FIELD (no brushes/slip rings to the rotor). Field drags the rotor around. — p. 12-148"}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

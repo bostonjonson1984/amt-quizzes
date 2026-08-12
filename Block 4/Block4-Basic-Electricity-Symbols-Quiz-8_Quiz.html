@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 4 · Basic Electricity Symbols Quiz #8</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 4 · Basic Electricity Symbols Quiz #8</h1>
+    <div class="sub">AIM worksheet &#x27;AMTBLK04 Basic Electricity Symbols Quiz #8&#x27; — identify all 20 schematic symbols. Each symbol is cleanly re-drawn (not the photo); 3-option; options &amp; question order reshuffle every session; every answer cited to the FAA-H-8083-30B symbol chart.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "#1 — Identify the schematic symbol shown (a circle with the letter V, wired in-line).", "options": ["Wattmeter", "Ammeter", "Voltmeter"], "correct": 2, "short": "A voltmeter.", "expl": "A meter drawn as a circle with a letter inside is named by that letter — V is a voltmeter. A voltmeter connects in PARALLEL (across) the part whose voltage you want to read. An ammeter would carry the letter A; a wattmeter, W.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Meters", "fig": "<svg viewBox=\"0 0 120 78\" width=\"110\" height=\"72\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"6\" y1=\"39\" x2=\"32\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"58\" cy=\"39\" r=\"22\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2.4\"/><text x=\"58\" y=\"46\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"19\" fill=\"#14324e\" text-anchor=\"middle\" font-weight=\"bold\">V</text><line x1=\"84\" y1=\"39\" x2=\"112\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#2 — Identify the schematic symbol shown (a circle with the letter A, wired in-line, labeled 'Current').", "options": ["Ohmmeter", "Voltmeter", "Ammeter"], "correct": 2, "short": "An ammeter.", "expl": "The circle-with-A is an ammeter — it reads current, which is why the sheet labels it 'Current.' An ammeter is wired in SERIES so all the circuit current passes through it. A voltmeter carries a V; an ohmmeter is used on a de-energized circuit.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Meters", "fig": "<svg viewBox=\"0 0 120 78\" width=\"110\" height=\"72\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"6\" y1=\"39\" x2=\"32\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"58\" cy=\"39\" r=\"22\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2.4\"/><text x=\"58\" y=\"46\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"19\" fill=\"#14324e\" text-anchor=\"middle\" font-weight=\"bold\">A</text><line x1=\"84\" y1=\"39\" x2=\"112\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#3 — Identify the schematic symbol shown (a circle enclosing a square/pulse waveform).", "options": ["A signal (pulse) generator — a square-wave AC source", "A DC power source", "An AC generator producing a sine wave"], "correct": 0, "short": "A signal / pulse generator (square-wave source).", "expl": "A circle enclosing a waveform is a source, and the waveform tells you what it produces. A square (pulse) wave marks it as a signal or pulse generator. A plain sine wave inside the circle would mark an AC source/alternator; two straight lines would mark DC.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Sources", "fig": "<svg viewBox=\"0 0 180 62\" width=\"170\" height=\"59\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"31\" x2=\"68\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"90\" cy=\"31\" r=\"22\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2.4\"/><line x1=\"112\" y1=\"31\" x2=\"170\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polyline points=\"75,37 84,37 84,23 94,23 94,37 103,37\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.0\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"}, {"q": "#4 — Identify the schematic symbol shown (a zigzag resistor with an arrow drawn diagonally through it).", "options": ["A variable resistor", "A fixed resistor", "A fuse"], "correct": 0, "short": "A variable resistor.", "expl": "The zigzag is a resistor and the arrow through it means its value can be adjusted — a variable resistor. Without the arrow it would be a fixed resistor. A fuse is a single smooth S-wave, not a zigzag.", "cite": "FAA-H-8083-30B, Fig. 12-58, pp. 12-26–12-27; Fig. 4-29, p. 4-24", "topic": "Resistors", "fig": "<svg viewBox=\"0 0 180 84\" width=\"170\" height=\"79\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"50\" x2=\"44\" y2=\"50\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polyline points=\"44,50 57.14285714285714,36 70.28571428571429,64 83.42857142857143,36 96.57142857142857,64 109.71428571428571,36 122.85714285714285,64 136,50\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"136\" y1=\"50\" x2=\"170\" y2=\"50\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"52\" y1=\"76\" x2=\"122\" y2=\"18\" stroke=\"#14324e\" stroke-width=\"2.0\" stroke-linecap=\"round\"/><polygon points=\"118,14 128,20 118,26\" fill=\"#14324e\" stroke=\"none\"/></svg>"}, {"q": "#5 — Identify the schematic symbol shown (a plain zigzag between two wires, no arrow).", "options": ["An inductor (coil)", "A fixed resistor", "A variable resistor"], "correct": 1, "short": "A fixed resistor.", "expl": "A plain zigzag with no arrow or wiper is a fixed resistor — its job is to limit current to a set value. Add an arrow and it becomes variable. An inductor is drawn as round humps (a coil), not a sharp zigzag.", "cite": "FAA-H-8083-30B, Fig. 12-48, pp. 12-24–12-25; Fig. 4-29, p. 4-24", "topic": "Resistors", "fig": "<svg viewBox=\"0 0 180 62\" width=\"170\" height=\"59\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"31\" x2=\"44\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polyline points=\"44,31 57.14285714285714,17 70.28571428571429,45 83.42857142857143,17 96.57142857142857,45 109.71428571428571,17 122.85714285714285,45 136,31\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"136\" y1=\"31\" x2=\"170\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#6 — Identify the schematic symbol shown (a resistor with a slider tapped from a 'Current' label).", "options": ["A potentiometer (controls voltage)", "A fixed resistor", "A rheostat (controls current)"], "correct": 2, "short": "A rheostat — a two-terminal variable resistor that controls current.", "expl": "This is a rheostat: a variable resistor wired with two terminals (one end plus the wiper) to set how much current flows — hence the 'Current' label on the sheet. A potentiometer uses all three terminals to control voltage; a fixed resistor has no wiper.", "cite": "FAA-H-8083-30B, Fig. 12-58, pp. 12-26–12-27", "topic": "Resistors", "fig": "<svg viewBox=\"0 0 180 70\" width=\"170\" height=\"66\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"50\" x2=\"44\" y2=\"50\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polyline points=\"44,50 57.14285714285714,36 70.28571428571429,64 83.42857142857143,36 96.57142857142857,64 109.71428571428571,36 122.85714285714285,64 136,50\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"136\" y1=\"50\" x2=\"170\" y2=\"50\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"90\" y1=\"20\" x2=\"90\" y2=\"42\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polygon points=\"84,42 96,42 90,52\" fill=\"#14324e\" stroke=\"none\"/><rect x=\"112\" y=\"10\" width=\"52\" height=\"17\" fill=\"#fff\" stroke=\"#44506a\" stroke-width=\"1.4\"/><text x=\"138\" y=\"22\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"10.5\" fill=\"#14324e\" text-anchor=\"middle\">Current</text><line x1=\"112\" y1=\"18\" x2=\"90\" y2=\"20\" stroke=\"#14324e\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>"}, {"q": "#7 — Identify the schematic symbol shown (a resistor tapped from a 'Voltage' label, with a third/wiper terminal).", "options": ["A potentiometer (controls voltage)", "A rheostat (controls current)", "A transformer"], "correct": 0, "short": "A potentiometer — a three-terminal variable resistor used to control voltage.", "expl": "A potentiometer is 'a three-terminal device': both ends of the resistor plus the movable wiper. Because you pick off the wiper against the ends, it divides and controls voltage — hence the 'Voltage' label. The rheostat uses only two terminals and controls current.", "cite": "FAA-H-8083-30B, Fig. 12-60, p. 12-27", "topic": "Resistors", "fig": "<svg viewBox=\"0 0 180 74\" width=\"170\" height=\"70\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"50\" x2=\"44\" y2=\"50\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polyline points=\"44,50 57.14285714285714,36 70.28571428571429,64 83.42857142857143,36 96.57142857142857,64 109.71428571428571,36 122.85714285714285,64 136,50\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"136\" y1=\"50\" x2=\"170\" y2=\"50\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"90\" y1=\"20\" x2=\"90\" y2=\"42\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polygon points=\"84,42 96,42 90,52\" fill=\"#14324e\" stroke=\"none\"/><line x1=\"90\" y1=\"62\" x2=\"90\" y2=\"52\" stroke=\"#14324e\" stroke-width=\"2.0\" stroke-linecap=\"round\"/><rect x=\"10\" y=\"10\" width=\"52\" height=\"17\" fill=\"#fff\" stroke=\"#44506a\" stroke-width=\"1.4\"/><text x=\"36\" y=\"22\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"10.5\" fill=\"#14324e\" text-anchor=\"middle\">Voltage</text><line x1=\"62\" y1=\"18\" x2=\"90\" y2=\"20\" stroke=\"#14324e\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>"}, {"q": "#8 — Identify the schematic symbol shown (a hinged blade lifted off a single open contact).", "options": ["A circuit breaker", "A single-pole, single-throw (SPST) switch, shown open", "A single-pole, double-throw (SPDT) switch"], "correct": 1, "short": "An SPST switch, drawn in the open position.", "expl": "One blade (single pole) that makes to one contact (single throw) is an SPST switch; drawn lifted off the contact means it is open. An SPDT blade would reach either of two contacts. A circuit breaker adds a resettable trip mechanism.", "cite": "FAA-H-8083-30B, Figs. 12-71/12-72, p. 12-32", "topic": "Switches", "fig": "<svg viewBox=\"0 0 180 66\" width=\"170\" height=\"62\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"46\" x2=\"52\" y2=\"46\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"56\" cy=\"46\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><circle cx=\"116\" cy=\"46\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><line x1=\"59\" y1=\"44\" x2=\"111\" y2=\"22\" stroke=\"#14324e\" stroke-width=\"2.6\" stroke-linecap=\"round\"/><line x1=\"120\" y1=\"46\" x2=\"170\" y2=\"46\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#9 — Identify the schematic symbol shown (one blade that can swing to either of two separate contacts).", "options": ["A double-pole, double-throw (DPDT) switch", "A single-pole, single-throw (SPST) switch", "A single-pole, double-throw (SPDT) selector switch"], "correct": 2, "short": "An SPDT (selector) switch.", "expl": "One blade (single pole) that can throw to either of two contacts (double throw) is an SPDT — a selector that routes one input to one of two outputs. SPST has only one contact; DPDT would have two blades ganged together.", "cite": "FAA-H-8083-30B, Fig. 12-73, p. 12-32", "topic": "Switches", "fig": "<svg viewBox=\"0 0 200 92\" width=\"180\" height=\"83\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"52\" x2=\"52\" y2=\"52\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"56\" cy=\"52\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><line x1=\"59\" y1=\"50\" x2=\"118\" y2=\"30\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"122\" cy=\"28\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><line x1=\"126\" y1=\"28\" x2=\"180\" y2=\"28\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"122\" cy=\"74\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><line x1=\"126\" y1=\"74\" x2=\"180\" y2=\"74\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><text x=\"190\" y=\"32\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"11\" fill=\"#44506a\" text-anchor=\"middle\">1</text><text x=\"190\" y=\"78\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"11\" fill=\"#44506a\" text-anchor=\"middle\">2</text></svg>"}, {"q": "#10 — Identify the schematic symbol shown (two equal-length parallel plates with a gap, a wire to each plate).", "options": ["A set of relay contacts", "A battery", "A capacitor (condenser)"], "correct": 2, "short": "A capacitor — older name 'condenser.'", "expl": "Two equal-length plates separated by a gap is a capacitor; it stores electric charge, rated in farads. The trap is the battery, whose plates ALTERNATE long and short. The FAA Fig. 4-29 chart still labels the capacitor 'condenser,' so both names are correct.", "cite": "FAA-H-8083-30B, pp. 12-51–12-53; Fig. 4-29, p. 4-24", "topic": "Capacitors", "fig": "<svg viewBox=\"0 0 170 66\" width=\"160\" height=\"62\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"33\" x2=\"74\" y2=\"33\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"74\" y1=\"10\" x2=\"74\" y2=\"56\" stroke=\"#14324e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><line x1=\"94\" y1=\"10\" x2=\"94\" y2=\"56\" stroke=\"#14324e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><line x1=\"94\" y1=\"33\" x2=\"160\" y2=\"33\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#11 — Identify the schematic symbol shown (a solid triangle pointing into a straight bar).", "options": ["A diode", "A capacitor", "A transistor"], "correct": 0, "short": "A diode.", "expl": "A filled triangle (the anode) pointing at a straight bar (the cathode) is a diode — it passes current the way the triangle points and blocks the other way. A capacitor is two parallel plates; a transistor is drawn inside a circle with three leads.", "cite": "FAA-H-8083-30B, Figs. 12-218/12-219, pp. 12-106–12-107", "topic": "Semiconductors", "fig": "<svg viewBox=\"0 0 190 80\" width=\"180\" height=\"76\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"36\" x2=\"70\" y2=\"36\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polygon points=\"70,16 70,56 106,36\" fill=\"#14324e\" stroke=\"none\"/><line x1=\"106\" y1=\"16\" x2=\"106\" y2=\"56\" stroke=\"#14324e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><line x1=\"106\" y1=\"36\" x2=\"180\" y2=\"36\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><text x=\"48\" y=\"66\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"9.5\" fill=\"#44506a\" text-anchor=\"middle\">anode (+ in)</text><text x=\"140\" y=\"66\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"9.5\" fill=\"#44506a\" text-anchor=\"middle\">cathode (out)</text></svg>"}, {"q": "#12 — Identify the schematic symbol shown (three horizontal bars, each shorter than the one above, on a stem).", "options": ["A battery", "A ground connection", "An antenna"], "correct": 1, "short": "A ground connection.", "expl": "The shrinking three-bar 'rake' is ground — the point where the circuit returns through the aircraft's metal structure. A battery is alternating long/short plates; an antenna is drawn pointing up with a fan or T shape.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Grounds", "fig": "<svg viewBox=\"0 0 120 70\" width=\"90\" height=\"52\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"60\" y1=\"8\" x2=\"60\" y2=\"32\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"40\" y1=\"32\" x2=\"80\" y2=\"32\" stroke=\"#14324e\" stroke-width=\"2.6\" stroke-linecap=\"round\"/><line x1=\"47\" y1=\"40\" x2=\"73\" y2=\"40\" stroke=\"#14324e\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><line x1=\"54\" y1=\"48\" x2=\"66\" y2=\"48\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#13 — Identify the schematic symbol shown (a wire interrupted by a double chevron).", "options": ["An antenna", "A connector (quick-disconnect)", "A terminal / junction"], "correct": 1, "short": "A connector (quick-disconnect).", "expl": "The double chevron in the wire marks a connector — the plug-and-receptacle point where a harness quick-disconnects for maintenance. It is not an antenna (which points up with a fan/T) and not a plain terminal or junction (a single dot or circle).", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (connectors); wiring symbols", "topic": "Connectors", "fig": "<svg viewBox=\"0 0 180 62\" width=\"170\" height=\"59\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"31\" x2=\"90\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"118\" y1=\"31\" x2=\"170\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><polyline points=\"104,18 90,31 104,44\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,18 104,31 118,44\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"}, {"q": "#14 — Identify the schematic symbol shown (a button/plunger above two contacts that are NOT bridged at rest).", "options": ["A pushbutton switch, normally closed (N.C.)", "A circuit breaker", "A pushbutton switch, normally open (N.O.)"], "correct": 2, "short": "A normally-open (N.O.) pushbutton switch.", "expl": "The plunger sits above two separated contacts, so at rest the circuit is open; pressing the button bridges the contacts to make the circuit. That is a normally-open pushbutton. Its opposite, the N.C. version, is drawn with the bar resting ON the contacts. It is a momentary pushbutton, not a resettable circuit breaker.", "cite": "FAA-H-8083-30B, Fig. 12-72 / p. 12-31 (pushbutton switches)", "topic": "Switches", "fig": "<svg viewBox=\"0 0 180 84\" width=\"170\" height=\"79\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"64\" x2=\"56\" y2=\"64\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"60\" cy=\"64\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><circle cx=\"116\" cy=\"64\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><line x1=\"56\" y1=\"48\" x2=\"120\" y2=\"48\" stroke=\"#14324e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><line x1=\"88.0\" y1=\"48\" x2=\"88.0\" y2=\"32\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"76.0\" y1=\"32\" x2=\"100.0\" y2=\"32\" stroke=\"#14324e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><line x1=\"120\" y1=\"64\" x2=\"170\" y2=\"64\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#15 — Identify the schematic symbol shown (a bridging bar RESTING on both contacts, plunger above).", "options": ["A pushbutton switch, normally open (N.O.)", "A relay", "A pushbutton switch, normally closed (N.C.)"], "correct": 2, "short": "A normally-closed (N.C.) pushbutton switch.", "expl": "The bar rests on both contacts, so at rest the circuit is made (closed); pressing the plunger lifts the bar and breaks the circuit. That is a normally-closed pushbutton — the mate to the N.O. button, which is drawn with its contacts separated. A relay adds a coil that does the switching.", "cite": "FAA-H-8083-30B, Fig. 12-72 / p. 12-31 (pushbutton switches)", "topic": "Switches", "fig": "<svg viewBox=\"0 0 180 70\" width=\"170\" height=\"66\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"48\" x2=\"60\" y2=\"48\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"116\" y1=\"48\" x2=\"170\" y2=\"48\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"60\" cy=\"48\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><circle cx=\"116\" cy=\"48\" r=\"3.4\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2\"/><line x1=\"60\" y1=\"43\" x2=\"116\" y2=\"43\" stroke=\"#14324e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><line x1=\"60\" y1=\"48\" x2=\"60\" y2=\"43\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"116\" y1=\"48\" x2=\"116\" y2=\"43\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"88.0\" y1=\"43\" x2=\"88.0\" y2=\"24\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"78.0\" y1=\"24\" x2=\"98.0\" y2=\"24\" stroke=\"#14324e\" stroke-width=\"2.6\" stroke-linecap=\"round\"/></svg>"}, {"q": "#16 — Identify the schematic symbol shown (a circle with a filament loop inside, wired in-line).", "options": ["A buzzer", "A bell", "A lamp / indicator light"], "correct": 2, "short": "A lamp / indicator light.", "expl": "A circle enclosing a filament loop is a lamp or indicator light — current heats the filament and it glows. A bell or buzzer is drawn as a dome/semicircle shape, not a full circle with an internal filament.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (lamp); Ch. 12 indicator symbols", "topic": "Indicators", "fig": "<svg viewBox=\"0 0 180 62\" width=\"170\" height=\"59\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"6\" y1=\"31\" x2=\"70\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"90\" cy=\"31\" r=\"20\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2.4\"/><line x1=\"110\" y1=\"31\" x2=\"174\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><path d=\"M90 42 C 79 29, 85 18, 90 18 C 95 18, 101 29, 90 42 Z\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.0\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"}, {"q": "#17 — Identify the schematic symbol shown (a single smooth S-wave between two solid terminals).", "options": ["An inductor (coil)", "A resistor", "A fuse"], "correct": 2, "short": "A fuse.", "expl": "A single smooth S-shaped link between two terminals is a fuse — a thin metal element that melts to open the circuit on an overload, and must be replaced afterward. An inductor is several ROUND humps in a row (a coil); a resistor is a sharp zigzag.", "cite": "FAA-H-8083-30B, Fig. 12-67A, p. 12-30; Fig. 4-29, p. 4-24", "topic": "Protection", "fig": "<svg viewBox=\"0 0 180 62\" width=\"170\" height=\"59\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"31\" x2=\"48\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><path d=\"M48 31 C 62.0 13, 86.0 13, 88.0 31 C 90.0 49, 114.0 49, 128 31\" fill=\"none\" stroke=\"#14324e\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"128\" y1=\"31\" x2=\"170\" y2=\"31\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#18 — Identify the schematic symbol shown (alternating long and short parallel plates with + and − marks).", "options": ["A battery (multi-cell)", "A capacitor", "A bus bar"], "correct": 0, "short": "A battery — the circuit's source.", "expl": "Alternating long and short plates with + and − marks is a battery; the long line is the positive terminal, and multiple plate pairs mean multiple cells. The trap is the capacitor, whose plates are EQUAL length. A bus bar is a solid heavy line.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Sources", "fig": "<svg viewBox=\"0 0 180 62\" width=\"170\" height=\"59\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"10\" y1=\"30\" x2=\"60\" y2=\"30\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"60\" y1=\"11\" x2=\"60\" y2=\"49\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"73\" y1=\"20\" x2=\"73\" y2=\"40\" stroke=\"#14324e\" stroke-width=\"3.4\" stroke-linecap=\"round\"/><line x1=\"86\" y1=\"11\" x2=\"86\" y2=\"49\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><line x1=\"99\" y1=\"20\" x2=\"99\" y2=\"40\" stroke=\"#14324e\" stroke-width=\"3.4\" stroke-linecap=\"round\"/><text x=\"58\" y=\"6\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"15\" fill=\"#14324e\" text-anchor=\"middle\" font-weight=\"bold\">+</text><text x=\"100\" y=\"6\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"15\" fill=\"#14324e\" text-anchor=\"middle\" font-weight=\"bold\">−</text><line x1=\"99\" y1=\"30\" x2=\"170\" y2=\"30\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#19 — Identify the schematic symbol shown (a circle with the letter G and + / − terminals).", "options": ["A DC generator", "An alternator", "A DC motor"], "correct": 0, "short": "A DC generator.", "expl": "A circle with G is a generator — it converts mechanical rotation into electrical energy, so it is a source with + and − output terminals. Its twin is the motor (M), which does the reverse. An alternator produces AC and is labeled differently.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Machines", "fig": "<svg viewBox=\"0 0 120 78\" width=\"110\" height=\"72\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"6\" y1=\"39\" x2=\"32\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"58\" cy=\"39\" r=\"22\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2.4\"/><text x=\"58\" y=\"46\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"19\" fill=\"#14324e\" text-anchor=\"middle\" font-weight=\"bold\">G</text><line x1=\"84\" y1=\"39\" x2=\"112\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}, {"q": "#20 — Identify the schematic symbol shown (a circle with the letter M and + / − terminals).", "options": ["A solenoid", "A DC motor", "A DC generator"], "correct": 1, "short": "A DC motor.", "expl": "A circle with M is a motor — it converts electrical energy into mechanical rotation, so it is a load fed by + and − terminals. Its twin is the generator (G), which does the reverse. A solenoid is a coil that produces straight-line pull, not rotation.", "cite": "FAA-H-8083-30B, Fig. 4-29, p. 4-24 (electrical symbols chart)", "topic": "Machines", "fig": "<svg viewBox=\"0 0 120 78\" width=\"110\" height=\"72\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"6\" y1=\"39\" x2=\"32\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"58\" cy=\"39\" r=\"22\" fill=\"#fff\" stroke=\"#14324e\" stroke-width=\"2.4\"/><text x=\"58\" y=\"46\" font-family=\"Helvetica,Arial,sans-serif\" font-size=\"19\" fill=\"#14324e\" text-anchor=\"middle\" font-weight=\"bold\">M</text><line x1=\"84\" y1=\"39\" x2=\"112\" y2=\"39\" stroke=\"#14324e\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"}];
+const DRILL = [{"label": "Meters (circle + letter)", "text": "V = voltmeter (wired in PARALLEL / across). A = ammeter (wired in SERIES / in-line). The letter names the meter. — Fig. 4-29, p. 4-24"}, {"label": "Capacitor vs. battery", "text": "Two EQUAL plates + gap = capacitor (a.k.a. condenser). ALTERNATING long/short plates + / − = battery (long line = +). — pp. 12-51–12-53; Fig. 4-29"}, {"label": "Resistor family", "text": "Plain zigzag = fixed resistor. Zigzag + arrow through = variable resistor. Two-terminal wiper ('Current') = rheostat. Three-terminal wiper ('Voltage') = potentiometer. — pp. 12-24–12-27"}, {"label": "Fuse vs. inductor vs. resistor", "text": "Single smooth S-wave between two terminals = FUSE (melts, replace). Round humps in a row = inductor (coil). Sharp zigzag = resistor. — Fig. 12-67A, p. 12-30"}, {"label": "Pushbutton N.O. vs. N.C.", "text": "Contacts drawn OPEN (bar held above) = normally open (press to make). Bar RESTING on the contacts = normally closed (press to break). — p. 12-31"}, {"label": "Switch counting", "text": "One blade, one contact = SPST. One blade, two contacts = SPDT (selector). Two ganged blades, two contacts each = DPDT. — Figs. 12-71–12-74, p. 12-32"}, {"label": "Machines & ground", "text": "Circle + G = DC generator (mechanical -> electrical). Circle + M = DC motor (electrical -> mechanical). Shrinking three-bar rake = ground. — Fig. 4-29, p. 4-24"}, {"label": "Source waveforms", "text": "Circle + square/pulse wave = signal/pulse generator. Circle + sine = AC source. Circle + letter = a meter or machine (V, A, G, M). — Fig. 4-29, p. 4-24"}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
