@@ -1,6 +1,6 @@
 {
- "built": "2026-08-12",
- "total": 2989,
+ "built": "2026-08-13",
+ "total": 3019,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -36,6 +36,7 @@
   "Block 4 · G33 Symbol Identification": 40,
   "Block 4 · Metric Conversion Drill — Hop the Decimal": 46,
   "Block 4 · Capacitance & Electronics (Quiz #5 companion)": 30,
+  "Block 4 · Resistor Color Code (Band ID)": 30,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 357,
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "AET Academy M1 — DC Fundamentals": 0,
@@ -39926,6 +39927,576 @@
    "block": "Block 4",
    "sources": [
     "Block 4 · Capacitance & Electronics (Quiz #5 companion)"
+   ]
+  },
+  {
+   "id": "48f839772b",
+   "q": "1. A resistor is banded Red-Violet-Orange-Gold. What is its value and tolerance?",
+   "options": [
+    "27,000 Ω ±5%",
+    "270,000 Ω ±5%",
+    "27,000 Ω ±10%",
+    "2,700 Ω ±5%"
+   ],
+   "correct": 0,
+   "short": "27,000 Ω ±5%.",
+   "expl": "Read the first two bands as digits: Red = 2, Violet = 7, giving 27. The third band, Orange = 3, is the multiplier — add 3 zeros (×10^3). So 27 becomes 27,000 Ω. Gold in the fourth band means ±5% tolerance. Wrong multiplier would give 2,700 (only 2 zeros) or 270,000 (4 zeros); silver would be ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "60d0e6c310",
+   "q": "2. A resistor is banded Brown-Black-Red-Gold. What is its value and tolerance?",
+   "options": [
+    "100 Ω ±5%",
+    "10,000 Ω ±5%",
+    "1,000 Ω ±10%",
+    "1,000 Ω ±5%"
+   ],
+   "correct": 3,
+   "short": "1,000 Ω ±5% (1 kΩ).",
+   "expl": "Brown = 1 and Black = 0 give the two digits 10. The third band, Red = 2, adds 2 zeros, so 10 becomes 1,000 Ω (1 kΩ). Gold means ±5%. One zero would give 100 Ω; three zeros would give 10,000 Ω; silver would make it ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "87c8289f9a",
+   "q": "3. A resistor is banded Yellow-Violet-Brown-Gold. What is its value and tolerance?",
+   "options": [
+    "47 Ω ±5%",
+    "470 Ω ±10%",
+    "470 Ω ±5%",
+    "4,700 Ω ±5%"
+   ],
+   "correct": 2,
+   "short": "470 Ω ±5%.",
+   "expl": "Yellow = 4 and Violet = 7 give 47. The third band, Brown = 1, adds just 1 zero, so 47 becomes 470 Ω. Gold is ±5%. Adding no zeros would give 47 Ω; adding two zeros would give 4,700 Ω; silver would be ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "2b897aedf2",
+   "q": "4. A resistor is banded Red-Red-Red-Silver. What is its value and tolerance?",
+   "options": [
+    "2,200 Ω ±10%",
+    "22,000 Ω ±10%",
+    "220 Ω ±10%",
+    "2,200 Ω ±5%"
+   ],
+   "correct": 0,
+   "short": "2,200 Ω ±10% (2.2 kΩ).",
+   "expl": "The first two Reds give digits 2 and 2 = 22. The third band, Red = 2, adds 2 zeros, so 22 becomes 2,200 Ω (2.2 kΩ). Silver in the fourth band means ±10%. Gold would be ±5%; one zero would give 220 Ω; three zeros would give 22,000 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "412db8e934",
+   "q": "5. A resistor is banded Brown-Black-Orange-Gold. What is its value and tolerance?",
+   "options": [
+    "10,000 Ω ±5%",
+    "10,000 Ω ±10%",
+    "1,000 Ω ±5%",
+    "100,000 Ω ±5%"
+   ],
+   "correct": 0,
+   "short": "10,000 Ω ±5% (10 kΩ).",
+   "expl": "Brown = 1 and Black = 0 give 10. The third band, Orange = 3, adds 3 zeros, so 10 becomes 10,000 Ω (10 kΩ). Gold is ±5%. Two zeros would give 1,000 Ω; four zeros would give 100,000 Ω; silver would be ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "3056dc7e9e",
+   "q": "6. A resistor is banded Green-Blue-Brown-Gold. What is its value and tolerance?",
+   "options": [
+    "5,600 Ω ±5%",
+    "560 Ω ±5%",
+    "650 Ω ±5%",
+    "56 Ω ±5%"
+   ],
+   "correct": 1,
+   "short": "560 Ω ±5%.",
+   "expl": "Green = 5 and Blue = 6 give 56. The third band, Brown = 1, adds 1 zero, so 56 becomes 560 Ω. Gold is ±5%. Two zeros would give 5,600 Ω; no zeros would give 56 Ω. Reading the digit bands in the wrong order (6 then 5) would wrongly give 650.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "50c9e7140b",
+   "q": "7. A resistor is banded Orange-Orange-Brown-Silver. What is its value and tolerance?",
+   "options": [
+    "3,300 Ω ±10%",
+    "33 Ω ±10%",
+    "330 Ω ±10%",
+    "330 Ω ±5%"
+   ],
+   "correct": 2,
+   "short": "330 Ω ±10%.",
+   "expl": "The two Orange bands give digits 3 and 3 = 33. The third band, Brown = 1, adds 1 zero, so 33 becomes 330 Ω. Silver in the fourth band means ±10%. Gold would be ±5%; two zeros would give 3,300 Ω; no zeros would give 33 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "89ab8ecc82",
+   "q": "8. A resistor is banded Blue-Gray-Red-Gold. What is its value and tolerance?",
+   "options": [
+    "680 Ω ±5%",
+    "8,600 Ω ±5%",
+    "68,000 Ω ±5%",
+    "6,800 Ω ±5%"
+   ],
+   "correct": 3,
+   "short": "6,800 Ω ±5% (6.8 kΩ).",
+   "expl": "Blue = 6 and Gray = 8 give 68. The third band, Red = 2, adds 2 zeros, so 68 becomes 6,800 Ω (6.8 kΩ). Gold is ±5%. One zero would give 680 Ω; three zeros would give 68,000 Ω. Swapping the digit order (8 then 6) would wrongly give 8,600.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "fe0d68d9fa",
+   "q": "9. A resistor is banded Yellow-Violet-Orange-Gold. What is its value and tolerance?",
+   "options": [
+    "4,700 Ω ±5%",
+    "47,000 Ω ±5%",
+    "470,000 Ω ±5%",
+    "47,000 Ω ±10%"
+   ],
+   "correct": 1,
+   "short": "47,000 Ω ±5% (47 kΩ).",
+   "expl": "Yellow = 4 and Violet = 7 give 47. The third band, Orange = 3, adds 3 zeros, so 47 becomes 47,000 Ω (47 kΩ). Gold is ±5%. Two zeros would give 4,700 Ω; four zeros would give 470,000 Ω; silver would be ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "0d7d0e38ed",
+   "q": "10. A resistor is banded Brown-Black-Yellow-Gold. What is its value and tolerance?",
+   "options": [
+    "100,000 Ω ±5%",
+    "1,000,000 Ω ±5%",
+    "100,000 Ω ±10%",
+    "10,000 Ω ±5%"
+   ],
+   "correct": 0,
+   "short": "100,000 Ω ±5% (100 kΩ).",
+   "expl": "Brown = 1 and Black = 0 give 10. The third band, Yellow = 4, adds 4 zeros, so 10 becomes 100,000 Ω (100 kΩ). Gold is ±5%. Three zeros would give 10,000 Ω; five zeros would give 1,000,000 Ω; silver would be ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "b02d5defa1",
+   "q": "11. A resistor is banded Brown-Black-Green-Silver. What is its value and tolerance?",
+   "options": [
+    "1,000,000 Ω ±5%",
+    "10,000,000 Ω ±10%",
+    "1,000,000 Ω ±10%",
+    "100,000 Ω ±10%"
+   ],
+   "correct": 2,
+   "short": "1,000,000 Ω ±10% (1 MΩ).",
+   "expl": "Brown = 1 and Black = 0 give 10. The third band, Green = 5, adds 5 zeros, so 10 becomes 1,000,000 Ω (1 MΩ). Silver means ±10%. Four zeros would give 100,000 Ω; six zeros would give 10,000,000 Ω; gold would be ±5%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "11ae7f893b",
+   "q": "12. A resistor is banded Red-Red-Brown-Gold. What is its value and tolerance?",
+   "options": [
+    "2,200 Ω ±5%",
+    "220 Ω ±5%",
+    "220 Ω ±10%",
+    "22 Ω ±5%"
+   ],
+   "correct": 1,
+   "short": "220 Ω ±5%.",
+   "expl": "The two Red bands give 2 and 2 = 22. The third band, Brown = 1, adds 1 zero, so 22 becomes 220 Ω. Gold is ±5%. Two zeros would give 2,200 Ω; no zeros would give 22 Ω; silver would be ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "b22f1f8fe0",
+   "q": "13. A resistor is banded Green-Blue-Red-Gold. What is its value and tolerance?",
+   "options": [
+    "6,500 Ω ±5%",
+    "5,600 Ω ±5%",
+    "560 Ω ±5%",
+    "56,000 Ω ±5%"
+   ],
+   "correct": 1,
+   "short": "5,600 Ω ±5% (5.6 kΩ).",
+   "expl": "Green = 5 and Blue = 6 give 56. The third band, Red = 2, adds 2 zeros, so 56 becomes 5,600 Ω (5.6 kΩ). Gold is ±5%. One zero would give 560 Ω; three zeros would give 56,000 Ω. Reversing the digits (6 then 5) would wrongly give 6,500.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "44dbfd4a03",
+   "q": "14. A resistor is banded Orange-White-Black-Gold. What is its value and tolerance?",
+   "options": [
+    "390 Ω ±5%",
+    "3.9 Ω ±5%",
+    "39 Ω ±5%",
+    "93 Ω ±5%"
+   ],
+   "correct": 2,
+   "short": "39 Ω ±5%.",
+   "expl": "Orange = 3 and White = 9 give 39. The third band, Black = 0, is the multiplier — Black means ADD ZERO zeros, so the value stays 39 Ω. This is the classic trap: a black third band does not make it 390. Gold is ±5%. Swapping digits would wrongly give 93.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "d9183d800c",
+   "q": "15. A resistor is banded Brown-Green-Red-Silver. What is its value and tolerance?",
+   "options": [
+    "1,500 Ω ±5%",
+    "150 Ω ±10%",
+    "1,500 Ω ±10%",
+    "15,000 Ω ±10%"
+   ],
+   "correct": 2,
+   "short": "1,500 Ω ±10% (1.5 kΩ).",
+   "expl": "Brown = 1 and Green = 5 give 15. The third band, Red = 2, adds 2 zeros, so 15 becomes 1,500 Ω (1.5 kΩ). Silver means ±10%. One zero would give 150 Ω; three zeros would give 15,000 Ω; gold would be ±5%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "b7b372c932",
+   "q": "16. A resistor is banded Gray-Red-Red-Gold. What is its value and tolerance?",
+   "options": [
+    "2,800 Ω ±5%",
+    "8,200 Ω ±5%",
+    "820 Ω ±5%",
+    "82,000 Ω ±5%"
+   ],
+   "correct": 1,
+   "short": "8,200 Ω ±5% (8.2 kΩ).",
+   "expl": "Gray = 8 and Red = 2 give 82. The third band, Red = 2, adds 2 zeros, so 82 becomes 8,200 Ω (8.2 kΩ). Gold is ±5%. One zero would give 820 Ω; three zeros would give 82,000 Ω. Reading the digit bands in the wrong order (2 then 8) would wrongly give 2,800.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "a9689aa8b8",
+   "q": "17. A resistor is banded Blue-Gray-Brown-Gold. What is its value and tolerance?",
+   "options": [
+    "860 Ω ±5%",
+    "6,800 Ω ±5%",
+    "680 Ω ±5%",
+    "68 Ω ±5%"
+   ],
+   "correct": 2,
+   "short": "680 Ω ±5%.",
+   "expl": "Blue = 6 and Gray = 8 give 68. The third band, Brown = 1, adds 1 zero, so 68 becomes 680 Ω. Gold is ±5%. Two zeros would give 6,800 Ω; no zeros would give 68 Ω. Swapping the digit order (8 then 6) would wrongly give 860.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "7caaeaaa41",
+   "q": "18. A resistor is banded Orange-Orange-Orange-Silver. What is its value and tolerance?",
+   "options": [
+    "33,000 Ω ±5%",
+    "33,000 Ω ±10%",
+    "3,300 Ω ±10%",
+    "330,000 Ω ±10%"
+   ],
+   "correct": 1,
+   "short": "33,000 Ω ±10% (33 kΩ).",
+   "expl": "The first two Orange bands give 3 and 3 = 33. The third band, Orange = 3, adds 3 zeros, so 33 becomes 33,000 Ω (33 kΩ). Silver means ±10%. Two zeros would give 3,300 Ω; four zeros would give 330,000 Ω; gold would be ±5%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "e01e22133b",
+   "q": "19. A resistor is banded Brown-Green-Black-Gold. What is its value and tolerance?",
+   "options": [
+    "1.5 Ω ±5%",
+    "51 Ω ±5%",
+    "150 Ω ±5%",
+    "15 Ω ±5%"
+   ],
+   "correct": 3,
+   "short": "15 Ω ±5%.",
+   "expl": "Brown = 1 and Green = 5 give 15. The third band, Black = 0, is the multiplier — Black means add ZERO zeros, so the value stays 15 Ω. A black third band never scales the value up. Gold is ±5%. Treating Black as one zero would wrongly give 150; swapping digits would give 51.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "921d83f09f",
+   "q": "20. A resistor has only three bands — Red-Red-Brown — and NO fourth band. What is its value and tolerance?",
+   "options": [
+    "220 Ω ±20%",
+    "220 Ω ±5%",
+    "2,200 Ω ±20%",
+    "220 Ω ±10%"
+   ],
+   "correct": 0,
+   "short": "220 Ω ±20%.",
+   "expl": "The two Red bands give 2 and 2 = 22, and the third band, Brown = 1, adds 1 zero, so the value is 220 Ω. Because there is no fourth (tolerance) band, the tolerance is understood to be ±20%. Gold would have meant ±5% and silver ±10%, but there is no band at all here.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Bands→Value",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "0425d86a28",
+   "q": "21. Which band sequence marks a 1,000 Ω (1 kΩ) ±5% resistor?",
+   "options": [
+    "Brown-Black-Brown-Gold",
+    "Brown-Black-Red-Silver",
+    "Brown-Black-Orange-Gold",
+    "Brown-Black-Red-Gold"
+   ],
+   "correct": 3,
+   "short": "Brown-Black-Red-Gold.",
+   "expl": "1,000 Ω is 10 followed by 2 zeros, so the digits are Brown (1) and Black (0), and the multiplier is Red (2) for 2 zeros. Gold gives the ±5% tolerance. Brown third band would be only 1 zero (100 Ω); Orange would be 3 zeros (10,000 Ω); silver would make it ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Value→Bands",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "089e5db4b4",
+   "q": "22. Which band sequence marks a 4,700 Ω (4.7 kΩ) ±5% resistor?",
+   "options": [
+    "Yellow-Violet-Orange-Gold",
+    "Yellow-Violet-Brown-Gold",
+    "Green-Blue-Red-Gold",
+    "Yellow-Violet-Red-Gold"
+   ],
+   "correct": 3,
+   "short": "Yellow-Violet-Red-Gold.",
+   "expl": "4,700 Ω is 47 followed by 2 zeros. The digits 4 and 7 are Yellow and Violet, and 2 zeros is the Red multiplier. Gold is ±5%. A Brown third band would give 470 Ω; Orange would give 47,000 Ω; Green-Blue-Red would be 5,600 Ω (wrong digits).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Value→Bands",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "cb817f098a",
+   "q": "23. Which band sequence marks a 330 Ω ±10% resistor?",
+   "options": [
+    "Orange-Orange-Brown-Gold",
+    "Orange-Orange-Red-Silver",
+    "Orange-Orange-Black-Silver",
+    "Orange-Orange-Brown-Silver"
+   ],
+   "correct": 3,
+   "short": "Orange-Orange-Brown-Silver.",
+   "expl": "330 Ω is 33 followed by 1 zero. The digits 3 and 3 are both Orange, and 1 zero is the Brown multiplier. Silver gives the ±10% tolerance. Gold would be ±5%; a Red third band would give 3,300 Ω; a Black third band would give 33 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Value→Bands",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "1590aeea3e",
+   "q": "24. Which band sequence marks a 100,000 Ω (100 kΩ) ±5% resistor?",
+   "options": [
+    "Brown-Black-Yellow-Gold",
+    "Brown-Black-Yellow-Silver",
+    "Brown-Black-Orange-Gold",
+    "Brown-Black-Green-Gold"
+   ],
+   "correct": 0,
+   "short": "Brown-Black-Yellow-Gold.",
+   "expl": "100,000 Ω is 10 followed by 4 zeros. The digits are Brown (1) and Black (0), and 4 zeros is the Yellow multiplier. Gold is ±5%. Green third band would be 5 zeros (1 MΩ); Orange would be 3 zeros (10,000 Ω); silver would make it ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Value→Bands",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "164d028f4f",
+   "q": "25. Which band sequence marks a 2,700 Ω (2.7 kΩ) ±5% resistor?",
+   "options": [
+    "Red-Violet-Orange-Gold",
+    "Red-Green-Red-Gold",
+    "Red-Violet-Brown-Gold",
+    "Red-Violet-Red-Gold"
+   ],
+   "correct": 3,
+   "short": "Red-Violet-Red-Gold.",
+   "expl": "2,700 Ω is 27 followed by 2 zeros. The digits 2 and 7 are Red and Violet, and 2 zeros is the Red multiplier. Gold is ±5%. An Orange third band would give 27,000 Ω; Brown would give 270 Ω; Red-Green would be digits 2 and 5 (2,500 Ω).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Value→Bands",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "5606a934d7",
+   "q": "26. Which band sequence marks a 470,000 Ω (470 kΩ) ±10% resistor?",
+   "options": [
+    "Yellow-Violet-Orange-Silver",
+    "Yellow-Violet-Yellow-Gold",
+    "Yellow-Violet-Green-Silver",
+    "Yellow-Violet-Yellow-Silver"
+   ],
+   "correct": 3,
+   "short": "Yellow-Violet-Yellow-Silver.",
+   "expl": "470,000 Ω is 47 followed by 4 zeros. The digits 4 and 7 are Yellow and Violet, and 4 zeros is the Yellow multiplier. Silver gives ±10%. Gold would be ±5%; an Orange third band would give 47,000 Ω; a Green third band would give 4,700,000 Ω (4.7 MΩ).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Value→Bands",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "6d97916345",
+   "q": "27. On a standard 4-band resistor, which band indicates the tolerance?",
+   "options": [
+    "The first band",
+    "The fourth (last) band",
+    "The second band",
+    "The third band"
+   ],
+   "correct": 1,
+   "short": "The fourth (last) band.",
+   "expl": "On a 4-band resistor the bands are, in order: first digit, second digit, multiplier (number of zeros), and tolerance. The tolerance is always the fourth band — the last one — read as Gold = ±5%, Silver = ±10%. The first and second bands are the significant digits, and the third band is the multiplier.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Concept",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "a0837bfec4",
+   "q": "28. A resistor has three color bands and no fourth band. What is its tolerance?",
+   "options": [
+    "±1%",
+    "±5%",
+    "±10%",
+    "±20%"
+   ],
+   "correct": 3,
+   "short": "±20%.",
+   "expl": "When there is no fourth (tolerance) band, the tolerance is understood to be ±20% — the widest standard tolerance. A gold fourth band would mean ±5% and silver would mean ±10%, but with no band at all the value can be 20% higher or lower than marked.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Concept",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "fa877312ed",
+   "q": "29. What is the function of the third band on a standard 4-band resistor?",
+   "options": [
+    "It is the first significant digit",
+    "It is the tolerance of the resistor",
+    "It is the multiplier — the number of zeros to add after the first two digits (×10^n)",
+    "It indicates the resistor's power (wattage) rating"
+   ],
+   "correct": 2,
+   "short": "The multiplier — number of zeros to add.",
+   "expl": "The third band is the multiplier: it tells you how many zeros to append to the two digits from the first and second bands (equivalently, multiply by 10 raised to that number). For example, a Red third band (2) adds two zeros. Tolerance is the fourth band, and the color code does not encode wattage at all.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Concept",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
+   ]
+  },
+  {
+   "id": "469f10dad3",
+   "q": "30. In the resistor color code, what tolerance do gold and silver tolerance bands represent?",
+   "options": [
+    "Gold = ±20%, Silver = ±5%",
+    "Gold = ±10%, Silver = ±5%",
+    "Gold = ±5%, Silver = ±10%",
+    "Gold = ±5%, Silver = ±20%"
+   ],
+   "correct": 2,
+   "short": "Gold = ±5%, Silver = ±10%.",
+   "expl": "In the fourth (tolerance) band, Gold means ±5% and Silver means ±10%. If there is no band at all, the tolerance is ±20%. Do not mix them up — gold is the tighter (better) ±5% tolerance, silver is the looser ±10%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)",
+   "topic": "Concept",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 · Resistor Color Code (Band ID)"
    ]
   },
   {

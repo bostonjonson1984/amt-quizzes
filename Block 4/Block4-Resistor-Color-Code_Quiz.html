@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 4 · Resistor Color Code (Band ID)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 4 · Resistor Color Code (Band ID)</h1>
+    <div class="sub">Read the 4-band resistor color code: band colors to value + tolerance, value to band sequence, and the concept rules (which band is tolerance, no 4th band = ±20%, third band = multiplier/number of zeros, gold = ±5% / silver = ±10%). Options and question order reshuffle every session. All answers cite FAA-H-8083-30B Ch.12 (resistor color code, pp. 12-24-12-25).</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "1. A resistor is banded Red-Violet-Orange-Gold. What is its value and tolerance?", "options": ["27,000 Ω ±5%", "270,000 Ω ±5%", "27,000 Ω ±10%", "2,700 Ω ±5%"], "correct": 0, "short": "27,000 Ω ±5%.", "expl": "Read the first two bands as digits: Red = 2, Violet = 7, giving 27. The third band, Orange = 3, is the multiplier — add 3 zeros (×10^3). So 27 becomes 27,000 Ω. Gold in the fourth band means ±5% tolerance. Wrong multiplier would give 2,700 (only 2 zeros) or 270,000 (4 zeros); silver would be ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "2. A resistor is banded Brown-Black-Red-Gold. What is its value and tolerance?", "options": ["100 Ω ±5%", "10,000 Ω ±5%", "1,000 Ω ±10%", "1,000 Ω ±5%"], "correct": 3, "short": "1,000 Ω ±5% (1 kΩ).", "expl": "Brown = 1 and Black = 0 give the two digits 10. The third band, Red = 2, adds 2 zeros, so 10 becomes 1,000 Ω (1 kΩ). Gold means ±5%. One zero would give 100 Ω; three zeros would give 10,000 Ω; silver would make it ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "3. A resistor is banded Yellow-Violet-Brown-Gold. What is its value and tolerance?", "options": ["47 Ω ±5%", "470 Ω ±10%", "470 Ω ±5%", "4,700 Ω ±5%"], "correct": 2, "short": "470 Ω ±5%.", "expl": "Yellow = 4 and Violet = 7 give 47. The third band, Brown = 1, adds just 1 zero, so 47 becomes 470 Ω. Gold is ±5%. Adding no zeros would give 47 Ω; adding two zeros would give 4,700 Ω; silver would be ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "4. A resistor is banded Red-Red-Red-Silver. What is its value and tolerance?", "options": ["2,200 Ω ±10%", "22,000 Ω ±10%", "220 Ω ±10%", "2,200 Ω ±5%"], "correct": 0, "short": "2,200 Ω ±10% (2.2 kΩ).", "expl": "The first two Reds give digits 2 and 2 = 22. The third band, Red = 2, adds 2 zeros, so 22 becomes 2,200 Ω (2.2 kΩ). Silver in the fourth band means ±10%. Gold would be ±5%; one zero would give 220 Ω; three zeros would give 22,000 Ω.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "5. A resistor is banded Brown-Black-Orange-Gold. What is its value and tolerance?", "options": ["10,000 Ω ±5%", "10,000 Ω ±10%", "1,000 Ω ±5%", "100,000 Ω ±5%"], "correct": 0, "short": "10,000 Ω ±5% (10 kΩ).", "expl": "Brown = 1 and Black = 0 give 10. The third band, Orange = 3, adds 3 zeros, so 10 becomes 10,000 Ω (10 kΩ). Gold is ±5%. Two zeros would give 1,000 Ω; four zeros would give 100,000 Ω; silver would be ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "6. A resistor is banded Green-Blue-Brown-Gold. What is its value and tolerance?", "options": ["5,600 Ω ±5%", "560 Ω ±5%", "650 Ω ±5%", "56 Ω ±5%"], "correct": 1, "short": "560 Ω ±5%.", "expl": "Green = 5 and Blue = 6 give 56. The third band, Brown = 1, adds 1 zero, so 56 becomes 560 Ω. Gold is ±5%. Two zeros would give 5,600 Ω; no zeros would give 56 Ω. Reading the digit bands in the wrong order (6 then 5) would wrongly give 650.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "7. A resistor is banded Orange-Orange-Brown-Silver. What is its value and tolerance?", "options": ["3,300 Ω ±10%", "33 Ω ±10%", "330 Ω ±10%", "330 Ω ±5%"], "correct": 2, "short": "330 Ω ±10%.", "expl": "The two Orange bands give digits 3 and 3 = 33. The third band, Brown = 1, adds 1 zero, so 33 becomes 330 Ω. Silver in the fourth band means ±10%. Gold would be ±5%; two zeros would give 3,300 Ω; no zeros would give 33 Ω.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "8. A resistor is banded Blue-Gray-Red-Gold. What is its value and tolerance?", "options": ["680 Ω ±5%", "8,600 Ω ±5%", "68,000 Ω ±5%", "6,800 Ω ±5%"], "correct": 3, "short": "6,800 Ω ±5% (6.8 kΩ).", "expl": "Blue = 6 and Gray = 8 give 68. The third band, Red = 2, adds 2 zeros, so 68 becomes 6,800 Ω (6.8 kΩ). Gold is ±5%. One zero would give 680 Ω; three zeros would give 68,000 Ω. Swapping the digit order (8 then 6) would wrongly give 8,600.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "9. A resistor is banded Yellow-Violet-Orange-Gold. What is its value and tolerance?", "options": ["4,700 Ω ±5%", "47,000 Ω ±5%", "470,000 Ω ±5%", "47,000 Ω ±10%"], "correct": 1, "short": "47,000 Ω ±5% (47 kΩ).", "expl": "Yellow = 4 and Violet = 7 give 47. The third band, Orange = 3, adds 3 zeros, so 47 becomes 47,000 Ω (47 kΩ). Gold is ±5%. Two zeros would give 4,700 Ω; four zeros would give 470,000 Ω; silver would be ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "10. A resistor is banded Brown-Black-Yellow-Gold. What is its value and tolerance?", "options": ["100,000 Ω ±5%", "1,000,000 Ω ±5%", "100,000 Ω ±10%", "10,000 Ω ±5%"], "correct": 0, "short": "100,000 Ω ±5% (100 kΩ).", "expl": "Brown = 1 and Black = 0 give 10. The third band, Yellow = 4, adds 4 zeros, so 10 becomes 100,000 Ω (100 kΩ). Gold is ±5%. Three zeros would give 10,000 Ω; five zeros would give 1,000,000 Ω; silver would be ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "11. A resistor is banded Brown-Black-Green-Silver. What is its value and tolerance?", "options": ["1,000,000 Ω ±5%", "10,000,000 Ω ±10%", "1,000,000 Ω ±10%", "100,000 Ω ±10%"], "correct": 2, "short": "1,000,000 Ω ±10% (1 MΩ).", "expl": "Brown = 1 and Black = 0 give 10. The third band, Green = 5, adds 5 zeros, so 10 becomes 1,000,000 Ω (1 MΩ). Silver means ±10%. Four zeros would give 100,000 Ω; six zeros would give 10,000,000 Ω; gold would be ±5%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "12. A resistor is banded Red-Red-Brown-Gold. What is its value and tolerance?", "options": ["2,200 Ω ±5%", "220 Ω ±5%", "220 Ω ±10%", "22 Ω ±5%"], "correct": 1, "short": "220 Ω ±5%.", "expl": "The two Red bands give 2 and 2 = 22. The third band, Brown = 1, adds 1 zero, so 22 becomes 220 Ω. Gold is ±5%. Two zeros would give 2,200 Ω; no zeros would give 22 Ω; silver would be ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "13. A resistor is banded Green-Blue-Red-Gold. What is its value and tolerance?", "options": ["6,500 Ω ±5%", "5,600 Ω ±5%", "560 Ω ±5%", "56,000 Ω ±5%"], "correct": 1, "short": "5,600 Ω ±5% (5.6 kΩ).", "expl": "Green = 5 and Blue = 6 give 56. The third band, Red = 2, adds 2 zeros, so 56 becomes 5,600 Ω (5.6 kΩ). Gold is ±5%. One zero would give 560 Ω; three zeros would give 56,000 Ω. Reversing the digits (6 then 5) would wrongly give 6,500.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "14. A resistor is banded Orange-White-Black-Gold. What is its value and tolerance?", "options": ["390 Ω ±5%", "3.9 Ω ±5%", "39 Ω ±5%", "93 Ω ±5%"], "correct": 2, "short": "39 Ω ±5%.", "expl": "Orange = 3 and White = 9 give 39. The third band, Black = 0, is the multiplier — Black means ADD ZERO zeros, so the value stays 39 Ω. This is the classic trap: a black third band does not make it 390. Gold is ±5%. Swapping digits would wrongly give 93.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "15. A resistor is banded Brown-Green-Red-Silver. What is its value and tolerance?", "options": ["1,500 Ω ±5%", "150 Ω ±10%", "1,500 Ω ±10%", "15,000 Ω ±10%"], "correct": 2, "short": "1,500 Ω ±10% (1.5 kΩ).", "expl": "Brown = 1 and Green = 5 give 15. The third band, Red = 2, adds 2 zeros, so 15 becomes 1,500 Ω (1.5 kΩ). Silver means ±10%. One zero would give 150 Ω; three zeros would give 15,000 Ω; gold would be ±5%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "16. A resistor is banded Gray-Red-Red-Gold. What is its value and tolerance?", "options": ["2,800 Ω ±5%", "8,200 Ω ±5%", "820 Ω ±5%", "82,000 Ω ±5%"], "correct": 1, "short": "8,200 Ω ±5% (8.2 kΩ).", "expl": "Gray = 8 and Red = 2 give 82. The third band, Red = 2, adds 2 zeros, so 82 becomes 8,200 Ω (8.2 kΩ). Gold is ±5%. One zero would give 820 Ω; three zeros would give 82,000 Ω. Reading the digit bands in the wrong order (2 then 8) would wrongly give 2,800.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "17. A resistor is banded Blue-Gray-Brown-Gold. What is its value and tolerance?", "options": ["860 Ω ±5%", "6,800 Ω ±5%", "680 Ω ±5%", "68 Ω ±5%"], "correct": 2, "short": "680 Ω ±5%.", "expl": "Blue = 6 and Gray = 8 give 68. The third band, Brown = 1, adds 1 zero, so 68 becomes 680 Ω. Gold is ±5%. Two zeros would give 6,800 Ω; no zeros would give 68 Ω. Swapping the digit order (8 then 6) would wrongly give 860.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "18. A resistor is banded Orange-Orange-Orange-Silver. What is its value and tolerance?", "options": ["33,000 Ω ±5%", "33,000 Ω ±10%", "3,300 Ω ±10%", "330,000 Ω ±10%"], "correct": 1, "short": "33,000 Ω ±10% (33 kΩ).", "expl": "The first two Orange bands give 3 and 3 = 33. The third band, Orange = 3, adds 3 zeros, so 33 becomes 33,000 Ω (33 kΩ). Silver means ±10%. Two zeros would give 3,300 Ω; four zeros would give 330,000 Ω; gold would be ±5%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "19. A resistor is banded Brown-Green-Black-Gold. What is its value and tolerance?", "options": ["1.5 Ω ±5%", "51 Ω ±5%", "150 Ω ±5%", "15 Ω ±5%"], "correct": 3, "short": "15 Ω ±5%.", "expl": "Brown = 1 and Green = 5 give 15. The third band, Black = 0, is the multiplier — Black means add ZERO zeros, so the value stays 15 Ω. A black third band never scales the value up. Gold is ±5%. Treating Black as one zero would wrongly give 150; swapping digits would give 51.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "20. A resistor has only three bands — Red-Red-Brown — and NO fourth band. What is its value and tolerance?", "options": ["220 Ω ±20%", "220 Ω ±5%", "2,200 Ω ±20%", "220 Ω ±10%"], "correct": 0, "short": "220 Ω ±20%.", "expl": "The two Red bands give 2 and 2 = 22, and the third band, Brown = 1, adds 1 zero, so the value is 220 Ω. Because there is no fourth (tolerance) band, the tolerance is understood to be ±20%. Gold would have meant ±5% and silver ±10%, but there is no band at all here.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Bands→Value", "fig": ""}, {"q": "21. Which band sequence marks a 1,000 Ω (1 kΩ) ±5% resistor?", "options": ["Brown-Black-Brown-Gold", "Brown-Black-Red-Silver", "Brown-Black-Orange-Gold", "Brown-Black-Red-Gold"], "correct": 3, "short": "Brown-Black-Red-Gold.", "expl": "1,000 Ω is 10 followed by 2 zeros, so the digits are Brown (1) and Black (0), and the multiplier is Red (2) for 2 zeros. Gold gives the ±5% tolerance. Brown third band would be only 1 zero (100 Ω); Orange would be 3 zeros (10,000 Ω); silver would make it ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Value→Bands", "fig": ""}, {"q": "22. Which band sequence marks a 4,700 Ω (4.7 kΩ) ±5% resistor?", "options": ["Yellow-Violet-Orange-Gold", "Yellow-Violet-Brown-Gold", "Green-Blue-Red-Gold", "Yellow-Violet-Red-Gold"], "correct": 3, "short": "Yellow-Violet-Red-Gold.", "expl": "4,700 Ω is 47 followed by 2 zeros. The digits 4 and 7 are Yellow and Violet, and 2 zeros is the Red multiplier. Gold is ±5%. A Brown third band would give 470 Ω; Orange would give 47,000 Ω; Green-Blue-Red would be 5,600 Ω (wrong digits).", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Value→Bands", "fig": ""}, {"q": "23. Which band sequence marks a 330 Ω ±10% resistor?", "options": ["Orange-Orange-Brown-Gold", "Orange-Orange-Red-Silver", "Orange-Orange-Black-Silver", "Orange-Orange-Brown-Silver"], "correct": 3, "short": "Orange-Orange-Brown-Silver.", "expl": "330 Ω is 33 followed by 1 zero. The digits 3 and 3 are both Orange, and 1 zero is the Brown multiplier. Silver gives the ±10% tolerance. Gold would be ±5%; a Red third band would give 3,300 Ω; a Black third band would give 33 Ω.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Value→Bands", "fig": ""}, {"q": "24. Which band sequence marks a 100,000 Ω (100 kΩ) ±5% resistor?", "options": ["Brown-Black-Yellow-Gold", "Brown-Black-Yellow-Silver", "Brown-Black-Orange-Gold", "Brown-Black-Green-Gold"], "correct": 0, "short": "Brown-Black-Yellow-Gold.", "expl": "100,000 Ω is 10 followed by 4 zeros. The digits are Brown (1) and Black (0), and 4 zeros is the Yellow multiplier. Gold is ±5%. Green third band would be 5 zeros (1 MΩ); Orange would be 3 zeros (10,000 Ω); silver would make it ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Value→Bands", "fig": ""}, {"q": "25. Which band sequence marks a 2,700 Ω (2.7 kΩ) ±5% resistor?", "options": ["Red-Violet-Orange-Gold", "Red-Green-Red-Gold", "Red-Violet-Brown-Gold", "Red-Violet-Red-Gold"], "correct": 3, "short": "Red-Violet-Red-Gold.", "expl": "2,700 Ω is 27 followed by 2 zeros. The digits 2 and 7 are Red and Violet, and 2 zeros is the Red multiplier. Gold is ±5%. An Orange third band would give 27,000 Ω; Brown would give 270 Ω; Red-Green would be digits 2 and 5 (2,500 Ω).", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Value→Bands", "fig": ""}, {"q": "26. Which band sequence marks a 470,000 Ω (470 kΩ) ±10% resistor?", "options": ["Yellow-Violet-Orange-Silver", "Yellow-Violet-Yellow-Gold", "Yellow-Violet-Green-Silver", "Yellow-Violet-Yellow-Silver"], "correct": 3, "short": "Yellow-Violet-Yellow-Silver.", "expl": "470,000 Ω is 47 followed by 4 zeros. The digits 4 and 7 are Yellow and Violet, and 4 zeros is the Yellow multiplier. Silver gives ±10%. Gold would be ±5%; an Orange third band would give 47,000 Ω; a Green third band would give 4,700,000 Ω (4.7 MΩ).", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Value→Bands", "fig": ""}, {"q": "27. On a standard 4-band resistor, which band indicates the tolerance?", "options": ["The first band", "The fourth (last) band", "The second band", "The third band"], "correct": 1, "short": "The fourth (last) band.", "expl": "On a 4-band resistor the bands are, in order: first digit, second digit, multiplier (number of zeros), and tolerance. The tolerance is always the fourth band — the last one — read as Gold = ±5%, Silver = ±10%. The first and second bands are the significant digits, and the third band is the multiplier.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Concept", "fig": ""}, {"q": "28. A resistor has three color bands and no fourth band. What is its tolerance?", "options": ["±1%", "±5%", "±10%", "±20%"], "correct": 3, "short": "±20%.", "expl": "When there is no fourth (tolerance) band, the tolerance is understood to be ±20% — the widest standard tolerance. A gold fourth band would mean ±5% and silver would mean ±10%, but with no band at all the value can be 20% higher or lower than marked.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Concept", "fig": ""}, {"q": "29. What is the function of the third band on a standard 4-band resistor?", "options": ["It is the first significant digit", "It is the tolerance of the resistor", "It is the multiplier — the number of zeros to add after the first two digits (×10^n)", "It indicates the resistor's power (wattage) rating"], "correct": 2, "short": "The multiplier — number of zeros to add.", "expl": "The third band is the multiplier: it tells you how many zeros to append to the two digits from the first and second bands (equivalently, multiply by 10 raised to that number). For example, a Red third band (2) adds two zeros. Tolerance is the fourth band, and the color code does not encode wattage at all.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Concept", "fig": ""}, {"q": "30. In the resistor color code, what tolerance do gold and silver tolerance bands represent?", "options": ["Gold = ±20%, Silver = ±5%", "Gold = ±10%, Silver = ±5%", "Gold = ±5%, Silver = ±10%", "Gold = ±5%, Silver = ±20%"], "correct": 2, "short": "Gold = ±5%, Silver = ±10%.", "expl": "In the fourth (tolerance) band, Gold means ±5% and Silver means ±10%. If there is no band at all, the tolerance is ±20%. Do not mix them up — gold is the tighter (better) ±5% tolerance, silver is the looser ±10%.", "cite": "FAA-H-8083-30B, Ch. 12 (resistor color code / color band decoding, pp. 12-24-12-25, Fig. 12-49)", "topic": "Concept", "fig": ""}];
+const DRILL = [{"label": "Color = digit", "text": "Black 0 · Brown 1 · Red 2 · Orange 3 · Yellow 4 · Green 5 · Blue 6 · Violet 7 · Gray 8 · White 9. Memorize in order. — Fig. 12-49, p. 12-25"}, {"label": "How to read 4 bands", "text": "Band 1 = first digit · Band 2 = second digit · Band 3 = multiplier (number of zeros to add) · Band 4 = tolerance. Read from the end nearest the bands toward the center. — p. 12-25"}, {"label": "Third band = zeros", "text": "The third band is the number of zeros to append. Red (2) = add 2 zeros, Orange (3) = add 3 zeros, Black (0) = add NO zeros. — p. 12-25"}, {"label": "Tolerance band", "text": "Gold = ±5% · Silver = ±10% · NO fourth band = ±20%. Gold is the tighter tolerance. — Fig. 12-49, p. 12-25"}, {"label": "Black multiplier trap", "text": "A Black third band means ×1 (zero zeros): the value is just the two digits. Brown-Green-Black = 15 Ω, NOT 150 Ω. — p. 12-25"}, {"label": "Common values", "text": "220 Ω = Red-Red-Brown · 470 Ω = Yellow-Violet-Brown · 1 kΩ = Brown-Black-Red · 4.7 kΩ = Yellow-Violet-Red · 10 kΩ = Brown-Black-Orange · 47 kΩ = Yellow-Violet-Orange · 100 kΩ = Brown-Black-Yellow · 1 MΩ = Brown-Black-Green."}, {"label": "Worked example", "text": "Red-Violet-Orange-Gold: 2, 7, then add 3 zeros = 27,000 Ω, Gold = ±5%. — p. 12-25"}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
