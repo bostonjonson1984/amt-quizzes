@@ -1,6 +1,6 @@
 {
  "built": "2026-08-19",
- "total": 3109,
+ "total": 3209,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -36,6 +36,7 @@
   "Block 4 · DC Quiz #7": 25,
   "Block 4 · G33 Symbol Identification": 40,
   "Block 4 · Metric Conversion Drill — Hop the Decimal": 46,
+  "Block 4 — Practice Final Exam": 100,
   "Block 4 · Capacitance & Electronics (Quiz #5 companion)": 30,
   "Block 4 · Resistor Color Code (Band ID)": 30,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 357,
@@ -41098,6 +41099,1805 @@
    "block": "Block 4",
    "sources": [
     "Block 4 · Metric Conversion Drill — Hop the Decimal"
+   ]
+  },
+  {
+   "id": "c5f935285b",
+   "q": "1. The frequency of the alternator voltage depends upon:",
+   "options": [
+    "Strength of magnetic field and number of poles",
+    "Speed of rotation and strength of applied voltage",
+    "Number of poles and speed of rotation of the rotor"
+   ],
+   "correct": 2,
+   "short": "Number of poles and rotor speed.",
+   "expl": "Alternator output frequency is set by how many magnetic poles the machine has and how fast the rotor spins: f = (poles × rpm) ÷ 120. Field strength and applied voltage change the OUTPUT VOLTAGE, not the frequency.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — alternator frequency",
+   "topic": "Alternators & Frequency",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "b204596fe2",
+   "q": "2. The total current of a circuit is the sum of the current in all branches:",
+   "options": [
+    "In a parallel circuit",
+    "In a series circuit",
+    "The current remains the same throughout"
+   ],
+   "correct": 0,
+   "short": "In a parallel circuit.",
+   "expl": "In a parallel circuit the current splits among the branches and the branch currents add up to the total line current (Kirchhoff's current law). In a series circuit the SAME current flows through every part, so nothing 'adds.'",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — parallel circuits / Kirchhoff's current law",
+   "topic": "DC Circuits",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "9089d6a874",
+   "q": "3. Many areas of aviation have shifted their focus from eliminating error to:",
+   "options": [
+    "Identifying and mitigating error",
+    "Preventing and managing error",
+    "Reducing and containing error"
+   ],
+   "correct": 1,
+   "short": "Preventing and managing error.",
+   "expl": "Modern human-factors and safety-management thinking accepts that people will always make mistakes, so the goal moved from the impossible dream of ELIMINATING error to catching, preventing, and MANAGING it before it causes harm.",
+   "cite": "FAA-H-8083-30B, Ch. 14 (Human Factors) — error management / SMS",
+   "topic": "Human Factors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "9bf97626df",
+   "q": "4. A diode that is designed to break down and allow current to pass:",
+   "options": [
+    "Should be replaced",
+    "Is called a zener diode",
+    "The LRU is defective and should be replaced with a GCU"
+   ],
+   "correct": 1,
+   "short": "A zener diode.",
+   "expl": "A zener diode is built to conduct in the reverse direction once voltage reaches its 'zener' breakdown point, and it does this without being damaged. That controlled breakdown is exactly why zeners are used as voltage regulators/references.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — zener diode",
+   "topic": "Semiconductors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "f2f62e3953",
+   "q": "5. Electrons of an atom appear at certain definite energy levels, known as:",
+   "options": [
+    "Shells",
+    "Orbits",
+    "Energy"
+   ],
+   "correct": 0,
+   "short": "Shells.",
+   "expl": "Electrons occupy fixed energy levels arranged in shells around the nucleus. The outermost shell — the valence shell — decides whether a material is a conductor, insulator, or semiconductor.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — atomic structure / electron shells",
+   "topic": "Atomic Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "f0a0faa399",
+   "q": "6. The dry cell is the most common type of ______ battery.",
+   "options": [
+    "Lead-acid",
+    "Secondary cell",
+    "Primary cell"
+   ],
+   "correct": 2,
+   "short": "Primary cell.",
+   "expl": "A dry cell runs a one-way chemical reaction and cannot be recharged, which makes it a PRIMARY cell. Lead-acid and Ni-Cad are secondary (rechargeable) cells because their reaction reverses.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — primary vs. secondary cells",
+   "topic": "Batteries",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "ace431bb89",
+   "q": "7. The four basic categories of LC 'analog' filters — low-pass, high-pass, band-pass, and band-stop — are collectively known as:",
+   "options": [
+    "Frequency amplification",
+    "Inductors",
+    "Passive filters"
+   ],
+   "correct": 2,
+   "short": "Passive filters.",
+   "expl": "Filters built only from inductors and capacitors need no power supply of their own — they shape frequencies using stored energy in the L and C, so they are called PASSIVE filters. Active filters, by contrast, add an amplifier.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — LC / passive filters",
+   "topic": "Filters & Amplifiers",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "d7e500438b",
+   "q": "8. What device is used to convert DC power to AC on some aircraft?",
+   "options": [
+    "Rectifier",
+    "Single-phase generator",
+    "Inverter"
+   ],
+   "correct": 2,
+   "short": "An inverter.",
+   "expl": "An inverter changes DC into AC (battery DC → 115 V 400 Hz AC for instruments and avionics). A rectifier does the opposite job, turning AC into DC.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — inverter (DC→AC)",
+   "topic": "AC / DC Conversion",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "93435025b2",
+   "q": "9. There are two general types of AC motors used in aircraft systems:",
+   "options": [
+    "Single-phase motors and two-phase motors",
+    "Induction motors and polysynchronous motors",
+    "Synchronous motors and induction motors"
+   ],
+   "correct": 2,
+   "short": "Synchronous and induction motors.",
+   "expl": "Aircraft AC motors are either induction motors (simple, rugged, rotor 'slips' behind the field) or synchronous motors (rotor locks in exact step with the rotating field). Series/shunt/compound are DC-motor categories.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — AC motors",
+   "topic": "AC Motors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1bca5a331e",
+   "q": "10. What is the basic function of all amplifiers?",
+   "options": [
+    "Gain",
+    "To decrease signal strength proportionally",
+    "To decrease output signal magnitude"
+   ],
+   "correct": 0,
+   "short": "Gain.",
+   "expl": "Every amplifier exists to produce GAIN — to make a small input signal larger at the output. Anything that shrinks the signal is doing the opposite of amplifying.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — amplifiers / gain",
+   "topic": "Filters & Amplifiers",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1d124e9f79",
+   "q": "11. The factors affecting capacitance are: parallel plates ______ proportional to their area, and ______ proportional to their spacing, separated by a dielectric.",
+   "options": [
+    "Inversely / directly",
+    "Selecting a capacitor at least 50 percent higher than system voltage",
+    "Directly / inversely"
+   ],
+   "correct": 2,
+   "short": "Directly / inversely.",
+   "expl": "Bigger plate area holds more charge, so capacitance is DIRECTLY proportional to area. Move the plates farther apart and capacitance falls, so it is INVERSELY proportional to spacing.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — factors affecting capacitance",
+   "topic": "Capacitance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "6c34795b64",
+   "q": "12. Where the airframe or engine manufacturer has published a recommended corrosion inspection schedule and treatment program, which publication has precedence over the recommendation of the Advisory Circular?",
+   "options": [
+    "The applicable program (manufacturer's) takes precedence over the recommendation of the Advisory Circular",
+    "The Advisory Circular takes precedence over the applicable program",
+    "The FAA decides who has precedence on a case-by-case hearing"
+   ],
+   "correct": 0,
+   "short": "The manufacturer's applicable program.",
+   "expl": "An Advisory Circular gives acceptable general guidance, but when the airframe or engine maker publishes its own corrosion inspection and treatment program, that manufacturer's program takes precedence over the AC's recommendation.",
+   "cite": "AC 43-4B Corrosion Control / AC 43.13-1B — manufacturer program precedence",
+   "topic": "Regulations & Corrosion",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "976bca22f9",
+   "q": "13. In a 115 V 400 Hz SERIES circuit with a 16 Ω resistor, 30 µF capacitor, and 22 mH inductor, what is the impedance?",
+   "options": [
+    "55.292 Ω",
+    "44.972 Ω",
+    "11.792 Ω"
+   ],
+   "correct": 1,
+   "short": "44.972 Ω.",
+   "expl": "Series impedance = √(R² + (XL − XC)²). XL = 2π(400)(0.022) = 55.29 Ω; XC = 1 ÷ [2π(400)(30×10⁻⁶)] = 13.26 Ω. Net reactance = 55.29 − 13.26 = 42.03 Ω. Z = √(16² + 42.03²) = √2022 ≈ 44.972 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — series RLC impedance",
+   "topic": "Impedance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "159505024a",
+   "q": "14. To properly seat DC generator brushes, use No. 000 or finer sandpaper and under no circumstances:",
+   "options": [
+    "Inspect the brushes after the generator has run a short period for debris",
+    "Use emery cloth or similar abrasives",
+    "Rotate the armature in the direction of rotation"
+   ],
+   "correct": 1,
+   "short": "Never use emery cloth or similar abrasives.",
+   "expl": "Emery and similar abrasives are electrically CONDUCTIVE — grit left on the commutator can short bars together and cause arcing. Only non-conductive fine sandpaper (No. 000 or finer) is safe for seating brushes.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — DC generator brush service",
+   "topic": "DC Generators",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "a526cbe5ca",
+   "q": "15. Each cell in a Ni-Cad battery contains nickel hydrate in the positive plate and sponge cadmium on the negative plate. The open-cell voltage is:",
+   "options": [
+    "1.25 volts",
+    "2.0 volts",
+    "2.5 volts"
+   ],
+   "correct": 0,
+   "short": "About 1.25 volts.",
+   "expl": "A nickel-cadmium cell rests at roughly 1.2–1.25 volts open circuit. A 2-volt-per-cell figure belongs to lead-acid, not Ni-Cad.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — Ni-Cad cell voltage",
+   "topic": "Batteries",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "2adc36b0f0",
+   "q": "16. What three factors create opposition to the flow of electrons in an AC circuit?",
+   "options": [
+    "Resistance, inductive reactance, capacitive reactance",
+    "ELI, ICE, RMS",
+    "Impedance"
+   ],
+   "correct": 0,
+   "short": "Resistance, inductive reactance, capacitive reactance.",
+   "expl": "In AC, three things oppose current: plain resistance, inductive reactance (XL), and capacitive reactance (XC). Combined vectorially they make up impedance (Z) — so impedance is the RESULT, not one of the three ingredients.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — impedance components",
+   "topic": "Impedance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "ab875ef2f3",
+   "q": "17. A six-cell, 12-volt lead-acid battery produces approximately ______ per cell.",
+   "options": [
+    "6 volts",
+    "2 volts",
+    "12 volts"
+   ],
+   "correct": 1,
+   "short": "About 2 volts.",
+   "expl": "A lead-acid cell produces about 2 volts. Six of them in series give 6 × 2 = 12 volts, which is exactly why a 12-volt lead-acid battery has six cells.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — lead-acid cell voltage",
+   "topic": "Batteries",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "233428ddd1",
+   "q": "18. Apparent power is the power in the entire circuit, including both resistance and reactance. It is:",
+   "options": [
+    "Symbolized by the letters AP and measured in watts",
+    "Less than the true power",
+    "Symbolized by the letter S and measured in volt-amps"
+   ],
+   "correct": 2,
+   "short": "Symbolized by S and measured in volt-amps.",
+   "expl": "Apparent power is the total voltage × current the source must supply, symbolized S and measured in volt-amps (VA). True power (watts) is only the part actually consumed by resistance, so apparent power is greater than or equal to true power.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — apparent power / power triangle",
+   "topic": "AC Power",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "6e67f87d65",
+   "q": "19. When the direction of current flow is known, the direction of the lines of force can be established by:",
+   "options": [
+    "The left-hand rule",
+    "Reversing polarity",
+    "Direct current"
+   ],
+   "correct": 0,
+   "short": "The left-hand rule.",
+   "expl": "Using electron-flow (current from negative to positive), grip the conductor with the LEFT hand, thumb pointing in the direction of electron flow, and the fingers curl the way the magnetic lines of force circle the wire.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — left-hand rule for magnetic field",
+   "topic": "Magnetism",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "ca843e2d8d",
+   "q": "20. The third particle of the atom is the ______ and is negatively charged.",
+   "options": [
+    "Neutron",
+    "Proton",
+    "Electron"
+   ],
+   "correct": 2,
+   "short": "The electron.",
+   "expl": "The three basic atomic particles are the proton (positive), the neutron (no charge), and the electron (negative). The negatively charged one is the electron.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — atomic particles",
+   "topic": "Atomic Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "da10c986dd",
+   "q": "21. There are two types of feedback in amplifiers:",
+   "options": [
+    "Positive / negative",
+    "AC / DC",
+    "High impedance / low impedance"
+   ],
+   "correct": 0,
+   "short": "Positive and negative.",
+   "expl": "Feedback returns part of the output to the input. POSITIVE feedback reinforces the input (used in oscillators); NEGATIVE feedback opposes it (used to stabilize gain and reduce distortion).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — amplifier feedback",
+   "topic": "Filters & Amplifiers",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "9b094c577a",
+   "q": "22. A 'repair' as performed on an aircraft means:",
+   "options": [
+    "The restoration of the airframe to a condition for safe operation after damage or deterioration",
+    "The upkeep and preservation of the airframe including components thereof",
+    "Simple and minor preservation and the replacement of small standard parts not involving complex assembly operations"
+   ],
+   "correct": 0,
+   "short": "Restoration to a safe condition after damage or deterioration.",
+   "expl": "A repair restores an article to a condition for safe operation after it has been damaged or has deteriorated. The first choice describes general maintenance/upkeep and the third describes preventive maintenance.",
+   "cite": "14 CFR Part 43 (Maintenance / Preventive Maintenance) & §1.1 definitions — definitions of maintenance/repair",
+   "topic": "Regulations",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "0cdcc1e87e",
+   "q": "23. ESD is defined as:",
+   "options": [
+    "Electrostatic Discharge",
+    "Electronic Safety Device",
+    "Electron Shell DC"
+   ],
+   "correct": 0,
+   "short": "Electrostatic Discharge.",
+   "expl": "ESD stands for Electrostatic Discharge — the sudden dump of static charge that can destroy sensitive solid-state components, which is why technicians ground themselves before handling them.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — ESD / handling of solid-state devices",
+   "topic": "Semiconductors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "847e772ef1",
+   "q": "24. At what frequency will the effects of a capacitor and an inductor be equal?",
+   "options": [
+    "Impedance",
+    "400 Hz",
+    "Resonant"
+   ],
+   "correct": 2,
+   "short": "The resonant frequency.",
+   "expl": "At the resonant frequency, inductive reactance (XL) exactly equals capacitive reactance (XC) so the two cancel. Below and above resonance one dominates; only AT resonance are they equal.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — resonance",
+   "topic": "Reactance & Resonance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "25a13ffc96",
+   "q": "25. In a DC generator, what causes the current to always flow in the same direction through the external circuit?",
+   "options": [
+    "Full-wave bridge rectifier",
+    "Commutator action",
+    "Static inverter"
+   ],
+   "correct": 1,
+   "short": "Commutator action.",
+   "expl": "The armature actually generates AC, but the split-ring COMMUTATOR reverses the connection to the brushes at the instant the voltage would reverse, so the output to the outside circuit always flows one way — that is what makes it DC.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — commutator action",
+   "topic": "DC Generators",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "4d7114835c",
+   "q": "26. If kilo means 1,000, milli means:",
+   "options": [
+    "1,000,000",
+    "10,000,000",
+    "0.001"
+   ],
+   "correct": 2,
+   "short": "0.001 (one-thousandth).",
+   "expl": "The prefix milli means one-thousandth (10⁻³ = 0.001). It shrinks a unit, the mirror image of kilo, which multiplies by a thousand.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — metric prefixes",
+   "topic": "Metric Prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "9be12e5e99",
+   "q": "27. A transistor may be connected as common-emitter (CE), common-base (CB), or common-collector (CC). Which is most commonly used in amplifier circuits?",
+   "options": [
+    "Common-base",
+    "Common-collector",
+    "Common-emitter"
+   ],
+   "correct": 2,
+   "short": "Common-emitter.",
+   "expl": "The common-emitter configuration provides both good voltage gain and good current gain, which makes it the workhorse of amplifier circuits. Common-collector is mainly a buffer and common-base is used at high frequencies.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — transistor amplifier configurations",
+   "topic": "Semiconductors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "5f0ecd6c2e",
+   "q": "28. In a 115 V 400 Hz SERIES circuit with 20 Ω resistance, an 18 mH inductor, and an 8 µF capacitor, the impedance will be:",
+   "options": [
+    "20.499 Ω",
+    "49.417 Ω",
+    "45.238 Ω"
+   ],
+   "correct": 0,
+   "short": "20.499 Ω.",
+   "expl": "XL = 2π(400)(0.018) = 45.24 Ω; XC = 1 ÷ [2π(400)(8×10⁻⁶)] = 49.74 Ω. Net reactance = 45.24 − 49.74 = −4.50 Ω. Z = √(20² + 4.50²) = √420 ≈ 20.499 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — series RLC impedance",
+   "topic": "Impedance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "f66fc43957",
+   "q": "29. If the maximum (peak) value is 186 volts, what is the effective value?",
+   "options": [
+    "115 volts",
+    "131.5 volts",
+    "130.2 volts"
+   ],
+   "correct": 1,
+   "short": "131.5 volts.",
+   "expl": "Effective (RMS) value = peak × 0.707. So 186 × 0.707 = 131.5 volts.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — effective (RMS) value",
+   "topic": "AC Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "04781747c4",
+   "q": "30. The most common type of fire extinguisher on the flight line is:",
+   "options": [
+    "Halon",
+    "CO2",
+    "Water"
+   ],
+   "correct": 1,
+   "short": "CO2.",
+   "expl": "Carbon-dioxide (CO2) extinguishers are the traditional flight-line choice: CO2 smothers fuel and electrical fires, leaves no residue, and is non-conductive. (Halon is also widely used aboard aircraft — confirm which your instructor's slide names.)",
+   "cite": "FAA-H-8083-30B, Ch. 1 (Safety, Ground Operations & Servicing) — fire extinguisher types",
+   "topic": "Fire Safety",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "42571c3d21",
+   "q": "31. In a 115 V 400 Hz PARALLEL circuit with an 8 Ω resistor, 13 µF capacitor, and 19 mH inductor, what is the impedance?",
+   "options": [
+    "7.964 Ω",
+    "18.920 Ω",
+    "30.606 Ω"
+   ],
+   "correct": 0,
+   "short": "7.964 Ω.",
+   "expl": "XL = 2π(400)(0.019) = 47.75 Ω; XC = 1 ÷ [2π(400)(13×10⁻⁶)] = 30.61 Ω. Parallel Z = 1 ÷ √[(1/R)² + (1/XL − 1/XC)²] = 1 ÷ √[(1/8)² + (0.02094 − 0.03267)²] ≈ 7.964 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — parallel RLC impedance",
+   "topic": "Impedance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "6200276979",
+   "q": "32. Potential difference is known as:",
+   "options": [
+    "Voltage",
+    "Current",
+    "Valence electrons"
+   ],
+   "correct": 0,
+   "short": "Voltage.",
+   "expl": "Potential difference is the electrical 'pressure' between two points that pushes electrons — that pressure is voltage, measured in volts.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — potential difference / voltage",
+   "topic": "Electrical Units",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "4bba8e9c39",
+   "q": "33. What switch has incandescent or LED bulbs to indicate function?",
+   "options": [
+    "Lighted pushbutton switches",
+    "Pushbutton switches",
+    "LED photo-diodes"
+   ],
+   "correct": 0,
+   "short": "Lighted pushbutton switches.",
+   "expl": "A lighted pushbutton switch has a bulb (incandescent or LED) built into the button so it glows to show its state or function — common on annunciator and control panels.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — switches",
+   "topic": "Components",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "0a9e706ae7",
+   "q": "34. 3 volts is how many kilovolts?",
+   "options": [
+    "300 kV",
+    "3,000 kV",
+    "0.003 kV"
+   ],
+   "correct": 2,
+   "short": "0.003 kV.",
+   "expl": "Kilo means one thousand, so 1 kV = 1,000 V. To go from volts to kilovolts you divide by 1,000: 3 ÷ 1,000 = 0.003 kV.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — metric conversions",
+   "topic": "Metric Prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "72c4b96d9d",
+   "q": "35. The four categories or states of matter are:",
+   "options": [
+    "Liquids, gases, plasma, solids",
+    "Neutrons, electrons, protons, atoms",
+    "Molecules, conductors, generators, batteries"
+   ],
+   "correct": 0,
+   "short": "Liquids, gases, plasma, solids.",
+   "expl": "Matter exists as solids, liquids, gases, and plasma. The other lists mix up atomic particles or unrelated components.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — states of matter",
+   "topic": "Physics / Matter",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "fd9684cbb0",
+   "q": "36. When are we as an A&P required to generate a 3rd copy of a Form 337 and place it onboard the aircraft?",
+   "options": [
+    "When the aircraft has extended-range fuel tanks installed in the cargo/cabin area",
+    "When it is done by a Repair Station",
+    "When the aircraft operates under a Special Airworthiness Certificate"
+   ],
+   "correct": 0,
+   "short": "When extended-range fuel tanks are installed in the cargo/cabin.",
+   "expl": "For an extended-range (ferry/auxiliary) fuel tank installed in a cargo or passenger compartment, a copy of the Form 337 must be kept aboard the aircraft, in addition to the copies for the owner and the FAA.",
+   "cite": "14 CFR Part 43 (Maintenance / Preventive Maintenance) & §1.1 definitions Appendix B — Form 337",
+   "topic": "Regulations",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "d2bb390ce6",
+   "q": "37. A bag of resistors is marked 360 ohms ±10%. What color bands are on the resistors?",
+   "options": [
+    "Orange, blue, brown, gold",
+    "Orange, blue, brown",
+    "Orange, blue, brown, silver"
+   ],
+   "correct": 2,
+   "short": "Orange, blue, brown, silver.",
+   "expl": "3 = orange, 6 = blue, and the third (multiplier) band for ×10 is brown (36 × 10 = 360). The tolerance band for ±10% is silver. Gold would be ±5%, and a 3-band resistor with no tolerance band would be ±20%.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — resistor color code",
+   "topic": "Resistor Color Code",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "6ad50adfbd",
+   "q": "38. Current flowing through a coil of wire produces a magnetic field. When the wire is formed into a coil, it becomes a(n):",
+   "options": [
+    "Capacitor / farads",
+    "Inductor / henries",
+    "Inductive reactance / XL"
+   ],
+   "correct": 1,
+   "short": "An inductor, measured in henries.",
+   "expl": "A coil that stores energy in its magnetic field is an inductor, and inductance is measured in henries. Inductive reactance (XL, in ohms) is the OPPOSITION that inductor offers to AC — a related but different quantity.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — inductor / henry",
+   "topic": "Inductance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "227496693c",
+   "q": "39. What is matter?",
+   "options": [
+    "Anything that has mass and volume",
+    "Anything that has mass",
+    "Anything that has space"
+   ],
+   "correct": 0,
+   "short": "Anything that has mass and occupies volume.",
+   "expl": "Matter is defined as anything that has mass AND takes up space (volume). Having mass alone or space alone is not the full definition.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — definition of matter",
+   "topic": "Physics / Matter",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "33fad7943b",
+   "q": "40. How would you define maintenance that requires the replacing or cleaning of spark plugs?",
+   "options": [
+    "Major repair",
+    "Minor alteration",
+    "Preventive maintenance"
+   ],
+   "correct": 2,
+   "short": "Preventive maintenance.",
+   "expl": "Cleaning and replacing spark plugs (and setting the gap) is specifically listed as preventive maintenance in the regulations — simple, minor work that does not involve complex assembly operations.",
+   "cite": "14 CFR Part 43 (Maintenance / Preventive Maintenance) & §1.1 definitions Appendix A(c) — preventive maintenance",
+   "topic": "Regulations",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "291b9d5bed",
+   "q": "41. A field of force around a charged body is called:",
+   "options": [
+    "Electrostatic field",
+    "Charged current",
+    "Direct current"
+   ],
+   "correct": 0,
+   "short": "An electrostatic field.",
+   "expl": "The invisible field of force surrounding a charged body — the region where its charge exerts force on other charges — is the electrostatic field.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — electrostatic field",
+   "topic": "Static Electricity",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "c044dc12f4",
+   "q": "42. 'The induced current caused by the relative motion of a conductor and a magnetic field always flows in such a direction that its magnetic field opposes the motion.' This best describes:",
+   "options": [
+    "The discovery by Faraday in 1831",
+    "Lenz's law",
+    "The generator left-hand rule"
+   ],
+   "correct": 1,
+   "short": "Lenz's law.",
+   "expl": "Lenz's law states that an induced current always opposes the change that created it — the induced field pushes back against the motion. That 'push-back' is why generators require mechanical effort to turn.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — Lenz's law",
+   "topic": "Electromagnetic Induction",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1071f11847",
+   "q": "43. The electrolyte of a Ni-Cad battery is ______ and is neutralized with ______.",
+   "options": [
+    "Sulfuric acid / bicarbonate of soda",
+    "Potassium hydroxide / boric acid",
+    "Nickel hydrate / vinegar"
+   ],
+   "correct": 1,
+   "short": "Potassium hydroxide, neutralized with boric acid.",
+   "expl": "A Ni-Cad uses an ALKALINE electrolyte, potassium hydroxide (KOH), so spills are neutralized with a mild acid — boric acid. Lead-acid is the opposite: sulfuric acid neutralized with baking soda (bicarbonate of soda).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — Ni-Cad electrolyte",
+   "topic": "Batteries",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "4660d8f9a3",
+   "q": "44. The density of a substance is its weight ______.",
+   "options": [
+    "Per atomic weight",
+    "Per unit pound",
+    "Per unit volume"
+   ],
+   "correct": 2,
+   "short": "Per unit volume.",
+   "expl": "Density is how much a substance weighs for a given amount of space it fills — weight per unit volume (for example, pounds per cubic foot).",
+   "cite": "FAA-H-8083-30B (Mathematics — units & volume) — density",
+   "topic": "Physics / Matter",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "df9600aaee",
+   "q": "45. In an AC motor with a rotating magnetic field, one revolution of the field occurs in one cycle. If the frequency is 60 cps, the magnetic field makes how many revolutions per minute?",
+   "options": [
+    "3,600",
+    "60",
+    "600"
+   ],
+   "correct": 0,
+   "short": "3,600 rpm.",
+   "expl": "One revolution per cycle at 60 cycles per second = 60 rev/sec. Multiply by 60 seconds per minute: 60 × 60 = 3,600 revolutions per minute.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — rotating field speed",
+   "topic": "AC Motors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "7f3676610f",
+   "q": "46. What has largely replaced direct current in commercial power systems?",
+   "options": [
+    "Alternating current",
+    "Static inverter",
+    "Mutual induction"
+   ],
+   "correct": 0,
+   "short": "Alternating current.",
+   "expl": "Alternating current replaced DC for power distribution because AC voltage can be stepped up and down with transformers, letting power travel long distances efficiently.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — AC vs. DC power",
+   "topic": "AC Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "8476df0800",
+   "q": "47. Capacitive reactance is measured in:",
+   "options": [
+    "Henries",
+    "Farads",
+    "Ohms"
+   ],
+   "correct": 2,
+   "short": "Ohms.",
+   "expl": "Reactance — capacitive OR inductive — is an opposition to AC current, so like resistance it is measured in ohms. Farads measure capacitance itself and henries measure inductance.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — capacitive reactance",
+   "topic": "Reactance & Resonance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "f4afc5a806",
+   "q": "48. When current flow is in one direction, it is called:",
+   "options": [
+    "Drift velocity",
+    "Direct current",
+    "Current flow"
+   ],
+   "correct": 1,
+   "short": "Direct current.",
+   "expl": "Current that flows steadily in one direction only is direct current (DC), like the output of a battery. Current that periodically reverses is alternating current.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — direct current",
+   "topic": "AC / DC Conversion",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "2b15d8e7af",
+   "q": "49. A flashing red light from the control tower means:",
+   "options": [
+    "Taxi clear of the runway in use",
+    "Exercise extreme caution",
+    "Stop"
+   ],
+   "correct": 0,
+   "short": "Taxi clear of the runway in use.",
+   "expl": "To an aircraft on the ground, a FLASHING red light-gun signal means taxi clear of the runway in use. A STEADY red means stop — don't confuse the two.",
+   "cite": "FAA light-gun signals (AIM / Pilot-Controller reference) — light-gun signals",
+   "topic": "Ground Operations",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1b1aff3131",
+   "q": "50. A pictorial drawing of two or more parts that fit together as an assembly is what kind of view?",
+   "options": [
+    "Installation drawing",
+    "Assembly drawing",
+    "Exploded-view drawing"
+   ],
+   "correct": 2,
+   "short": "An exploded-view drawing.",
+   "expl": "An exploded view pulls the parts apart along common center lines so you can see how they fit together in the assembly — ideal for parts catalogs and reassembly. An assembly drawing shows the parts already joined.",
+   "cite": "FAA-H-8083-30B (Aircraft Drawings chapter) — exploded-view drawings",
+   "topic": "Aircraft Drawings",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "49c652de47",
+   "q": "51. Which is the state of flight where the main rotor system is turned by the relative wind passing through the disc, rather than by engine power?",
+   "options": [
+    "Autorotation",
+    "Ground effect",
+    "Coriolis effect"
+   ],
+   "correct": 0,
+   "short": "Autorotation.",
+   "expl": "In autorotation the engine is disconnected or failed and upward-flowing air through the rotor disc keeps the blades spinning, letting the helicopter glide down under control.",
+   "cite": "FAA-H-8083-21 (Helicopter Flying Handbook) — autorotation",
+   "topic": "Helicopters",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1f9023477f",
+   "q": "52. Select the container size equal in volume to 60 gallons of fuel. (7.5 gal = 1 cu ft)",
+   "options": [
+    "8.0 cubic feet",
+    "8.5 cubic feet",
+    "7.5 cubic feet"
+   ],
+   "correct": 0,
+   "short": "8.0 cubic feet.",
+   "expl": "Divide the gallons by the gallons-per-cubic-foot: 60 ÷ 7.5 = 8.0 cubic feet.",
+   "cite": "FAA-H-8083-30B (Mathematics — units & volume) — volume conversion",
+   "topic": "Math / Fuel",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "38c5f3d0e8",
+   "q": "53. There are two ways to connect three-phase alternators:",
+   "options": [
+    "Brushless and slip rings",
+    "Delta connection and wye connection",
+    "Rectified and inverted"
+   ],
+   "correct": 1,
+   "short": "Delta and wye connections.",
+   "expl": "The three windings of a three-phase alternator are joined either in a delta (triangle) or a wye (Y / star) configuration. Each gives a different relationship between phase and line voltage/current.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — three-phase (delta / wye)",
+   "topic": "Alternators & Frequency",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "64816eacf5",
+   "q": "54. A thermal source of electricity is defined as a:",
+   "options": [
+    "Solar cell or photovoltaic cell device",
+    "Thermocouple",
+    "Primary-cell battery"
+   ],
+   "correct": 1,
+   "short": "A thermocouple.",
+   "expl": "A thermocouple produces voltage directly from HEAT: two dissimilar metals joined and heated create a small emf. A photovoltaic/solar cell is a LIGHT source, and a battery is a CHEMICAL source.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — thermal source of emf",
+   "topic": "Sources of Electricity",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1bfcdb28c3",
+   "q": "55. In a 115 V 400 Hz PARALLEL circuit with a 12 Ω resistor, 30 Ω capacitive reactance, and 40 Ω inductive reactance, what is the impedance?",
+   "options": [
+    "9.436 Ω",
+    "13.262 Ω",
+    "11.94 Ω"
+   ],
+   "correct": 2,
+   "short": "11.94 Ω.",
+   "expl": "Parallel Z = 1 ÷ √[(1/R)² + (1/XL − 1/XC)²] = 1 ÷ √[(1/12)² + (1/40 − 1/30)²] = 1 ÷ √[(0.0833)² + (−0.00833)²] = 1 ÷ 0.08375 ≈ 11.94 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — parallel RLC impedance",
+   "topic": "Impedance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "0f85014a5a",
+   "q": "56. Standard atmospheric pressure can support a column of mercury that is 29.92 inches tall.",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 1,
+   "short": "True.",
+   "expl": "Standard atmospheric pressure (14.7 psi at sea level) balances a mercury column 29.92 inches high — the reference figure behind barometric altimeter and manifold-pressure readings.",
+   "cite": "FAA-H-8083-30B (Mathematics — units & volume) — standard atmosphere",
+   "topic": "Physics",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "e1ab0c888d",
+   "q": "57. What is the proper formula for 'Power'?",
+   "options": [
+    "Power = Force ÷ distance × time",
+    "Power = Force × distance ÷ time",
+    "Power = Force × distance × time"
+   ],
+   "correct": 1,
+   "short": "Power = Force × distance ÷ time.",
+   "expl": "Work = force × distance. Power is the RATE of doing work, so you divide that work by the time it took: Power = (Force × distance) ÷ time.",
+   "cite": "FAA-H-8083-30B (Mathematics — units & volume) — work & power",
+   "topic": "Physics / Power",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "f88960af88",
+   "q": "58. A resistor used to vary current is called a:",
+   "options": [
+    "Wire-wound",
+    "Rheostat",
+    "Potentiometer"
+   ],
+   "correct": 1,
+   "short": "A rheostat.",
+   "expl": "A rheostat is a two-terminal variable resistor wired in series to control CURRENT (like a simple lamp dimmer). A potentiometer is a three-terminal device used to divide VOLTAGE.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — rheostat vs. potentiometer",
+   "topic": "Components",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "a89076a2ec",
+   "q": "59. N-type semiconductor material is doped with elements such as phosphorus, arsenic, and antimony. This causes it to have:",
+   "options": [
+    "Holes",
+    "An excess of electrons",
+    "Protons"
+   ],
+   "correct": 1,
+   "short": "An excess of electrons.",
+   "expl": "Phosphorus, arsenic, and antimony each supply a spare (fifth) valence electron, giving N-type material extra free ELECTRONS (negative carriers). P-type material, doped the other way, has holes.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — N-type semiconductor",
+   "topic": "Semiconductors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "e0225eb6f6",
+   "q": "60. The universal numbering system provides a means of identifying:",
+   "options": [
+    "Standard drawing sizes",
+    "Allowances and tolerances",
+    "Standard cover metric & inch measurement"
+   ],
+   "correct": 0,
+   "short": "Standard drawing sizes.",
+   "expl": "The universal numbering system is a filing method for drawings in which the number itself identifies the standard sheet size, so drawings can be located and reproduced consistently.",
+   "cite": "FAA-H-8083-30B (Aircraft Drawings chapter) — universal numbering system",
+   "topic": "Aircraft Drawings",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "56c2222494",
+   "q": "61. When using a fire extinguisher, what is the best method for extinguishing a fire?",
+   "options": [
+    "Aim at the base and sweep side to side",
+    "Aim at the middle and sweep up and down",
+    "Aim at the smoke and sweep side to side"
+   ],
+   "correct": 0,
+   "short": "Aim at the base and sweep side to side.",
+   "expl": "Aim the agent at the BASE of the flames — where the fuel actually burns — and sweep side to side (the 'S' in the PASS method: Pull, Aim, Squeeze, Sweep). Hitting the smoke does nothing.",
+   "cite": "FAA-H-8083-30B, Ch. 1 (Safety, Ground Operations & Servicing) — fire extinguisher use (PASS)",
+   "topic": "Fire Safety",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "95350d4653",
+   "q": "62. Another method to reverse motor direction is called the ______ method, which changes the direction of current flow in either the armature or the field.",
+   "options": [
+    "Switch",
+    "Battery",
+    "Commutator"
+   ],
+   "correct": 0,
+   "short": "The switch method.",
+   "expl": "A reversing SWITCH lets you flip the current in EITHER the armature or the field (but not both), which reverses rotation. Reversing the whole supply — the battery — flips both at once and the motor keeps turning the same way.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — reversing motor direction",
+   "topic": "DC Motors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "73d461ad6b",
+   "q": "63. To prevent corrosion, operators must follow a constant cycle of:",
+   "options": [
+    "Cleaning, inspection, operational preservation, and lubrication",
+    "Keeping drain holes and passages open and functional",
+    "Thorough knowledge of corrosion techniques"
+   ],
+   "correct": 0,
+   "short": "Cleaning, inspection, preservation, and lubrication.",
+   "expl": "Corrosion control is an ongoing cycle: clean the aircraft, inspect it, apply preservatives, and lubricate. Open drain holes and knowledge help, but the defined recurring CYCLE is clean-inspect-preserve-lubricate.",
+   "cite": "AC 43-4B Corrosion Control / AC 43.13-1B — corrosion prevention cycle",
+   "topic": "Corrosion",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "b229cbd8b2",
+   "q": "64. Three methods to increase the strength of a magnetic field are:",
+   "options": [
+    "Pressure, thermal, chemical, light",
+    "Conventional flow, electron flow, electromotive force",
+    "Increase current flow, number of loops, and type of metal in the core"
+   ],
+   "correct": 2,
+   "short": "More current, more loops, better core metal.",
+   "expl": "An electromagnet gets stronger when you push more current through it, add more turns (loops) of wire, or use a more permeable core material such as soft iron.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — electromagnet strength",
+   "topic": "Magnetism",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "1bb9a9f349",
+   "q": "65. Of the three basic DC motor types — series, shunt, and compound — which is particularly suitable when constant speed is desired?",
+   "options": [
+    "Series DC motor",
+    "Compound DC motor",
+    "Shunt DC motor"
+   ],
+   "correct": 2,
+   "short": "The shunt DC motor.",
+   "expl": "A shunt motor's field is across the line, so its field strength stays nearly constant and it holds a fairly steady speed from no load to full load — the choice when constant speed matters. A series motor's speed swings wildly with load.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — shunt motor speed regulation",
+   "topic": "DC Motors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "21416e3723",
+   "q": "66. Concerning fixed resistors, heat is typically classified as:",
+   "options": [
+    "Unwanted loss of energy",
+    "Solar",
+    "Thermal"
+   ],
+   "correct": 0,
+   "short": "Unwanted loss of energy.",
+   "expl": "A fixed resistor's job is to oppose current, and the heat it produces is wasted energy — an unwanted loss (I²R loss), not a useful output.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — resistor power dissipation",
+   "topic": "Components",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "d461e24fa6",
+   "q": "67. When capacitors are connected in parallel, the effective plate area increases, and:",
+   "options": [
+    "The total capacitance is less than the individual capacitances",
+    "The total capacitance is equal to the individual capacitances",
+    "The total capacitance is the sum of the individual capacitances"
+   ],
+   "correct": 2,
+   "short": "Total capacitance is the sum of the individual capacitances.",
+   "expl": "Wiring capacitors in parallel adds their plate areas together, so their capacitances simply ADD (CT = C1 + C2 + C3…). That is the opposite of resistors in parallel.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — capacitors in parallel",
+   "topic": "Capacitance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "da89a3103e",
+   "q": "68. Factors affecting resistance are:",
+   "options": [
+    "Temperature, length",
+    "Area, temperature, length, material",
+    "Material, length, area"
+   ],
+   "correct": 1,
+   "short": "Area, temperature, length, and material.",
+   "expl": "A conductor's resistance depends on all four: what it is made of (material), how long it is (longer = more), its cross-sectional area (thicker = less), and its temperature.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — factors affecting resistance",
+   "topic": "DC Circuits",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "058cc1748d",
+   "q": "69. In the starting sequence of a turbine engine, the most important instrument to monitor after fuel flow is:",
+   "options": [
+    "Revolutions per minute",
+    "Oil pressure to prevent the engine from seizing",
+    "Exhaust gas temperature"
+   ],
+   "correct": 2,
+   "short": "Exhaust gas temperature (EGT).",
+   "expl": "Right after fuel is introduced during a turbine start, EGT is watched closely to catch a hot start — a temperature spike that can quickly damage the engine. If EGT climbs too fast, the start is aborted.",
+   "cite": "FAA-H-8083-32B (Powerplant — engine start / fuels) — turbine engine starting",
+   "topic": "Powerplant",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "ee0f54bc19",
+   "q": "70. The number of cycles per second is a definition of ______.",
+   "options": [
+    "Inductor / henry",
+    "Frequency / hertz",
+    "Capacitor / farads"
+   ],
+   "correct": 1,
+   "short": "Frequency, measured in hertz.",
+   "expl": "How many complete AC cycles occur each second is the frequency, measured in hertz (one hertz = one cycle per second).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — frequency / hertz",
+   "topic": "AC Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "9372c068dd",
+   "q": "71. A series circuit with 110 volts at 60 cps and a capacitance of 80 µF — what is the capacitive reactance?",
+   "options": [
+    "0.331 Ω",
+    "0.030 Ω",
+    "33.157 Ω"
+   ],
+   "correct": 2,
+   "short": "33.157 Ω.",
+   "expl": "XC = 1 ÷ (2πfC) = 1 ÷ [2π(60)(80×10⁻⁶)] = 1 ÷ 0.030159 ≈ 33.157 Ω. (This is the handbook's own worked example.)",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — capacitive reactance",
+   "topic": "Reactance & Resonance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "054ac5b357",
+   "q": "72. What is the total power of a 115 V 400 Hz series circuit containing a 1/2-hp motor at 80% efficiency, three landing lights at 1.5 amps each, and a 15-watt electric oven?",
+   "options": [
+    "998.75 watts",
+    "466.25 watts",
+    "983.75 watts"
+   ],
+   "correct": 0,
+   "short": "998.75 watts.",
+   "expl": "Motor input = (0.5 × 746) ÷ 0.80 = 373 ÷ 0.80 = 466.25 W. Lights = 3 × 1.5 A × 115 V = 517.5 W. Oven = 15 W. Total = 466.25 + 517.5 + 15 = 998.75 W. (Forgetting the oven gives the 983.75 trap.)",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — electrical power totals",
+   "topic": "AC Power",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "4097928869",
+   "q": "73. Most AC voltmeters display:",
+   "options": [
+    "Volt/amps",
+    "Volts",
+    "RMS or effective value"
+   ],
+   "correct": 2,
+   "short": "RMS (effective) value.",
+   "expl": "A typical AC voltmeter is calibrated to read the RMS (effective) value — the DC-equivalent heating value — not the higher peak value. That is why '115 V' AC means 115 V RMS.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — AC meters read RMS",
+   "topic": "Meters",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "d70cd3e02f",
+   "q": "74. A 6 µF capacitor is expressed as:",
+   "options": [
+    "6,000,000",
+    "0.006",
+    "0.000006"
+   ],
+   "correct": 2,
+   "short": "0.000006 farad.",
+   "expl": "Micro means one-millionth (10⁻⁶), so 6 µF = 6 × 0.000001 = 0.000006 farad — the decimal moved six places to the left.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — microfarad conversion",
+   "topic": "Metric Prefixes",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "a201f6b073",
+   "q": "75. Files are usually made with two types of cutting profiles, which are:",
+   "options": [
+    "Offset & direct",
+    "Single & double",
+    "Simple & complex"
+   ],
+   "correct": 1,
+   "short": "Single-cut and double-cut.",
+   "expl": "File teeth come in single-cut (one row of parallel teeth, for a fine finish) and double-cut (two crossing rows, for fast material removal).",
+   "cite": "FAA-H-8083-30B (Materials, Processes & Precision Tools) — files",
+   "topic": "Hand Tools",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "aa605b097f",
+   "q": "76. The most noticeable effect seen when a battery is turned around, reverse-biasing a diode, is:",
+   "options": [
+    "Very little resistance",
+    "Lack of a depletion zone",
+    "A widened depletion zone"
+   ],
+   "correct": 2,
+   "short": "A widened depletion zone.",
+   "expl": "Reverse bias pulls the charge carriers AWAY from the junction, so the depletion (insulating) region gets WIDER and the diode blocks current. Forward bias narrows it and lets current flow.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — reverse-biased diode",
+   "topic": "Semiconductors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "39cdce8aee",
+   "q": "77. The four most common sources of electricity are:",
+   "options": [
+    "Pressure, piezoelectric, quartz, polarization",
+    "Magnetic, direct current, battery, alternating current",
+    "Pressure, chemical, thermal, light"
+   ],
+   "correct": 2,
+   "short": "Pressure, chemical, thermal, and light.",
+   "expl": "Voltage can be produced by pressure (piezoelectric), chemical action (batteries), heat (thermocouples), and light (photocells) — plus friction and magnetism. The other lists mix up unrelated or duplicate terms.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — sources of electricity",
+   "topic": "Sources of Electricity",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "62032c659e",
+   "q": "78. Energy is defined as:",
+   "options": [
+    "Mutual induction",
+    "Direct current and alternating current",
+    "The ability to do work"
+   ],
+   "correct": 2,
+   "short": "The ability to do work.",
+   "expl": "Energy is simply the capacity to do work — to exert a force over a distance. Everything else listed is a specific electrical phenomenon, not the definition of energy.",
+   "cite": "FAA-H-8083-30B (Mathematics — units & volume) — energy / work",
+   "topic": "Physics",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "df15220e93",
+   "q": "79. A combination of an iron core inside a coil of wire loops is called an:",
+   "options": [
+    "Reluctance",
+    "Electromagnet",
+    "Retentivity"
+   ],
+   "correct": 1,
+   "short": "An electromagnet.",
+   "expl": "Wrap a coil of wire around an iron core and pass current through it and you get an electromagnet — a magnet you can switch on and off. Reluctance and retentivity are magnetic PROPERTIES, not the device.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — electromagnet",
+   "topic": "Magnetism",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "2257d81a03",
+   "q": "80. A micrometer is read from a low-contrast scale. The barrel/sleeve shows past the 3 mark, the thimble reads near 20, and the vernier lines align to give the ten-thousandths digit. Which value is the best-supported reading?",
+   "options": [
+    "0.3698",
+    "0.3498",
+    "0.3705"
+   ],
+   "correct": 0,
+   "short": "0.3698 in.",
+   "expl": "Best supported reading from the (faint) scale is 0.3698 inch — barrel + thimble land in the 0.369–0.370 range and the vernier line places the ten-thousandths digit at 8. NOTE: the scan is low-contrast, so treat this ten-thousandths digit as a spot-check item against the actual gauge.",
+   "cite": "FAA-H-8083-30B (Materials, Processes & Precision Tools) — micrometer reading (vernier 0.0001)",
+   "topic": "Precision Tools",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "7ed20c9c10",
+   "q": "81. The law of electromagnetic induction states that the induced emf in a closed loop of wire is:",
+   "options": [
+    "Current flowing",
+    "EMF, potential difference, volts",
+    "Proportional to the rate of change of magnetic flux through the coil of wire"
+   ],
+   "correct": 2,
+   "short": "Proportional to the rate of change of magnetic flux.",
+   "expl": "Faraday's law of induction: the induced emf equals how FAST the magnetic flux through the loop is changing. Change the flux quickly and you induce a large voltage; hold it steady and you induce none.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — Faraday's law of induction",
+   "topic": "Electromagnetic Induction",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "3764921c91",
+   "q": "82. Conventional flow is known as:",
+   "options": [
+    "North to south",
+    "Positive to negative",
+    "Negative to positive"
+   ],
+   "correct": 1,
+   "short": "Positive to negative.",
+   "expl": "Conventional current is defined as flowing from the positive terminal to the negative terminal (the direction positive charge would move). Electron flow is the physical opposite: negative to positive.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — conventional current flow",
+   "topic": "Electron Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "87f27d9eaf",
+   "q": "83. Regarding helicopter weight and balance, which statement is true?",
+   "options": [
+    "The moment of tail-mounted components is subject to constant change",
+    "Weight-and-balance procedures for airplanes generally apply to helicopters",
+    "Regardless of loading, lateral-axis CG control is not a major factor for helicopters"
+   ],
+   "correct": 1,
+   "short": "Airplane W&B procedures generally apply to helicopters.",
+   "expl": "The same basic weight-and-balance math used for airplanes applies to helicopters. The other statements are false: a fixed tail component's moment does not constantly change, and LATERAL CG absolutely IS a major factor for helicopters (unlike most airplanes).",
+   "cite": "FAA-H-8083-1 (Aircraft Weight & Balance Handbook) — helicopter weight & balance",
+   "topic": "Weight & Balance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "4a0d4d0f40",
+   "q": "84. What is the vernier scale graduation on a micrometer?",
+   "options": [
+    "0.0001",
+    "0.00001",
+    "0.001"
+   ],
+   "correct": 0,
+   "short": "0.0001 inch.",
+   "expl": "The vernier scale on a micrometer adds a fourth digit, reading to ten-thousandths of an inch — 0.0001 in. Without the vernier, an ordinary micrometer reads only to 0.001 in.",
+   "cite": "FAA-H-8083-30B (Materials, Processes & Precision Tools) — micrometer vernier graduation",
+   "topic": "Precision Tools",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "fd2789a380",
+   "q": "85. An open circuit represents:",
+   "options": [
+    "A high current flow",
+    "An infinitely large resistance",
+    "An infinitely low resistance"
+   ],
+   "correct": 1,
+   "short": "An infinitely large resistance.",
+   "expl": "An open circuit is a break in the path, so no current can flow — that is the same as having infinitely large resistance. A short circuit is the opposite: near-zero resistance and very high current.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — open circuit",
+   "topic": "DC Circuits",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "7618948db7",
+   "q": "86. The magnetic field that escapes a transformer during operation is called:",
+   "options": [
+    "Eddy-current loss",
+    "Coefficient of coupling",
+    "Leakage flux"
+   ],
+   "correct": 2,
+   "short": "Leakage flux.",
+   "expl": "The portion of the primary's magnetic flux that does NOT link the secondary — it 'leaks' out of the core — is leakage flux, and it represents lost coupling. Eddy currents are a different (heating) loss.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — transformer leakage flux",
+   "topic": "Transformers",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "9991569ff5",
+   "q": "87. In a 115 V 400 Hz circuit, a 25 µF capacitor will have a reactance of:",
+   "options": [
+    "62.831 Ω",
+    "0.062 Ω",
+    "15.915 Ω"
+   ],
+   "correct": 2,
+   "short": "15.915 Ω.",
+   "expl": "XC = 1 ÷ (2πfC) = 1 ÷ [2π(400)(25×10⁻⁶)] = 1 ÷ 0.0628319 ≈ 15.915 Ω.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — capacitive reactance",
+   "topic": "Reactance & Resonance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "d4de758987",
+   "q": "88. One horsepower is required to move 33,000 pounds one foot in one minute, or:",
+   "options": [
+    "550 ft-lb/s",
+    "746 watts",
+    "Force times distance divided by time"
+   ],
+   "correct": 0,
+   "short": "550 ft-lb per second.",
+   "expl": "33,000 ft-lb per minute divided by 60 seconds = 550 ft-lb per second — the handbook's own restatement of one horsepower. (1 hp also equals 746 watts, so that figure is a true equivalent too, but the direct foot-pound restatement is 550 ft-lb/s.)",
+   "cite": "FAA-H-8083-30B (Mathematics — units & volume) — horsepower",
+   "topic": "Physics / Power",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "17375d280f",
+   "q": "89. Which of the following has the greatest strength-to-weight ratio?",
+   "options": [
+    "Magnesium",
+    "Titanium",
+    "Aluminum"
+   ],
+   "correct": 1,
+   "short": "Titanium.",
+   "expl": "Of the three, titanium has the highest strength-to-weight ratio — nearly as strong as steel but far lighter — which is why it is used in high-stress, high-temperature aircraft structure.",
+   "cite": "FAA-H-8083-30B (Materials, Processes & Precision Tools) — aircraft metals",
+   "topic": "Materials",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "5e5804b991",
+   "q": "90. Distraction is defined as:",
+   "options": [
+    "Failure to see a condition, understand what it is, and predict the possible results",
+    "Standard practices, usually undocumented, adopted by an organization or group",
+    "An unlimited number of events or conditions that interrupt one's ability to focus on a specific task"
+   ],
+   "correct": 2,
+   "short": "Anything that interrupts focus on a task.",
+   "expl": "In human factors, distraction is any of the countless events or conditions that break your concentration on the task at hand — a leading cause of maintenance error. The second describes 'norms' and the third describes lack of awareness.",
+   "cite": "FAA-H-8083-30B, Ch. 14 (Human Factors) — distraction (Dirty Dozen)",
+   "topic": "Human Factors",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "715d814068",
+   "q": "91. When an aircraft is weighed with full fuel, the fuel weight must be subtracted from the scale readings. What instrument is used to calculate the weight of the fuel?",
+   "options": [
+    "Hydrometer",
+    "Heliometer",
+    "Hygrometer"
+   ],
+   "correct": 0,
+   "short": "A hydrometer.",
+   "expl": "A hydrometer measures the fuel's specific gravity (density). From the density and the known volume you calculate the fuel's actual weight so it can be subtracted. A hygrometer measures humidity — different tool.",
+   "cite": "FAA-H-8083-1 (Aircraft Weight & Balance Handbook) — fuel weight / hydrometer",
+   "topic": "Weight & Balance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "5371884a6d",
+   "q": "92. A GCU is known as a:",
+   "options": [
+    "Generator Capacitance Unit",
+    "Generator Control Unit",
+    "Generator Current Unit"
+   ],
+   "correct": 1,
+   "short": "Generator Control Unit.",
+   "expl": "GCU stands for Generator Control Unit — the box that regulates the generator's voltage and provides sensing and protection (overvoltage, reverse current) for the DC generating system.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — Generator Control Unit (GCU)",
+   "topic": "Generators",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "e20b1dbd77",
+   "q": "93. To cure the 'memory effect' of Ni-Cad batteries in standby applications, Ni-Cad batteries have been:",
+   "options": [
+    "Replaced by sealed lead-acid (SLA) batteries",
+    "Replaced by lead-acid batteries",
+    "Removed and deep-cycle charged"
+   ],
+   "correct": 0,
+   "short": "Replaced by sealed lead-acid (SLA) batteries.",
+   "expl": "In standby uses (such as emergency lighting) Ni-Cads can develop voltage-depression 'memory,' so they have been replaced by sealed lead-acid batteries, which don't suffer the effect and need less scheduled maintenance.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — sealed lead-acid vs. Ni-Cad",
+   "topic": "Batteries",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "bf057b1129",
+   "q": "94. To measure resistance in a circuit, the circuit must:",
+   "options": [
+    "Be in correct polarity",
+    "Have power removed",
+    "Be powered"
+   ],
+   "correct": 1,
+   "short": "Have power removed.",
+   "expl": "An ohmmeter supplies its OWN small current from an internal battery, so the circuit under test must be de-energized. Measuring resistance with power applied gives a false reading and can damage the meter.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — measuring resistance / ohmmeter",
+   "topic": "Meters",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "0a8b423ed8",
+   "q": "95. In a series-parallel network: ET = 124 V, R1 = 6 Ω (series, drop E1), then R2 = 4 Ω and R3 = 2 Ω in PARALLEL (drops E2 and E3), then R4 = 3 Ω (series, drop E4). What is the voltage at E2 and E4?",
+   "options": [
+    "E2 = 14 volts / E4 = 72 volts",
+    "E2 = 16 volts / E4 = 36 volts",
+    "E2 = 12 volts / E4 = 24 volts"
+   ],
+   "correct": 1,
+   "short": "E2 = 16 V and E4 = 36 V.",
+   "expl": "The parallel pair combines to (4 × 2) ÷ (4 + 2) = 1.333 Ω. RT = 6 + 1.333 + 3 = 10.333 Ω, so IT = 124 ÷ 10.333 = 12 A. E1 = 12 × 6 = 72 V; the parallel section drops E2 = E3 = 12 × 1.333 = 16 V; E4 = 12 × 3 = 36 V. Check: 72 + 16 + 36 = 124 V.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — series-parallel circuit analysis",
+   "topic": "Series-Parallel Circuits",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "212b646e91",
+   "q": "96. When calculating capacitors in series, the total capacitance will be:",
+   "options": [
+    "Less than that of the smallest capacitor",
+    "The sum of the individual capacitances",
+    "Less than the sum of individual capacitance plus the total farads"
+   ],
+   "correct": 0,
+   "short": "Less than that of the smallest capacitor.",
+   "expl": "Capacitors in series behave the opposite of parallel ones — total capacitance drops below even the smallest capacitor in the string (1/CT = 1/C1 + 1/C2 + …), because the effective plate spacing increases.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — capacitors in series",
+   "topic": "Capacitance",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "ece26db5fc",
+   "q": "97. When current and voltage pass through zero and reach maximum value at the same time:",
+   "options": [
+    "The current leads the applied voltage",
+    "The current and voltage are said to be in phase",
+    "The current lags the applied voltage"
+   ],
+   "correct": 1,
+   "short": "They are in phase.",
+   "expl": "If current and voltage cross zero together and peak together, they are IN PHASE — the mark of a purely resistive AC circuit. In inductive or capacitive circuits they are shifted, so one leads or lags the other.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — phase relationship",
+   "topic": "AC Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "f159fa3c75",
+   "q": "98. Maximum value is ______ times the effective value, and is called the peak value.",
+   "options": [
+    "1.41",
+    "90° and 270°",
+    "0.707"
+   ],
+   "correct": 0,
+   "short": "1.41 (about 1.414).",
+   "expl": "To go from effective (RMS) up to peak, multiply by 1.414 (peak = RMS × 1.414). Going the other way, from peak down to RMS, you multiply by 0.707.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — peak vs. effective value",
+   "topic": "AC Theory",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "3630ea96e3",
+   "q": "99. The state of charge of a lead-acid battery is indicated by:",
+   "options": [
+    "The density (specific gravity) of the electrolyte, using a hydrometer",
+    "The electrolyte being approximately 30 percent water and 70 percent acid",
+    "The level of electrolyte after a complete charge"
+   ],
+   "correct": 0,
+   "short": "The specific gravity of the electrolyte (hydrometer).",
+   "expl": "As a lead-acid battery discharges, the acid weakens and the electrolyte's specific gravity drops. A hydrometer reads that specific gravity, giving a direct indication of the state of charge.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics) — lead-acid state of charge",
+   "topic": "Batteries",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
+   ]
+  },
+  {
+   "id": "b9579d692e",
+   "q": "100. Microbiological growth is commonly found in what type of aviation fuel?",
+   "options": [
+    "AVGAS 100/130",
+    "Jet A",
+    "AVGAS 100LL"
+   ],
+   "correct": 1,
+   "short": "Jet A.",
+   "expl": "Microbes (the 'jet fuel fungus') thrive at the water/fuel interface in turbine fuel such as Jet A, forming slime that clogs filters and promotes corrosion. AVGAS is much less prone to it.",
+   "cite": "FAA-H-8083-32B (Powerplant — engine start / fuels) — microbial growth in turbine fuel",
+   "topic": "Fuel",
+   "block": "Block 4",
+   "sources": [
+    "Block 4 — Practice Final Exam"
    ]
   },
   {
