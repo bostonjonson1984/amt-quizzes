@@ -1,10 +1,11 @@
 {
- "built": "2026-08-20",
- "total": 3290,
+ "built": "2026-08-27",
+ "total": 3350,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
   "Block 1 Aerodynamics & Theory of Flight — Quiz": 38,
+  "FAA General — 60-Question Practice Exam": 60,
   "Block 1 Geometry, Volumes & Conversions — Quiz": 45,
   "Block 1 Heat, Gas Laws, Sound & Atmosphere — Quiz": 44,
   "Block 1 Inspection, NDT & Welding — Quiz": 45,
@@ -2119,6 +2120,1146 @@
    "block": "Block 1",
    "sources": [
     "Block 1 Aerodynamics & Theory of Flight — Quiz"
+   ]
+  },
+  {
+   "id": "41217ea6aa",
+   "q": "1. A 28-volt circuit has a total resistance of 7 ohms. Using Ohm's law, how much current flows in the circuit?",
+   "options": [
+    "4 amperes",
+    "0.25 ampere",
+    "35 amperes",
+    "196 amperes"
+   ],
+   "correct": 0,
+   "short": "4 amperes.",
+   "expl": "Ohm's law solves current as voltage divided by resistance: I = E ÷ R = 28 V ÷ 7 Ω = 4 amperes. Multiplying the two values (196) or adding them (35) misuses the formula, and dividing resistance by voltage would give 0.25.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "fd21c243f6",
+   "q": "2. Three resistors of 10, 15, and 25 ohms are connected in series. What is the total resistance of the circuit?",
+   "options": [
+    "Less than 10 ohms",
+    "About 4.8 ohms",
+    "5 ohms",
+    "50 ohms"
+   ],
+   "correct": 3,
+   "short": "50 ohms.",
+   "expl": "In a series circuit the total resistance is simply the sum of the individual resistances: 10 + 15 + 25 = 50 ohms. Series resistance always adds up and is therefore larger than any single resistor, never smaller. The small values would only result from a parallel arrangement.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "aeab7a404b",
+   "q": "3. Two 12-ohm resistors are connected in parallel. What is the total (equivalent) resistance?",
+   "options": [
+    "144 ohms",
+    "24 ohms",
+    "6 ohms",
+    "12 ohms"
+   ],
+   "correct": 2,
+   "short": "6 ohms.",
+   "expl": "For two equal resistors in parallel, the total resistance is half of one resistor: 12 Ω ÷ 2 = 6 ohms. Using the product-over-sum rule confirms it: (12 × 12) ÷ (12 + 12) = 144 ÷ 24 = 6 ohms. Parallel resistance is always less than the smallest branch, so 24 or 144 cannot be right.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "b49121b0cf",
+   "q": "4. A load in a 24-volt system draws 5 amperes. How much power is the load consuming?",
+   "options": [
+    "480 watts",
+    "4.8 watts",
+    "29 watts",
+    "120 watts"
+   ],
+   "correct": 3,
+   "short": "120 watts.",
+   "expl": "Power equals voltage times current: P = E × I = 24 V × 5 A = 120 watts. Dividing voltage by current (4.8) or adding the two values (29) does not give power.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "2b8eafe1ba",
+   "q": "5. What is the electrolyte used in a nickel-cadmium aircraft battery?",
+   "options": [
+    "Hydrochloric acid",
+    "Distilled water only",
+    "Sulfuric acid",
+    "Potassium hydroxide"
+   ],
+   "correct": 3,
+   "short": "Potassium hydroxide (an alkaline solution).",
+   "expl": "A nickel-cadmium battery uses an alkaline electrolyte of potassium hydroxide. This is the opposite of a lead-acid battery, which uses sulfuric acid. Because the two electrolytes are chemically opposite, the servicing areas, tools, and neutralizing agents for the two battery types must be kept completely separate.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "c10f4baead",
+   "q": "6. The state of charge of a lead-acid battery is most accurately determined by measuring the electrolyte's...",
+   "options": [
+    "Specific gravity with a hydrometer",
+    "Voltage under no load only",
+    "Temperature with a thermometer",
+    "Color"
+   ],
+   "correct": 0,
+   "short": "Specific gravity, measured with a hydrometer.",
+   "expl": "As a lead-acid cell discharges, sulfuric acid combines with the plates and the electrolyte becomes more like water, lowering its specific gravity. Reading that specific gravity with a hydrometer gives the truest indication of state of charge. A ni-cad battery, by contrast, cannot be checked this way because its specific gravity does not change appreciably with charge.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "40d0e34f20",
+   "q": "7. In what form does a capacitor store electrical energy?",
+   "options": [
+    "As chemical energy",
+    "As heat in a resistor",
+    "In an electrostatic field between its plates",
+    "In a magnetic field around a coil"
+   ],
+   "correct": 2,
+   "short": "In an electrostatic field between its plates.",
+   "expl": "A capacitor stores energy in the electrostatic (electric) field that builds up between two conductive plates separated by a dielectric. That is different from an inductor, which stores energy in a magnetic field, and different from a battery, which stores it chemically.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "6cc0974a34",
+   "q": "8. Which property of a coil opposes any change in the current flowing through it by producing a counter-electromotive force?",
+   "options": [
+    "Inductance",
+    "Conductance",
+    "Resistance",
+    "Capacitance"
+   ],
+   "correct": 0,
+   "short": "Inductance.",
+   "expl": "Inductance is the property of a coil that opposes a change in current by inducing a counter-EMF whenever the current tries to rise or fall. Its unit is the henry. Resistance opposes current in general, and capacitance opposes a change in voltage, not current.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "7f695b0ca8",
+   "q": "9. The effective (RMS) value of a sine-wave alternating voltage with a peak value of 100 volts is approximately...",
+   "options": [
+    "70.7 volts",
+    "63.7 volts",
+    "100 volts",
+    "141.4 volts"
+   ],
+   "correct": 0,
+   "short": "About 70.7 volts.",
+   "expl": "The effective, or RMS, value equals 0.707 times the peak value: 0.707 × 100 V = 70.7 volts. This is the value that produces the same heating effect as an equal DC voltage. The 141.4 figure is the reverse relationship (peak = 1.414 × RMS), and 63.7 is the average value, not the effective value.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "92227a6369",
+   "q": "10. In a DC generator, what device converts the alternating current generated in the armature windings into direct current at the output terminals?",
+   "options": [
+    "The field coil",
+    "A rectifier diode",
+    "Slip rings",
+    "The commutator"
+   ],
+   "correct": 3,
+   "short": "The commutator.",
+   "expl": "A DC generator produces AC in its rotating armature; the commutator, a segmented ring acted on by the brushes, mechanically switches the connections each half turn so the output stays direct current. An alternator instead uses continuous slip rings and rectifies the AC with diodes, which is why alternators do not use a commutator.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "7bce3b70be",
+   "q": "11. A series-wound DC motor is commonly used as an engine starter because it...",
+   "options": [
+    "Cannot be reversed",
+    "Produces alternating current",
+    "Develops very high starting torque",
+    "Runs at one constant speed regardless of load"
+   ],
+   "correct": 2,
+   "short": "It develops very high starting torque.",
+   "expl": "In a series-wound motor the field and armature carry the same current, so at startup the heavy current produces very high torque — exactly what is needed to crank an engine. Its speed does vary greatly with load (a shunt motor holds speed more constant), which is the tradeoff for that strong starting torque.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "47046f7934",
+   "q": "12. Two 10-ohm resistors are connected in parallel across a 20-volt source. What is the total current drawn from the source?",
+   "options": [
+    "2 amperes",
+    "1 ampere",
+    "0.5 ampere",
+    "4 amperes"
+   ],
+   "correct": 3,
+   "short": "4 amperes.",
+   "expl": "Each 10-ohm branch draws I = E ÷ R = 20 V ÷ 10 Ω = 2 amperes, and the two branches together draw 2 + 2 = 4 amperes. Checking with the equivalent resistance: two 10-ohm resistors in parallel equal 5 ohms, and 20 V ÷ 5 Ω = 4 amperes.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Fundamentals of Electricity & Electronics)",
+   "topic": "Basic Electricity",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "de7e068eac",
+   "q": "13. On an aircraft drawing, an edge that is present but hidden from view in that particular view is represented by a...",
+   "options": [
+    "Series of short dashes (hidden line)",
+    "Line of alternating long and short dashes",
+    "Freehand wavy line",
+    "Solid heavy line"
+   ],
+   "correct": 0,
+   "short": "A series of short dashes (a hidden line).",
+   "expl": "A hidden line, drawn as a series of short evenly spaced dashes, shows an edge or surface that exists but is concealed behind material in that view. A solid heavy line shows a visible edge, and alternating long-and-short dashes indicate a centerline.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (Aircraft Drawings)",
+   "topic": "Aircraft Drawings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "b5cfb5e093",
+   "q": "14. A line made up of alternating long and short dashes on a drawing indicates a...",
+   "options": [
+    "Centerline",
+    "Dimension line",
+    "Cutting plane",
+    "Break line"
+   ],
+   "correct": 0,
+   "short": "A centerline.",
+   "expl": "A centerline is drawn as alternating long and short dashes and marks the center of a symmetrical object or the axis of a hole or shaft. A dimension line is a solid line with arrowheads, and a break line is used to shorten the view of a long uniform part.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (Aircraft Drawings)",
+   "topic": "Aircraft Drawings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "1aafc8e030",
+   "q": "15. An orthographic projection that shows an object using three views typically presents the...",
+   "options": [
+    "Only interior cutaway views",
+    "Front, top, and side views",
+    "Front view repeated three times",
+    "Three isometric angles"
+   ],
+   "correct": 1,
+   "short": "Front, top, and side views.",
+   "expl": "A standard three-view (orthographic) drawing presents the object as it looks from the front, the top, and the side, each drawn at 90° to the others. This lets the mechanic read true shapes and dimensions from flat, straight-on views rather than a single angled pictorial.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (Aircraft Drawings)",
+   "topic": "Aircraft Drawings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "be5e2d0a01",
+   "q": "16. A drawing that uses symbols to show the function and sequence of a system's components, rather than their physical shape or location, is called a...",
+   "options": [
+    "Sectional view",
+    "Detail drawing",
+    "Schematic diagram",
+    "Orthographic projection"
+   ],
+   "correct": 2,
+   "short": "A schematic diagram.",
+   "expl": "A schematic diagram represents each component with a standardized symbol and shows how the parts function together and in what sequence — it deliberately ignores the real size, shape, and location of the parts. A detail drawing, by contrast, shows the actual dimensions and shape of a single part.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (Aircraft Drawings)",
+   "topic": "Aircraft Drawings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "eebeccdc1e",
+   "q": "17. In aircraft weight and balance, the datum is best described as...",
+   "options": [
+    "An imaginary vertical plane from which horizontal distances (arms) are measured",
+    "The rearmost allowable CG position",
+    "The heaviest point on the airframe",
+    "The center of gravity of the loaded aircraft"
+   ],
+   "correct": 0,
+   "short": "An imaginary vertical plane from which horizontal distances are measured.",
+   "expl": "The datum is a reference plane, chosen by the manufacturer, from which all horizontal arms are measured. Distances behind it are positive and distances ahead of it are negative. The center of gravity is a computed balance point, not the reference itself.",
+   "cite": "FAA-H-8083-30B, Ch. 6 (Aircraft Weight & Balance)",
+   "topic": "Weight & Balance",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "5dc4477dd3",
+   "q": "18. An item of equipment weighing 30 pounds is installed at a station 45 inches from the datum. What is its moment?",
+   "options": [
+    "75 in-lb",
+    "1,350 in-lb",
+    "15 in-lb",
+    "1.5 in-lb"
+   ],
+   "correct": 1,
+   "short": "1,350 inch-pounds.",
+   "expl": "Moment is weight multiplied by arm: 30 lb × 45 in = 1,350 inch-pounds. Adding the two numbers (75) or dividing them (1.5) does not give a moment; a moment is always a weight times a distance.",
+   "cite": "FAA-H-8083-30B, Ch. 6 (Aircraft Weight & Balance)",
+   "topic": "Weight & Balance",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "56f2879040",
+   "q": "19. A loaded airplane weighs 2,400 pounds and has a total moment of 216,000 inch-pounds. Where is the center of gravity located?",
+   "options": [
+    "11 inches aft of datum",
+    "2,400 inches aft of datum",
+    "216 inches aft of datum",
+    "90 inches aft of datum"
+   ],
+   "correct": 3,
+   "short": "90 inches aft of the datum.",
+   "expl": "Center of gravity is found by dividing total moment by total weight: 216,000 in-lb ÷ 2,400 lb = 90 inches. The CG is the balance point where the whole airplane's weight can be considered to act.",
+   "cite": "FAA-H-8083-30B, Ch. 6 (Aircraft Weight & Balance)",
+   "topic": "Weight & Balance",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "368a675349",
+   "q": "20. The useful load of an aircraft is found by...",
+   "options": [
+    "Multiplying the empty weight by the load factor",
+    "Adding the empty weight and the fuel weight",
+    "Subtracting the fuel weight from the empty weight",
+    "Subtracting the empty weight from the maximum allowable gross weight"
+   ],
+   "correct": 3,
+   "short": "Maximum allowable gross weight minus empty weight.",
+   "expl": "Useful load is what remains for crew, passengers, baggage, usable fuel, and cargo: maximum allowable gross weight minus the empty weight. It represents everything the empty airplane can legally carry on top of itself.",
+   "cite": "FAA-H-8083-30B, Ch. 6 (Aircraft Weight & Balance)",
+   "topic": "Weight & Balance",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "423ac0421e",
+   "q": "21. Ballast added to an aircraft to bring the center of gravity within allowable limits...",
+   "options": [
+    "Is never permitted on certificated aircraft",
+    "Is only ever installed at the datum",
+    "May be temporary or permanent, and permanent ballast is normally marked and secured",
+    "Reduces the aircraft's empty weight"
+   ],
+   "correct": 2,
+   "short": "It may be temporary or permanent; permanent ballast is marked and secured.",
+   "expl": "Ballast is weight added to move the CG into limits. Temporary ballast handles a specific loading condition, while permanent ballast is a lasting correction that must be securely attached and clearly identified as ballast. Adding ballast increases weight rather than reducing it.",
+   "cite": "FAA-H-8083-30B, Ch. 6 (Aircraft Weight & Balance)",
+   "topic": "Weight & Balance",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "0749c5ecd9",
+   "q": "22. When selecting an AN bolt, its grip length should be approximately equal to...",
+   "options": [
+    "The diameter of the bolt",
+    "The thickness of the material being fastened",
+    "Twice the thickness of the material",
+    "The total length of the bolt"
+   ],
+   "correct": 1,
+   "short": "The thickness of the material being fastened.",
+   "expl": "The grip is the unthreaded shank of the bolt, and it should match the combined thickness of the parts being clamped so that the shank — not the threads — bears the load in the joint. If threads extend well into the material, a washer or a different-length bolt is used to correct the grip.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "91225d0447",
+   "q": "23. The diameter of an AN-standard bolt is indicated by its dash number in increments of...",
+   "options": [
+    "Eighths of an inch",
+    "Sixteenths of an inch",
+    "Whole inches",
+    "Thousandths of an inch"
+   ],
+   "correct": 1,
+   "short": "Sixteenths of an inch.",
+   "expl": "In the AN bolt numbering system the dash number gives the shank diameter in sixteenths of an inch, so an AN4 bolt is 4/16 (1/4) inch in diameter. A separate number indicates the length. Reading the dash number as eighths or whole inches would badly oversize the hardware.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "5994364e7a",
+   "q": "24. Fiber- or nylon-insert self-locking nuts should NOT be installed in locations where the temperature exceeds about...",
+   "options": [
+    "100 °F",
+    "600 °F",
+    "1,000 °F",
+    "250 °F"
+   ],
+   "correct": 3,
+   "short": "About 250 °F.",
+   "expl": "The self-locking action of a fiber or nylon insert comes from the plastic gripping the bolt threads, and that plastic loses its grip and deteriorates above roughly 250 °F. In hotter locations an all-metal self-locking nut is used instead.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "3c7fa698c8",
+   "q": "25. The primary purpose of applying a specified torque value to a nut and bolt is to...",
+   "options": [
+    "Prevent the threads from ever being reused",
+    "Make the bolt easier to remove later",
+    "Compensate for a missing washer",
+    "Produce the correct tension (clamping preload) in the bolt"
+   ],
+   "correct": 3,
+   "short": "To produce the correct tension (clamping preload) in the bolt.",
+   "expl": "Torquing stretches the bolt a controlled amount, creating the designed clamping tension that holds the joint together and resists loosening and fatigue. Too little torque lets the joint work loose; too much can stretch or fail the bolt.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "f4439de8cc",
+   "q": "26. When two fasteners are secured together with safety wire, the wire must be installed so that...",
+   "options": [
+    "Either fastener's tendency to loosen tightens the wire against the other",
+    "It only prevents the fasteners from being over-tightened",
+    "The wire is left slack to allow movement",
+    "A single strand connects three or more fasteners"
+   ],
+   "correct": 0,
+   "short": "Either fastener's loosening tendency pulls the wire tight against the other.",
+   "expl": "The double-twist method routes the wire so that if either fastener starts to back out, the pull of the wire is in the tightening direction on both — each unit's loosening tendency is resisted by the other through the taut wire. Slack wire would allow loosening and is never acceptable.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "48ed6e8ed7",
+   "q": "27. Which solid aluminum-alloy rivet is the most widely used and can be driven in the condition received, without prior heat treatment?",
+   "options": [
+    "2117 (AD) rivet",
+    "2024 (DD) rivet",
+    "1100 (A) rivet",
+    "5056 (B) rivet"
+   ],
+   "correct": 0,
+   "short": "The 2117 (AD) rivet.",
+   "expl": "The 2117 rivet, coded AD and marked with a small dimple on its head, is the most commonly used structural rivet because it can be driven as received without heat treatment. The 2024 (DD) rivet, by contrast, must be kept refrigerated and driven soon after heat treatment because it hardens with age.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "5a6cd8af81",
+   "q": "28. Magnetic particle inspection can be used to detect surface and near-surface defects only in materials that are...",
+   "options": [
+    "Aluminum and magnesium",
+    "Transparent",
+    "Ferromagnetic (such as iron and steel)",
+    "Nonmetallic"
+   ],
+   "correct": 2,
+   "short": "Ferromagnetic materials such as iron and steel.",
+   "expl": "Magnetic particle inspection works by magnetizing the part and letting fine particles gather at flux leakage points around a flaw, so it only works on ferromagnetic materials like iron and steel. Nonmagnetic parts such as aluminum are inspected by other methods like dye penetrant or eddy current.",
+   "cite": "FAA-H-8083-30B, Ch. 7 (Aircraft Materials, Processes & Hardware)",
+   "topic": "Materials & Hardware",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "b710511da9",
+   "q": "29. Corrosion that occurs when two dissimilar metals are in contact in the presence of an electrolyte is called...",
+   "options": [
+    "Filiform corrosion",
+    "Fretting corrosion",
+    "Stress corrosion",
+    "Galvanic (dissimilar-metal) corrosion"
+   ],
+   "correct": 3,
+   "short": "Galvanic (dissimilar-metal) corrosion.",
+   "expl": "Galvanic corrosion is set up when two metals far apart on the galvanic series touch while a conductive electrolyte (like moisture) is present, forming a small cell that eats away the more active metal. Keeping dissimilar metals separated or sealed prevents it.",
+   "cite": "FAA-H-8083-30B, Ch. 8 (Cleaning & Corrosion Control)",
+   "topic": "Cleaning & Corrosion",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "94f3353207",
+   "q": "30. Corrosion products on an aluminum-alloy surface typically appear as...",
+   "options": [
+    "A bright reddish scale",
+    "A black oily film",
+    "A white-to-gray powdery deposit",
+    "A green flaky coating"
+   ],
+   "correct": 2,
+   "short": "A white-to-gray powdery deposit.",
+   "expl": "When aluminum corrodes it forms a white or gray powdery oxide on the surface. Reddish scale (rust) is characteristic of iron and steel, and a greenish deposit is typical of copper-based alloys, so the color of the corrosion helps identify the base metal.",
+   "cite": "FAA-H-8083-30B, Ch. 8 (Cleaning & Corrosion Control)",
+   "topic": "Cleaning & Corrosion",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "e4ca1f95f6",
+   "q": "31. A form of corrosion that attacks along the grain boundaries of a metal, and which in an advanced stage can lift the surface into flakes or layers, is...",
+   "options": [
+    "Concentration-cell corrosion",
+    "Intergranular corrosion (exfoliation in its advanced form)",
+    "Fretting corrosion",
+    "Surface (uniform) corrosion"
+   ],
+   "correct": 1,
+   "short": "Intergranular corrosion, appearing as exfoliation when advanced.",
+   "expl": "Intergranular corrosion works along the grain boundaries inside the metal. When it advances in wrought materials like extrusions, the corrosion products swell and pry the layers apart, lifting the surface into flakes — that swollen, layered condition is called exfoliation.",
+   "cite": "FAA-H-8083-30B, Ch. 8 (Cleaning & Corrosion Control)",
+   "topic": "Cleaning & Corrosion",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "6c99d2a26b",
+   "q": "32. After mechanically removing corrosion from a bare aluminum-alloy surface, the surface should be treated with a chemical conversion coating before...",
+   "options": [
+    "Any further handling of the part",
+    "Applying primer and paint",
+    "Recording the work",
+    "Installing safety wire"
+   ],
+   "correct": 1,
+   "short": "Applying primer and paint.",
+   "expl": "A chemical conversion coating (such as an alodine treatment) is applied to the cleaned bare metal to form a protective film that resists corrosion and helps paint adhere. Primer and topcoat are then applied over that conversion coating to complete the protective finish.",
+   "cite": "FAA-H-8083-30B, Ch. 8 (Cleaning & Corrosion Control)",
+   "topic": "Cleaning & Corrosion",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "51b1e46226",
+   "q": "33. The size of rigid metal fluid-line tubing is specified by its...",
+   "options": [
+    "Inside diameter only",
+    "Outside diameter (in 1/16-inch increments) and wall thickness",
+    "Length and color",
+    "Thread pitch"
+   ],
+   "correct": 1,
+   "short": "Outside diameter, in 1/16-inch increments, plus wall thickness.",
+   "expl": "Rigid tubing is called out by its outside diameter, given in sixteenths of an inch, along with its wall thickness. A hose (flexible line), by contrast, is sized by its inside diameter. Mixing up the two systems leads to ordering the wrong line.",
+   "cite": "FAA-H-8083-30B, Ch. 9 (Fluid Lines & Fittings)",
+   "topic": "Fluid Lines & Fittings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "aa286b1f25",
+   "q": "34. A standard AN flared-tube fitting is designed for a flare angle of...",
+   "options": [
+    "30 degrees",
+    "60 degrees",
+    "37 degrees",
+    "45 degrees"
+   ],
+   "correct": 2,
+   "short": "37 degrees.",
+   "expl": "AN (Army-Navy) flared fittings use a 37° flare. Automotive/SAE fittings use a 45° flare, and the two are not interchangeable — mating a 37° tube flare to a 45° fitting (or the reverse) will not seal properly and can fail.",
+   "cite": "FAA-H-8083-30B, Ch. 9 (Fluid Lines & Fittings)",
+   "topic": "Fluid Lines & Fittings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "aacceea640",
+   "q": "35. A printed 'lay line' (a colored stripe running lengthwise along a flexible hose) is used during installation to...",
+   "options": [
+    "Identify the fluid type",
+    "Show whether the hose is twisted",
+    "Indicate the direction of fluid flow",
+    "Mark the hose's burst pressure"
+   ],
+   "correct": 1,
+   "short": "Show whether the hose is installed without a twist.",
+   "expl": "The lay line is a stripe running straight down the length of the hose. If, after installation, that line spirals around the hose, the hose has been twisted and must be corrected, because a twisted hose is weakened and can fail early under pressure.",
+   "cite": "FAA-H-8083-30B, Ch. 9 (Fluid Lines & Fittings)",
+   "topic": "Fluid Lines & Fittings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "960efa74ac",
+   "q": "36. A double flare is used on soft aluminum-alloy tubing of small diameter (about 3/8-inch OD and under) primarily to...",
+   "options": [
+    "Provide a stronger, more leak-resistant connection that resists cracking",
+    "Reduce the weight of the fitting",
+    "Allow the use of a 45-degree fitting",
+    "Increase the inside diameter"
+   ],
+   "correct": 0,
+   "short": "Provide a stronger, more leak-resistant connection that resists cracking.",
+   "expl": "Folding the tube end over on itself makes a double flare, which is thicker and stronger than a single flare. On small, soft aluminum-alloy lines this extra strength resists the cracking and cutting-through that a single flare is prone to, giving a more durable, leak-resistant seal.",
+   "cite": "FAA-H-8083-30B, Ch. 9 (Fluid Lines & Fittings)",
+   "topic": "Fluid Lines & Fittings",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "3400904b2b",
+   "q": "37. A fire involving energized electrical equipment is classified as a...",
+   "options": [
+    "Class C fire",
+    "Class A fire",
+    "Class B fire",
+    "Class D fire"
+   ],
+   "correct": 0,
+   "short": "A Class C fire.",
+   "expl": "Class C fires involve energized electrical equipment; the key hazard is electric shock, so a non-conductive agent such as CO2 or Halon is used. Class A is ordinary combustibles, Class B is flammable liquids, and Class D is combustible metals.",
+   "cite": "FAA-H-8083-30B, Ch. 1 (Safety, Ground Operations & Servicing)",
+   "topic": "Ground Ops & Servicing",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "e53064dbb3",
+   "q": "38. To prevent a static-electricity spark from igniting fuel vapors during refueling, the fuel source, the nozzle, and the aircraft must be...",
+   "options": [
+    "Kept at least 50 feet apart",
+    "Sprayed with water",
+    "Painted with conductive paint",
+    "Bonded together and grounded"
+   ],
+   "correct": 3,
+   "short": "Bonded together and grounded.",
+   "expl": "Fuel flowing through a hose builds up a static charge. Bonding the fuel truck, the nozzle, and the aircraft together equalizes their electrical potential and grounding carries the charge to earth, so no spark can jump to ignite the vapors during fueling.",
+   "cite": "FAA-H-8083-30B, Ch. 1 (Safety, Ground Operations & Servicing)",
+   "topic": "Ground Ops & Servicing",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "1b2436cde1",
+   "q": "39. The extinguishing agents recommended for a Class B fire (flammable liquids such as fuel, oil, or grease) include...",
+   "options": [
+    "Carbon dioxide (CO2), Halon, or dry chemical",
+    "Sand only",
+    "A stream of water",
+    "Removing the fuel by hand"
+   ],
+   "correct": 0,
+   "short": "Carbon dioxide, Halon, or dry chemical.",
+   "expl": "Class B fires burn flammable liquids, and the goal is to smother the fire and exclude oxygen, which CO2, Halon, and dry-chemical agents do well. A stream of water is avoided because it can spread the burning liquid and spread the fire.",
+   "cite": "FAA-H-8083-30B, Ch. 1 (Safety, Ground Operations & Servicing)",
+   "topic": "Ground Ops & Servicing",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "0e80a73772",
+   "q": "40. While an aircraft is being towed, a qualified person should be stationed...",
+   "options": [
+    "In the cockpit to operate the brakes",
+    "Under the aircraft",
+    "On top of the wing",
+    "Inside the tow vehicle only"
+   ],
+   "correct": 0,
+   "short": "In the cockpit, ready to operate the brakes.",
+   "expl": "During any towing operation a qualified person occupies the cockpit so the aircraft can be stopped with the brakes if the tow bar disconnects or the tug loses control. Additional observers watch the wingtips and tail for clearance from obstacles.",
+   "cite": "FAA-H-8083-30B, Ch. 1 (Safety, Ground Operations & Servicing)",
+   "topic": "Ground Ops & Servicing",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "3d3128fc6e",
+   "q": "41. The FAA form used to record a major repair or a major alteration to an airframe, powerplant, propeller, or appliance is FAA Form...",
+   "options": [
+    "Form 337",
+    "Form 8050-1",
+    "Form 8130-3",
+    "Form 8110-3"
+   ],
+   "correct": 0,
+   "short": "FAA Form 337.",
+   "expl": "FAA Form 337, Major Repair and Alteration, documents the major work performed, who approved it for return to service, and the approved data used. Minor maintenance does not require a 337 — it is recorded with a normal logbook entry instead.",
+   "cite": "FAA-H-8083-30B, Ch. 2 / 14 CFR §43.9",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "2ab497b3f5",
+   "q": "42. Compliance with an applicable Airworthiness Directive (AD) is...",
+   "options": [
+    "Optional and left to the owner",
+    "Required only at the annual inspection",
+    "Mandatory",
+    "Recommended only"
+   ],
+   "correct": 2,
+   "short": "Mandatory.",
+   "expl": "Airworthiness Directives are issued under 14 CFR Part 39 to correct an unsafe condition, and compliance is legally mandatory within the time or interval the AD specifies. No person may operate an affected product unless the AD has been complied with.",
+   "cite": "FAA-H-8083-30B, Ch. 2 / 14 CFR Part 39",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "ec24a5e26d",
+   "q": "43. The document that lists the specifications, limitations, and the certification basis under which a particular aircraft model was type certificated is the...",
+   "options": [
+    "Form 337",
+    "Aircraft flight manual only",
+    "Type Certificate Data Sheet (TCDS)",
+    "Airworthiness Directive"
+   ],
+   "correct": 2,
+   "short": "The Type Certificate Data Sheet (TCDS).",
+   "expl": "The Type Certificate Data Sheet records the approved configuration and limitations — such as engine models, fuel, CG range, control-surface travels, and required placards — that define the certificated type design. A mechanic uses it to verify an aircraft conforms to its type certificate.",
+   "cite": "FAA-H-8083-30B, Ch. 2",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "cb60d0c0b3",
+   "q": "44. Which regulation contains the definition and the list of items that qualify as preventive maintenance?",
+   "options": [
+    "14 CFR Part 43, Appendix A",
+    "14 CFR Part 39",
+    "14 CFR Part 65",
+    "14 CFR Part 21"
+   ],
+   "correct": 0,
+   "short": "14 CFR Part 43, Appendix A.",
+   "expl": "Part 43, Appendix A, both distinguishes major repairs/alterations and lists the specific tasks that are considered preventive maintenance (such as simple servicing and small standard-hardware replacements). Part 65 addresses airman certification, not the definition of preventive maintenance.",
+   "cite": "FAA-H-8083-30B, Ch. 2 / 14 CFR §43 App. A",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "33478a5cbf",
+   "q": "45. A maintenance record entry for a completed repair must, at a minimum, include a description of the work, the date it was completed, and the...",
+   "options": [
+    "Signature and certificate number of the person approving the aircraft for return to service",
+    "Estimated cost of the work",
+    "Serial number of every tool used",
+    "Weather conditions at the time of the work"
+   ],
+   "correct": 0,
+   "short": "Signature and certificate number of the person approving return to service.",
+   "expl": "A required maintenance entry describes the work done, gives the completion date, and carries the signature, certificate type, and certificate number of the person approving the return to service. That signature is what returns the aircraft to service, not merely that the work was done.",
+   "cite": "FAA-H-8083-30B, Ch. 2 / 14 CFR §43.9",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "99b535a098",
+   "q": "46. Which term may be used to describe a product ONLY by its original manufacturer, or by an agency approved by the manufacturer?",
+   "options": [
+    "Rebuilt",
+    "Repaired",
+    "Overhauled",
+    "Inspected"
+   ],
+   "correct": 0,
+   "short": "Rebuilt.",
+   "expl": "The word 'rebuilt' carries a special meaning (essentially a zero-time, like-new status), so the regulations restrict its use to the manufacturer or a manufacturer-approved agency. Any appropriately rated person may perform and record an 'overhaul,' which returns a unit to serviceable limits but does not reset its total time.",
+   "cite": "FAA-H-8083-30B, Ch. 2 / 14 CFR §43.2",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "9a66de83a2",
+   "q": "47. When an aircraft is sold, which maintenance records must be transferred to the new owner?",
+   "options": [
+    "Only the purchase receipt",
+    "Only the last invoice from the shop",
+    "None; records may be discarded",
+    "The records of total time in service and the current status of Airworthiness Directives"
+   ],
+   "correct": 3,
+   "short": "Total time in service and the current status of Airworthiness Directives.",
+   "expl": "The owner's continuous records — including total time in service, current AD status, current status of life-limited parts, and the status/date of required inspections — must be transferred with the aircraft at the time of sale so the new owner can prove airworthiness and continued compliance.",
+   "cite": "FAA-H-8083-30B, Ch. 2 / 14 CFR §91.419",
+   "topic": "Publications, Forms & Records",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "5905d16562",
+   "q": "48. The two ratings that may be issued under a mechanic certificate are...",
+   "options": [
+    "Engine and Propeller",
+    "Airframe and Avionics",
+    "Powerplant and Inspection",
+    "Airframe and Powerplant"
+   ],
+   "correct": 3,
+   "short": "Airframe and Powerplant.",
+   "expl": "A mechanic certificate is issued with an Airframe rating, a Powerplant rating, or both. Holding both (an A&P) allows work on the airframe and the engine. Inspection Authorization is a separate, additional authorization, not one of the two basic ratings.",
+   "cite": "FAA-H-8083-30B, Ch. 13 / 14 CFR Part 65",
+   "topic": "Mechanic Privileges & Regs",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "50b9e37ba8",
+   "q": "49. To exercise the privileges of a mechanic certificate, a person must have, within the preceding 24 months, either served as a mechanic under the certificate for at least...",
+   "options": [
+    "6 months",
+    "12 months",
+    "1 month",
+    "24 months"
+   ],
+   "correct": 0,
+   "short": "6 months.",
+   "expl": "The recent-experience rule requires that within the previous 24 months the mechanic has either served as a mechanic for at least 6 months, or has otherwise demonstrated current ability to the FAA. Without meeting this, the privileges may not be exercised until currency is re-established.",
+   "cite": "FAA-H-8083-30B, Ch. 13 / 14 CFR §65.83",
+   "topic": "Mechanic Privileges & Regs",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "dbb459706d",
+   "q": "50. A certificated A&P mechanic who does NOT hold an Inspection Authorization may perform a major repair, but the completed work must be approved for return to service by...",
+   "options": [
+    "The holder of an Inspection Authorization, a certificated repair station, or the FAA",
+    "No one; the A&P may approve it alone",
+    "Any pilot",
+    "The aircraft owner"
+   ],
+   "correct": 0,
+   "short": "An IA holder, an appropriately rated repair station, or the FAA.",
+   "expl": "An A&P without an IA may accomplish a major repair, but a major repair or major alteration must be approved for return to service on Form 337 by an IA, an appropriately rated repair station, or the FAA. Ordinary (minor) maintenance the A&P can approve on their own.",
+   "cite": "FAA-H-8083-30B, Ch. 13 / 14 CFR §65.95",
+   "topic": "Mechanic Privileges & Regs",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "20ff33beb9",
+   "q": "51. A privilege granted by an Inspection Authorization (IA) that a mechanic without an IA does NOT have is the authority to...",
+   "options": [
+    "Conduct an annual inspection and approve it for return to service",
+    "Perform preventive maintenance",
+    "Replace a landing light",
+    "Fuel and tow aircraft"
+   ],
+   "correct": 0,
+   "short": "Conduct an annual inspection and approve it for return to service.",
+   "expl": "The IA authorizes a mechanic to perform annual inspections, approve major repairs and major alterations for return to service, and perform progressive inspections. A mechanic without an IA can still do a great deal of maintenance but cannot sign off an annual inspection.",
+   "cite": "FAA-H-8083-30B, Ch. 13 / 14 CFR §65.95",
+   "topic": "Mechanic Privileges & Regs",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "8fdc505446",
+   "q": "52. A mechanic certificate issued under Part 65...",
+   "options": [
+    "Is valid only for a single aircraft",
+    "Expires 24 months after issue",
+    "Is effective until it is surrendered, suspended, or revoked",
+    "Must be renewed every year"
+   ],
+   "correct": 2,
+   "short": "It is effective until surrendered, suspended, or revoked.",
+   "expl": "Unlike the Inspection Authorization, which must be renewed, the basic mechanic certificate does not expire; it remains in effect until it is surrendered, suspended, or revoked. The holder must still meet the recent-experience rule to actually exercise its privileges.",
+   "cite": "FAA-H-8083-30B, Ch. 13 / 14 CFR §65.15",
+   "topic": "Mechanic Privileges & Regs",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "54fb9a9e11",
+   "q": "53. According to Boyle's law, if the pressure on a confined body of gas is doubled while the temperature is held constant, the volume of the gas will...",
+   "options": [
+    "Be reduced to one-quarter",
+    "Stay the same",
+    "Be reduced to one-half",
+    "Double"
+   ],
+   "correct": 2,
+   "short": "Be reduced to one-half.",
+   "expl": "Boyle's law states that, at constant temperature, the volume of a confined gas varies inversely with the absolute pressure. Doubling the pressure therefore halves the volume, because the product of pressure and volume stays constant.",
+   "cite": "FAA-H-8083-30B, Ch. 5 (Physics)",
+   "topic": "Physics",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "05ca72b2b6",
+   "q": "54. The transfer of heat through a solid piece of metal by direct contact between the molecules is called...",
+   "options": [
+    "Convection",
+    "Evaporation",
+    "Radiation",
+    "Conduction"
+   ],
+   "correct": 3,
+   "short": "Conduction.",
+   "expl": "Conduction moves heat through a material by molecule-to-molecule contact, which is why a metal rod heated at one end soon becomes hot at the other. Convection carries heat by the motion of a fluid, and radiation moves heat as electromagnetic waves needing no medium.",
+   "cite": "FAA-H-8083-30B, Ch. 5 (Physics)",
+   "topic": "Physics",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "b398db59f4",
+   "q": "55. Pascal's law states that pressure applied to a confined fluid is transmitted...",
+   "options": [
+    "Only in the direction of the applied force",
+    "With increasing loss over distance",
+    "Undiminished and equally in all directions",
+    "Only to the nearest surface"
+   ],
+   "correct": 2,
+   "short": "Undiminished and equally in all directions.",
+   "expl": "Pascal's law is the basis of hydraulics: pressure applied anywhere to a confined, incompressible fluid is transmitted equally and without loss to every part of the fluid and to the walls of its container. This lets a small input force produce a large output force through area differences.",
+   "cite": "FAA-H-8083-30B, Ch. 5 (Physics)",
+   "topic": "Physics",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "129ab088df",
+   "q": "56. The specific gravity of a substance is the ratio of the weight (density) of the substance to the weight of an equal volume of...",
+   "options": [
+    "Pure water",
+    "Air",
+    "Mercury",
+    "Aviation fuel"
+   ],
+   "correct": 0,
+   "short": "Pure water.",
+   "expl": "For solids and liquids, specific gravity compares the density of the material to that of pure water. A value greater than 1 means the substance is heavier than water and will sink; a value less than 1 means it will float. (Gases are instead compared to air.)",
+   "cite": "FAA-H-8083-30B, Ch. 5 (Physics)",
+   "topic": "Physics",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "da00892942",
+   "q": "57. In aviation maintenance human factors, the term 'Dirty Dozen' refers to...",
+   "options": [
+    "Twelve required inspection items",
+    "Twelve tools every mechanic must own",
+    "Twelve common human-factor conditions that contribute to maintenance errors",
+    "A dozen types of corrosion"
+   ],
+   "correct": 2,
+   "short": "Twelve common human factors that lead to maintenance errors.",
+   "expl": "The Dirty Dozen is a list of twelve human-factor conditions — such as lack of communication, complacency, fatigue, distraction, and pressure — that are frequent contributors to maintenance mistakes. Knowing them helps a technician recognize and guard against error-producing situations.",
+   "cite": "FAA-H-8083-30B, Ch. 14 (Human Factors)",
+   "topic": "Human Factors",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "76547b9c04",
+   "q": "58. A technician who signs off an inspection item as satisfactory without actually looking at it, because 'it's always been fine,' is demonstrating the Dirty-Dozen factor of...",
+   "options": [
+    "Complacency",
+    "Lack of knowledge",
+    "Lack of resources",
+    "Norms"
+   ],
+   "correct": 0,
+   "short": "Complacency.",
+   "expl": "Complacency is a self-satisfied sense that everything is fine, which leads a technician to overlook or assume the condition of an item instead of verifying it. It is countered by consciously following procedures and actually inspecting each item rather than relying on expectation.",
+   "cite": "FAA-H-8083-30B, Ch. 14 (Human Factors)",
+   "topic": "Human Factors",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "098416ffc0",
+   "q": "59. What is the area of a circle whose radius is 5 inches? (Use area = π × r², π ≈ 3.14)",
+   "options": [
+    "15.7 square inches",
+    "25 square inches",
+    "78.5 square inches",
+    "31.4 square inches"
+   ],
+   "correct": 2,
+   "short": "About 78.5 square inches.",
+   "expl": "The area of a circle is π times the radius squared: 3.14 × (5 in)² = 3.14 × 25 = 78.5 square inches. Using the diameter or forgetting to square the radius (3.14 × 5 = 15.7) gives a wrong, much smaller result.",
+   "cite": "FAA-H-8083-30B, Ch. 3 (Mathematics in Aviation Maintenance)",
+   "topic": "Mathematics",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
+   ]
+  },
+  {
+   "id": "ac9ce48acf",
+   "q": "60. One inch is equal to approximately how many millimeters?",
+   "options": [
+    "10 millimeters",
+    "12 millimeters",
+    "25.4 millimeters",
+    "2.54 millimeters"
+   ],
+   "correct": 2,
+   "short": "25.4 millimeters.",
+   "expl": "By definition, one inch equals exactly 25.4 millimeters. This is the standard conversion for changing English measurements to metric. The value 2.54 is centimeters per inch, not millimeters.",
+   "cite": "FAA-H-8083-30B, Ch. 3 (Mathematics in Aviation Maintenance)",
+   "topic": "Mathematics",
+   "block": "Block 1",
+   "sources": [
+    "FAA General — 60-Question Practice Exam"
    ]
   },
   {
