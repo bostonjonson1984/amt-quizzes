@@ -142,10 +142,11 @@
   <div class="foot">aet-coach · Matt's Agency · your progress is saved on this device</div>
 </div>
 
-<script src="course-data.js?v=fec2a751"></script>
+<script src="course-data.js?v=00dc1092"></script>
 <script>
 const PASS = (window.COURSE && window.COURSE.passMark) || 0.73;
-const MODS = (window.COURSE && window.COURSE.modules) || [];
+const MODS = ((window.COURSE && window.COURSE.modules) || []).slice().sort((a,b)=>((a.sort!=null?a.sort:a.n)-(b.sort!=null?b.sort:b.n)));
+function mlabel(m){ return m.label!=null ? m.label : m.n; }
 const KEY = "aet-academy-progress-v1";
 
 const Store = {
@@ -161,6 +162,8 @@ function esc(s){const d=document.createElement('div');d.textContent=s==null?'':s
 // or module 0 has been opened (unlocks module 1).
 function unlocked(n){
   if(n===0) return true;
+  const self = MODS.find(m=>m.n===n);
+  if(self && self.elective) return true;
   const prev = Store.get(n-1);
   if(n===1) return Store.get(0).status!=="new" || prev.status==="passed";
   return prev.status==="passed";
@@ -184,9 +187,9 @@ const App = {
       else if(st.status==="failed"){badge='<span class="mbadge b-review">Retry '+Math.round(st.best*100)+'%</span>';}
       else{badge='<span class="mbadge b-start">▶ Start</span>';}
       cards+='<div class="mod '+cls+'" '+(open?'onclick="App.open('+m.n+')"':'')+'>'+
-        '<div class="mnum">'+(st.status==="passed"?'✓':m.n)+'</div>'+
+        '<div class="mnum">'+(st.status==="passed"?'✓':esc(mlabel(m)))+'</div>'+
         '<div class="mbody"><div class="mtitle">'+esc(m.title)+'</div>'+
-        '<div class="mstd">'+(m.n===0?'Start here':'Standards '+esc(m.standards))+'</div></div>'+
+        '<div class="mstd">'+(m.n===0?'Start here':'Standards '+esc(m.standards)+(m.elective?' · elective, open anytime':''))+'</div></div>'+
         badge+'</div>';
     });
     document.getElementById('view').innerHTML='<div class="cards">'+cards+'</div>'+
@@ -215,7 +218,7 @@ const App = {
     });
     const leftover=(m.videos||[]).filter(v=>!used[v.file]);
     document.getElementById('view').innerHTML=
-      '<div class="screen"><div class="crumbs">Module '+m.n+(m.n===0?'':' · Standards '+esc(m.standards))+'</div>'+
+      '<div class="screen"><div class="crumbs">Module '+esc(mlabel(m))+(m.n===0?'':' · Standards '+esc(m.standards))+'</div>'+
       '<div class="lesson"><h2>'+esc(m.title)+'</h2>'+ body +'</div>'+
       (leftover.length? '<div class="vids"><div class="vh">🎬 More math walkthroughs</div>'+
         leftover.map(v=>this.vhtml(v)).join('')+'</div>':'')+
@@ -280,15 +283,15 @@ const App = {
     const Q=this.q, pct=Q.answered? Q.score/Q.answered:0, passed=pct>=PASS;
     const prev=Store.get(this.cur.n);
     Store.set(this.cur.n,{status:passed?"passed":"failed",best:Math.max(prev.best||0,pct)});
-    const next=MODS.find(m=>m.n===this.cur.n+1);
+    const _idx=MODS.indexOf(this.cur); let next=_idx>=0?MODS[_idx+1]:null; if(next&&!unlocked(next.n)&&!next.elective) next=null;
     document.getElementById('view').innerHTML='<div class="screen">'+
       '<h2 style="text-align:center;color:var(--navy);margin:4px 0">'+(passed?'Module passed! 🎉':'Almost — keep going 💪')+'</h2>'+
       '<div class="bigscore">'+Q.score+'<small>/'+Q.answered+'</small></div>'+
       '<div class="pct '+(passed?'pass':'fail')+'">'+Math.round(pct*100)+'% '+(passed?'· cleared the '+Math.round(PASS*100)+'% bar':'· need '+Math.round(PASS*100)+'%')+'</div>'+
       (passed
-        ? '<div class="nav">'+(next?'<button class="btn primary" onclick="App.open('+next.n+')">Next: Module '+next.n+' →</button>':'<button class="btn primary" onclick="App.home()">Back to dashboard</button>')+'<button class="btn ghost" onclick="App.home()">Dashboard</button></div>'
+        ? '<div class="nav">'+(next?'<button class="btn primary" onclick="App.open('+next.n+')">Next: Module '+esc(mlabel(next))+' →</button>':'<button class="btn primary" onclick="App.home()">Back to dashboard</button>')+'<button class="btn ghost" onclick="App.home()">Dashboard</button></div>'
         : '<div class="nav"><button class="btn primary" onclick="App.startQuiz()">Retake quiz</button><button class="btn ghost" onclick="App.lesson()">Re-read lesson</button></div>')+
-      (passed&&next?'<div class="hint">Module '+next.n+' is now unlocked.</div>':'')+
+      (passed&&next?'<div class="hint">Module '+esc(mlabel(next))+' is now unlocked.</div>':'')+
       '</div>';
     window.scrollTo({top:0});
   },
