@@ -1,6 +1,6 @@
 {
- "built": "2026-09-05",
- "total": 3509,
+ "built": "2026-09-21",
+ "total": 3645,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -42,6 +42,17 @@
   "Block 4 · Resistor Color Code (Band ID)": 30,
   "Block 4 — Study Guide Mastery Test": 82,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 356,
+  "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install": 10,
+  "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries": 10,
+  "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics": 10,
+  "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring": 10,
+  "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax": 10,
+  "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers": 10,
+  "Block 6 · Daily Quiz 13 — Aircraft Lighting": 10,
+  "Block 6 · Daily Quiz 14 — Radio Waves & Modulation": 10,
+  "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas": 10,
+  "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT": 20,
+  "Block 6 · Daily Quiz 17 — Systems Acronyms": 26,
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "Block 6 · Systems Abbreviations & Acronyms": 159,
   "AET Academy M1 — DC Fundamentals": 0,
@@ -53453,6 +53464,2428 @@
    "block": "Block 4",
    "sources": [
     "Ch.12 General — Fundamentals of Electricity & Electronics"
+   ]
+  },
+  {
+   "id": "17aebaa701",
+   "q": "What material is used to insulate the commutator bars?",
+   "options": [
+    "Mica",
+    "Paper",
+    "Silicon"
+   ],
+   "correct": 0,
+   "short": "Commutator bars are separated by mica.",
+   "expl": "A DC generator's commutator is built of wedge-shaped copper segments, and the thin insulating sheets between those segments are mica — it withstands the heat and arcing at the brush contact. When the mica sits higher than the worn copper it must be undercut, or the brushes bounce and arc.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-133",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "f40a0b0f74",
+   "q": "The input speed of the CSD is monitored by:",
+   "options": [
+    "Wobble plate",
+    "A speed switch",
+    "A tachometer generator"
+   ],
+   "correct": 2,
+   "short": "A tach generator watches CSD input speed.",
+   "expl": "The constant-speed drive turns variable engine speed into the constant shaft speed an AC alternator needs for steady 400 Hz. A small tachometer generator senses the drive's input speed and feeds that signal to the governing circuit so the CSD can trim its hydraulic ratio. He answered a speed switch on the paper; the instructor's correction marks the tachometer generator.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (CSD / IDG constant-speed drives)",
+   "topic": "AC Power / CSD",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "4d5ac5604b",
+   "q": "Peak value occurs in AC generation when the coil passes through?",
+   "options": [
+    "90° and 270°",
+    "45° and 235°",
+    "0° and 180°"
+   ],
+   "correct": 0,
+   "short": "Peaks at 90° and 270°; zeros at 0°/180°.",
+   "expl": "As the coil rotates through the magnetic field, induced voltage is greatest where the coil cuts flux at the fastest rate — 90° (positive peak) and 270° (negative peak). At 0° and 180° the coil moves parallel to the flux and the output passes through zero.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-50",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "d172c02dd7",
+   "q": "Rotation of a generator is termed either clockwise or counter clockwise when viewed from?",
+   "options": [
+    "the drive end",
+    "the back",
+    "the side with the drive end to the left"
+   ],
+   "correct": 0,
+   "short": "Rotation is named looking at the drive end.",
+   "expl": "By convention a generator's rotation is called out as seen looking at the drive (shaft) end of the machine. That matters when replacing a unit or setting brush rake — a generator built for one rotation won't build up voltage properly spun the other way.",
+   "cite": "AIM AMTBLK06 deck (industry convention for naming generator rotation)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "4b442af5d6",
+   "q": "An inverter does what?",
+   "options": [
+    "Converts DC to AC",
+    "Converts AC to DC",
+    "Inverts AC"
+   ],
+   "correct": 0,
+   "short": "Inverter: DC in, AC out.",
+   "expl": "An inverter takes the aircraft's DC and produces AC for equipment that needs it — on many aircraft a static inverter off the battery bus supplies essential AC if the main alternators drop offline. The device that goes the other direction, AC to DC, is a rectifier (or a transformer-rectifier unit). He answered AC-to-DC; the correction marks DC-to-AC.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (inverters)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "c951db01e7",
+   "q": "The process of electrically connecting conductive objects to either a conductive structure or ___ return path for the purpose of safety is called?",
+   "options": [
+    "Grounding",
+    "Bonding",
+    "Blending"
+   ],
+   "correct": 0,
+   "short": "Connecting to structure/return path for safety = grounding.",
+   "expl": "Grounding is electrically connecting a conductive object to the aircraft's primary structure (or another return path) so normal and fault currents can complete their circuit safely. Bonding is the related but different job of tying two conductive objects together to kill potential differences. He answered bonding; the correction marks grounding — this stem is the AC 43.13 grounding definition almost word for word.",
+   "cite": "AC 43.13-1B, Ch. 11 (grounding definition — not covered in the 8083 series)",
+   "topic": "Bonding & Grounding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "f433d444bb",
+   "q": "To prevent fluids or condensation from running down the wire to a junction box we insure the wire has a?",
+   "options": [
+    "Drip loop",
+    "Stand off",
+    "Splice"
+   ],
+   "correct": 0,
+   "short": "A drip loop sheds fluid before the wire enters the box.",
+   "expl": "Where a wire approaches a junction box or connector from above, it's dressed with a downward sag — a drip loop — so fluid or condensation running along the wire falls off at the bottom of the loop instead of following the wire into the equipment.",
+   "cite": "AC 43.13-1B, Ch. 11 (wiring installation into junction boxes)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "d0c92fd0b4",
+   "q": "The slack in a wire bundle between supports must not be greater than?",
+   "options": [
+    "1/2 inch with maximum hand pressure",
+    "1/8 inch with maximum hand pressure",
+    "1/4 inch with maximum hand pressure"
+   ],
+   "correct": 0,
+   "short": "Max deflection between supports: 1/2 inch.",
+   "expl": "Wire bundles aren't strung tight — a little slack prevents tension on terminals and lets structure flex — but the limit is one-half inch of deflection when you press on the bundle by hand between supports. More than that invites chafing and swinging under vibration.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire bundle slack)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "fb8f0c8c9d",
+   "q": "How are replacement wires on aircraft are marked?",
+   "options": [
+    "3 inches from each end and every 15 inches along the wire",
+    "5 inches from each end and every 10 inches along the wire",
+    "3 inches from each end and every 10 inches along the wire"
+   ],
+   "correct": 0,
+   "short": "Marked within 3 in of ends, every 15 in along the run.",
+   "expl": "Wire identification codes are stamped or printed within three inches of each end of the wire and at intervals of not more than fifteen inches along its length, so any segment you can see in a harness can be traced to the wiring diagram.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire identification/marking)",
+   "topic": "Wire Identification",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "0aec69f18e",
+   "q": "What are the two fundamentals properties of the wire insulation?",
+   "options": [
+    "Inductance and capacitance",
+    "Insulation resistance and dielectric strength",
+    "Current resistance and inductance"
+   ],
+   "correct": 1,
+   "short": "Insulation = insulation resistance + dielectric strength.",
+   "expl": "Insulation is rated by two fundamental properties: insulation resistance (how well it resists leakage current through it, measured in megohms) and dielectric strength (the maximum voltage it can withstand before it breaks down and arcs through).",
+   "cite": "FAA-H-8083-31B, Ch. 9 (wire insulation properties)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install"
+   ]
+  },
+  {
+   "id": "49c3807e88",
+   "q": "What does Ohm's law state?",
+   "options": [
+    "Current through a conductor is directly proportional to the resistance of that conductor and inversely proportional to the voltage applied of the conductor.",
+    "Current through a conductor is directly proportional to the voltage applied to that conductor and inversely proportional to the resistance of the conductor.",
+    "Resistance through a conductor is directly proportional to the voltage applied to that conductor and inversely proportional to the current of the conductor."
+   ],
+   "correct": 1,
+   "short": "I = E ÷ R: more volts → more current; more ohms → less current.",
+   "expl": "Ohm's law ties the three electrical quantities together: I = E ÷ R. Raise the applied voltage and current rises with it; raise the resistance and current falls. The two wrong wordings flip that relationship — resistance is a property of the circuit, not something 'proportional to voltage.'",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-18",
+   "topic": "Ohm's Law",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "26200f9031",
+   "q": "Residual voltage is the result of magnetism in the?",
+   "options": [
+    "Pole shoes",
+    "Armature",
+    "Field windings"
+   ],
+   "correct": 0,
+   "short": "Residual magnetism lives in the pole shoes.",
+   "expl": "When a generator is shut down, a small amount of magnetism remains in the iron of the field pole shoes. That residual magnetism is what lets the generator self-excite — it induces the small initial voltage that then builds the field up to full strength when the machine spins.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (DC generator field frame / residual magnetism, pp. 12-131 to 12-140)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "0d2312b1a8",
+   "q": "If a generator is malfunctioning, its voltage can be reduced to residual by?",
+   "options": [
+    "Turning the generator master switch to the OFF position.",
+    "Actuating the master solenoid.",
+    "Actuating the rheostat."
+   ],
+   "correct": 0,
+   "short": "Master switch OFF de-energizes the field → only residual left.",
+   "expl": "The generator master switch opens the field circuit. With no field current the machine can no longer build voltage, and its output collapses to the tiny value produced by residual magnetism alone — the correct first move for a malfunctioning generator.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (generator controls / field circuit)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "b0c2b8bdca",
+   "q": "The most effective method of charging a NiCD battery is?",
+   "options": [
+    "Constant Current",
+    "Constant Voltage",
+    "Constant Resistance"
+   ],
+   "correct": 0,
+   "short": "NiCd charges best at constant current.",
+   "expl": "A nickel-cadmium battery's terminal voltage stays nearly flat over most of its charge, so a constant-voltage charger can't judge charge state and risks under- or over-charging. The effective method is constant current, with charge tracked by time and temperature. (Lead-acid is the one commonly charged constant-voltage.)",
+   "cite": "FAA-H-8083-31B, Ch. 9 (NiCd battery servicing/charging)",
+   "topic": "Batteries",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "b59df0f6b8",
+   "q": "What is the reason for flashing the field in a generator?",
+   "options": [
+    "Increase the capacity of the generator.",
+    "Remove excessive build up of dust from brushes.",
+    "To restore correct polarity and/or residual magnetism to the field poles."
+   ],
+   "correct": 2,
+   "short": "Flashing the field restores residual magnetism/polarity.",
+   "expl": "If residual magnetism is lost or reversed — after storage, disassembly, or a maintenance mistake — the generator can't build up voltage. Flashing the field momentarily applies battery current through the field coils in the correct direction, re-magnetizing the pole shoes with the right polarity.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (flashing the field, pp. 12-131 to 12-145)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "faf3fbc011",
+   "q": "What is a spring loaded, off center, relay called?",
+   "options": [
+    "Remote relay.",
+    "Solenoid.",
+    "Spring relay."
+   ],
+   "correct": 1,
+   "short": "The spring-loaded movable-core relay = solenoid.",
+   "expl": "A solenoid is the electromagnetic switch built around a movable, spring-loaded core that sits off-center in the coil: energize the coil and the core snaps in to close the heavy contacts, kill the coil and the spring throws them open. Plain relays use a fixed core with a hinged armature; the solenoid's moving core is what handles high-current jobs like starters and battery contactors.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (solenoids and relays)",
+   "topic": "Switches & Relays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "41d70a57ab",
+   "q": "How does a voltage regulator change the voltage output of a generator?",
+   "options": [
+    "By changing the resistance of the generator field circuit.",
+    "By changing the current in the generator output circuit.",
+    "By changing the resistance in the generator output circuit."
+   ],
+   "correct": 0,
+   "short": "Regulators work on the FIELD circuit resistance.",
+   "expl": "Generator output voltage tracks field strength, so the regulator controls output by varying resistance in the field circuit — a carbon pile compressing and relaxing, or a vibrating contact cutting resistance in and out. Nothing is inserted in the heavy output leads; taming the small field current controls the big output.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (generator voltage regulation)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "82c55785aa",
+   "q": "What is the advantage of a starter-generator?",
+   "options": [
+    "To save weight by combining two devices, starter and generator, into one device.",
+    "To save cost by combining two devices, starter and generator, into one device.",
+    "There is no such device."
+   ],
+   "correct": 0,
+   "short": "Starter-generator = one machine, big weight saving.",
+   "expl": "Many turbine aircraft use a single machine that motors the engine for start, then, once the engine is self-sustaining, is driven as a generator. Combining the two functions in one housing saves the weight of an entire second machine — the stated advantage on smaller gas-turbine aircraft.",
+   "cite": "FAA-H-8083-32B, Vol. 1 (starter-generators)",
+   "topic": "Starter-Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "545cda461f",
+   "q": "What are the two effects of electron flow through a conductor?",
+   "options": [
+    "A magnetic field and fluctuating DC.",
+    "An AC field and heat.",
+    "A magnetic field and heat."
+   ],
+   "correct": 2,
+   "short": "Current always makes a magnetic field + heat.",
+   "expl": "Any current produces two inseparable effects: a magnetic field surrounding the conductor (the basis of every motor, relay, and generator) and heat from I²R losses in the conductor's resistance. 'Fluctuating DC' and 'AC field' aren't effects of current — they're just descriptions of waveforms.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (effects of current flow)",
+   "topic": "DC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "eded36b3f9",
+   "q": "How can the electrolyte in a lead acid battery be protected from freezing?",
+   "options": [
+    "Place the aircraft in a hangar.",
+    "Ensure the battery is fully charged.",
+    "Remove the battery and keep it under constant charge."
+   ],
+   "correct": 1,
+   "short": "Full charge = high specific gravity = low freeze point.",
+   "expl": "In a lead-acid battery the sulfuric acid concentration — and with it the electrolyte's freezing point — tracks the state of charge. Fully charged electrolyte (high specific gravity) freezes at far below any ramp temperature, while a discharged battery's electrolyte is nearly water and can freeze and split the case. Keep it charged and freezing is a non-issue.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (lead-acid batteries / specific gravity)",
+   "topic": "Batteries",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries"
+   ]
+  },
+  {
+   "id": "83b786afe5",
+   "q": "A block diagram is used as an aid for troubleshooting complex electrical and electronic systems because?",
+   "options": [
+    "It illustrates all levels of interconnectivity within a system.",
+    "It lists locations of the systems blocks on the aircraft.",
+    "The entire system is illustrated on one page."
+   ],
+   "correct": 2,
+   "short": "Block diagram = whole system, one page, big picture.",
+   "expl": "A block diagram strips a complex system down to labeled blocks joined by lines so the ENTIRE system fits on a single page — that big-picture view is exactly what makes it a troubleshooting aid for deciding which box to suspect first. Full interconnect detail is the schematic's job, not the block diagram's. He answered interconnectivity; the correction marks the one-page overview.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (block diagrams)",
+   "topic": "Diagrams",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "8e24677fd6",
+   "q": "A pictorial diagram is helpful for troubleshooting systems because?",
+   "options": [
+    "It is a picture of each block in the system.",
+    "It helps visualize the operation of a system with pictures of components.",
+    "It illustrates all levels of interconnectivity within a system."
+   ],
+   "correct": 1,
+   "short": "Pictorial = recognizable pictures of the real parts.",
+   "expl": "A pictorial diagram shows actual drawings or photos of the components connected together, so you can recognize the parts on the aircraft and picture how the system works without translating symbols. It trades precision for recognizability — great for orientation, not for tracing circuits.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (pictorial diagrams)",
+   "topic": "Diagrams",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "8a18d131b3",
+   "q": "A schematic diagram is the preferred diagram for troubleshooting complex systems because?",
+   "options": [
+    "It is used to Illustrate a principle of operation within a system.",
+    "It illustrates all levels of interconnectivity within a system.",
+    "It provides detailed part numbers."
+   ],
+   "correct": 0,
+   "short": "Schematic = principle of operation, symbol by symbol.",
+   "expl": "The schematic uses standard symbols placed in their electrical relationship to show HOW the system works — the principle of operation — which is why it's the troubleshooter's preferred drawing: you can reason about what each component should be doing at every point. It doesn't show physical size, location, or part numbers.",
+   "cite": "FAA-H-8083-30B, Ch. 4, Page 4-11",
+   "topic": "Diagrams",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "4f5c752831",
+   "q": "Because free electrons flow around the circumference of a conductor it is important to avoid knicking the conductor when stripping the insulation because?",
+   "options": [
+    "Knicks can cause resistance to current.",
+    "Knicks cause increased current flow.",
+    "Knicks cause shorts in the conductor."
+   ],
+   "correct": 0,
+   "short": "Nicks cut the current's path → added resistance (and weak spots).",
+   "expl": "Current concentrates toward a conductor's outer surface, so a nick from careless stripping removes exactly the material carrying the flow — raising the wire's resistance at that spot and creating a hot point and a stress riser where strands later fatigue and break. A nick doesn't add current and can't short a single conductor to itself. He answered shorts; the correction marks resistance.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire stripping precautions)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "bb1e6665e1",
+   "q": "The benefits of using aluminum wire when compared to copper wire is?",
+   "options": [
+    "Aluminum wire has more tensile strength than copper wire.",
+    "Aluminum wire has a smaller cross section for the same conductivity.",
+    "Aluminum wire weighs less when comparing conductivity."
+   ],
+   "correct": 2,
+   "short": "Aluminum's win is weight, not strength or size.",
+   "expl": "For the same current-carrying job an aluminum wire must be about two gauge sizes larger than copper — bigger, not smaller — but it still comes out lighter, and on long heavy feeders that weight saving is why aluminum gets used. Its downsides are lower tensile strength and brittle, easily-broken strands.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (conductor materials — copper vs aluminum)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "ab3bc3004b",
+   "q": "Copper wires are coated with tin, silver or nickel to?",
+   "options": [
+    "Prevent copper oxide.",
+    "Improve conductivity.",
+    "Reduce weight."
+   ],
+   "correct": 0,
+   "short": "Plating stops copper oxidation (and eases soldering).",
+   "expl": "Bare copper grows a high-resistance oxide layer. Plating the strands with tin, silver, or nickel prevents that oxidation, keeps terminations low-resistance and solderable, and (with silver/nickel) buys high-temperature capability. The plating doesn't meaningfully improve conductivity and certainly doesn't reduce weight.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (conductor plating)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "e8895001e0",
+   "q": "The fundamental properties of the insulation on a wire are?",
+   "options": [
+    "Insulation resistance and dielectric strength.",
+    "Current saturation and resistance to moisture.",
+    "Protection from EMI and reduced weight."
+   ],
+   "correct": 0,
+   "short": "Same two every time: insulation resistance + dielectric strength.",
+   "expl": "Wire insulation is judged on insulation resistance (opposition to leakage current through the jacket) and dielectric strength (the voltage it withstands before puncture). Moisture resistance and abrasion matter in selection, but those two are THE fundamental electrical properties.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (wire insulation properties)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "5fa5891148",
+   "q": "Wire shielding around a conductor ensures?",
+   "options": [
+    "Prevention of corrosion.",
+    "Induction of HF (High Frequency) voltages.",
+    "Elimination of EMI (Electromagnetic Interference)."
+   ],
+   "correct": 2,
+   "short": "Shielding exists to kill EMI coupling.",
+   "expl": "A braided shield around a conductor intercepts radiated fields — keeping the wire's own field from coupling into neighbors and outside interference from coupling in. That suppression of electromagnetic interference is the entire purpose; it does nothing for corrosion, and inducing HF voltages is what shielding prevents.",
+   "cite": "AC 43.13-1B, Ch. 11 (shielding)",
+   "topic": "Shielding & Bonding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "7e19cf381a",
+   "q": "Wires can only be shielded if?",
+   "options": [
+    "The shielding is grounded.",
+    "The shielding is energized.",
+    "The shielding is isolated from aircraft ground."
+   ],
+   "correct": 0,
+   "short": "An ungrounded shield is just decoration.",
+   "expl": "A shield works by giving intercepted interference currents a path to structure — which means the shield must be grounded. Left floating (or deliberately isolated), the braid simply re-radiates whatever it picks up; energizing it would make it a noise source itself.",
+   "cite": "AC 43.13-1B, Ch. 11 (shield termination/grounding)",
+   "topic": "Shielding & Bonding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "f6e802bf49",
+   "q": "If a wire replacement is required on an existing aircraft what must reviewed before the wire is replaced?",
+   "options": [
+    "The wire manufacturers engineering records.",
+    "The Maintenance Manual for that aircraft to determine if the OAM has approved substitutions.",
+    "AC 43.13"
+   ],
+   "correct": 1,
+   "short": "Check the aircraft's MM for approved wire substitutions first.",
+   "expl": "Wire replacement starts with the aircraft's own maintenance manual — the original manufacturer specifies the approved wire types and any permitted substitutions, and that data takes precedence. AC 43.13-1B is the fallback for aircraft lacking such data, not the first stop. (The form's 'OAM' is the OEM — the original aircraft manufacturer.)",
+   "cite": "AC 43.13-1B, Ch. 11 (wire selection — manufacturer's data governs)",
+   "topic": "Wire Replacement",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics"
+   ]
+  },
+  {
+   "id": "1285f3dc69",
+   "q": "SWAMP is an abbreviation for?",
+   "options": [
+    "Severe Wind and Moisture Problem",
+    "Side Wind and Misdirection Parabola",
+    "Solid Wire and Mailability Pressure"
+   ],
+   "correct": 0,
+   "short": "SWAMP = Severe Wind And Moisture Problem areas.",
+   "expl": "SWAMP identifies the punishing zones of the airframe — severe wind and moisture problem areas — where wiring needs extra-rugged jacketing and sealed terminations. (AC 43.13-1B writes it 'Severe Wind and Moisture Problems'; the class form drops the s.)",
+   "cite": "AC 43.13-1B, Ch. 11 (SWAMP wire selection)",
+   "topic": "SWAMP / Wire Selection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "49913fa37a",
+   "q": "SWAMP areas are usually?",
+   "options": [
+    "Wheel wells, wing flaps and pylons.",
+    "Caused by oxidation of solid wire.",
+    "Any area that is constantly subject to UV light from the sun."
+   ],
+   "correct": 0,
+   "short": "SWAMP zones: wheel wells, wing fold/flap areas, pylons.",
+   "expl": "The classic SWAMP areas are wheel wells, the wing flap/wing fold areas, and engine pylons — places blasted by slipstream, spray, deice fluid and grime. Wiring routed there gets the tougher, moisture-sealed treatment.",
+   "cite": "AC 43.13-1B, Ch. 11 (SWAMP areas)",
+   "topic": "SWAMP / Wire Selection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "c886291dc5",
+   "q": "AWG is an abbreviation for?",
+   "options": [
+    "Auxiliary Wind Gaurd",
+    "Annualized Withdrawal Guarantee",
+    "American Wire Gauge"
+   ],
+   "correct": 2,
+   "short": "AWG = American Wire Gauge (bigger number = smaller wire).",
+   "expl": "Aircraft wire sizes are called out in American Wire Gauge. The gauge number runs backwards from intuition: a larger AWG number means a smaller conductor — 22-gauge signal wire is far thinner than 4-gauge battery cable.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire size selection)",
+   "topic": "Wire Identification",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "21a11aeb95",
+   "q": "Wires and cables in aircraft should be labeled?",
+   "options": [
+    "Only where they are visible from an access area.",
+    "Every 15 inches",
+    "Three inches from each end and every fifteen inches between."
+   ],
+   "correct": 2,
+   "short": "Label within 3 in of ends + every 15 in along the wire.",
+   "expl": "The identification code goes within three inches of each end of the wire AND at intervals of no more than fifteen inches along the run — both parts matter, so any exposed stretch of a harness can be traced without hunting for a wire end.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire identification/marking)",
+   "topic": "Wire Identification",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "348e3c6272",
+   "q": "Posts on a wire terminal should be checked to ensure the posts do not?",
+   "options": [
+    "Rotate freely.",
+    "Resist rotation.",
+    "Become a common grounding point."
+   ],
+   "correct": 0,
+   "short": "A terminal post that spins is a failure waiting to happen.",
+   "expl": "Terminal strip posts are checked to make sure they do NOT rotate freely — a spinning stud can't hold torque, works its nut loose under vibration, and ends in a high-resistance or open connection. Resisting rotation is exactly what a healthy post does.",
+   "cite": "AC 43.13-1B, Ch. 11 (terminal strips/studs)",
+   "topic": "Terminals & Connections",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "9336c3c976",
+   "q": "What is open wiring?",
+   "options": [
+    "Any wire, wire group or wire bundle not enclosed in conduit.",
+    "Any wire, without insulation, routed through the aircraft.",
+    "Any wire, wire group or wire bundle intentionally left as a spare(s) if other wires are damaged."
+   ],
+   "correct": 0,
+   "short": "Open wiring = not in conduit (still insulated!).",
+   "expl": "Open wiring is the normal aircraft practice of routing insulated wires, groups, or bundles clamped to structure WITHOUT a conduit around them — lighter and easier to inspect. It has nothing to do with bare conductors or spare wires.",
+   "cite": "AC 43.13-1B, Ch. 11 (open wiring)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "26584b0b3f",
+   "q": "An example of Electrically Unprotected Wiring on a single engine aircraft is?",
+   "options": [
+    "The Landing Gear circuit.",
+    "The External Power circuit.",
+    "The Starter circuit."
+   ],
+   "correct": 2,
+   "short": "The starter feed runs with no circuit breaker — unprotected.",
+   "expl": "Electrically unprotected wiring runs without a fuse or circuit breaker. The classic single-engine example is the starter circuit: its enormous cranking current makes overload protection impractical, so the heavy cable is kept short, stout, and mechanically protected instead.",
+   "cite": "AC 43.13-1B, Ch. 11 (protected vs unprotected wiring)",
+   "topic": "Circuit Protection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "a66399d7dd",
+   "q": "Define Electrically Protected Wiring.",
+   "options": [
+    "Any wiring with dielectric insulation.",
+    "Any wiring with manual BTB's.",
+    "Any wiring with protection against overloading."
+   ],
+   "correct": 2,
+   "short": "Protected wiring = a CB or fuse guards it against overload.",
+   "expl": "Electrically protected wiring is wiring served by overload protection — a circuit breaker or fuse sized to open before the wire overheats. Insulation is on every wire and has nothing to do with the term, and bus tie breakers manage buses, not individual wire protection.",
+   "cite": "AC 43.13-1B, Ch. 11 (circuit protection of wiring)",
+   "topic": "Circuit Protection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "d701fccab9",
+   "q": "The radius of bends in a wire group or bundle should not be less than?",
+   "options": [
+    "Ten time the inside diameter of the largest wire in the group.",
+    "Ten times the outside diameter of the largest wire in the group.",
+    "Ten times the outside diameter of the smallest wire in the group."
+   ],
+   "correct": 1,
+   "short": "Bend radius ≥ 10 × OD of the largest wire.",
+   "expl": "Bundle bends are limited to no less than ten times the outside diameter of the LARGEST wire in the group, so no conductor or insulation is overstressed at the turn. Measuring off the smallest wire (or an 'inside diameter') would let the big wires kink.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire bend radius)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "4ccd7b34bf",
+   "q": "Why should wire splices in wire groups or bundles be staggered?",
+   "options": [
+    "So the splices will not cause the bundle to become excessively enlarged.",
+    "So the splice can be easily inspected.",
+    "So the repairs will be centralized in one location."
+   ],
+   "correct": 0,
+   "short": "Stagger splices so the bundle doesn't balloon at one spot.",
+   "expl": "Each splice adds diameter; stack several at the same station and the bundle bulges — hard to clamp, hard to protect, prone to chafing. Staggering the splices along the run keeps the bundle's diameter nearly uniform.",
+   "cite": "AC 43.13-1B, Ch. 11 (splices in bundles)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 10 — SWAMP, Wire Marking & Protected Wiring"
+   ]
+  },
+  {
+   "id": "11590bb31e",
+   "q": "How much slack, or sag, should a wire bundle have between supports?",
+   "options": [
+    "One half inch of deflection.",
+    "None.",
+    "One inch of deflection."
+   ],
+   "correct": 0,
+   "short": "Half an inch of give between clamps.",
+   "expl": "A bundle needs a little slack so terminations aren't under tension and structure can flex — but no more than one-half inch of deflection under hand pressure between supports. Zero slack strains the wire; a full inch lets it swing and chafe.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire bundle slack)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "a81ccbd1bd",
+   "q": "How should wiring be routed through an aircraft along stringers or ribs?",
+   "options": [
+    "Parallel with, or at right angle to, the airframe stringers or ribs.",
+    "As directly as possible across the stringers to the destination.",
+    "As close as possible to a 45 degree angle to airframe stringers or ribs."
+   ],
+   "correct": 0,
+   "short": "Route parallel or perpendicular to structure — never diagonal shortcuts.",
+   "expl": "Wire runs follow the airframe: parallel with, or at right angles to, stringers and ribs. That keeps bundles clamped to structure, predictable to trace, and clear of flexing skin panels — a diagonal 'shortest path' route can't be properly supported.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire routing)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "31cae0b70a",
+   "q": "In order to avoid chafing what should be installed around a wire bundle in a lightening hole?",
+   "options": [
+    "Spot tie",
+    "A cable tie",
+    "A rubber gromet"
+   ],
+   "correct": 2,
+   "short": "A grommet lines the hole's edge.",
+   "expl": "Where a bundle passes through a lightening hole, a rubber grommet lines the metal edge so vibration can't saw the insulation against bare aluminum. Ties hold wires together — they do nothing to soften the hole's edge.",
+   "cite": "AC 43.13-1B, Ch. 11 (protection against chafing/grommets)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "3e8d7760d5",
+   "q": "What must be wrapped around wire bundles if they travel near areas with high temperatures?",
+   "options": [
+    "A rubber gromet",
+    "A heat sink",
+    "Special heat resistant insulating material"
+   ],
+   "correct": 2,
+   "short": "High-temp zones get heat-resistant wrap.",
+   "expl": "Bundles routed near exhausts, bleed ducts, or other hot zones are protected with special heat-resistant insulating wrap so the conductor insulation underneath never sees temperatures beyond its rating. A heat sink cools components, not wire runs.",
+   "cite": "AC 43.13-1B, Ch. 11 (protection in high-temperature areas)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "f70d870a19",
+   "q": "What are the two methods designed to allow moisture trapped inside a wire bundle to escape?",
+   "options": [
+    "A drip loop or a drainage hole.",
+    "A hot bus or a drainage hole.",
+    "A drip loop or a hot bus."
+   ],
+   "correct": 0,
+   "short": "Trapped moisture leaves via drip loop or drain hole.",
+   "expl": "At a bundle's low point, moisture gets an exit: either a drip loop that lets fluid fall away at the bottom of a sag, or a small drainage hole in the covering at the lowest spot. A 'hot bus' is a powered electrical bus — nothing to do with drainage.",
+   "cite": "AC 43.13-1B, Ch. 11 (moisture drainage in bundles)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "1ea14b2cfa",
+   "q": "What is conduit?",
+   "options": [
+    "A protective tubular covering.",
+    "A rubber cushion wrapped around the inside of a lightening hole.",
+    "A common grounding point for several systems."
+   ],
+   "correct": 0,
+   "short": "Conduit = a protective tube the wires run inside.",
+   "expl": "Conduit is simply a tube — metallic or nonmetallic — that wiring runs through for mechanical protection in exposed areas like wheel wells. The rubber cushion in a lightening hole is a grommet, and a common ground point is a grounding stud.",
+   "cite": "AC 43.13-1B, Ch. 11 (conduit)",
+   "topic": "Conduit",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "4c25f3ac2f",
+   "q": "Which materials are commonly used as conduit?",
+   "options": [
+    "Rigid aluminum tubing, rigid PVC tubing, flexible rubber tubing and flexible brass tubing.",
+    "Flexible aluminum tubing, flexible PVC tubing, rigid rubber tubing and rigid brass tubing.",
+    "Rigid stainless steel, rigid PVC tubing, flexible rubber tubing and flexible brass tubing."
+   ],
+   "correct": 0,
+   "short": "Rigid aluminum & PVC; flexible rubber & brass.",
+   "expl": "The class list pairs the materials with the forms they're actually used in: aluminum and PVC as rigid tubing, rubber and brass as flexible conduit. The wrong options swap the rigid/flexible pairings into combinations that aren't used.",
+   "cite": "AC 43.13-1B, Ch. 11 (conduit types) + AIM AMTBLK06 deck materials list",
+   "topic": "Conduit",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "05e76fe960",
+   "q": "The inner diameter of conduit should be approximately what percentage larger than the maximum diameter of the wires traveling through it?",
+   "options": [
+    "10%",
+    "30%",
+    "25%"
+   ],
+   "correct": 2,
+   "short": "Conduit ID ≈ 25% bigger than the bundle.",
+   "expl": "Conduit is sized with the inside diameter about one-quarter larger than the maximum diameter of the wire bundle it carries — room to pull the wires without binding, but not so oversized that the bundle flops around inside.",
+   "cite": "AC 43.13-1B, Ch. 11 (conduit sizing — 25% rule)",
+   "topic": "Conduit",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "ffc69fde94",
+   "q": "Which two materials should be blown through conduit before pulling wires through?",
+   "options": [
+    "Powdered graphite or a quick evaporating alcohol based lubricant.",
+    "Powdered soapstone or talcum",
+    "Water or oil based lubricant."
+   ],
+   "correct": 1,
+   "short": "Dry lube only: soapstone or talc.",
+   "expl": "Before wires are pulled, dry powdered soapstone or talcum is blown through the conduit as a lubricant. Wet or oily lubricants attract grime and attack insulation, and graphite is conductive — the last thing you want dusted through an electrical conduit.",
+   "cite": "AC 43.13-1B, Ch. 11 (conduit preparation) + AIM AMTBLK06 deck",
+   "topic": "Conduit",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "d59796aae4",
+   "q": "To avoid crosstalk between coaxial cables the center conductors should be?",
+   "options": [
+    "Insulated with spongy polyvinyl jacket.",
+    "Shielded with a braided sleeve.",
+    "Grounded on both ends."
+   ],
+   "correct": 1,
+   "short": "The braided shield around the center conductor stops crosstalk.",
+   "expl": "Coax works because a braided shield surrounds the center conductor, confining its field inside the cable and keeping neighboring cables' fields out — that's what prevents crosstalk. Grounding the CENTER conductor would short the signal, and the jacket is mechanical protection, not shielding.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (coaxial cable)",
+   "topic": "Coax & Shielding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 11 — Wire Routing, Conduit & Coax"
+   ]
+  },
+  {
+   "id": "836fa67d35",
+   "q": "Grounding is a term used to describe?",
+   "options": [
+    "Connecting a metal object to the aircraft primary structure.",
+    "Declaring aircraft un-airworthy",
+    "Isolating a structure or circuit from an electrical short."
+   ],
+   "correct": 0,
+   "short": "Grounding ties metal to primary structure (the return path).",
+   "expl": "In aircraft electrical work, grounding means electrically connecting a conductive object to the aircraft's primary structure so the airframe serves as the current return path and fault currents have a safe route. It isolates nothing — it's the opposite of isolation.",
+   "cite": "AC 43.13-1B, Ch. 11 (grounding definition)",
+   "topic": "Bonding & Grounding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "97a55fdd18",
+   "q": "Lacing and tying are both used to?",
+   "options": [
+    "Secure wires together to form a group or bundle.",
+    "Separate individual wires from bundles.",
+    "Secure a bundle of wires to an airframe structure."
+   ],
+   "correct": 0,
+   "short": "Lacing/tying organize wires INTO bundles; clamps attach to structure.",
+   "expl": "Lacing cord and tie tape gather individual wires into neat groups and bundles so they support each other and can't vibrate independently. Attaching the finished bundle to the airframe is the job of cushioned clamps, not the lacing.",
+   "cite": "AC 43.13-1B, Ch. 11 (lacing and tying)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "a6aa172d68",
+   "q": "Aircraft wire connections are primarily which type?",
+   "options": [
+    "Crimped terminals",
+    "Soldered terminals",
+    "Mechanically clamped with a screw or bolt."
+   ],
+   "correct": 0,
+   "short": "Aircraft standard: solderless crimped terminals.",
+   "expl": "Aircraft connections are overwhelmingly solderless crimped terminals — a properly crimped joint is gas-tight, consistent, and vibration-proof. Solder wicks up the strands and creates a brittle stress point under vibration, so it's the exception, not the rule.",
+   "cite": "AC 43.13-1B, Ch. 11 (solderless/crimped terminals)",
+   "topic": "Terminals & Connections",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "befa1c3662",
+   "q": "Heat shrink can be used on all wires as labels, corrosion prevention and?",
+   "options": [
+    "Grounding points",
+    "Insulating purposes",
+    "Splices"
+   ],
+   "correct": 1,
+   "short": "Heat shrink: labels, corrosion protection, insulation.",
+   "expl": "Heat-shrinkable sleeving does triple duty — printed identification labels, sealing terminations against moisture and corrosion, and adding an insulating layer over joints and terminals. The shrink tubing itself is not a splice (the crimp barrel inside is) and it's an insulator, never a ground point.",
+   "cite": "AC 43.13-1B, Ch. 11 (insulating sleeving)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "0bc30d41da",
+   "q": "Junction boxes installed in aircraft power plant compartments are typically made of?",
+   "options": [
+    "Stainless steel",
+    "Rigid brass",
+    "Heat resistant PVC"
+   ],
+   "correct": 0,
+   "short": "Fire-zone junction boxes are stainless.",
+   "expl": "Junction boxes in powerplant compartments live in a designated fire zone, so they're made of stainless steel to survive heat and flame. Brass is heavy and unnecessary, and PVC in a fire zone would melt long before it protected anything.",
+   "cite": "AC 43.13-1B, Ch. 11 (junction boxes — fire zones)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "afe11ab99e",
+   "q": "The pin section of an AN/MS connector is normally installed on?",
+   "options": [
+    "The ground side of a circuit.",
+    "The positive side of receptacle",
+    "Either side of a circuit, makes no difference"
+   ],
+   "correct": 0,
+   "short": "Pins go on the dead/ground side; sockets carry the power.",
+   "expl": "Connector halves are chosen so the exposed pins sit on the ground (de-energized) side and the recessed sockets are on the power side. That way, with the connector split, no live pin is left exposed to short against structure or a mechanic's wrench.",
+   "cite": "AC 43.13-1B, Ch. 11 (AN/MS connector installation)",
+   "topic": "Terminals & Connections",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "1e67a56b73",
+   "q": "Electrical wire terminals for most aircraft applications must be what type?",
+   "options": [
+    "Slotted",
+    "Handshake",
+    "Ring"
+   ],
+   "correct": 2,
+   "short": "Ring terminals — they can't slip off the stud.",
+   "expl": "Aircraft terminal connections use ring-type lugs: the closed ring is captive under its nut, so even if torque relaxes under vibration the terminal cannot slip off the stud. Open slotted (spade) terminals can walk free — which is exactly why they're not used.",
+   "cite": "AC 43.13-1B, Ch. 11 (ring terminals)",
+   "topic": "Terminals & Connections",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "f8a41bae93",
+   "q": "How many splices are allowed between two electrical connectors?",
+   "options": [
+    "1",
+    "2",
+    "3"
+   ],
+   "correct": 0,
+   "short": "One splice max between connection points.",
+   "expl": "A wire run between two connectors (or other termination points) is allowed at most one splice. Splices add resistance, weight, and failure points — need more than one and the correct fix is replacing the wire.",
+   "cite": "AC 43.13-1B, Ch. 11 (splice limits)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "ed89c82e4b",
+   "q": "Aluminum wires are stripped very carefully because?",
+   "options": [
+    "Individual strands will break easily after being nicked.",
+    "Stripping nicks can cause shorts.",
+    "Dielectric can be easily damaged."
+   ],
+   "correct": 0,
+   "short": "Nicked aluminum strands snap.",
+   "expl": "Aluminum strands are far more brittle than copper: nick one during stripping and it will fatigue and break under vibration, shrinking the conductor's cross-section wire by wire. That fragility — not shorts or dielectric damage — is why aluminum gets the gentle treatment.",
+   "cite": "AC 43.13-1B, Ch. 11 (stripping aluminum wire)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "bdd0e03eb0",
+   "q": "The most common circuit breaker typically used on aircraft is which type?",
+   "options": [
+    "Push/Pull type",
+    "Indexable type",
+    "Automatic reset type"
+   ],
+   "correct": 0,
+   "short": "Push/pull, trip-free breakers rule the panel.",
+   "expl": "The standard aircraft breaker is the push/pull type: it pops out to show a trip, can be pulled manually to isolate a circuit, and is trip-free — it opens on overload even if the button is held in. Automatic-reset breakers are prohibited in aircraft; a fault must never re-power itself.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (circuit breakers — trip-free push/pull)",
+   "topic": "Circuit Protection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 12 — Grounding, Terminals, Connectors & Breakers"
+   ]
+  },
+  {
+   "id": "2765cc32c3",
+   "q": "The exterior light used to illuminate the runway during landing approach is?",
+   "options": [
+    "Approach light",
+    "Landing light",
+    "Runway light"
+   ],
+   "correct": 1,
+   "short": "The LANDING light lights the runway from the aircraft.",
+   "expl": "The landing light is the high-intensity beam on the aircraft that throws light down the runway during approach and touchdown. 'Runway lights' and 'approach lights' are airport ground installations, not aircraft lights.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (exterior lights — landing lights)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "8882c0cabb",
+   "q": "Exterior lights used to illuminate the runway during landing approach point in which direction?",
+   "options": [
+    "Straight down",
+    "Straight forward",
+    "Forward and downward"
+   ],
+   "correct": 2,
+   "short": "Landing lights aim forward AND down.",
+   "expl": "A landing light is aimed forward and downward so the beam meets the runway out ahead of the aircraft in the flare attitude. Straight down would light the gear; straight ahead would overshoot the surface.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (landing light installation/aiming)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "f59baa4616",
+   "q": "The exterior light used while the aircraft is traveling across the runway is?",
+   "options": [
+    "Taxi light",
+    "Runway light",
+    "Traveling light"
+   ],
+   "correct": 0,
+   "short": "Ground movement = taxi light.",
+   "expl": "When the aircraft is moving on the surface under its own power, the taxi light — aimed flatter and wider than the landing light — lights the path. He answered runway light on the paper; the instructor's correction marks the taxi light.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (taxi lights)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "eb278bb8bc",
+   "q": "The red strobing light on the top of the vertical stabilizer is the?",
+   "options": [
+    "Tail light",
+    "Anti-collision light",
+    "Aft light"
+   ],
+   "correct": 1,
+   "short": "The red beacon/strobe on the fin = anti-collision light.",
+   "expl": "The flashing red light atop the vertical stabilizer (or fuselage) is the anti-collision light — the rotating beacon or strobe that makes the aircraft conspicuous whenever engines run. 'Tail light' in the position-light sense is the steady white light facing aft, a different fixture.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (anti-collision lights)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "7383e03d47",
+   "q": "The lights on the tips of the wings, one red and one green, are called?",
+   "options": [
+    "Christmas lights",
+    "Position lights",
+    "Wing tip lights"
+   ],
+   "correct": 1,
+   "short": "Red/green wingtip pair = position (navigation) lights.",
+   "expl": "The red and green wingtip lights, together with the white tail light, are the position (navigation) lights that let other traffic read the aircraft's orientation at night — which way it's headed and which side they're seeing.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (position/navigation lights)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "b3964f43bc",
+   "q": "Which side of the aircraft will the red and green wingtip lights always be installed on?",
+   "options": [
+    "Red and green lights on both wingtips",
+    "From the pilots seat; red on the left, green on the right",
+    "Looking at the nose of the plane; red on the left, green on the right"
+   ],
+   "correct": 1,
+   "short": "Red = left wing, green = right wing (pilot's view).",
+   "expl": "Position light color is fixed by regulation from the PILOT's perspective: red on the left wingtip, green on the right, white on the tail. Describing it 'looking at the nose' flips the sides — a trap answer.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (position light arrangement)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "ea500d37a0",
+   "q": "The exterior light used to illuminate the leading edge of the wing is?",
+   "options": [
+    "Wing inspection light",
+    "Wing tip light",
+    "LEL"
+   ],
+   "correct": 0,
+   "short": "The wing inspection light washes the leading edge.",
+   "expl": "The wing inspection light is mounted on the fuselage shining out along the wing's leading edge. Its whole reason for existing is to let the crew look at the leading edge in flight — most importantly to check for ice.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (wing inspection lights)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "ce0c3c88a2",
+   "q": "What is the reason an exterior light is used to illuminate the leading edge of the wing?",
+   "options": [
+    "If the formation of ice is suspected.",
+    "To check for little green men.",
+    "If the pilot suspects the wing tip lights have stopped working."
+   ],
+   "correct": 0,
+   "short": "Wing inspection light = in-flight ice check.",
+   "expl": "At night the crew can't see ice building on the leading edge without light on it. When icing is suspected, the wing inspection light lets them confirm accretion and judge whether the deice/anti-ice systems are keeping up.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (wing inspection lights / icing check)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "0f6b637536",
+   "q": "Instrument lights, overhead lights, step lights and reading lights are all examples of?",
+   "options": [
+    "Interior lights",
+    "Flood lights",
+    "Auxiliary lights"
+   ],
+   "correct": 0,
+   "short": "Everything lighting the cabin/cockpit = interior lighting.",
+   "expl": "Instrument, overhead, step, and reading lights all live inside the aircraft serving crew and passengers — the interior lighting category. Floodlighting is one TECHNIQUE used within it, not the category itself.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (interior lighting)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "f7eb389ed6",
+   "q": "Strobing white lights on wingtips are often which type of bulb?",
+   "options": [
+    "Iridium bulbs",
+    "Xenon bulbs",
+    "Quantum bulbs"
+   ],
+   "correct": 1,
+   "short": "White strobes = xenon flash tubes.",
+   "expl": "The brilliant white wingtip strobes are xenon flash tubes — a capacitor dumps a high-voltage pulse through xenon gas for an intense, near-instant flash. 'Quantum' and 'iridium' bulbs are inventions for the distractor list.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (anti-collision strobe lights)",
+   "topic": "Lighting",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 13 — Aircraft Lighting"
+   ]
+  },
+  {
+   "id": "2ab94a9082",
+   "q": "How are radio waves created?",
+   "options": [
+    "From running alternating current through a special conductor.",
+    "From running direct current through a special conductor.",
+    "From running varying current through a special conductor."
+   ],
+   "correct": 0,
+   "short": "AC through an antenna makes radio waves.",
+   "expl": "Feed alternating current to a special conductor — an antenna — and the constantly reversing current launches electromagnetic waves into space at the same frequency. Steady DC makes only a static field around the wire; no reversal, no radiation.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radio wave generation)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "50f3207027",
+   "q": "The two varying fields transmitted when radio waves are created?",
+   "options": [
+    "Voltage field & Current field",
+    "Magnetic field & Electric field",
+    "Radar field & Microwave field"
+   ],
+   "correct": 1,
+   "short": "A radio wave = crossed electric + magnetic fields.",
+   "expl": "A radio wave is literally an electromagnetic wave: an electric field and a magnetic field at right angles to each other, regenerating one another as they travel. Radar and microwaves are just radio waves at particular frequencies, not field types.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (electromagnetic fields)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "fd8f7dacb2",
+   "q": "At what speed do radio waves travel?",
+   "options": [
+    "767mph, the speed of sound",
+    "746watts, one horsepower",
+    "186,000mps, the speed of light"
+   ],
+   "correct": 2,
+   "short": "Radio = light speed: 186,000 miles per second.",
+   "expl": "Radio waves are electromagnetic radiation, so they move at the speed of light — about 186,000 miles per second. The speed of sound is a pressure-wave speed a million times slower, and 746 watts is a power conversion, not a speed at all.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (wave propagation speed)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "5ffa187416",
+   "q": "The unit of measurement for radio wave frequency is?",
+   "options": [
+    "Henry",
+    "Farad",
+    "Hertz"
+   ],
+   "correct": 2,
+   "short": "Frequency is counted in hertz (cycles/second).",
+   "expl": "Frequency — cycles per second — is measured in hertz, scaled up through kHz, MHz, and GHz for radio work. The henry measures inductance and the farad capacitance; both are component values, not wave measurements.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (frequency/hertz)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "4d0193b434",
+   "q": "The method of loading information on a carrier wave by varying the peak of the signal sine wave is?",
+   "options": [
+    "Amplitude Modulation or AM",
+    "Atmospheric Method or AM",
+    "Varying Signal Peak or VSP"
+   ],
+   "correct": 0,
+   "short": "Vary the peaks = amplitude modulation.",
+   "expl": "Impressing intelligence on a carrier by varying the height (peak amplitude) of the carrier's sine wave is amplitude modulation — AM, the scheme aircraft VHF comm still uses. The other two names are decoys built from the description.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (amplitude modulation)",
+   "topic": "Modulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "a8bda026a6",
+   "q": "The method of loading information on a carrier wave by varying the occurrence of the signal wavelength is?",
+   "options": [
+    "Frequency Modulation or FM",
+    "Occurrence Method or OM",
+    "Varying Signal Sinewave or VSS"
+   ],
+   "correct": 0,
+   "short": "Vary how often the cycles occur = frequency modulation.",
+   "expl": "Varying how frequently the carrier's cycles occur — its instantaneous frequency — while amplitude stays constant is frequency modulation. FM buys noise immunity, since static mostly rides on amplitude, which FM receivers ignore.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (frequency modulation)",
+   "topic": "Modulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "e663f27260",
+   "q": "Very low frequency (VLF), low frequency (LF) and medium frequency (MF) have long wavelengths and are all known as?",
+   "options": [
+    "Long distance waves",
+    "Ground waves or surface waves",
+    "Long waves"
+   ],
+   "correct": 1,
+   "short": "VLF/LF/MF hug the earth: ground (surface) waves.",
+   "expl": "The long-wavelength bands — VLF, LF, MF — propagate by following the curvature of the earth's surface, so they're called ground waves or surface waves. That's why an NDB in the MF band can be received well beyond the horizon.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ground wave propagation)",
+   "topic": "Propagation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "c9a93b42ff",
+   "q": "High frequency (HF) waves travel in a straight line and are known as?",
+   "options": [
+    "Straight waves",
+    "Bounce waves",
+    "Sky waves"
+   ],
+   "correct": 2,
+   "short": "HF = sky waves — straight lines refracted back by the ionosphere.",
+   "expl": "HF energy leaves the antenna in straight lines but refracts off the ionosphere and returns to earth far away — sky-wave propagation, the trick behind oceanic HF radio's thousands-of-miles range. 'Straight waves' and 'bounce waves' aren't propagation terms.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (sky wave propagation)",
+   "topic": "Propagation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "700398e809",
+   "q": "Very high frequency (VHF), Ultra high frequency (UHF) and super high frequency (SHF) are only capable of line-of-sight transmission and are known as?",
+   "options": [
+    "Space waves",
+    "Sight waves",
+    "Spacing waves"
+   ],
+   "correct": 0,
+   "short": "VHF and up: line-of-sight space waves.",
+   "expl": "From VHF upward the ionosphere no longer bends the energy back, so these waves travel only in straight line-of-sight paths — space waves. That's why VHF comm and VOR range depends on altitude: higher aircraft see farther over the horizon.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (space wave / line-of-sight propagation)",
+   "topic": "Propagation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "2e61690559",
+   "q": "The method of reducing the bandwith of AM signals in order to create more room on the radio spectrum is called?",
+   "options": [
+    "Single Side Band (SSB)",
+    "Simplified Spectrum Broadcast (SSB)",
+    "Mono-Profile Spectrum (MPS)"
+   ],
+   "correct": 0,
+   "short": "SSB = Single Side Band — one sideband, half the bandwidth.",
+   "expl": "An AM transmission carries the same intelligence in both sidebands. Single side band suppresses the carrier and one sideband, transmitting only the other — roughly halving the occupied bandwidth and concentrating power, which is why HF aviation voice uses SSB. He answered the decoy expansion 'Simplified Spectrum Broadcast'; the real term is Single Side Band.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (single side band)",
+   "topic": "Modulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 14 — Radio Waves & Modulation"
+   ]
+  },
+  {
+   "id": "60b54434ba",
+   "q": "A transmitting antenna sends out radio waves. A receiving antenna does what?",
+   "options": [
+    "Traps radio waves.",
+    "Couples the magnetic and electric waves together into one wave.",
+    "Samples the signal."
+   ],
+   "correct": 0,
+   "short": "Receive antenna: traps passing waves into a tiny current.",
+   "expl": "A receiving antenna is the transmitter's mirror: passing electromagnetic waves sweep across the conductor and induce a minute current in it — the antenna 'traps' the wave's energy for the receiver to amplify and demodulate.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (receiving antennas)",
+   "topic": "Antennas",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "c887a99b0c",
+   "q": "What component in a transmitter generates the radio frequency signal?",
+   "options": [
+    "The amplifier.",
+    "The convertor.",
+    "The oscillator."
+   ],
+   "correct": 2,
+   "short": "The oscillator makes the RF carrier.",
+   "expl": "The oscillator is the transmitter's heartbeat — it generates the radio-frequency carrier at a precise frequency. Everything downstream modulates and amplifies that signal, but nothing else creates it.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (oscillators)",
+   "topic": "Transmitters",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "b41958c633",
+   "q": "What component in a transmitter increases the output?",
+   "options": [
+    "The amplifier.",
+    "The oscillator.",
+    "The convertor."
+   ],
+   "correct": 0,
+   "short": "The power amplifier boosts the carrier for the antenna.",
+   "expl": "The oscillator's output is tiny, so the transmitter's amplifier stages raise the modulated signal to the power level the antenna needs to radiate a usable signal.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (transmitter amplifiers)",
+   "topic": "Transmitters",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "1d9ee6d5ff",
+   "q": "What is the demodulating device in a receiver that converts the intelligence of an FM signal into a useable form?",
+   "options": [
+    "Discriminator",
+    "Detector",
+    "Demodulator"
+   ],
+   "correct": 0,
+   "short": "FM demodulation = the discriminator.",
+   "expl": "The discriminator is the FM receiver's demodulator: it converts frequency swings back into the original audio. The plain 'detector' is the AM equivalent, and 'demodulator' is the generic family name — the FM-specific device is the discriminator.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (FM discriminator)",
+   "topic": "Receivers",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "297e6925b7",
+   "q": "What is the demodulating device in a receiver that converts the intelligence of an AM signal into a useable form?",
+   "options": [
+    "Demodulator",
+    "Detector",
+    "Discriminator"
+   ],
+   "correct": 1,
+   "short": "AM demodulation = the detector.",
+   "expl": "In an AM receiver the detector rectifies the modulated carrier and recovers the audio riding on its amplitude envelope. The discriminator is FM's device; 'demodulator' is the umbrella term rather than the AM-specific answer.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (AM detector)",
+   "topic": "Receivers",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "4cd3683515",
+   "q": "What component in a receiver increases the audio signal to an audible volume?",
+   "options": [
+    "The convertor.",
+    "The amplifier.",
+    "The oscillator."
+   ],
+   "correct": 1,
+   "short": "The audio amplifier drives the speaker/headset.",
+   "expl": "After demodulation the recovered audio is far too weak to hear, so the receiver's audio amplifier boosts it to speaker or headset level. Oscillators generate signals; they don't strengthen audio.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (receiver audio amplification)",
+   "topic": "Receivers",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "40d83a535a",
+   "q": "What device combines the function of the transmitter and receiver into a single device?",
+   "options": [
+    "The transceiver.",
+    "The re-mitter.",
+    "The convertor."
+   ],
+   "correct": 0,
+   "short": "Transmitter + receiver in one box = transceiver.",
+   "expl": "A transceiver packages the transmitter and receiver in one unit sharing a frequency source and antenna — the standard architecture for aircraft comm radios. 'Re-mitter' is a made-up word standing guard as a distractor.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (transceivers)",
+   "topic": "Transmitters",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "a34ff1a9c7",
+   "q": "What are three defining characteristics of an antenna?",
+   "options": [
+    "Length, polarization & directivity.",
+    "Profile, excitation & oscillation.",
+    "Propagation, frequency & radiation."
+   ],
+   "correct": 0,
+   "short": "Antennas are defined by length, polarization, directivity.",
+   "expl": "An antenna is characterized by its length (sized to the wavelength — commonly a half or quarter wave), its polarization (the orientation of the electric field, matching the wave it must send or catch), and its directivity (whether it radiates/receives evenly or favors a direction).",
+   "cite": "FAA-H-8083-31B, Ch. 11 (antenna characteristics)",
+   "topic": "Antennas",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "6f4b6b5d56",
+   "q": "What are the three basic types of antennas used in aviation?",
+   "options": [
+    "Dipole, marconi & loop.",
+    "Yagi-uda, isotropic & monopole.",
+    "Array, conical & random wire."
+   ],
+   "correct": 0,
+   "short": "Aviation's three: dipole, Marconi (quarter-wave), loop.",
+   "expl": "The three basic aviation antenna types are the half-wave dipole, the quarter-wave Marconi (which uses the airframe as its ground plane — the classic comm whip/blade), and the loop, whose directional null makes ADF direction-finding possible.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (antenna types)",
+   "topic": "Antennas",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "51b1f0b8e2",
+   "q": "The braided shield around coax cables prevent the fields generated by the center conductor from radiating and?",
+   "options": [
+    "Shields the inner conductor from any external fields (EMI)",
+    "Tune the circuit to adjust the effective length of the antenna.",
+    "Combines frequencies to create a resonant frequency."
+   ],
+   "correct": 0,
+   "short": "Coax braid works both ways: keeps fields in AND EMI out.",
+   "expl": "The braid is a two-way barrier — it confines the center conductor's field inside the cable (no radiation, no crosstalk) and simultaneously shields the conductor from external interference. It plays no tuning or mixing role.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (coaxial cable shielding)",
+   "topic": "Coax & Shielding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas"
+   ]
+  },
+  {
+   "id": "74d1002463",
+   "q": "The purpose of a localizer is to?",
+   "options": [
+    "Indicate the distance the airplane is from the end of runway",
+    "Set the airplane on the proper approach angle to the runway",
+    "Align the airplane with the center of the runway"
+   ],
+   "correct": 2,
+   "short": "Localizer = lateral guidance to the centerline.",
+   "expl": "The ILS localizer provides lateral guidance — it aligns the aircraft with the extended runway centerline. Vertical path (the approach angle) is the glideslope's job, and distance information comes from DME or marker beacons. He answered the approach-angle option; the correction marks centerline alignment.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-56 to 11-58 (ILS/localizer)",
+   "topic": "Radio Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "0e40972471",
+   "q": "VHF radio signals are commonly used in?",
+   "options": [
+    "ATC communications",
+    "Both VOR navigation and ATC communications",
+    "VOR navigation"
+   ],
+   "correct": 1,
+   "short": "VHF carries BOTH nav (VOR) and voice (ATC).",
+   "expl": "The VHF band hosts both jobs: VOR navigation on 108-117.95 MHz and ATC voice communication on 118-136.975 MHz. Answering either one alone tells only half the story — the band is shared by both.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (VHF nav and comm bands)",
+   "topic": "Radio Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "582cde24d1",
+   "q": "What is the main purpose of a servo in an autopilot system?",
+   "options": [
+    "Move the control surface as commanded",
+    "Change mechanical energy to electrical energy",
+    "Correct for displacement of the aircraft about its axis"
+   ],
+   "correct": 0,
+   "short": "Servos are the autopilot's muscles.",
+   "expl": "The servo is the autopilot's output muscle — it converts the computer's commands into actual movement of the aileron, elevator, or rudder. Sensing displacement is the gyros' job; the servo just moves the surface it's told to move.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (autopilot servos)",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "e18d23bec5",
+   "q": "In general, the purpose of an aircraft transponder is to?",
+   "options": [
+    "Transmit heading, speed, and rate of climb/decent to ATC.",
+    "Receive an interrogation signal from ground station, and to send a reply.",
+    "Monitor speed, heading, alt, and attitude if autopilot is engaged."
+   ],
+   "correct": 1,
+   "short": "Transponder: interrogated → replies.",
+   "expl": "A transponder listens for the radar interrogation pulse from the ground station and answers with a coded reply — that reply is what paints the labeled target on the controller's scope. It isn't an autopilot monitor and it doesn't stream flight parameters on its own initiative.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (transponders)",
+   "topic": "Radio Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "7d97dbed05",
+   "q": "What is the primary purpose of an autopilot system?",
+   "options": [
+    "Relieve pilot of control of AC during long periods of flight.",
+    "To fly a more precise course for the pilot.",
+    "As a navigational aid for extended overwater flights."
+   ],
+   "correct": 0,
+   "short": "Autopilot exists to relieve pilot workload/fatigue.",
+   "expl": "The autopilot's primary purpose is relieving the pilot of continuous manual control during long stretches of flight — fighting fatigue. Precision tracking and coupled navigation are welcome byproducts, but relief of the pilot is the stated reason the system exists.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (autopilot purpose)",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "2d0ed8d78b",
+   "q": "When installing coaxial cable, it should be secured firmly along its entire length?",
+   "options": [
+    "At 2-foot intervals.",
+    "Wherever the cable sags.",
+    "At 1-foot intervals."
+   ],
+   "correct": 0,
+   "short": "Coax gets clamped every 2 feet.",
+   "expl": "Coax runs are secured at two-foot intervals along their entire length — snug enough to prevent vibration damage and impedance-disturbing kinks, without the excess clamps of a one-foot spacing.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (coax installation)",
+   "topic": "Avionics Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "5c2551ae8b",
+   "q": "Part of the ADF system used on aircraft includes?",
+   "options": [
+    "Sense and loop antennas.",
+    "Marker beacon antenna.",
+    "RMI indicator antenna."
+   ],
+   "correct": 0,
+   "short": "ADF = loop antenna (direction) + sense antenna (ambiguity).",
+   "expl": "The ADF's direction-finding trick needs two antennas: the rotatable/switched loop, whose sharp null gives the bearing line, and the sense antenna, which resolves which of the two null directions actually points at the station. Marker beacon has its own separate antenna, and an RMI is an indicator, not an antenna.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ADF loop and sense antennas)",
+   "topic": "Radio Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "f6969bd357",
+   "q": "How may the battery replacement date be verified for an emergency locator transmitter (ELT)?",
+   "options": [
+    "By observing the battery expiration date marked on the outside of transmitter.",
+    "By removing the batteries & testing them under a measured load.",
+    "Activating the transmitter and measuring the signal strength."
+   ],
+   "correct": 0,
+   "short": "ELT battery date is stamped right on the outside.",
+   "expl": "The regulation requires the ELT battery's replacement (expiration) date to be legibly marked on the OUTSIDE of the transmitter — verification is as simple as reading it. No disassembly, load testing, or transmission test is involved in checking the date.",
+   "cite": "14 CFR §91.207 / FAA-H-8083-31B, Ch. 11 (ELT)",
+   "topic": "ELT",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "814605ff95",
+   "q": "What component is the sensing device in an electromechanical autopilot system?",
+   "options": [
+    "Gyro",
+    "Servo",
+    "Controller"
+   ],
+   "correct": 0,
+   "short": "Gyros sense; servos move; controllers command.",
+   "expl": "In an electromechanical autopilot the gyros are the sensing elements — they detect deviation about each axis and generate the error signals. The controller is the crew's input panel and the servos are the muscles that respond.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (autopilot sensing elements)",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "e9dd972545",
+   "q": "Which channel of an autopilot detects changes in pitch attitude of an aircraft?",
+   "options": [
+    "Elevator",
+    "Aileron",
+    "Rudder"
+   ],
+   "correct": 0,
+   "short": "Pitch = elevator channel.",
+   "expl": "The autopilot splits control by axis: the elevator channel handles pitch, the aileron channel roll, and the rudder channel yaw. A pitch-attitude change is therefore the elevator channel's business.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (autopilot channels)",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "207353d544",
+   "q": "How often must ELTs be inspected for proper installation, battery corrosion, operation?",
+   "options": [
+    "Every 12 calendar months",
+    "Every 100 hours",
+    "Every 24 calendar months"
+   ],
+   "correct": 0,
+   "short": "ELT inspection: every 12 calendar months.",
+   "expl": "The rule requires the ELT be inspected within 12 calendar months after the last inspection for proper installation, battery corrosion, operation of the controls and crash sensor, and sufficient radiated signal.",
+   "cite": "14 CFR §91.207(d)",
+   "topic": "ELT",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "b0da63d317",
+   "q": "Which component of the ILS shares an antenna with the VOR antenna?",
+   "options": [
+    "The ADF",
+    "The localizer",
+    "The DME"
+   ],
+   "correct": 1,
+   "short": "Localizer and VOR share the VHF nav antenna.",
+   "expl": "The localizer transmits in the same VHF navigation band as the VOR (108-112 MHz for the localizer's odd tenths), so the aircraft's VHF nav antenna serves both receivers. DME lives at UHF and ADF at LF/MF — each needs its own antenna. He answered ADF; the correction marks the localizer.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (VHF nav antenna / ILS)",
+   "topic": "Radio Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "56f4a9e980",
+   "q": "Which of the following are not a type of servo used in a correction subsystem?",
+   "options": [
+    "mechanical",
+    "electrical",
+    "pneumatic"
+   ],
+   "correct": 0,
+   "short": "Servos come electric, pneumatic, hydraulic — not 'mechanical.'",
+   "expl": "Autopilot correction servos are powered devices: electric motor servos, pneumatic servos, and (on larger aircraft) hydraulic servos. A purely 'mechanical' servo isn't one of the types — every servo needs a power source to move a surface. He answered pneumatic; the correction marks mechanical as the non-type.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (servo types)",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "ecd04dd719",
+   "q": "What are the basic subsystems of an Automatic Flight Control System (AFCS)?",
+   "options": [
+    "Command, Error-Sensing, Correction and Follow-Up.",
+    "Error-Sensing, Correction and Follow-Up",
+    "Controller, Error-Sensing, Correction and Follow-Up"
+   ],
+   "correct": 0,
+   "short": "AFCS = Command + Error-Sensing + Correction + Follow-Up.",
+   "expl": "The four basic AFCS subsystems: COMMAND (what the crew or flight computer asks for), ERROR-SENSING (gyros/sensors measuring deviation from it), CORRECTION (servos driving the surfaces), and FOLLOW-UP (feedback that washes out the correction so the system doesn't over-control). He picked the version starting with 'Controller'; the keyed set starts with Command — and dropping Command entirely (the three-item option) loses the input side of the loop.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (autopilot components) + AIM AMTBLK06 deck wording",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "10f3df418b",
+   "q": "Which frequency band is used for most aircraft communications?",
+   "options": [
+    "VHF",
+    "HF",
+    "UHF"
+   ],
+   "correct": 0,
+   "short": "Everyday ATC voice = VHF.",
+   "expl": "Routine aircraft communication happens in the VHF band, 118-136.975 MHz — clear, reliable, line-of-sight. HF is the long-haul oceanic backup, and UHF comm is primarily a military band.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (VHF communication)",
+   "topic": "Radio Communication",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "433c66ccc3",
+   "q": "In which frequency band does the VOR operate?",
+   "options": [
+    "In the VHF band",
+    "In the UHF band",
+    "In the HF band"
+   ],
+   "correct": 0,
+   "short": "VOR = VHF (108-117.95 MHz).",
+   "expl": "The VOR is a VHF system — 108 to 117.95 MHz, just below the comm frequencies. That's literally its name: Very-high-frequency Omnidirectional Range. Line-of-sight VHF propagation is why VOR reception range grows with altitude.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-30 to 11-31 (VOR)",
+   "topic": "Radio Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "ac957da706",
+   "q": "Where are static wicks located?",
+   "options": [
+    "On the trailing edge of flight control surfaces",
+    "In the center of a chemical oxygen candle",
+    "On the belly of the aircraft, along the center line"
+   ],
+   "correct": 0,
+   "short": "Static wicks ride the trailing edges.",
+   "expl": "Static dischargers (wicks) are mounted on the trailing edges of the flight control surfaces and wingtips — the sharp aft points where precipitation static wants to discharge anyway. The wicks bleed the charge off quietly so it doesn't hash the radios.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (static dischargers)",
+   "topic": "Avionics Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "95eedca5a2",
+   "q": "When may an ELT operational check be performed?",
+   "options": [
+    "Within the first 5 minutes of any hour.",
+    "Within the first 30 minutes of any hour.",
+    "Only on the first Tuesday of any month."
+   ],
+   "correct": 0,
+   "short": "Test an ELT only in the first 5 minutes after the hour.",
+   "expl": "An operational (live-transmission) test of a 121.5 MHz ELT is confined to the first five minutes after any hour, and traditionally limited to three audio sweeps — so search-and-rescue knows a brief signal in that window is probably a test, not a crash.",
+   "cite": "FAA AIM 6-2-5 (ELT test window) / AIM AMTBLK06 deck",
+   "topic": "ELT",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "0035bf3cc2",
+   "q": "What powers an ELT?",
+   "options": [
+    "The aircraft battery.",
+    "An emergency battery pack.",
+    "A self contained battery."
+   ],
+   "correct": 2,
+   "short": "The ELT carries its own battery.",
+   "expl": "An ELT must keep transmitting after a crash that may sever every aircraft electrical connection — so it's powered by its own self-contained battery inside the unit, with its expiration date marked on the case.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ELT) / 14 CFR §91.207",
+   "topic": "ELT",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "11fceb870c",
+   "q": "What are the 3 basic components of an autopilot system?",
+   "options": [
+    "Gyros, servos, and amplifiers.",
+    "Clutch, servos and gyros.",
+    "Souvlaki, gyros, and shawarma."
+   ],
+   "correct": 0,
+   "short": "Autopilot trio: gyros sense, amplifier computes, servos move.",
+   "expl": "The three basic components: gyros to sense attitude deviation, an amplifier (the computer) to process and strengthen the error signals, and servos to move the control surfaces. The souvlaki-and-shawarma option is the instructor making sure you're awake — wrong kind of gyro.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (basic autopilot components)",
+   "topic": "Autopilot",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT"
+   ]
+  },
+  {
+   "id": "1825af7259",
+   "q": "Choose the correct definition for the abbreviation ATC.",
+   "options": [
+    "Air Traffic Control",
+    "Alternate Tracking Circuit"
+   ],
+   "correct": 0,
+   "short": "ATC = Air Traffic Control.",
+   "expl": "ATC is Air Traffic Control — the ground-based service that sequences and separates traffic. It's the other end of the aircraft's VHF comm radios and the system a transponder answers to.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (communications)",
+   "topic": "Acronyms — Comm",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "b9810fa5f9",
+   "q": "Choose the correct definition for the acronym VFR.",
+   "options": [
+    "Visual Flight Rules",
+    "Vehicle Formation Regulations"
+   ],
+   "correct": 0,
+   "short": "VFR = Visual Flight Rules.",
+   "expl": "VFR is Visual Flight Rules — flight conducted by outside visual reference, requiring VFR weather minimums. Its instrument counterpart is IFR.",
+   "cite": "14 CFR Part 91 (flight rules)",
+   "topic": "Acronyms — Flight Rules",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "82e89a0604",
+   "q": "Choose the correct definition for the acronym IFR.",
+   "options": [
+    "Instrument Flight Rules",
+    "Intermediary Formation Regulations"
+   ],
+   "correct": 0,
+   "short": "IFR = Instrument Flight Rules.",
+   "expl": "IFR is Instrument Flight Rules — flight by reference to instruments under ATC clearance, the regime that makes ILS approaches and airways navigation necessary.",
+   "cite": "14 CFR Part 91 (flight rules)",
+   "topic": "Acronyms — Flight Rules",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "ab6974bcc5",
+   "q": "Choose the correct definition for the acronym ADI.",
+   "options": [
+    "Attitude Direction Indicator",
+    "Antenna Deviation Interceder"
+   ],
+   "correct": 0,
+   "short": "ADI = Attitude Direction Indicator.",
+   "expl": "The ADI is the Attitude Direction Indicator — the artificial horizon with flight-director command bars overlaid, showing pitch and roll plus steering cues in one instrument.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (flight director/ADI)",
+   "topic": "Acronyms — Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "a86c91cf6c",
+   "q": "Choose the correct definition for the acronym DME.",
+   "options": [
+    "Distance Measuring Equipment",
+    "Digital Monitoring Estimate"
+   ],
+   "correct": 0,
+   "short": "DME = Distance Measuring Equipment.",
+   "expl": "DME is Distance Measuring Equipment: the airborne unit interrogates a ground transponder at UHF and times the reply, converting it to slant-range distance in nautical miles.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (DME)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "1dae6793d5",
+   "q": "Choose the correct definition for the abbreviation RALT.",
+   "options": [
+    "Radio/Radar Altimeter",
+    "Reference Array Tracker"
+   ],
+   "correct": 0,
+   "short": "RALT = Radio/Radar Altimeter.",
+   "expl": "RALT is the Radio (Radar) Altimeter — it bounces a signal off the terrain directly below and reads back true height above ground, the AGL number used on low approaches.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radar altimeter)",
+   "topic": "Acronyms — Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "eff42703e2",
+   "q": "Choose the correct definition for the abbreviation HDG.",
+   "options": [
+    "Heading",
+    "Helicopter Drive Gain"
+   ],
+   "correct": 0,
+   "short": "HDG = Heading.",
+   "expl": "HDG is simply Heading — the direction the nose points, the value bugged on an HSI and captured by an autopilot's heading-select mode. He answered 'Helicopter Drive Gain' (the decoy); the correction marks Heading — the one he'd never miss twice.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (heading modes/HSI)",
+   "topic": "Acronyms — Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "4e30f7bff5",
+   "q": "Choose the correct definition for the abbreviation NAV.",
+   "options": [
+    "Navigation",
+    "Noticeable Audio Variance"
+   ],
+   "correct": 0,
+   "short": "NAV = Navigation.",
+   "expl": "NAV is short for Navigation — as in the NAV radios, NAV mode on the autopilot, and the nav side of a nav/comm transceiver.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (navigation systems)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "e810ffe058",
+   "q": "Choose the correct definition for the acronym GPS.",
+   "options": [
+    "Global Positioning System",
+    "Geocoordination Placement Source"
+   ],
+   "correct": 0,
+   "short": "GPS = Global Positioning System.",
+   "expl": "GPS is the Global Positioning System — satellite-based positioning from timed ranging signals, the backbone of modern RNAV.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (GPS)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "4dfd565824",
+   "q": "Choose the correct definition for the acronym WAAS.",
+   "options": [
+    "Wide Area Augmentation System",
+    "Wind Analysis and Area Surveillance"
+   ],
+   "correct": 0,
+   "short": "WAAS = Wide Area Augmentation System.",
+   "expl": "WAAS is the Wide Area Augmentation System — ground reference stations compute GPS corrections and broadcast them via geostationary satellites, sharpening GPS enough for LPV approaches.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (GPS augmentation)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "d037631df0",
+   "q": "Choose the correct definition for the acronym VSI.",
+   "options": [
+    "Vertical Speed Indicator",
+    "Visual Sight Imager"
+   ],
+   "correct": 0,
+   "short": "VSI = Vertical Speed Indicator.",
+   "expl": "The VSI is the Vertical Speed Indicator, reading climb or descent rate in feet per minute from the rate of static-pressure change.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (flight instruments)",
+   "topic": "Acronyms — Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "9407b4987d",
+   "q": "Choose the correct definition for the acronym EHSI.",
+   "options": [
+    "Electronic Horizontal Situation Indicator",
+    "Energized Hull Static Inhibitor"
+   ],
+   "correct": 0,
+   "short": "EHSI = Electronic Horizontal Situation Indicator.",
+   "expl": "The EHSI is the Electronic Horizontal Situation Indicator — the glass-cockpit version of the HSI, drawing heading, course, and nav data on a display instead of mechanical cards.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (EFIS displays)",
+   "topic": "Acronyms — Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "47e450d42a",
+   "q": "Choose the correct definition for the acronym VOR.",
+   "options": [
+    "VHF Omnidirectional Range",
+    "Variable On-board Regulator"
+   ],
+   "correct": 0,
+   "short": "VOR = VHF Omnidirectional Range.",
+   "expl": "VOR is the VHF Omnidirectional Range — the ground station radiating 360 radials that airborne receivers turn into course guidance, operating at 108-117.95 MHz.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-30 to 11-31 (VOR)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "bc37c84e7c",
+   "q": "Choose the correct definition for the acronym AGL.",
+   "options": [
+    "Above Ground Level",
+    "Altitude Guidance and Leveler"
+   ],
+   "correct": 0,
+   "short": "AGL = Above Ground Level.",
+   "expl": "AGL means Above Ground Level — height over the terrain directly below, the number a radar altimeter reads. Contrast MSL, which references sea level.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radar altimeter/AGL)",
+   "topic": "Acronyms — Altitude",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "04a2ed7653",
+   "q": "Choose the correct definition for the acronym MSL.",
+   "options": [
+    "Mean Sea Level",
+    "Median Sense Limiter"
+   ],
+   "correct": 0,
+   "short": "MSL = Mean Sea Level.",
+   "expl": "MSL is Mean Sea Level — the datum for barometric altitude. Charted altitudes and altimeter readings are MSL; the radar altimeter's AGL is the height above the dirt.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (altimetry)",
+   "topic": "Acronyms — Altitude",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "15507df9e1",
+   "q": "Choose the correct definition for the acronym ILS.",
+   "options": [
+    "Instrument Landing System",
+    "Integral Landmark Sequence"
+   ],
+   "correct": 0,
+   "short": "ILS = Instrument Landing System.",
+   "expl": "The ILS is the Instrument Landing System — localizer for lateral guidance, glideslope for vertical, marker beacons for range checkpoints — the precision approach standard.",
+   "cite": "FAA-H-8083-31B, Ch. 11, Pages 11-56 to 11-58 (ILS)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "dc6b08b478",
+   "q": "Choose the correct definition for the acronym NDB.",
+   "options": [
+    "Non-directional Beacon",
+    "Nominal Deviation Beam"
+   ],
+   "correct": 0,
+   "short": "NDB = Non-directional Beacon.",
+   "expl": "An NDB is a Non-directional Beacon — an LF/MF ground transmitter radiating equally in all directions. The aircraft's ADF needle points at it.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ADF/NDB)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "d495fd33f0",
+   "q": "Choose the correct definition for the acronym AM.",
+   "options": [
+    "Amplitude Modulation",
+    "Ampere Modification"
+   ],
+   "correct": 0,
+   "short": "AM = Amplitude Modulation.",
+   "expl": "AM is Amplitude Modulation — intelligence carried by varying the carrier's amplitude. Aircraft VHF voice is AM, which is why simultaneous transmissions heterodyne instead of capturing.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (modulation)",
+   "topic": "Acronyms — Radio",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "2a479224f9",
+   "q": "Choose the correct definition for the acronym FM.",
+   "options": [
+    "Frequency Modulation",
+    "Farad Modification"
+   ],
+   "correct": 0,
+   "short": "FM = Frequency Modulation.",
+   "expl": "FM is Frequency Modulation — intelligence carried by varying the carrier's frequency at constant amplitude, buying noise immunity.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (modulation)",
+   "topic": "Acronyms — Radio",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "57000d0e85",
+   "q": "Choose the correct definition for the acronym RMI.",
+   "options": [
+    "Radio Magnetic Indicator",
+    "Range and Mapping Indication"
+   ],
+   "correct": 0,
+   "short": "RMI = Radio Magnetic Indicator.",
+   "expl": "The RMI is the Radio Magnetic Indicator — a rotating compass card with bearing pointers driven by ADF and/or VOR, so the needles always show magnetic bearing TO the stations.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (RMI)",
+   "topic": "Acronyms — Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "0ac49124d0",
+   "q": "Choose the correct definition for the acronym LORAN.",
+   "options": [
+    "Long Range Aid to Navigation",
+    "Long Range Assistance to Navigation"
+   ],
+   "correct": 0,
+   "short": "LORAN = LOng RAnge Navigation (aid to navigation).",
+   "expl": "LORAN is Long Range Aid to Navigation — the legacy hyperbolic system that fixed position by timing differences between synchronized ground-station pulses; GPS retired it from front-line use.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (area navigation history)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "e917ce220f",
+   "q": "Choose the correct definition for the acronym GPWS.",
+   "options": [
+    "Ground Proximity Warning System",
+    "Guided Position Waypoint Sensor"
+   ],
+   "correct": 0,
+   "short": "GPWS = Ground Proximity Warning System.",
+   "expl": "GPWS is the Ground Proximity Warning System — it watches radar altitude and closure trends and barks 'TERRAIN' / 'PULL UP' before controlled flight into terrain can happen.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (warning systems)",
+   "topic": "Acronyms — Warning Systems",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "cdb5ac2123",
+   "q": "Choose the correct definition for the acronym TCAS.",
+   "options": [
+    "Traffic Collision Avoidance System",
+    "Tele-Call Answering Standard"
+   ],
+   "correct": 0,
+   "short": "TCAS = Traffic (Alert and) Collision Avoidance System.",
+   "expl": "TCAS interrogates nearby transponders, tracks the replies, and issues traffic and resolution advisories. The class form expands it 'Traffic Collision Avoidance System'; the FAA's official expansion is 'Traffic Alert and Collision Avoidance System' — same box, know both wordings.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (TCAS)",
+   "topic": "Acronyms — Warning Systems",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "de24c72768",
+   "q": "Choose the correct definition for the acronym ADSB.",
+   "options": [
+    "Automatic Dependent Surveillance Broadcast system",
+    "Approach and Descent Sequence Bulletin"
+   ],
+   "correct": 0,
+   "short": "ADS-B = Automatic Dependent Surveillance-Broadcast.",
+   "expl": "ADS-B is Automatic Dependent Surveillance-Broadcast: the aircraft automatically broadcasts its GPS-derived position and velocity, replacing radar as the surveillance backbone. 'Dependent' because it depends on the aircraft's own nav source.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ADS-B)",
+   "topic": "Acronyms — Surveillance",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "e24cc4c241",
+   "q": "Choose the correct definition for the acronym ELT.",
+   "options": [
+    "Emergency Locator Transmitter",
+    "Electric Locating and Tracking"
+   ],
+   "correct": 0,
+   "short": "ELT = Emergency Locator Transmitter.",
+   "expl": "The ELT is the Emergency Locator Transmitter — crash-activated by its G-switch, powered by its own battery, transmitting on 121.5/406 MHz so searchers can find the wreck.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ELT) / 14 CFR §91.207",
+   "topic": "Acronyms — Emergency",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
+   ]
+  },
+  {
+   "id": "430883fe69",
+   "q": "Choose the correct definition for the acronym INS / IRS.",
+   "options": [
+    "Inertial Navigation System or Inertial Reference System",
+    "Intercepting Nautical Sensor or Intercepting Reaction Sensor"
+   ],
+   "correct": 0,
+   "short": "INS/IRS = Inertial Navigation/Reference System.",
+   "expl": "INS/IRS is the Inertial Navigation (or Reference) System — gyros and accelerometers dead-reckoning position from a known start with no outside signals at all, which is why it's the self-contained backbone of long-haul nav.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (inertial navigation)",
+   "topic": "Acronyms — Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Daily Quiz 17 — Systems Acronyms"
    ]
   },
   {
