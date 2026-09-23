@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)</h1>
+    <div class="sub">Version B of the class mock final, rebuilt as an interactive test from the photographed pages. NOTE: pages 3, 8 and 9 were not in the photos, so questions 19-27 and 54-72 are missing — this covers the 72 photographed questions (1-18, 28-53, 73-100). Unanswered paper, so every answer was keyed from the FAA handbooks, AC 43.13-1B and 14 CFR with cites (bond-test .003 ohm, bowline-on-a-bight, 3-lugs-plus-bus-bar verified against the extracts). The MIL-W-22759 typo appears in this version too and is called out.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Concerning radio navigation, what is one of the oldest and most useful navigational aids?", "options": ["VOR", "The Wet Compass", "VHF"], "correct": 0, "short": "The handbook's phrase points at the VOR.", "expl": "The handbook calls the VOR 'one of the oldest and most useful navigational aids' — the VHF omnidirectional range that still defines airways. 'VHF' alone is just a band, and the wet compass isn't a radio aid.", "cite": "FAA-H-8083-31B, Ch. 11 (VOR)", "topic": "Navigation", "fig": ""}, {"q": "When VHF communication transceivers are coupled with VOR receivers, they are called", "options": ["NAV/COM radios", "VHF radios cannot be coupled with VOR receivers, one is for voice and the other is navigation only", "VOR/VHF transceiver"], "correct": 0, "short": "Comm + VOR nav in one unit = the NAV/COM.", "expl": "Pairing the VHF comm transceiver with the VOR navigation receiver gives the classic NAV/COM radio — both functions share the VHF band, one box, one frequency window each side.", "cite": "FAA-H-8083-31B, Ch. 11 (NAV/COM radios)", "topic": "Radio Communication", "fig": ""}, {"q": "Although very similar the primary difference between a solenoid and relay is", "options": ["a relay is controlled with voltage/ a solenoid is controlled with current", "a solenoid is used for switching high current circuits/ a relay is used to control lower current circuits", "a solenoid is voltage controlled/ a relay is current controlled"], "correct": 1, "short": "Solenoid = heavy current; relay = lighter loads.", "expl": "Both are electromagnet-operated switches; the working difference is duty. The solenoid's movable core drives beefy contacts for high-current jobs (starters, battery contactors) while the relay's fixed-core/hinged-armature build handles lower-current control circuits. Neither is defined by voltage-vs-current control — both coils just need current.", "cite": "FAA-H-8083-30B, Ch. 12 (solenoids and relays)", "topic": "Switches & Relays", "fig": ""}, {"q": "When testing Bonds or Grounds, the resistance should not exceed", "options": [".003 OHMS", "3.0 OHMS", "30 OHMS"], "correct": 0, "short": "Bond test limit: three thousandths of an ohm.", "expl": "A proper bond or ground connection tests at no more than .003 ohm (3 milliohms) — a nearly perfect metallic path. Whole ohms of resistance in a bond would defeat its purpose of equalizing potential and carrying fault current.", "cite": "AC 43.13-1B, Ch. 11 (bonding jumper resistance ≤ .003 ohm)", "topic": "Bonding & Grounding", "fig": ""}, {"q": "How does the Inertial Navigation system (INS)/ Inertial Reference System (IRS) determine the aircraft location?", "options": ["through calculations based on the forces experienced by INS accelerometers", "with updates from the INS/IRS radio transceiver", "from the GPS input"], "correct": 0, "short": "INS = self-contained dead reckoning from accelerometers.", "expl": "The INS/IRS is entirely self-contained: gyros stabilize a reference and accelerometers measure every force the aircraft experiences; integrating those accelerations from a known start yields velocity and position — no radio, no GPS required. That independence is the system's whole point.", "cite": "FAA-H-8083-31B, Ch. 11 (inertial navigation)", "topic": "Navigation", "fig": ""}, {"q": "Ohm's Law States", "options": ["The current through a conductor is directly proportional to the voltage applied and inversely proportional  to the resistance of a conductor.", "The law of electromagnetic induction is proportional to the rate of change to the lines of Flux", "Ohms law states 1 henry equals 1volt when current changes at 1 amp per second."], "correct": 0, "short": "I = E ÷ R.", "expl": "Ohm's law ties current to voltage and resistance: more volts, more current; more ohms, less current. The flux statement is Faraday's induction law and the henry definition describes the unit of inductance — real facts wearing the wrong name.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-18 (Ohm's law)", "topic": "Ohm's Law", "fig": ""}, {"q": "What is indicated by the Greek letter lambda?", "options": ["Wavelength", "Period", "Frequency"], "correct": 0, "short": "λ = wavelength.", "expl": "Lambda (λ) stands for wavelength — the distance one complete cycle covers. Frequency gets f (measured in hertz), and the period is T.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-48 (wavelength)", "topic": "AC Theory", "fig": ""}, {"q": "DC alternators contain two major components", "options": ["armature winding/ field winding", "armature/ commutator", "commutator/ field winding"], "correct": 0, "short": "Alternator = armature winding + field winding.", "expl": "The alternator's two working parts: the rotating field winding and the stationary armature winding where output is induced. No commutator anywhere — diodes do the rectifying.", "cite": "FAA-H-8083-31B, Ch. 9 (alternators)", "topic": "AC Power", "fig": ""}, {"q": "What circuit change AC voltage into DC voltage and are one of the most commonly used in aircraft electronics?", "options": ["Rectifier circuits", "Complex circuits", "Series DC circuits"], "correct": 0, "short": "AC→DC = rectifier circuits.", "expl": "Rectifier circuits convert AC into DC and sit inside nearly every piece of aircraft electronics — from alternator diode packs to avionics power supplies. 'Complex circuits' and 'series DC circuits' don't describe a conversion function.", "cite": "FAA-H-8083-30B, Ch. 12 (rectifiers)", "topic": "AC Power", "fig": ""}, {"q": "Commercial and military aircraft use wire that is manufactured under", "options": ["MIL-W-22579 specifications", "MIL-SPEC-22579", "MIL-M-22759"], "correct": 0, "short": "The real spec is MIL-W-22759 (form typo, both versions).", "expl": "Aircraft wire is built to MIL-W-22759 (today SAE AS22759). This form repeats Final A's misprint: the keyed answer has the right MIL-W prefix with transposed digits, while another option has the right digits behind the wrong MIL-M prefix. Pick the MIL-W option — and memorize the true number, 22759.", "cite": "AC 43.13-1B, Ch. 11 (M22759 wire tables) — form typo flagged", "topic": "Wire & Insulation", "fig": ""}, {"q": "The process of producing an EMF by moving a magnetic field in relationship to a conductor", "options": ["electromagnetic induction", "Lens Law", "electromechanical switch"], "correct": 0, "short": "Field moving past conductor → induced EMF.", "expl": "Relative motion between a magnetic field and a conductor induces an EMF — electromagnetic induction, the principle behind every generator. Lenz's law (misspelled 'Lens' on the form) only gives the induced current's direction.", "cite": "FAA-H-8083-30B, Ch. 12 (electromagnetic induction)", "topic": "AC Theory", "fig": ""}, {"q": "What form is to be completed and returned to the FAA  with an Inspection Authorization when installing new avionics not on the aircraft's approved equipment list?", "options": ["FAA form 337", "FAA form 338", "FAA form 121.90C"], "correct": 0, "short": "Major alteration paperwork = FAA Form 337.", "expl": "Installing avionics not on the approved equipment list is a major alteration, documented on FAA Form 337 with the approval of an IA. Forms '338' and '121.90C' don't exist — 337 is the number to know cold for the written.", "cite": "14 CFR Part 43, Appendix B (Form 337)", "topic": "Regulations", "fig": ""}, {"q": "What produces electricity using two different metals in a chemical solution?", "options": ["primary battery", "thermoelectric effect", "silicone and germanium"], "correct": 0, "short": "Two dissimilar metals + electrolyte = a primary cell.", "expl": "A primary battery (cell) makes electricity chemically: two dissimilar metals immersed in an electrolyte solution. The thermoelectric effect needs heat on a metal junction, and silicon/germanium are semiconductor materials, not cells.", "cite": "FAA-H-8083-30B, Ch. 12 (primary cells)", "topic": "Batteries", "fig": ""}, {"q": "What removes gasses and acid fumes from the battery in order to reduce fire hazards or damage to airframe parts?", "options": ["Boric Acid or Sodium Bicarbonate", "Ram air effect to the battery compartment siphons the battery gasses overboard", "Battery Ventilating systems"], "correct": 2, "short": "Vent systems carry battery gasses overboard.", "expl": "Battery ventilating systems remove hydrogen and acid fumes from the compartment and dump them overboard. Bicarbonate/boric acid neutralize spills after the fact, and ram air is merely how many vent systems are powered.", "cite": "FAA-H-8083-31B, Ch. 9 (battery ventilating systems)", "topic": "Batteries", "fig": ""}, {"q": "Identification markings on wiring should be placed", "options": ["at each end of the wire and at 15 inch maximum intervals along the length", "With Teflon sleeves and placed along the wiring length not to exceed 3 inches of their termination", "along the wiring and secured with PTFE compatible insulated markings"], "correct": 0, "short": "Mark at each end + every 15 inches.", "expl": "Wire identification goes at each end of the wire and at intervals of no more than 15 inches along the run — so any visible stretch can be traced. The other options garble the sleeve method into non-rules.", "cite": "AC 43.13-1B, Ch. 11 (wire identification intervals)", "topic": "Wire Identification", "fig": ""}, {"q": "The generator master switch is used to turn on the generator by", "options": ["controlling field current", "applying power the GCU", "flashing the 3 unit regulator reverse current relay"], "correct": 0, "short": "Master switch = field circuit gate.", "expl": "The generator master switch brings the generator on line by closing its FIELD circuit — field current lets the machine build voltage. Flashing the field is a shop procedure for lost residual magnetism, not a switch function.", "cite": "FAA-H-8083-31B, Ch. 9 (generator master switch)", "topic": "Generator Controls", "fig": ""}, {"q": "A full wave rectifier is known as a", "options": ["Bridge Rectifier", "Stator Rectified Transformer", "Pulse Rectifier"], "correct": 0, "short": "Full-wave = the four-diode bridge.", "expl": "The bridge rectifier's four diodes steer both halves of the AC wave into DC — the standard full-wave rectifier and the heart of every aircraft alternator's output section.", "cite": "FAA-H-8083-30B, Ch. 12 (rectifiers)", "topic": "AC Power", "fig": ""}, {"q": "The internationally accepted unit for current is the ______ and is equivalent to ______.", "options": ["Amp/ 1 Coulomb", "Watt/ 1 Coulomb", "Amp/Current"], "correct": 0, "short": "The ampere: one coulomb (per second).", "expl": "Current is measured in amperes, and one amp corresponds to one coulomb of charge (moving past a point each second — the form's wording drops the 'per second,' but the amp/coulomb pairing is the keyed idea). The watt is power, a different quantity entirely.", "cite": "FAA-H-8083-30B, Ch. 12 (units of current)", "topic": "DC Theory", "fig": ""}, {"q": "The basic radio wave is known as a carrier wave and does not convey any significant information, how is this wave altered to transmit or receive useful information?", "options": ["Amplitude Modulation/Frequency Modulation", "(SDAC) Systems Digital Analog Converter", "Carrier Wave Digital Amplifier (CWDA)"], "correct": 0, "short": "Modulation (AM or FM) puts the message on the carrier.", "expl": "Intelligence rides the carrier through modulation — varying its amplitude (AM) or frequency (FM). The 'SDAC' and 'CWDA' boxes are invented.", "cite": "FAA-H-8083-31B, Ch. 11 (modulation)", "topic": "Modulation", "fig": ""}, {"q": "When installing terminal lugs, the maximum permissible lugs on any one stud is", "options": ["three lugs plus a common bus bar", "only one terminal lug may be installed on any one stud", "four lugs, plus a common bus bar"], "correct": 0, "short": "Four lugs OR three lugs + bus bar — never four + bus bar.", "expl": "AC 43.13's rule: no more than four terminal lugs — or three terminal lugs AND a bus bar — on any one stud, because the bus bar counts toward the total. Four lugs plus a bus bar is expressly not permitted, which is exactly the trap the wrong option sets.", "cite": "AC 43.13-1B, Ch. 11, ¶11-174c (terminal lugs per stud)", "topic": "Terminals & Connections", "fig": ""}, {"q": "The purpose of the Squat Switch in a landing gear circuit is used to determine", "options": ["if the aircraft is on the ground or in flight", "the MTOW of the aircraft", "the wheel speed transducer has enabled the anti-skid system"], "correct": 0, "short": "Squat switch = weight-on-wheels sensor.", "expl": "The squat switch closes under the strut's compression with weight on wheels, telling aircraft systems ground-vs-flight — the safety logic behind gear retraction lockout and more.", "cite": "FAA-H-8083-31B, Ch. 9 (squat switch)", "topic": "Aircraft Circuits", "fig": ""}, {"q": "The Altitude Encoder convert the aircraft's pressure altitude to a code and send to ATC from the transponder when selected to ALT. This system works between the altitudes of", "options": ["1200 feet MSL-126,700 feet MSL", "1000 feet MSL- 40,000 feet MSL", "1200 feet MSL- 100,000 feet MSL"], "correct": 0, "short": "Encoder range: (minus)1,200 to 126,700 ft.", "expl": "The altitude encoding standard spans minus 1,200 feet to 126,700 feet — the form drops the minus sign, but the 1200/126,700 pairing is the real range.", "cite": "FAA-H-8083-31B, Ch. 11 (encoding altimeter)", "topic": "Navigation", "fig": ""}, {"q": "(Refer to Figure 9-104, split-bus power distribution) What provides power to DC BUS 1 or DC BUS 2 during normal operation?", "options": ["TR (Transformer Rectifier Unit)", "Battery #1 or #2", "Static Inverter"], "correct": 0, "short": "In normal ops the TRs feed the DC buses.", "expl": "In the split-bus system the DC buses are fed by the transformer rectifier units, which step the AC generators' output down and rectify it to DC. Batteries are the standby source and the static inverter goes the other way (DC to AC for essentials).", "cite": "FAA-H-8083-31B, Ch. 9 (split-bus distribution / TRUs)", "topic": "AC Power", "fig": ""}, {"q": "The minimum radius of bends in wire groups or bundles must not be less than ______ the outside diameter of the largest wire or cable.", "options": ["25 times", "10 times", "5 times"], "correct": 1, "short": "Bend radius ≥ 10 × the largest wire's OD.", "expl": "Bundle bends are held to at least ten times the outside diameter of the largest wire or cable in the group, protecting conductors and insulation at the turn.", "cite": "AC 43.13-1B, Ch. 11 (wire bend radius)", "topic": "Wiring Installation", "fig": ""}, {"q": "How is bare copper wire protected from developing a surface oxide coating?", "options": ["coated with tin, silver, or nickel", "insulated with Tefzel, Teflon/Kapton, or PTFE/Polyimide/PTFE", "when properly connected and insulated the conductor material will not oxidize,  per MIL-SPEC-6896"], "correct": 0, "short": "Plating (tin/silver/nickel) stops copper oxide.", "expl": "Copper strands are plated with tin, silver, or nickel to keep the high-resistance oxide layer from forming and to keep terminations solderable. Insulation types don't stop oxidation at exposed ends, and 'MIL-SPEC-6896' is a decoy.", "cite": "FAA-H-8083-31B, Ch. 9 (conductor plating)", "topic": "Wire & Insulation", "fig": ""}, {"q": "What system calculates the distance from the aircraft to the ground station?", "options": ["DME", "ADI", "RMI"], "correct": 0, "short": "Distance = DME.", "expl": "Distance Measuring Equipment times its interrogation/reply exchange with the ground transponder and converts it to slant-range miles. The ADI shows attitude and the RMI shows bearings.", "cite": "FAA-H-8083-31B, Ch. 11 (DME)", "topic": "Navigation", "fig": ""}, {"q": "What are the primary communication radios used in aviation?", "options": ["VHF", "UHF", "HF"], "correct": 0, "short": "Aviation talks on VHF.", "expl": "Civil aviation's primary communication band is VHF (118-136.975 MHz) — clear, reliable, line-of-sight. HF backs up oceanic crossings and UHF comm is chiefly military.", "cite": "FAA-H-8083-31B, Ch. 11 (VHF communication)", "topic": "Radio Communication", "fig": ""}, {"q": "The largest single positive value for alternating current is called", "options": ["peak value at 90 degrees", "Instantaneous Value", "negative peak value at 270 degrees"], "correct": 0, "short": "The positive peak sits at 90°.", "expl": "The largest positive value of the AC wave is the peak value, reached at 90° of rotation. The 270° point is the NEGATIVE peak, and 'instantaneous value' is any point on the wave, not the biggest one.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-50 (peak values)", "topic": "AC Theory", "fig": ""}, {"q": "What atomic element contains four electrons in its valence shell, and combines readily with itself to form a lattice?", "options": ["Bromine", "Silicon", "Copper"], "correct": 1, "short": "Four valence electrons + lattice = silicon.", "expl": "Silicon carries four valence electrons and bonds readily with itself into the crystal lattice that semiconductor manufacture starts from. Copper has one valence electron (that's why it conducts); bromine is a halogen with seven.", "cite": "FAA-H-8083-31B, Ch. 11 (semiconductor materials)", "topic": "Solid State", "fig": ""}, {"q": "How many wire splices are allowed between two connectors?", "options": ["no more than one splice in any one wire segment", "the maximum number of wire splices allowed is 3", "there is no limit to wire splicing on aircraft, as long as environmental splices are used"], "correct": 0, "short": "One splice per wire segment, max.", "expl": "Between two connectors (one wire segment), the limit is a single splice. Splices add resistance and failure points — beyond one, replace the wire.", "cite": "AC 43.13-1B, Ch. 11 (splice limits)", "topic": "Wiring Installation", "fig": ""}, {"q": "Grounding is defined as", "options": ["the process of electrically connecting conductive objects to either a conductive structure or return path", "providing an unintentional low resistance path, where full system voltage comes in contact with the return path for current", "when a mechanic finds a fault on the aircraft, and the airplane is no longer airworthy"], "correct": 0, "short": "Grounding = intentional connection to structure/return path.", "expl": "Grounding is the deliberate electrical connection of conductive objects to structure or another return path. The 'unintentional low resistance path' option describes a short circuit — the fault grounding protects against.", "cite": "AC 43.13-1B, Ch. 11 (grounding definition)", "topic": "Bonding & Grounding", "fig": ""}, {"q": "Dry charged cell lead-acid batteries, are also know as", "options": ["flooded or wet batteries", "Ni-Cad Batteries", "Lead Acid Batteries"], "correct": 0, "short": "Dry charged lead-acid = flooded/wet cell.", "expl": "Straight from the handbook: dry charged cell lead-acid batteries are 'also known as flooded or wet cell batteries' — shipped dry, activated with electrolyte at installation.", "cite": "FAA-H-8083-31B, Ch. 9 (dry charged cell lead-acid batteries)", "topic": "Batteries", "fig": ""}, {"q": "What unit is found in almost all voltage regulation circuitry of a GCU", "options": ["power rectifier diode", "carbon pile regulator", "zener diode"], "correct": 2, "short": "The zener is the GCU's voltage reference.", "expl": "The zener diode's precise reverse-breakdown voltage gives the GCU its regulation reference — nearly every solid-state regulator is built around one. The carbon pile is the electromechanical ancestor it replaced.", "cite": "FAA-H-8083-30B, Ch. 12 (zener diodes)", "topic": "Generator Controls", "fig": ""}, {"q": "Why are clamps installed with their attachment hardware positioned above them", "options": ["they are unlikely to rotate as the result of wire bundle weight or wire bundle chafing", "this practice has been adopted to reduce the need for aging wire inspections, as it keeps wiring secured", "there is no requirement for installation of clamp hardware. Nylock (self locking) nuts are used and maintain the integrity of the clamp mounting."], "correct": 0, "short": "Hardware on top keeps the clamp from rotating under load.", "expl": "With the bolt above the clamp, the bundle's weight can't lever the clamp into rotating and sagging — the loop stays put instead of slipping and chafing. It's a mechanical-orientation rule, not an inspection-relief scheme.", "cite": "AC 43.13-1B, Ch. 11 (clamp installation)", "topic": "Wiring Installation", "fig": ""}, {"q": "When coupled with GPS, what system creates one of the most accurate navigation systems available", "options": ["Inertial Reference System IRS", "Flight Management System FMS", "Instrument Landing System ILS"], "correct": 0, "short": "GPS + IRS: satellite accuracy + inertial independence.", "expl": "Blending GPS with the inertial reference system marries GPS's absolute accuracy to the IRS's drift-free-short-term, jam-proof dead reckoning — one of the most accurate and robust navigation solutions flying. The FMS is the manager that USES those sensors.", "cite": "FAA-H-8083-31B, Ch. 11 (GPS/inertial integration)", "topic": "Navigation", "fig": ""}, {"q": "The value at any instant in time along the AC wave", "options": ["Peak Value", "Instantaneous Value", "RMS,.707, Effective Value, the point where AC/DC resistors dissipate heat equally"], "correct": 1, "short": "Any moment on the wave = instantaneous value.", "expl": "The value at any single instant along the AC wave is the instantaneous value; the peak is merely the largest of them, and RMS is a computed equivalent, not a point on the wave.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-49 (instantaneous values)", "topic": "AC Theory", "fig": ""}, {"q": "What system is used to increase the accuracy of GPS for aircraft navigation, and is known to reduce position errors to 1-3 meters laterally and vertically?", "options": ["Wide Area Augmentation System (WAAS)", "GNSS NAV/ GPS Position", "Enhanced Ground Proximately Warning System (EGPWS)"], "correct": 0, "short": "WAAS tightens GPS to the 1-3 meter class.", "expl": "WAAS broadcasts GPS corrections through geostationary satellites, cutting position error to roughly 1-3 meters — approach-grade accuracy. EGPWS is a terrain warning system, a different animal.", "cite": "FAA-H-8083-31B, Ch. 11 (WAAS)", "topic": "Navigation", "fig": ""}, {"q": "The relationship between two sine waves is defined as", "options": ["phase relationship", "a period is once the sine wave has completed one full cycle", "wavelength frequency"], "correct": 0, "short": "Two sine waves compare by phase.", "expl": "The timing relationship between two sine waves is their phase relationship — in phase, leading, or lagging. The period definition is true of ONE wave; it doesn't relate two.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-48 (phase)", "topic": "AC Theory", "fig": ""}, {"q": "Of the many types of connectors, backshell adapters designed for shield termination are used for ______ protection", "options": ["ESD/EMF", "CSD/GCU", "EMI/RFI"], "correct": 2, "short": "Shield-terminating backshells = EMI/RFI protection.", "expl": "Backshell adapters that terminate cable shields exist to carry interference currents to ground at the connector — electromagnetic and radio-frequency interference (EMI/RFI) protection. 'CSD/GCU' are powerplant electrical boxes, pure decoys here.", "cite": "AC 43.13-1B, Ch. 11 (shield termination at connectors)", "topic": "Coax & Shielding", "fig": ""}, {"q": "What is the process of equalizing alternator outputs on twin engine aircraft?", "options": ["Compounding Alternator Output", "Rectified AC output/ Inverted DC output", "Paralleling"], "correct": 2, "short": "Load-sharing between alternators = paralleling.", "expl": "Paralleling ties both alternators to the bus and equalizes their outputs so each carries its share. The other options are rectifier/inverter word salad.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-165 (paralleling)", "topic": "AC Power", "fig": ""}, {"q": "What devices manipulate electricity for the transmission of useful information through the atmosphere or space?", "options": ["Radio Transmitters and Receivers", "AC Rectifiers/DC Inverters", "(SDAC) Systems Digital Analog Converter"], "correct": 0, "short": "Transmitters and receivers turn electricity into communication.", "expl": "Radio transmitters and receivers are the devices that shape electrical energy into modulated waves and recover the intelligence at the far end. Rectifiers and inverters convert power, not information.", "cite": "FAA-H-8083-31B, Ch. 11 (radio communication fundamentals)", "topic": "Radio Theory", "fig": ""}, {"q": "When using the double cord lacing  method on wire bundles 1 inch in diameter or larger, the starting knot should be a", "options": ["bowline-on-a-bight", "double half hitch with waxed lacing cord", "clove hitch secured by a double-looped overhand knot"], "correct": 0, "short": "Double-cord lacing starts with a bowline-on-a-bight.", "expl": "For bundles an inch and larger, double-cord lacing begins with a bowline-on-a-bight as the starting knot — the AC says so by name. The clove-hitch start belongs to the SINGLE-cord method; that's the swap the distractor bets on.", "cite": "AC 43.13-1B, Ch. 11 (double cord lacing)", "topic": "Wiring Installation", "fig": ""}, {"q": "The process of applying a metallic covering to wiring and equipment is use to", "options": ["shield the wiring and equipment to eliminate electromagnetic interference", "bond the equipment and wiring to aircraft for a conductive path", "a metallic covering of wiring has been eliminated per MIL-W-1836, with the PTFE/Polyimide/Teflon insulating materials"], "correct": 0, "short": "A metallic covering over wiring = shielding against EMI.", "expl": "Wrapping wiring or equipment in a grounded metallic covering is shielding — it intercepts electromagnetic interference in both directions. Bonding is a different process (joining structures electrically), and the MIL-W-1836 option is invented.", "cite": "AC 43.13-1B, Ch. 11 (shielding)", "topic": "Coax & Shielding", "fig": ""}, {"q": "Which wire type can be severely damaged on the inside without any evidence of damage on the outside?", "options": ["coaxial cable", "ETOPS wiring", "PTFE wiring"], "correct": 0, "short": "Coax hides internal damage.", "expl": "Kink or crush coax and the dielectric and center conductor can be ruined — wrecking its impedance — while the jacket looks untouched. That hidden-damage trait is why coax gets gentle bends and careful clamping. 'ETOPS wiring' isn't a wire type.", "cite": "FAA-H-8083-31B, Ch. 11 (coax handling)", "topic": "Coax & Shielding", "fig": ""}, {"q": "Which manual diagram will typically identify each component within a system by its part number, including any changes that were made?", "options": ["Block Diagram", "Wiring Diagram", "Schematic Diagram"], "correct": 1, "short": "Part numbers and revisions live on the wiring diagram.", "expl": "The wiring diagram documents the actual installation — every device and wire identified, part numbers and incorporated changes included. Schematics show principle of operation; block diagrams show organization.", "cite": "FAA-H-8083-30B, Ch. 4 (wiring diagrams)", "topic": "Diagrams", "fig": ""}, {"q": "What component is used to ensure the alternator rotates at the correct speed to keep 400 Hz frequency", "options": ["constant-speed drive", "3 Phase Delta or Wye connection", "Generator Control Unit (GCU)"], "correct": 0, "short": "The CSD locks the speed that locks the frequency.", "expl": "Frequency tracks rotational speed, so the constant-speed drive converts variable engine speed into the fixed shaft speed that keeps the alternator at 400 Hz. Delta/Wye describes windings; the GCU regulates voltage.", "cite": "FAA-H-8083-30B, Ch. 12 (alternator constant speed drive)", "topic": "AC Power / CSD", "fig": ""}, {"q": "The rotation of generators is termed either clockwise or counterclockwise, as viewed from", "options": ["either end of unit and stated on manufactures data plate", "the driven end", "the drive direction has no effect on generator output"], "correct": 1, "short": "Rotation is named at the driven end.", "expl": "Convention: call the rotation as seen looking at the driven (shaft) end. Rotation direction absolutely matters on brushed machines — brush rake and residual polarity are built for one direction.", "cite": "AIM AMTBLK06 deck (rotation-naming convention)", "topic": "DC Generators", "fig": ""}, {"q": "What is an independent battery powered transmitter activated by the excessive G-forces experienced during a crash?", "options": ["Flight/Voice Recorder", "Emergency Locator Transmitter", "Flight Recorder"], "correct": 1, "short": "G-switch + own battery = the ELT.", "expl": "The ELT is the independent, battery-powered transmitter whose G-switch fires on crash forces, broadcasting on 121.5/406 MHz so searchers can find the site. Recorders capture data; they don't transmit distress signals.", "cite": "FAA-H-8083-31B, Ch. 11 (ELT) / 14 CFR §91.207", "topic": "ELT", "fig": ""}, {"q": "Two electromagnetic switches are", "options": ["Micro Switch/Limit Switch", "Relay/Micro Switch", "Solenoid/Relay"], "correct": 2, "short": "The electromagnetic pair: solenoid and relay.", "expl": "Solenoids and relays switch by electromagnet coil — solenoid for heavy current, relay for lighter control loads. Micro and limit switches are mechanically actuated.", "cite": "FAA-H-8083-30B, Ch. 12 (solenoids and relays)", "topic": "Switches & Relays", "fig": ""}, {"q": "What component in the aircraft will assist ATC with the identification and location during flight?", "options": ["Emergency Locator Beacon", "Marker Beacon", "Radar Beacon Transponder"], "correct": 2, "short": "The transponder tags you on ATC's scope.", "expl": "The radar beacon transponder answers ground interrogations with a coded reply, giving ATC identity and position. ELTs are for crashes and marker beacons mark ILS range points.", "cite": "FAA-H-8083-31B, Ch. 11 (transponders)", "topic": "Navigation", "fig": ""}, {"q": "What is done with wires the perform the same function in redundant systems?", "options": ["the wires must be routed through separate connectors", "the wires are routed together within the same connector", "the wires must be routed on separate sides of the aircraft, and away from EMI/RFI interference"], "correct": 0, "short": "Redundant systems: separate bundles, separate connectors.", "expl": "Redundant-system wiring runs in separate bundles and through separate connectors so a single damaged connector can't kill both the system and its backup.", "cite": "AC 43.13-1B, Ch. 11 (redundant system separation)", "topic": "Wiring Installation", "fig": ""}, {"q": "What diode is used in voltage regulation", "options": ["reverse current relay", "strength of magnetic field", "zener diode"], "correct": 2, "short": "Voltage regulation's diode = the zener.", "expl": "The zener diode's fixed breakdown voltage makes it THE reference component in voltage-regulation circuitry. A reverse-current relay is a battery-protection device, not a diode.", "cite": "FAA-H-8083-30B, Ch. 12 (zener diodes)", "topic": "Generator Controls", "fig": ""}, {"q": "The BPCU uses contactors for connections to various circuits, these contactors are called", "options": ["BTB bus tie breakers", "GCU generator control unit", "TBC tie bus controller"], "correct": 0, "short": "The BPCU throws the BTBs.", "expl": "The bus power control unit reconfigures distribution by driving bus tie breakers — BTBs — the heavy contactors joining and isolating the buses. 'TBC' is the scrambled decoy.", "cite": "FAA-H-8083-31B, Ch. 9 (BPCU/BTB)", "topic": "AC Power", "fig": ""}, {"q": "On large multiengine aircraft the AC generator (sometimes called an alternator) produces", "options": ["115-volt AC at 400 Hz", "115 VDC through transformer-rectifier", "three-phase 115-volt AC at 400Hz"], "correct": 2, "short": "Large aircraft standard: 3-phase, 115 V, 400 Hz.", "expl": "The large-aircraft standard is three-phase 115-volt AC at 400 Hz — three phases move the power efficiently and 400 Hz keeps the machines small and light. Single-phase 115 V misses the three-phase heart of it, and '115 VDC' mixes up the TRU's job.", "cite": "FAA-H-8083-31B, Ch. 9 (large aircraft AC generation)", "topic": "AC Power", "fig": ""}, {"q": "The effective value is equal to ______ times the peak value.", "options": [".707", "1.41", "115 volts"], "correct": 0, "short": "RMS = 0.707 × peak.", "expl": "The effective (RMS) value is 0.707 times the peak. The 1.41 factor goes the other direction (peak = 1.41 × RMS), and '115 volts' is a bus voltage, not a conversion factor.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-50 (effective/RMS value)", "topic": "AC Theory", "fig": ""}, {"q": "Reverse Current sensing indicates", "options": ["a parallel or shunt generator has been installed incorrectly", "current is flowing to the generator not from the generator", "generator leads have been crossed during installation and should be reversed"], "correct": 1, "short": "Reverse current = the battery driving the generator.", "expl": "Reverse-current sensing detects current flowing INTO the generator — the battery back-feeding a dead or low-output machine and motoring it. That's the condition the reverse-current cutout opens to stop; it has nothing to do with crossed installation leads.", "cite": "FAA-H-8083-30B, Ch. 12 (reverse-current cutout)", "topic": "Generator Controls", "fig": ""}, {"q": "What is used on most multi-engine, high performance turbine powered aircraft and transport category aircraft?", "options": ["Generated power systems", "Alternating current electrical systems", "DC power systems"], "correct": 1, "short": "Big turbine aircraft are AC aircraft.", "expl": "Transport-category and high-performance multiengine turbine aircraft run on AC electrical systems — 115 V three-phase 400 Hz — for the power-to-weight advantage. DC rules the small-aircraft world.", "cite": "FAA-H-8083-31B, Ch. 9 (large aircraft AC systems)", "topic": "AC Power", "fig": ""}, {"q": "What must not be used where their failure could result in interference with movable controls, wire bundle contact with movable equipment", "options": ["plastic cable ties or plastic clamps", "metal clamps or cable ties", "Zip Ties or Lacing Cord"], "correct": 0, "short": "No plastic supports near movable controls.", "expl": "Where a failed support could drop wiring into flight controls or moving equipment, plastic cable ties and clamps are banned — plastic embrittles and lets go. Those runs get cushioned METAL clamps.", "cite": "AC 43.13-1B, Ch. 11 (clamping near movable controls)", "topic": "Wiring Installation", "fig": ""}, {"q": "The final radio transmitters used in the ILS are ______, and will illuminate 3 lights in the cockpit", "options": ["Radio Altimeter for rising runway indication", "landing gear indication for left, right, and nose gear green lights", "Marker Beacons"], "correct": 2, "short": "Marker beacons light the blue/amber/white lamps.", "expl": "The ILS's marker beacons — outer, middle, inner — fire the three cockpit lights (blue, amber, white) as the aircraft passes each range checkpoint. Three green lights are the landing GEAR indication, a favorite trap.", "cite": "FAA-H-8083-31B, Ch. 11 (marker beacons)", "topic": "Navigation", "fig": ""}, {"q": "How does the BPCU monitor the complete electrical system?", "options": ["with remote current sensors known as current transformers", "with current limiters, and zener diodes", "by controlling the GCU"], "correct": 0, "short": "The BPCU watches the system through current transformers.", "expl": "The BPCU keeps track of the whole AC system through remote current sensors — current transformers clamped around the feeders reporting every load and fault. Limiters and zeners are protection/reference parts, not the monitoring network.", "cite": "FAA-H-8083-31B, Ch. 9 (BPCU monitoring/current transformers)", "topic": "AC Power", "fig": ""}, {"q": "Much of aviation communication and navigation is accomplished through the use of", "options": ["Radio Waves", "AC and DC generated electrical supply", "A rectifier to convert AC to DC electrical power"], "correct": 0, "short": "Comm and nav ride on radio waves.", "expl": "From VHF voice to VOR, ILS, GPS, and transponders — aviation communication and navigation happen by radio waves. Power supplies and rectifiers just keep the boxes running.", "cite": "FAA-H-8083-31B, Ch. 11 (radio fundamentals)", "topic": "Radio Theory", "fig": ""}, {"q": "Where is the commutator located", "options": ["at the end of an armature", "in the field windings", "before the slip rings and adjacent to the insulating material"], "correct": 0, "short": "Commutator: on the armature's end, under the brushes.", "expl": "The commutator is mounted at the end of the armature where the brushes ride it. Field windings are on the frame, and a DC generator has no slip rings at all.", "cite": "FAA-H-8083-30B, Ch. 12, Page 12-133 (commutator)", "topic": "DC Generators", "fig": ""}, {"q": "Modern navigation avionics have enhanced interface with the pilot, the term “glass cockpit” refers to", "options": ["analog indicators", "a fully visual and well lit navigation system", "a digital data display system"], "correct": 2, "short": "Glass cockpit = digital displays replacing round dials.", "expl": "'Glass cockpit' means the flight deck's information lives on digital data displays — PFD/ND/EICAS screens — instead of banks of analog gauges. It's about the data presentation, not the cabin lighting.", "cite": "FAA-H-8083-31B, Ch. 10 (electronic flight displays)", "topic": "Instruments", "fig": ""}, {"q": "What must be done to Silicon to make it a semiconductor?", "options": ["germanium", "doping", "covalent bond"], "correct": 1, "short": "Pure silicon is an insulator — doping makes it semiconduct.", "expl": "Silicon on its own is an insulator; mixing in trace elements with five (or three) valence electrons — doping — creates the free carriers that make it semiconductive. Germanium is another semiconductor material, not a process.", "cite": "FAA-H-8083-31B, Ch. 11 (semiconductors/doping)", "topic": "Solid State", "fig": ""}, {"q": "What is the only way to determine the state of charge of a NiCd battery?", "options": ["with constant current method, fully charging battery and verifying the level of electrolyte weight battery after charging", "with a hydrometer to a specific gravity of 1.275-1.300", "by a measured discharge with a NiCd battery charger following the manufacturer's instructions"], "correct": 2, "short": "NiCd charge state: measured discharge only.", "expl": "A NiCd's electrolyte specific gravity doesn't change with charge, so the hydrometer (the lead-acid method, 1.275-1.300) tells you nothing. The only way is a measured discharge per the manufacturer's procedure.", "cite": "FAA-H-8083-31B, Ch. 9 (NiCd servicing)", "topic": "Batteries", "fig": ""}, {"q": "A current limiting device that protects conductors is called", "options": ["current limiter/ reverse current cutout relay", "automatic circuit breaker/ voltage regulator", "circuit breaker/ fuse"], "correct": 2, "short": "Conductors are protected by breakers and fuses.", "expl": "Circuit breakers and fuses open before the WIRE overheats — conductor protection, full stop. Reverse-current cutouts protect the battery from the generator; regulators control voltage.", "cite": "FAA-H-8083-31B, Ch. 9 (circuit protection)", "topic": "Circuit Protection", "fig": ""}, {"q": "What Transponder mode type is used in onboard collision avoidance systems?", "options": ["Mode S", "Mode T", "Mode ACS"], "correct": 0, "short": "TCAS talks Mode S.", "expl": "Mode S ('select') transponders carry the discrete addressing and datalink that TCAS uses to interrogate specific aircraft and coordinate resolution advisories. 'Mode T' and 'Mode ACS' don't exist.", "cite": "FAA-H-8083-31B, Ch. 11 (Mode S/TCAS)", "topic": "Avionics Systems", "fig": ""}, {"q": "Whenever troubleshooting aircraft electrical circuits, it is always valuable to consider Ohm's Law", "options": ["remembering that a low resistance means increased current and can explain why circuit breakers pop or fuses blow", "Ohm's law is of little use in troubleshooting, always consult the manufactures drawings.", "The law was named after German Physicist George Simon Ohm"], "correct": 0, "short": "Low resistance → high current → popped breakers. That's Ohm working.", "expl": "The troubleshooting payoff of Ohm's law: a LOW resistance (a short) drives current UP, which is exactly why breakers pop and fuses blow. The history-of-Ohm option is true trivia but useless at the airplane — the classic 'true but not the answer' trap.", "cite": "FAA-H-8083-30B, Ch. 12 (Ohm's law applied)", "topic": "Ohm's Law", "fig": ""}, {"q": "A spring-loaded, momentary contact switch is called", "options": ["Lighted Pushbutton Switch", "Relay", "Limit Switch"], "correct": 0, "short": "Momentary spring-return = the pushbutton family.", "expl": "Pushbutton switches (plain or lighted) are the spring-loaded, momentary-contact type — press to make, release to break. Relays are electromagnetic and limit switches are position-actuated.", "cite": "FAA-H-8083-30B, Ch. 12 (pushbutton switches)", "topic": "Switches & Relays", "fig": ""}, {"q": "Current limiters are high amperage fuses that isolate buses when", "options": ["the battery amp hour rating is insufficient during starter operation", "a short circuit occurs", "alternator output has exceeded the specifications"], "correct": 1, "short": "Current limiters open on bus short circuits.", "expl": "Current limiters are slow-blow, high-amperage fuses in the distribution feeders; a short circuit's massive current melts the limiter and the faulted bus drops off, saving the rest of the system.", "cite": "FAA-H-8083-31B, Ch. 9 (current limiters)", "topic": "Circuit Protection", "fig": ""}, {"q": "What two line replaceable units are used to control electrical power on large aircraft?", "options": ["main alternator/apu alternator", "GCU/BPCU", "static inverter/transformer rectifier"], "correct": 1, "short": "The control brains: GCU + BPCU.", "expl": "Electrical power CONTROL on large aircraft lives in two LRUs: the generator control unit (per-generator regulation and protection) and the bus power control unit (system-level bus switching). Inverters/TRUs and the alternators themselves are power hardware, not the controllers.", "cite": "FAA-H-8083-31B, Ch. 9 (GCU and BPCU)", "topic": "AC Power", "fig": ""}, {"q": "What term is often used when describing a magnetically operated switch?", "options": ["contactor", "DPDT", "flux valve"], "correct": 0, "short": "A heavy magnetically-operated switch = a contactor.", "expl": "Magnetically operated switches — solenoids and relays handling power circuits — are commonly called contactors (think battery contactor, bus tie contactor). DPDT describes pole/throw count, and the flux valve is a compass sensor.", "cite": "FAA-H-8083-31B, Ch. 9 (contactors)", "topic": "Switches & Relays", "fig": ""}];
+const DRILL = [];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
- "built": "2026-09-21",
- "total": 3745,
+ "built": "2026-09-22",
+ "total": 3783,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -53,7 +53,8 @@
   "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas": 10,
   "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT": 20,
   "Block 6 · Daily Quiz 17 — Systems Acronyms": 26,
-  "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)": 100,
+  "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)": 72,
+  "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)": 66,
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "Block 6 · Systems Abbreviations & Acronyms": 159,
   "AET Academy M1 — DC Fundamentals": 0,
@@ -55890,20 +55891,573 @@
    ]
   },
   {
-   "id": "09182b6e55",
-   "q": "Which manual diagram will typically identify each component within a system by its part number, including any changes that were made?",
+   "id": "d1b677b272",
+   "q": "Concerning radio navigation, what is one of the oldest and most useful navigational aids?",
    "options": [
-    "Schematic Diagram",
-    "Wiring Diagram",
-    "Block Diagram"
+    "VOR",
+    "The Wet Compass",
+    "VHF"
    ],
-   "correct": 1,
-   "short": "Wiring diagrams carry part numbers and revisions.",
-   "expl": "The wiring diagram shows the actual wiring with every device and wire identified — including component part numbers and any changes incorporated. Block and schematic diagrams show organization and principle of operation, not part-number detail.",
-   "cite": "FAA-H-8083-30B, Ch. 4 (wiring diagrams)",
-   "topic": "Diagrams",
+   "correct": 0,
+   "short": "The handbook's phrase points at the VOR.",
+   "expl": "The handbook calls the VOR 'one of the oldest and most useful navigational aids' — the VHF omnidirectional range that still defines airways. 'VHF' alone is just a band, and the wet compass isn't a radio aid.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (VOR)",
+   "topic": "Navigation",
    "block": "Block 6",
    "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "1952776236",
+   "q": "When VHF communication transceivers are coupled with VOR receivers, they are called",
+   "options": [
+    "NAV/COM radios",
+    "VHF radios cannot be coupled with VOR receivers, one is for voice and the other is navigation only",
+    "VOR/VHF transceiver"
+   ],
+   "correct": 0,
+   "short": "Comm + VOR nav in one unit = the NAV/COM.",
+   "expl": "Pairing the VHF comm transceiver with the VOR navigation receiver gives the classic NAV/COM radio — both functions share the VHF band, one box, one frequency window each side.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (NAV/COM radios)",
+   "topic": "Radio Communication",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "e628efb85f",
+   "q": "Although very similar the primary difference between a solenoid and relay is",
+   "options": [
+    "a relay is controlled with voltage/ a solenoid is controlled with current",
+    "a solenoid is used for switching high current circuits/ a relay is used to control lower current circuits",
+    "a solenoid is voltage controlled/ a relay is current controlled"
+   ],
+   "correct": 1,
+   "short": "Solenoid = heavy current; relay = lighter loads.",
+   "expl": "Both are electromagnet-operated switches; the working difference is duty. The solenoid's movable core drives beefy contacts for high-current jobs (starters, battery contactors) while the relay's fixed-core/hinged-armature build handles lower-current control circuits. Neither is defined by voltage-vs-current control — both coils just need current.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (solenoids and relays)",
+   "topic": "Switches & Relays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "abe47c30e5",
+   "q": "When testing Bonds or Grounds, the resistance should not exceed",
+   "options": [
+    ".003 OHMS",
+    "3.0 OHMS",
+    "30 OHMS"
+   ],
+   "correct": 0,
+   "short": "Bond test limit: three thousandths of an ohm.",
+   "expl": "A proper bond or ground connection tests at no more than .003 ohm (3 milliohms) — a nearly perfect metallic path. Whole ohms of resistance in a bond would defeat its purpose of equalizing potential and carrying fault current.",
+   "cite": "AC 43.13-1B, Ch. 11 (bonding jumper resistance ≤ .003 ohm)",
+   "topic": "Bonding & Grounding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "356c40e833",
+   "q": "How does the Inertial Navigation system (INS)/ Inertial Reference System (IRS) determine the aircraft location?",
+   "options": [
+    "through calculations based on the forces experienced by INS accelerometers",
+    "with updates from the INS/IRS radio transceiver",
+    "from the GPS input"
+   ],
+   "correct": 0,
+   "short": "INS = self-contained dead reckoning from accelerometers.",
+   "expl": "The INS/IRS is entirely self-contained: gyros stabilize a reference and accelerometers measure every force the aircraft experiences; integrating those accelerations from a known start yields velocity and position — no radio, no GPS required. That independence is the system's whole point.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (inertial navigation)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "a0590ec455",
+   "q": "Ohm's Law States",
+   "options": [
+    "The current through a conductor is directly proportional to the voltage applied and inversely proportional  to the resistance of a conductor.",
+    "The law of electromagnetic induction is proportional to the rate of change to the lines of Flux",
+    "Ohms law states 1 henry equals 1volt when current changes at 1 amp per second."
+   ],
+   "correct": 0,
+   "short": "I = E ÷ R.",
+   "expl": "Ohm's law ties current to voltage and resistance: more volts, more current; more ohms, less current. The flux statement is Faraday's induction law and the henry definition describes the unit of inductance — real facts wearing the wrong name.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-18 (Ohm's law)",
+   "topic": "Ohm's Law",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "01eb213426",
+   "q": "What is indicated by the Greek letter lambda?",
+   "options": [
+    "Wavelength",
+    "Period",
+    "Frequency"
+   ],
+   "correct": 0,
+   "short": "λ = wavelength.",
+   "expl": "Lambda (λ) stands for wavelength — the distance one complete cycle covers. Frequency gets f (measured in hertz), and the period is T.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-48 (wavelength)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "1ceea865ff",
+   "q": "DC alternators contain two major components",
+   "options": [
+    "armature winding/ field winding",
+    "armature/ commutator",
+    "commutator/ field winding"
+   ],
+   "correct": 0,
+   "short": "Alternator = armature winding + field winding.",
+   "expl": "The alternator's two working parts: the rotating field winding and the stationary armature winding where output is induced. No commutator anywhere — diodes do the rectifying.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (alternators)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "dd2769b9be",
+   "q": "What circuit change AC voltage into DC voltage and are one of the most commonly used in aircraft electronics?",
+   "options": [
+    "Rectifier circuits",
+    "Complex circuits",
+    "Series DC circuits"
+   ],
+   "correct": 0,
+   "short": "AC→DC = rectifier circuits.",
+   "expl": "Rectifier circuits convert AC into DC and sit inside nearly every piece of aircraft electronics — from alternator diode packs to avionics power supplies. 'Complex circuits' and 'series DC circuits' don't describe a conversion function.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (rectifiers)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "1af138cdd8",
+   "q": "Commercial and military aircraft use wire that is manufactured under",
+   "options": [
+    "MIL-W-22579 specifications",
+    "MIL-SPEC-22579",
+    "MIL-M-22759"
+   ],
+   "correct": 0,
+   "short": "The real spec is MIL-W-22759 (form typo, both versions).",
+   "expl": "Aircraft wire is built to MIL-W-22759 (today SAE AS22759). This form repeats Final A's misprint: the keyed answer has the right MIL-W prefix with transposed digits, while another option has the right digits behind the wrong MIL-M prefix. Pick the MIL-W option — and memorize the true number, 22759.",
+   "cite": "AC 43.13-1B, Ch. 11 (M22759 wire tables) — form typo flagged",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "26dbc33660",
+   "q": "The process of producing an EMF by moving a magnetic field in relationship to a conductor",
+   "options": [
+    "electromagnetic induction",
+    "Lens Law",
+    "electromechanical switch"
+   ],
+   "correct": 0,
+   "short": "Field moving past conductor → induced EMF.",
+   "expl": "Relative motion between a magnetic field and a conductor induces an EMF — electromagnetic induction, the principle behind every generator. Lenz's law (misspelled 'Lens' on the form) only gives the induced current's direction.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (electromagnetic induction)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "4404b5016a",
+   "q": "What form is to be completed and returned to the FAA  with an Inspection Authorization when installing new avionics not on the aircraft's approved equipment list?",
+   "options": [
+    "FAA form 337",
+    "FAA form 338",
+    "FAA form 121.90C"
+   ],
+   "correct": 0,
+   "short": "Major alteration paperwork = FAA Form 337.",
+   "expl": "Installing avionics not on the approved equipment list is a major alteration, documented on FAA Form 337 with the approval of an IA. Forms '338' and '121.90C' don't exist — 337 is the number to know cold for the written.",
+   "cite": "14 CFR Part 43, Appendix B (Form 337)",
+   "topic": "Regulations",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "88c0bf8743",
+   "q": "What produces electricity using two different metals in a chemical solution?",
+   "options": [
+    "primary battery",
+    "thermoelectric effect",
+    "silicone and germanium"
+   ],
+   "correct": 0,
+   "short": "Two dissimilar metals + electrolyte = a primary cell.",
+   "expl": "A primary battery (cell) makes electricity chemically: two dissimilar metals immersed in an electrolyte solution. The thermoelectric effect needs heat on a metal junction, and silicon/germanium are semiconductor materials, not cells.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (primary cells)",
+   "topic": "Batteries",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "1c73014e7b",
+   "q": "What removes gasses and acid fumes from the battery in order to reduce fire hazards or damage to airframe parts?",
+   "options": [
+    "Boric Acid or Sodium Bicarbonate",
+    "Ram air effect to the battery compartment siphons the battery gasses overboard",
+    "Battery Ventilating systems"
+   ],
+   "correct": 2,
+   "short": "Vent systems carry battery gasses overboard.",
+   "expl": "Battery ventilating systems remove hydrogen and acid fumes from the compartment and dump them overboard. Bicarbonate/boric acid neutralize spills after the fact, and ram air is merely how many vent systems are powered.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (battery ventilating systems)",
+   "topic": "Batteries",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "e7f6bed8d6",
+   "q": "Identification markings on wiring should be placed",
+   "options": [
+    "at each end of the wire and at 15 inch maximum intervals along the length",
+    "With Teflon sleeves and placed along the wiring length not to exceed 3 inches of their termination",
+    "along the wiring and secured with PTFE compatible insulated markings"
+   ],
+   "correct": 0,
+   "short": "Mark at each end + every 15 inches.",
+   "expl": "Wire identification goes at each end of the wire and at intervals of no more than 15 inches along the run — so any visible stretch can be traced. The other options garble the sleeve method into non-rules.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire identification intervals)",
+   "topic": "Wire Identification",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "663143a782",
+   "q": "The generator master switch is used to turn on the generator by",
+   "options": [
+    "controlling field current",
+    "applying power the GCU",
+    "flashing the 3 unit regulator reverse current relay"
+   ],
+   "correct": 0,
+   "short": "Master switch = field circuit gate.",
+   "expl": "The generator master switch brings the generator on line by closing its FIELD circuit — field current lets the machine build voltage. Flashing the field is a shop procedure for lost residual magnetism, not a switch function.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (generator master switch)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "70590ea97e",
+   "q": "A full wave rectifier is known as a",
+   "options": [
+    "Bridge Rectifier",
+    "Stator Rectified Transformer",
+    "Pulse Rectifier"
+   ],
+   "correct": 0,
+   "short": "Full-wave = the four-diode bridge.",
+   "expl": "The bridge rectifier's four diodes steer both halves of the AC wave into DC — the standard full-wave rectifier and the heart of every aircraft alternator's output section.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (rectifiers)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "c39dfe38b2",
+   "q": "The internationally accepted unit for current is the ______ and is equivalent to ______.",
+   "options": [
+    "Amp/ 1 Coulomb",
+    "Watt/ 1 Coulomb",
+    "Amp/Current"
+   ],
+   "correct": 0,
+   "short": "The ampere: one coulomb (per second).",
+   "expl": "Current is measured in amperes, and one amp corresponds to one coulomb of charge (moving past a point each second — the form's wording drops the 'per second,' but the amp/coulomb pairing is the keyed idea). The watt is power, a different quantity entirely.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (units of current)",
+   "topic": "DC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "8b315a952c",
+   "q": "The basic radio wave is known as a carrier wave and does not convey any significant information, how is this wave altered to transmit or receive useful information?",
+   "options": [
+    "Amplitude Modulation/Frequency Modulation",
+    "(SDAC) Systems Digital Analog Converter",
+    "Carrier Wave Digital Amplifier (CWDA)"
+   ],
+   "correct": 0,
+   "short": "Modulation (AM or FM) puts the message on the carrier.",
+   "expl": "Intelligence rides the carrier through modulation — varying its amplitude (AM) or frequency (FM). The 'SDAC' and 'CWDA' boxes are invented.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (modulation)",
+   "topic": "Modulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "8265186f81",
+   "q": "When installing terminal lugs, the maximum permissible lugs on any one stud is",
+   "options": [
+    "three lugs plus a common bus bar",
+    "only one terminal lug may be installed on any one stud",
+    "four lugs, plus a common bus bar"
+   ],
+   "correct": 0,
+   "short": "Four lugs OR three lugs + bus bar — never four + bus bar.",
+   "expl": "AC 43.13's rule: no more than four terminal lugs — or three terminal lugs AND a bus bar — on any one stud, because the bus bar counts toward the total. Four lugs plus a bus bar is expressly not permitted, which is exactly the trap the wrong option sets.",
+   "cite": "AC 43.13-1B, Ch. 11, ¶11-174c (terminal lugs per stud)",
+   "topic": "Terminals & Connections",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "aa78186b3b",
+   "q": "The purpose of the Squat Switch in a landing gear circuit is used to determine",
+   "options": [
+    "if the aircraft is on the ground or in flight",
+    "the MTOW of the aircraft",
+    "the wheel speed transducer has enabled the anti-skid system"
+   ],
+   "correct": 0,
+   "short": "Squat switch = weight-on-wheels sensor.",
+   "expl": "The squat switch closes under the strut's compression with weight on wheels, telling aircraft systems ground-vs-flight — the safety logic behind gear retraction lockout and more.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (squat switch)",
+   "topic": "Aircraft Circuits",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "2dd732380e",
+   "q": "The Altitude Encoder convert the aircraft's pressure altitude to a code and send to ATC from the transponder when selected to ALT. This system works between the altitudes of",
+   "options": [
+    "1200 feet MSL-126,700 feet MSL",
+    "1000 feet MSL- 40,000 feet MSL",
+    "1200 feet MSL- 100,000 feet MSL"
+   ],
+   "correct": 0,
+   "short": "Encoder range: (minus)1,200 to 126,700 ft.",
+   "expl": "The altitude encoding standard spans minus 1,200 feet to 126,700 feet — the form drops the minus sign, but the 1200/126,700 pairing is the real range.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (encoding altimeter)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "5ad7a2c633",
+   "q": "(Refer to Figure 9-104, split-bus power distribution) What provides power to DC BUS 1 or DC BUS 2 during normal operation?",
+   "options": [
+    "TR (Transformer Rectifier Unit)",
+    "Battery #1 or #2",
+    "Static Inverter"
+   ],
+   "correct": 0,
+   "short": "In normal ops the TRs feed the DC buses.",
+   "expl": "In the split-bus system the DC buses are fed by the transformer rectifier units, which step the AC generators' output down and rectify it to DC. Batteries are the standby source and the static inverter goes the other way (DC to AC for essentials).",
+   "cite": "FAA-H-8083-31B, Ch. 9 (split-bus distribution / TRUs)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "6dc26e3e53",
+   "q": "The minimum radius of bends in wire groups or bundles must not be less than ______ the outside diameter of the largest wire or cable.",
+   "options": [
+    "25 times",
+    "10 times",
+    "5 times"
+   ],
+   "correct": 1,
+   "short": "Bend radius ≥ 10 × the largest wire's OD.",
+   "expl": "Bundle bends are held to at least ten times the outside diameter of the largest wire or cable in the group, protecting conductors and insulation at the turn.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire bend radius)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "67a8a31b17",
+   "q": "How is bare copper wire protected from developing a surface oxide coating?",
+   "options": [
+    "coated with tin, silver, or nickel",
+    "insulated with Tefzel, Teflon/Kapton, or PTFE/Polyimide/PTFE",
+    "when properly connected and insulated the conductor material will not oxidize,  per MIL-SPEC-6896"
+   ],
+   "correct": 0,
+   "short": "Plating (tin/silver/nickel) stops copper oxide.",
+   "expl": "Copper strands are plated with tin, silver, or nickel to keep the high-resistance oxide layer from forming and to keep terminations solderable. Insulation types don't stop oxidation at exposed ends, and 'MIL-SPEC-6896' is a decoy.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (conductor plating)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "735645b567",
+   "q": "What system calculates the distance from the aircraft to the ground station?",
+   "options": [
+    "DME",
+    "ADI",
+    "RMI"
+   ],
+   "correct": 0,
+   "short": "Distance = DME.",
+   "expl": "Distance Measuring Equipment times its interrogation/reply exchange with the ground transponder and converts it to slant-range miles. The ADI shows attitude and the RMI shows bearings.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (DME)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "7517a213c5",
+   "q": "What are the primary communication radios used in aviation?",
+   "options": [
+    "VHF",
+    "UHF",
+    "HF"
+   ],
+   "correct": 0,
+   "short": "Aviation talks on VHF.",
+   "expl": "Civil aviation's primary communication band is VHF (118-136.975 MHz) — clear, reliable, line-of-sight. HF backs up oceanic crossings and UHF comm is chiefly military.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (VHF communication)",
+   "topic": "Radio Communication",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "d83a2c1bea",
+   "q": "The largest single positive value for alternating current is called",
+   "options": [
+    "peak value at 90 degrees",
+    "Instantaneous Value",
+    "negative peak value at 270 degrees"
+   ],
+   "correct": 0,
+   "short": "The positive peak sits at 90°.",
+   "expl": "The largest positive value of the AC wave is the peak value, reached at 90° of rotation. The 270° point is the NEGATIVE peak, and 'instantaneous value' is any point on the wave, not the biggest one.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-50 (peak values)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "a57d01816d",
+   "q": "What atomic element contains four electrons in its valence shell, and combines readily with itself to form a lattice?",
+   "options": [
+    "Bromine",
+    "Silicon",
+    "Copper"
+   ],
+   "correct": 1,
+   "short": "Four valence electrons + lattice = silicon.",
+   "expl": "Silicon carries four valence electrons and bonds readily with itself into the crystal lattice that semiconductor manufacture starts from. Copper has one valence electron (that's why it conducts); bromine is a halogen with seven.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (semiconductor materials)",
+   "topic": "Solid State",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "ea1c5e6ba3",
+   "q": "How many wire splices are allowed between two connectors?",
+   "options": [
+    "no more than one splice in any one wire segment",
+    "the maximum number of wire splices allowed is 3",
+    "there is no limit to wire splicing on aircraft, as long as environmental splices are used"
+   ],
+   "correct": 0,
+   "short": "One splice per wire segment, max.",
+   "expl": "Between two connectors (one wire segment), the limit is a single splice. Splices add resistance and failure points — beyond one, replace the wire.",
+   "cite": "AC 43.13-1B, Ch. 11 (splice limits)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "a7ab4d0b74",
+   "q": "Grounding is defined as",
+   "options": [
+    "the process of electrically connecting conductive objects to either a conductive structure or return path",
+    "providing an unintentional low resistance path, where full system voltage comes in contact with the return path for current",
+    "when a mechanic finds a fault on the aircraft, and the airplane is no longer airworthy"
+   ],
+   "correct": 0,
+   "short": "Grounding = intentional connection to structure/return path.",
+   "expl": "Grounding is the deliberate electrical connection of conductive objects to structure or another return path. The 'unintentional low resistance path' option describes a short circuit — the fault grounding protects against.",
+   "cite": "AC 43.13-1B, Ch. 11 (grounding definition)",
+   "topic": "Bonding & Grounding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -55912,17 +56466,758 @@
    "q": "Dry charged cell lead-acid batteries, are also know as",
    "options": [
     "flooded or wet batteries",
-    "Lead Acid Batteries",
-    "Ni-Cad Batteries"
+    "Ni-Cad Batteries",
+    "Lead Acid Batteries"
    ],
    "correct": 0,
-   "short": "Dry charged cell lead-acid = flooded/wet cell.",
-   "expl": "The handbook's own words: dry charged cell lead-acid batteries are 'also known as flooded or wet cell batteries.' They ship dry and are activated with electrolyte when placed in service.",
+   "short": "Dry charged lead-acid = flooded/wet cell.",
+   "expl": "Straight from the handbook: dry charged cell lead-acid batteries are 'also known as flooded or wet cell batteries' — shipped dry, activated with electrolyte at installation.",
    "cite": "FAA-H-8083-31B, Ch. 9 (dry charged cell lead-acid batteries)",
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "3f33a2824e",
+   "q": "What unit is found in almost all voltage regulation circuitry of a GCU",
+   "options": [
+    "power rectifier diode",
+    "carbon pile regulator",
+    "zener diode"
+   ],
+   "correct": 2,
+   "short": "The zener is the GCU's voltage reference.",
+   "expl": "The zener diode's precise reverse-breakdown voltage gives the GCU its regulation reference — nearly every solid-state regulator is built around one. The carbon pile is the electromechanical ancestor it replaced.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (zener diodes)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "f563b5618a",
+   "q": "Why are clamps installed with their attachment hardware positioned above them",
+   "options": [
+    "they are unlikely to rotate as the result of wire bundle weight or wire bundle chafing",
+    "this practice has been adopted to reduce the need for aging wire inspections, as it keeps wiring secured",
+    "there is no requirement for installation of clamp hardware. Nylock (self locking) nuts are used and maintain the integrity of the clamp mounting."
+   ],
+   "correct": 0,
+   "short": "Hardware on top keeps the clamp from rotating under load.",
+   "expl": "With the bolt above the clamp, the bundle's weight can't lever the clamp into rotating and sagging — the loop stays put instead of slipping and chafing. It's a mechanical-orientation rule, not an inspection-relief scheme.",
+   "cite": "AC 43.13-1B, Ch. 11 (clamp installation)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "d74051260a",
+   "q": "When coupled with GPS, what system creates one of the most accurate navigation systems available",
+   "options": [
+    "Inertial Reference System IRS",
+    "Flight Management System FMS",
+    "Instrument Landing System ILS"
+   ],
+   "correct": 0,
+   "short": "GPS + IRS: satellite accuracy + inertial independence.",
+   "expl": "Blending GPS with the inertial reference system marries GPS's absolute accuracy to the IRS's drift-free-short-term, jam-proof dead reckoning — one of the most accurate and robust navigation solutions flying. The FMS is the manager that USES those sensors.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (GPS/inertial integration)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "4db94a3a0a",
+   "q": "The value at any instant in time along the AC wave",
+   "options": [
+    "Peak Value",
+    "Instantaneous Value",
+    "RMS,.707, Effective Value, the point where AC/DC resistors dissipate heat equally"
+   ],
+   "correct": 1,
+   "short": "Any moment on the wave = instantaneous value.",
+   "expl": "The value at any single instant along the AC wave is the instantaneous value; the peak is merely the largest of them, and RMS is a computed equivalent, not a point on the wave.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-49 (instantaneous values)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "9173d9b92f",
+   "q": "What system is used to increase the accuracy of GPS for aircraft navigation, and is known to reduce position errors to 1-3 meters laterally and vertically?",
+   "options": [
+    "Wide Area Augmentation System (WAAS)",
+    "GNSS NAV/ GPS Position",
+    "Enhanced Ground Proximately Warning System (EGPWS)"
+   ],
+   "correct": 0,
+   "short": "WAAS tightens GPS to the 1-3 meter class.",
+   "expl": "WAAS broadcasts GPS corrections through geostationary satellites, cutting position error to roughly 1-3 meters — approach-grade accuracy. EGPWS is a terrain warning system, a different animal.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (WAAS)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "672ce324e2",
+   "q": "The relationship between two sine waves is defined as",
+   "options": [
+    "phase relationship",
+    "a period is once the sine wave has completed one full cycle",
+    "wavelength frequency"
+   ],
+   "correct": 0,
+   "short": "Two sine waves compare by phase.",
+   "expl": "The timing relationship between two sine waves is their phase relationship — in phase, leading, or lagging. The period definition is true of ONE wave; it doesn't relate two.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-48 (phase)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "6ed6eb7422",
+   "q": "Of the many types of connectors, backshell adapters designed for shield termination are used for ______ protection",
+   "options": [
+    "ESD/EMF",
+    "CSD/GCU",
+    "EMI/RFI"
+   ],
+   "correct": 2,
+   "short": "Shield-terminating backshells = EMI/RFI protection.",
+   "expl": "Backshell adapters that terminate cable shields exist to carry interference currents to ground at the connector — electromagnetic and radio-frequency interference (EMI/RFI) protection. 'CSD/GCU' are powerplant electrical boxes, pure decoys here.",
+   "cite": "AC 43.13-1B, Ch. 11 (shield termination at connectors)",
+   "topic": "Coax & Shielding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "e7e863429d",
+   "q": "What is the process of equalizing alternator outputs on twin engine aircraft?",
+   "options": [
+    "Compounding Alternator Output",
+    "Rectified AC output/ Inverted DC output",
+    "Paralleling"
+   ],
+   "correct": 2,
+   "short": "Load-sharing between alternators = paralleling.",
+   "expl": "Paralleling ties both alternators to the bus and equalizes their outputs so each carries its share. The other options are rectifier/inverter word salad.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-165 (paralleling)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "f77727dddc",
+   "q": "What devices manipulate electricity for the transmission of useful information through the atmosphere or space?",
+   "options": [
+    "Radio Transmitters and Receivers",
+    "AC Rectifiers/DC Inverters",
+    "(SDAC) Systems Digital Analog Converter"
+   ],
+   "correct": 0,
+   "short": "Transmitters and receivers turn electricity into communication.",
+   "expl": "Radio transmitters and receivers are the devices that shape electrical energy into modulated waves and recover the intelligence at the far end. Rectifiers and inverters convert power, not information.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radio communication fundamentals)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "91965f5534",
+   "q": "When using the double cord lacing  method on wire bundles 1 inch in diameter or larger, the starting knot should be a",
+   "options": [
+    "bowline-on-a-bight",
+    "double half hitch with waxed lacing cord",
+    "clove hitch secured by a double-looped overhand knot"
+   ],
+   "correct": 0,
+   "short": "Double-cord lacing starts with a bowline-on-a-bight.",
+   "expl": "For bundles an inch and larger, double-cord lacing begins with a bowline-on-a-bight as the starting knot — the AC says so by name. The clove-hitch start belongs to the SINGLE-cord method; that's the swap the distractor bets on.",
+   "cite": "AC 43.13-1B, Ch. 11 (double cord lacing)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "614b6499c5",
+   "q": "The process of applying a metallic covering to wiring and equipment is use to",
+   "options": [
+    "shield the wiring and equipment to eliminate electromagnetic interference",
+    "bond the equipment and wiring to aircraft for a conductive path",
+    "a metallic covering of wiring has been eliminated per MIL-W-1836, with the PTFE/Polyimide/Teflon insulating materials"
+   ],
+   "correct": 0,
+   "short": "A metallic covering over wiring = shielding against EMI.",
+   "expl": "Wrapping wiring or equipment in a grounded metallic covering is shielding — it intercepts electromagnetic interference in both directions. Bonding is a different process (joining structures electrically), and the MIL-W-1836 option is invented.",
+   "cite": "AC 43.13-1B, Ch. 11 (shielding)",
+   "topic": "Coax & Shielding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "3e575171f8",
+   "q": "Which wire type can be severely damaged on the inside without any evidence of damage on the outside?",
+   "options": [
+    "coaxial cable",
+    "ETOPS wiring",
+    "PTFE wiring"
+   ],
+   "correct": 0,
+   "short": "Coax hides internal damage.",
+   "expl": "Kink or crush coax and the dielectric and center conductor can be ruined — wrecking its impedance — while the jacket looks untouched. That hidden-damage trait is why coax gets gentle bends and careful clamping. 'ETOPS wiring' isn't a wire type.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (coax handling)",
+   "topic": "Coax & Shielding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "09182b6e55",
+   "q": "Which manual diagram will typically identify each component within a system by its part number, including any changes that were made?",
+   "options": [
+    "Block Diagram",
+    "Wiring Diagram",
+    "Schematic Diagram"
+   ],
+   "correct": 1,
+   "short": "Part numbers and revisions live on the wiring diagram.",
+   "expl": "The wiring diagram documents the actual installation — every device and wire identified, part numbers and incorporated changes included. Schematics show principle of operation; block diagrams show organization.",
+   "cite": "FAA-H-8083-30B, Ch. 4 (wiring diagrams)",
+   "topic": "Diagrams",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "238d136c83",
+   "q": "What component is used to ensure the alternator rotates at the correct speed to keep 400 Hz frequency",
+   "options": [
+    "constant-speed drive",
+    "3 Phase Delta or Wye connection",
+    "Generator Control Unit (GCU)"
+   ],
+   "correct": 0,
+   "short": "The CSD locks the speed that locks the frequency.",
+   "expl": "Frequency tracks rotational speed, so the constant-speed drive converts variable engine speed into the fixed shaft speed that keeps the alternator at 400 Hz. Delta/Wye describes windings; the GCU regulates voltage.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (alternator constant speed drive)",
+   "topic": "AC Power / CSD",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "5fcb30b40c",
+   "q": "The rotation of generators is termed either clockwise or counterclockwise, as viewed from",
+   "options": [
+    "either end of unit and stated on manufactures data plate",
+    "the driven end",
+    "the drive direction has no effect on generator output"
+   ],
+   "correct": 1,
+   "short": "Rotation is named at the driven end.",
+   "expl": "Convention: call the rotation as seen looking at the driven (shaft) end. Rotation direction absolutely matters on brushed machines — brush rake and residual polarity are built for one direction.",
+   "cite": "AIM AMTBLK06 deck (rotation-naming convention)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "1875c24fcd",
+   "q": "What is an independent battery powered transmitter activated by the excessive G-forces experienced during a crash?",
+   "options": [
+    "Flight/Voice Recorder",
+    "Emergency Locator Transmitter",
+    "Flight Recorder"
+   ],
+   "correct": 1,
+   "short": "G-switch + own battery = the ELT.",
+   "expl": "The ELT is the independent, battery-powered transmitter whose G-switch fires on crash forces, broadcasting on 121.5/406 MHz so searchers can find the site. Recorders capture data; they don't transmit distress signals.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ELT) / 14 CFR §91.207",
+   "topic": "ELT",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "a0da137ec6",
+   "q": "Two electromagnetic switches are",
+   "options": [
+    "Micro Switch/Limit Switch",
+    "Relay/Micro Switch",
+    "Solenoid/Relay"
+   ],
+   "correct": 2,
+   "short": "The electromagnetic pair: solenoid and relay.",
+   "expl": "Solenoids and relays switch by electromagnet coil — solenoid for heavy current, relay for lighter control loads. Micro and limit switches are mechanically actuated.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (solenoids and relays)",
+   "topic": "Switches & Relays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "d7df94d4ea",
+   "q": "What component in the aircraft will assist ATC with the identification and location during flight?",
+   "options": [
+    "Emergency Locator Beacon",
+    "Marker Beacon",
+    "Radar Beacon Transponder"
+   ],
+   "correct": 2,
+   "short": "The transponder tags you on ATC's scope.",
+   "expl": "The radar beacon transponder answers ground interrogations with a coded reply, giving ATC identity and position. ELTs are for crashes and marker beacons mark ILS range points.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (transponders)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "3609aa25da",
+   "q": "What is done with wires the perform the same function in redundant systems?",
+   "options": [
+    "the wires must be routed through separate connectors",
+    "the wires are routed together within the same connector",
+    "the wires must be routed on separate sides of the aircraft, and away from EMI/RFI interference"
+   ],
+   "correct": 0,
+   "short": "Redundant systems: separate bundles, separate connectors.",
+   "expl": "Redundant-system wiring runs in separate bundles and through separate connectors so a single damaged connector can't kill both the system and its backup.",
+   "cite": "AC 43.13-1B, Ch. 11 (redundant system separation)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "f33f92ae7c",
+   "q": "What diode is used in voltage regulation",
+   "options": [
+    "reverse current relay",
+    "strength of magnetic field",
+    "zener diode"
+   ],
+   "correct": 2,
+   "short": "Voltage regulation's diode = the zener.",
+   "expl": "The zener diode's fixed breakdown voltage makes it THE reference component in voltage-regulation circuitry. A reverse-current relay is a battery-protection device, not a diode.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (zener diodes)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "2312c6abf2",
+   "q": "The BPCU uses contactors for connections to various circuits, these contactors are called",
+   "options": [
+    "BTB bus tie breakers",
+    "GCU generator control unit",
+    "TBC tie bus controller"
+   ],
+   "correct": 0,
+   "short": "The BPCU throws the BTBs.",
+   "expl": "The bus power control unit reconfigures distribution by driving bus tie breakers — BTBs — the heavy contactors joining and isolating the buses. 'TBC' is the scrambled decoy.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (BPCU/BTB)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "4ed264f4ac",
+   "q": "On large multiengine aircraft the AC generator (sometimes called an alternator) produces",
+   "options": [
+    "115-volt AC at 400 Hz",
+    "115 VDC through transformer-rectifier",
+    "three-phase 115-volt AC at 400Hz"
+   ],
+   "correct": 2,
+   "short": "Large aircraft standard: 3-phase, 115 V, 400 Hz.",
+   "expl": "The large-aircraft standard is three-phase 115-volt AC at 400 Hz — three phases move the power efficiently and 400 Hz keeps the machines small and light. Single-phase 115 V misses the three-phase heart of it, and '115 VDC' mixes up the TRU's job.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (large aircraft AC generation)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "9cd6e0665e",
+   "q": "The effective value is equal to ______ times the peak value.",
+   "options": [
+    ".707",
+    "1.41",
+    "115 volts"
+   ],
+   "correct": 0,
+   "short": "RMS = 0.707 × peak.",
+   "expl": "The effective (RMS) value is 0.707 times the peak. The 1.41 factor goes the other direction (peak = 1.41 × RMS), and '115 volts' is a bus voltage, not a conversion factor.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-50 (effective/RMS value)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "6b5d7faeaa",
+   "q": "Reverse Current sensing indicates",
+   "options": [
+    "a parallel or shunt generator has been installed incorrectly",
+    "current is flowing to the generator not from the generator",
+    "generator leads have been crossed during installation and should be reversed"
+   ],
+   "correct": 1,
+   "short": "Reverse current = the battery driving the generator.",
+   "expl": "Reverse-current sensing detects current flowing INTO the generator — the battery back-feeding a dead or low-output machine and motoring it. That's the condition the reverse-current cutout opens to stop; it has nothing to do with crossed installation leads.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (reverse-current cutout)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "e02ce5fce2",
+   "q": "What is used on most multi-engine, high performance turbine powered aircraft and transport category aircraft?",
+   "options": [
+    "Generated power systems",
+    "Alternating current electrical systems",
+    "DC power systems"
+   ],
+   "correct": 1,
+   "short": "Big turbine aircraft are AC aircraft.",
+   "expl": "Transport-category and high-performance multiengine turbine aircraft run on AC electrical systems — 115 V three-phase 400 Hz — for the power-to-weight advantage. DC rules the small-aircraft world.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (large aircraft AC systems)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "d1734669a6",
+   "q": "What must not be used where their failure could result in interference with movable controls, wire bundle contact with movable equipment",
+   "options": [
+    "plastic cable ties or plastic clamps",
+    "metal clamps or cable ties",
+    "Zip Ties or Lacing Cord"
+   ],
+   "correct": 0,
+   "short": "No plastic supports near movable controls.",
+   "expl": "Where a failed support could drop wiring into flight controls or moving equipment, plastic cable ties and clamps are banned — plastic embrittles and lets go. Those runs get cushioned METAL clamps.",
+   "cite": "AC 43.13-1B, Ch. 11 (clamping near movable controls)",
+   "topic": "Wiring Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "366d25863d",
+   "q": "The final radio transmitters used in the ILS are ______, and will illuminate 3 lights in the cockpit",
+   "options": [
+    "Radio Altimeter for rising runway indication",
+    "landing gear indication for left, right, and nose gear green lights",
+    "Marker Beacons"
+   ],
+   "correct": 2,
+   "short": "Marker beacons light the blue/amber/white lamps.",
+   "expl": "The ILS's marker beacons — outer, middle, inner — fire the three cockpit lights (blue, amber, white) as the aircraft passes each range checkpoint. Three green lights are the landing GEAR indication, a favorite trap.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (marker beacons)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "edea919d79",
+   "q": "How does the BPCU monitor the complete electrical system?",
+   "options": [
+    "with remote current sensors known as current transformers",
+    "with current limiters, and zener diodes",
+    "by controlling the GCU"
+   ],
+   "correct": 0,
+   "short": "The BPCU watches the system through current transformers.",
+   "expl": "The BPCU keeps track of the whole AC system through remote current sensors — current transformers clamped around the feeders reporting every load and fault. Limiters and zeners are protection/reference parts, not the monitoring network.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (BPCU monitoring/current transformers)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "813d55d0f5",
+   "q": "Much of aviation communication and navigation is accomplished through the use of",
+   "options": [
+    "Radio Waves",
+    "AC and DC generated electrical supply",
+    "A rectifier to convert AC to DC electrical power"
+   ],
+   "correct": 0,
+   "short": "Comm and nav ride on radio waves.",
+   "expl": "From VHF voice to VOR, ILS, GPS, and transponders — aviation communication and navigation happen by radio waves. Power supplies and rectifiers just keep the boxes running.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radio fundamentals)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "250ee74c23",
+   "q": "Where is the commutator located",
+   "options": [
+    "at the end of an armature",
+    "in the field windings",
+    "before the slip rings and adjacent to the insulating material"
+   ],
+   "correct": 0,
+   "short": "Commutator: on the armature's end, under the brushes.",
+   "expl": "The commutator is mounted at the end of the armature where the brushes ride it. Field windings are on the frame, and a DC generator has no slip rings at all.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-133 (commutator)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "9c70d4ca9f",
+   "q": "Modern navigation avionics have enhanced interface with the pilot, the term “glass cockpit” refers to",
+   "options": [
+    "analog indicators",
+    "a fully visual and well lit navigation system",
+    "a digital data display system"
+   ],
+   "correct": 2,
+   "short": "Glass cockpit = digital displays replacing round dials.",
+   "expl": "'Glass cockpit' means the flight deck's information lives on digital data displays — PFD/ND/EICAS screens — instead of banks of analog gauges. It's about the data presentation, not the cabin lighting.",
+   "cite": "FAA-H-8083-31B, Ch. 10 (electronic flight displays)",
+   "topic": "Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "61377b8102",
+   "q": "What must be done to Silicon to make it a semiconductor?",
+   "options": [
+    "germanium",
+    "doping",
+    "covalent bond"
+   ],
+   "correct": 1,
+   "short": "Pure silicon is an insulator — doping makes it semiconduct.",
+   "expl": "Silicon on its own is an insulator; mixing in trace elements with five (or three) valence electrons — doping — creates the free carriers that make it semiconductive. Germanium is another semiconductor material, not a process.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (semiconductors/doping)",
+   "topic": "Solid State",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "d534ab0d86",
+   "q": "What is the only way to determine the state of charge of a NiCd battery?",
+   "options": [
+    "with constant current method, fully charging battery and verifying the level of electrolyte weight battery after charging",
+    "with a hydrometer to a specific gravity of 1.275-1.300",
+    "by a measured discharge with a NiCd battery charger following the manufacturer's instructions"
+   ],
+   "correct": 2,
+   "short": "NiCd charge state: measured discharge only.",
+   "expl": "A NiCd's electrolyte specific gravity doesn't change with charge, so the hydrometer (the lead-acid method, 1.275-1.300) tells you nothing. The only way is a measured discharge per the manufacturer's procedure.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (NiCd servicing)",
+   "topic": "Batteries",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "4ea484ff98",
+   "q": "A current limiting device that protects conductors is called",
+   "options": [
+    "current limiter/ reverse current cutout relay",
+    "automatic circuit breaker/ voltage regulator",
+    "circuit breaker/ fuse"
+   ],
+   "correct": 2,
+   "short": "Conductors are protected by breakers and fuses.",
+   "expl": "Circuit breakers and fuses open before the WIRE overheats — conductor protection, full stop. Reverse-current cutouts protect the battery from the generator; regulators control voltage.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (circuit protection)",
+   "topic": "Circuit Protection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "803f54d84a",
+   "q": "What Transponder mode type is used in onboard collision avoidance systems?",
+   "options": [
+    "Mode S",
+    "Mode T",
+    "Mode ACS"
+   ],
+   "correct": 0,
+   "short": "TCAS talks Mode S.",
+   "expl": "Mode S ('select') transponders carry the discrete addressing and datalink that TCAS uses to interrogate specific aircraft and coordinate resolution advisories. 'Mode T' and 'Mode ACS' don't exist.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (Mode S/TCAS)",
+   "topic": "Avionics Systems",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "30f61963e5",
+   "q": "Whenever troubleshooting aircraft electrical circuits, it is always valuable to consider Ohm's Law",
+   "options": [
+    "remembering that a low resistance means increased current and can explain why circuit breakers pop or fuses blow",
+    "Ohm's law is of little use in troubleshooting, always consult the manufactures drawings.",
+    "The law was named after German Physicist George Simon Ohm"
+   ],
+   "correct": 0,
+   "short": "Low resistance → high current → popped breakers. That's Ohm working.",
+   "expl": "The troubleshooting payoff of Ohm's law: a LOW resistance (a short) drives current UP, which is exactly why breakers pop and fuses blow. The history-of-Ohm option is true trivia but useless at the airplane — the classic 'true but not the answer' trap.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (Ohm's law applied)",
+   "topic": "Ohm's Law",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "6269a63314",
+   "q": "A spring-loaded, momentary contact switch is called",
+   "options": [
+    "Lighted Pushbutton Switch",
+    "Relay",
+    "Limit Switch"
+   ],
+   "correct": 0,
+   "short": "Momentary spring-return = the pushbutton family.",
+   "expl": "Pushbutton switches (plain or lighted) are the spring-loaded, momentary-contact type — press to make, release to break. Relays are electromagnetic and limit switches are position-actuated.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (pushbutton switches)",
+   "topic": "Switches & Relays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "81eef0b11f",
+   "q": "Current limiters are high amperage fuses that isolate buses when",
+   "options": [
+    "the battery amp hour rating is insufficient during starter operation",
+    "a short circuit occurs",
+    "alternator output has exceeded the specifications"
+   ],
+   "correct": 1,
+   "short": "Current limiters open on bus short circuits.",
+   "expl": "Current limiters are slow-blow, high-amperage fuses in the distribution feeders; a short circuit's massive current melts the limiter and the faulted bus drops off, saving the rest of the system.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (current limiters)",
+   "topic": "Circuit Protection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "8d83e09931",
+   "q": "What two line replaceable units are used to control electrical power on large aircraft?",
+   "options": [
+    "main alternator/apu alternator",
+    "GCU/BPCU",
+    "static inverter/transformer rectifier"
+   ],
+   "correct": 1,
+   "short": "The control brains: GCU + BPCU.",
+   "expl": "Electrical power CONTROL on large aircraft lives in two LRUs: the generator control unit (per-generator regulation and protection) and the bus power control unit (system-level bus switching). Inverters/TRUs and the alternators themselves are power hardware, not the controllers.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (GCU and BPCU)",
+   "topic": "AC Power",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+   ]
+  },
+  {
+   "id": "b1dae2efb5",
+   "q": "What term is often used when describing a magnetically operated switch?",
+   "options": [
+    "contactor",
+    "DPDT",
+    "flux valve"
+   ],
+   "correct": 0,
+   "short": "A heavy magnetically-operated switch = a contactor.",
+   "expl": "Magnetically operated switches — solenoids and relays handling power circuits — are commonly called contactors (think battery contactor, bus tie contactor). DPDT describes pole/throw count, and the flux valve is a compass sensor.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (contactors)",
+   "topic": "Switches & Relays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
    ]
   },
   {
@@ -55974,24 +57269,6 @@
    "expl": "The handbook states it directly: 'A main benefit of GPS use is immunity from service disruption due to weather.' Low cost is mentioned only as a bonus, and the satellite-elevation option garbles the geometry description — neither is called the MAIN benefit.",
    "cite": "FAA-H-8083-31B, Ch. 11 (GPS)",
    "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "4ea484ff98",
-   "q": "A current limiting device that protects conductors is called",
-   "options": [
-    "current limiter/ reverse current cutout relay",
-    "automatic circuit breaker/ voltage regulator",
-    "circuit breaker/ fuse"
-   ],
-   "correct": 2,
-   "short": "Conductor protection = circuit breakers and fuses.",
-   "expl": "Circuit breakers and fuses exist to protect the WIRING — they open before the conductor overheats. A reverse-current cutout protects the battery from the generator, and voltage regulators control output, not conductor safety.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (circuit protection devices)",
-   "topic": "Circuit Protection",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -56232,78 +57509,6 @@
    ]
   },
   {
-   "id": "d534ab0d86",
-   "q": "What is the only way to determine the state of charge of a NiCd battery?",
-   "options": [
-    "with constant current method, fully charging battery and verifying the level of electrolyte weight battery after charging",
-    "with a hydrometer to a specific gravity of 1.275-1.300",
-    "by a measured discharge with a NiCd battery charger following the manufacturer's instructions"
-   ],
-   "correct": 2,
-   "short": "NiCd state of charge = measured discharge test only.",
-   "expl": "A NiCd's electrolyte specific gravity does NOT change with charge state, so a hydrometer tells you nothing — that's the lead-acid method. The only way to know a NiCd's state of charge is a measured discharge per the manufacturer's instructions.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (NiCd servicing)",
-   "topic": "Batteries",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "1ceea865ff",
-   "q": "DC alternators contain two major components",
-   "options": [
-    "armature winding/ field winding",
-    "commutator/ field winding",
-    "armature/ commutator"
-   ],
-   "correct": 0,
-   "short": "Alternator = armature winding + field winding.",
-   "expl": "An alternator's two working parts are the field winding (the rotating electromagnet) and the armature winding (where output is induced). It has no commutator — that's the DC generator's rectifying switch; the alternator rectifies with diodes instead.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (alternators)",
-   "topic": "AC Power",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "9173d9b92f",
-   "q": "What system is used to increase the accuracy of GPS for aircraft navigation, and is known to reduce position errors to 1-3 meters laterally and vertically?",
-   "options": [
-    "Wide Area Augmentation System (WAAS)",
-    "Enhanced Ground Proximately Warning System (EGPWS)",
-    "GNSS NAV/ GPS Position"
-   ],
-   "correct": 0,
-   "short": "WAAS tightens GPS to 1-3 meters.",
-   "expl": "WAAS broadcasts differential corrections through geostationary satellites, shrinking GPS position error to the 1-3 meter class — good enough for LPV approaches. EGPWS is a terrain-warning system, not a GPS augmentation.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (WAAS)",
-   "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "2dd732380e",
-   "q": "The Altitude Encoder convert the aircraft's pressure altitude to a code and send to ATC from the transponder when selected to ALT. This system works between the altitudes of",
-   "options": [
-    "1200 feet MSL-126,700 feet MSL",
-    "1000 feet MSL- 40,000 feet MSL",
-    "1200 feet MSL- 100,000 feet MSL"
-   ],
-   "correct": 0,
-   "short": "Encoder range: (minus)1,200 ft to 126,700 ft.",
-   "expl": "The altitude encoder standard covers from minus 1,200 feet up to 126,700 feet — the form's option drops the minus sign, but that 1200/126,700 pairing is the real range. The other spans are inventions.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (encoding altimeter/transponder)",
-   "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "2f93825f08",
    "q": "Which is not a factor affecting resistance",
    "options": [
@@ -56340,24 +57545,6 @@
    ]
   },
   {
-   "id": "3f33a2824e",
-   "q": "What unit is found in almost all voltage regulation circuitry of a GCU",
-   "options": [
-    "carbon pile regulator",
-    "power rectifier diode",
-    "zener diode"
-   ],
-   "correct": 2,
-   "short": "The zener's fixed breakdown voltage is the GCU's reference.",
-   "expl": "Solid-state voltage regulation needs a stable reference, and the zener diode provides it — its precise reverse-breakdown voltage is the standard the GCU compares generator output against. Carbon piles are the old electromechanical regulators the GCU replaced.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (zener diodes/solid-state regulation)",
-   "topic": "Generator Controls",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "3710e71eba",
    "q": "There are twenty-four satellites in six separate plains of orbit 12,625 miles above earth, how many are active, and how many spares?",
    "options": [
@@ -56370,24 +57557,6 @@
    "expl": "The handbook's GPS description: twenty-four satellites — 21 active and 3 spares — in six orbital planes about 12,625 miles up. No military-only split in the count.",
    "cite": "FAA-H-8083-31B, Ch. 11 (GPS constellation)",
    "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "1af138cdd8",
-   "q": "Commercial and military aircraft use wire that is manufactured under",
-   "options": [
-    "MIL-W-22579 specifications",
-    "MIL-M-22759",
-    "MIL-SPEC-22579"
-   ],
-   "correct": 0,
-   "short": "The real spec is MIL-W-22759 (the form typos it).",
-   "expl": "Aircraft wire is built to the MIL-W-22759 specification (today's SAE AS22759). Heads up: the form misprints it two ways — the keyed answer keeps the correct MIL-W prefix but transposes the digits to 22579, while another option has the right digits behind the wrong MIL-M prefix. On the real final, pick the MIL-W option — and remember the true number is 22759.",
-   "cite": "AC 43.13-1B, Ch. 11 (M22759 wire tables) — form typo flagged",
-   "topic": "Wire & Insulation",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -56442,24 +57611,6 @@
    "expl": "A radome is a fiberglass window — electrically transparent but vulnerable. Thin grounding (diverter) strips on its surface give lightning strikes and precipitation static a conductive path to airframe ground, protecting the dome and the radar behind it.",
    "cite": "FAA-H-8083-31B, Ch. 11 (radomes/static protection)",
    "topic": "Avionics Installation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "5fcb30b40c",
-   "q": "The rotation of generators is termed either clockwise or counterclockwise, as viewed from",
-   "options": [
-    "either end of unit and stated on manufactures data plate",
-    "the driven end",
-    "the drive direction has no effect on generator output"
-   ],
-   "correct": 1,
-   "short": "Name the rotation looking at the driven end.",
-   "expl": "Generator rotation is called out as seen from the driven (drive-shaft) end of the machine — the same convention the daily quiz drilled. Rotation absolutely matters to output on brushed machines, and it isn't an either-end free-for-all.",
-   "cite": "AIM AMTBLK06 deck (rotation-naming convention)",
-   "topic": "DC Generators",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -56556,24 +57707,6 @@
    ]
   },
   {
-   "id": "a0da137ec6",
-   "q": "Two electromagnetic switches are",
-   "options": [
-    "Relay/Micro Switch",
-    "Micro Switch/Limit Switch",
-    "Solenoid/Relay"
-   ],
-   "correct": 2,
-   "short": "The electromagnetic pair: solenoid and relay.",
-   "expl": "Solenoids and relays are both switches thrown by an electromagnet coil — the solenoid with a moving core for heavy current, the relay with a fixed core and hinged armature for lighter loads. Micro and limit switches are purely mechanical, actuated by physical contact.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (solenoids and relays)",
-   "topic": "Switches & Relays",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "87284c8f78",
    "q": "What are the most common examples of twisting wires?",
    "options": [
@@ -56586,24 +57719,6 @@
    "expl": "Wires are twisted so their magnetic fields cancel — which is why the classic cases are wiring near the magnetic compass or flux valve, three-phase distribution runs, and radio wiring. It's about field cancellation, not mechanical strength.",
    "cite": "FAA-H-8083-31B, Ch. 9 (twisting wires)",
    "topic": "Wiring Installation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "1952776236",
-   "q": "When VHF communication transceivers are coupled with VOR receivers, they are called",
-   "options": [
-    "NAV/COM radios",
-    "VHF radios cannot be coupled with VOR receivers, one is for voice and the other is navigation only",
-    "VOR/VHF transceiver"
-   ],
-   "correct": 0,
-   "short": "Comm + VOR nav in one box = NAV/COM.",
-   "expl": "The combined unit — VHF communication transceiver plus VOR navigation receiver — is the NAV/COM, the standard GA radio. They pair naturally because both live in the VHF band.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (NAV/COM radios)",
-   "topic": "Radio Communication",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -56718,42 +57833,6 @@
    ]
   },
   {
-   "id": "d1b677b272",
-   "q": "Concerning radio navigation, what is one of the oldest and most useful navigational aids?",
-   "options": [
-    "VOR",
-    "VHF",
-    "The Wet Compass"
-   ],
-   "correct": 0,
-   "short": "Handbook line: the VOR is one of the oldest and most useful.",
-   "expl": "The handbook's own sentence: 'One of the oldest and most useful navigational aids is the VOR' — the VHF omnidirectional range that still defines airways. 'VHF' alone is a frequency band, and the wet compass isn't a RADIO navigation aid.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (VOR)",
-   "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "1c73014e7b",
-   "q": "What removes gasses and acid fumes from the battery in order to reduce fire hazards or damage to airframe parts?",
-   "options": [
-    "Boric Acid or Sodium Bicarbonate",
-    "Ram air effect to the battery compartment siphons the battery gasses overboard",
-    "Battery Ventilating systems"
-   ],
-   "correct": 2,
-   "short": "Battery vent systems carry the fumes overboard.",
-   "expl": "Battery ventilating systems are what remove hydrogen gas and acid fumes from the battery compartment, dumping them overboard before they corrode structure or find an ignition source. (Ram air is merely how many vent systems are driven, and bicarbonate/boric acid neutralize spills — they don't remove fumes.)",
-   "cite": "FAA-H-8083-31B, Ch. 9 (battery ventilating systems)",
-   "topic": "Batteries",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "64086b4d0f",
    "q": "How does an inverter supply AC power",
    "options": [
@@ -56784,24 +57863,6 @@
    "expl": "Aluminum wire runs about two gauge sizes bigger than copper for the same job but still weighs less — so long, heavy feeders go aluminum when weight matters. Silver conducts beautifully but is heavier AND expensive.",
    "cite": "FAA-H-8083-31B, Ch. 9 (conductor materials)",
    "topic": "Wire & Insulation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "238d136c83",
-   "q": "What component is used to ensure the alternator rotates at the correct speed to keep 400 Hz frequency",
-   "options": [
-    "constant-speed drive",
-    "3 Phase Delta or Wye connection",
-    "Generator Control Unit (GCU)"
-   ],
-   "correct": 0,
-   "short": "The CSD holds alternator speed for steady 400 Hz.",
-   "expl": "AC frequency is locked to rotational speed, so the constant-speed drive sits between the engine and alternator, converting variable engine speed to the constant shaft speed that yields 400 Hz. Delta/Wye is a winding arrangement and the GCU regulates voltage — neither holds speed.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (alternator constant speed drive)",
-   "topic": "AC Power / CSD",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -56862,24 +57923,6 @@
    ]
   },
   {
-   "id": "2312c6abf2",
-   "q": "The BPCU uses contactors for connections to various circuits, these contactors are called",
-   "options": [
-    "BTB bus tie breakers",
-    "GCU generator control unit",
-    "TBC tie bus controller"
-   ],
-   "correct": 0,
-   "short": "The BPCU's contactors are the bus tie breakers (BTBs).",
-   "expl": "The bus power control unit reconfigures the AC distribution system by driving heavy contactors called bus tie breakers — BTBs — that join or isolate the buses. The GCU is a companion box, not a contactor, and 'TBC' is the decoy scramble.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (BPCU/BTB large-aircraft distribution)",
-   "topic": "AC Power",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "808ab33ad7",
    "q": "When junction boxes are used in high-temperature areas, they should be made of",
    "options": [
@@ -56898,24 +57941,6 @@
    ]
   },
   {
-   "id": "3e575171f8",
-   "q": "Which wire type can be severely damaged on the inside without any evidence of damage on the outside?",
-   "options": [
-    "coaxial cable",
-    "ETOPS wiring",
-    "PTFE wiring"
-   ],
-   "correct": 0,
-   "short": "Coax hides its injuries — kink it and it's ruined inside.",
-   "expl": "Coaxial cable's dielectric and center conductor can be crushed or kinked internally — wrecking its impedance — while the jacket looks perfect, which is why coax is routed with gentle bends and never pinched. 'ETOPS wiring' isn't a wire type at all.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (coax handling)",
-   "topic": "Coax & Shielding",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "a1285dd78d",
    "q": "The combined effects of resistance, inductive reactance, and capacitive reactance make up",
    "options": [
@@ -56928,24 +57953,6 @@
    "expl": "Impedance is the total opposition to AC — resistance and both reactances combined by vector addition, symbol Z, measured in ohms. Apparent and true power describe energy flow, not opposition.",
    "cite": "FAA-H-8083-30B, Ch. 12 (impedance)",
    "topic": "AC Theory",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "a0590ec455",
-   "q": "Ohm's Law States",
-   "options": [
-    "The current through a conductor is directly proportional to the voltage applied and inversely proportional to the resistance of a conductor.",
-    "The law of electromagnetic induction is proportional to the rate of change to the lines of Flux",
-    "Ohms law states 1 henry equals 1volt when current changes at 1 amp per second."
-   ],
-   "correct": 0,
-   "short": "I = E / R — current rises with voltage, falls with resistance.",
-   "expl": "Ohm's law: current is directly proportional to applied voltage and inversely proportional to resistance. The flux option is Faraday's law of induction, and the henry definition describes the unit of inductance — both real facts, wrong law.",
-   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-18 (Ohm's law)",
-   "topic": "Ohm's Law",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -56981,24 +57988,6 @@
    "short": "The CDI is the VOR's course needle.",
    "expl": "The course deviation indicator — the needle showing left/right displacement from the selected radial — IS the VOR indicator. DME shows distance digits, and 'VHF indicator' isn't an instrument.",
    "cite": "FAA-H-8083-31B, Ch. 11 (VOR indicator/CDI)",
-   "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "d7df94d4ea",
-   "q": "What component in the aircraft will assist ATC with the identification and location during flight?",
-   "options": [
-    "Emergency Locator Beacon",
-    "Marker Beacon",
-    "Radar Beacon Transponder"
-   ],
-   "correct": 2,
-   "short": "The transponder paints your labeled target for ATC.",
-   "expl": "The radar beacon transponder answers ATC's interrogations with a coded reply, giving the controller your identity and position tag. (On the printed final this question's number is misprinted as '2.' — it's question 62.) The ELT is for crashes; marker beacons mark ILS range points.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (transponders)",
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
@@ -57096,24 +58085,6 @@
    ]
   },
   {
-   "id": "e7e863429d",
-   "q": "What is the process of equalizing alternator outputs on twin engine aircraft?",
-   "options": [
-    "Compounding Alternator Output",
-    "Rectified AC output/ Inverted DC output",
-    "Paralleling"
-   ],
-   "correct": 2,
-   "short": "Sharing the load equally = paralleling.",
-   "expl": "Paralleling is the process of tying two alternators to the bus and equalizing their outputs so each carries its share of the load. The other options are invented phrases around rectifier/inverter words.",
-   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-165 (paralleling)",
-   "topic": "AC Power",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "4387b60560",
    "q": "What radio waves bounce off the ionosphere layer of the atmosphere?",
    "options": [
@@ -57186,24 +58157,6 @@
    ]
   },
   {
-   "id": "3609aa25da",
-   "q": "What is done with wires the perform the same function in redundant systems?",
-   "options": [
-    "the wires must be routed through separate connectors",
-    "the wires are routed together within the same connector",
-    "the wires must be routed on separate sides of the aircraft, and away from EMI/RFI interference"
-   ],
-   "correct": 0,
-   "short": "Redundant wiring: separate bundles, separate connectors.",
-   "expl": "Wiring of redundant systems is routed in separate bundles and through separate connectors, so one damaged bundle or connector can't take out both the system and its backup. Same connector = shared single point of failure.",
-   "cite": "AC 43.13-1B, Ch. 11 (redundant system wiring separation)",
-   "topic": "Wiring Installation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "341b632142",
    "q": "The maximum slack in wire bundles between support points should not exceed",
    "options": [
@@ -57252,24 +58205,6 @@
    "expl": "The alternator master switch works through the control unit to energize the alternator's FIELD circuit — field current is what lets the machine build output. Kill the field and the alternator goes quiet; nothing called 'field strength' is sent to a bus.",
    "cite": "FAA-H-8083-31B, Ch. 9 (alternator control/field circuit)",
    "topic": "Generator Controls",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "735645b567",
-   "q": "What system calculates the distance from the aircraft to the ground station?",
-   "options": [
-    "DME",
-    "RMI",
-    "ADI"
-   ],
-   "correct": 0,
-   "short": "DME = Distance Measuring Equipment.",
-   "expl": "DME interrogates the ground transponder and times the reply, converting round-trip time into slant-range distance. The RMI shows bearings and the ADI shows attitude — neither measures distance.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (DME)",
-   "topic": "Navigation",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -57366,204 +58301,6 @@
    ]
   },
   {
-   "id": "d1734669a6",
-   "q": "What must not be used where their failure could result in interference with movable controls, wire bundle contact with movable equipment",
-   "options": [
-    "plastic cable ties or plastic clamps",
-    "Zip Ties or Lacing Cord",
-    "metal clamps or cable ties"
-   ],
-   "correct": 0,
-   "short": "No plastic ties/clamps near movable controls.",
-   "expl": "Where a failed support could drop a wire bundle into flight controls or moving equipment, plastic cable ties and plastic clamps are prohibited — plastic ages, embrittles, and lets go. Those locations get cushioned metal clamps.",
-   "cite": "AC 43.13-1B, Ch. 11 (clamping near movable controls)",
-   "topic": "Wiring Installation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "aa78186b3b",
-   "q": "The purpose of the Squat Switch in a landing gear circuit is used to determine",
-   "options": [
-    "if the aircraft is on the ground or in flight",
-    "the MTOW of the aircraft",
-    "the wheel speed transducer has enabled the anti-skid system"
-   ],
-   "correct": 0,
-   "short": "Squat switch = ground/flight sensor.",
-   "expl": "The squat switch on the gear strut closes with the aircraft's weight on wheels, telling systems whether the aircraft is on the ground or flying — that logic safeties gear retraction and much else. It knows nothing of weights or anti-skid speed.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (squat switch/landing gear circuits)",
-   "topic": "Aircraft Circuits",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "26dbc33660",
-   "q": "The process of producing an EMF by moving a magnetic field in relationship to a conductor",
-   "options": [
-    "electromagnetic induction",
-    "electromechanical switch",
-    "Lens Law"
-   ],
-   "correct": 0,
-   "short": "Relative motion of field and conductor induces EMF.",
-   "expl": "Moving a magnetic field relative to a conductor induces an EMF — electromagnetic induction, the working principle of every generator and alternator. (Lenz's law only describes the DIRECTION the induced current takes — and the form misspells it 'Lens'.)",
-   "cite": "FAA-H-8083-30B, Ch. 12 (electromagnetic induction)",
-   "topic": "AC Theory",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "70590ea97e",
-   "q": "A full wave rectifier is known as a",
-   "options": [
-    "Bridge Rectifier",
-    "Pulse Rectifier",
-    "Stator Rectified Transformer"
-   ],
-   "correct": 0,
-   "short": "Full-wave rectification = the bridge circuit.",
-   "expl": "The four-diode bridge rectifier converts BOTH halves of the AC wave into pulsating DC — the standard full-wave rectifier, and the circuit living inside every aircraft alternator. The other two names are inventions.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (rectifiers)",
-   "topic": "AC Power",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "672ce324e2",
-   "q": "The relationship between two sine waves is defined as",
-   "options": [
-    "phase relationship",
-    "wavelength frequency",
-    "a period is once the sine wave has completed one full cycle"
-   ],
-   "correct": 0,
-   "short": "Two sine waves compare by PHASE.",
-   "expl": "The timing relationship between two sine waves is their phase relationship — in phase, leading, or lagging. The period option is a true definition of a different term, and 'wavelength frequency' is two words stapled together.",
-   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-48 (phase)",
-   "topic": "AC Theory",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "250ee74c23",
-   "q": "Where is the commutator located",
-   "options": [
-    "at the end of an armature",
-    "in the field windings",
-    "before the slip rings and adjacent to the insulating material"
-   ],
-   "correct": 0,
-   "short": "The commutator rides the end of the armature shaft.",
-   "expl": "The commutator is mounted at the end of the armature, where the brushes ride it to collect (and mechanically rectify) the induced output. Field windings are on the stationary frame, and a DC generator has no slip rings to be 'before'.",
-   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-133 (commutator)",
-   "topic": "DC Generators",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "e02ce5fce2",
-   "q": "What is used on most multi-engine, high performance turbine powered aircraft and transport category aircraft?",
-   "options": [
-    "Generated power systems",
-    "Alternating current electrical systems",
-    "DC power systems"
-   ],
-   "correct": 1,
-   "short": "Big turbine aircraft run on AC.",
-   "expl": "Transport-category and high-performance multi-engine turbine aircraft are built around AC electrical systems — three-phase 115 V 400 Hz — because AC generation moves big power at less weight. Small aircraft are the DC world.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (large aircraft AC systems)",
-   "topic": "AC Power",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "a7ab4d0b74",
-   "q": "Grounding is defined as",
-   "options": [
-    "the process of electrically connecting conductive objects to either a conductive structure or return path",
-    "when a mechanic finds a fault on the aircraft, and the airplane is no longer airworthy",
-    "providing an unintentional low resistance path, where full system voltage comes in contact with the return path for current"
-   ],
-   "correct": 0,
-   "short": "Grounding = connecting to structure/return path.",
-   "expl": "Grounding is electrically connecting conductive objects to a conductive structure or other return path so current can complete its circuit safely — the AC 43.13 definition nearly verbatim. An UNintentional low-resistance path is a short circuit, the thing grounding guards against.",
-   "cite": "AC 43.13-1B, Ch. 11 (grounding definition)",
-   "topic": "Bonding & Grounding",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "4db94a3a0a",
-   "q": "The value at any instant in time along the AC wave",
-   "options": [
-    "Peak Value",
-    "Instantaneous Value",
-    "RMS,.707, Effective Value, the point where AC/DC resistors dissipate heat equally"
-   ],
-   "correct": 1,
-   "short": "Any single point on the wave = instantaneous value.",
-   "expl": "The value at any single moment along the AC wave is the instantaneous value. The peak is one particular instantaneous value (the largest), and RMS/effective is a computed heating-equivalent, not a point on the wave.",
-   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-49 (instantaneous values)",
-   "topic": "AC Theory",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "6269a63314",
-   "q": "A spring-loaded, momentary contact switch is called",
-   "options": [
-    "Lighted Pushbutton Switch",
-    "Relay",
-    "Limit Switch"
-   ],
-   "correct": 0,
-   "short": "Momentary spring-return = the pushbutton family.",
-   "expl": "Pushbutton switches are the spring-loaded, momentary-contact type — press for contact, release and the spring returns them (the handbook covers them as pushbutton and lighted pushbutton switches). A relay is electromagnetic and a limit switch is position-actuated, not momentary by definition.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (pushbutton switches)",
-   "topic": "Switches & Relays",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "663143a782",
-   "q": "The generator master switch is used to turn on the generator by",
-   "options": [
-    "controlling field current",
-    "flashing the 3 unit regulator reverse current relay",
-    "applying power the GCU"
-   ],
-   "correct": 0,
-   "short": "The master switch gates the FIELD current.",
-   "expl": "The generator master switch turns the generator on and off by opening and closing the field circuit — with field current the machine builds voltage, without it output collapses to residual. Flashing the field is a maintenance action, not what the switch does.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (generator master switch/field control)",
-   "topic": "Generator Controls",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "61d6a01d1e",
    "q": "GCU is defined as",
    "options": [
@@ -57630,24 +58367,6 @@
    "expl": "The armature actually generates AC internally; the commutator's segmented switching — commutator action — reverses the connections every half turn so the brushes deliver DC. Slip rings would pass the raw AC straight out (that's an alternator's rotor connection).",
    "cite": "FAA-H-8083-30B, Ch. 12 (commutator action)",
    "topic": "DC Generators",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "81eef0b11f",
-   "q": "Current limiters are high amperage fuses that isolate buses when",
-   "options": [
-    "the battery amp hour rating is insufficient during starter operation",
-    "a short circuit occurs",
-    "alternator output has exceeded the specifications"
-   ],
-   "correct": 1,
-   "short": "Current limiters blow to isolate a shorted bus.",
-   "expl": "Current limiters are slow-blow, high-amperage fuses in the distribution feeders; when a short circuit drags massive current through a bus tie, the limiter opens and isolates the faulted bus so the rest of the system survives.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (current limiters)",
-   "topic": "Circuit Protection",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
