@@ -1,6 +1,6 @@
 {
  "built": "2026-09-22",
- "total": 3783,
+ "total": 3795,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -53,8 +53,8 @@
   "Block 6 · Daily Quiz 15 — Transmitters, Receivers & Antennas": 10,
   "Block 6 · Daily Quiz 16 — Nav Systems, Autopilot & ELT": 20,
   "Block 6 · Daily Quiz 17 — Systems Acronyms": 26,
-  "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)": 72,
-  "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)": 66,
+  "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)": 100,
+  "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)": 50,
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "Block 6 · Systems Abbreviations & Acronyms": 159,
   "AET Academy M1 — DC Fundamentals": 0,
@@ -55905,7 +55905,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -55924,7 +55924,7 @@
    "topic": "Radio Communication",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -55943,7 +55943,7 @@
    "topic": "Switches & Relays",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -55961,7 +55961,7 @@
    "topic": "Bonding & Grounding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -55979,7 +55979,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -55997,7 +55997,7 @@
    "topic": "Ohm's Law",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56016,7 +56016,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56034,7 +56034,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56053,7 +56053,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56071,7 +56071,7 @@
    "topic": "Wire & Insulation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56090,7 +56090,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56109,7 +56109,7 @@
    "topic": "Regulations",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56127,7 +56127,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56145,7 +56145,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56164,7 +56164,7 @@
    "topic": "Wire Identification",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56182,7 +56182,7 @@
    "topic": "Generator Controls",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56201,7 +56201,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56220,7 +56220,174 @@
    "topic": "DC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "61d6a01d1e",
+   "q": "GCU is defined as",
+   "options": [
+    "Generator Control Unit",
+    "Generator Contact Unit",
+    "Generator Current Unit"
+   ],
+   "correct": 0,
+   "short": "GCU = Generator Control Unit.",
+   "expl": "The GCU is the Generator Control Unit — the box that regulates voltage, protects against over/undervoltage and reverse current, and parallels its generator. 'Contact' and 'Current' are the decoy middle words.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (GCU)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "de57d6040a",
+   "q": "Concerning coaxial cable, what protects the inner conductor from an external fields?",
+   "options": [
+    "Dielectric-Insulator",
+    "Braided Cover",
+    "Central Conductor"
+   ],
+   "correct": 1,
+   "short": "The braided shield guards the center conductor.",
+   "expl": "Coax's braided cover (shield) surrounds the center conductor, intercepting outside fields so they can't couple in — and keeping the conductor's own field from radiating out. The dielectric only spaces the two apart; it doesn't shield.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (coaxial cable)",
+   "topic": "Coax & Shielding",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "df69c6b8fb",
+   "q": "The force that is present to pull electrons is called",
+   "options": [
+    "Voltage",
+    "Current",
+    "Drift Velocity"
+   ],
+   "correct": 0,
+   "short": "The pulling force = voltage (EMF).",
+   "expl": "Voltage is the electrical pressure — the electromotive force — that pulls electrons through a circuit. Current is the resulting flow, and drift velocity is how slowly the electrons actually creep along.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (voltage/EMF)",
+   "topic": "DC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "d09666f0fd",
+   "q": "After replacing the bad cell in a NiCd battery with a good cell, the battery's life can be extended for",
+   "options": [
+    "5 or more years",
+    "due to cell replacement, the battery must be inspected annually for thermal runaway conditions",
+    "an unlimited amount of time"
+   ],
+   "correct": 0,
+   "short": "A replaced NiCd cell buys 5+ more years.",
+   "expl": "The handbook states it directly: after replacing the bad cell with a good one, the NiCd battery's life can be extended for five or more years — a NiCd fails cell by cell, so swapping the weak one restores it. Not unlimited, and full discharge doesn't harm this type.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (NiCd cell replacement)",
+   "topic": "Batteries",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "471af9d4b9",
+   "q": "What type of switch will activate two separate circuits at the same time",
+   "options": [
+    "DPST",
+    "DPDT",
+    "SPDT"
+   ],
+   "correct": 0,
+   "short": "Two circuits, one throw each = DPST.",
+   "expl": "A double-pole, single-throw switch makes two separate circuits at once with one motion — two poles, each with a single ON. A DPDT adds a second throw position (more than asked), and an SPDT switches only one circuit between two paths.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (switch types)",
+   "topic": "Switches & Relays",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "6dfb4b7c6f",
+   "q": "Capacitance is defined as the ability of a body to hold",
+   "options": [
+    "Electric Charge",
+    "Farads",
+    "microfarads 10 to the negative 6"
+   ],
+   "correct": 0,
+   "short": "Capacitance = ability to store electric charge.",
+   "expl": "Capacitance is a body's ability to hold (store) electric charge. The farad — and the microfarad, 10⁻⁶ farad — is the UNIT that ability is measured in, not the thing stored.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (capacitance)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "f2f568e447",
+   "q": "Automatic direction finders (ADF) use radio waves at frequencies ranging from 3KHz to 3MHz and are known as",
+   "options": [
+    "ground or surface waves",
+    "VHF very high frequency radio waves",
+    "(HF) High frequency radio waves"
+   ],
+   "correct": 0,
+   "short": "3 kHz–3 MHz travel as ground/surface waves.",
+   "expl": "The handbook: waves from 3 kHz to 3 MHz 'are known as ground waves or surface waves' because they follow the earth's surface — the low-frequency band the ADF/NDB uses, which is why an NDB reaches beyond the horizon. That band is well below VHF and HF.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (ground wave propagation / ADF)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "fcc94bb605",
+   "q": "An example of SWAMP area for aircraft wiring",
+   "options": [
+    "near wing flaps, wing folds, or pylons",
+    "Storing aircraft in a dry environment has eliminated the environmental exposure to aircraft wiring",
+    "When aircraft enter MRO's for inspection, the facility will inspect the wiring for SWAMP exposure"
+   ],
+   "correct": 0,
+   "short": "SWAMP zones: flaps, wing folds, pylons.",
+   "expl": "Severe Wind And Moisture Problem areas are the airframe zones hammered by slipstream and spray — wing flap and wing fold areas and pylons (plus wheel wells). Wiring there gets rugged, sealed treatment; the other options are filler sentences, not locations.",
+   "cite": "AC 43.13-1B, Ch. 11 (SWAMP areas)",
+   "topic": "SWAMP / Wire Selection",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "a7c581ef07",
+   "q": "The accuracy and reliability of TCAS information is such that pilots are required to ______, and therefor must",
+   "options": [
+    "Follow TCAS RA over an ATC command",
+    "The TCAS system has been proven a reliable addition to ATC control, and therefor must be taken into account when pilots are in control.",
+    "Always follow ATC command over a TCAS RA"
+   ],
+   "correct": 0,
+   "short": "An RA is flown even over ATC.",
+   "expl": "When TCAS issues a resolution advisory, the crew flies the RA — even against an ATC instruction — because the two aircraft's TCAS units are coordinating the escape maneuver directly in real time. That priority is the design intent.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (TCAS resolution advisories)",
+   "topic": "Avionics Systems",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
   {
@@ -56238,7 +56405,7 @@
    "topic": "Modulation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56256,7 +56423,7 @@
    "topic": "Terminals & Connections",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56274,7 +56441,7 @@
    "topic": "Aircraft Circuits",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56293,7 +56460,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56312,7 +56479,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56330,7 +56497,7 @@
    "topic": "Wiring Installation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56348,7 +56515,7 @@
    "topic": "Wire & Insulation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56366,7 +56533,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56385,7 +56552,7 @@
    "topic": "Radio Communication",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56403,7 +56570,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56421,7 +56588,7 @@
    "topic": "Solid State",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56439,7 +56606,7 @@
    "topic": "Wiring Installation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56457,7 +56624,7 @@
    "topic": "Bonding & Grounding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56476,7 +56643,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56495,7 +56662,7 @@
    "topic": "Generator Controls",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56514,7 +56681,7 @@
    "topic": "Wiring Installation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56532,7 +56699,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56550,7 +56717,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56569,7 +56736,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56588,7 +56755,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56607,7 +56774,7 @@
    "topic": "Coax & Shielding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56625,7 +56792,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56644,7 +56811,7 @@
    "topic": "Radio Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56662,7 +56829,7 @@
    "topic": "Wiring Installation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56680,7 +56847,7 @@
    "topic": "Coax & Shielding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56698,7 +56865,360 @@
    "topic": "Coax & Shielding",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "3cb0d0e559",
+   "q": "What is described as a single, solid conductor, or a stranded conductor?",
+   "options": [
+    "Wire",
+    "Cable",
+    "Conductor"
+   ],
+   "correct": 0,
+   "short": "A single solid or stranded conductor = a wire.",
+   "expl": "A wire is one conductor — solid or stranded. A cable is two or more insulated wires (or a coax) grouped together, and 'conductor' names the material role, not the finished article.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire vs cable definitions)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "de5afae97a",
+   "q": "The Radio Altimeter display indicates height above the terrain also know as",
+   "options": [
+    "AGL",
+    "RAT",
+    "RAA"
+   ],
+   "correct": 0,
+   "short": "Radio altitude = height AGL.",
+   "expl": "The radio altimeter measures true height above the terrain directly below — Above Ground Level (AGL). 'RAT' is the ram air turbine, and 'RAA' isn't a term.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radio altimeter / AGL)",
+   "topic": "Instruments",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "15a4bf5f73",
+   "q": "What are the three types of DC generators?",
+   "options": [
+    "series wound, parallel wound, series-parallel wound",
+    "series wound, parallel wound, shunt wound",
+    "series wound, parallel wound, commutator  wound"
+   ],
+   "correct": 0,
+   "short": "Series, shunt (parallel), compound (series-parallel).",
+   "expl": "The three DC generator types are series, shunt, and compound wound — and since shunt means parallel and compound means series-parallel, the class wording names exactly that set. Listing both 'parallel' AND 'shunt' repeats one type, and there's no 'commutator wound' machine.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (types of DC generators)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "28a60d8a8e",
+   "q": "If a VOR gauge is not used on the aircraft, the VOR information may be displayed where?",
+   "options": [
+    "RMI, HSI, EFIS, or EADI",
+    "GPS, NAV/COM",
+    "NAV/COM transceiver and control panel"
+   ],
+   "correct": 0,
+   "short": "VOR data can drive the RMI, HSI, or glass displays.",
+   "expl": "Without a dedicated VOR head, the course data appears on the RMI, HSI, or electronic displays (EFIS/EADI). The NAV/COM control head only tunes the frequency — it isn't the course display.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (VOR display options)",
+   "topic": "Navigation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "4387b60560",
+   "q": "What radio waves bounce off the ionosphere layer of the atmosphere?",
+   "options": [
+    "UHV",
+    "VHF",
+    "HF"
+   ],
+   "correct": 2,
+   "short": "HF skips off the ionosphere.",
+   "expl": "HF energy refracts off the ionosphere and returns to earth far downrange — sky-wave skip, the basis of long-range oceanic HF. VHF and above pass straight through into space.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (sky waves)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "4fbe65c9ec",
+   "q": "Which type of generator is never employed as an airplane generator?",
+   "options": [
+    "Series",
+    "Shunt",
+    "Compound"
+   ],
+   "correct": 0,
+   "short": "The series generator's regulation is too poor to fly.",
+   "expl": "A series generator's output swings wildly with load — the handbook says outright it 'is never employed as an airplane generator' because of that poor voltage regulation. Shunt and compound machines regulate well enough to use.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (series generators)",
+   "topic": "DC Generators",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "bd6dd3385a",
+   "q": "Spare contacts for future wiring are normally provided on connectors. Connectors must have all contact cavities filled with",
+   "options": [
+    "wired or unwired contacts, unwired contacts should be provided with grommet sealing plugs.",
+    "sealing compound, with adjacent bonding jumper to avoid ESD",
+    "plugs, or sealing receptacles"
+   ],
+   "correct": 0,
+   "short": "Fill every cavity: contacts + sealing plugs in the spares.",
+   "expl": "Good practice fills every connector cavity — wired contacts where used, spare (unwired) contacts elsewhere, with sealing plugs closing the unused grommet holes against moisture. Potting the connector solid with compound is not the method.",
+   "cite": "AC 43.13-1B, Ch. 11 (connector contact cavities/sealing plugs)",
+   "topic": "Terminals & Connections",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "14166881e9",
+   "q": "Title 14 of the Code of Federal Regulations (CFR) part 91, states that all transponders on aircraft flown in controlled airspace are required to be inspected and tested every ______.",
+   "options": [
+    "6 calendar months",
+    "90 days",
+    "24 calendar months"
+   ],
+   "correct": 2,
+   "short": "Transponder checks: every 24 calendar months.",
+   "expl": "14 CFR §91.413 requires the transponder be tested and inspected within the preceding 24 calendar months for operation in controlled airspace — the same interval as the §91.411 altimeter/static checks.",
+   "cite": "14 CFR §91.413 (transponder tests)",
+   "topic": "Regulations",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "386c6a14d9",
+   "q": "What terms are used when two waveforms go through their maximum and minimum points at different times to describe the phase difference?",
+   "options": [
+    "lead and lag",
+    "capacitive and inductive reactance",
+    "positive peak 90/ negative peak 270"
+   ],
+   "correct": 0,
+   "short": "Out-of-step waveforms lead or lag.",
+   "expl": "When two sine waves peak at different times, one LEADS and the other LAGS — that's how the phase difference is described. Reactances CAUSE such shifts, and 90°/270° are just points on a single wave.",
+   "cite": "FAA-H-8083-30B, Ch. 12 (phase relationships)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "6618ccc163",
+   "q": "The two most generally used conductors are",
+   "options": [
+    "copper and aluminum",
+    "silver and aluminum",
+    "copper and silver"
+   ],
+   "correct": 0,
+   "short": "Copper and aluminum are the workhorses.",
+   "expl": "Copper (best practical conductor) and aluminum (lighter, for heavy feeders) are the two conductors aircraft wiring generally uses. Silver conducts slightly better but is far too heavy and costly for general wiring.",
+   "cite": "AC 43.13-1B, Ch. 11 (conductor materials)",
+   "topic": "Wire & Insulation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "73c78e9092",
+   "q": "With each new current flow creating new fields around an antenna forcing the not-totally collapsed fields from the previous AC cycle into space, these are called",
+   "options": [
+    "Electric Field",
+    "Radio Waves",
+    "Electromagnetic Induction"
+   ],
+   "correct": 1,
+   "short": "Fields launched off the antenna = radio waves.",
+   "expl": "As each AC cycle builds and collapses fields around the antenna, the not-fully-collapsed fields are pushed off into space as radio waves — self-sustaining electromagnetic radiation. Induction is the process at the wire; the launched result is the radio wave.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radio wave radiation)",
+   "topic": "Radio Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "6dd4894e67",
+   "q": "What value is always less than the peak value and approximate DC voltage of the same value?",
+   "options": [
+    "Effective Value",
+    "Instantaneous Value",
+    "Maximum Value"
+   ],
+   "correct": 0,
+   "short": "The effective (RMS) value = the DC-equivalent, below peak.",
+   "expl": "The effective (RMS) value is always less than the peak (it's 0.707 × peak) and equals the DC voltage that produces the same heating — which is exactly why it 'approximates DC of the same value.' The maximum value IS the peak.",
+   "cite": "FAA-H-8083-30B, Ch. 12, Page 12-50 (effective/RMS value)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "a05597d63d",
+   "q": "The alternator master switch operates a circuit within the alternator control unit (or voltage regulator) and",
+   "options": [
+    "sends current to the alternator field",
+    "sends field strength to the BUS",
+    "sends voltage to the voltage regulator"
+   ],
+   "correct": 0,
+   "short": "Master switch → field current → alternator builds output.",
+   "expl": "The alternator master switch works through the control unit to energize the FIELD circuit; field current is what lets the alternator produce output. Nothing called 'field strength' is sent to a bus.",
+   "cite": "FAA-H-8083-31B, Ch. 9 (alternator control/field circuit)",
+   "topic": "Generator Controls",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "c381dde075",
+   "q": "Why are antennas mounted at a slight angle off plane?",
+   "options": [
+    "to receive a weak signal rather than no signal at all",
+    "to maintain airflow dynamics and efficiency",
+    "The three basic antennas are Dipole, Marconi, and Loop"
+   ],
+   "correct": 0,
+   "short": "The slight tilt catches signals of mismatched polarization.",
+   "expl": "The handbook explains: antennas are mounted at a slight angle off plane so that when the received wave's polarization doesn't exactly match the antenna, it still picks up a weak signal instead of nothing. It's about polarization tolerance, not airflow.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (antenna mounting/polarization)",
+   "topic": "Antennas",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "a3530ae619",
+   "q": "The primary purpose of conduit is for",
+   "options": [
+    "to eliminate the need for clamps or wire ties",
+    "mechanical protection of cables or wires",
+    "to route wires around in aircraft fuel tanks"
+   ],
+   "correct": 1,
+   "short": "Conduit = mechanical protection.",
+   "expl": "Conduit protects wiring mechanically in exposed, abuse-prone areas. It doesn't replace clamps, and routing wires through fuel tanks is exactly what's avoided.",
+   "cite": "AC 43.13-1B, Ch. 11 (conduit)",
+   "topic": "Conduit",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "bc5ec35ecd",
+   "q": "The phase shift created by inductive reactance always causes voltage to",
+   "options": [
+    "lead current",
+    "lag current",
+    "remain in phase with current"
+   ],
+   "correct": 0,
+   "short": "Inductor: voltage leads current (ELI).",
+   "expl": "In an inductive circuit current can't change instantly, so voltage arrives ahead of it — voltage LEADS current. Memory hook: ELI (E before I in an inductor).",
+   "cite": "FAA-H-8083-30B, Ch. 12 (inductive reactance/phase)",
+   "topic": "AC Theory",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "51c787f28c",
+   "q": "What system is installed on aircraft for collision avoidance?",
+   "options": [
+    "TCAS",
+    "FLIR (Forward Looking Infrared)",
+    "Evasive Action Transponder"
+   ],
+   "correct": 0,
+   "short": "Collision avoidance = TCAS.",
+   "expl": "TCAS — the Traffic (Alert and) Collision Avoidance System — interrogates nearby transponders and issues traffic and resolution advisories to prevent midairs. FLIR is a thermal imager, and 'Evasive Action Transponder' isn't a system.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (TCAS)",
+   "topic": "Avionics Systems",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
+   ]
+  },
+  {
+   "id": "7b43fa923c",
+   "q": "Many weather radar radomes also contain grounding strips, and are used to",
+   "options": [
+    "to conduct lightning strikes and static away from the dome",
+    "provide a bonding point for the rotating antenna assembly during operation to maintain a less than 50 ohm manufactures requirement",
+    "all signals to pass unobstructed by refracting the signal in a direct manner"
+   ],
+   "correct": 0,
+   "short": "Radome strips bleed lightning/static off the dome.",
+   "expl": "Diverter (grounding) strips on a radome give lightning strikes and precipitation static a conductive path to airframe ground, protecting the fiberglass dome and the radar inside. They don't refract the signal or bond a rotating antenna.",
+   "cite": "FAA-H-8083-31B, Ch. 11 (radomes/static protection)",
+   "topic": "Avionics Installation",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
+    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
+   ]
+  },
+  {
+   "id": "3ea68df20c",
+   "q": "What is used to identify wires if direct marking is not possible?",
+   "options": [
+    "Identification Sleeves",
+    "Hot Stamp Marking",
+    "Color Coded wires"
+   ],
+   "correct": 0,
+   "short": "No direct printing? Use ID sleeves.",
+   "expl": "When the insulation can't take direct (hot-stamp) printing, the code goes on printed sleeves slid over the wire. Hot stamping IS direct marking, and color coding isn't the aircraft wire-ID system.",
+   "cite": "AC 43.13-1B, Ch. 11 (wire identification methods)",
+   "topic": "Wire Identification",
+   "block": "Block 6",
+   "sources": [
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56717,7 +57237,7 @@
    "topic": "Diagrams",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56736,7 +57256,7 @@
    "topic": "AC Power / CSD",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56755,7 +57275,7 @@
    "topic": "DC Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56774,7 +57294,7 @@
    "topic": "ELT",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56792,7 +57312,7 @@
    "topic": "Switches & Relays",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56811,7 +57331,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56830,7 +57350,7 @@
    "topic": "Wiring Installation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56849,7 +57369,7 @@
    "topic": "Generator Controls",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56867,7 +57387,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56886,7 +57406,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56904,7 +57424,7 @@
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56922,7 +57442,7 @@
    "topic": "Generator Controls",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56940,7 +57460,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56959,7 +57479,7 @@
    "topic": "Wiring Installation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -56978,7 +57498,7 @@
    "topic": "Navigation",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -56996,7 +57516,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57014,7 +57534,7 @@
    "topic": "Radio Theory",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57032,7 +57552,7 @@
    "topic": "DC Generators",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -57051,7 +57571,7 @@
    "topic": "Instruments",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57069,7 +57589,7 @@
    "topic": "Solid State",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57087,7 +57607,7 @@
    "topic": "Batteries",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -57106,7 +57626,7 @@
    "topic": "Circuit Protection",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -57125,7 +57645,7 @@
    "topic": "Avionics Systems",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57143,7 +57663,7 @@
    "topic": "Ohm's Law",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57161,7 +57681,7 @@
    "topic": "Switches & Relays",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -57180,7 +57700,7 @@
    "topic": "Circuit Protection",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)",
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)",
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
    ]
   },
@@ -57199,7 +57719,7 @@
    "topic": "AC Power",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57217,7 +57737,7 @@
    "topic": "Switches & Relays",
    "block": "Block 6",
    "sources": [
-    "Block 6 · Mock Final B — AMTBLK06 (72 of 100 Questions)"
+    "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)"
    ]
   },
   {
@@ -57232,24 +57752,6 @@
    "short": "Opposing change in current = inductance.",
    "expl": "Inductance is exactly that property — a coil's opposition to any CHANGE in current, from the counter-EMF its own collapsing/building field induces. Mutual induction is coupling between two separate coils.",
    "cite": "FAA-H-8083-30B, Ch. 12 (inductance)",
-   "topic": "AC Theory",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "bc5ec35ecd",
-   "q": "The phase shift created by inductive reactance always causes voltage to",
-   "options": [
-    "lead current",
-    "lag current",
-    "remain in phase with current"
-   ],
-   "correct": 0,
-   "short": "Inductor: voltage leads current (ELI).",
-   "expl": "In an inductive circuit the current can't change instantly, so voltage arrives ahead of it — voltage LEADS current (up to 90°). The memory hook: ELI — E leads I in an inductor (and ICE for the capacitor's opposite).",
-   "cite": "FAA-H-8083-30B, Ch. 12 (inductive reactance/phase)",
    "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
@@ -57383,24 +57885,6 @@
    ]
   },
   {
-   "id": "15a4bf5f73",
-   "q": "What are the three types of DC generators?",
-   "options": [
-    "series wound, parallel wound, series-parallel wound",
-    "series wound, parallel wound, commutator  wound",
-    "series wound, parallel wound, shunt wound"
-   ],
-   "correct": 0,
-   "short": "Series, parallel (shunt), series-parallel (compound).",
-   "expl": "The three DC generator types are series wound, shunt wound, and compound wound — and since 'shunt' means parallel and 'compound' means series-parallel, the class wording series/parallel/series-parallel names exactly that set. Pairing 'parallel' AND 'shunt' in one list repeats the same type twice, and there is no 'commutator wound' machine.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (types of DC generators)",
-   "topic": "DC Generators",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "c68807ade2",
    "q": "What two satellites the COSPAS-SARSAT satellite system are used to receive an ELT signal?",
    "options": [
@@ -57449,24 +57933,6 @@
    "expl": "Per the handbook, high-performance aircraft route air-conditioned air over the avionics and racks to keep them cool (simpler aircraft use ram/atmospheric air). Hot compressor bleed air is what you'd route AWAY from avionics — it heats things.",
    "cite": "FAA-H-8083-31B, Ch. 11 (avionics cooling)",
    "topic": "Avionics Installation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "3ea68df20c",
-   "q": "What is used to identify wires if direct marking is not possible?",
-   "options": [
-    "Identification Sleeves",
-    "Hot Stamp Marking",
-    "Color Coded wires"
-   ],
-   "correct": 0,
-   "short": "Can't stamp the wire? Use printed sleeves.",
-   "expl": "When the insulation can't take direct (hot-stamp) printing, the identification code goes on printed sleeves slid over the wire (or on tags). Hot stamping IS direct marking, and color coding isn't the aircraft wire-ID system.",
-   "cite": "AC 43.13-1B, Ch. 11 (wire identification methods)",
-   "topic": "Wire Identification",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -57527,24 +57993,6 @@
    ]
   },
   {
-   "id": "471af9d4b9",
-   "q": "What type of switch will activate two separate circuits at the same time",
-   "options": [
-    "DPST",
-    "SPDT",
-    "DPDT"
-   ],
-   "correct": 0,
-   "short": "Two circuits, one throw = double-pole single-throw.",
-   "expl": "A double-pole, single-throw switch closes two isolated circuits simultaneously with one motion — two poles, one ON position each. An SPDT alternates a single circuit between two paths, and a DPDT adds a second throw position, more than the stem asks for.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (switch types)",
-   "topic": "Switches & Relays",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "3710e71eba",
    "q": "There are twenty-four satellites in six separate plains of orbit 12,625 miles above earth, how many are active, and how many spares?",
    "options": [
@@ -57593,24 +58041,6 @@
    "expl": "The RAT is the ram air turbine — a small propeller-driven generator (and sometimes hydraulic pump) that deploys into the slipstream to power essentials if the aircraft loses normal generation. The other expansions are word salad built from the letters.",
    "cite": "FAA-H-8083-31B, Ch. 9 (emergency/standby power)",
    "topic": "AC Power",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "7b43fa923c",
-   "q": "Many weather radar radomes also contain grounding strips, and are used to",
-   "options": [
-    "to conduct lightning strikes and static away from the dome",
-    "all signals to pass unobstructed by refracting the signal in a direct manner",
-    "provide a bonding point for the rotating antenna assembly during operation to maintain a less than 50 ohm manufactures requirement"
-   ],
-   "correct": 0,
-   "short": "Radome strips bleed lightning/static away.",
-   "expl": "A radome is a fiberglass window — electrically transparent but vulnerable. Thin grounding (diverter) strips on its surface give lightning strikes and precipitation static a conductive path to airframe ground, protecting the dome and the radar behind it.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (radomes/static protection)",
-   "topic": "Avionics Installation",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -57671,42 +58101,6 @@
    ]
   },
   {
-   "id": "a3530ae619",
-   "q": "The primary purpose of conduit is for",
-   "options": [
-    "to eliminate the need for clamps or wire ties",
-    "mechanical protection of cables or wires",
-    "to route wires around in aircraft fuel tanks"
-   ],
-   "correct": 1,
-   "short": "Conduit = mechanical protection.",
-   "expl": "Conduit exists to mechanically protect wiring in exposed, abuse-prone areas like wheel wells. It doesn't replace clamps, and routing wires through fuel tanks is exactly what you avoid.",
-   "cite": "AC 43.13-1B, Ch. 11 (conduit)",
-   "topic": "Conduit",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "fcc94bb605",
-   "q": "An example of SWAMP area for aircraft wiring",
-   "options": [
-    "near wing flaps, wing folds, or pylons",
-    "When aircraft enter MRO's for inspection, the facility will inspect the wiring for SWAMP exposure",
-    "Storing aircraft in a dry environment has eliminated the environmental exposure to aircraft wiring"
-   ],
-   "correct": 0,
-   "short": "SWAMP zones: flaps, wing folds, pylons, wheel wells.",
-   "expl": "Severe Wind And Moisture Problem areas are the airframe zones blasted by slipstream and spray — wing flap and wing fold areas, pylons, wheel wells. Wiring there gets the rugged, sealed treatment. The other options are filler sentences, not locations.",
-   "cite": "AC 43.13-1B, Ch. 11 (SWAMP areas)",
-   "topic": "SWAMP / Wire Selection",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "87284c8f78",
    "q": "What are the most common examples of twisting wires?",
    "options": [
@@ -57743,24 +58137,6 @@
    ]
   },
   {
-   "id": "386c6a14d9",
-   "q": "What terms are used when two waveforms go through their maximum and minimum points at different times to describe the phase difference?",
-   "options": [
-    "lead and lag",
-    "capacitive and inductive reactance",
-    "positive peak 90/ negative peak 270"
-   ],
-   "correct": 0,
-   "short": "Out-of-step waveforms lead or lag each other.",
-   "expl": "When two sine waves hit their peaks at different times, the phase difference is described as one wave LEADING and the other LAGGING. Reactances are what CAUSE such shifts; 90°/270° are just points on a single wave.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (phase relationships)",
-   "topic": "AC Theory",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "c6ad3ea721",
    "q": "The major parts, or assemblies, of a DC generator are",
    "options": [
@@ -57773,24 +58149,6 @@
    "expl": "The handbook sentence this question is lifted from reads: 'The major parts, or assemblies, of a DC generator are a field frame (or yoke), a rotating armature, and a brush assembly.' The commutator is part of the armature assembly, and slip rings belong to alternators, not DC generators.",
    "cite": "FAA-H-8083-30B, Ch. 12 (DC generator construction)",
    "topic": "DC Generators",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "6dfb4b7c6f",
-   "q": "Capacitance is defined as the ability of a body to hold",
-   "options": [
-    "Electric Charge",
-    "Farads",
-    "microfarads 10 to the negative 6"
-   ],
-   "correct": 0,
-   "short": "Capacitance = ability to store electric charge.",
-   "expl": "Capacitance is a body's ability to hold (store) electric charge. The farad — and the practical microfarad, 10⁻⁶ farad — is the UNIT it's measured in, not the thing being held.",
-   "cite": "FAA-H-8083-30B, Ch. 12 (capacitance)",
-   "topic": "AC Theory",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -58013,24 +58371,6 @@
    ]
   },
   {
-   "id": "14166881e9",
-   "q": "Title 14 of the Code of Federal Regulations (CFR) part 91, states that all transponders on aircraft flown in controlled airspace are required to be inspected and tested every ______.",
-   "options": [
-    "90 days",
-    "6 calendar months",
-    "24 calendar months"
-   ],
-   "correct": 2,
-   "short": "Transponder checks: every 24 calendar months (§91.413).",
-   "expl": "14 CFR §91.413 requires the transponder (and its data correspondence) be tested and inspected within the preceding 24 calendar months for operation in controlled airspace — same interval as the altimeter/static checks of §91.411.",
-   "cite": "14 CFR §91.413 (transponder tests)",
-   "topic": "Regulations",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "2204c8385c",
    "q": "Concerning cockpit digital displays, PFD, and ND refers to",
    "options": [
@@ -58061,42 +58401,6 @@
    "expl": "The ground proximity warning system builds its terrain alerts around radio altimeter height plus closure rates — that's GPWS. An EADI is an attitude display, and 'RAGW' is scrambled letters.",
    "cite": "FAA-H-8083-31B, Ch. 11 (GPWS)",
    "topic": "Avionics Systems",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "28a60d8a8e",
-   "q": "If a VOR gauge is not used on the aircraft, the VOR information may be displayed where?",
-   "options": [
-    "RMI, HSI, EFIS, or EADI",
-    "NAV/COM transceiver and control panel",
-    "GPS, NAV/COM"
-   ],
-   "correct": 0,
-   "short": "VOR data can drive the RMI, HSI, or glass displays.",
-   "expl": "Without a dedicated VOR head, the VOR's course data can be presented on the RMI, the HSI, or the electronic displays (EFIS/EADI). The NAV/COM control head selects the frequency — it isn't the course display.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (VOR display options)",
-   "topic": "Navigation",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "4387b60560",
-   "q": "What radio waves bounce off the ionosphere layer of the atmosphere?",
-   "options": [
-    "VHF",
-    "UHV",
-    "HF"
-   ],
-   "correct": 2,
-   "short": "HF skips off the ionosphere.",
-   "expl": "HF is the band whose energy refracts off the ionosphere and returns to earth far downrange — sky-wave skip, the basis of oceanic HF radio. VHF and above punch straight through into space.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (sky waves)",
-   "topic": "Radio Theory",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -58193,24 +58497,6 @@
    ]
   },
   {
-   "id": "a05597d63d",
-   "q": "The alternator master switch operates a circuit within the alternator control unit (or voltage regulator) and",
-   "options": [
-    "sends current to the alternator field",
-    "sends field strength to the BUS",
-    "sends voltage to the voltage regulator"
-   ],
-   "correct": 0,
-   "short": "Master switch ON = field gets current = alternator alive.",
-   "expl": "The alternator master switch works through the control unit to energize the alternator's FIELD circuit — field current is what lets the machine build output. Kill the field and the alternator goes quiet; nothing called 'field strength' is sent to a bus.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (alternator control/field circuit)",
-   "topic": "Generator Controls",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "d409da2694",
    "q": "What has direct effect on generator output?",
    "options": [
@@ -58223,24 +58509,6 @@
    "expl": "Generator output voltage is controlled directly through the strength of the magnetic field — that's precisely the lever the voltage regulator pulls (by varying field current). Size sets capacity, and commutator action rectifies; neither is the direct control.",
    "cite": "FAA-H-8083-30B, Ch. 12 (generator output factors)",
    "topic": "DC Generators",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "bd6dd3385a",
-   "q": "Spare contacts for future wiring are normally provided on connectors. Connectors must have all contact cavities filled with",
-   "options": [
-    "wired or unwired contacts, unwired contacts should be provided with grommet sealing plugs.",
-    "plugs, or sealing receptacles",
-    "sealing compound, with adjacent bonding jumper to avoid ESD"
-   ],
-   "correct": 0,
-   "short": "Every cavity filled: contacts installed, plus sealing plugs in the spares.",
-   "expl": "Good connector practice fills every cavity — wired contacts where used, spare (unwired) contacts elsewhere, with sealing plugs closing the unused grommet holes so moisture can't wick in. Potting a connector solid with compound is not the standard fix.",
-   "cite": "AC 43.13-1B, Ch. 11 (connector contact cavities/sealing plugs)",
-   "topic": "Terminals & Connections",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
@@ -58265,24 +58533,6 @@
    ]
   },
   {
-   "id": "a7c581ef07",
-   "q": "The accuracy and reliability of TCAS information is such that pilots are required to ______, and therefor must",
-   "options": [
-    "Follow TCAS RA over an ATC command",
-    "The TCAS system has been proven a reliable addition to ATC control, and therefor must be taken into account when pilots are in control.",
-    "Always follow ATC command over a TCAS RA"
-   ],
-   "correct": 0,
-   "short": "An RA outranks the controller.",
-   "expl": "When TCAS issues a resolution advisory, the crew flies the RA — even against an ATC instruction — because TCAS is coordinating directly with the other aircraft's system in real time. That priority is the whole design.",
-   "cite": "FAA-H-8083-31B, Ch. 11 (TCAS resolution advisories)",
-   "topic": "Avionics Systems",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
    "id": "cf1469492b",
    "q": "During battery installation, what lead must be installed last to minimize the risk of shorting the hot terminal",
    "options": [
@@ -58295,24 +58545,6 @@
    "expl": "Connect the positive lead first and the grounding lead LAST: until the ground is attached there's no return path, so a slipped wrench on the hot terminal can't complete a circuit through the airframe. (Removal is the mirror image — ground off first.)",
    "cite": "AIM AMTBLK06 deck / standard battery servicing practice",
    "topic": "Batteries",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "61d6a01d1e",
-   "q": "GCU is defined as",
-   "options": [
-    "Generator Control Unit",
-    "Generator Current Unit",
-    "Generator Contact Unit"
-   ],
-   "correct": 0,
-   "short": "GCU = Generator Control Unit.",
-   "expl": "The GCU is the Generator Control Unit — the solid-state box handling voltage regulation, overvoltage/overcurrent protection, and paralleling for its generator. 'Current' and 'Contact' are the decoy middle words.",
-   "cite": "FAA-H-8083-31B, Ch. 9 (GCU)",
-   "topic": "Generator Controls",
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
