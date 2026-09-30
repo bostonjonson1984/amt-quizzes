@@ -42,6 +42,7 @@
   "Block 4 · Resistor Color Code (Band ID)": 30,
   "Block 4 — Study Guide Mastery Test": 82,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 356,
+  "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 25,
   "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install": 10,
   "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries": 10,
   "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics": 10,
@@ -55,7 +56,6 @@
   "Block 6 · Daily Quiz 17 — Systems Acronyms": 26,
   "Block 6 · Mock Final B — AMTBLK06 Final B (100 Questions)": 100,
   "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)": 50,
-  "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 25,
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "Block 6 · Systems Abbreviations & Acronyms": 159,
   "AET Academy M1 — DC Fundamentals": 0,
@@ -53470,6 +53470,451 @@
    ]
   },
   {
+   "id": "1e84773d22",
+   "q": "What type of aircraft construction utilizes the skin reinforced with structural members to carry the primary stress loads?",
+   "options": [
+    "Semi-monocoque",
+    "Monocoque",
+    "Truss"
+   ],
+   "correct": 0,
+   "short": "Semi-monocoque: skin + longerons/stringers share the load.",
+   "expl": "Semi-monocoque construction reinforces the skin with longitudinal members (longerons and stringers) plus bulkheads and formers, so the skin and its stiffeners TOGETHER carry the primary bending and stress loads. Pure monocoque makes the skin carry it all with no stiffeners, and a truss carries loads through welded tube members, not the skin.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (semimonocoque)",
+   "topic": "Aircraft Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "894e45f173",
+   "q": "The preferred method of marking on sheet metal is to use a No. 2 pencil. (True/False)",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 0,
+   "short": "False — a fiber-tipped pen is preferred; No.2 graphite corrodes aluminum.",
+   "expl": "The handbook says the opposite: fiber-tipped pens are the preferred marking method on aluminum, because the graphite in a No. 2 pencil can cause corrosion where it touches the metal. A scriber is used only where the scratch will later be drilled or cut away.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking tools)",
+   "topic": "Sheet Metal Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "b15ea2a4ff",
+   "q": "Repair materials should be at least four times greater than the original materials. (True/False)",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 0,
+   "short": "False — repair material is same gauge or ONE gauge heavier, not 4x.",
+   "expl": "There is no 'four times' rule. Splice or patch material is normally the same type as the damaged part and either the same thickness or the next greater thickness (about one gauge heavier). Going four times thicker would add needless weight and stiffness the surrounding structure can't match.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-90 & 4-93 (repair/patch material)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "b6a74ea18a",
+   "q": "What are the two classifications of skin patches?",
+   "options": [
+    "Lap & Flush Patch",
+    "Lap & Scab Patch",
+    "Doubler and filler Patch"
+   ],
+   "correct": 0,
+   "short": "The two patch types are lap (a.k.a. scab) and flush.",
+   "expl": "Skin patches come in two types: the lap patch (also called a scab patch — an external overlapping patch) and the flush patch (set flush for aerodynamic smoothness). 'Lap and scab' names the same one type twice, and doubler/filler plates are parts used inside a repair, not a patch classification.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-93 (patches)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "ef075266ac",
+   "q": "What is the name of the manual that is used to facilitate sheetmetal repairs?",
+   "options": [
+    "Aircraft Systems Maintenance Manual (ASMM)",
+    "Structural Repair Manual (SRM)",
+    "Google"
+   ],
+   "correct": 1,
+   "short": "The Structural Repair Manual (SRM) guides structural/sheet-metal repairs.",
+   "expl": "The Structural Repair Manual is written by the manufacturer's engineering department as the guideline for repairing common damage to a specific aircraft's structure — it gives the acceptable repairs, materials, and rivet data for each section. It is the go-to document for sheet-metal work.",
+   "cite": "FAA-H-8083-31B, Ch. 2, Page 2-39 (Structural Repair Manual)",
+   "topic": "Publications",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "397f72e3d1",
+   "q": "Damages can be grouped into ___ general classifications.",
+   "options": [
+    "4",
+    "2",
+    "6"
+   ],
+   "correct": 0,
+   "short": "Four: negligible, repairable by patching, repairable by insertion, replacement.",
+   "expl": "The handbook groups damage into four general classes — negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of parts. Availability of materials and time often decides which path a given part takes.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (damage classifications)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "0e89f2d54a",
+   "q": "Choose the option that is NOT a damage classification.",
+   "options": [
+    "Repairable by manufacturing",
+    "Negligible",
+    "Repairable by patching",
+    "Replacement"
+   ],
+   "correct": 0,
+   "short": "'Repairable by manufacturing' is not a real class — the four are negligible, patching, insertion, replacement.",
+   "expl": "The four real damage classes are negligible, repairable by patching, repairable by INSERTION, and necessitating replacement. 'Repairable by manufacturing' is the made-up one — it swaps in for 'insertion' to trip you up.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (damage classifications)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "3e221ae582",
+   "q": "When the work involves extensive repair of the fuselage, landing gear, or wing center section, a ___ is used (a device for holding parts in position to maintain their shape).",
+   "options": [
+    "Jig/Fixture",
+    "Aircraft holder",
+    "Ballast"
+   ],
+   "correct": 0,
+   "short": "A jig or fixture holds the structure true during extensive repair.",
+   "expl": "Extensive repairs to a fuselage, landing gear, or wing center section are done in a jig or fixture that clamps the parts in their correct relative positions so the structure keeps its shape and alignment while it is worked. Ballast is dead weight for balance, not a holding device.",
+   "cite": "FAA-H-8083-31B, Ch. 2/4 (jigs and fixtures)",
+   "topic": "Tools & Fixtures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "1de6104871",
+   "q": "How are the materials or alloys of solid rivets identified?",
+   "options": [
+    "Code markings on side of rivets",
+    "Code markings on bottom of rivet",
+    "Code markings on heads of rivet"
+   ],
+   "correct": 2,
+   "short": "The alloy shows as a code marking on the rivet HEAD.",
+   "expl": "Solid rivets carry their alloy identification on the head — a raised dot, dimple, raised bars, raised cross, or plain head (plus the alloy letter in the part number). Reading the head marking tells you the alloy, temper, and driving properties before you install it.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-31 to 4-32 (rivet alloy code markings, Fig. 4-77)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "de632eb806",
+   "q": "A rivet with part number MS20426AD4-4 has what head marking?",
+   "options": [
+    "Raised cross",
+    "Single Dimple",
+    "Double dash"
+   ],
+   "correct": 1,
+   "short": "AD = 2117 alloy, whose head marking is a dimple.",
+   "expl": "The 'AD' in the part number is the alloy code for 2117 aluminum, and 2117's head marking is a dimple (a small recessed dot). A raised double-dash marks DD (2024) and a raised cross marks B (5056), so those belong to different alloys. The MS20426 part also tells you it's a 100° countersunk head.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32, Fig. 4-77 (rivet alloy code markings)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "6fc3a685db",
+   "q": "A rivet with part number MS20470AD4-4 is 4/16ths in diameter. (True/False)",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 0,
+   "short": "False — the first number is diameter in 32nds, so AD4 = 4/32 (1/8 in).",
+   "expl": "In a rivet part number the first number after the alloy code is the shank diameter in THIRTY-SECONDS of an inch, and the second number is the length in sixteenths. So MS20470AD4-4 is 4/32 inch (that is 1/8 inch) in diameter and 4/16 inch long — the diameter is 4/32, not 4/16.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (rivet part-number code)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "f0fd8a6c4f",
+   "q": "The formula for rivet diameter is:",
+   "options": [
+    "3 x the thickest sheet",
+    "3 x the thickness of the rivet",
+    "3 x the thickness of the sheet"
+   ],
+   "correct": 0,
+   "short": "Rivet diameter ≈ 3 x the thickness of the THICKEST sheet being joined.",
+   "expl": "The general rule is to pick a rivet diameter about three times the thickness of the thicker (thickest) sheet in the joint, then round up to the next standard size — e.g. a 0.040-inch sheet gives 0.120, so you use a 1/8-inch rivet. Saying '3 x the thickness of the sheet' is the loose version; the precise rule names the THICKEST sheet, and a rivet can't be sized off its own thickness.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-33 (three times the thickness of the thicker sheet); FAA-H-8083-31B p.4-32",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "6f9d26a6a7",
+   "q": "The combined thickness of materials to be joined is known as the grip length. (True/False)",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — grip length = the combined thickness of the joined materials.",
+   "expl": "Grip length is exactly that: the total combined thickness of the sheets being riveted together. Total rivet length then equals the grip length plus the shank needed to form the shop head (about 1.5 times the shank diameter).",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (rivet length / grip length)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "7559a1a34f",
+   "q": "___ is the spacing between rivets in the same row.",
+   "options": [
+    "Transverse Pitch",
+    "Minimum Pitch",
+    "Rivet Pitch"
+   ],
+   "correct": 2,
+   "short": "Rivet pitch = distance between rivet centers in the same row.",
+   "expl": "Rivet pitch is the distance between the centers of neighboring rivets in the SAME row (minimum 3 rivet diameters, typically 4 to 6). Transverse pitch is the spacing between rows, not within a row.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (rivet pitch)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "32fb789e32",
+   "q": "___ is the perpendicular distance between rivet rows.",
+   "options": [
+    "Maximum Pitch",
+    "Rivet Pitch",
+    "Transverse Pitch"
+   ],
+   "correct": 2,
+   "short": "Transverse pitch = perpendicular distance between rivet rows.",
+   "expl": "Transverse pitch is the perpendicular distance from one row of rivets to the next — usually about 75 percent of the rivet pitch, with a minimum of 2.5 rivet diameters. Rivet pitch is measured within a single row, so it's the wrong one here.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (transverse pitch)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "e9f96c62f3",
+   "q": "Solid rivets should not be used in composite structures primarily because of the possibility of causing ___.",
+   "options": [
+    "Delamination",
+    "Crazing",
+    "Corrosion"
+   ],
+   "correct": 0,
+   "short": "Delamination — driving/upset force separates the laminate plies.",
+   "expl": "Composite laminates are sensitive to clamp-up and driving force, so upsetting a solid rivet in them tends to crush and separate the plies — delamination. Composites are joined instead with special fasteners (Hi-Loks, lockbolts, blind bolts). Crazing is a surface-cracking issue of transparent plastics, and corrosion is a separate galvanic concern, not the main reason to avoid solid rivets here.",
+   "cite": "FAA-H-8083-31B, Ch. 7, Page 7-45 (fasteners used with composite laminates)",
+   "topic": "Composite Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "3b40477979",
+   "q": "What is the minimum edge distance for a protruding head rivet?",
+   "options": [
+    "2D",
+    "3D",
+    "4D"
+   ],
+   "correct": 0,
+   "short": "2D — minimum edge distance for a universal/protruding head rivet.",
+   "expl": "For a protruding (universal) head rivet the minimum edge distance from the hole center to the sheet edge is 2 times the rivet diameter (2D); countersunk rivets need 2.5D. The recommended edge distance is about 2.5D and it should never exceed 4D. Too close and the sheet cracks; too far and the edge lifts.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33, Fig. 4-79 (minimum edge distance)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "78329b20de",
+   "q": "The alloy of a MS20615DD4-4 rivet is:",
+   "options": [
+    "2017",
+    "2024",
+    "2117"
+   ],
+   "correct": 1,
+   "short": "DD = 2024 aluminum.",
+   "expl": "The 'DD' alloy code stands for 2024 aluminum — a high-strength alloy so hard it must be annealed and refrigerated (an 'ice box' rivet) before driving. The AD code would be 2117 and D would be 2017. (Note: MS20615 is actually the spec for monel/copper/brass round-head rivets, so a real one wouldn't carry a DD aluminum code — the class is testing the code letters, and DD = 2024.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32, Fig. 4-77 (rivet alloy codes)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "b885836d9b",
+   "q": "The use of a copper cleco would indicate a rivet size of 5/32 is to be installed. (True/False)",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 0,
+   "short": "False — a copper cleco is 1/8 in; the 5/32 cleco is black.",
+   "expl": "Clecos are color-coded by size: silver = 3/32, copper = 1/8, black = 5/32, gold/brass = 3/16. So a copper cleco means a 1/8-inch hole, not 5/32 — the 5/32 cleco is the black one. (The handbook lists the six cleco sizes and that they are color coded; the exact color-to-size map is the standard tool-maker convention.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (Cleco fasteners — six color-coded sizes)",
+   "topic": "Tools & Fixtures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "2db54c857e",
+   "q": "Edge distance is also called \"edge margin\". (True/False)",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — 'edge margin' is another name some manufacturers use for edge distance.",
+   "expl": "The handbook states it plainly: edge distance is 'also called edge margin by some manufacturers.' Either term means the distance from the center of the first rivet to the edge of the sheet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (edge distance / edge margin)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "0c9552385e",
+   "q": "Which pair of rivet alloy-code letters designates \"ice box\" rivets — the ones that must be refrigerated (or reheat-treated) before driving? [Original item was multiple-answer over A/B/AD/D/DD/M; adapted to single-best.]",
+   "options": [
+    "D and DD (2017 and 2024)",
+    "A and AD (1100 and 2117)",
+    "B and M (5056 and Monel)"
+   ],
+   "correct": 0,
+   "short": "Ice box rivets are D (2017) and DD (2024).",
+   "expl": "Ice box rivets are the high-strength aluminum alloys 2017 (code D, above 3/16 inch) and 2024 (code DD) — they age-harden at room temperature, so they're annealed and kept in a freezer, then driven soon after removal. The 1100/2117 (A/AD) rivets drive in the as-received condition, and B (5056) and Monel drive as received too.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-57d, Page 4-25; FAA-H-8083-30B p.7-24 (ice box rivets)",
+   "topic": "Ice Box Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "39c5e23112",
+   "q": "How many times can ice box rivets be re-heat treated? [Original options after \"One/Two times\" were cut off on the paper; correct FAA answer reconstructed.]",
+   "options": [
+    "As often as required (unlimited)",
+    "One time",
+    "Two times"
+   ],
+   "correct": 0,
+   "short": "As often as required — but they must be anodized before the first reheat-treatment.",
+   "expl": "The handbook says 2017 and 2024 rivets 'may be reheat-treated as often as required' — the only condition is they must be anodized before the first reheat-treatment to prevent intergranular oxidation. (The 'one time' trap is the manufacturer's single heat-treatment of 2117/AD rivets, which are NOT ice box rivets.)",
+   "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (heat-treatment of aluminum alloy rivets)",
+   "topic": "Ice Box Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "9fe7e7fbb9",
+   "q": "What is the most common type of solid rivet used in the field today?",
+   "options": [
+    "AD (2117)",
+    "A (1100)",
+    "DD (2024)"
+   ],
+   "correct": 0,
+   "short": "AD (2117) — driven as received, no heat treatment, corrosion resistant.",
+   "expl": "The AD rivet (alloy 2117) is the most frequently used repair rivet because it can be driven in the received condition — it needs no heat treatment, is fairly soft yet strong, and is highly corrosion resistant. DD (2024) rivets are too hard to drive as received (ice box), and A (1100) is only for nonstructural work.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31; FAA-H-8083-30B p.7-24 (AD/2117 rivet)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "ab9ee101db",
+   "q": "When drilling holes for rivets, the holes should be approximately ___ larger than the rivet diameter.",
+   "options": [
+    "0.003\"",
+    "0.03\"",
+    "0.0003\""
+   ],
+   "correct": 0,
+   "short": "About 0.003 inch larger than the shank — snug but lets the rivet slip in.",
+   "expl": "The drill for a rivet hole should be the smallest size that lets the rivet slip in easily — about 0.003 inch greater than the largest tolerance of the shank diameter. When driven, the solid rivet expands to fill the hole, so the joint strength depends on that tight, expanded fit. 0.03 inch would be ten times too loose.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-40 (drilling rivet holes)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "e1910208b8",
+   "q": "Which of the following best describes a wing in flight?",
+   "options": [
+    "Its upper surface is in compression and its lower surface is in tension.",
+    "Its upper surface is in tension and its lower surface is in compression.",
+    "Its upper surface is in compression and its lower surface is in compression."
+   ],
+   "correct": 0,
+   "short": "In flight the wing bends UP: upper skin in compression, lower skin in tension.",
+   "expl": "Lift bends the wing upward, and bending stress is a combination of compression and tension — the inside of the bend is squeezed and the outside is stretched. Because the wing bows up, the upper surface (inside of the bend) is in compression and the lower surface (outside) is in tension.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (bending stress: compression + tension)",
+   "topic": "Aircraft Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
    "id": "17aebaa701",
    "q": "What material is used to insulate the commutator bars?",
    "options": [
@@ -58639,451 +59084,6 @@
    "block": "Block 6",
    "sources": [
     "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)"
-   ]
-  },
-  {
-   "id": "1e84773d22",
-   "q": "What type of aircraft construction utilizes the skin reinforced with structural members to carry the primary stress loads?",
-   "options": [
-    "Semi-monocoque",
-    "Monocoque",
-    "Truss"
-   ],
-   "correct": 0,
-   "short": "Semi-monocoque: skin + longerons/stringers share the load.",
-   "expl": "Semi-monocoque construction reinforces the skin with longitudinal members (longerons and stringers) plus bulkheads and formers, so the skin and its stiffeners TOGETHER carry the primary bending and stress loads. Pure monocoque makes the skin carry it all with no stiffeners, and a truss carries loads through welded tube members, not the skin.",
-   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (semimonocoque)",
-   "topic": "Aircraft Structures",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "894e45f173",
-   "q": "The preferred method of marking on sheet metal is to use a No. 2 pencil. (True/False)",
-   "options": [
-    "False",
-    "True"
-   ],
-   "correct": 0,
-   "short": "False — a fiber-tipped pen is preferred; No.2 graphite corrodes aluminum.",
-   "expl": "The handbook says the opposite: fiber-tipped pens are the preferred marking method on aluminum, because the graphite in a No. 2 pencil can cause corrosion where it touches the metal. A scriber is used only where the scratch will later be drilled or cut away.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking tools)",
-   "topic": "Sheet Metal Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "b15ea2a4ff",
-   "q": "Repair materials should be at least four times greater than the original materials. (True/False)",
-   "options": [
-    "False",
-    "True"
-   ],
-   "correct": 0,
-   "short": "False — repair material is same gauge or ONE gauge heavier, not 4x.",
-   "expl": "There is no 'four times' rule. Splice or patch material is normally the same type as the damaged part and either the same thickness or the next greater thickness (about one gauge heavier). Going four times thicker would add needless weight and stiffness the surrounding structure can't match.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-90 & 4-93 (repair/patch material)",
-   "topic": "Sheet Metal Repair",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "b6a74ea18a",
-   "q": "What are the two classifications of skin patches?",
-   "options": [
-    "Lap & Flush Patch",
-    "Lap & Scab Patch",
-    "Doubler and filler Patch"
-   ],
-   "correct": 0,
-   "short": "The two patch types are lap (a.k.a. scab) and flush.",
-   "expl": "Skin patches come in two types: the lap patch (also called a scab patch — an external overlapping patch) and the flush patch (set flush for aerodynamic smoothness). 'Lap and scab' names the same one type twice, and doubler/filler plates are parts used inside a repair, not a patch classification.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-93 (patches)",
-   "topic": "Sheet Metal Repair",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "ef075266ac",
-   "q": "What is the name of the manual that is used to facilitate sheetmetal repairs?",
-   "options": [
-    "Aircraft Systems Maintenance Manual (ASMM)",
-    "Structural Repair Manual (SRM)",
-    "Google"
-   ],
-   "correct": 1,
-   "short": "The Structural Repair Manual (SRM) guides structural/sheet-metal repairs.",
-   "expl": "The Structural Repair Manual is written by the manufacturer's engineering department as the guideline for repairing common damage to a specific aircraft's structure — it gives the acceptable repairs, materials, and rivet data for each section. It is the go-to document for sheet-metal work.",
-   "cite": "FAA-H-8083-31B, Ch. 2, Page 2-39 (Structural Repair Manual)",
-   "topic": "Publications",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "397f72e3d1",
-   "q": "Damages can be grouped into ___ general classifications.",
-   "options": [
-    "4",
-    "2",
-    "6"
-   ],
-   "correct": 0,
-   "short": "Four: negligible, repairable by patching, repairable by insertion, replacement.",
-   "expl": "The handbook groups damage into four general classes — negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of parts. Availability of materials and time often decides which path a given part takes.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (damage classifications)",
-   "topic": "Damage Classification",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "0e89f2d54a",
-   "q": "Choose the option that is NOT a damage classification.",
-   "options": [
-    "Repairable by manufacturing",
-    "Negligible",
-    "Repairable by patching",
-    "Replacement"
-   ],
-   "correct": 0,
-   "short": "'Repairable by manufacturing' is not a real class — the four are negligible, patching, insertion, replacement.",
-   "expl": "The four real damage classes are negligible, repairable by patching, repairable by INSERTION, and necessitating replacement. 'Repairable by manufacturing' is the made-up one — it swaps in for 'insertion' to trip you up.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (damage classifications)",
-   "topic": "Damage Classification",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "3e221ae582",
-   "q": "When the work involves extensive repair of the fuselage, landing gear, or wing center section, a ___ is used (a device for holding parts in position to maintain their shape).",
-   "options": [
-    "Jig/Fixture",
-    "Aircraft holder",
-    "Ballast"
-   ],
-   "correct": 0,
-   "short": "A jig or fixture holds the structure true during extensive repair.",
-   "expl": "Extensive repairs to a fuselage, landing gear, or wing center section are done in a jig or fixture that clamps the parts in their correct relative positions so the structure keeps its shape and alignment while it is worked. Ballast is dead weight for balance, not a holding device.",
-   "cite": "FAA-H-8083-31B, Ch. 2/4 (jigs and fixtures)",
-   "topic": "Tools & Fixtures",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "1de6104871",
-   "q": "How are the materials or alloys of solid rivets identified?",
-   "options": [
-    "Code markings on side of rivets",
-    "Code markings on bottom of rivet",
-    "Code markings on heads of rivet"
-   ],
-   "correct": 2,
-   "short": "The alloy shows as a code marking on the rivet HEAD.",
-   "expl": "Solid rivets carry their alloy identification on the head — a raised dot, dimple, raised bars, raised cross, or plain head (plus the alloy letter in the part number). Reading the head marking tells you the alloy, temper, and driving properties before you install it.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-31 to 4-32 (rivet alloy code markings, Fig. 4-77)",
-   "topic": "Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "de632eb806",
-   "q": "A rivet with part number MS20426AD4-4 has what head marking?",
-   "options": [
-    "Raised cross",
-    "Single Dimple",
-    "Double dash"
-   ],
-   "correct": 1,
-   "short": "AD = 2117 alloy, whose head marking is a dimple.",
-   "expl": "The 'AD' in the part number is the alloy code for 2117 aluminum, and 2117's head marking is a dimple (a small recessed dot). A raised double-dash marks DD (2024) and a raised cross marks B (5056), so those belong to different alloys. The MS20426 part also tells you it's a 100° countersunk head.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32, Fig. 4-77 (rivet alloy code markings)",
-   "topic": "Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "6fc3a685db",
-   "q": "A rivet with part number MS20470AD4-4 is 4/16ths in diameter. (True/False)",
-   "options": [
-    "False",
-    "True"
-   ],
-   "correct": 0,
-   "short": "False — the first number is diameter in 32nds, so AD4 = 4/32 (1/8 in).",
-   "expl": "In a rivet part number the first number after the alloy code is the shank diameter in THIRTY-SECONDS of an inch, and the second number is the length in sixteenths. So MS20470AD4-4 is 4/32 inch (that is 1/8 inch) in diameter and 4/16 inch long — the diameter is 4/32, not 4/16.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (rivet part-number code)",
-   "topic": "Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "f0fd8a6c4f",
-   "q": "The formula for rivet diameter is:",
-   "options": [
-    "3 x the thickest sheet",
-    "3 x the thickness of the rivet",
-    "3 x the thickness of the sheet"
-   ],
-   "correct": 0,
-   "short": "Rivet diameter ≈ 3 x the thickness of the THICKEST sheet being joined.",
-   "expl": "The general rule is to pick a rivet diameter about three times the thickness of the thicker (thickest) sheet in the joint, then round up to the next standard size — e.g. a 0.040-inch sheet gives 0.120, so you use a 1/8-inch rivet. Saying '3 x the thickness of the sheet' is the loose version; the precise rule names the THICKEST sheet, and a rivet can't be sized off its own thickness.",
-   "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-33 (three times the thickness of the thicker sheet); FAA-H-8083-31B p.4-32",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "6f9d26a6a7",
-   "q": "The combined thickness of materials to be joined is known as the grip length. (True/False)",
-   "options": [
-    "True",
-    "False"
-   ],
-   "correct": 0,
-   "short": "True — grip length = the combined thickness of the joined materials.",
-   "expl": "Grip length is exactly that: the total combined thickness of the sheets being riveted together. Total rivet length then equals the grip length plus the shank needed to form the shop head (about 1.5 times the shank diameter).",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (rivet length / grip length)",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "7559a1a34f",
-   "q": "___ is the spacing between rivets in the same row.",
-   "options": [
-    "Transverse Pitch",
-    "Minimum Pitch",
-    "Rivet Pitch"
-   ],
-   "correct": 2,
-   "short": "Rivet pitch = distance between rivet centers in the same row.",
-   "expl": "Rivet pitch is the distance between the centers of neighboring rivets in the SAME row (minimum 3 rivet diameters, typically 4 to 6). Transverse pitch is the spacing between rows, not within a row.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (rivet pitch)",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "32fb789e32",
-   "q": "___ is the perpendicular distance between rivet rows.",
-   "options": [
-    "Maximum Pitch",
-    "Rivet Pitch",
-    "Transverse Pitch"
-   ],
-   "correct": 2,
-   "short": "Transverse pitch = perpendicular distance between rivet rows.",
-   "expl": "Transverse pitch is the perpendicular distance from one row of rivets to the next — usually about 75 percent of the rivet pitch, with a minimum of 2.5 rivet diameters. Rivet pitch is measured within a single row, so it's the wrong one here.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (transverse pitch)",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "e9f96c62f3",
-   "q": "Solid rivets should not be used in composite structures primarily because of the possibility of causing ___.",
-   "options": [
-    "Delamination",
-    "Crazing",
-    "Corrosion"
-   ],
-   "correct": 0,
-   "short": "Delamination — driving/upset force separates the laminate plies.",
-   "expl": "Composite laminates are sensitive to clamp-up and driving force, so upsetting a solid rivet in them tends to crush and separate the plies — delamination. Composites are joined instead with special fasteners (Hi-Loks, lockbolts, blind bolts). Crazing is a surface-cracking issue of transparent plastics, and corrosion is a separate galvanic concern, not the main reason to avoid solid rivets here.",
-   "cite": "FAA-H-8083-31B, Ch. 7, Page 7-45 (fasteners used with composite laminates)",
-   "topic": "Composite Repair",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "3b40477979",
-   "q": "What is the minimum edge distance for a protruding head rivet?",
-   "options": [
-    "2D",
-    "3D",
-    "4D"
-   ],
-   "correct": 0,
-   "short": "2D — minimum edge distance for a universal/protruding head rivet.",
-   "expl": "For a protruding (universal) head rivet the minimum edge distance from the hole center to the sheet edge is 2 times the rivet diameter (2D); countersunk rivets need 2.5D. The recommended edge distance is about 2.5D and it should never exceed 4D. Too close and the sheet cracks; too far and the edge lifts.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33, Fig. 4-79 (minimum edge distance)",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "78329b20de",
-   "q": "The alloy of a MS20615DD4-4 rivet is:",
-   "options": [
-    "2017",
-    "2024",
-    "2117"
-   ],
-   "correct": 1,
-   "short": "DD = 2024 aluminum.",
-   "expl": "The 'DD' alloy code stands for 2024 aluminum — a high-strength alloy so hard it must be annealed and refrigerated (an 'ice box' rivet) before driving. The AD code would be 2117 and D would be 2017. (Note: MS20615 is actually the spec for monel/copper/brass round-head rivets, so a real one wouldn't carry a DD aluminum code — the class is testing the code letters, and DD = 2024.)",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32, Fig. 4-77 (rivet alloy codes)",
-   "topic": "Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "b885836d9b",
-   "q": "The use of a copper cleco would indicate a rivet size of 5/32 is to be installed. (True/False)",
-   "options": [
-    "False",
-    "True"
-   ],
-   "correct": 0,
-   "short": "False — a copper cleco is 1/8 in; the 5/32 cleco is black.",
-   "expl": "Clecos are color-coded by size: silver = 3/32, copper = 1/8, black = 5/32, gold/brass = 3/16. So a copper cleco means a 1/8-inch hole, not 5/32 — the 5/32 cleco is the black one. (The handbook lists the six cleco sizes and that they are color coded; the exact color-to-size map is the standard tool-maker convention.)",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (Cleco fasteners — six color-coded sizes)",
-   "topic": "Tools & Fixtures",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "2db54c857e",
-   "q": "Edge distance is also called \"edge margin\". (True/False)",
-   "options": [
-    "True",
-    "False"
-   ],
-   "correct": 0,
-   "short": "True — 'edge margin' is another name some manufacturers use for edge distance.",
-   "expl": "The handbook states it plainly: edge distance is 'also called edge margin by some manufacturers.' Either term means the distance from the center of the first rivet to the edge of the sheet.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (edge distance / edge margin)",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "0c9552385e",
-   "q": "Which pair of rivet alloy-code letters designates \"ice box\" rivets — the ones that must be refrigerated (or reheat-treated) before driving? [Original item was multiple-answer over A/B/AD/D/DD/M; adapted to single-best.]",
-   "options": [
-    "D and DD (2017 and 2024)",
-    "A and AD (1100 and 2117)",
-    "B and M (5056 and Monel)"
-   ],
-   "correct": 0,
-   "short": "Ice box rivets are D (2017) and DD (2024).",
-   "expl": "Ice box rivets are the high-strength aluminum alloys 2017 (code D, above 3/16 inch) and 2024 (code DD) — they age-harden at room temperature, so they're annealed and kept in a freezer, then driven soon after removal. The 1100/2117 (A/AD) rivets drive in the as-received condition, and B (5056) and Monel drive as received too.",
-   "cite": "AC 43.13-1B, Ch. 4, ¶4-57d, Page 4-25; FAA-H-8083-30B p.7-24 (ice box rivets)",
-   "topic": "Ice Box Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "39c5e23112",
-   "q": "How many times can ice box rivets be re-heat treated? [Original options after \"One/Two times\" were cut off on the paper; correct FAA answer reconstructed.]",
-   "options": [
-    "As often as required (unlimited)",
-    "One time",
-    "Two times"
-   ],
-   "correct": 0,
-   "short": "As often as required — but they must be anodized before the first reheat-treatment.",
-   "expl": "The handbook says 2017 and 2024 rivets 'may be reheat-treated as often as required' — the only condition is they must be anodized before the first reheat-treatment to prevent intergranular oxidation. (The 'one time' trap is the manufacturer's single heat-treatment of 2117/AD rivets, which are NOT ice box rivets.)",
-   "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (heat-treatment of aluminum alloy rivets)",
-   "topic": "Ice Box Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "9fe7e7fbb9",
-   "q": "What is the most common type of solid rivet used in the field today?",
-   "options": [
-    "AD (2117)",
-    "A (1100)",
-    "DD (2024)"
-   ],
-   "correct": 0,
-   "short": "AD (2117) — driven as received, no heat treatment, corrosion resistant.",
-   "expl": "The AD rivet (alloy 2117) is the most frequently used repair rivet because it can be driven in the received condition — it needs no heat treatment, is fairly soft yet strong, and is highly corrosion resistant. DD (2024) rivets are too hard to drive as received (ice box), and A (1100) is only for nonstructural work.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31; FAA-H-8083-30B p.7-24 (AD/2117 rivet)",
-   "topic": "Rivets",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "ab9ee101db",
-   "q": "When drilling holes for rivets, the holes should be approximately ___ larger than the rivet diameter.",
-   "options": [
-    "0.003\"",
-    "0.03\"",
-    "0.0003\""
-   ],
-   "correct": 0,
-   "short": "About 0.003 inch larger than the shank — snug but lets the rivet slip in.",
-   "expl": "The drill for a rivet hole should be the smallest size that lets the rivet slip in easily — about 0.003 inch greater than the largest tolerance of the shank diameter. When driven, the solid rivet expands to fill the hole, so the joint strength depends on that tight, expanded fit. 0.03 inch would be ten times too loose.",
-   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-40 (drilling rivet holes)",
-   "topic": "Rivet Layout",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
-   ]
-  },
-  {
-   "id": "e1910208b8",
-   "q": "Which of the following best describes a wing in flight?",
-   "options": [
-    "Its upper surface is in compression and its lower surface is in tension.",
-    "Its upper surface is in tension and its lower surface is in compression.",
-    "Its upper surface is in compression and its lower surface is in compression."
-   ],
-   "correct": 0,
-   "short": "In flight the wing bends UP: upper skin in compression, lower skin in tension.",
-   "expl": "Lift bends the wing upward, and bending stress is a combination of compression and tension — the inside of the bend is squeezed and the outside is stretched. Because the wing bows up, the upper surface (inside of the bend) is in compression and the lower surface (outside) is in tension.",
-   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (bending stress: compression + tension)",
-   "topic": "Aircraft Structures",
-   "block": "Block 6",
-   "sources": [
-    "Block 6 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
    ]
   },
   {
