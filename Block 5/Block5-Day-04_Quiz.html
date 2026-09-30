@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Day 4 — Riveting, Driven Rivet Standards &amp; Shop Safety</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Day 4 — Riveting, Driven Rivet Standards &amp; Shop Safety</h1>
+    <div class="sub">Every teaching point from Day 4 of the AMT1201 deck: solid rivets and head shapes, rivet guns and bucking bars, rivet sets, countersinking (microstop, chatter, methods), riveting preparation and safety, driven-rivet inspection, and shop cleanliness/FOD. Answers verified against FAA-H-8083-31B Ch. 4, each explanation cited.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "What is the most common type of rivet used in aircraft construction?", "options": ["The Hi-Lok fastener", "The solid shank rivet", "The blind (CherryMAX) rivet"], "correct": 1, "short": "The solid shank rivet is the most common in aircraft construction.", "expl": "The solid shank rivet is the most common rivet in aircraft construction. Blind rivets and Hi-Loks are special-purpose fasteners used where a solid rivet cannot be driven.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (solid rivets)", "topic": "Rivets", "fig": ""}, {"q": "Which two rivet head shapes are the most commonly used?", "options": ["Universal head and 100° countersunk head", "Round head and flat head", "Brazier head and mushroom head"], "correct": 0, "short": "Universal and 100° countersunk are the two most-used heads.", "expl": "The universal head and the 100-degree countersunk head are the two most commonly used solid-rivet head shapes. The universal replaced several older protruding heads; the countersunk sits flush.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (rivet heads)", "topic": "Rivets", "fig": ""}, {"q": "For a structural application, a replacement rivet made of LOWER-strength material ___.", "options": ["Should not be used unless the shortfall is made up by using a LARGER rivet", "Can always be used as a direct substitute", "Is acceptable only if driven harder"], "correct": 0, "short": "Lower-strength rivet only if you go LARGER to make up the strength.", "expl": "In structural work the replacement rivet's strength matters most. A lower-strength alloy should not be substituted unless the loss is made up by using a larger-diameter rivet so the joint keeps its rated strength. Driving harder does not add strength.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (replacement rivet strength)", "topic": "Rivets", "fig": ""}, {"q": "What is the most common rivet-UPSETTING tool?", "options": ["The pneumatic rivet gun", "The bucking bar", "The cleco"], "correct": 0, "short": "The pneumatic rivet gun is the most common upsetting tool.", "expl": "The pneumatic rivet gun is the most common tool for upsetting (driving) rivets. The bucking bar backs up the tail; a cleco only holds parts in alignment.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet installation tools)", "topic": "Riveting", "fig": ""}, {"q": "The most common rivet guns are 'slow hitting' guns that strike about ___.", "options": ["900 to 2,500 blows per minute", "50 to 100 blows per minute", "10,000 to 20,000 blows per minute"], "correct": 0, "short": "Slow-hitting guns: 900–2,500 blows per minute.", "expl": "The most common rivet guns are slow-hitting types that strike from about 900 to 2,500 blows per minute — enough to upset a rivet quickly but controllable.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet gun)", "topic": "Riveting", "fig": ""}, {"q": "A rivet gun should upset a rivet in about ___.", "options": ["1 to 3 seconds", "10 to 15 seconds", "less than a quarter second"], "correct": 0, "short": "A rivet gun should upset a rivet in 1 to 3 seconds.", "expl": "A properly set rivet gun upsets a rivet in about 1 to 3 seconds. Much longer and the rivet work-hardens or the material is damaged; much shorter and it is likely over-driven.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet gun)", "topic": "Riveting", "fig": ""}, {"q": "When driving a rivet, the rivet set (header) must be held ___.", "options": ["Snugly against the rivet head and perpendicular to the surface", "At a 45° angle to the head", "Loosely so it can float"], "correct": 0, "short": "Header held snug against the head and perpendicular to the surface.", "expl": "The gun's header (rivet set) must sit snugly against the manufactured head and be held perpendicular to the surface, while a bucking bar of the proper weight backs up the opposite end. A cocked set damages the head and the skin.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet installation)", "topic": "Riveting", "fig": ""}, {"q": "During riveting, the force of the gun must be absorbed by ___.", "options": ["The structure being riveted", "The rivet set spring", "The bucking bar — not the structure being riveted"], "correct": 2, "short": "The bucking bar absorbs the gun's force, not the structure.", "expl": "The mass of the bucking bar must absorb the gun's driving force so it goes into upsetting the rivet, not into the surrounding structure. Letting the structure take the blows distorts the part.", "cite": "FAA-H-8083-31B, Ch. 4 (bucking bar)", "topic": "Riveting", "fig": ""}, {"q": "If the rivet set (header) is TOO SMALL for the rivet, what happens?", "options": ["Nothing — size does not matter", "It marks (dents) the rivet head", "It marks the surrounding material"], "correct": 1, "short": "Too-small header marks the rivet head; too-large marks the material.", "expl": "A header too small digs into and marks the rivet head. A header too large overhangs and strikes the surrounding skin, marking the material. Each rivet set is made to fit specific rivet types and locations.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet sets)", "topic": "Riveting", "fig": ""}, {"q": "What holds the header (rivet set) in the rivet gun?", "options": ["A retaining (retainer) spring", "A cleco", "A set screw in the bucking bar"], "correct": 0, "short": "A retaining spring holds the header in the gun.", "expl": "A retaining spring screws onto the gun barrel and keeps the rivet set from flying out if the gun is triggered off the work. It is a required safety item.", "cite": "FAA-H-8083-31B, Ch. 4 (retaining spring)", "topic": "Riveting", "fig": ""}, {"q": "The most common countersink cutter has an included angle of ___ and, for aluminum, works best with ___.", "options": ["100 degrees; six flutes", "82 degrees; two flutes", "120 degrees; one flute"], "correct": 0, "short": "Most common countersink = 100° included angle, six-fluted for aluminum.", "expl": "The most common countersink cutter has a 100-degree included angle (matching the 100° countersunk rivet), and a six-fluted cutter works best in aluminum for a smooth chatter-free cut.", "cite": "FAA-H-8083-31B, Ch. 4 (countersinking tools)", "topic": "Countersinking", "fig": ""}, {"q": "Why is the MICROSTOP countersink preferred, and how is it set up?", "options": ["It never needs adjusting and cuts any depth automatically", "It drills and countersinks in a single fixed size only", "It has an adjustable collar, locking collar, and locking ring; you set depth and test on scrap 0.040 aluminum"], "correct": 2, "short": "Microstop = adjustable/locking collars for precise depth; test on 0.040 scrap.", "expl": "The microstop countersink is preferred because its adjustable collar, locking collar, and locking ring let you set a precise, repeatable depth. You dial in the depth you think you need and test it on two scrap pieces of 0.040 aluminum, then adjust.", "cite": "FAA-H-8083-31B, Ch. 4 (microstop countersink)", "topic": "Countersinking", "fig": ""}, {"q": "What is the MOST common problem when countersinking, and how is it minimized?", "options": ["Overheating — minimized by drilling faster", "Cracking — minimized by using a dull cutter", "Chattering — minimized with sharp tooling, slow speed, and firm pressure"], "correct": 2, "short": "Chattering is the common problem; fix with sharp tooling, slow speed, firm pressure.", "expl": "Chattering — the cutter skipping and leaving a rough, multi-faceted hole — is the most common countersinking problem. Sharp tooling, slow speed, and firm steady pressure keep the cutter engaged and the surface smooth.", "cite": "FAA-H-8083-31B, Ch. 4 (countersinking)", "topic": "Countersinking", "fig": ""}, {"q": "What is the result of an IMPROPER countersink?", "options": ["Reduced strength of the riveted joint and possible failure of the sheet or rivet head", "A stronger joint than a proper countersink", "No effect on strength"], "correct": 0, "short": "Improper countersink reduces joint strength and can cause failure.", "expl": "An improper countersink (too deep, too shallow, or chattered) reduces the strength of the riveted joint and can lead to failure of the sheet or the rivet head. Countersinking makes a conical recess for the flush rivet head, and its edge distance must be greater than for universal rivets.", "cite": "FAA-H-8083-31B, Ch. 4 (countersinking)", "topic": "Countersinking", "fig": ""}, {"q": "The two methods of countersinking are ___.", "options": ["Welding and brazing", "Machine (drill) countersinking and dimpling (press)", "Drilling and reaming"], "correct": 1, "short": "Two methods: machine/drill countersink, or dimpling/press.", "expl": "You make the recess for a flush rivet head either by machine (drill) countersinking — cutting a cone into the metal — or by dimpling (pressing) the sheet into a cone, used when the sheet is too thin to cut a countersink.", "cite": "FAA-H-8083-31B, Ch. 4 (countersinking methods)", "topic": "Countersinking", "fig": ""}, {"q": "Before bucking rivets, you should make sure that ___.", "options": ["The rivet gun is pointed at the work area to warn others", "All holes line up, parts are fastened with clecos, and burrs/shavings are removed", "The plastic protective covering is left on for protection"], "correct": 1, "short": "Holes aligned + clecoed + deburred; remove plastic covering.", "expl": "Before bucking, confirm the holes line up perfectly, the parts are held with clecos, and all shavings and burrs are removed. Also remember to remove the plastic protective covering. Depending on the job, riveting may take two people (team riveting).", "cite": "FAA-H-8083-31B, Ch. 4 (riveting preparation)", "topic": "Riveting", "fig": ""}, {"q": "Which is a correct rivet-gun SAFETY precaution?", "options": ["Never depress the trigger unless the header is tight against wood or a rivet, and never point the gun at anyone", "Test the gun by firing it into open air", "Leave the air hose connected during breaks for convenience"], "correct": 0, "short": "Trigger only with the header against wood/rivet; never point at anyone; disconnect air on breaks.", "expl": "After set-up you test the gun on a piece of wood and adjust the air valve; never point it at anyone; never pull the trigger unless the header is held tight against wood or a rivet; and always disconnect the air hose from the tool when it is not in use, such as on breaks.", "cite": "FAA-H-8083-31B, Ch. 4 (riveting safety)", "topic": "Shop Safety", "fig": ""}, {"q": "A clean working environment is described as fundamental to ___ prevention.", "options": ["FOD (foreign object damage)", "Corrosion only", "Static electricity"], "correct": 0, "short": "Shop cleanliness is fundamental to FOD prevention ('clean as you go').", "expl": "A clean work area is fundamental to FOD (foreign object damage) prevention. Technicians follow the 'clean as you go' concept: clean the immediate area and workstands when finished, pick up migrating debris, clean before inspection and at the end of each shift, and keep food and drink out of the work area.", "cite": "FAA-H-8083-31B, Ch. 4 (shop cleanliness)", "topic": "Shop Safety", "fig": ""}, {"q": "Under 'clean as you go,' when should the immediate work area be cleaned?", "options": ["When work stops, before inspection, and at the end of each shift", "Only once a week", "Only when the supervisor asks"], "correct": 0, "short": "Clean when work stops, before inspection, and at end of shift.", "expl": "The 'clean as you go' rule means cleaning the immediate area and workstands whenever you finish or cannot continue, picking up debris that could migrate out of sight, cleaning before inspection, and cleaning at the end of each shift — plus returning hoses, drop lights, and cords to storage.", "cite": "FAA-H-8083-31B, Ch. 4 (shop cleanliness)", "topic": "Shop Safety", "fig": ""}, {"q": "Driven-rivet inspection consists of examining ___.", "options": ["Both the shop and manufactured heads plus the surrounding skin and structure for deformities", "Only the shop (bucked) head", "Only the paint over the rivets"], "correct": 0, "short": "Inspect BOTH heads and the surrounding skin/structure.", "expl": "Rivet inspection covers both the shop (upset) head and the manufactured head, along with the surrounding skin and structural parts, looking for deformities. A scale or rivet gauge checks that the upset head meets the standard.", "cite": "FAA-H-8083-31B, Ch. 4 (driven rivet standards)", "topic": "Driven Rivet Standards", "fig": ""}];
+const DRILL = [];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

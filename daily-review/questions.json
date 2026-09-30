@@ -1,6 +1,6 @@
 {
  "built": "2026-09-30",
- "total": 3820,
+ "total": 4045,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -42,6 +42,13 @@
   "Block 4 · Resistor Color Code (Band ID)": 30,
   "Block 4 — Study Guide Mastery Test": 82,
   "Ch.12 General — Fundamentals of Electricity & Electronics": 356,
+  "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools": 64,
+  "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations": 26,
+  "Block 5 · Day 3 — Drilling & Drill Bit Sizes": 16,
+  "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety": 20,
+  "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools": 8,
+  "Block 5 · Day 7 — Layout, Forming & Bend Calculations": 28,
+  "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
   "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 25,
   "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install": 10,
   "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries": 10,
@@ -53467,6 +53474,4056 @@
    "block": "Block 4",
    "sources": [
     "Ch.12 General — Fundamentals of Electricity & Electronics"
+   ]
+  },
+  {
+   "id": "ef555c948c",
+   "q": "An airplane has five principal structural units. Which set names them?",
+   "options": [
+    "Wings, engine, propeller, cockpit, and tail",
+    "Fuselage, wings, stabilizers, flight control surfaces, and landing gear",
+    "Fuselage, cowling, spars, ribs, and skin"
+   ],
+   "correct": 1,
+   "short": "The five principal units: fuselage, wings, stabilizers, flight control surfaces, landing gear.",
+   "expl": "The handbook lists the airplane's major structural units as the fuselage, the wings, the stabilizers, the flight control surfaces, and the landing gear. Cowling, spars, ribs, and skin are sub-parts of those units, not principal units of their own.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-6 (major structural units)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "3b08f4f2ed",
+   "q": "What is the main structural unit of any airplane or helicopter?",
+   "options": [
+    "The fuselage",
+    "The empennage",
+    "The wing spar"
+   ],
+   "correct": 0,
+   "short": "The fuselage is the main structural unit.",
+   "expl": "The fuselage is the central body and main structural unit; the wings, tail, and landing gear all attach to it. The empennage is only the tail section, and a spar is a member inside the wing.",
+   "cite": "FAA-H-8083-31B, Ch. 1 (fuselage)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "22634f47a4",
+   "q": "The empennage is best described as the ___.",
+   "options": [
+    "Tail section — a tail cone plus fixed and movable aerodynamic surfaces",
+    "Wing center section",
+    "Forward pressure bulkhead"
+   ],
+   "correct": 0,
+   "short": "Empennage = the tail section (tail cone + fixed + movable aero surfaces).",
+   "expl": "Empennage is the tail assembly: a tail cone, the fixed aerodynamic surfaces (vertical and horizontal stabilizers), and the movable aerodynamic surfaces (rudder and elevator).",
+   "cite": "FAA-H-8083-31B, Ch. 1 (empennage)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "3b17880a19",
+   "q": "In MONOCOQUE fuselage construction, what carries the primary stress load?",
+   "options": [
+    "The skin alone",
+    "The skin reinforced by internal members",
+    "A welded tube truss"
+   ],
+   "correct": 0,
+   "short": "Monocoque: the skin carries all the load (like a soda can).",
+   "expl": "In monocoque construction the outer skin takes all of the stress with little or no internal bracing — the classic example is a soda-pop can. Add reinforcing members and it becomes semi-monocoque; use a welded tube framework and it is a truss.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (monocoque)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "752da227df",
+   "q": "In SEMI-MONOCOQUE construction the primary stress load is carried by ___.",
+   "options": [
+    "A fabric-covered welded steel tube frame",
+    "The skin reinforced with cross-sectional and/or longitudinal structural members",
+    "The skin alone with no reinforcement"
+   ],
+   "correct": 1,
+   "short": "Semi-monocoque: skin PLUS internal members share the load.",
+   "expl": "Semi-monocoque uses a skin that is reinforced by structural members running cross-sectionally (frames, formers, bulkheads) and lengthwise (stringers, longerons). The skin and its stiffeners carry the load together, which is why it is the most common metal airframe design.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (semi-monocoque)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "d5032a80fb",
+   "q": "A TRUSS-type fuselage is best described as ___.",
+   "options": [
+    "A rigid framework of members such as beams, struts, and bars, generally covered with fabric",
+    "A skin-only shell with no internal members",
+    "Rolled aluminum sheet formed into a stressed box"
+   ],
+   "correct": 0,
+   "short": "Truss: a rigid framework of beams/struts/bars, usually fabric covered.",
+   "expl": "A truss fuselage is a rigid framework built up of members — beams, struts, and bars (often welded steel tube) — that carry the loads; it is generally covered with fabric for aerodynamic shape rather than for strength.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (truss)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "5f607ea9ed",
+   "q": "Which cross-sectional member is the LIGHTEST, used primarily for support and skin attachment and to give the surface its form or shape?",
+   "options": [
+    "Frames",
+    "Bulkheads",
+    "Formers"
+   ],
+   "correct": 2,
+   "short": "Formers are the lightest cross-sectional members; they set the shape.",
+   "expl": "Formers are the lightest of the cross-sectional members; their job is support, skin attachment, and giving the fuselage its form or shape. Frames are heavier and carry strength; bulkheads are frame assemblies that divide sections.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (formers)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "1343be9381",
+   "q": "Which cross-sectional members are the most numerous and most important in giving the fuselage its strength and shape, and outline features such as doors and windows?",
+   "options": [
+    "Formers",
+    "Stringers",
+    "Frames"
+   ],
+   "correct": 2,
+   "short": "Frames: most numerous, give strength and shape, outline doors/windows.",
+   "expl": "Frames are the most numerous and important cross-sectional members — they provide the major cross-sectional support and shape, and they outline structural features like door and window openings. Stringers are lengthwise members, not cross-sectional.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (frames)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "2fc92c19ad",
+   "q": "A frame assembly used to separate one fuselage section from another is a ___.",
+   "options": [
+    "Gusset",
+    "Bulkhead",
+    "Former"
+   ],
+   "correct": 1,
+   "short": "Bulkheads are frame assemblies that separate fuselage sections.",
+   "expl": "A bulkhead is a frame assembly used to separate one section of the fuselage from another — for example a pressure bulkhead. A gusset is a small plate that joins intersecting members, not a section divider.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (bulkheads)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "1b28206d92",
+   "q": "Which lengthwise member is the SMALLER, lighter, weaker one — used mainly for fuselage shape and skin attachment, usually a single aluminum extrusion or formed aluminum?",
+   "options": [
+    "Stringer",
+    "Longeron",
+    "Bulkhead"
+   ],
+   "correct": 0,
+   "short": "Stringers: the smaller/lighter lengthwise members for shape and skin attachment.",
+   "expl": "Stringers are the smaller, lighter, weaker of the lengthwise (longitudinal) members; they help fix the fuselage shape and give the skin something to attach to. They are usually a single aluminum-alloy extrusion or formed aluminum. Longerons are the heavy ones.",
+   "cite": "FAA-H-8083-31B, Ch. 1 (stringers)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "5a40746cb3",
+   "q": "Which lengthwise member is the HEAVIER, stronger one that holds the bulkheads and formers together and helps support primary bending loads?",
+   "options": [
+    "Longeron",
+    "Stringer",
+    "Former"
+   ],
+   "correct": 0,
+   "short": "Longerons: the heavy lengthwise members carrying primary bending loads.",
+   "expl": "Longerons are the heavier, stronger longitudinal members; they run the length of the fuselage, tie the bulkheads and formers together, and help carry the primary bending loads. Stringers are the lighter counterpart.",
+   "cite": "FAA-H-8083-31B, Ch. 1 (longerons)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "f68152b09b",
+   "q": "What is the purpose of a GUSSET?",
+   "options": [
+    "To seal a fuel tank bay",
+    "To provide a walkway on the wing",
+    "To join and reinforce intersecting structural members"
+   ],
+   "correct": 2,
+   "short": "A gusset joins and reinforces where members intersect.",
+   "expl": "A gusset is a plate — often triangular — used to join and reinforce intersecting structural members, spreading the load across the joint. It has nothing to do with sealing or walkways.",
+   "cite": "FAA-H-8083-31B, Ch. 1 (gussets)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "f6f8ae7c5d",
+   "q": "Which of the following is a recognized type of metal WING construction shown in the course?",
+   "options": [
+    "Stressed fabric",
+    "Box beam",
+    "Geodesic lattice"
+   ],
+   "correct": 1,
+   "short": "Monospar, multispar, and box beam are the wing construction types.",
+   "expl": "The deck shows three metal wing designs: monospar (one main spar), multispar (several spars), and box beam. A box beam uses two main longitudinal members joined by formers/ribs to make a strong, light box. Geodesic and fabric are not the metal-wing types listed here.",
+   "cite": "FAA-H-8083-31B, Ch. 1 (wing construction)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "4a51fd3b46",
+   "q": "Structural units such as spars and engine supports that were built up from sheet metal are ___.",
+   "options": [
+    "Never repairable and must always be replaced",
+    "Repairable only by welding",
+    "Repairable, using approved methods"
+   ],
+   "correct": 2,
+   "short": "Built-up sheet-metal units (spars, engine mounts) are repairable by approved methods.",
+   "expl": "Built-up sheet-metal structural units — spars, engine supports, and the like — can be repaired using approved methods and data, not automatically scrapped. The key word is 'approved': you follow the SRM or FAA-accepted data.",
+   "cite": "FAA-H-8083-31B, Ch. 1/4 (built-up structural units)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "7e38de3c96",
+   "q": "What is the PRIMARY objective of any aircraft structural repair?",
+   "options": [
+    "To restore the damaged part to its original condition",
+    "To make the part as light as possible regardless of strength",
+    "To make the part far stronger than the original"
+   ],
+   "correct": 0,
+   "short": "Restore the part to its ORIGINAL condition (often replacement is the only way).",
+   "expl": "The primary objective of a repair is to restore the damaged part to its original condition — original strength, original contour. Very often replacement is the only way to truly accomplish that. Over-building or under-building both change how the surrounding structure carries load.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-86 to 4-87 (basic principles)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "c924c98fd0",
+   "q": "When investigating structural damage, what must be done FIRST so the exact condition of each rivet, bolt, and weld can be seen?",
+   "options": [
+    "Remove all dirt, grease, and paint from the damaged and surrounding areas",
+    "Stop-drill every visible crack immediately",
+    "Apply primer over the whole area"
+   ],
+   "correct": 0,
+   "short": "First clean off dirt, grease, and paint to reveal the true condition.",
+   "expl": "Before you can judge damage you must remove all dirt, grease, and paint from the damaged and surrounding area so the exact condition of each rivet, bolt, and weld is visible. Stop-drilling or priming before you have inspected would hide or worsen the problem.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (damage investigation)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "a6f903778f",
+   "q": "NDI (nondestructive inspection) during damage investigation is used to find ___.",
+   "options": [
+    "Corrosion, pitting, heat/stress cracks, and discontinuity of metals",
+    "Only loose rivets",
+    "Only paint thickness"
+   ],
+   "correct": 0,
+   "short": "NDI looks for corrosion, pitting, heat/stress cracks, and metal discontinuities.",
+   "expl": "Nondestructive inspection is used to detect corrosion, pitting, heat and stress cracks, and discontinuities in the metal — flaws you cannot always see with the naked eye — without damaging the part.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (NDI in damage investigation)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "7d4b807d9c",
+   "q": "In ANY sheet metal repair, the three things that are critical to maintain/achieve are:",
+   "options": [
+    "Maintain original strength, maintain original contour, and minimize weight",
+    "Maximize strength, add weight for safety, ignore contour",
+    "Match color, match finish, and reduce cost"
+   ],
+   "correct": 0,
+   "short": "Original strength + original contour + minimum weight.",
+   "expl": "Every sheet-metal repair must maintain the original strength, maintain the original contour (aerodynamic shape), and add the least weight possible. Adding needless weight or changing the contour degrades the aircraft even if it feels 'stronger.'",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-87 (repair requirements)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "6b155fc060",
+   "q": "If an alloy WEAKER than the original must be substituted, what must be done to keep equivalent strength?",
+   "options": [
+    "Use the same thickness and add sealant",
+    "Use a heavier (thicker) gauge to give equivalent cross-sectional strength",
+    "Use a thinner gauge to save weight"
+   ],
+   "correct": 1,
+   "short": "Weaker alloy -> go thicker to match the original cross-sectional strength.",
+   "expl": "When a weaker alloy is substituted, a heavier thickness must be used so the repair has cross-sectional strength equivalent to the original. The manufacturer's Structural Repair Manual (SRM) tells you what substitute material is acceptable and how much thicker it must be.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-87 (material substitution)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "6f270d242f",
+   "q": "The manufacturer document that often specifies acceptable substitute material and how much thicker it must be is the ___.",
+   "options": [
+    "Structural Repair Manual (SRM)",
+    "Illustrated Parts Catalog (IPC)",
+    "Minimum Equipment List (MEL)"
+   ],
+   "correct": 0,
+   "short": "The SRM gives substitution material and thickness.",
+   "expl": "The Structural Repair Manual, written by the manufacturer, specifies acceptable substitute materials and the required thickness increases for a given aircraft's structure. The IPC lists parts; the MEL governs dispatch with inoperative equipment.",
+   "cite": "FAA-H-8083-31B, Ch. 2/4 (Structural Repair Manual)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "ceaf8bd443",
+   "q": "Damage is grouped into how many general classifications?",
+   "options": [
+    "Two",
+    "Six",
+    "Four"
+   ],
+   "correct": 2,
+   "short": "Four classes: negligible, patching, insertion, replacement.",
+   "expl": "The handbook groups damage into four general classes: negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of the part.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (damage classification)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "616af14bae",
+   "q": "Small dents, scratches, cracks, and holes that can be fixed by smoothing, sanding, stop-drilling, or hammering out are which class of damage?",
+   "options": [
+    "Negligible damage",
+    "Repairable by insertion",
+    "Necessitating replacement"
+   ],
+   "correct": 0,
+   "short": "Negligible damage = the minor stuff fixed by smoothing/sanding/stop-drilling/hammering.",
+   "expl": "Negligible damage is the class of small dents, scratches, cracks, and holes that can be corrected by smoothing, sanding, stop-drilling a crack, or hammering out a dent — no splice members required.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (negligible damage)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "42143f32e7",
+   "q": "Damage repaired by installing splice members to bridge the damaged portion is classed as ___.",
+   "options": [
+    "Repairable by patching",
+    "Negligible",
+    "Repairable by insertion"
+   ],
+   "correct": 0,
+   "short": "Patching = splice members bridge the damage.",
+   "expl": "Damage repairable by patching is fixed by installing splice members (patches) that bridge the damaged portion and restore the load path. Insertion is when the area is too large to patch or an aligned member must be let in.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (repairable by patching)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "a640218653",
+   "q": "When the damaged area is too large to patch, or structure arranged so that patch members would interfere with alignment, the damage is ___.",
+   "options": [
+    "Repairable by insertion",
+    "Negligible",
+    "Repairable by patching"
+   ],
+   "correct": 0,
+   "short": "Insertion = area too large to patch or patch would interfere with alignment.",
+   "expl": "Damage repairable by insertion applies when the area is too large for a simple patch, or the structure is arranged so patch members would interfere with structural alignment — so a section is let in (inserted) instead.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (repairable by insertion)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "69ea5a4a38",
+   "q": "Damage whose location or extent makes repair impractical falls into which class?",
+   "options": [
+    "Repairable by patching",
+    "Necessitating replacement",
+    "Negligible"
+   ],
+   "correct": 1,
+   "short": "Replacement = repair is impractical; the component must be replaced.",
+   "expl": "When a component's location or the extent of damage makes repair impractical, it falls into the 'necessitating replacement' class — the part is replaced rather than repaired.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (replacement)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "6a791799b6",
+   "q": "During extensive repair of the fuselage, landing gear, or wing center section, what device holds the parts in position to maintain their shape?",
+   "options": [
+    "A jig (fixture)",
+    "A bucking bar",
+    "A slip roller"
+   ],
+   "correct": 0,
+   "short": "A jig/fixture holds the structure true during extensive repair.",
+   "expl": "For extensive repairs to the fuselage, landing gear, or wing center section, the aircraft/structure is supported in a jig (fixture) that holds the parts in their correct positions so the shape and alignment are maintained while it is worked.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-92 (structural support / jig)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "17d1c1a6f1",
+   "q": "'Stressed skin' construction means ___.",
+   "options": [
+    "The skin is always fabric over a truss",
+    "The external skin carries part or all of the main loads",
+    "The skin carries no load and is only a fairing"
+   ],
+   "correct": 1,
+   "short": "Stressed skin: the external covering carries part or all of the main loads.",
+   "expl": "In stressed-skin construction the external covering (skin) carries part or all of the main loads, so it is a structural member — typically made from high-strength rolled aluminum sheet. To find repair requirements for these areas you refer to the applicable aircraft maintenance manual.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (stressed skin)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "db717b440e",
+   "q": "What are the TWO classifications of skin patch?",
+   "options": [
+    "Butt patch and weld patch",
+    "Lap (scab) patch and flush patch",
+    "Doubler patch and filler patch"
+   ],
+   "correct": 1,
+   "short": "Two patch types: lap (a.k.a. scab) and flush.",
+   "expl": "Skin patches come in two types: the lap patch — also called a scab patch, an external patch whose edges overlap the skin — and the flush patch, set flush with the skin for aerodynamic smoothness.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-95 to 4-96 (patches)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "ef5d5c04ef",
+   "q": "A LAP (scab) patch is best used where ___.",
+   "options": [
+    "Aerodynamic smoothness is critical",
+    "The skin is under no load at all",
+    "Aerodynamic smoothness is NOT important"
+   ],
+   "correct": 2,
+   "short": "Lap/scab patch = external overlap, used where smoothness doesn't matter.",
+   "expl": "A lap or scab patch is an external patch whose edges overlap the skin. Because it sits proud of the surface it is used in areas where aerodynamic smoothness is not important; where smoothness matters, a flush patch is used instead.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-95 (lap/scab patch)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "79c09d5907",
+   "q": "A FLUSH patch is ___.",
+   "options": [
+    "A filler patch set flush to the skin, supported by and riveted to an internal reinforcement plate",
+    "An external patch that overlaps the skin",
+    "A patch made only of sealant"
+   ],
+   "correct": 0,
+   "short": "Flush patch = filler flush with the skin, backed by an internal reinforcement plate.",
+   "expl": "A flush patch is a filler patch that sits flush with the skin surface; it is supported by and riveted to a reinforcement plate, which is in turn riveted to the inside of the skin. That keeps the outside aerodynamically smooth.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-96 (flush patch)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "c67a019807",
+   "q": "For marking layout lines on aircraft sheet metal, which is the PREFERRED practice?",
+   "options": [
+    "Use a No. 2 graphite pencil directly on the aluminum",
+    "Use a steel scriber everywhere on the finished surface",
+    "Mark with a fiber-tipped pen (or on the protective membrane / on tape)"
+   ],
+   "correct": 2,
+   "short": "Fiber-tipped pen (or on membrane/tape) — NOT a No. 2 pencil on the metal.",
+   "expl": "Do not use a No. 2 pencil on aircraft metal; the graphite promotes corrosion. Preferred methods are to mark on the protective membrane if it is still on the material, mark directly on the metal with a fiber-tipped pen (fine-point marker), or cover the area with tape and mark the tape. A scriber is reserved for lines that will later be cut or drilled away.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "7231a404c2",
+   "q": "Why should a No. 2 pencil NOT be used to mark aircraft aluminum?",
+   "options": [
+    "It smears and cannot be seen",
+    "It is not accurate enough for layout",
+    "Its graphite can cause corrosion of the aluminum"
+   ],
+   "correct": 2,
+   "short": "Graphite from the pencil causes corrosion on aluminum.",
+   "expl": "The graphite (carbon) in a No. 2 pencil is cathodic to aluminum and promotes galvanic corrosion where it contacts the metal, so it is not used for marking aircraft aluminum.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "e4f66840f6",
+   "q": "Members such as stringers, longerons, spars, ribs, bulkheads, frames, and beams most commonly become damaged by ___.",
+   "options": [
+    "Painting and cleaning only",
+    "Vibration, corrosion, or collision",
+    "Normal fuel loading only"
+   ],
+   "correct": 1,
+   "short": "These internal members are damaged by vibration, corrosion, or collision.",
+   "expl": "Internal structural members — stringers, longerons, spars, ribs, bulkheads, frames, beams — are typically damaged by vibration (fatigue), corrosion, or collision, and each has typical approved repairs.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (internal/external repairs)",
+   "topic": "Sheet Metal Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "a31308dc4d",
+   "q": "Which precision layout tool is a flat steel rule graduated in fractional and/or decimal inches, used for measuring and drawing straight lines?",
+   "options": [
+    "Machinist scale",
+    "Combination square",
+    "Metal protractor"
+   ],
+   "correct": 0,
+   "short": "The machinist scale (steel rule) measures and draws straight lines.",
+   "expl": "A machinist scale is a flat, rigid steel rule graduated in fine fractional and decimal divisions; it is the basic tool for measuring lengths and drawing straight reference lines in sheet-metal layout.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "15ec31c137",
+   "q": "Which tool combines a rule with a fixed and a sliding head so it can check 90° and 45° angles, measure depth, and mark lines parallel to an edge?",
+   "options": [
+    "Combination square",
+    "Dividers",
+    "Compass"
+   ],
+   "correct": 0,
+   "short": "The combination square checks 90°/45°, depth, and parallel lines.",
+   "expl": "A combination square is a rule fitted with a head that references 90° and 45°; it is used to square lines, check angles, gauge depth, and scribe lines parallel to an edge.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "87ae8881c3",
+   "q": "Which tool has two sharp steel legs and is used to step off equal distances or scribe arcs/circles from a set radius?",
+   "options": [
+    "Dividers",
+    "Metal protractor",
+    "Rivet spacer (fan)"
+   ],
+   "correct": 0,
+   "short": "Dividers step off equal spacing and scribe arcs.",
+   "expl": "Dividers are a two-legged instrument with sharp points, set to a fixed spread to step off equal distances (such as rivet spacing) or to scribe arcs and circles. A compass is similar but usually carries a pencil/scriber for larger circles.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "72e75d592a",
+   "q": "Which tool is used to lay out or measure ANGLES on sheet metal?",
+   "options": [
+    "Metal protractor",
+    "Combination square",
+    "Burring tool"
+   ],
+   "correct": 0,
+   "short": "A protractor lays out and measures angles.",
+   "expl": "A metal protractor is graduated in degrees and is used to lay out or measure angles for bends and cuts in sheet-metal work.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "6c4be63eef",
+   "q": "The fan-shaped tool that automatically divides a row into EQUAL rivet spaces regardless of the row length is the ___.",
+   "options": [
+    "Rivet gauge",
+    "Rivet spacer (rivet fan)",
+    "Radius gage"
+   ],
+   "correct": 1,
+   "short": "The rivet spacer/fan divides a row into equal rivet spaces.",
+   "expl": "A rivet spacer, or rivet fan, is a set of hinged legs that opens like a fan; spreading it across a layout instantly divides the distance into an equal number of rivet spaces, saving arithmetic.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet layout tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "dd2e2a5fd8",
+   "q": "Which pointed tool is used to make a permanent scratched layout line on metal (only where the line will later be cut or drilled away)?",
+   "options": [
+    "Automatic center punch",
+    "Scribe",
+    "Fiber-tipped pen"
+   ],
+   "correct": 1,
+   "short": "A scribe scratches a permanent layout line (only on cut/drill-away areas).",
+   "expl": "A scribe is a hardened point that scratches a fine permanent line into the metal. Because the scratch can start a crack, it is used only where the line will later be removed by cutting or drilling; elsewhere you mark with a pen.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (marking tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "8a48054b4d",
+   "q": "What is the primary purpose of center-punching a hole location before drilling?",
+   "options": [
+    "To make a small dimple that keeps the drill bit from wandering/slipping",
+    "To deburr the finished hole",
+    "To set the rivet grip length"
+   ],
+   "correct": 0,
+   "short": "A center punch dimples the spot so the drill starts true and doesn't slip.",
+   "expl": "An automatic center punch makes a small cone-shaped dimple at the hole center; the drill point seats in that dimple so it starts exactly on the mark and does not skate across the surface.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-20 (center punching)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "ba7eada2a9",
+   "q": "A TRANSFER punch is used to ___.",
+   "options": [
+    "Drive out a damaged rivet",
+    "Form a countersink",
+    "Transfer an existing hole's center location onto the part beneath it"
+   ],
+   "correct": 2,
+   "short": "A transfer punch copies an existing hole's center to the part below.",
+   "expl": "A transfer punch is ground to fit an existing hole; tapping it marks the exact center of that hole onto the part underneath, so matching holes can be drilled in perfect alignment. It does not drive rivets or countersink.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (punches)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "1b08f5044d",
+   "q": "A PIN punch (drift punch) is mainly used to ___.",
+   "options": [
+    "Drive out pins, bolts, or the shanks of removed rivets from a hole",
+    "Mark the center of a new hole",
+    "Divide a rivet row into equal spaces"
+   ],
+   "correct": 0,
+   "short": "A pin/drift punch drives pins and rivet shanks out of holes.",
+   "expl": "A pin punch has a long straight shank of uniform diameter, made to push pins, bolts, or the remaining shank of a drilled-out rivet the rest of the way out of a hole. Centering is the center punch's job.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (punches)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "c3615e10f1",
+   "q": "A chassis punch (hydraulic metal hole punch) is used to ___.",
+   "options": [
+    "Measure rivet head radius",
+    "Punch clean large-diameter holes in sheet metal",
+    "Scribe fine layout lines"
+   ],
+   "correct": 1,
+   "short": "A chassis/hydraulic punch makes clean large holes in sheet metal.",
+   "expl": "A chassis punch, often hydraulically driven, shears a clean large-diameter hole in sheet metal in one stroke — useful for instrument, grommet, or connector holes that are too big to drill conveniently.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (hole tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "2eb4012deb",
+   "q": "A hole duplicator (hole finder) is used to ___.",
+   "options": [
+    "Locate and drill a new hole that exactly matches an existing hole in a mating part",
+    "Deburr both sides of a hole at once",
+    "Enlarge a hole to the next rivet size"
+   ],
+   "correct": 0,
+   "short": "A hole duplicator matches a new hole to an existing hole in the mating part.",
+   "expl": "A hole finder/duplicator is a spring clip with a pilot pin on one leg and a guide bushing on the other; the pin drops into the existing hole so a drill run through the bushing produces a new hole in the covering sheet in perfect register.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (hole duplicator)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "5684e3a627",
+   "q": "Which hand-power tool is used to cut sheet metal by taking small bites, leaving a narrow strip of waste and little distortion?",
+   "options": [
+    "Nibbler",
+    "Slip roller",
+    "Microstop countersink"
+   ],
+   "correct": 0,
+   "short": "A nibbler cuts sheet by taking small bites, with little distortion.",
+   "expl": "A nibbler cuts by punching a series of small overlapping bites out of the sheet; because it removes a thin ribbon of metal it can follow curves and cut internal shapes with very little distortion.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (cutting tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "afa55fd5b7",
+   "q": "A foot (squaring) shear is used primarily to ___.",
+   "options": [
+    "Make long straight (square) cuts across sheet metal",
+    "Cut tight internal curves",
+    "Roll sheet into a cylinder"
+   ],
+   "correct": 0,
+   "short": "The squaring shear makes long straight cuts.",
+   "expl": "A foot-operated squaring shear has a long straight blade for making clean square (90°) cuts and trimming sheet stock to size. Tight curves are cut with snips or a throatless shear; cylinders are formed on a slip roller.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (shears)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "0db04978ec",
+   "q": "A throatless shear is preferred when you need to ___.",
+   "options": [
+    "Cut irregular shapes and curves without the work jamming against a throat",
+    "Make only perfectly straight long cuts",
+    "Countersink rivet holes"
+   ],
+   "correct": 0,
+   "short": "The throatless shear cuts curves/irregular shapes freely.",
+   "expl": "A throatless shear has no frame throat behind the blade, so the sheet can be turned and fed in any direction to cut curves and irregular shapes without binding.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (shears)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "ec9631c5fd",
+   "q": "Aviation snips (tin snips) color-coded red, green, and yellow are used to ___.",
+   "options": [
+    "Hand-cut sheet metal straight and in left/right curves",
+    "Drill pilot holes",
+    "Bend 90° flanges"
+   ],
+   "correct": 0,
+   "short": "Aviation snips hand-cut sheet straight and in curves (color-coded L/R).",
+   "expl": "Aviation snips cut sheet metal by hand; the color coding identifies straight, left-curve, and right-curve cutting patterns. They do not drill or bend.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (aviation snips)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "d0bd8eae2b",
+   "q": "A burring tool (deburring tool) is used to ___.",
+   "options": [
+    "Remove the sharp burr left around a drilled hole or cut edge",
+    "Add a burr for grip",
+    "Countersink for a flush rivet"
+   ],
+   "correct": 0,
+   "short": "A deburr tool removes the burr left by drilling/cutting.",
+   "expl": "After drilling or cutting, a raised sharp lip (burr) remains; a burring/deburring tool shaves that burr off so parts seat flat and cracks cannot start from the sharp edge. It is not the same as a countersink, which cuts a much deeper cone for a rivet head.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-20 (deburring)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "ecc0493354",
+   "q": "A drill STOP on a drill bit is used to ___.",
+   "options": [
+    "Limit the depth the bit can penetrate",
+    "Increase the drill's rpm",
+    "Hold the sheets together like a cleco"
+   ],
+   "correct": 0,
+   "short": "A drill stop limits drilling depth.",
+   "expl": "A drill stop is a collar clamped on the bit a set distance from the tip; it bottoms out on the surface and prevents the drill from going any deeper — handy to avoid punching into structure behind the skin.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drill accessories)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "4e34b45401",
+   "q": "A reamer is used to ___.",
+   "options": [
+    "Rough-drill the first pilot hole",
+    "Cut a large chassis hole",
+    "Finish a drilled hole to an exact size and a smooth surface"
+   ],
+   "correct": 2,
+   "short": "A reamer sizes and smooths an already-drilled hole.",
+   "expl": "A reamer is run through an existing (slightly undersized) drilled hole to bring it to an exact final diameter with a smooth wall — for close-tolerance fasteners like Hi-Loks. It does not start holes.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (reamers)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "d3f27d9f0a",
+   "q": "A cornice brake (box-and-pan brake) is used to ___.",
+   "options": [
+    "Form straight bends/flanges along a line in sheet metal",
+    "Roll sheet into a smooth cylinder",
+    "Shear sheet to length"
+   ],
+   "correct": 0,
+   "short": "A brake forms straight bends; a box-and-pan brake also forms boxes.",
+   "expl": "A cornice brake clamps the sheet along a line and folds it up to a chosen angle, making straight bends and flanges. A box-and-pan brake uses removable fingers so you can also bend up the four sides of a box or pan. Cylinders are formed on a slip roller.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (forming equipment)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "4b318cd805",
+   "q": "A slip roller is used to ___.",
+   "options": [
+    "Punch rivet holes",
+    "Form sheet metal into curved surfaces such as cylinders and cones",
+    "Make sharp 90° bends"
+   ],
+   "correct": 1,
+   "short": "A slip roller forms curves/cylinders, not sharp bends.",
+   "expl": "A slip roll former passes the sheet between adjustable rolls to give it a smooth curve — forming cylinders, cones, and gentle radii. Sharp straight bends are made on a brake instead.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (forming equipment)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "eedede6453",
+   "q": "Clecos are temporary fasteners whose main job is to ___.",
+   "options": [
+    "Countersink the skin",
+    "Hold drilled parts together in alignment until the rivets are set",
+    "Upset (buck) the shop head of a rivet"
+   ],
+   "correct": 1,
+   "short": "Clecos temporarily clamp aligned parts before riveting.",
+   "expl": "A cleco is a spring-loaded temporary fastener inserted into a drilled hole to hold the parts tightly in alignment while the remaining holes are drilled and the rivets are set. It does not form rivets.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (cleco fasteners)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "a2c692468e",
+   "q": "Per the course cleco color chart, a COPPER cleco corresponds to which hole size?",
+   "options": [
+    "4/32 inch (1/8 inch)",
+    "5/32 inch",
+    "3/32 inch"
+   ],
+   "correct": 0,
+   "short": "Copper cleco = 4/32 (1/8\"). [Deck chart; handbook confirms 6 sizes, not the color map.]",
+   "expl": "The deck's cleco chart reads: silver = 3/32, copper = 4/32 (which is 1/8 inch), black = 5/32, brass = 6/32 (3/16 inch). So a copper cleco marks a 1/8-inch hole. Note: the FAA handbook confirms there are six color-coded cleco sizes but does not print the color-to-size map, so this mapping is the standard tool-maker/AIM convention.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (cleco sizes — color map per AIM deck)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "6426ac4a1c",
+   "q": "Per the course cleco color chart, which color cleco is used for a 3/32-inch hole?",
+   "options": [
+    "Silver",
+    "Copper",
+    "Brass"
+   ],
+   "correct": 0,
+   "short": "Silver = 3/32; copper = 4/32; black = 5/32; brass = 6/32.",
+   "expl": "Reading the deck chart: silver = 3/32 inch, copper = 4/32, black = 5/32, brass = 6/32. So the smallest common size, 3/32, uses the silver cleco. (Color-to-size map is the AIM/tool-maker convention; the handbook lists the sizes but not the colors.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (cleco sizes — color map per AIM deck)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "f2c9af0285",
+   "q": "Cleco pliers are used to ___.",
+   "options": [
+    "Measure bend radius",
+    "Compress a cleco so it can be inserted into or removed from a hole",
+    "Cut off rivet shanks"
+   ],
+   "correct": 1,
+   "short": "Cleco pliers install and remove clecos.",
+   "expl": "Cleco pliers squeeze the plunger on a spring cleco, spreading (or releasing) its locking legs so the cleco can be pushed into a hole or pulled back out. They do nothing to the rivet itself.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (cleco pliers)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "c82fe7b110",
+   "q": "A bucking bar is used during riveting to ___.",
+   "options": [
+    "Absorb the rivet-gun force and form the shop head on the rivet tail",
+    "Drive the rivet from the manufactured-head side",
+    "Drill the rivet hole"
+   ],
+   "correct": 0,
+   "short": "The bucking bar backs up the tail and forms the shop head.",
+   "expl": "A bucking bar of the proper weight is held against the rivet tail; the gun drives the manufactured head while the bar's mass backs up the tail, upsetting it into the shop head. The force must be absorbed by the bar, not by the surrounding structure.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (bucking bars)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "67ac40f8bd",
+   "q": "A microstop countersink is preferred for countersinking because it ___.",
+   "options": [
+    "Has an adjustable collar/stop that controls countersink depth precisely",
+    "Never chatters regardless of speed",
+    "Drills the pilot hole at the same time"
+   ],
+   "correct": 0,
+   "short": "The microstop's adjustable stop gives precise, repeatable countersink depth.",
+   "expl": "A microstop countersink has an adjustable collar (with locking collar and locking ring) that limits how deep the cutter goes, so every countersink is the same precise depth. You set it on scrap 0.040 aluminum first. Chattering is still its most common problem — fight it with sharp tooling, slow speed, and firm pressure.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (microstop countersink)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "1f309f6868",
+   "q": "Rivet sets (headers) are matched to the rivet, and if the wrong size is used, ___.",
+   "options": [
+    "A header too small marks the rivet head; a header too large marks the surrounding material",
+    "Any size header works equally well",
+    "A larger header always drives faster with no downside"
+   ],
+   "correct": 0,
+   "short": "Too-small header marks the rivet; too-large header marks the material.",
+   "expl": "A rivet set (header) must fit the specific rivet head. If the header is too small it digs into and marks the rivet head; if it is too large it strikes and marks the surrounding skin. A retaining spring holds the set in the gun.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet sets/headers)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "14cae77d4b",
+   "q": "A radius gage is used to ___.",
+   "options": [
+    "Measure electrical resistance",
+    "Set rivet pitch",
+    "Check the radius (roundness) of a bend or fillet against known radii"
+   ],
+   "correct": 2,
+   "short": "A radius gage checks a bend/fillet radius.",
+   "expl": "A radius gage is a set of blades ground to known radii; matching a blade to a bend or fillet tells you its radius — useful for confirming a formed part meets its minimum bend radius.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (radius gage)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "0a0d81213a",
+   "q": "A rivet gauge (rivet gage) is used to ___.",
+   "options": [
+    "Check the driven (shop) head dimensions to confirm the rivet meets standards",
+    "Measure sheet thickness only",
+    "Set the drill rpm"
+   ],
+   "correct": 0,
+   "short": "A rivet gauge checks the upset/shop head against the standard.",
+   "expl": "A rivet gauge (or a scale) is used to check the condition and dimensions of the upset (shop) head — its height and diameter — to confirm the driven rivet conforms to the required standard.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet gauge)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "b943578551",
+   "q": "A CherryMAX / blind rivet is chosen when ___.",
+   "options": [
+    "You can reach only ONE side of the joint",
+    "You need the very strongest solid structural rivet",
+    "You are welding a steel tube cluster"
+   ],
+   "correct": 0,
+   "short": "Blind rivets (CherryMAX) install from one side only.",
+   "expl": "Blind rivets such as the CherryMAX are installed and set entirely from one side, so they are used where the back (blind) side of the joint cannot be reached to hold a bucking bar. They are set with a special hand or pneumatic pulling tool.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (blind rivets)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "c363f97a92",
+   "q": "A Rivnut (rivet nut) provides ___.",
+   "options": [
+    "A blind-installed threaded insert (anchor) for a screw in thin sheet",
+    "A temporary alignment fastener like a cleco",
+    "A solid structural shear joint"
+   ],
+   "correct": 0,
+   "short": "A Rivnut is a blind-set threaded anchor for screws in thin sheet.",
+   "expl": "A Rivnut is a hollow, internally threaded rivet installed from one side; once set it leaves a threaded anchor in thin sheet that a machine screw can thread into — commonly used to attach de-ice boots and inspection covers.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet nuts)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair & Tools"
+   ]
+  },
+  {
+   "id": "0a128e3fd0",
+   "q": "Repair (fastener) layout involves determining all of the following EXCEPT:",
+   "options": [
+    "The distance between holes and between holes and the edge",
+    "The color the patch should be painted",
+    "Number, size, style, and material of the rivets"
+   ],
+   "correct": 1,
+   "short": "Layout sets rivet number/size/style/material, hole size and spacing — not paint color.",
+   "expl": "Fastener layout determines the number of rivets, their proper size and style, their material and temper/strength, the hole size, and the distances between holes and between holes and edges. Paint color has nothing to do with the structural layout.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (fastener layout)",
+   "topic": "Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "cfb3c34658",
+   "q": "Shear is one of the two stresses applied to a rivet. The rule for RIVET DIAMETER is:",
+   "options": [
+    "Three times the thickness of the thinnest sheet",
+    "Three times the rivet's own shank thickness",
+    "Three times the thickness of the thickest sheet being joined"
+   ],
+   "correct": 2,
+   "short": "Rivet diameter ≈ 3 × the THICKEST sheet.",
+   "expl": "To size a rivet for shear strength, multiply the thickness of the THICKEST sheet in the joint by three, then round to the nearest standard 32nd. Using the thin sheet would undersize the rivet, and a rivet cannot be sized from its own thickness.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet diameter); AC 43.13-1B ¶4-57",
+   "topic": "Rivet Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "3b9ce04281",
+   "q": "For 0.040-inch material, applying the diameter rule (0.040 × 3 = 0.120, then × 32 = 3.84, round to 4) gives a rivet diameter of:",
+   "options": [
+    "4/32 inch (1/8 inch)",
+    "3/32 inch",
+    "6/32 inch"
+   ],
+   "correct": 0,
+   "short": "0.040×3=0.120; ×32=3.84→4, so 4/32 = 1/8 inch.",
+   "expl": "Multiply 0.040 by 3 to get 0.120 inch. Rivet diameters are counted in 32nds, so 0.120 × 32 = 3.84, which rounds to 4 — a 4/32-inch rivet, the same as 1/8 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet diameter example)",
+   "topic": "Rivet Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "27e0fe4904",
+   "q": "What diameter rivet should be used to join 0.0625-inch and 0.040-inch aluminum? (Use the thickest sheet.)",
+   "options": [
+    "3/32 inch",
+    "6/32 inch (3/16 inch)",
+    "4/32 inch (1/8 inch)"
+   ],
+   "correct": 1,
+   "short": "Thickest = 0.0625; ×3 = 0.1875; ×32 = 6.0 → 6/32 = 3/16 inch.",
+   "expl": "Use the thickest sheet, 0.0625 inch. 0.0625 × 3 = 0.1875 inch; 0.1875 × 32 = 6.0, so a 6/32-inch (3/16-inch) rivet. The thinner 0.040 sheet is not used for the calculation.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet diameter example)",
+   "topic": "Rivet Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "2238fed7fb",
+   "q": "What diameter rivet should be used to join two pieces of 0.032-inch aluminum?",
+   "options": [
+    "3/32 inch",
+    "4/32 inch",
+    "6/32 inch"
+   ],
+   "correct": 0,
+   "short": "0.032×3=0.096; ×32=3.07→3, so 3/32 inch.",
+   "expl": "Both sheets are 0.032, so that is the thickest. 0.032 × 3 = 0.096 inch; 0.096 × 32 = 3.07, which rounds to 3 — a 3/32-inch rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet diameter example)",
+   "topic": "Rivet Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "82e7cee07a",
+   "q": "The combined thickness of the materials being joined is called the ___.",
+   "options": [
+    "Grip length",
+    "Pitch",
+    "Edge distance"
+   ],
+   "correct": 0,
+   "short": "Grip length = the combined thickness of the joined materials.",
+   "expl": "Grip length is the total combined thickness of the sheets being riveted together. It is one of the two numbers (with rivet diameter) you need to work out the total rivet length.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (grip length)",
+   "topic": "Rivet Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "2f932ec3f1",
+   "q": "The rivet LENGTH rule is: length = grip (combined thickness) plus ___.",
+   "options": [
+    "1.5 times the rivet diameter",
+    "3 times the rivet diameter",
+    "0.5 times the rivet diameter"
+   ],
+   "correct": 0,
+   "short": "Total length = grip + 1.5 × diameter (then round to 16ths).",
+   "expl": "The rivet must be long enough to pass through the joint (grip length) and leave enough shank to form the shop head — about 1.5 times the rivet diameter. Total length = grip + (1.5 × diameter), converted to 16ths and rounded.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet length)",
+   "topic": "Rivet Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "e5a07f73da",
+   "q": "Joining two 0.040-inch sheets with a 4/32-inch rivet: 1.5×(4/32) + 0.080 = 0.2675; ×16 = 4.28 → 4. The rivet length is:",
+   "options": [
+    "5/16 inch",
+    "4/16 inch (1/4 inch)",
+    "3/16 inch"
+   ],
+   "correct": 1,
+   "short": "1.5×0.125+0.080=0.2675; ×16=4.28→4, so 4/16 = 1/4 inch.",
+   "expl": "Grip = 0.040 + 0.040 = 0.080. 1.5 × (4/32 = 0.125) = 0.1875. Total = 0.1875 + 0.080 = 0.2675 inch. Rivet lengths are in 16ths: 0.2675 × 16 = 4.28, rounds to 4 — a 4/16-inch (1/4-inch) rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet length example)",
+   "topic": "Rivet Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "d3f3f987cd",
+   "q": "In a rivet part number such as MS20470AD4-4, the FIRST number after the alloy code gives the ___.",
+   "options": [
+    "Shank diameter in 16ths of an inch",
+    "Length in 32nds of an inch",
+    "Shank diameter in 32nds of an inch"
+   ],
+   "correct": 2,
+   "short": "First number = diameter in 32nds; second = length in 16ths.",
+   "expl": "In the dash-number code, the first number is the shank diameter in 32nds of an inch and the second is the length in 16ths. So AD4-4 is 4/32 (1/8 inch) diameter and 4/16 (1/4 inch) long.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet part numbers)",
+   "topic": "Part Numbers",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "a5d40b186d",
+   "q": "In a rivet part number, the SECOND number (after the dash) gives the ___.",
+   "options": [
+    "Length in 16ths of an inch",
+    "Length in 32nds of an inch",
+    "Diameter in 16ths of an inch"
+   ],
+   "correct": 0,
+   "short": "Second number = length in 16ths of an inch.",
+   "expl": "The second number in a rivet part number is the overall length expressed in 16ths of an inch, while the first is the diameter in 32nds.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet part numbers)",
+   "topic": "Part Numbers",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "d26cd89a1d",
+   "q": "Why are 2017 (D) and 2024 (DD) rivets nicknamed 'icebox' rivets?",
+   "options": [
+    "They are only used in cold climates",
+    "They must be heated in an oven right before driving",
+    "They are too hard to drive as received, so they are annealed and kept frozen to slow re-hardening"
+   ],
+   "correct": 2,
+   "short": "Icebox rivets (2017/2024) are annealed then stored frozen to retard age-hardening.",
+   "expl": "Alloys 2017 (code D) and 2024 (code DD) are too hard to drive in the as-received condition. They are annealed (softened) and then stored in a freezer, which retards the age-hardening so they stay soft enough to drive — hence 'icebox' rivets.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (icebox rivets); AC 43.13-1B ¶4-57",
+   "topic": "Icebox Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "a2cfee58fb",
+   "q": "Rivet PITCH is defined as the ___.",
+   "options": [
+    "Distance between the centers of neighboring rivets in the SAME row",
+    "Perpendicular distance between rivet rows",
+    "Distance from the first rivet to the sheet edge"
+   ],
+   "correct": 0,
+   "short": "Pitch = center-to-center distance within the same row.",
+   "expl": "Rivet pitch is the distance between the centers of neighboring rivets in the same row. The spacing between rows is transverse pitch, and the distance to the edge is edge distance.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet pitch)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "7f5c879a03",
+   "q": "The AVERAGE rivet pitch usually ranges from ___.",
+   "options": [
+    "4 to 6 rivet diameters",
+    "1 to 2 rivet diameters",
+    "12 to 15 rivet diameters"
+   ],
+   "correct": 0,
+   "short": "Average pitch = 4D to 6D; maximum about 10D.",
+   "expl": "Average rivet pitch runs about 4 to 6 rivet diameters (the deck's 4D–6D). It can go up to about 10 diameters in some cases, and the smallest allowable pitch is 3 diameters.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet pitch range)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "b8402ffb75",
+   "q": "The MAXIMUM rivet pitch is about ___.",
+   "options": [
+    "10 rivet diameters",
+    "3 rivet diameters",
+    "20 rivet diameters"
+   ],
+   "correct": 0,
+   "short": "Maximum pitch ≈ 10 rivet diameters.",
+   "expl": "Rivet pitch can be as large as about 10 rivet diameters; beyond that the joint edges can work loose between rivets. Average is 4–6 diameters.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet pitch range)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "71dbe11b91",
+   "q": "TRANSVERSE pitch is the ___.",
+   "options": [
+    "Perpendicular distance between rivet rows",
+    "Distance between rivets in the same row",
+    "Diameter of the rivet times three"
+   ],
+   "correct": 0,
+   "short": "Transverse pitch = perpendicular distance between rows (≈75% of pitch).",
+   "expl": "Transverse pitch is the perpendicular distance between rows of rivets. It is usually about 75 percent of the rivet pitch, and its smallest allowable value is 2.5 rivet diameters.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "0fed336e1d",
+   "q": "Transverse pitch is usually ___ of the rivet pitch.",
+   "options": [
+    "75 percent",
+    "50 percent",
+    "125 percent"
+   ],
+   "correct": 0,
+   "short": "Transverse pitch ≈ 75% of rivet pitch.",
+   "expl": "As a rule of thumb, transverse pitch (row spacing) is set to about 75 percent of the rivet pitch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "b8cbc80a41",
+   "q": "The SMALLEST allowable transverse pitch is ___.",
+   "options": [
+    "2.5 rivet diameters",
+    "2 rivet diameters",
+    "1 rivet diameter"
+   ],
+   "correct": 0,
+   "short": "Smallest transverse pitch = 2.5 rivet diameters.",
+   "expl": "The smallest allowable transverse pitch (row-to-row spacing) is 2.5 rivet diameters; rows closer than that weaken the sheet between them.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch minimum)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "f09d5347b2",
+   "q": "Using 5D spacing with MS20426DD-5 rivets (5/32-inch diameter), the pitch measurement is:",
+   "options": [
+    "25/32 inch",
+    "5/32 inch",
+    "1/2 inch"
+   ],
+   "correct": 0,
+   "short": "5D × 5/32 = 25/32 inch.",
+   "expl": "The rivet is 5/32-inch diameter (the '5' before the dash). Pitch of 5 diameters = 5 × 5/32 = 25/32 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (pitch calculation)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "bff7e13b4b",
+   "q": "Using 6D spacing with MS20470AD-4 rivets (4/32-inch diameter), the pitch measurement is:",
+   "options": [
+    "24/32 inch (3/4 inch)",
+    "4/32 inch",
+    "10/32 inch"
+   ],
+   "correct": 0,
+   "short": "6D × 4/32 = 24/32 = 3/4 inch.",
+   "expl": "The rivet diameter is 4/32 inch. A pitch of 6 diameters = 6 × 4/32 = 24/32 inch, which reduces to 3/4 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (pitch calculation)",
+   "topic": "Pitch",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "b5957078c3",
+   "q": "Edge distance is the distance from the ___.",
+   "options": [
+    "Edge of the first rivet to the edge of the sheet",
+    "Center of one rivet to the center of the next",
+    "Center of the first rivet to the edge of the sheet"
+   ],
+   "correct": 2,
+   "short": "Edge distance = center of the first rivet to the sheet edge (a.k.a. edge margin).",
+   "expl": "Edge distance is measured from the CENTER of the first rivet to the edge of the sheet. Some manufacturers call it edge margin. The rivet-center-to-rivet-center measurement is pitch.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (edge distance)",
+   "topic": "Edge Distance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "f4efb07732",
+   "q": "Edge distance should be not less than ___ and not more than ___ rivet diameters.",
+   "options": [
+    "1 and 2",
+    "4 and 8",
+    "2 and 4"
+   ],
+   "correct": 2,
+   "short": "Edge distance: minimum 2D, maximum 4D.",
+   "expl": "Edge distance should be at least 2 rivet diameters and no more than 4 rivet diameters. Too close and the sheet cracks or pulls away from the rivets; too far and the edge turns up.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (edge distance limits)",
+   "topic": "Edge Distance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "c3a10a77b5",
+   "q": "What happens if rivets are placed TOO CLOSE to the edge of the sheet?",
+   "options": [
+    "The sheet edge turns up",
+    "Nothing — closer is always stronger",
+    "The sheet may crack or pull away from the rivets"
+   ],
+   "correct": 2,
+   "short": "Too close → the sheet cracks or pulls away.",
+   "expl": "Rivets placed too near the edge leave too little material to carry the load, so the sheet can crack or the rivets can pull out through the edge. Placed too far from the edge, the opposite problem shows up — the edge turns up.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (edge distance effects)",
+   "topic": "Edge Distance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "2b70c46356",
+   "q": "What happens if rivets are spaced TOO FAR from the edge?",
+   "options": [
+    "The sheet is likely to turn up at the edges",
+    "The sheet cracks along the rivet line",
+    "The rivets shear immediately"
+   ],
+   "correct": 0,
+   "short": "Too far → the edge turns up (lifts).",
+   "expl": "When edge distance is excessive, the unsupported strip of sheet between the rivet line and the edge tends to turn up or buckle. Too close is the crack/pull-away failure.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (edge distance effects)",
+   "topic": "Edge Distance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "070c2777c4",
+   "q": "For a COUNTERSUNK head rivet of 4/32-inch diameter, the minimum edge distance (2.5 × diameter) is approximately:",
+   "options": [
+    "1/4 inch",
+    "3/8 inch",
+    "5/16 inch"
+   ],
+   "correct": 2,
+   "short": "2.5 × 4/32 = 10/32 = 5/16 inch.",
+   "expl": "Countersunk rivets need a larger minimum edge distance — 2.5 diameters. 2.5 × 4/32 = 10/32 inch, which is 5/16 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-35 (countersunk edge distance)",
+   "topic": "Edge Distance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "c125f9e2fa",
+   "q": "To obtain high structural efficiency, an inspection of ALL rivets must be made ___.",
+   "options": [
+    "Before the part is put in service",
+    "Only after the first flight",
+    "Only if a rivet visibly falls out"
+   ],
+   "correct": 0,
+   "short": "Inspect every rivet BEFORE the part is returned to service.",
+   "expl": "Driven-rivet standards require that all rivets be inspected before the part is put back in service — examining both the shop and manufactured heads plus the surrounding skin and structure for deformities.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (driven rivet standards)",
+   "topic": "Driven Rivet Standards",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "85de8c7665",
+   "q": "Which tool is used to check whether an upset (shop) head conforms to the proper requirements?",
+   "options": [
+    "A throatless shear",
+    "A scale or rivet gauge",
+    "A slip roller"
+   ],
+   "correct": 1,
+   "short": "A scale or rivet gauge checks the upset head.",
+   "expl": "A scale or a rivet gauge is used to measure the upset (shop) head and confirm it meets the required height and diameter. A slip roller and a shear are forming/cutting tools.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (driven rivet inspection)",
+   "topic": "Driven Rivet Standards",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 2 — Fastener Layout, Patterns & Rivet Calculations"
+   ]
+  },
+  {
+   "id": "a5de2e3ceb",
+   "q": "What is the most common type of drill motor for aircraft repair work?",
+   "options": [
+    "Battery hammer drill",
+    "Pneumatic (air) drill motor",
+    "Corded 120-volt AC drill"
+   ],
+   "correct": 1,
+   "short": "Pneumatic drill motors are the most common for aircraft repair.",
+   "expl": "Pneumatic drill motors are the most common drill for aircraft repair — light, powerful for their size, and no electrical spark hazard around fuel. Most are rated at about 3,000 rpm.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (hole drilling)",
+   "topic": "Drilling",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "ec3d19e699",
+   "q": "Most pneumatic drill motors for aircraft work are rated at about ___.",
+   "options": [
+    "3,000 rpm",
+    "300 rpm",
+    "30,000 rpm"
+   ],
+   "correct": 0,
+   "short": "Typical pneumatic drill = ~3,000 rpm.",
+   "expl": "The common pneumatic drill motor runs at about 3,000 rpm. For deep holes or hard material you switch to a drill with more torque and lower rpm.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drill motor rating)",
+   "topic": "Drilling",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "2ff1de6aeb",
+   "q": "When drilling DEEP holes or HARD materials, you should select a drill motor with ___.",
+   "options": [
+    "More torque and LOWER rpm",
+    "More torque and HIGHER rpm",
+    "Less torque and higher rpm"
+   ],
+   "correct": 0,
+   "short": "Deep/hard → more torque, lower rpm (to protect tools and material).",
+   "expl": "For deep holes or hard materials, choose a drill motor with more torque and lower rpm. Running fast in hard metal overheats and dulls the bit and can damage the workpiece.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drill speed selection)",
+   "topic": "Drilling",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "c43f7d5e22",
+   "q": "Which of the following is a recognized TYPE of drill bit listed in the course?",
+   "options": [
+    "Twist drill",
+    "Rivet drill",
+    "Pilot punch drill"
+   ],
+   "correct": 0,
+   "short": "Types: HSS, step drill, cobalt alloy, twist drill.",
+   "expl": "The deck lists high-speed steel (HSS), step drill, cobalt alloy, and twist drill. The twist drill is the most popular. The other options are not bit types.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drill bit types)",
+   "topic": "Drill Bits",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "3601623433",
+   "q": "Which drill bit is the MOST popular, with spiral grooves (flutes) running along its working length?",
+   "options": [
+    "Twist drill",
+    "Step drill",
+    "Cobalt alloy drill"
+   ],
+   "correct": 0,
+   "short": "The twist drill (spiral flutes) is the most popular.",
+   "expl": "The twist drill — with spiral grooves, or flutes, running along the working length — is the most popular bit. A step drill cuts several diameters in one bit; cobalt is a material choice for hard metals.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (twist drill)",
+   "topic": "Drill Bits",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "bdf19a36ac",
+   "q": "What is the function of the FLUTE on a twist drill?",
+   "options": [
+    "It forms the cutting edge of the drill point (and carries away chips)",
+    "It sets the drilling depth",
+    "It holds the bit in the chuck"
+   ],
+   "correct": 0,
+   "short": "The flute forms the cutting edge (and evacuates chips).",
+   "expl": "The flute — the spiral groove — forms the cutting edge where it meets the drill point and channels chips up and out of the hole. Depth is set by a drill stop, and the shank is what the chuck grips.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drill flute)",
+   "topic": "Drill Bits",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "1d1ba96dfa",
+   "q": "Before drilling, you should center-punch all hole locations primarily to ___.",
+   "options": [
+    "Keep the drill from slipping out of position",
+    "Deburr the hole in advance",
+    "Set the rivet grip length"
+   ],
+   "correct": 0,
+   "short": "Center-punch first so the drill starts true and doesn't slip.",
+   "expl": "Center-punching every hole location gives the drill point a dimple to seat in so it does not skate off the mark. The punch mark should be big enough to catch the drill but not so deep it dents the surrounding surface.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (center punch before drilling)",
+   "topic": "Drilling Technique",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "ad4f41cd51",
+   "q": "At what angle should the drill be held to the surface when drilling a rivet hole?",
+   "options": [
+    "90 degrees (perpendicular)",
+    "45 degrees",
+    "75 degrees"
+   ],
+   "correct": 0,
+   "short": "Hold the drill at 90° to the surface.",
+   "expl": "Hold the drill perpendicular — at a 90-degree angle — to the surface so the hole is straight and round. A cocked drill makes an oval hole the rivet cannot fill properly.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drilling technique)",
+   "topic": "Drilling Technique",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "afba98825e",
+   "q": "When drilling sheet metal for rivets, you should ___.",
+   "options": [
+    "Push as hard as possible to finish fast",
+    "Leave burrs in place for grip",
+    "Avoid excessive pressure and remove all burrs/chips afterward"
+   ],
+   "correct": 2,
+   "short": "Light pressure; then deburr and clean chips.",
+   "expl": "Use steady, light pressure — excessive force overheats the bit and distorts the hole — and after drilling remove all burrs and clean away the chips so parts seat flat and cracks cannot start from a sharp edge.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-20 (drilling technique)",
+   "topic": "Drilling Technique",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "36da9db89f",
+   "q": "Does NORMAL drilling of sheet material require lubrication?",
+   "options": [
+    "Yes — every hole must be lubricated",
+    "Only holes smaller than 1/16 inch need lubricant",
+    "No — normal sheet drilling needs no lubricant; use one only for large drills or hard material"
+   ],
+   "correct": 2,
+   "short": "Sheet drilling: no lube normally; lube only if the drill is large or the metal hard.",
+   "expl": "Normal drilling of thin sheet does not require lubrication. As a general rule you add a lubricant only when the drill is large or the material is hard, to keep the bit cool.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-18 (drill lubrication)",
+   "topic": "Drilling Technique",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "ccb9a9bfe1",
+   "q": "Drill bit diameters are grouped by which three size standards?",
+   "options": [
+    "Number, letter, and fractional",
+    "Metric, Whitworth, and decimal",
+    "Small, medium, and large"
+   ],
+   "correct": 0,
+   "short": "Three drill-size standards: number, letter, and fractional.",
+   "expl": "Drill bits come in three size systems: number sizes, letter sizes, and fractional sizes. A drill chart lists the decimal equivalent of each so you can pick the exact diameter needed.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (drill bit sizes)",
+   "topic": "Drill Sizes",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "578e863457",
+   "q": "A properly drilled rivet hole should have a clearance of about ___ greater than the largest tolerance of the rivet shank diameter.",
+   "options": [
+    "0.003 inch",
+    "0.03 inch",
+    "0.0003 inch"
+   ],
+   "correct": 0,
+   "short": "Hole ≈ 0.003\" larger than the shank's largest tolerance.",
+   "expl": "The rivet hole should be about 0.003 inch greater than the largest tolerance of the rivet shank — snug but letting the rivet slip in. When driven, the rivet swells to fill the hole. 0.03 inch would be ten times too loose.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-18 (rivet hole clearance)",
+   "topic": "Drill Sizes",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "ff598282ff",
+   "q": "Which drill is used for a 3/32-inch rivet?",
+   "options": [
+    "#40",
+    "#30",
+    "#21"
+   ],
+   "correct": 0,
+   "short": "3/32 rivet → #40 drill.",
+   "expl": "The handbook drill-size table pairs a 3/32-inch rivet with a #40 drill (0.098 inch). The instructor groups these four common pairs as the 'Rule of 7's.'",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet/drill size table)",
+   "topic": "Drill Sizes",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "c72d1b9f85",
+   "q": "Which drill is used for a 1/8-inch (4/32) rivet?",
+   "options": [
+    "#30",
+    "#40",
+    "#11"
+   ],
+   "correct": 0,
+   "short": "1/8 (4/32) rivet → #30 drill.",
+   "expl": "A 1/8-inch (4/32) rivet takes a #30 drill (0.1285 inch) per the handbook drill-size table.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet/drill size table)",
+   "topic": "Drill Sizes",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "1185ecbd44",
+   "q": "Which drill is used for a 5/32-inch rivet?",
+   "options": [
+    "#21",
+    "#30",
+    "#11"
+   ],
+   "correct": 0,
+   "short": "5/32 rivet → #21 drill.",
+   "expl": "A 5/32-inch rivet takes a #21 drill (0.159 inch) per the handbook drill-size table.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet/drill size table)",
+   "topic": "Drill Sizes",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "a87b06ffbf",
+   "q": "Which drill is used for a 3/16-inch (6/32) rivet?",
+   "options": [
+    "#11",
+    "#21",
+    "#40"
+   ],
+   "correct": 0,
+   "short": "3/16 (6/32) rivet → #11 drill.",
+   "expl": "A 3/16-inch (6/32) rivet takes a #11 drill (0.191 inch) per the handbook drill-size table. These four pairs (3/32→#40, 1/8→#30, 5/32→#21, 3/16→#11) are what the instructor calls the 'Rule of 7's.'",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet/drill size table)",
+   "topic": "Drill Sizes",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 3 — Drilling & Drill Bit Sizes"
+   ]
+  },
+  {
+   "id": "403417bc81",
+   "q": "What is the most common type of rivet used in aircraft construction?",
+   "options": [
+    "The Hi-Lok fastener",
+    "The solid shank rivet",
+    "The blind (CherryMAX) rivet"
+   ],
+   "correct": 1,
+   "short": "The solid shank rivet is the most common in aircraft construction.",
+   "expl": "The solid shank rivet is the most common rivet in aircraft construction. Blind rivets and Hi-Loks are special-purpose fasteners used where a solid rivet cannot be driven.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (solid rivets)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "c9b3870105",
+   "q": "Which two rivet head shapes are the most commonly used?",
+   "options": [
+    "Universal head and 100° countersunk head",
+    "Round head and flat head",
+    "Brazier head and mushroom head"
+   ],
+   "correct": 0,
+   "short": "Universal and 100° countersunk are the two most-used heads.",
+   "expl": "The universal head and the 100-degree countersunk head are the two most commonly used solid-rivet head shapes. The universal replaced several older protruding heads; the countersunk sits flush.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (rivet heads)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "d43cbf2ee9",
+   "q": "For a structural application, a replacement rivet made of LOWER-strength material ___.",
+   "options": [
+    "Should not be used unless the shortfall is made up by using a LARGER rivet",
+    "Can always be used as a direct substitute",
+    "Is acceptable only if driven harder"
+   ],
+   "correct": 0,
+   "short": "Lower-strength rivet only if you go LARGER to make up the strength.",
+   "expl": "In structural work the replacement rivet's strength matters most. A lower-strength alloy should not be substituted unless the loss is made up by using a larger-diameter rivet so the joint keeps its rated strength. Driving harder does not add strength.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (replacement rivet strength)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "721ae256d2",
+   "q": "What is the most common rivet-UPSETTING tool?",
+   "options": [
+    "The pneumatic rivet gun",
+    "The bucking bar",
+    "The cleco"
+   ],
+   "correct": 0,
+   "short": "The pneumatic rivet gun is the most common upsetting tool.",
+   "expl": "The pneumatic rivet gun is the most common tool for upsetting (driving) rivets. The bucking bar backs up the tail; a cleco only holds parts in alignment.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet installation tools)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "4271e3e17e",
+   "q": "The most common rivet guns are 'slow hitting' guns that strike about ___.",
+   "options": [
+    "900 to 2,500 blows per minute",
+    "50 to 100 blows per minute",
+    "10,000 to 20,000 blows per minute"
+   ],
+   "correct": 0,
+   "short": "Slow-hitting guns: 900–2,500 blows per minute.",
+   "expl": "The most common rivet guns are slow-hitting types that strike from about 900 to 2,500 blows per minute — enough to upset a rivet quickly but controllable.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet gun)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "f36dd177d1",
+   "q": "A rivet gun should upset a rivet in about ___.",
+   "options": [
+    "1 to 3 seconds",
+    "10 to 15 seconds",
+    "less than a quarter second"
+   ],
+   "correct": 0,
+   "short": "A rivet gun should upset a rivet in 1 to 3 seconds.",
+   "expl": "A properly set rivet gun upsets a rivet in about 1 to 3 seconds. Much longer and the rivet work-hardens or the material is damaged; much shorter and it is likely over-driven.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet gun)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "7fc6bbaa2a",
+   "q": "When driving a rivet, the rivet set (header) must be held ___.",
+   "options": [
+    "Snugly against the rivet head and perpendicular to the surface",
+    "At a 45° angle to the head",
+    "Loosely so it can float"
+   ],
+   "correct": 0,
+   "short": "Header held snug against the head and perpendicular to the surface.",
+   "expl": "The gun's header (rivet set) must sit snugly against the manufactured head and be held perpendicular to the surface, while a bucking bar of the proper weight backs up the opposite end. A cocked set damages the head and the skin.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet installation)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "1430478a1e",
+   "q": "During riveting, the force of the gun must be absorbed by ___.",
+   "options": [
+    "The structure being riveted",
+    "The rivet set spring",
+    "The bucking bar — not the structure being riveted"
+   ],
+   "correct": 2,
+   "short": "The bucking bar absorbs the gun's force, not the structure.",
+   "expl": "The mass of the bucking bar must absorb the gun's driving force so it goes into upsetting the rivet, not into the surrounding structure. Letting the structure take the blows distorts the part.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (bucking bar)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "043130e1c0",
+   "q": "If the rivet set (header) is TOO SMALL for the rivet, what happens?",
+   "options": [
+    "Nothing — size does not matter",
+    "It marks (dents) the rivet head",
+    "It marks the surrounding material"
+   ],
+   "correct": 1,
+   "short": "Too-small header marks the rivet head; too-large marks the material.",
+   "expl": "A header too small digs into and marks the rivet head. A header too large overhangs and strikes the surrounding skin, marking the material. Each rivet set is made to fit specific rivet types and locations.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet sets)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "804e923efc",
+   "q": "What holds the header (rivet set) in the rivet gun?",
+   "options": [
+    "A retaining (retainer) spring",
+    "A cleco",
+    "A set screw in the bucking bar"
+   ],
+   "correct": 0,
+   "short": "A retaining spring holds the header in the gun.",
+   "expl": "A retaining spring screws onto the gun barrel and keeps the rivet set from flying out if the gun is triggered off the work. It is a required safety item.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (retaining spring)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "b3ea2acfa8",
+   "q": "The most common countersink cutter has an included angle of ___ and, for aluminum, works best with ___.",
+   "options": [
+    "100 degrees; six flutes",
+    "82 degrees; two flutes",
+    "120 degrees; one flute"
+   ],
+   "correct": 0,
+   "short": "Most common countersink = 100° included angle, six-fluted for aluminum.",
+   "expl": "The most common countersink cutter has a 100-degree included angle (matching the 100° countersunk rivet), and a six-fluted cutter works best in aluminum for a smooth chatter-free cut.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (countersinking tools)",
+   "topic": "Countersinking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "dfdc637d54",
+   "q": "Why is the MICROSTOP countersink preferred, and how is it set up?",
+   "options": [
+    "It never needs adjusting and cuts any depth automatically",
+    "It drills and countersinks in a single fixed size only",
+    "It has an adjustable collar, locking collar, and locking ring; you set depth and test on scrap 0.040 aluminum"
+   ],
+   "correct": 2,
+   "short": "Microstop = adjustable/locking collars for precise depth; test on 0.040 scrap.",
+   "expl": "The microstop countersink is preferred because its adjustable collar, locking collar, and locking ring let you set a precise, repeatable depth. You dial in the depth you think you need and test it on two scrap pieces of 0.040 aluminum, then adjust.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (microstop countersink)",
+   "topic": "Countersinking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "4837a60b63",
+   "q": "What is the MOST common problem when countersinking, and how is it minimized?",
+   "options": [
+    "Overheating — minimized by drilling faster",
+    "Cracking — minimized by using a dull cutter",
+    "Chattering — minimized with sharp tooling, slow speed, and firm pressure"
+   ],
+   "correct": 2,
+   "short": "Chattering is the common problem; fix with sharp tooling, slow speed, firm pressure.",
+   "expl": "Chattering — the cutter skipping and leaving a rough, multi-faceted hole — is the most common countersinking problem. Sharp tooling, slow speed, and firm steady pressure keep the cutter engaged and the surface smooth.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (countersinking)",
+   "topic": "Countersinking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "91a7478717",
+   "q": "What is the result of an IMPROPER countersink?",
+   "options": [
+    "Reduced strength of the riveted joint and possible failure of the sheet or rivet head",
+    "A stronger joint than a proper countersink",
+    "No effect on strength"
+   ],
+   "correct": 0,
+   "short": "Improper countersink reduces joint strength and can cause failure.",
+   "expl": "An improper countersink (too deep, too shallow, or chattered) reduces the strength of the riveted joint and can lead to failure of the sheet or the rivet head. Countersinking makes a conical recess for the flush rivet head, and its edge distance must be greater than for universal rivets.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (countersinking)",
+   "topic": "Countersinking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "522752f419",
+   "q": "The two methods of countersinking are ___.",
+   "options": [
+    "Welding and brazing",
+    "Machine (drill) countersinking and dimpling (press)",
+    "Drilling and reaming"
+   ],
+   "correct": 1,
+   "short": "Two methods: machine/drill countersink, or dimpling/press.",
+   "expl": "You make the recess for a flush rivet head either by machine (drill) countersinking — cutting a cone into the metal — or by dimpling (pressing) the sheet into a cone, used when the sheet is too thin to cut a countersink.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (countersinking methods)",
+   "topic": "Countersinking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "5cf3eff742",
+   "q": "Before bucking rivets, you should make sure that ___.",
+   "options": [
+    "The rivet gun is pointed at the work area to warn others",
+    "All holes line up, parts are fastened with clecos, and burrs/shavings are removed",
+    "The plastic protective covering is left on for protection"
+   ],
+   "correct": 1,
+   "short": "Holes aligned + clecoed + deburred; remove plastic covering.",
+   "expl": "Before bucking, confirm the holes line up perfectly, the parts are held with clecos, and all shavings and burrs are removed. Also remember to remove the plastic protective covering. Depending on the job, riveting may take two people (team riveting).",
+   "cite": "FAA-H-8083-31B, Ch. 4 (riveting preparation)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "38443b80b9",
+   "q": "Which is a correct rivet-gun SAFETY precaution?",
+   "options": [
+    "Never depress the trigger unless the header is tight against wood or a rivet, and never point the gun at anyone",
+    "Test the gun by firing it into open air",
+    "Leave the air hose connected during breaks for convenience"
+   ],
+   "correct": 0,
+   "short": "Trigger only with the header against wood/rivet; never point at anyone; disconnect air on breaks.",
+   "expl": "After set-up you test the gun on a piece of wood and adjust the air valve; never point it at anyone; never pull the trigger unless the header is held tight against wood or a rivet; and always disconnect the air hose from the tool when it is not in use, such as on breaks.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (riveting safety)",
+   "topic": "Shop Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "ad8f17c5f4",
+   "q": "A clean working environment is described as fundamental to ___ prevention.",
+   "options": [
+    "FOD (foreign object damage)",
+    "Corrosion only",
+    "Static electricity"
+   ],
+   "correct": 0,
+   "short": "Shop cleanliness is fundamental to FOD prevention ('clean as you go').",
+   "expl": "A clean work area is fundamental to FOD (foreign object damage) prevention. Technicians follow the 'clean as you go' concept: clean the immediate area and workstands when finished, pick up migrating debris, clean before inspection and at the end of each shift, and keep food and drink out of the work area.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (shop cleanliness)",
+   "topic": "Shop Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "95396695cf",
+   "q": "Under 'clean as you go,' when should the immediate work area be cleaned?",
+   "options": [
+    "When work stops, before inspection, and at the end of each shift",
+    "Only once a week",
+    "Only when the supervisor asks"
+   ],
+   "correct": 0,
+   "short": "Clean when work stops, before inspection, and at end of shift.",
+   "expl": "The 'clean as you go' rule means cleaning the immediate area and workstands whenever you finish or cannot continue, picking up debris that could migrate out of sight, cleaning before inspection, and cleaning at the end of each shift — plus returning hoses, drop lights, and cords to storage.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (shop cleanliness)",
+   "topic": "Shop Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "5048e64b6e",
+   "q": "Driven-rivet inspection consists of examining ___.",
+   "options": [
+    "Both the shop and manufactured heads plus the surrounding skin and structure for deformities",
+    "Only the shop (bucked) head",
+    "Only the paint over the rivets"
+   ],
+   "correct": 0,
+   "short": "Inspect BOTH heads and the surrounding skin/structure.",
+   "expl": "Rivet inspection covers both the shop (upset) head and the manufactured head, along with the surrounding skin and structural parts, looking for deformities. A scale or rivet gauge checks that the upset head meets the standard.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (driven rivet standards)",
+   "topic": "Driven Rivet Standards",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 4 — Riveting, Driven Rivet Standards & Shop Safety"
+   ]
+  },
+  {
+   "id": "f666a1fdd4",
+   "q": "Special-purpose fasteners are designed for applications that require consideration of ___.",
+   "options": [
+    "Only the weight of the fastener",
+    "Fastener strength, ease of installation, or temperature properties",
+    "Only the color of the fastener"
+   ],
+   "correct": 1,
+   "short": "Special fasteners address strength, ease of installation, or temperature.",
+   "expl": "Special-purpose fasteners are chosen when a joint needs extra strength, must be installed easily (for example from one side), or must handle particular temperature conditions. These needs are why blind rivets, Hi-Loks, lockbolts, and rivnuts exist.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-47 (special fasteners)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "5d6468a364",
+   "q": "A BLIND rivet is used when ___.",
+   "options": [
+    "Only one side of the structure is accessible",
+    "Both sides are fully accessible for a bucking bar",
+    "Maximum shear strength is the only concern"
+   ],
+   "correct": 0,
+   "short": "Blind rivets install from one side only (no back-side access).",
+   "expl": "Blind rivets are installed and set entirely from one side, so they are used where the back (blind) side of the joint cannot be reached to hold a bucking bar for a solid rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-47 (blind rivets)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "adcc734d2d",
+   "q": "The CherryMAX is a type of ___.",
+   "options": [
+    "Threaded lockbolt",
+    "Bulbed blind rivet",
+    "Solid countersunk rivet"
+   ],
+   "correct": 1,
+   "short": "CherryMAX = a bulbed blind rivet.",
+   "expl": "The CherryMAX is a bulbed blind rivet — pulling the stem forms a large bulb of upset material on the blind side, giving a strong, reliable one-side installation. It is set with a special pulling tool, hand or pneumatic.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-49 (CherryMAX)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "50368707fe",
+   "q": "A Hi-Lok fastener is best described as a ___.",
+   "options": [
+    "A one-piece solid rivet",
+    "A spring-loaded temporary fastener",
+    "Two-piece threaded fastener (a pin and a self-shearing collar)"
+   ],
+   "correct": 2,
+   "short": "Hi-Lok = a two-piece pin-and-collar threaded fastener.",
+   "expl": "A Hi-Lok is a two-piece fastener: a threaded pin plus a collar with a wrenching portion that shears off at the correct torque, leaving a precise, high-strength installation. A spring temporary fastener describes a cleco.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-50 (Hi-Lok)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "55d7d119cb",
+   "q": "A TENSION-type lockbolt normally has how many locking grooves?",
+   "options": [
+    "Two",
+    "Six",
+    "Four"
+   ],
+   "correct": 2,
+   "short": "Tension lockbolt = four locking grooves; shear = two.",
+   "expl": "Tension lockbolts normally have four locking grooves, while shear lockbolts normally have two. The collar is swaged into these grooves to lock the fastener.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-52 (lockbolts)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "d528c2beb8",
+   "q": "A SHEAR-type lockbolt normally has how many locking grooves?",
+   "options": [
+    "Two",
+    "Four",
+    "Three"
+   ],
+   "correct": 0,
+   "short": "Shear lockbolt = two locking grooves; tension = four.",
+   "expl": "Shear lockbolts normally have two locking grooves; tension lockbolts have four. The number of grooves is one way to tell the two apart.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-52 (lockbolts)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "5ddf5b2840",
+   "q": "The Huck blind bolt is an example of a ___.",
+   "options": [
+    "Blind bolt (a high-strength fastener installed from one side)",
+    "Temporary alignment fastener",
+    "Non-structural sealant"
+   ],
+   "correct": 0,
+   "short": "Huck blind bolt = a high-strength one-side-installed blind bolt.",
+   "expl": "The Huck blind bolt system is a high-strength blind fastener installed from one side, used where a strong bolted joint is needed but only one side is accessible.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-55 (Huck blind bolt)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "f4636cde8b",
+   "q": "A Rivnut (rivet nut) is used to provide ___.",
+   "options": [
+    "A blind-installed internally threaded insert for a screw in thin sheet",
+    "A solid shear rivet for heavy structure",
+    "A temporary clamp like a cleco"
+   ],
+   "correct": 0,
+   "short": "Rivnut = a blind threaded anchor for screws in thin sheet.",
+   "expl": "A Rivnut is a hollow, internally threaded rivet set from one side; it leaves a threaded anchor in thin sheet that a machine screw can thread into — common for attaching de-ice boots and access panels.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-56 (rivet nuts)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools"
+   ]
+  },
+  {
+   "id": "ec5ab009f8",
+   "q": "For a successful flat-pattern layout, which must be true?",
+   "options": [
+    "The math, the layout lines, the brake adjustment, and material placement must all be correct",
+    "Only the math matters; the brake setting does not",
+    "Only the brake setting matters; the math does not"
+   ],
+   "correct": 0,
+   "short": "Math + layout lines + brake adjustment + material placement all must be right.",
+   "expl": "Flat-pattern forming depends on four things all being correct: your math, your layout lines, the brake adjustment, and the precise placement of the material in the brake. A mistake in any one produces a bad part.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (layout and forming)",
+   "topic": "Layout & Forming",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "53d92c60ef",
+   "q": "'Base measurement' means the ___.",
+   "options": [
+    "Outside dimensions of a formed part",
+    "Inside dimensions of a formed part",
+    "Length of the bend allowance"
+   ],
+   "correct": 0,
+   "short": "Base measurement = the OUTSIDE dimensions of the formed part.",
+   "expl": "The base measurement is the outside dimension of the formed part — the size you read off the drawing before accounting for the bends. Mold line dimensions and flats are worked out from it.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (base measurement)",
+   "topic": "Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "a9d8f44688",
+   "q": "On a formed angle, the LEG is the ___.",
+   "options": [
+    "Longer part of the angle",
+    "Shorter part of the angle",
+    "Curved part inside the bend"
+   ],
+   "correct": 0,
+   "short": "Leg = the longer part; flange = the shorter part.",
+   "expl": "The leg is the longer part of a formed angle; the flange is the shorter part, opposite the leg. If both sides are the same length, both are called legs.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (leg)",
+   "topic": "Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "e6928dba24",
+   "q": "On a formed angle, the FLANGE is the ___.",
+   "options": [
+    "Longer part of the angle",
+    "Radius center of the bend",
+    "Shorter part of the angle, opposite the leg"
+   ],
+   "correct": 2,
+   "short": "Flange = the shorter part, opposite the leg.",
+   "expl": "The flange is the shorter part of a formed angle, opposite the leg. When both sides are equal length, the term flange is not used — both are legs.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (flange)",
+   "topic": "Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "b28edeca55",
+   "q": "Bend lines should be laid out to lie at what angle to the GRAIN of the metal?",
+   "options": [
+    "90 degrees (perpendicular to the grain)",
+    "Parallel to the grain (0 degrees)",
+    "45 degrees to the grain"
+   ],
+   "correct": 0,
+   "short": "Bend lines should be 90° to the grain.",
+   "expl": "Bend lines should lie at a 90-degree angle to the natural grain of the material. Bending across the grain resists cracking; bending along (parallel to) the grain invites cracks.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (grain direction)",
+   "topic": "Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "6de10a3623",
+   "q": "'Bend allowance' refers to the ___.",
+   "options": [
+    "Curved section of metal within the bend",
+    "Flat portion outside the bend",
+    "Distance from the bend to the sheet edge"
+   ],
+   "correct": 0,
+   "short": "Bend allowance = the curved material within the bend.",
+   "expl": "Bend allowance is the length of the curved section of metal within the bend — the material between the bend tangent lines. You must add it back when developing the flat pattern.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (bend allowance)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "569add377d",
+   "q": "'Bend radius' is the arc formed when metal is bent, measured from the radius center to the ___.",
+   "options": [
+    "Neutral axis of the metal",
+    "Inside surface of the metal",
+    "Outside surface of the metal"
+   ],
+   "correct": 1,
+   "short": "Bend radius is measured to the INSIDE surface of the metal.",
+   "expl": "The bend radius is the arc formed when the metal is bent, measured from the radius center to the inside surface of the metal — not the outside and not the neutral axis.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (bend radius)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "f5da100115",
+   "q": "The 'bend tangent line' marks ___.",
+   "options": [
+    "Where the metal starts to bend and where it stops curving",
+    "The outside corner of the mold lines",
+    "The center of the bend radius"
+   ],
+   "correct": 0,
+   "short": "Bend tangent lines = where the curve starts and stops (space between = bend allowance).",
+   "expl": "The bend tangent lines are the two locations where the metal starts to bend and where it stops curving. All the material between them is the bend allowance.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (bend tangent line)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "1b64e04cfe",
+   "q": "The 'neutral axis' is the imaginary line that ___.",
+   "options": [
+    "Has the same length after bending as it had before bending",
+    "Stretches the most during bending",
+    "Compresses the most during bending"
+   ],
+   "correct": 0,
+   "short": "Neutral axis: same length before and after bending.",
+   "expl": "The neutral axis is the imaginary line whose length does not change during bending — outside of it the metal stretches, inside it compresses. It can be considered to lie at the bend radius plus one-half the material thickness.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (neutral axis)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "c1208f98ad",
+   "q": "The neutral axis can be considered to lie at ___.",
+   "options": [
+    "Bend radius plus 1/2 the material thickness",
+    "Bend radius minus the material thickness",
+    "Exactly at the inside surface"
+   ],
+   "correct": 0,
+   "short": "Neutral axis ≈ bend radius + ½ material thickness.",
+   "expl": "For layout purposes the neutral axis is taken as the bend radius plus one-half the material thickness — the location that neither stretches nor compresses.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (neutral axis)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "dda2d0baa8",
+   "q": "If no K-factor chart is available, K is calculated as the ___.",
+   "options": [
+    "Tangent of one-half the bend angle",
+    "Sine of the full bend angle",
+    "Cosine of twice the bend angle"
+   ],
+   "correct": 0,
+   "short": "K = tangent of one-half the bend angle.",
+   "expl": "When no K-factor chart is handy, K equals the tangent of one-half the bend angle. For a 90° bend, one-half is 45°, whose tangent is 1, which is why a 90° setback is simply R + T.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (K-factor)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "4cf9bfc665",
+   "q": "A 'mold line' is ___.",
+   "options": [
+    "An extension of the flat side of a part beyond the radius",
+    "The curved portion within the bend",
+    "The center of the bend radius"
+   ],
+   "correct": 0,
+   "short": "Mold line = extension of the flat side beyond the radius.",
+   "expl": "A mold line is the extension of the flat side of a part beyond the radius, as if the flat continued to a sharp corner. Where two mold lines meet is the mold point, and the dimension between mold-line intersections is the mold line dimension.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (mold line)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "6545d49c37",
+   "q": "The 'mold point' is the ___.",
+   "options": [
+    "Point of intersection of the mold lines",
+    "Center of the bend radius",
+    "Midpoint of the bend allowance"
+   ],
+   "correct": 0,
+   "short": "Mold point = where the mold lines intersect.",
+   "expl": "The mold point is the point where the mold lines intersect (the theoretical sharp corner). The mold line dimension is the distance between such intersections.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (mold point)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "e5f0becd79",
+   "q": "The K-factor is best defined as ___.",
+   "options": [
+    "The number of bends in a part",
+    "The thickness of the material in 32nds",
+    "The percentage of material thickness where there is no stretching or compressing (the neutral axis)"
+   ],
+   "correct": 2,
+   "short": "K-factor = the % of thickness at the no-stretch/no-compress neutral axis.",
+   "expl": "The K-factor represents the percentage of the material thickness at which there is no stretching or compressing — the neutral axis location. For any bend other than 90°, the K value from the chart is multiplied by the sum of the radius and thickness.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-61 (K-factor)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "ec27202e8c",
+   "q": "'Setback' (SB) is the ___.",
+   "options": [
+    "Distance the jaws of the brake must be set back from the mold line to form the bend",
+    "Distance from the first rivet to the edge",
+    "Length of the bend allowance"
+   ],
+   "correct": 0,
+   "short": "Setback = how far the brake jaws sit back from the mold line.",
+   "expl": "Setback is the distance the brake jaws must be set back from the mold line so the bend forms in the right place. For a 90° bend, SB = R + T; when a part has more than one bend, setback is subtracted for each bend.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (setback)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "27151f3165",
+   "q": "For a 90° bend, the setback formula is ___.",
+   "options": [
+    "SB = 2(R + T)",
+    "SB = R + T (radius plus thickness)",
+    "SB = R − T"
+   ],
+   "correct": 1,
+   "short": "90° setback: SB = R + T.",
+   "expl": "For a 90-degree bend the setback equals the bend radius plus the material thickness (R + T). This is the special case of the general formula SB = K(R + T) where K = 1 at 90°.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (setback)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "877c59da2a",
+   "q": "For a bend OTHER than 90°, the setback formula is ___.",
+   "options": [
+    "SB = K(R + T)",
+    "SB = R + T",
+    "SB = R + T + N°"
+   ],
+   "correct": 0,
+   "short": "Non-90° setback: SB = K(R + T).",
+   "expl": "For any bend other than 90°, setback = K × (radius + thickness), where K is the K-factor selected for that bend angle. At exactly 90° the K-factor is 1, giving the familiar SB = R + T.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (setback)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "5a745564b9",
+   "q": "A 'flat' is the portion of a part NOT included in the bend, found by ___.",
+   "options": [
+    "Flat = Mold Line Dimension − Setback",
+    "Flat = Mold Line Dimension + Setback",
+    "Flat = Bend Allowance − Setback"
+   ],
+   "correct": 0,
+   "short": "Flat = MLD − Setback(s).",
+   "expl": "A flat is the part of a bend that is not curved. Its length equals the mold line dimension minus the setback(s) that apply to it. Interior flats between two bends have two setbacks subtracted.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (flat)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "77e80fce3e",
+   "q": "A 'closed angle' is one that measures ___.",
+   "options": [
+    "Less than 90° between the legs (or more than 90° when the amount of bend is measured)",
+    "More than 90° between the legs",
+    "Exactly 90° between the legs"
+   ],
+   "correct": 0,
+   "short": "Closed angle = less than 90° between the legs.",
+   "expl": "A closed angle is less than 90° when measured between the legs — or, equivalently, more than 90° when you measure the amount of bend from flat. An open angle is the opposite.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (closed angle)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "4b18cc661c",
+   "q": "An 'open angle' is one that measures ___.",
+   "options": [
+    "More than 90° between the legs (or less than 90° when the amount of bend is measured)",
+    "Less than 90° between the legs",
+    "Exactly 45° between the legs"
+   ],
+   "correct": 0,
+   "short": "Open angle = more than 90° between the legs.",
+   "expl": "An open angle is more than 90° when measured between the legs — or less than 90° when measured as the amount of bend. A closed angle is the reverse.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (open angle)",
+   "topic": "Bend Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "b6512dbc18",
+   "q": "A piece of flat stock bent to a CLOSED angle of 85° must be bent THROUGH an angle of:",
+   "options": [
+    "5 degrees",
+    "95 degrees",
+    "85 degrees"
+   ],
+   "correct": 1,
+   "short": "Closed angle 85° between legs → bent through 180−85 = 95°.",
+   "expl": "The 'amount of bend' is measured from the flat, so bending to a closed angle of 85° between the legs means bending the metal through 180° − 85° = 95°. That 95° is the number of degrees (N) you would use in the bend-allowance formula.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (closed angle / amount of bend)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "2d118831ff",
+   "q": "'Total Developed Width' (TDW) is the ___.",
+   "options": [
+    "Width of material measured around the bends from edge to edge",
+    "Sum of only the flat sections",
+    "Length of a single bend allowance"
+   ],
+   "correct": 0,
+   "short": "TDW = width measured around the bends, edge to edge.",
+   "expl": "Total developed width is the overall width of the flat blank measured around the bends from edge to edge. It equals the sum of the flats plus the bend allowances.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (TDW)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "538a74440f",
+   "q": "What is the formula for Total Developed Width?",
+   "options": [
+    "TDW = Flats + Bend Allowances",
+    "TDW = Flats − Bend Allowances",
+    "TDW = Mold Line Dimension + Setback"
+   ],
+   "correct": 0,
+   "short": "TDW = sum of the flats + sum of the bend allowances.",
+   "expl": "Total developed width is found by adding all the flat lengths to all the bend allowances. For the U-channel example: 0.8 + 1.6 + 0.8 + (2 × 0.279) = 3.758 inches.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (TDW)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "5577fa653d",
+   "q": "In the U-channel example (MLD 1.00, 2.00, 1.00; setback 0.2), the three flats work out to:",
+   "options": [
+    "0.8, 1.6, and 0.8 inch",
+    "1.0, 2.0, and 1.0 inch",
+    "0.6, 1.2, and 0.6 inch"
+   ],
+   "correct": 0,
+   "short": "Flat1=1.0−0.2=0.8; Flat2=2.0−(2×0.2)=1.6; Flat3=1.0−0.2=0.8.",
+   "expl": "A U-channel has two bends and three flats. The outer flats each lose one setback: 1.00 − 0.2 = 0.8. The middle flat sits between two bends, so it loses two setbacks: 2.00 − (2 × 0.2) = 1.6. The flats are 0.8, 1.6, and 0.8 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-62 (U-channel flats)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "852bdab479",
+   "q": "The bend-allowance FORMULA is BA = [(0.0078 × T) + (0.01743 × R)] × N°. For T = 0.040, R = 0.16, N = 90°, BA equals about:",
+   "options": [
+    "0.279 inch",
+    "0.040 inch",
+    "2.79 inch"
+   ],
+   "correct": 0,
+   "short": "(0.0078×0.040 + 0.01743×0.16)×90 = 0.279.",
+   "expl": "Plugging in: 0.0078 × 0.040 = 0.000312; 0.01743 × 0.16 = 0.0027888; their sum 0.0031008 × 90 = 0.279. So the bend allowance is about 0.279 inch. Here T is thickness, R is bend radius, and N is the number of degrees of bend.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-65 (bend allowance formula)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "43e050c355",
+   "q": "There is also a formula for bend allowance that applies to ___ only.",
+   "options": [
+    "90° bends — BA = 2π(R + 1/2 T) ÷ 4",
+    "45° bends only",
+    "closed angles only"
+   ],
+   "correct": 0,
+   "short": "2π(R+½T)/4 works for 90° bends only.",
+   "expl": "The formula 2π(R + ½T) ÷ 4 gives the bend allowance for 90-degree bends only — it is one quarter of the circumference of the neutral-axis circle. For other angles you use the chart or the (0.0078T + 0.01743R) × N° formula.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (90° bend allowance)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "091edb08ee",
+   "q": "When you draw sight lines on the flat pattern, the bend tangent line (BTL) is placed ___.",
+   "options": [
+    "At the sheet edge, away from the brake",
+    "Under the brake, with the sight line directly below the nose of the radius bar",
+    "On top of the brake, behind the radius bar"
+   ],
+   "correct": 1,
+   "short": "BTL goes under the brake; sight line sits directly below the nose of the radius bar.",
+   "expl": "To position the metal in the brake, the bend tangent line is placed under the brake so the sight line is directly below the nose of the radius bar. Then the brake is closed and the bend forms exactly on the line.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (sight lines)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "d641859d78",
+   "q": "The final check on a flat-pattern layout is the metal STRETCH, found by Stretch = ___.",
+   "options": [
+    "Flats − Bend Allowances",
+    "Total Mold Line Dimension − Total Developed Width",
+    "Total Developed Width − Total Mold Line Dimension"
+   ],
+   "correct": 1,
+   "short": "Stretch = Total MLD − TDW (if TDW > MLD, the math is wrong).",
+   "expl": "Stretch equals the total mold line dimension minus the total developed width — in the example 4 − 3.758 = 0.242 inch. If your calculated TDW ever comes out LARGER than the total mold line dimension, the math is wrong, because forming shrinks the outside dimensions.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (stretch check)",
+   "topic": "Bend Calculations",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 7 — Layout, Forming & Bend Calculations"
+   ]
+  },
+  {
+   "id": "bbc7de7ee3",
+   "q": "Regarding welding, the FAA now requires an A&P to ___.",
+   "options": [
+    "Have a basic knowledge to properly inspect and maintain aircraft (proficiency at welding is no longer required)",
+    "Be a fully certified welder before getting the A&P",
+    "Never inspect any welded structure"
+   ],
+   "correct": 0,
+   "short": "A&P needs basic welding knowledge to inspect/maintain — proficiency no longer required.",
+   "expl": "The FAA no longer requires A&Ps to be proficient at welding, but a basic knowledge is still required so they can properly inspect and maintain aircraft in an airworthy condition.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (welding overview)",
+   "topic": "Welding Overview",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "d80e524e02",
+   "q": "Welded steel tubing was used for fuselage construction into the 1950s because it is ___.",
+   "options": [
+    "Corrosion-proof and maintenance-free",
+    "Strong, lightweight, and fabricated with simple tooling",
+    "Heavy but very cheap"
+   ],
+   "correct": 1,
+   "short": "Welded steel tube fuselages: strong, light, simple tooling.",
+   "expl": "Welded steel tube fuselage construction carried well into the 1950s because it is strong, lightweight, and can be fabricated with simple tooling.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (welded steel tubing)",
+   "topic": "Welded Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "c8249f9aee",
+   "q": "Why must expansion and contraction be controlled during welding?",
+   "options": [
+    "To reduce distortion, warping, and residual stress",
+    "To make the weld cool instantly",
+    "To change the color of the base metal"
+   ],
+   "correct": 0,
+   "short": "Control expansion/contraction to limit distortion, warping, residual stress.",
+   "expl": "Controlling the expansion and contraction of the metal during welding reduces distortion, warping, and residual stress. Uneven heating causes uneven expansion and uneven cooling causes uneven contraction, both of which set up internal stresses.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-30 (expansion and contraction)",
+   "topic": "Welding Techniques",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "5fe37703ba",
+   "q": "On a straight butt weld joining sheets, if the edges are placed in full contact before welding starts, the far ends will ___.",
+   "options": [
+    "Stay exactly in place with no movement",
+    "Overlap before the weld is completed (so allowance/tack welds are used)",
+    "Spread farther apart as the weld cools"
+   ],
+   "correct": 1,
+   "short": "Butt-weld edges in full contact will overlap at the far end from contraction — allow for it / tack weld.",
+   "expl": "Because the metal contracts as it is welded, edges placed in full contact along their whole length will actually overlap at the far end before the weld is finished. An allowance (a slight gap) and tack welds are used to prevent this.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-30 (butt weld allowance)",
+   "topic": "Welding Techniques",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "9bb6821e2c",
+   "q": "A dent at a CLUSTER weld in steel tubing can be repaired by ___.",
+   "options": [
+    "Welding a formed steel patch plate over the dented area and surrounding tubes",
+    "Filling the dent with body filler",
+    "Ignoring it if it is at a joint"
+   ],
+   "correct": 0,
+   "short": "Cluster dent → welded formed steel patch plate over the area.",
+   "expl": "Dents at a cluster weld are repaired by welding a formed steel patch plate over the dented area and the surrounding tubes, spreading the load around the damage.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-32 (tube repair)",
+   "topic": "Tube Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "9fe805e59b",
+   "q": "A dent BETWEEN clusters in a tube can be repaired using a ___.",
+   "options": [
+    "Welded split-sleeve reinforcement",
+    "Rivnut insert",
+    "Dimpled flush patch"
+   ],
+   "correct": 0,
+   "short": "Dent between clusters → welded split-sleeve reinforcement.",
+   "expl": "A dent in a tube between clusters can be repaired with a welded split-sleeve reinforcement placed over the damaged section.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-33 (tube repair)",
+   "topic": "Tube Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "8e36d76ab3",
+   "q": "When PARTIAL replacement of a tube is necessary, one acceptable splice is the ___.",
+   "options": [
+    "Inner-sleeve (or outer split-sleeve) splice",
+    "Blind-rivet lap splice",
+    "Adhesive-bonded butt splice"
+   ],
+   "correct": 0,
+   "short": "Partial tube replacement → inner-sleeve or outer split-sleeve splice.",
+   "expl": "If part of a tube must be replaced, it can be spliced with an inside (inner) sleeve reinforcement, or with an outer split-sleeve using a replacement tube of the same diameter and material.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-34 (tube splicing)",
+   "topic": "Tube Repair",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "cd00bc1622",
+   "q": "FUSION welding is best defined as ___.",
+   "options": [
+    "Blending compatible molten metals by producing enough heat to melt and mix them, then letting the joint solidify",
+    "Joining metals with an adhesive only",
+    "Gluing metals with a softer filler without melting the base metal"
+   ],
+   "correct": 0,
+   "short": "Fusion welding melts and blends the base metals themselves.",
+   "expl": "Fusion welding blends compatible molten metals: enough heat is produced to melt and mix the base metals, and when the heat is removed the joint solidifies as one piece.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (fusion welding)",
+   "topic": "Welding Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "cec6e67b47",
+   "q": "NON-fusion welding (brazing and soldering) joins metals by ___.",
+   "options": [
+    "Melting and mixing the base metals",
+    "Mechanical riveting",
+    "Adhesion of one metal to another (a softer filler sticks to the surface)"
+   ],
+   "correct": 2,
+   "short": "Non-fusion = adhesion; the base metal is not melted.",
+   "expl": "Non-fusion welding joins metals by adhesion — a softer filler metal sticks to the base-metal surface without melting the base metal. The most common non-fusion processes are brazing and soldering.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-20 (non-fusion welding)",
+   "topic": "Welding Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "906ce68574",
+   "q": "The three types of FUSION welding are ___.",
+   "options": [
+    "Gas (oxyacetylene), electric arc (SMAW/MIG/TIG), and electric resistance (spot/seam)",
+    "Brazing, soldering, and gluing",
+    "Riveting, bolting, and bonding"
+   ],
+   "correct": 0,
+   "short": "Three fusion types: gas, electric arc, electric resistance.",
+   "expl": "The three types of fusion welding are gas (oxyacetylene), electric arc (which includes SMAW, MIG, and TIG), and electric resistance (spot and seam welding).",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (fusion welding types)",
+   "topic": "Welding Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "f660cfb86a",
+   "q": "In basic gas welding, oxygen and acetylene are mixed to ___.",
+   "options": [
+    "Produce a combustible flame hot enough to melt metal",
+    "Cool the metal rapidly",
+    "Prevent any combustion"
+   ],
+   "correct": 0,
+   "short": "O2 + acetylene → a flame hot enough to melt metal.",
+   "expl": "Oxygen and acetylene are mixed to produce a combustible flame hot enough to melt metal. Propane, natural gas, and hydrogen are used primarily for cutting or soldering, not fusion welding of steel.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (gas welding)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "79d6e404eb",
+   "q": "In oxyacetylene welding, which gas makes the flame HOTTER?",
+   "options": [
+    "Acetylene",
+    "Nitrogen",
+    "Oxygen"
+   ],
+   "correct": 2,
+   "short": "Acetylene fuels the flame; OXYGEN supports combustion and makes it hotter.",
+   "expl": "Acetylene fuels the flame, but oxygen supports combustion and makes the flame hotter. Adding more oxygen raises the temperature (an oxidizing flame is the hottest).",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (oxyacetylene)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "046673195f",
+   "q": "The temperature of the oxyacetylene flame ranges from about ___.",
+   "options": [
+    "5,700 °F to 6,300 °F",
+    "2,000 °F to 3,000 °F",
+    "10,000 °F to 11,000 °F"
+   ],
+   "correct": 0,
+   "short": "Oxyacetylene flame ≈ 5,700–6,300 °F.",
+   "expl": "The oxyacetylene flame ranges from roughly 5,700 to 6,300 °F depending on the mixture — the neutral flame is about 5,850 °F, the carburizing about 5,700 °F, and the oxidizing about 6,300 °F.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (flame temperature)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "e070ce5c47",
+   "q": "Oxygen is a gas that is ___.",
+   "options": [
+    "Colorless, odorless, and tasteless, and supports combustion",
+    "Heavy with a disagreeable odor",
+    "Flammable by itself without any fuel"
+   ],
+   "correct": 0,
+   "short": "Oxygen: colorless, odorless, tasteless; supports combustion.",
+   "expl": "Oxygen is a colorless, odorless, tasteless gas whose job in welding is to support combustion. It does not burn by itself — it makes fuels burn hotter.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (oxygen)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "45770f08ff",
+   "q": "Acetylene becomes UNSTABLE (dangerous) at free pressures of ___.",
+   "options": [
+    "15 psi or greater",
+    "50 psi or greater",
+    "250 psi or greater"
+   ],
+   "correct": 0,
+   "short": "Free acetylene is unstable at 15 psi or greater; normal working pressure 4–8 psi.",
+   "expl": "Free (pure) acetylene is unstable and must not be used above 15 psi. Normal operating pressure is about 4 to 8 psi. In the cylinder it is dissolved in acetone, which keeps it stable at much higher storage pressures.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (acetylene)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "8bedff5b57",
+   "q": "The acetylene cylinder is filled with Fuller's earth (a porous material) so that ___.",
+   "options": [
+    "The cylinder weighs less",
+    "The acetylene stays a pure free gas",
+    "Liquid acetone can flow in and dissolve the acetylene, making it stable"
+   ],
+   "correct": 2,
+   "short": "Porous Fuller's earth holds acetone; acetylene dissolves in the acetone and is stabilized.",
+   "expl": "The acetylene cylinder is packed with Fuller's earth, a porous material that provides a path for liquid acetone. The acetylene dissolves in the acetone and in that solution becomes stable. The cylinder gauge is actually reading acetone pressure.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (acetylene cylinder)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "cd334f648f",
+   "q": "Why should the acetylene cylinder valve be opened only 1/4 to 1/2 turn?",
+   "options": [
+    "To prevent acetone from escaping with the acetylene (and allow quick shut-off)",
+    "To speed up gas flow",
+    "Because the valve only turns that far"
+   ],
+   "correct": 0,
+   "short": "Open acetylene valve only 1/4–1/2 turn so acetone doesn't escape.",
+   "expl": "The acetylene cylinder valve is opened only a quarter to a half turn to prevent the acetone from escaping along with the acetylene, and so the valve can be shut off quickly in an emergency. Pure free acetylene can explode from a slight shock.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (acetylene handling)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "9e6ecc7a16",
+   "q": "The regulator on an oxyacetylene rig ___.",
+   "options": [
+    "Reduces the tank pressure and controls the flow of gas to the torch (two-stage operation)",
+    "Increases the tank pressure",
+    "Mixes the two gases before the torch"
+   ],
+   "correct": 0,
+   "short": "The (two-stage) regulator reduces tank pressure and controls flow to the torch.",
+   "expl": "Each regulator reduces the high cylinder pressure and controls the flow of gas from the cylinder to the torch, through a two-stage operation. The high-pressure gauge reads cylinder pressure; the low-pressure gauge reads working (torch) pressure.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (regulators)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "a280093d3f",
+   "q": "The two types of oxyacetylene torch are ___.",
+   "options": [
+    "Cutting and brazing only",
+    "Equal-pressure and injector type",
+    "High-pressure and low-pressure only"
+   ],
+   "correct": 1,
+   "short": "Torch types: equal-pressure and injector.",
+   "expl": "The two torch types are the equal-pressure torch and the injector type. In the injector torch, oxygen flowing from the jet draws (injects) the acetylene along with it.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-9 (torch types)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "9646018333",
+   "q": "The oxyacetylene cutting process is fundamentally the ___.",
+   "options": [
+    "Rapid burning (oxidizing) of the metal in a localized area",
+    "Melting of the metal without any oxidation",
+    "Freezing of the metal to make it brittle"
+   ],
+   "correct": 0,
+   "short": "Cutting = rapid oxidizing/burning of the metal locally.",
+   "expl": "A cutting attachment adds to the torch handle to allow cutting; the cutting process is fundamentally the rapid burning (oxidizing) of the metal in a localized area after it is preheated.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (cutting torch)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "91756c2295",
+   "q": "The welding hoses are color-coded and threaded so that the OXYGEN hose is ___.",
+   "options": [
+    "Green with a right-hand thread",
+    "Red with a left-hand thread",
+    "Yellow with a left-hand thread"
+   ],
+   "correct": 0,
+   "short": "Oxygen hose = green, right-hand thread; acetylene = red, left-hand thread.",
+   "expl": "The oxygen hose is green with a right-hand thread; the acetylene hose is red with a left-hand thread. The different threads make it impossible to cross-connect the gases.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (hoses)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "dd8fc8e6f0",
+   "q": "A torch should be ignited with a ___.",
+   "options": [
+    "Match",
+    "Cigarette lighter carried in the welding area",
+    "Friction lighter (flint striker)"
+   ],
+   "correct": 2,
+   "short": "Ignite with a friction lighter/flint striker — never a match or carried lighter.",
+   "expl": "Torches are lit with a friction lighter (also called a flint striker), made from flint and steel. Never use a match or carry a lighter in the welding area — either could cause an explosion.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 (torch lighters)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "14da0d7ce8",
+   "q": "Why must oxyacetylene goggles NOT be used for electric arc welding?",
+   "options": [
+    "They are too dark to see the gas flame",
+    "Arc welding is far brighter and would permanently damage the eye through gas-welding lenses",
+    "They fog up too quickly"
+   ],
+   "correct": 1,
+   "short": "Gas-welding goggles are too light for arc welding — the arc would permanently damage the eye.",
+   "expl": "Approved goggles must be worn to prevent temporary blindness in gas welding, but oxyacetylene goggles are NOT approved for electric arc welding; the arc's intense light would permanently damage the eye through the lighter gas-welding lenses.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-9 (welding eyewear)",
+   "topic": "Welding Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "daf26f562b",
+   "q": "What is the function of a filler rod in gas welding?",
+   "options": [
+    "It only adds color to the weld",
+    "It replaces the need for a flame",
+    "It reinforces the bead and acts as a heat sink, and is copper-coated to prevent rust"
+   ],
+   "correct": 2,
+   "short": "Filler rod reinforces the bead, pulls heat away (heat sink), copper-coated vs rust.",
+   "expl": "The filler rod reinforces the bead and works as a heat sink, pulling heat away from the molten puddle as it melts, which helps avoid cracks. Rods are copper-coated to prevent rust on the surface.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 (filler rods)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "c5a9f58cb4",
+   "q": "Which flame is produced by a BALANCED mixture of acetylene and oxygen and burns at about 5,850 °F?",
+   "options": [
+    "Neutral flame",
+    "Carburizing flame",
+    "Oxidizing flame"
+   ],
+   "correct": 0,
+   "short": "Neutral flame = balanced mix, ~5,850 °F.",
+   "expl": "The neutral flame is produced by a balanced mixture of acetylene and oxygen and burns at about 5,850 °F at the tip of the inner luminous cone. It is used for most welding.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (neutral flame)",
+   "topic": "Flame Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "9996394180",
+   "q": "The CARBURIZING flame (excess acetylene) burns at about ___ and has a bluish-white inner core with a white center cone.",
+   "options": [
+    "5,700 °F",
+    "5,850 °F",
+    "6,300 °F"
+   ],
+   "correct": 0,
+   "short": "Carburizing flame ≈ 5,700 °F (excess acetylene).",
+   "expl": "The carburizing flame has excess acetylene; it burns at about 5,700 °F at the tip of the inner core and shows a bluish-white inner core, a white center cone, and a light-blue outer cone. It is used where extra carbon is wanted, such as high-nickel/high-chromium alloys.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (carburizing flame)",
+   "topic": "Flame Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "ecff792af8",
+   "q": "The OXIDIZING flame (excess oxygen) burns at about ___ — the hottest of the three.",
+   "options": [
+    "6,300 °F",
+    "5,700 °F",
+    "4,500 °F"
+   ],
+   "correct": 0,
+   "short": "Oxidizing flame ≈ 6,300 °F (excess oxygen) — hottest.",
+   "expl": "The oxidizing flame is produced by burning an excess of oxygen; it is the hottest at about 6,300 °F and has a shorter outer flame and a small white inner cone.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (oxidizing flame)",
+   "topic": "Flame Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "b75f53677b",
+   "q": "A BACKFIRE is a ___.",
+   "options": [
+    "Momentary backward flow of gases at the torch tip that causes the flame to go out",
+    "Burning of the gases inside the torch",
+    "Explosion inside the cylinder"
+   ],
+   "correct": 0,
+   "short": "Backfire = momentary reverse flow at the tip; the flame pops out.",
+   "expl": "A backfire is a momentary backward flow of gases at the torch tip that makes the flame go out (often with a pop). It is caused by touching the tip to the work, overheating the tip, wrong pressures, a loose tip/head, or dirt/slag in the tip.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-14 (backfire)",
+   "topic": "Welding Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "b855be223d",
+   "q": "A FLASHBACK is ___, and you should ___.",
+   "options": [
+    "Burning of the gases WITHIN the torch — turn the gases off immediately",
+    "A harmless pop — keep welding",
+    "The normal sound of a good flame — ignore it"
+   ],
+   "correct": 0,
+   "short": "Flashback = flame burning inside the torch; shut the gases off at once.",
+   "expl": "A flashback is the burning of the gases within the torch itself, often with a shrill hissing or squealing noise. Turn the gases off immediately to avoid damage or injury. It is caused by loose connections, improper pressures, or overheating the torch.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-14 (flashback)",
+   "topic": "Welding Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "fcb10b642a",
+   "q": "Flashback arrestors are installed on each hose to ___.",
+   "options": [
+    "Prevent a high-pressure flame from being pushed back into either cylinder (they act as check valves)",
+    "Increase the gas flow to the torch",
+    "Filter dirt out of the gas"
+   ],
+   "correct": 0,
+   "short": "Flashback arrestors = check valves stopping flame from reaching the cylinders.",
+   "expl": "Flashback arrestors are installed on each hose to prevent a high-pressure flame from being pushed back into either cylinder; they work as check valves, allowing gas to flow only toward the torch.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-14 (flashback arrestors)",
+   "topic": "Welding Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "ece19b3d9e",
+   "q": "What determines the size of torch tip to use?",
+   "options": [
+    "The length of the weld only",
+    "The thickness of the metal (thicker metal → larger tip and rod)",
+    "The color of the metal"
+   ],
+   "correct": 1,
+   "short": "Metal thickness sets the tip size (thicker → bigger tip/rod).",
+   "expl": "The thickness of the metal determines the torch tip size — the thicker the metal, the larger the torch tip and filler rod required to put enough heat into the joint.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-11 (tip selection)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "4327897323",
+   "q": "When lighting the torch, you first open the acetylene valve about 1/16 inch and ignite it, then ___.",
+   "options": [
+    "Open the oxygen fully before igniting",
+    "Light the oxygen first and add acetylene last",
+    "Adjust until the black sooty smoke disappears, then slowly open the oxygen valve to set the flame"
+   ],
+   "correct": 2,
+   "short": "Light acetylene, clear the soot, then slowly bring in oxygen.",
+   "expl": "To start the flame you direct the torch away from yourself and others, open the acetylene valve about 1/16 inch and ignite it, adjust until the black sooty smoke disappears, then slowly open the oxygen valve until the proper flame is established.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (starting the flame)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "aeb2dfaa90",
+   "q": "To SHUT DOWN the torch, which valve is closed FIRST?",
+   "options": [
+    "Both cylinder valves at the same time",
+    "The acetylene valve on the torch (then the oxygen)",
+    "The oxygen valve on the torch (then the acetylene)"
+   ],
+   "correct": 1,
+   "short": "Shut down: close acetylene first, then oxygen.",
+   "expl": "When shutting down, close the acetylene valve on the torch first, then close the oxygen valve. Killing the fuel first prevents a lingering sooty flame.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (shutting down)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "561a4598d7",
+   "q": "To move the puddle, the hot cone at the torch tip is held about ___ from the metal.",
+   "options": [
+    "1/4 inch",
+    "1 inch",
+    "touching the metal"
+   ],
+   "correct": 0,
+   "short": "Keep the cone ~1/4 inch off the metal; move forward in small circles.",
+   "expl": "Puddle movement is done by keeping the hot inner cone about a quarter inch away from the metal and slowly moving the tip forward in small circles. The torch tip size determines how much heat is applied.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (the puddle)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "4d53608095",
+   "q": "A GOOD weld shows ___.",
+   "options": [
+    "Overlapping globs with trapped slag",
+    "Uniform width, even ripples, a smooth taper-off, and good penetration",
+    "Uneven width and no penetration"
+   ],
+   "correct": 1,
+   "short": "Good weld: uniform width, even ripples, smooth taper, good penetration.",
+   "expl": "A good weld has a uniform width, even ripples, tapers off smoothly, and shows good penetration into the base metal.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (weld evaluation)",
+   "topic": "Weld Evaluation",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "de1a225212",
+   "q": "Which is a cause of a LOW-strength (poor) weld?",
+   "options": [
+    "Good penetration with a smooth taper",
+    "Insufficient penetration, undercutting, poor fusion, trapped oxides/slag, or overheating",
+    "Even ripples and uniform width"
+   ],
+   "correct": 1,
+   "short": "Poor weld causes: low penetration, undercut, poor fusion, trapped slag, overheating.",
+   "expl": "Low-strength welds are caused by insufficient penetration, undercutting of the base metal at the toe of the weld, poor fusion, trapped oxides/slag/gas pockets, overlap of weld metal onto the base metal, too much or too little reinforcement, or overheating.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-16 (poor welds)",
+   "topic": "Weld Evaluation",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "47f5008be8",
+   "q": "The three types of stainless steel are ___.",
+   "options": [
+    "Austenitic, martensitic, and ferritic",
+    "Carbon, alloy, and tool",
+    "Soft, medium, and hard"
+   ],
+   "correct": 0,
+   "short": "Stainless types: austenitic, martensitic, ferritic.",
+   "expl": "Stainless steels are grouped as austenitic (non-magnetic, corrosion resistant, good high-heat properties), martensitic (high strength and hardness), and ferritic (high chromium, magnetic, low carbon).",
+   "cite": "FAA-H-8083-31B, Ch. 5 (stainless steel types)",
+   "topic": "Metals",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "17f9ee7fcf",
+   "q": "Which stainless type is NON-magnetic, corrosion resistant, with good high-heat properties?",
+   "options": [
+    "Ferritic",
+    "Austenitic",
+    "Martensitic"
+   ],
+   "correct": 1,
+   "short": "Austenitic = non-magnetic, corrosion resistant, high-heat.",
+   "expl": "Austenitic stainless is non-magnetic, corrosion resistant, and holds up to high heat. Martensitic is prized for high strength and hardness; ferritic is high-chromium, magnetic, and low-carbon.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (austenitic stainless)",
+   "topic": "Metals",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "2cb5bcc15e",
+   "q": "When welding stainless steel or other alloys HIGH in nickel or chromium, you use a ___.",
+   "options": [
+    "Slightly carburizing flame",
+    "Strongly oxidizing flame",
+    "Cold flame"
+   ],
+   "correct": 0,
+   "short": "High nickel/chromium alloys → slightly carburizing flame; most other steels → neutral.",
+   "expl": "When welding stainless or other high-nickel/high-chromium alloys, use a slightly carburizing flame so the carbon content of the steel is not altered too much. For most other steels, a neutral flame is used.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-16 (welding ferrous metals)",
+   "topic": "Metals",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "611fb08546",
+   "q": "'Nonferrous' metals are those that ___.",
+   "options": [
+    "Are always magnetic",
+    "Contain no iron (for example lead, copper, silver, magnesium, aluminum)",
+    "Contain mostly iron"
+   ],
+   "correct": 1,
+   "short": "Nonferrous = no iron (lead, copper, silver, magnesium, aluminum).",
+   "expl": "Nonferrous metals contain no iron — examples are lead, copper, silver, magnesium, and aluminum. Ferrous metals are iron-based (steels).",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-18 (nonferrous metals)",
+   "topic": "Metals",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "e47a82af08",
+   "q": "The proper welding rod for gas welding ALUMINUM is ___.",
+   "options": [
+    "1100 or 4043",
+    "2024 or 7075",
+    "mild steel rod"
+   ],
+   "correct": 0,
+   "short": "Aluminum weld rod = 1100 or 4043.",
+   "expl": "Aluminum is welded with a 1100 or 4043 filler rod. The metal should be cleaned and fluxed, edges prepared, and a neutral flame slanted at about 45° used. Gas welding of aluminum has largely been replaced by TIG.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-18 (welding aluminum)",
+   "topic": "Metals",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "2e4d75b8fa",
+   "q": "Brazing and soldering hold pieces together with a softer metal that ___.",
+   "options": [
+    "Melts and mixes with the base metal by fusion",
+    "Is mechanically riveted in place",
+    "Sticks to the surface by adhesion rather than fusion"
+   ],
+   "correct": 2,
+   "short": "Brazing/soldering: softer filler adheres to the surface (adhesion, not fusion).",
+   "expl": "In brazing and soldering, two or more pieces are held together by a softer metal such as brass, bronze, or silver; the molten filler sticks to the surface by adhesion rather than by fusing (melting) the base metal.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-20 (brazing & soldering)",
+   "topic": "Brazing & Soldering",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "f793dcfcd2",
+   "q": "In aircraft, brazing/soldering is typically used for ___.",
+   "options": [
+    "Engine mount tubes",
+    "Electrical connectors and hydraulic/fuel line fittings (not primary structure)",
+    "Primary wing spar joints"
+   ],
+   "correct": 1,
+   "short": "Brazing/soldering: connectors and line fittings, not primary structure.",
+   "expl": "Brazing and soldering are typically not used in primary aircraft construction; they are used on electrical connectors and on hydraulic and fuel line fittings.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (brazing & soldering uses)",
+   "topic": "Brazing & Soldering",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "67a3872f55",
+   "q": "A soldering iron tip must be clean and coated with a layer of solder, a condition called ___.",
+   "options": [
+    "Fluxed",
+    "Annealed",
+    "Tinned"
+   ],
+   "correct": 2,
+   "short": "A coated iron tip is 'tinned.'",
+   "expl": "The soldering iron tip must be clean and have a layer of solder on it — referred to as 'tinned.' Soldering irons (adjustable to various temperatures) are recommended for wire soldering, and you must use solder with a non-corrosive flux. Electric soldering guns should not be used on printed circuit boards.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-21 (soldering irons)",
+   "topic": "Brazing & Soldering",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "8e22ce6529",
+   "q": "Silver soldering (a form of hard soldering/brazing) is used on ___.",
+   "options": [
+    "Stainless steel (high-pressure) oxygen lines",
+    "Primary aluminum skins",
+    "Fabric-covered surfaces"
+   ],
+   "correct": 0,
+   "short": "Silver soldering: stainless-steel high-pressure oxygen lines.",
+   "expl": "Silver soldering — hard soldering, a form of brazing — is used in aircraft to join high-pressure stainless-steel oxygen lines and other parts that must withstand vibration and high temperatures. Flux must be used at all times to keep oxides away from the base metal; add solder when the flux begins to flow. (Per the deck, a lap joint should be 4 to 6 times the metal thickness and silver content is 14.5-66%.)",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-20 to 5-21 (silver soldering)",
+   "topic": "Brazing & Soldering",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "01ebb39af6",
+   "q": "Gas-shielded arc welding includes gas tungsten-arc (GTA, formerly TIG) and gas metal-arc (GMA, formerly MIG). Which is predominantly used in aircraft fabrication and repair?",
+   "options": [
+    "TIG (gas tungsten-arc / GTAW)",
+    "MIG (gas metal-arc)",
+    "SMAW (stick)"
+   ],
+   "correct": 0,
+   "short": "TIG (GTAW) predominates in aircraft fabrication/repair.",
+   "expl": "Gas-shielded arc welding covers gas tungsten-arc (GTA, formerly TIG) and gas metal-arc (GMA, formerly MIG). TIG is predominantly used in aircraft fabrication and repair because of its precise, clean control.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (gas-shielded arc welding)",
+   "topic": "Arc Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "04a263b317",
+   "q": "In arc welding, heat is produced by ___ and the amount of heat is set by the ___.",
+   "options": [
+    "The color of the electrode; the voltage only",
+    "Chemical reaction of flux; the gas pressure",
+    "The movement of electrons across the gap; the amperage flowing across the gap"
+   ],
+   "correct": 2,
+   "short": "Arc heat = electron movement; amperage sets how much heat.",
+   "expl": "An arc forms when there is enough voltage to jump the gap between the electrode and an area of different electrical potential. Heat is produced by the movement of electrons, and the amount of heat is determined by the amperage flowing across the gap.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (arc welding theory)",
+   "topic": "Arc Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "36dfb4779b",
+   "q": "Shielded Metal Arc Welding (SMAW, 'stick') uses flux-coated rods and produces temperatures ___.",
+   "options": [
+    "Below 3,000 °F, and is the main aircraft process",
+    "Exactly equal to an oxyacetylene flame",
+    "Exceeding 10,000 °F, and is not generally used for aircraft repair or fabrication"
+   ],
+   "correct": 2,
+   "short": "SMAW (stick): flux-coated rod, >10,000 °F, not generally used on aircraft.",
+   "expl": "In SMAW (stick welding) the rods are coated with flux, an arc is struck between the wire and the work, and temperatures exceed 10,000 °F. It is not generally used for aircraft repair or fabrication.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-3 (SMAW)",
+   "topic": "Arc Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "f1ca4152df",
+   "q": "TIG (GTAW) welding is also known by which trade names, and uses what shielding gas?",
+   "options": [
+    "MIG/stick; carbon dioxide only",
+    "Braze-arc; oxygen",
+    "Heliarc/Heliweld; an inert gas such as argon or helium"
+   ],
+   "correct": 2,
+   "short": "TIG = GTAW, a.k.a. Heliarc/Heliweld; shielded by argon or helium.",
+   "expl": "TIG is also called GTAW, Heliarc, and Heliweld. It uses an inert gas such as argon or helium to shield the weld. The electrode can be connected to the DC or AC side; the arc concentrates on a small area (the deck cites temperatures as high as about 11,000 °F) and melts the base metal into a puddle to which filler rod is added.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (GTAW/TIG)",
+   "topic": "Arc Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "53cba82c0d",
+   "q": "The TIG torch holds the tungsten electrode in a chuck and surrounds it with a ceramic/Pyrex nozzle whose job is to ___.",
+   "options": [
+    "Carry the welding current to the base metal",
+    "Cool the base metal with water",
+    "Direct the flow of argon (inert gas) that surrounds the weld"
+   ],
+   "correct": 2,
+   "short": "The TIG nozzle directs the shielding argon around the weld.",
+   "expl": "The TIG torch is a handle with a chuck that holds the tungsten electrode, plus a ceramic, high-temperature plastic, or Pyrex glass nozzle. The nozzle directs the flow of argon (inert gas) around the weld to shield it from the air.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (TIG torch)",
+   "topic": "Arc Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "1bc8053c89",
+   "q": "SPOT welding (electric resistance) joins metal by ___.",
+   "options": [
+    "Melting a filler rod into a groove",
+    "Gluing the sheets with adhesive",
+    "Passing current through the metal between two copper electrodes while jaw pressure forces the heated metal together"
+   ],
+   "correct": 2,
+   "short": "Spot welding: current + pressure between two copper electrodes fuses the sheets.",
+   "expl": "Spot welding uses two copper electrodes to clamp the metal; current flows through the metal creating heat between the pieces, and pressure from the jaws forces the heated metal to flow together. It is a form of electric resistance welding.",
+   "cite": "FAA-H-8083-31B, Ch. 5 (spot welding)",
+   "topic": "Arc Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "d0aed37162",
+   "q": "REVIEW: Engine-mount members should preferably be repaired by using a ___.",
+   "options": [
+    "Larger-diameter tube with fishmouth and rosette welds",
+    "Smaller-diameter tube with fishmouth and rosette welds",
+    "Larger-diameter tube with fishmouth and NO rosette welds"
+   ],
+   "correct": 0,
+   "short": "Engine mount repair: LARGER-diameter tube, fishmouth + rosette welds.",
+   "expl": "Engine-mount members are preferably repaired with a larger-diameter replacement tube telescoped over the stub of the original member, using fishmouth and rosette welds. (A 30° scarf weld may substitute for the fishmouth.) Repaired mounts must be checked for accurate alignment.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-99 (engine-mount repairs)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "6024770938",
+   "q": "REVIEW: Which two pieces of information must be known to find the transverse pitch, and what is the transverse pitch for a repair whose pitch is 5/8\"?",
+   "options": [
+    "75% of the rivet pitch → 0.75 × 5/8 = 15/32 inch",
+    "50% of the pitch → 5/16 inch",
+    "Equal to the pitch → 5/8 inch"
+   ],
+   "correct": 0,
+   "short": "Transverse pitch = 75% of pitch = 0.75 × 5/8 = 15/32\".",
+   "expl": "Transverse pitch is about 75 percent of the rivet pitch. 0.75 × 5/8 = 0.75 × 0.625 = 0.46875 inch, which is 15/32 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "586595e7bc",
+   "q": "REVIEW: What is the transverse pitch for a sheet-metal repair whose pitch is 3/8\"?",
+   "options": [
+    "3/8 inch",
+    "9/32 inch (0.75 × 3/8)",
+    "3/16 inch"
+   ],
+   "correct": 1,
+   "short": "0.75 × 3/8 = 9/32\".",
+   "expl": "Transverse pitch = 75 percent of the pitch. 0.75 × 3/8 = 0.28125 inch = 9/32 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "accfba8b96",
+   "q": "REVIEW: A sheet-metal repair uses two pieces of 0.032\" aluminum with 1/8\" rivets. The rivet LENGTH is:",
+   "options": [
+    "4/16 inch (1/4 inch)",
+    "3/16 inch",
+    "6/16 inch"
+   ],
+   "correct": 0,
+   "short": "Grip 0.064 + 1.5×0.125 = 0.2515; ×16 = 4.0 → 4/16 = 1/4\".",
+   "expl": "Grip = 0.032 + 0.032 = 0.064. Add 1.5 × diameter: 1.5 × 0.125 = 0.1875. Total = 0.2515 inch; × 16 = 4.02, rounds to 4 — a 4/16-inch (1/4-inch) rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet length)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "0bcf2cbfa2",
+   "q": "REVIEW: The bucktail (shop head) WIDTH after bucking a 3/32\" (AD-3) rivet should be about ___.",
+   "options": [
+    "9/64 inch (1.5 × 3/32)",
+    "3/32 inch",
+    "3/64 inch"
+   ],
+   "correct": 0,
+   "short": "Shop head diameter = 1.5D = 1.5 × 3/32 = 9/64\".",
+   "expl": "A properly formed shop head has a diameter of 1.5 times the shank diameter. For a 3/32-inch (AD-3) rivet: 1.5 × 3/32 = 4.5/32 = 9/64 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (shop head standards)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "c8ae0a82ab",
+   "q": "REVIEW: The bucktail (shop head) HEIGHT after bucking a 5/32\" (AD-5) rivet should be about ___.",
+   "options": [
+    "5/64 inch (1/2 × 5/32)",
+    "5/32 inch",
+    "15/64 inch"
+   ],
+   "correct": 0,
+   "short": "Shop head height = 0.5D = 1/2 × 5/32 = 5/64\".",
+   "expl": "A properly formed shop head has a height of one-half the shank diameter. For a 5/32-inch (AD-5) rivet: 1/2 × 5/32 = 5/64 inch. (The head diameter would be 1.5 × 5/32.)",
+   "cite": "FAA-H-8083-31B, Ch. 4 (shop head standards)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "ae958c590c",
+   "q": "REVIEW: The minimum edge distance for a MS20470AD-6 (3/16\" universal) rivet is ___.",
+   "options": [
+    "3/8 inch (2 × 3/16)",
+    "3/16 inch",
+    "3/4 inch"
+   ],
+   "correct": 0,
+   "short": "Universal min edge = 2D = 2 × 3/16 = 3/8\".",
+   "expl": "MS20470 is a universal (protruding) head rivet, whose minimum edge distance is 2 diameters. The '-6' is 6/32 = 3/16-inch diameter, so 2 × 3/16 = 3/8 inch. (Recommended edge distance is about 2.5D.)",
+   "cite": "FAA-H-8083-31B, Ch. 4 (edge distance)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "88a276fd04",
+   "q": "REVIEW: Complete the part number for a UNIVERSAL head, 1100 aluminum, 3/32\" diameter, 3/16\" length rivet, and give its head marking.",
+   "options": [
+    "MS20470A3-3 (AN470A3-3); head marking = plain (no mark)",
+    "MS20426A3-3; head marking = raised dot",
+    "MS20470D3-3; head marking = two raised dashes"
+   ],
+   "correct": 0,
+   "short": "Universal 1100 = MS20470A3-3; 1100 (A) head marking = plain.",
+   "expl": "Universal head = MS20470 (AN470). Material 1100 = code A. Diameter 3/32 = 3 (thirty-seconds); length 3/16 = 3 (sixteenths). So MS20470A3-3. Alloy 1100 rivets, code letter A, carry a plain head — no marking.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet part numbers/markings)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "a516747bed",
+   "q": "REVIEW: Complete the part number for a COUNTERSINK head, 2017 aluminum, 5/32\" diameter, 3/8\" length rivet, and give its head marking.",
+   "options": [
+    "MS20426D5-6 (AN426D5-6); head marking = raised dot",
+    "MS20470D5-6; head marking = dimple",
+    "MS20426DD5-6; head marking = two raised dashes"
+   ],
+   "correct": 0,
+   "short": "Countersink 2017 = MS20426D5-6; 2017 (D) head marking = raised dot.",
+   "expl": "Countersunk (100°) head = MS20426 (AN426). Material 2017 = code D. Diameter 5/32 = 5; length 3/8 = 6/16 = 6. So MS20426D5-6. Alloy 2017 rivets, code letter D, are marked with a raised dot.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (rivet part numbers/markings)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "7e4e789a6f",
+   "q": "REVIEW: The sight line on a flat layout to be bent in a cornice or box brake is measured and marked ___.",
+   "options": [
+    "One material-thickness from the sheet edge",
+    "One bend radius from the bend tangent line",
+    "At the mold point"
+   ],
+   "correct": 1,
+   "short": "Sight line = one bend radius from the bend tangent line.",
+   "expl": "The sight line is drawn one bend radius from (inside of) the bend tangent line. When it is lined up directly below the nose of the radius bar and the metal is clamped, the bend tangent line sits in the correct position for the start of the bend.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (sight line)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "f924987350",
+   "q": "REVIEW: What is typically used to maintain the alignment of holes in the metal while drilling sheet metal?",
+   "options": [
+    "Clecos",
+    "Bucking bars",
+    "Rivet sets"
+   ],
+   "correct": 0,
+   "short": "Clecos hold the holes in alignment during drilling.",
+   "expl": "Clecos — spring-loaded temporary fasteners — are dropped into drilled holes to hold the parts and remaining holes in alignment while the rest are drilled. Bucking bars and rivet sets are for driving rivets, not alignment.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (cleco fasteners)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "bac7738880",
+   "q": "REVIEW: A closed angle of 85° between the legs means the metal is bent THROUGH an angle of ___ (use this as N° in the bend-allowance formula).",
+   "options": [
+    "95 degrees",
+    "85 degrees",
+    "5 degrees"
+   ],
+   "correct": 0,
+   "short": "180 − 85 = 95° is the amount of bend.",
+   "expl": "The amount of bend is measured from the flat, so a closed angle of 85° between the legs equals a bend of 180° − 85° = 95°. That 95° is the N value in the bend-allowance formula.",
+   "cite": "FAA-H-8083-31B, Ch. 4 (amount of bend)",
+   "topic": "Review Board",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
    ]
   },
   {

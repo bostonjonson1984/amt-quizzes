@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair &amp; Tools</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Day 1 — Airframe Structures, Sheet Metal Repair &amp; Tools</h1>
+    <div class="sub">Every teaching point from Day 1 of the AMT1201 Metallic Structures deck (airframe structures, structural repair principles, damage classification, patches, marking, and the full sheet-metal tool set), rebuilt as an interactive quiz. Answers verified against FAA-H-8083-31B Ch. 1 &amp; Ch. 4; each explanation cites its source.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "An airplane has five principal structural units. Which set names them?", "options": ["Wings, engine, propeller, cockpit, and tail", "Fuselage, wings, stabilizers, flight control surfaces, and landing gear", "Fuselage, cowling, spars, ribs, and skin"], "correct": 1, "short": "The five principal units: fuselage, wings, stabilizers, flight control surfaces, landing gear.", "expl": "The handbook lists the airplane's major structural units as the fuselage, the wings, the stabilizers, the flight control surfaces, and the landing gear. Cowling, spars, ribs, and skin are sub-parts of those units, not principal units of their own.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-6 (major structural units)", "topic": "Structures", "fig": ""}, {"q": "What is the main structural unit of any airplane or helicopter?", "options": ["The fuselage", "The empennage", "The wing spar"], "correct": 0, "short": "The fuselage is the main structural unit.", "expl": "The fuselage is the central body and main structural unit; the wings, tail, and landing gear all attach to it. The empennage is only the tail section, and a spar is a member inside the wing.", "cite": "FAA-H-8083-31B, Ch. 1 (fuselage)", "topic": "Structures", "fig": ""}, {"q": "The empennage is best described as the ___.", "options": ["Tail section — a tail cone plus fixed and movable aerodynamic surfaces", "Wing center section", "Forward pressure bulkhead"], "correct": 0, "short": "Empennage = the tail section (tail cone + fixed + movable aero surfaces).", "expl": "Empennage is the tail assembly: a tail cone, the fixed aerodynamic surfaces (vertical and horizontal stabilizers), and the movable aerodynamic surfaces (rudder and elevator).", "cite": "FAA-H-8083-31B, Ch. 1 (empennage)", "topic": "Structures", "fig": ""}, {"q": "In MONOCOQUE fuselage construction, what carries the primary stress load?", "options": ["The skin alone", "The skin reinforced by internal members", "A welded tube truss"], "correct": 0, "short": "Monocoque: the skin carries all the load (like a soda can).", "expl": "In monocoque construction the outer skin takes all of the stress with little or no internal bracing — the classic example is a soda-pop can. Add reinforcing members and it becomes semi-monocoque; use a welded tube framework and it is a truss.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (monocoque)", "topic": "Structures", "fig": ""}, {"q": "In SEMI-MONOCOQUE construction the primary stress load is carried by ___.", "options": ["A fabric-covered welded steel tube frame", "The skin reinforced with cross-sectional and/or longitudinal structural members", "The skin alone with no reinforcement"], "correct": 1, "short": "Semi-monocoque: skin PLUS internal members share the load.", "expl": "Semi-monocoque uses a skin that is reinforced by structural members running cross-sectionally (frames, formers, bulkheads) and lengthwise (stringers, longerons). The skin and its stiffeners carry the load together, which is why it is the most common metal airframe design.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (semi-monocoque)", "topic": "Structures", "fig": ""}, {"q": "A TRUSS-type fuselage is best described as ___.", "options": ["A rigid framework of members such as beams, struts, and bars, generally covered with fabric", "A skin-only shell with no internal members", "Rolled aluminum sheet formed into a stressed box"], "correct": 0, "short": "Truss: a rigid framework of beams/struts/bars, usually fabric covered.", "expl": "A truss fuselage is a rigid framework built up of members — beams, struts, and bars (often welded steel tube) — that carry the loads; it is generally covered with fabric for aerodynamic shape rather than for strength.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (truss)", "topic": "Structures", "fig": ""}, {"q": "Which cross-sectional member is the LIGHTEST, used primarily for support and skin attachment and to give the surface its form or shape?", "options": ["Frames", "Bulkheads", "Formers"], "correct": 2, "short": "Formers are the lightest cross-sectional members; they set the shape.", "expl": "Formers are the lightest of the cross-sectional members; their job is support, skin attachment, and giving the fuselage its form or shape. Frames are heavier and carry strength; bulkheads are frame assemblies that divide sections.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (formers)", "topic": "Structures", "fig": ""}, {"q": "Which cross-sectional members are the most numerous and most important in giving the fuselage its strength and shape, and outline features such as doors and windows?", "options": ["Formers", "Stringers", "Frames"], "correct": 2, "short": "Frames: most numerous, give strength and shape, outline doors/windows.", "expl": "Frames are the most numerous and important cross-sectional members — they provide the major cross-sectional support and shape, and they outline structural features like door and window openings. Stringers are lengthwise members, not cross-sectional.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (frames)", "topic": "Structures", "fig": ""}, {"q": "A frame assembly used to separate one fuselage section from another is a ___.", "options": ["Gusset", "Bulkhead", "Former"], "correct": 1, "short": "Bulkheads are frame assemblies that separate fuselage sections.", "expl": "A bulkhead is a frame assembly used to separate one section of the fuselage from another — for example a pressure bulkhead. A gusset is a small plate that joins intersecting members, not a section divider.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (bulkheads)", "topic": "Structures", "fig": ""}, {"q": "Which lengthwise member is the SMALLER, lighter, weaker one — used mainly for fuselage shape and skin attachment, usually a single aluminum extrusion or formed aluminum?", "options": ["Stringer", "Longeron", "Bulkhead"], "correct": 0, "short": "Stringers: the smaller/lighter lengthwise members for shape and skin attachment.", "expl": "Stringers are the smaller, lighter, weaker of the lengthwise (longitudinal) members; they help fix the fuselage shape and give the skin something to attach to. They are usually a single aluminum-alloy extrusion or formed aluminum. Longerons are the heavy ones.", "cite": "FAA-H-8083-31B, Ch. 1 (stringers)", "topic": "Structures", "fig": ""}, {"q": "Which lengthwise member is the HEAVIER, stronger one that holds the bulkheads and formers together and helps support primary bending loads?", "options": ["Longeron", "Stringer", "Former"], "correct": 0, "short": "Longerons: the heavy lengthwise members carrying primary bending loads.", "expl": "Longerons are the heavier, stronger longitudinal members; they run the length of the fuselage, tie the bulkheads and formers together, and help carry the primary bending loads. Stringers are the lighter counterpart.", "cite": "FAA-H-8083-31B, Ch. 1 (longerons)", "topic": "Structures", "fig": ""}, {"q": "What is the purpose of a GUSSET?", "options": ["To seal a fuel tank bay", "To provide a walkway on the wing", "To join and reinforce intersecting structural members"], "correct": 2, "short": "A gusset joins and reinforces where members intersect.", "expl": "A gusset is a plate — often triangular — used to join and reinforce intersecting structural members, spreading the load across the joint. It has nothing to do with sealing or walkways.", "cite": "FAA-H-8083-31B, Ch. 1 (gussets)", "topic": "Structures", "fig": ""}, {"q": "Which of the following is a recognized type of metal WING construction shown in the course?", "options": ["Stressed fabric", "Box beam", "Geodesic lattice"], "correct": 1, "short": "Monospar, multispar, and box beam are the wing construction types.", "expl": "The deck shows three metal wing designs: monospar (one main spar), multispar (several spars), and box beam. A box beam uses two main longitudinal members joined by formers/ribs to make a strong, light box. Geodesic and fabric are not the metal-wing types listed here.", "cite": "FAA-H-8083-31B, Ch. 1 (wing construction)", "topic": "Structures", "fig": ""}, {"q": "Structural units such as spars and engine supports that were built up from sheet metal are ___.", "options": ["Never repairable and must always be replaced", "Repairable only by welding", "Repairable, using approved methods"], "correct": 2, "short": "Built-up sheet-metal units (spars, engine mounts) are repairable by approved methods.", "expl": "Built-up sheet-metal structural units — spars, engine supports, and the like — can be repaired using approved methods and data, not automatically scrapped. The key word is 'approved': you follow the SRM or FAA-accepted data.", "cite": "FAA-H-8083-31B, Ch. 1/4 (built-up structural units)", "topic": "Structures", "fig": ""}, {"q": "What is the PRIMARY objective of any aircraft structural repair?", "options": ["To restore the damaged part to its original condition", "To make the part as light as possible regardless of strength", "To make the part far stronger than the original"], "correct": 0, "short": "Restore the part to its ORIGINAL condition (often replacement is the only way).", "expl": "The primary objective of a repair is to restore the damaged part to its original condition — original strength, original contour. Very often replacement is the only way to truly accomplish that. Over-building or under-building both change how the surrounding structure carries load.", "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-86 to 4-87 (basic principles)", "topic": "Repair Principles", "fig": ""}, {"q": "When investigating structural damage, what must be done FIRST so the exact condition of each rivet, bolt, and weld can be seen?", "options": ["Remove all dirt, grease, and paint from the damaged and surrounding areas", "Stop-drill every visible crack immediately", "Apply primer over the whole area"], "correct": 0, "short": "First clean off dirt, grease, and paint to reveal the true condition.", "expl": "Before you can judge damage you must remove all dirt, grease, and paint from the damaged and surrounding area so the exact condition of each rivet, bolt, and weld is visible. Stop-drilling or priming before you have inspected would hide or worsen the problem.", "cite": "FAA-H-8083-31B, Ch. 4 (damage investigation)", "topic": "Repair Principles", "fig": ""}, {"q": "NDI (nondestructive inspection) during damage investigation is used to find ___.", "options": ["Corrosion, pitting, heat/stress cracks, and discontinuity of metals", "Only loose rivets", "Only paint thickness"], "correct": 0, "short": "NDI looks for corrosion, pitting, heat/stress cracks, and metal discontinuities.", "expl": "Nondestructive inspection is used to detect corrosion, pitting, heat and stress cracks, and discontinuities in the metal — flaws you cannot always see with the naked eye — without damaging the part.", "cite": "FAA-H-8083-31B, Ch. 4 (NDI in damage investigation)", "topic": "Repair Principles", "fig": ""}, {"q": "In ANY sheet metal repair, the three things that are critical to maintain/achieve are:", "options": ["Maintain original strength, maintain original contour, and minimize weight", "Maximize strength, add weight for safety, ignore contour", "Match color, match finish, and reduce cost"], "correct": 0, "short": "Original strength + original contour + minimum weight.", "expl": "Every sheet-metal repair must maintain the original strength, maintain the original contour (aerodynamic shape), and add the least weight possible. Adding needless weight or changing the contour degrades the aircraft even if it feels 'stronger.'", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-87 (repair requirements)", "topic": "Repair Principles", "fig": ""}, {"q": "If an alloy WEAKER than the original must be substituted, what must be done to keep equivalent strength?", "options": ["Use the same thickness and add sealant", "Use a heavier (thicker) gauge to give equivalent cross-sectional strength", "Use a thinner gauge to save weight"], "correct": 1, "short": "Weaker alloy -> go thicker to match the original cross-sectional strength.", "expl": "When a weaker alloy is substituted, a heavier thickness must be used so the repair has cross-sectional strength equivalent to the original. The manufacturer's Structural Repair Manual (SRM) tells you what substitute material is acceptable and how much thicker it must be.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-87 (material substitution)", "topic": "Repair Principles", "fig": ""}, {"q": "The manufacturer document that often specifies acceptable substitute material and how much thicker it must be is the ___.", "options": ["Structural Repair Manual (SRM)", "Illustrated Parts Catalog (IPC)", "Minimum Equipment List (MEL)"], "correct": 0, "short": "The SRM gives substitution material and thickness.", "expl": "The Structural Repair Manual, written by the manufacturer, specifies acceptable substitute materials and the required thickness increases for a given aircraft's structure. The IPC lists parts; the MEL governs dispatch with inoperative equipment.", "cite": "FAA-H-8083-31B, Ch. 2/4 (Structural Repair Manual)", "topic": "Repair Principles", "fig": ""}, {"q": "Damage is grouped into how many general classifications?", "options": ["Two", "Six", "Four"], "correct": 2, "short": "Four classes: negligible, patching, insertion, replacement.", "expl": "The handbook groups damage into four general classes: negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of the part.", "cite": "FAA-H-8083-31B, Ch. 4 (damage classification)", "topic": "Damage Classification", "fig": ""}, {"q": "Small dents, scratches, cracks, and holes that can be fixed by smoothing, sanding, stop-drilling, or hammering out are which class of damage?", "options": ["Negligible damage", "Repairable by insertion", "Necessitating replacement"], "correct": 0, "short": "Negligible damage = the minor stuff fixed by smoothing/sanding/stop-drilling/hammering.", "expl": "Negligible damage is the class of small dents, scratches, cracks, and holes that can be corrected by smoothing, sanding, stop-drilling a crack, or hammering out a dent — no splice members required.", "cite": "FAA-H-8083-31B, Ch. 4 (negligible damage)", "topic": "Damage Classification", "fig": ""}, {"q": "Damage repaired by installing splice members to bridge the damaged portion is classed as ___.", "options": ["Repairable by patching", "Negligible", "Repairable by insertion"], "correct": 0, "short": "Patching = splice members bridge the damage.", "expl": "Damage repairable by patching is fixed by installing splice members (patches) that bridge the damaged portion and restore the load path. Insertion is when the area is too large to patch or an aligned member must be let in.", "cite": "FAA-H-8083-31B, Ch. 4 (repairable by patching)", "topic": "Damage Classification", "fig": ""}, {"q": "When the damaged area is too large to patch, or structure arranged so that patch members would interfere with alignment, the damage is ___.", "options": ["Repairable by insertion", "Negligible", "Repairable by patching"], "correct": 0, "short": "Insertion = area too large to patch or patch would interfere with alignment.", "expl": "Damage repairable by insertion applies when the area is too large for a simple patch, or the structure is arranged so patch members would interfere with structural alignment — so a section is let in (inserted) instead.", "cite": "FAA-H-8083-31B, Ch. 4 (repairable by insertion)", "topic": "Damage Classification", "fig": ""}, {"q": "Damage whose location or extent makes repair impractical falls into which class?", "options": ["Repairable by patching", "Necessitating replacement", "Negligible"], "correct": 1, "short": "Replacement = repair is impractical; the component must be replaced.", "expl": "When a component's location or the extent of damage makes repair impractical, it falls into the 'necessitating replacement' class — the part is replaced rather than repaired.", "cite": "FAA-H-8083-31B, Ch. 4 (replacement)", "topic": "Damage Classification", "fig": ""}, {"q": "During extensive repair of the fuselage, landing gear, or wing center section, what device holds the parts in position to maintain their shape?", "options": ["A jig (fixture)", "A bucking bar", "A slip roller"], "correct": 0, "short": "A jig/fixture holds the structure true during extensive repair.", "expl": "For extensive repairs to the fuselage, landing gear, or wing center section, the aircraft/structure is supported in a jig (fixture) that holds the parts in their correct positions so the shape and alignment are maintained while it is worked.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-92 (structural support / jig)", "topic": "Repair Principles", "fig": ""}, {"q": "'Stressed skin' construction means ___.", "options": ["The skin is always fabric over a truss", "The external skin carries part or all of the main loads", "The skin carries no load and is only a fairing"], "correct": 1, "short": "Stressed skin: the external covering carries part or all of the main loads.", "expl": "In stressed-skin construction the external covering (skin) carries part or all of the main loads, so it is a structural member — typically made from high-strength rolled aluminum sheet. To find repair requirements for these areas you refer to the applicable aircraft maintenance manual.", "cite": "FAA-H-8083-31B, Ch. 4 (stressed skin)", "topic": "Repair Principles", "fig": ""}, {"q": "What are the TWO classifications of skin patch?", "options": ["Butt patch and weld patch", "Lap (scab) patch and flush patch", "Doubler patch and filler patch"], "correct": 1, "short": "Two patch types: lap (a.k.a. scab) and flush.", "expl": "Skin patches come in two types: the lap patch — also called a scab patch, an external patch whose edges overlap the skin — and the flush patch, set flush with the skin for aerodynamic smoothness.", "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-95 to 4-96 (patches)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "A LAP (scab) patch is best used where ___.", "options": ["Aerodynamic smoothness is critical", "The skin is under no load at all", "Aerodynamic smoothness is NOT important"], "correct": 2, "short": "Lap/scab patch = external overlap, used where smoothness doesn't matter.", "expl": "A lap or scab patch is an external patch whose edges overlap the skin. Because it sits proud of the surface it is used in areas where aerodynamic smoothness is not important; where smoothness matters, a flush patch is used instead.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-95 (lap/scab patch)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "A FLUSH patch is ___.", "options": ["A filler patch set flush to the skin, supported by and riveted to an internal reinforcement plate", "An external patch that overlaps the skin", "A patch made only of sealant"], "correct": 0, "short": "Flush patch = filler flush with the skin, backed by an internal reinforcement plate.", "expl": "A flush patch is a filler patch that sits flush with the skin surface; it is supported by and riveted to a reinforcement plate, which is in turn riveted to the inside of the skin. That keeps the outside aerodynamically smooth.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-96 (flush patch)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "For marking layout lines on aircraft sheet metal, which is the PREFERRED practice?", "options": ["Use a No. 2 graphite pencil directly on the aluminum", "Use a steel scriber everywhere on the finished surface", "Mark with a fiber-tipped pen (or on the protective membrane / on tape)"], "correct": 2, "short": "Fiber-tipped pen (or on membrane/tape) — NOT a No. 2 pencil on the metal.", "expl": "Do not use a No. 2 pencil on aircraft metal; the graphite promotes corrosion. Preferred methods are to mark on the protective membrane if it is still on the material, mark directly on the metal with a fiber-tipped pen (fine-point marker), or cover the area with tape and mark the tape. A scriber is reserved for lines that will later be cut or drilled away.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "Why should a No. 2 pencil NOT be used to mark aircraft aluminum?", "options": ["It smears and cannot be seen", "It is not accurate enough for layout", "Its graphite can cause corrosion of the aluminum"], "correct": 2, "short": "Graphite from the pencil causes corrosion on aluminum.", "expl": "The graphite (carbon) in a No. 2 pencil is cathodic to aluminum and promotes galvanic corrosion where it contacts the metal, so it is not used for marking aircraft aluminum.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "Members such as stringers, longerons, spars, ribs, bulkheads, frames, and beams most commonly become damaged by ___.", "options": ["Painting and cleaning only", "Vibration, corrosion, or collision", "Normal fuel loading only"], "correct": 1, "short": "These internal members are damaged by vibration, corrosion, or collision.", "expl": "Internal structural members — stringers, longerons, spars, ribs, bulkheads, frames, beams — are typically damaged by vibration (fatigue), corrosion, or collision, and each has typical approved repairs.", "cite": "FAA-H-8083-31B, Ch. 4 (internal/external repairs)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "Which precision layout tool is a flat steel rule graduated in fractional and/or decimal inches, used for measuring and drawing straight lines?", "options": ["Machinist scale", "Combination square", "Metal protractor"], "correct": 0, "short": "The machinist scale (steel rule) measures and draws straight lines.", "expl": "A machinist scale is a flat, rigid steel rule graduated in fine fractional and decimal divisions; it is the basic tool for measuring lengths and drawing straight reference lines in sheet-metal layout.", "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)", "topic": "Tools", "fig": ""}, {"q": "Which tool combines a rule with a fixed and a sliding head so it can check 90° and 45° angles, measure depth, and mark lines parallel to an edge?", "options": ["Combination square", "Dividers", "Compass"], "correct": 0, "short": "The combination square checks 90°/45°, depth, and parallel lines.", "expl": "A combination square is a rule fitted with a head that references 90° and 45°; it is used to square lines, check angles, gauge depth, and scribe lines parallel to an edge.", "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)", "topic": "Tools", "fig": ""}, {"q": "Which tool has two sharp steel legs and is used to step off equal distances or scribe arcs/circles from a set radius?", "options": ["Dividers", "Metal protractor", "Rivet spacer (fan)"], "correct": 0, "short": "Dividers step off equal spacing and scribe arcs.", "expl": "Dividers are a two-legged instrument with sharp points, set to a fixed spread to step off equal distances (such as rivet spacing) or to scribe arcs and circles. A compass is similar but usually carries a pencil/scriber for larger circles.", "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)", "topic": "Tools", "fig": ""}, {"q": "Which tool is used to lay out or measure ANGLES on sheet metal?", "options": ["Metal protractor", "Combination square", "Burring tool"], "correct": 0, "short": "A protractor lays out and measures angles.", "expl": "A metal protractor is graduated in degrees and is used to lay out or measure angles for bends and cuts in sheet-metal work.", "cite": "FAA-H-8083-31B, Ch. 4 (layout tools)", "topic": "Tools", "fig": ""}, {"q": "The fan-shaped tool that automatically divides a row into EQUAL rivet spaces regardless of the row length is the ___.", "options": ["Rivet gauge", "Rivet spacer (rivet fan)", "Radius gage"], "correct": 1, "short": "The rivet spacer/fan divides a row into equal rivet spaces.", "expl": "A rivet spacer, or rivet fan, is a set of hinged legs that opens like a fan; spreading it across a layout instantly divides the distance into an equal number of rivet spaces, saving arithmetic.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet layout tools)", "topic": "Tools", "fig": ""}, {"q": "Which pointed tool is used to make a permanent scratched layout line on metal (only where the line will later be cut or drilled away)?", "options": ["Automatic center punch", "Scribe", "Fiber-tipped pen"], "correct": 1, "short": "A scribe scratches a permanent layout line (only on cut/drill-away areas).", "expl": "A scribe is a hardened point that scratches a fine permanent line into the metal. Because the scratch can start a crack, it is used only where the line will later be removed by cutting or drilling; elsewhere you mark with a pen.", "cite": "FAA-H-8083-31B, Ch. 4 (marking tools)", "topic": "Tools", "fig": ""}, {"q": "What is the primary purpose of center-punching a hole location before drilling?", "options": ["To make a small dimple that keeps the drill bit from wandering/slipping", "To deburr the finished hole", "To set the rivet grip length"], "correct": 0, "short": "A center punch dimples the spot so the drill starts true and doesn't slip.", "expl": "An automatic center punch makes a small cone-shaped dimple at the hole center; the drill point seats in that dimple so it starts exactly on the mark and does not skate across the surface.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-20 (center punching)", "topic": "Tools", "fig": ""}, {"q": "A TRANSFER punch is used to ___.", "options": ["Drive out a damaged rivet", "Form a countersink", "Transfer an existing hole's center location onto the part beneath it"], "correct": 2, "short": "A transfer punch copies an existing hole's center to the part below.", "expl": "A transfer punch is ground to fit an existing hole; tapping it marks the exact center of that hole onto the part underneath, so matching holes can be drilled in perfect alignment. It does not drive rivets or countersink.", "cite": "FAA-H-8083-31B, Ch. 4 (punches)", "topic": "Tools", "fig": ""}, {"q": "A PIN punch (drift punch) is mainly used to ___.", "options": ["Drive out pins, bolts, or the shanks of removed rivets from a hole", "Mark the center of a new hole", "Divide a rivet row into equal spaces"], "correct": 0, "short": "A pin/drift punch drives pins and rivet shanks out of holes.", "expl": "A pin punch has a long straight shank of uniform diameter, made to push pins, bolts, or the remaining shank of a drilled-out rivet the rest of the way out of a hole. Centering is the center punch's job.", "cite": "FAA-H-8083-31B, Ch. 4 (punches)", "topic": "Tools", "fig": ""}, {"q": "A chassis punch (hydraulic metal hole punch) is used to ___.", "options": ["Measure rivet head radius", "Punch clean large-diameter holes in sheet metal", "Scribe fine layout lines"], "correct": 1, "short": "A chassis/hydraulic punch makes clean large holes in sheet metal.", "expl": "A chassis punch, often hydraulically driven, shears a clean large-diameter hole in sheet metal in one stroke — useful for instrument, grommet, or connector holes that are too big to drill conveniently.", "cite": "FAA-H-8083-31B, Ch. 4 (hole tools)", "topic": "Tools", "fig": ""}, {"q": "A hole duplicator (hole finder) is used to ___.", "options": ["Locate and drill a new hole that exactly matches an existing hole in a mating part", "Deburr both sides of a hole at once", "Enlarge a hole to the next rivet size"], "correct": 0, "short": "A hole duplicator matches a new hole to an existing hole in the mating part.", "expl": "A hole finder/duplicator is a spring clip with a pilot pin on one leg and a guide bushing on the other; the pin drops into the existing hole so a drill run through the bushing produces a new hole in the covering sheet in perfect register.", "cite": "FAA-H-8083-31B, Ch. 4 (hole duplicator)", "topic": "Tools", "fig": ""}, {"q": "Which hand-power tool is used to cut sheet metal by taking small bites, leaving a narrow strip of waste and little distortion?", "options": ["Nibbler", "Slip roller", "Microstop countersink"], "correct": 0, "short": "A nibbler cuts sheet by taking small bites, with little distortion.", "expl": "A nibbler cuts by punching a series of small overlapping bites out of the sheet; because it removes a thin ribbon of metal it can follow curves and cut internal shapes with very little distortion.", "cite": "FAA-H-8083-31B, Ch. 4 (cutting tools)", "topic": "Tools", "fig": ""}, {"q": "A foot (squaring) shear is used primarily to ___.", "options": ["Make long straight (square) cuts across sheet metal", "Cut tight internal curves", "Roll sheet into a cylinder"], "correct": 0, "short": "The squaring shear makes long straight cuts.", "expl": "A foot-operated squaring shear has a long straight blade for making clean square (90°) cuts and trimming sheet stock to size. Tight curves are cut with snips or a throatless shear; cylinders are formed on a slip roller.", "cite": "FAA-H-8083-31B, Ch. 4 (shears)", "topic": "Tools", "fig": ""}, {"q": "A throatless shear is preferred when you need to ___.", "options": ["Cut irregular shapes and curves without the work jamming against a throat", "Make only perfectly straight long cuts", "Countersink rivet holes"], "correct": 0, "short": "The throatless shear cuts curves/irregular shapes freely.", "expl": "A throatless shear has no frame throat behind the blade, so the sheet can be turned and fed in any direction to cut curves and irregular shapes without binding.", "cite": "FAA-H-8083-31B, Ch. 4 (shears)", "topic": "Tools", "fig": ""}, {"q": "Aviation snips (tin snips) color-coded red, green, and yellow are used to ___.", "options": ["Hand-cut sheet metal straight and in left/right curves", "Drill pilot holes", "Bend 90° flanges"], "correct": 0, "short": "Aviation snips hand-cut sheet straight and in curves (color-coded L/R).", "expl": "Aviation snips cut sheet metal by hand; the color coding identifies straight, left-curve, and right-curve cutting patterns. They do not drill or bend.", "cite": "FAA-H-8083-31B, Ch. 4 (aviation snips)", "topic": "Tools", "fig": ""}, {"q": "A burring tool (deburring tool) is used to ___.", "options": ["Remove the sharp burr left around a drilled hole or cut edge", "Add a burr for grip", "Countersink for a flush rivet"], "correct": 0, "short": "A deburr tool removes the burr left by drilling/cutting.", "expl": "After drilling or cutting, a raised sharp lip (burr) remains; a burring/deburring tool shaves that burr off so parts seat flat and cracks cannot start from the sharp edge. It is not the same as a countersink, which cuts a much deeper cone for a rivet head.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-20 (deburring)", "topic": "Tools", "fig": ""}, {"q": "A drill STOP on a drill bit is used to ___.", "options": ["Limit the depth the bit can penetrate", "Increase the drill's rpm", "Hold the sheets together like a cleco"], "correct": 0, "short": "A drill stop limits drilling depth.", "expl": "A drill stop is a collar clamped on the bit a set distance from the tip; it bottoms out on the surface and prevents the drill from going any deeper — handy to avoid punching into structure behind the skin.", "cite": "FAA-H-8083-31B, Ch. 4 (drill accessories)", "topic": "Tools", "fig": ""}, {"q": "A reamer is used to ___.", "options": ["Rough-drill the first pilot hole", "Cut a large chassis hole", "Finish a drilled hole to an exact size and a smooth surface"], "correct": 2, "short": "A reamer sizes and smooths an already-drilled hole.", "expl": "A reamer is run through an existing (slightly undersized) drilled hole to bring it to an exact final diameter with a smooth wall — for close-tolerance fasteners like Hi-Loks. It does not start holes.", "cite": "FAA-H-8083-31B, Ch. 4 (reamers)", "topic": "Tools", "fig": ""}, {"q": "A cornice brake (box-and-pan brake) is used to ___.", "options": ["Form straight bends/flanges along a line in sheet metal", "Roll sheet into a smooth cylinder", "Shear sheet to length"], "correct": 0, "short": "A brake forms straight bends; a box-and-pan brake also forms boxes.", "expl": "A cornice brake clamps the sheet along a line and folds it up to a chosen angle, making straight bends and flanges. A box-and-pan brake uses removable fingers so you can also bend up the four sides of a box or pan. Cylinders are formed on a slip roller.", "cite": "FAA-H-8083-31B, Ch. 4 (forming equipment)", "topic": "Tools", "fig": ""}, {"q": "A slip roller is used to ___.", "options": ["Punch rivet holes", "Form sheet metal into curved surfaces such as cylinders and cones", "Make sharp 90° bends"], "correct": 1, "short": "A slip roller forms curves/cylinders, not sharp bends.", "expl": "A slip roll former passes the sheet between adjustable rolls to give it a smooth curve — forming cylinders, cones, and gentle radii. Sharp straight bends are made on a brake instead.", "cite": "FAA-H-8083-31B, Ch. 4 (forming equipment)", "topic": "Tools", "fig": ""}, {"q": "Clecos are temporary fasteners whose main job is to ___.", "options": ["Countersink the skin", "Hold drilled parts together in alignment until the rivets are set", "Upset (buck) the shop head of a rivet"], "correct": 1, "short": "Clecos temporarily clamp aligned parts before riveting.", "expl": "A cleco is a spring-loaded temporary fastener inserted into a drilled hole to hold the parts tightly in alignment while the remaining holes are drilled and the rivets are set. It does not form rivets.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (cleco fasteners)", "topic": "Tools", "fig": ""}, {"q": "Per the course cleco color chart, a COPPER cleco corresponds to which hole size?", "options": ["4/32 inch (1/8 inch)", "5/32 inch", "3/32 inch"], "correct": 0, "short": "Copper cleco = 4/32 (1/8\"). [Deck chart; handbook confirms 6 sizes, not the color map.]", "expl": "The deck's cleco chart reads: silver = 3/32, copper = 4/32 (which is 1/8 inch), black = 5/32, brass = 6/32 (3/16 inch). So a copper cleco marks a 1/8-inch hole. Note: the FAA handbook confirms there are six color-coded cleco sizes but does not print the color-to-size map, so this mapping is the standard tool-maker/AIM convention.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (cleco sizes — color map per AIM deck)", "topic": "Tools", "fig": ""}, {"q": "Per the course cleco color chart, which color cleco is used for a 3/32-inch hole?", "options": ["Silver", "Copper", "Brass"], "correct": 0, "short": "Silver = 3/32; copper = 4/32; black = 5/32; brass = 6/32.", "expl": "Reading the deck chart: silver = 3/32 inch, copper = 4/32, black = 5/32, brass = 6/32. So the smallest common size, 3/32, uses the silver cleco. (Color-to-size map is the AIM/tool-maker convention; the handbook lists the sizes but not the colors.)", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (cleco sizes — color map per AIM deck)", "topic": "Tools", "fig": ""}, {"q": "Cleco pliers are used to ___.", "options": ["Measure bend radius", "Compress a cleco so it can be inserted into or removed from a hole", "Cut off rivet shanks"], "correct": 1, "short": "Cleco pliers install and remove clecos.", "expl": "Cleco pliers squeeze the plunger on a spring cleco, spreading (or releasing) its locking legs so the cleco can be pushed into a hole or pulled back out. They do nothing to the rivet itself.", "cite": "FAA-H-8083-31B, Ch. 4 (cleco pliers)", "topic": "Tools", "fig": ""}, {"q": "A bucking bar is used during riveting to ___.", "options": ["Absorb the rivet-gun force and form the shop head on the rivet tail", "Drive the rivet from the manufactured-head side", "Drill the rivet hole"], "correct": 0, "short": "The bucking bar backs up the tail and forms the shop head.", "expl": "A bucking bar of the proper weight is held against the rivet tail; the gun drives the manufactured head while the bar's mass backs up the tail, upsetting it into the shop head. The force must be absorbed by the bar, not by the surrounding structure.", "cite": "FAA-H-8083-31B, Ch. 4 (bucking bars)", "topic": "Tools", "fig": ""}, {"q": "A microstop countersink is preferred for countersinking because it ___.", "options": ["Has an adjustable collar/stop that controls countersink depth precisely", "Never chatters regardless of speed", "Drills the pilot hole at the same time"], "correct": 0, "short": "The microstop's adjustable stop gives precise, repeatable countersink depth.", "expl": "A microstop countersink has an adjustable collar (with locking collar and locking ring) that limits how deep the cutter goes, so every countersink is the same precise depth. You set it on scrap 0.040 aluminum first. Chattering is still its most common problem — fight it with sharp tooling, slow speed, and firm pressure.", "cite": "FAA-H-8083-31B, Ch. 4 (microstop countersink)", "topic": "Tools", "fig": ""}, {"q": "Rivet sets (headers) are matched to the rivet, and if the wrong size is used, ___.", "options": ["A header too small marks the rivet head; a header too large marks the surrounding material", "Any size header works equally well", "A larger header always drives faster with no downside"], "correct": 0, "short": "Too-small header marks the rivet; too-large header marks the material.", "expl": "A rivet set (header) must fit the specific rivet head. If the header is too small it digs into and marks the rivet head; if it is too large it strikes and marks the surrounding skin. A retaining spring holds the set in the gun.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet sets/headers)", "topic": "Tools", "fig": ""}, {"q": "A radius gage is used to ___.", "options": ["Measure electrical resistance", "Set rivet pitch", "Check the radius (roundness) of a bend or fillet against known radii"], "correct": 2, "short": "A radius gage checks a bend/fillet radius.", "expl": "A radius gage is a set of blades ground to known radii; matching a blade to a bend or fillet tells you its radius — useful for confirming a formed part meets its minimum bend radius.", "cite": "FAA-H-8083-31B, Ch. 4 (radius gage)", "topic": "Tools", "fig": ""}, {"q": "A rivet gauge (rivet gage) is used to ___.", "options": ["Check the driven (shop) head dimensions to confirm the rivet meets standards", "Measure sheet thickness only", "Set the drill rpm"], "correct": 0, "short": "A rivet gauge checks the upset/shop head against the standard.", "expl": "A rivet gauge (or a scale) is used to check the condition and dimensions of the upset (shop) head — its height and diameter — to confirm the driven rivet conforms to the required standard.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet gauge)", "topic": "Tools", "fig": ""}, {"q": "A CherryMAX / blind rivet is chosen when ___.", "options": ["You can reach only ONE side of the joint", "You need the very strongest solid structural rivet", "You are welding a steel tube cluster"], "correct": 0, "short": "Blind rivets (CherryMAX) install from one side only.", "expl": "Blind rivets such as the CherryMAX are installed and set entirely from one side, so they are used where the back (blind) side of the joint cannot be reached to hold a bucking bar. They are set with a special hand or pneumatic pulling tool.", "cite": "FAA-H-8083-31B, Ch. 4 (blind rivets)", "topic": "Tools", "fig": ""}, {"q": "A Rivnut (rivet nut) provides ___.", "options": ["A blind-installed threaded insert (anchor) for a screw in thin sheet", "A temporary alignment fastener like a cleco", "A solid structural shear joint"], "correct": 0, "short": "A Rivnut is a blind-set threaded anchor for screws in thin sheet.", "expl": "A Rivnut is a hollow, internally threaded rivet installed from one side; once set it leaves a threaded anchor in thin sheet that a machine screw can thread into — commonly used to attach de-ice boots and inspection covers.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet nuts)", "topic": "Tools", "fig": ""}];
+const DRILL = [];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

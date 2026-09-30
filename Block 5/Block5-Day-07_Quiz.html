@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Day 7 — Layout, Forming &amp; Bend Calculations</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Day 7 — Layout, Forming &amp; Bend Calculations</h1>
+    <div class="sub">Every teaching point from Day 7 of the AMT1201 deck: sheet-metal forming terminology (base measurement, leg/flange, grain, bend allowance/radius, bend tangent line, neutral axis, mold line/point, K-factor, setback, flat, open/closed angle, TDW) and the full U-channel bend-calculation worked example with the stretch check. All math recomputed; answers verified against FAA-H-8083-31B Ch. 4 (pp. 4-59 to 4-67), each explanation cited.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "For a successful flat-pattern layout, which must be true?", "options": ["The math, the layout lines, the brake adjustment, and material placement must all be correct", "Only the math matters; the brake setting does not", "Only the brake setting matters; the math does not"], "correct": 0, "short": "Math + layout lines + brake adjustment + material placement all must be right.", "expl": "Flat-pattern forming depends on four things all being correct: your math, your layout lines, the brake adjustment, and the precise placement of the material in the brake. A mistake in any one produces a bad part.", "cite": "FAA-H-8083-31B, Ch. 4 (layout and forming)", "topic": "Layout & Forming", "fig": ""}, {"q": "'Base measurement' means the ___.", "options": ["Outside dimensions of a formed part", "Inside dimensions of a formed part", "Length of the bend allowance"], "correct": 0, "short": "Base measurement = the OUTSIDE dimensions of the formed part.", "expl": "The base measurement is the outside dimension of the formed part — the size you read off the drawing before accounting for the bends. Mold line dimensions and flats are worked out from it.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (base measurement)", "topic": "Terminology", "fig": ""}, {"q": "On a formed angle, the LEG is the ___.", "options": ["Longer part of the angle", "Shorter part of the angle", "Curved part inside the bend"], "correct": 0, "short": "Leg = the longer part; flange = the shorter part.", "expl": "The leg is the longer part of a formed angle; the flange is the shorter part, opposite the leg. If both sides are the same length, both are called legs.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (leg)", "topic": "Terminology", "fig": ""}, {"q": "On a formed angle, the FLANGE is the ___.", "options": ["Longer part of the angle", "Radius center of the bend", "Shorter part of the angle, opposite the leg"], "correct": 2, "short": "Flange = the shorter part, opposite the leg.", "expl": "The flange is the shorter part of a formed angle, opposite the leg. When both sides are equal length, the term flange is not used — both are legs.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (flange)", "topic": "Terminology", "fig": ""}, {"q": "Bend lines should be laid out to lie at what angle to the GRAIN of the metal?", "options": ["90 degrees (perpendicular to the grain)", "Parallel to the grain (0 degrees)", "45 degrees to the grain"], "correct": 0, "short": "Bend lines should be 90° to the grain.", "expl": "Bend lines should lie at a 90-degree angle to the natural grain of the material. Bending across the grain resists cracking; bending along (parallel to) the grain invites cracks.", "cite": "FAA-H-8083-31B, Ch. 4 (grain direction)", "topic": "Terminology", "fig": ""}, {"q": "'Bend allowance' refers to the ___.", "options": ["Curved section of metal within the bend", "Flat portion outside the bend", "Distance from the bend to the sheet edge"], "correct": 0, "short": "Bend allowance = the curved material within the bend.", "expl": "Bend allowance is the length of the curved section of metal within the bend — the material between the bend tangent lines. You must add it back when developing the flat pattern.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (bend allowance)", "topic": "Bend Terminology", "fig": ""}, {"q": "'Bend radius' is the arc formed when metal is bent, measured from the radius center to the ___.", "options": ["Neutral axis of the metal", "Inside surface of the metal", "Outside surface of the metal"], "correct": 1, "short": "Bend radius is measured to the INSIDE surface of the metal.", "expl": "The bend radius is the arc formed when the metal is bent, measured from the radius center to the inside surface of the metal — not the outside and not the neutral axis.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (bend radius)", "topic": "Bend Terminology", "fig": ""}, {"q": "The 'bend tangent line' marks ___.", "options": ["Where the metal starts to bend and where it stops curving", "The outside corner of the mold lines", "The center of the bend radius"], "correct": 0, "short": "Bend tangent lines = where the curve starts and stops (space between = bend allowance).", "expl": "The bend tangent lines are the two locations where the metal starts to bend and where it stops curving. All the material between them is the bend allowance.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (bend tangent line)", "topic": "Bend Terminology", "fig": ""}, {"q": "The 'neutral axis' is the imaginary line that ___.", "options": ["Has the same length after bending as it had before bending", "Stretches the most during bending", "Compresses the most during bending"], "correct": 0, "short": "Neutral axis: same length before and after bending.", "expl": "The neutral axis is the imaginary line whose length does not change during bending — outside of it the metal stretches, inside it compresses. It can be considered to lie at the bend radius plus one-half the material thickness.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (neutral axis)", "topic": "Bend Terminology", "fig": ""}, {"q": "The neutral axis can be considered to lie at ___.", "options": ["Bend radius plus 1/2 the material thickness", "Bend radius minus the material thickness", "Exactly at the inside surface"], "correct": 0, "short": "Neutral axis ≈ bend radius + ½ material thickness.", "expl": "For layout purposes the neutral axis is taken as the bend radius plus one-half the material thickness — the location that neither stretches nor compresses.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (neutral axis)", "topic": "Bend Terminology", "fig": ""}, {"q": "If no K-factor chart is available, K is calculated as the ___.", "options": ["Tangent of one-half the bend angle", "Sine of the full bend angle", "Cosine of twice the bend angle"], "correct": 0, "short": "K = tangent of one-half the bend angle.", "expl": "When no K-factor chart is handy, K equals the tangent of one-half the bend angle. For a 90° bend, one-half is 45°, whose tangent is 1, which is why a 90° setback is simply R + T.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (K-factor)", "topic": "Bend Calculations", "fig": ""}, {"q": "A 'mold line' is ___.", "options": ["An extension of the flat side of a part beyond the radius", "The curved portion within the bend", "The center of the bend radius"], "correct": 0, "short": "Mold line = extension of the flat side beyond the radius.", "expl": "A mold line is the extension of the flat side of a part beyond the radius, as if the flat continued to a sharp corner. Where two mold lines meet is the mold point, and the dimension between mold-line intersections is the mold line dimension.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (mold line)", "topic": "Bend Terminology", "fig": ""}, {"q": "The 'mold point' is the ___.", "options": ["Point of intersection of the mold lines", "Center of the bend radius", "Midpoint of the bend allowance"], "correct": 0, "short": "Mold point = where the mold lines intersect.", "expl": "The mold point is the point where the mold lines intersect (the theoretical sharp corner). The mold line dimension is the distance between such intersections.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (mold point)", "topic": "Bend Terminology", "fig": ""}, {"q": "The K-factor is best defined as ___.", "options": ["The number of bends in a part", "The thickness of the material in 32nds", "The percentage of material thickness where there is no stretching or compressing (the neutral axis)"], "correct": 2, "short": "K-factor = the % of thickness at the no-stretch/no-compress neutral axis.", "expl": "The K-factor represents the percentage of the material thickness at which there is no stretching or compressing — the neutral axis location. For any bend other than 90°, the K value from the chart is multiplied by the sum of the radius and thickness.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-61 (K-factor)", "topic": "Bend Calculations", "fig": ""}, {"q": "'Setback' (SB) is the ___.", "options": ["Distance the jaws of the brake must be set back from the mold line to form the bend", "Distance from the first rivet to the edge", "Length of the bend allowance"], "correct": 0, "short": "Setback = how far the brake jaws sit back from the mold line.", "expl": "Setback is the distance the brake jaws must be set back from the mold line so the bend forms in the right place. For a 90° bend, SB = R + T; when a part has more than one bend, setback is subtracted for each bend.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (setback)", "topic": "Bend Calculations", "fig": ""}, {"q": "For a 90° bend, the setback formula is ___.", "options": ["SB = 2(R + T)", "SB = R + T (radius plus thickness)", "SB = R − T"], "correct": 1, "short": "90° setback: SB = R + T.", "expl": "For a 90-degree bend the setback equals the bend radius plus the material thickness (R + T). This is the special case of the general formula SB = K(R + T) where K = 1 at 90°.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (setback)", "topic": "Bend Calculations", "fig": ""}, {"q": "For a bend OTHER than 90°, the setback formula is ___.", "options": ["SB = K(R + T)", "SB = R + T", "SB = R + T + N°"], "correct": 0, "short": "Non-90° setback: SB = K(R + T).", "expl": "For any bend other than 90°, setback = K × (radius + thickness), where K is the K-factor selected for that bend angle. At exactly 90° the K-factor is 1, giving the familiar SB = R + T.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-60 (setback)", "topic": "Bend Calculations", "fig": ""}, {"q": "A 'flat' is the portion of a part NOT included in the bend, found by ___.", "options": ["Flat = Mold Line Dimension − Setback", "Flat = Mold Line Dimension + Setback", "Flat = Bend Allowance − Setback"], "correct": 0, "short": "Flat = MLD − Setback(s).", "expl": "A flat is the part of a bend that is not curved. Its length equals the mold line dimension minus the setback(s) that apply to it. Interior flats between two bends have two setbacks subtracted.", "cite": "FAA-H-8083-31B, Ch. 4 (flat)", "topic": "Bend Calculations", "fig": ""}, {"q": "A 'closed angle' is one that measures ___.", "options": ["Less than 90° between the legs (or more than 90° when the amount of bend is measured)", "More than 90° between the legs", "Exactly 90° between the legs"], "correct": 0, "short": "Closed angle = less than 90° between the legs.", "expl": "A closed angle is less than 90° when measured between the legs — or, equivalently, more than 90° when you measure the amount of bend from flat. An open angle is the opposite.", "cite": "FAA-H-8083-31B, Ch. 4 (closed angle)", "topic": "Bend Terminology", "fig": ""}, {"q": "An 'open angle' is one that measures ___.", "options": ["More than 90° between the legs (or less than 90° when the amount of bend is measured)", "Less than 90° between the legs", "Exactly 45° between the legs"], "correct": 0, "short": "Open angle = more than 90° between the legs.", "expl": "An open angle is more than 90° when measured between the legs — or less than 90° when measured as the amount of bend. A closed angle is the reverse.", "cite": "FAA-H-8083-31B, Ch. 4 (open angle)", "topic": "Bend Terminology", "fig": ""}, {"q": "A piece of flat stock bent to a CLOSED angle of 85° must be bent THROUGH an angle of:", "options": ["5 degrees", "95 degrees", "85 degrees"], "correct": 1, "short": "Closed angle 85° between legs → bent through 180−85 = 95°.", "expl": "The 'amount of bend' is measured from the flat, so bending to a closed angle of 85° between the legs means bending the metal through 180° − 85° = 95°. That 95° is the number of degrees (N) you would use in the bend-allowance formula.", "cite": "FAA-H-8083-31B, Ch. 4 (closed angle / amount of bend)", "topic": "Bend Calculations", "fig": ""}, {"q": "'Total Developed Width' (TDW) is the ___.", "options": ["Width of material measured around the bends from edge to edge", "Sum of only the flat sections", "Length of a single bend allowance"], "correct": 0, "short": "TDW = width measured around the bends, edge to edge.", "expl": "Total developed width is the overall width of the flat blank measured around the bends from edge to edge. It equals the sum of the flats plus the bend allowances.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (TDW)", "topic": "Bend Calculations", "fig": ""}, {"q": "What is the formula for Total Developed Width?", "options": ["TDW = Flats + Bend Allowances", "TDW = Flats − Bend Allowances", "TDW = Mold Line Dimension + Setback"], "correct": 0, "short": "TDW = sum of the flats + sum of the bend allowances.", "expl": "Total developed width is found by adding all the flat lengths to all the bend allowances. For the U-channel example: 0.8 + 1.6 + 0.8 + (2 × 0.279) = 3.758 inches.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (TDW)", "topic": "Bend Calculations", "fig": ""}, {"q": "In the U-channel example (MLD 1.00, 2.00, 1.00; setback 0.2), the three flats work out to:", "options": ["0.8, 1.6, and 0.8 inch", "1.0, 2.0, and 1.0 inch", "0.6, 1.2, and 0.6 inch"], "correct": 0, "short": "Flat1=1.0−0.2=0.8; Flat2=2.0−(2×0.2)=1.6; Flat3=1.0−0.2=0.8.", "expl": "A U-channel has two bends and three flats. The outer flats each lose one setback: 1.00 − 0.2 = 0.8. The middle flat sits between two bends, so it loses two setbacks: 2.00 − (2 × 0.2) = 1.6. The flats are 0.8, 1.6, and 0.8 inch.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-62 (U-channel flats)", "topic": "Bend Calculations", "fig": ""}, {"q": "The bend-allowance FORMULA is BA = [(0.0078 × T) + (0.01743 × R)] × N°. For T = 0.040, R = 0.16, N = 90°, BA equals about:", "options": ["0.279 inch", "0.040 inch", "2.79 inch"], "correct": 0, "short": "(0.0078×0.040 + 0.01743×0.16)×90 = 0.279.", "expl": "Plugging in: 0.0078 × 0.040 = 0.000312; 0.01743 × 0.16 = 0.0027888; their sum 0.0031008 × 90 = 0.279. So the bend allowance is about 0.279 inch. Here T is thickness, R is bend radius, and N is the number of degrees of bend.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-65 (bend allowance formula)", "topic": "Bend Calculations", "fig": ""}, {"q": "There is also a formula for bend allowance that applies to ___ only.", "options": ["90° bends — BA = 2π(R + 1/2 T) ÷ 4", "45° bends only", "closed angles only"], "correct": 0, "short": "2π(R+½T)/4 works for 90° bends only.", "expl": "The formula 2π(R + ½T) ÷ 4 gives the bend allowance for 90-degree bends only — it is one quarter of the circumference of the neutral-axis circle. For other angles you use the chart or the (0.0078T + 0.01743R) × N° formula.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (90° bend allowance)", "topic": "Bend Calculations", "fig": ""}, {"q": "When you draw sight lines on the flat pattern, the bend tangent line (BTL) is placed ___.", "options": ["At the sheet edge, away from the brake", "Under the brake, with the sight line directly below the nose of the radius bar", "On top of the brake, behind the radius bar"], "correct": 1, "short": "BTL goes under the brake; sight line sits directly below the nose of the radius bar.", "expl": "To position the metal in the brake, the bend tangent line is placed under the brake so the sight line is directly below the nose of the radius bar. Then the brake is closed and the bend forms exactly on the line.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (sight lines)", "topic": "Bend Calculations", "fig": ""}, {"q": "The final check on a flat-pattern layout is the metal STRETCH, found by Stretch = ___.", "options": ["Flats − Bend Allowances", "Total Mold Line Dimension − Total Developed Width", "Total Developed Width − Total Mold Line Dimension"], "correct": 1, "short": "Stretch = Total MLD − TDW (if TDW > MLD, the math is wrong).", "expl": "Stretch equals the total mold line dimension minus the total developed width — in the example 4 − 3.758 = 0.242 inch. If your calculated TDW ever comes out LARGER than the total mold line dimension, the math is wrong, because forming shrinks the outside dimensions.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-67 (stretch check)", "topic": "Bend Calculations", "fig": ""}];
+const DRILL = [];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

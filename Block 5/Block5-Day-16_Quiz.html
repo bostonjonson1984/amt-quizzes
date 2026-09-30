@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Day 16 — Welded Structures, Welding Techniques &amp; Gas-Shielded Arc</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Day 16 — Welded Structures, Welding Techniques &amp; Gas-Shielded Arc</h1>
+    <div class="sub">Every teaching point from Day 16 of the AMT1201 deck: welded structures and tube repair, fusion vs non-fusion welding, oxyacetylene gas welding (oxygen/acetylene, torches, flames, backfire/flashback, safety), weld evaluation, ferrous/nonferrous metals and stainless types, brazing/soldering/silver soldering, gas-shielded arc (TIG/MIG/SMAW) and spot welding, plus the end-of-course review-board calculations. Answers verified against FAA-H-8083-31B Ch. 5 &amp; Ch. 4 and AC 43.13-1B ¶4-99; each explanation cited.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Regarding welding, the FAA now requires an A&P to ___.", "options": ["Have a basic knowledge to properly inspect and maintain aircraft (proficiency at welding is no longer required)", "Be a fully certified welder before getting the A&P", "Never inspect any welded structure"], "correct": 0, "short": "A&P needs basic welding knowledge to inspect/maintain — proficiency no longer required.", "expl": "The FAA no longer requires A&Ps to be proficient at welding, but a basic knowledge is still required so they can properly inspect and maintain aircraft in an airworthy condition.", "cite": "FAA-H-8083-31B, Ch. 5 (welding overview)", "topic": "Welding Overview", "fig": ""}, {"q": "Welded steel tubing was used for fuselage construction into the 1950s because it is ___.", "options": ["Corrosion-proof and maintenance-free", "Strong, lightweight, and fabricated with simple tooling", "Heavy but very cheap"], "correct": 1, "short": "Welded steel tube fuselages: strong, light, simple tooling.", "expl": "Welded steel tube fuselage construction carried well into the 1950s because it is strong, lightweight, and can be fabricated with simple tooling.", "cite": "FAA-H-8083-31B, Ch. 5 (welded steel tubing)", "topic": "Welded Structures", "fig": ""}, {"q": "Why must expansion and contraction be controlled during welding?", "options": ["To reduce distortion, warping, and residual stress", "To make the weld cool instantly", "To change the color of the base metal"], "correct": 0, "short": "Control expansion/contraction to limit distortion, warping, residual stress.", "expl": "Controlling the expansion and contraction of the metal during welding reduces distortion, warping, and residual stress. Uneven heating causes uneven expansion and uneven cooling causes uneven contraction, both of which set up internal stresses.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-30 (expansion and contraction)", "topic": "Welding Techniques", "fig": ""}, {"q": "On a straight butt weld joining sheets, if the edges are placed in full contact before welding starts, the far ends will ___.", "options": ["Stay exactly in place with no movement", "Overlap before the weld is completed (so allowance/tack welds are used)", "Spread farther apart as the weld cools"], "correct": 1, "short": "Butt-weld edges in full contact will overlap at the far end from contraction — allow for it / tack weld.", "expl": "Because the metal contracts as it is welded, edges placed in full contact along their whole length will actually overlap at the far end before the weld is finished. An allowance (a slight gap) and tack welds are used to prevent this.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-30 (butt weld allowance)", "topic": "Welding Techniques", "fig": ""}, {"q": "A dent at a CLUSTER weld in steel tubing can be repaired by ___.", "options": ["Welding a formed steel patch plate over the dented area and surrounding tubes", "Filling the dent with body filler", "Ignoring it if it is at a joint"], "correct": 0, "short": "Cluster dent → welded formed steel patch plate over the area.", "expl": "Dents at a cluster weld are repaired by welding a formed steel patch plate over the dented area and the surrounding tubes, spreading the load around the damage.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-32 (tube repair)", "topic": "Tube Repair", "fig": ""}, {"q": "A dent BETWEEN clusters in a tube can be repaired using a ___.", "options": ["Welded split-sleeve reinforcement", "Rivnut insert", "Dimpled flush patch"], "correct": 0, "short": "Dent between clusters → welded split-sleeve reinforcement.", "expl": "A dent in a tube between clusters can be repaired with a welded split-sleeve reinforcement placed over the damaged section.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-33 (tube repair)", "topic": "Tube Repair", "fig": ""}, {"q": "When PARTIAL replacement of a tube is necessary, one acceptable splice is the ___.", "options": ["Inner-sleeve (or outer split-sleeve) splice", "Blind-rivet lap splice", "Adhesive-bonded butt splice"], "correct": 0, "short": "Partial tube replacement → inner-sleeve or outer split-sleeve splice.", "expl": "If part of a tube must be replaced, it can be spliced with an inside (inner) sleeve reinforcement, or with an outer split-sleeve using a replacement tube of the same diameter and material.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-34 (tube splicing)", "topic": "Tube Repair", "fig": ""}, {"q": "FUSION welding is best defined as ___.", "options": ["Blending compatible molten metals by producing enough heat to melt and mix them, then letting the joint solidify", "Joining metals with an adhesive only", "Gluing metals with a softer filler without melting the base metal"], "correct": 0, "short": "Fusion welding melts and blends the base metals themselves.", "expl": "Fusion welding blends compatible molten metals: enough heat is produced to melt and mix the base metals, and when the heat is removed the joint solidifies as one piece.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (fusion welding)", "topic": "Welding Types", "fig": ""}, {"q": "NON-fusion welding (brazing and soldering) joins metals by ___.", "options": ["Melting and mixing the base metals", "Mechanical riveting", "Adhesion of one metal to another (a softer filler sticks to the surface)"], "correct": 2, "short": "Non-fusion = adhesion; the base metal is not melted.", "expl": "Non-fusion welding joins metals by adhesion — a softer filler metal sticks to the base-metal surface without melting the base metal. The most common non-fusion processes are brazing and soldering.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-20 (non-fusion welding)", "topic": "Welding Types", "fig": ""}, {"q": "The three types of FUSION welding are ___.", "options": ["Gas (oxyacetylene), electric arc (SMAW/MIG/TIG), and electric resistance (spot/seam)", "Brazing, soldering, and gluing", "Riveting, bolting, and bonding"], "correct": 0, "short": "Three fusion types: gas, electric arc, electric resistance.", "expl": "The three types of fusion welding are gas (oxyacetylene), electric arc (which includes SMAW, MIG, and TIG), and electric resistance (spot and seam welding).", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (fusion welding types)", "topic": "Welding Types", "fig": ""}, {"q": "In basic gas welding, oxygen and acetylene are mixed to ___.", "options": ["Produce a combustible flame hot enough to melt metal", "Cool the metal rapidly", "Prevent any combustion"], "correct": 0, "short": "O2 + acetylene → a flame hot enough to melt metal.", "expl": "Oxygen and acetylene are mixed to produce a combustible flame hot enough to melt metal. Propane, natural gas, and hydrogen are used primarily for cutting or soldering, not fusion welding of steel.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (gas welding)", "topic": "Gas Welding", "fig": ""}, {"q": "In oxyacetylene welding, which gas makes the flame HOTTER?", "options": ["Acetylene", "Nitrogen", "Oxygen"], "correct": 2, "short": "Acetylene fuels the flame; OXYGEN supports combustion and makes it hotter.", "expl": "Acetylene fuels the flame, but oxygen supports combustion and makes the flame hotter. Adding more oxygen raises the temperature (an oxidizing flame is the hottest).", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (oxyacetylene)", "topic": "Gas Welding", "fig": ""}, {"q": "The temperature of the oxyacetylene flame ranges from about ___.", "options": ["5,700 °F to 6,300 °F", "2,000 °F to 3,000 °F", "10,000 °F to 11,000 °F"], "correct": 0, "short": "Oxyacetylene flame ≈ 5,700–6,300 °F.", "expl": "The oxyacetylene flame ranges from roughly 5,700 to 6,300 °F depending on the mixture — the neutral flame is about 5,850 °F, the carburizing about 5,700 °F, and the oxidizing about 6,300 °F.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (flame temperature)", "topic": "Gas Welding", "fig": ""}, {"q": "Oxygen is a gas that is ___.", "options": ["Colorless, odorless, and tasteless, and supports combustion", "Heavy with a disagreeable odor", "Flammable by itself without any fuel"], "correct": 0, "short": "Oxygen: colorless, odorless, tasteless; supports combustion.", "expl": "Oxygen is a colorless, odorless, tasteless gas whose job in welding is to support combustion. It does not burn by itself — it makes fuels burn hotter.", "cite": "FAA-H-8083-31B, Ch. 5 (oxygen)", "topic": "Gas Welding", "fig": ""}, {"q": "Acetylene becomes UNSTABLE (dangerous) at free pressures of ___.", "options": ["15 psi or greater", "50 psi or greater", "250 psi or greater"], "correct": 0, "short": "Free acetylene is unstable at 15 psi or greater; normal working pressure 4–8 psi.", "expl": "Free (pure) acetylene is unstable and must not be used above 15 psi. Normal operating pressure is about 4 to 8 psi. In the cylinder it is dissolved in acetone, which keeps it stable at much higher storage pressures.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (acetylene)", "topic": "Gas Welding", "fig": ""}, {"q": "The acetylene cylinder is filled with Fuller's earth (a porous material) so that ___.", "options": ["The cylinder weighs less", "The acetylene stays a pure free gas", "Liquid acetone can flow in and dissolve the acetylene, making it stable"], "correct": 2, "short": "Porous Fuller's earth holds acetone; acetylene dissolves in the acetone and is stabilized.", "expl": "The acetylene cylinder is packed with Fuller's earth, a porous material that provides a path for liquid acetone. The acetylene dissolves in the acetone and in that solution becomes stable. The cylinder gauge is actually reading acetone pressure.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (acetylene cylinder)", "topic": "Gas Welding", "fig": ""}, {"q": "Why should the acetylene cylinder valve be opened only 1/4 to 1/2 turn?", "options": ["To prevent acetone from escaping with the acetylene (and allow quick shut-off)", "To speed up gas flow", "Because the valve only turns that far"], "correct": 0, "short": "Open acetylene valve only 1/4–1/2 turn so acetone doesn't escape.", "expl": "The acetylene cylinder valve is opened only a quarter to a half turn to prevent the acetone from escaping along with the acetylene, and so the valve can be shut off quickly in an emergency. Pure free acetylene can explode from a slight shock.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (acetylene handling)", "topic": "Gas Welding", "fig": ""}, {"q": "The regulator on an oxyacetylene rig ___.", "options": ["Reduces the tank pressure and controls the flow of gas to the torch (two-stage operation)", "Increases the tank pressure", "Mixes the two gases before the torch"], "correct": 0, "short": "The (two-stage) regulator reduces tank pressure and controls flow to the torch.", "expl": "Each regulator reduces the high cylinder pressure and controls the flow of gas from the cylinder to the torch, through a two-stage operation. The high-pressure gauge reads cylinder pressure; the low-pressure gauge reads working (torch) pressure.", "cite": "FAA-H-8083-31B, Ch. 5 (regulators)", "topic": "Gas Welding", "fig": ""}, {"q": "The two types of oxyacetylene torch are ___.", "options": ["Cutting and brazing only", "Equal-pressure and injector type", "High-pressure and low-pressure only"], "correct": 1, "short": "Torch types: equal-pressure and injector.", "expl": "The two torch types are the equal-pressure torch and the injector type. In the injector torch, oxygen flowing from the jet draws (injects) the acetylene along with it.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-9 (torch types)", "topic": "Gas Welding", "fig": ""}, {"q": "The oxyacetylene cutting process is fundamentally the ___.", "options": ["Rapid burning (oxidizing) of the metal in a localized area", "Melting of the metal without any oxidation", "Freezing of the metal to make it brittle"], "correct": 0, "short": "Cutting = rapid oxidizing/burning of the metal locally.", "expl": "A cutting attachment adds to the torch handle to allow cutting; the cutting process is fundamentally the rapid burning (oxidizing) of the metal in a localized area after it is preheated.", "cite": "FAA-H-8083-31B, Ch. 5 (cutting torch)", "topic": "Gas Welding", "fig": ""}, {"q": "The welding hoses are color-coded and threaded so that the OXYGEN hose is ___.", "options": ["Green with a right-hand thread", "Red with a left-hand thread", "Yellow with a left-hand thread"], "correct": 0, "short": "Oxygen hose = green, right-hand thread; acetylene = red, left-hand thread.", "expl": "The oxygen hose is green with a right-hand thread; the acetylene hose is red with a left-hand thread. The different threads make it impossible to cross-connect the gases.", "cite": "FAA-H-8083-31B, Ch. 5 (hoses)", "topic": "Gas Welding", "fig": ""}, {"q": "A torch should be ignited with a ___.", "options": ["Match", "Cigarette lighter carried in the welding area", "Friction lighter (flint striker)"], "correct": 2, "short": "Ignite with a friction lighter/flint striker — never a match or carried lighter.", "expl": "Torches are lit with a friction lighter (also called a flint striker), made from flint and steel. Never use a match or carry a lighter in the welding area — either could cause an explosion.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 (torch lighters)", "topic": "Gas Welding", "fig": ""}, {"q": "Why must oxyacetylene goggles NOT be used for electric arc welding?", "options": ["They are too dark to see the gas flame", "Arc welding is far brighter and would permanently damage the eye through gas-welding lenses", "They fog up too quickly"], "correct": 1, "short": "Gas-welding goggles are too light for arc welding — the arc would permanently damage the eye.", "expl": "Approved goggles must be worn to prevent temporary blindness in gas welding, but oxyacetylene goggles are NOT approved for electric arc welding; the arc's intense light would permanently damage the eye through the lighter gas-welding lenses.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-9 (welding eyewear)", "topic": "Welding Safety", "fig": ""}, {"q": "What is the function of a filler rod in gas welding?", "options": ["It only adds color to the weld", "It replaces the need for a flame", "It reinforces the bead and acts as a heat sink, and is copper-coated to prevent rust"], "correct": 2, "short": "Filler rod reinforces the bead, pulls heat away (heat sink), copper-coated vs rust.", "expl": "The filler rod reinforces the bead and works as a heat sink, pulling heat away from the molten puddle as it melts, which helps avoid cracks. Rods are copper-coated to prevent rust on the surface.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 (filler rods)", "topic": "Gas Welding", "fig": ""}, {"q": "Which flame is produced by a BALANCED mixture of acetylene and oxygen and burns at about 5,850 °F?", "options": ["Neutral flame", "Carburizing flame", "Oxidizing flame"], "correct": 0, "short": "Neutral flame = balanced mix, ~5,850 °F.", "expl": "The neutral flame is produced by a balanced mixture of acetylene and oxygen and burns at about 5,850 °F at the tip of the inner luminous cone. It is used for most welding.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (neutral flame)", "topic": "Flame Types", "fig": ""}, {"q": "The CARBURIZING flame (excess acetylene) burns at about ___ and has a bluish-white inner core with a white center cone.", "options": ["5,700 °F", "5,850 °F", "6,300 °F"], "correct": 0, "short": "Carburizing flame ≈ 5,700 °F (excess acetylene).", "expl": "The carburizing flame has excess acetylene; it burns at about 5,700 °F at the tip of the inner core and shows a bluish-white inner core, a white center cone, and a light-blue outer cone. It is used where extra carbon is wanted, such as high-nickel/high-chromium alloys.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (carburizing flame)", "topic": "Flame Types", "fig": ""}, {"q": "The OXIDIZING flame (excess oxygen) burns at about ___ — the hottest of the three.", "options": ["6,300 °F", "5,700 °F", "4,500 °F"], "correct": 0, "short": "Oxidizing flame ≈ 6,300 °F (excess oxygen) — hottest.", "expl": "The oxidizing flame is produced by burning an excess of oxygen; it is the hottest at about 6,300 °F and has a shorter outer flame and a small white inner cone.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (oxidizing flame)", "topic": "Flame Types", "fig": ""}, {"q": "A BACKFIRE is a ___.", "options": ["Momentary backward flow of gases at the torch tip that causes the flame to go out", "Burning of the gases inside the torch", "Explosion inside the cylinder"], "correct": 0, "short": "Backfire = momentary reverse flow at the tip; the flame pops out.", "expl": "A backfire is a momentary backward flow of gases at the torch tip that makes the flame go out (often with a pop). It is caused by touching the tip to the work, overheating the tip, wrong pressures, a loose tip/head, or dirt/slag in the tip.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-14 (backfire)", "topic": "Welding Safety", "fig": ""}, {"q": "A FLASHBACK is ___, and you should ___.", "options": ["Burning of the gases WITHIN the torch — turn the gases off immediately", "A harmless pop — keep welding", "The normal sound of a good flame — ignore it"], "correct": 0, "short": "Flashback = flame burning inside the torch; shut the gases off at once.", "expl": "A flashback is the burning of the gases within the torch itself, often with a shrill hissing or squealing noise. Turn the gases off immediately to avoid damage or injury. It is caused by loose connections, improper pressures, or overheating the torch.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-14 (flashback)", "topic": "Welding Safety", "fig": ""}, {"q": "Flashback arrestors are installed on each hose to ___.", "options": ["Prevent a high-pressure flame from being pushed back into either cylinder (they act as check valves)", "Increase the gas flow to the torch", "Filter dirt out of the gas"], "correct": 0, "short": "Flashback arrestors = check valves stopping flame from reaching the cylinders.", "expl": "Flashback arrestors are installed on each hose to prevent a high-pressure flame from being pushed back into either cylinder; they work as check valves, allowing gas to flow only toward the torch.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-14 (flashback arrestors)", "topic": "Welding Safety", "fig": ""}, {"q": "What determines the size of torch tip to use?", "options": ["The length of the weld only", "The thickness of the metal (thicker metal → larger tip and rod)", "The color of the metal"], "correct": 1, "short": "Metal thickness sets the tip size (thicker → bigger tip/rod).", "expl": "The thickness of the metal determines the torch tip size — the thicker the metal, the larger the torch tip and filler rod required to put enough heat into the joint.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-11 (tip selection)", "topic": "Gas Welding", "fig": ""}, {"q": "When lighting the torch, you first open the acetylene valve about 1/16 inch and ignite it, then ___.", "options": ["Open the oxygen fully before igniting", "Light the oxygen first and add acetylene last", "Adjust until the black sooty smoke disappears, then slowly open the oxygen valve to set the flame"], "correct": 2, "short": "Light acetylene, clear the soot, then slowly bring in oxygen.", "expl": "To start the flame you direct the torch away from yourself and others, open the acetylene valve about 1/16 inch and ignite it, adjust until the black sooty smoke disappears, then slowly open the oxygen valve until the proper flame is established.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-13 (starting the flame)", "topic": "Gas Welding", "fig": ""}, {"q": "To SHUT DOWN the torch, which valve is closed FIRST?", "options": ["Both cylinder valves at the same time", "The acetylene valve on the torch (then the oxygen)", "The oxygen valve on the torch (then the acetylene)"], "correct": 1, "short": "Shut down: close acetylene first, then oxygen.", "expl": "When shutting down, close the acetylene valve on the torch first, then close the oxygen valve. Killing the fuel first prevents a lingering sooty flame.", "cite": "FAA-H-8083-31B, Ch. 5 (shutting down)", "topic": "Gas Welding", "fig": ""}, {"q": "To move the puddle, the hot cone at the torch tip is held about ___ from the metal.", "options": ["1/4 inch", "1 inch", "touching the metal"], "correct": 0, "short": "Keep the cone ~1/4 inch off the metal; move forward in small circles.", "expl": "Puddle movement is done by keeping the hot inner cone about a quarter inch away from the metal and slowly moving the tip forward in small circles. The torch tip size determines how much heat is applied.", "cite": "FAA-H-8083-31B, Ch. 5 (the puddle)", "topic": "Gas Welding", "fig": ""}, {"q": "A GOOD weld shows ___.", "options": ["Overlapping globs with trapped slag", "Uniform width, even ripples, a smooth taper-off, and good penetration", "Uneven width and no penetration"], "correct": 1, "short": "Good weld: uniform width, even ripples, smooth taper, good penetration.", "expl": "A good weld has a uniform width, even ripples, tapers off smoothly, and shows good penetration into the base metal.", "cite": "FAA-H-8083-31B, Ch. 5 (weld evaluation)", "topic": "Weld Evaluation", "fig": ""}, {"q": "Which is a cause of a LOW-strength (poor) weld?", "options": ["Good penetration with a smooth taper", "Insufficient penetration, undercutting, poor fusion, trapped oxides/slag, or overheating", "Even ripples and uniform width"], "correct": 1, "short": "Poor weld causes: low penetration, undercut, poor fusion, trapped slag, overheating.", "expl": "Low-strength welds are caused by insufficient penetration, undercutting of the base metal at the toe of the weld, poor fusion, trapped oxides/slag/gas pockets, overlap of weld metal onto the base metal, too much or too little reinforcement, or overheating.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-16 (poor welds)", "topic": "Weld Evaluation", "fig": ""}, {"q": "The three types of stainless steel are ___.", "options": ["Austenitic, martensitic, and ferritic", "Carbon, alloy, and tool", "Soft, medium, and hard"], "correct": 0, "short": "Stainless types: austenitic, martensitic, ferritic.", "expl": "Stainless steels are grouped as austenitic (non-magnetic, corrosion resistant, good high-heat properties), martensitic (high strength and hardness), and ferritic (high chromium, magnetic, low carbon).", "cite": "FAA-H-8083-31B, Ch. 5 (stainless steel types)", "topic": "Metals", "fig": ""}, {"q": "Which stainless type is NON-magnetic, corrosion resistant, with good high-heat properties?", "options": ["Ferritic", "Austenitic", "Martensitic"], "correct": 1, "short": "Austenitic = non-magnetic, corrosion resistant, high-heat.", "expl": "Austenitic stainless is non-magnetic, corrosion resistant, and holds up to high heat. Martensitic is prized for high strength and hardness; ferritic is high-chromium, magnetic, and low-carbon.", "cite": "FAA-H-8083-31B, Ch. 5 (austenitic stainless)", "topic": "Metals", "fig": ""}, {"q": "When welding stainless steel or other alloys HIGH in nickel or chromium, you use a ___.", "options": ["Slightly carburizing flame", "Strongly oxidizing flame", "Cold flame"], "correct": 0, "short": "High nickel/chromium alloys → slightly carburizing flame; most other steels → neutral.", "expl": "When welding stainless or other high-nickel/high-chromium alloys, use a slightly carburizing flame so the carbon content of the steel is not altered too much. For most other steels, a neutral flame is used.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-16 (welding ferrous metals)", "topic": "Metals", "fig": ""}, {"q": "'Nonferrous' metals are those that ___.", "options": ["Are always magnetic", "Contain no iron (for example lead, copper, silver, magnesium, aluminum)", "Contain mostly iron"], "correct": 1, "short": "Nonferrous = no iron (lead, copper, silver, magnesium, aluminum).", "expl": "Nonferrous metals contain no iron — examples are lead, copper, silver, magnesium, and aluminum. Ferrous metals are iron-based (steels).", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-18 (nonferrous metals)", "topic": "Metals", "fig": ""}, {"q": "The proper welding rod for gas welding ALUMINUM is ___.", "options": ["1100 or 4043", "2024 or 7075", "mild steel rod"], "correct": 0, "short": "Aluminum weld rod = 1100 or 4043.", "expl": "Aluminum is welded with a 1100 or 4043 filler rod. The metal should be cleaned and fluxed, edges prepared, and a neutral flame slanted at about 45° used. Gas welding of aluminum has largely been replaced by TIG.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-18 (welding aluminum)", "topic": "Metals", "fig": ""}, {"q": "Brazing and soldering hold pieces together with a softer metal that ___.", "options": ["Melts and mixes with the base metal by fusion", "Is mechanically riveted in place", "Sticks to the surface by adhesion rather than fusion"], "correct": 2, "short": "Brazing/soldering: softer filler adheres to the surface (adhesion, not fusion).", "expl": "In brazing and soldering, two or more pieces are held together by a softer metal such as brass, bronze, or silver; the molten filler sticks to the surface by adhesion rather than by fusing (melting) the base metal.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-20 (brazing & soldering)", "topic": "Brazing & Soldering", "fig": ""}, {"q": "In aircraft, brazing/soldering is typically used for ___.", "options": ["Engine mount tubes", "Electrical connectors and hydraulic/fuel line fittings (not primary structure)", "Primary wing spar joints"], "correct": 1, "short": "Brazing/soldering: connectors and line fittings, not primary structure.", "expl": "Brazing and soldering are typically not used in primary aircraft construction; they are used on electrical connectors and on hydraulic and fuel line fittings.", "cite": "FAA-H-8083-31B, Ch. 5 (brazing & soldering uses)", "topic": "Brazing & Soldering", "fig": ""}, {"q": "A soldering iron tip must be clean and coated with a layer of solder, a condition called ___.", "options": ["Fluxed", "Annealed", "Tinned"], "correct": 2, "short": "A coated iron tip is 'tinned.'", "expl": "The soldering iron tip must be clean and have a layer of solder on it — referred to as 'tinned.' Soldering irons (adjustable to various temperatures) are recommended for wire soldering, and you must use solder with a non-corrosive flux. Electric soldering guns should not be used on printed circuit boards.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-21 (soldering irons)", "topic": "Brazing & Soldering", "fig": ""}, {"q": "Silver soldering (a form of hard soldering/brazing) is used on ___.", "options": ["Stainless steel (high-pressure) oxygen lines", "Primary aluminum skins", "Fabric-covered surfaces"], "correct": 0, "short": "Silver soldering: stainless-steel high-pressure oxygen lines.", "expl": "Silver soldering — hard soldering, a form of brazing — is used in aircraft to join high-pressure stainless-steel oxygen lines and other parts that must withstand vibration and high temperatures. Flux must be used at all times to keep oxides away from the base metal; add solder when the flux begins to flow. (Per the deck, a lap joint should be 4 to 6 times the metal thickness and silver content is 14.5-66%.)", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-20 to 5-21 (silver soldering)", "topic": "Brazing & Soldering", "fig": ""}, {"q": "Gas-shielded arc welding includes gas tungsten-arc (GTA, formerly TIG) and gas metal-arc (GMA, formerly MIG). Which is predominantly used in aircraft fabrication and repair?", "options": ["TIG (gas tungsten-arc / GTAW)", "MIG (gas metal-arc)", "SMAW (stick)"], "correct": 0, "short": "TIG (GTAW) predominates in aircraft fabrication/repair.", "expl": "Gas-shielded arc welding covers gas tungsten-arc (GTA, formerly TIG) and gas metal-arc (GMA, formerly MIG). TIG is predominantly used in aircraft fabrication and repair because of its precise, clean control.", "cite": "FAA-H-8083-31B, Ch. 5 (gas-shielded arc welding)", "topic": "Arc Welding", "fig": ""}, {"q": "In arc welding, heat is produced by ___ and the amount of heat is set by the ___.", "options": ["The color of the electrode; the voltage only", "Chemical reaction of flux; the gas pressure", "The movement of electrons across the gap; the amperage flowing across the gap"], "correct": 2, "short": "Arc heat = electron movement; amperage sets how much heat.", "expl": "An arc forms when there is enough voltage to jump the gap between the electrode and an area of different electrical potential. Heat is produced by the movement of electrons, and the amount of heat is determined by the amperage flowing across the gap.", "cite": "FAA-H-8083-31B, Ch. 5 (arc welding theory)", "topic": "Arc Welding", "fig": ""}, {"q": "Shielded Metal Arc Welding (SMAW, 'stick') uses flux-coated rods and produces temperatures ___.", "options": ["Below 3,000 °F, and is the main aircraft process", "Exactly equal to an oxyacetylene flame", "Exceeding 10,000 °F, and is not generally used for aircraft repair or fabrication"], "correct": 2, "short": "SMAW (stick): flux-coated rod, >10,000 °F, not generally used on aircraft.", "expl": "In SMAW (stick welding) the rods are coated with flux, an arc is struck between the wire and the work, and temperatures exceed 10,000 °F. It is not generally used for aircraft repair or fabrication.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-3 (SMAW)", "topic": "Arc Welding", "fig": ""}, {"q": "TIG (GTAW) welding is also known by which trade names, and uses what shielding gas?", "options": ["MIG/stick; carbon dioxide only", "Braze-arc; oxygen", "Heliarc/Heliweld; an inert gas such as argon or helium"], "correct": 2, "short": "TIG = GTAW, a.k.a. Heliarc/Heliweld; shielded by argon or helium.", "expl": "TIG is also called GTAW, Heliarc, and Heliweld. It uses an inert gas such as argon or helium to shield the weld. The electrode can be connected to the DC or AC side; the arc concentrates on a small area (the deck cites temperatures as high as about 11,000 °F) and melts the base metal into a puddle to which filler rod is added.", "cite": "FAA-H-8083-31B, Ch. 5 (GTAW/TIG)", "topic": "Arc Welding", "fig": ""}, {"q": "The TIG torch holds the tungsten electrode in a chuck and surrounds it with a ceramic/Pyrex nozzle whose job is to ___.", "options": ["Carry the welding current to the base metal", "Cool the base metal with water", "Direct the flow of argon (inert gas) that surrounds the weld"], "correct": 2, "short": "The TIG nozzle directs the shielding argon around the weld.", "expl": "The TIG torch is a handle with a chuck that holds the tungsten electrode, plus a ceramic, high-temperature plastic, or Pyrex glass nozzle. The nozzle directs the flow of argon (inert gas) around the weld to shield it from the air.", "cite": "FAA-H-8083-31B, Ch. 5 (TIG torch)", "topic": "Arc Welding", "fig": ""}, {"q": "SPOT welding (electric resistance) joins metal by ___.", "options": ["Melting a filler rod into a groove", "Gluing the sheets with adhesive", "Passing current through the metal between two copper electrodes while jaw pressure forces the heated metal together"], "correct": 2, "short": "Spot welding: current + pressure between two copper electrodes fuses the sheets.", "expl": "Spot welding uses two copper electrodes to clamp the metal; current flows through the metal creating heat between the pieces, and pressure from the jaws forces the heated metal to flow together. It is a form of electric resistance welding.", "cite": "FAA-H-8083-31B, Ch. 5 (spot welding)", "topic": "Arc Welding", "fig": ""}, {"q": "REVIEW: Engine-mount members should preferably be repaired by using a ___.", "options": ["Larger-diameter tube with fishmouth and rosette welds", "Smaller-diameter tube with fishmouth and rosette welds", "Larger-diameter tube with fishmouth and NO rosette welds"], "correct": 0, "short": "Engine mount repair: LARGER-diameter tube, fishmouth + rosette welds.", "expl": "Engine-mount members are preferably repaired with a larger-diameter replacement tube telescoped over the stub of the original member, using fishmouth and rosette welds. (A 30° scarf weld may substitute for the fishmouth.) Repaired mounts must be checked for accurate alignment.", "cite": "AC 43.13-1B, Ch. 4, ¶4-99 (engine-mount repairs)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: Which two pieces of information must be known to find the transverse pitch, and what is the transverse pitch for a repair whose pitch is 5/8\"?", "options": ["75% of the rivet pitch → 0.75 × 5/8 = 15/32 inch", "50% of the pitch → 5/16 inch", "Equal to the pitch → 5/8 inch"], "correct": 0, "short": "Transverse pitch = 75% of pitch = 0.75 × 5/8 = 15/32\".", "expl": "Transverse pitch is about 75 percent of the rivet pitch. 0.75 × 5/8 = 0.75 × 0.625 = 0.46875 inch, which is 15/32 inch.", "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: What is the transverse pitch for a sheet-metal repair whose pitch is 3/8\"?", "options": ["3/8 inch", "9/32 inch (0.75 × 3/8)", "3/16 inch"], "correct": 1, "short": "0.75 × 3/8 = 9/32\".", "expl": "Transverse pitch = 75 percent of the pitch. 0.75 × 3/8 = 0.28125 inch = 9/32 inch.", "cite": "FAA-H-8083-31B, Ch. 4 (transverse pitch)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: A sheet-metal repair uses two pieces of 0.032\" aluminum with 1/8\" rivets. The rivet LENGTH is:", "options": ["4/16 inch (1/4 inch)", "3/16 inch", "6/16 inch"], "correct": 0, "short": "Grip 0.064 + 1.5×0.125 = 0.2515; ×16 = 4.0 → 4/16 = 1/4\".", "expl": "Grip = 0.032 + 0.032 = 0.064. Add 1.5 × diameter: 1.5 × 0.125 = 0.1875. Total = 0.2515 inch; × 16 = 4.02, rounds to 4 — a 4/16-inch (1/4-inch) rivet.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet length)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: The bucktail (shop head) WIDTH after bucking a 3/32\" (AD-3) rivet should be about ___.", "options": ["9/64 inch (1.5 × 3/32)", "3/32 inch", "3/64 inch"], "correct": 0, "short": "Shop head diameter = 1.5D = 1.5 × 3/32 = 9/64\".", "expl": "A properly formed shop head has a diameter of 1.5 times the shank diameter. For a 3/32-inch (AD-3) rivet: 1.5 × 3/32 = 4.5/32 = 9/64 inch.", "cite": "FAA-H-8083-31B, Ch. 4 (shop head standards)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: The bucktail (shop head) HEIGHT after bucking a 5/32\" (AD-5) rivet should be about ___.", "options": ["5/64 inch (1/2 × 5/32)", "5/32 inch", "15/64 inch"], "correct": 0, "short": "Shop head height = 0.5D = 1/2 × 5/32 = 5/64\".", "expl": "A properly formed shop head has a height of one-half the shank diameter. For a 5/32-inch (AD-5) rivet: 1/2 × 5/32 = 5/64 inch. (The head diameter would be 1.5 × 5/32.)", "cite": "FAA-H-8083-31B, Ch. 4 (shop head standards)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: The minimum edge distance for a MS20470AD-6 (3/16\" universal) rivet is ___.", "options": ["3/8 inch (2 × 3/16)", "3/16 inch", "3/4 inch"], "correct": 0, "short": "Universal min edge = 2D = 2 × 3/16 = 3/8\".", "expl": "MS20470 is a universal (protruding) head rivet, whose minimum edge distance is 2 diameters. The '-6' is 6/32 = 3/16-inch diameter, so 2 × 3/16 = 3/8 inch. (Recommended edge distance is about 2.5D.)", "cite": "FAA-H-8083-31B, Ch. 4 (edge distance)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: Complete the part number for a UNIVERSAL head, 1100 aluminum, 3/32\" diameter, 3/16\" length rivet, and give its head marking.", "options": ["MS20470A3-3 (AN470A3-3); head marking = plain (no mark)", "MS20426A3-3; head marking = raised dot", "MS20470D3-3; head marking = two raised dashes"], "correct": 0, "short": "Universal 1100 = MS20470A3-3; 1100 (A) head marking = plain.", "expl": "Universal head = MS20470 (AN470). Material 1100 = code A. Diameter 3/32 = 3 (thirty-seconds); length 3/16 = 3 (sixteenths). So MS20470A3-3. Alloy 1100 rivets, code letter A, carry a plain head — no marking.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet part numbers/markings)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: Complete the part number for a COUNTERSINK head, 2017 aluminum, 5/32\" diameter, 3/8\" length rivet, and give its head marking.", "options": ["MS20426D5-6 (AN426D5-6); head marking = raised dot", "MS20470D5-6; head marking = dimple", "MS20426DD5-6; head marking = two raised dashes"], "correct": 0, "short": "Countersink 2017 = MS20426D5-6; 2017 (D) head marking = raised dot.", "expl": "Countersunk (100°) head = MS20426 (AN426). Material 2017 = code D. Diameter 5/32 = 5; length 3/8 = 6/16 = 6. So MS20426D5-6. Alloy 2017 rivets, code letter D, are marked with a raised dot.", "cite": "FAA-H-8083-31B, Ch. 4 (rivet part numbers/markings)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: The sight line on a flat layout to be bent in a cornice or box brake is measured and marked ___.", "options": ["One material-thickness from the sheet edge", "One bend radius from the bend tangent line", "At the mold point"], "correct": 1, "short": "Sight line = one bend radius from the bend tangent line.", "expl": "The sight line is drawn one bend radius from (inside of) the bend tangent line. When it is lined up directly below the nose of the radius bar and the metal is clamped, the bend tangent line sits in the correct position for the start of the bend.", "cite": "FAA-H-8083-31B, Ch. 4 (sight line)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: What is typically used to maintain the alignment of holes in the metal while drilling sheet metal?", "options": ["Clecos", "Bucking bars", "Rivet sets"], "correct": 0, "short": "Clecos hold the holes in alignment during drilling.", "expl": "Clecos — spring-loaded temporary fasteners — are dropped into drilled holes to hold the parts and remaining holes in alignment while the rest are drilled. Bucking bars and rivet sets are for driving rivets, not alignment.", "cite": "FAA-H-8083-31B, Ch. 4 (cleco fasteners)", "topic": "Review Board", "fig": ""}, {"q": "REVIEW: A closed angle of 85° between the legs means the metal is bent THROUGH an angle of ___ (use this as N° in the bend-allowance formula).", "options": ["95 degrees", "85 degrees", "5 degrees"], "correct": 0, "short": "180 − 85 = 95° is the amount of bend.", "expl": "The amount of bend is measured from the flat, so a closed angle of 85° between the legs equals a bend of 180° − 85° = 95°. That 95° is the N value in the bend-allowance formula.", "cite": "FAA-H-8083-31B, Ch. 4 (amount of bend)", "topic": "Review Board", "fig": ""}];
+const DRILL = [];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
