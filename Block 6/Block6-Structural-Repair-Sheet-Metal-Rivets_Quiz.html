@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 6 · Structural Repair — Sheet Metal &amp; Rivets (25 Questions)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 6 · Structural Repair — Sheet Metal &amp; Rivets (25 Questions)</h1>
+    <div class="sub">The AMTBLK06 Airframe structural-repair / sheet-metal &amp; rivets quiz from class, rebuilt as an interactive test. Every answer was verified line-by-line against FAA-H-8083-31B (Airframe Ch. 1/4/7), AC 43.13-1B Ch. 4, and FAA-H-8083-30B Ch. 7, and each explanation cites its source. Two paper items had cut-off options (Q18, Q22) that were reconstructed from the handbook, and the multi-answer ice-box item (Q21) was adapted to single-best — all called out in the explanations.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "What type of aircraft construction utilizes the skin reinforced with structural members to carry the primary stress loads?", "options": ["Semi-monocoque", "Monocoque", "Truss"], "correct": 0, "short": "Semi-monocoque: skin + longerons/stringers share the load.", "expl": "Semi-monocoque construction reinforces the skin with longitudinal members (longerons and stringers) plus bulkheads and formers, so the skin and its stiffeners TOGETHER carry the primary bending and stress loads. Pure monocoque makes the skin carry it all with no stiffeners, and a truss carries loads through welded tube members, not the skin.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (semimonocoque)", "topic": "Aircraft Structures", "fig": ""}, {"q": "The preferred method of marking on sheet metal is to use a No. 2 pencil. (True/False)", "options": ["False", "True"], "correct": 0, "short": "False — a fiber-tipped pen is preferred; No.2 graphite corrodes aluminum.", "expl": "The handbook says the opposite: fiber-tipped pens are the preferred marking method on aluminum, because the graphite in a No. 2 pencil can cause corrosion where it touches the metal. A scriber is used only where the scratch will later be drilled or cut away.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-4 (marking tools)", "topic": "Sheet Metal Layout", "fig": ""}, {"q": "Repair materials should be at least four times greater than the original materials. (True/False)", "options": ["False", "True"], "correct": 0, "short": "False — repair material is same gauge or ONE gauge heavier, not 4x.", "expl": "There is no 'four times' rule. Splice or patch material is normally the same type as the damaged part and either the same thickness or the next greater thickness (about one gauge heavier). Going four times thicker would add needless weight and stiffness the surrounding structure can't match.", "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-90 & 4-93 (repair/patch material)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "What are the two classifications of skin patches?", "options": ["Lap & Flush Patch", "Lap & Scab Patch", "Doubler and filler Patch"], "correct": 0, "short": "The two patch types are lap (a.k.a. scab) and flush.", "expl": "Skin patches come in two types: the lap patch (also called a scab patch — an external overlapping patch) and the flush patch (set flush for aerodynamic smoothness). 'Lap and scab' names the same one type twice, and doubler/filler plates are parts used inside a repair, not a patch classification.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-93 (patches)", "topic": "Sheet Metal Repair", "fig": ""}, {"q": "What is the name of the manual that is used to facilitate sheetmetal repairs?", "options": ["Aircraft Systems Maintenance Manual (ASMM)", "Structural Repair Manual (SRM)", "Google"], "correct": 1, "short": "The Structural Repair Manual (SRM) guides structural/sheet-metal repairs.", "expl": "The Structural Repair Manual is written by the manufacturer's engineering department as the guideline for repairing common damage to a specific aircraft's structure — it gives the acceptable repairs, materials, and rivet data for each section. It is the go-to document for sheet-metal work.", "cite": "FAA-H-8083-31B, Ch. 2, Page 2-39 (Structural Repair Manual)", "topic": "Publications", "fig": ""}, {"q": "Damages can be grouped into ___ general classifications.", "options": ["4", "2", "6"], "correct": 0, "short": "Four: negligible, repairable by patching, repairable by insertion, replacement.", "expl": "The handbook groups damage into four general classes — negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of parts. Availability of materials and time often decides which path a given part takes.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (damage classifications)", "topic": "Damage Classification", "fig": ""}, {"q": "Choose the option that is NOT a damage classification.", "options": ["Repairable by manufacturing", "Negligible", "Repairable by patching", "Replacement"], "correct": 0, "short": "'Repairable by manufacturing' is not a real class — the four are negligible, patching, insertion, replacement.", "expl": "The four real damage classes are negligible, repairable by patching, repairable by INSERTION, and necessitating replacement. 'Repairable by manufacturing' is the made-up one — it swaps in for 'insertion' to trip you up.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (damage classifications)", "topic": "Damage Classification", "fig": ""}, {"q": "When the work involves extensive repair of the fuselage, landing gear, or wing center section, a ___ is used (a device for holding parts in position to maintain their shape).", "options": ["Jig/Fixture", "Aircraft holder", "Ballast"], "correct": 0, "short": "A jig or fixture holds the structure true during extensive repair.", "expl": "Extensive repairs to a fuselage, landing gear, or wing center section are done in a jig or fixture that clamps the parts in their correct relative positions so the structure keeps its shape and alignment while it is worked. Ballast is dead weight for balance, not a holding device.", "cite": "FAA-H-8083-31B, Ch. 2/4 (jigs and fixtures)", "topic": "Tools & Fixtures", "fig": ""}, {"q": "How are the materials or alloys of solid rivets identified?", "options": ["Code markings on side of rivets", "Code markings on bottom of rivet", "Code markings on heads of rivet"], "correct": 2, "short": "The alloy shows as a code marking on the rivet HEAD.", "expl": "Solid rivets carry their alloy identification on the head — a raised dot, dimple, raised bars, raised cross, or plain head (plus the alloy letter in the part number). Reading the head marking tells you the alloy, temper, and driving properties before you install it.", "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-31 to 4-32 (rivet alloy code markings, Fig. 4-77)", "topic": "Rivets", "fig": ""}, {"q": "A rivet with part number MS20426AD4-4 has what head marking?", "options": ["Raised cross", "Single Dimple", "Double dash"], "correct": 1, "short": "AD = 2117 alloy, whose head marking is a dimple.", "expl": "The 'AD' in the part number is the alloy code for 2117 aluminum, and 2117's head marking is a dimple (a small recessed dot). A raised double-dash marks DD (2024) and a raised cross marks B (5056), so those belong to different alloys. The MS20426 part also tells you it's a 100° countersunk head.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32, Fig. 4-77 (rivet alloy code markings)", "topic": "Rivets", "fig": ""}, {"q": "A rivet with part number MS20470AD4-4 is 4/16ths in diameter. (True/False)", "options": ["False", "True"], "correct": 0, "short": "False — the first number is diameter in 32nds, so AD4 = 4/32 (1/8 in).", "expl": "In a rivet part number the first number after the alloy code is the shank diameter in THIRTY-SECONDS of an inch, and the second number is the length in sixteenths. So MS20470AD4-4 is 4/32 inch (that is 1/8 inch) in diameter and 4/16 inch long — the diameter is 4/32, not 4/16.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (rivet part-number code)", "topic": "Rivets", "fig": ""}, {"q": "The formula for rivet diameter is:", "options": ["3 x the thickest sheet", "3 x the thickness of the rivet", "3 x the thickness of the sheet"], "correct": 0, "short": "Rivet diameter ≈ 3 x the thickness of the THICKEST sheet being joined.", "expl": "The general rule is to pick a rivet diameter about three times the thickness of the thicker (thickest) sheet in the joint, then round up to the next standard size — e.g. a 0.040-inch sheet gives 0.120, so you use a 1/8-inch rivet. Saying '3 x the thickness of the sheet' is the loose version; the precise rule names the THICKEST sheet, and a rivet can't be sized off its own thickness.", "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-33 (three times the thickness of the thicker sheet); FAA-H-8083-31B p.4-32", "topic": "Rivet Layout", "fig": ""}, {"q": "The combined thickness of materials to be joined is known as the grip length. (True/False)", "options": ["True", "False"], "correct": 0, "short": "True — grip length = the combined thickness of the joined materials.", "expl": "Grip length is exactly that: the total combined thickness of the sheets being riveted together. Total rivet length then equals the grip length plus the shank needed to form the shop head (about 1.5 times the shank diameter).", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (rivet length / grip length)", "topic": "Rivet Layout", "fig": ""}, {"q": "___ is the spacing between rivets in the same row.", "options": ["Transverse Pitch", "Minimum Pitch", "Rivet Pitch"], "correct": 2, "short": "Rivet pitch = distance between rivet centers in the same row.", "expl": "Rivet pitch is the distance between the centers of neighboring rivets in the SAME row (minimum 3 rivet diameters, typically 4 to 6). Transverse pitch is the spacing between rows, not within a row.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (rivet pitch)", "topic": "Rivet Layout", "fig": ""}, {"q": "___ is the perpendicular distance between rivet rows.", "options": ["Maximum Pitch", "Rivet Pitch", "Transverse Pitch"], "correct": 2, "short": "Transverse pitch = perpendicular distance between rivet rows.", "expl": "Transverse pitch is the perpendicular distance from one row of rivets to the next — usually about 75 percent of the rivet pitch, with a minimum of 2.5 rivet diameters. Rivet pitch is measured within a single row, so it's the wrong one here.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (transverse pitch)", "topic": "Rivet Layout", "fig": ""}, {"q": "Solid rivets should not be used in composite structures primarily because of the possibility of causing ___.", "options": ["Delamination", "Crazing", "Corrosion"], "correct": 0, "short": "Delamination — driving/upset force separates the laminate plies.", "expl": "Composite laminates are sensitive to clamp-up and driving force, so upsetting a solid rivet in them tends to crush and separate the plies — delamination. Composites are joined instead with special fasteners (Hi-Loks, lockbolts, blind bolts). Crazing is a surface-cracking issue of transparent plastics, and corrosion is a separate galvanic concern, not the main reason to avoid solid rivets here.", "cite": "FAA-H-8083-31B, Ch. 7, Page 7-45 (fasteners used with composite laminates)", "topic": "Composite Repair", "fig": ""}, {"q": "What is the minimum edge distance for a protruding head rivet?", "options": ["2D", "3D", "4D"], "correct": 0, "short": "2D — minimum edge distance for a universal/protruding head rivet.", "expl": "For a protruding (universal) head rivet the minimum edge distance from the hole center to the sheet edge is 2 times the rivet diameter (2D); countersunk rivets need 2.5D. The recommended edge distance is about 2.5D and it should never exceed 4D. Too close and the sheet cracks; too far and the edge lifts.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33, Fig. 4-79 (minimum edge distance)", "topic": "Rivet Layout", "fig": ""}, {"q": "The alloy of a MS20615DD4-4 rivet is:", "options": ["2017", "2024", "2117"], "correct": 1, "short": "DD = 2024 aluminum.", "expl": "The 'DD' alloy code stands for 2024 aluminum — a high-strength alloy so hard it must be annealed and refrigerated (an 'ice box' rivet) before driving. The AD code would be 2117 and D would be 2017. (Note: MS20615 is actually the spec for monel/copper/brass round-head rivets, so a real one wouldn't carry a DD aluminum code — the class is testing the code letters, and DD = 2024.)", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32, Fig. 4-77 (rivet alloy codes)", "topic": "Rivets", "fig": ""}, {"q": "The use of a copper cleco would indicate a rivet size of 5/32 is to be installed. (True/False)", "options": ["False", "True"], "correct": 0, "short": "False — a copper cleco is 1/8 in; the 5/32 cleco is black.", "expl": "Clecos are color-coded by size: silver = 3/32, copper = 1/8, black = 5/32, gold/brass = 3/16. So a copper cleco means a 1/8-inch hole, not 5/32 — the 5/32 cleco is the black one. (The handbook lists the six cleco sizes and that they are color coded; the exact color-to-size map is the standard tool-maker convention.)", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (Cleco fasteners — six color-coded sizes)", "topic": "Tools & Fixtures", "fig": ""}, {"q": "Edge distance is also called \"edge margin\". (True/False)", "options": ["True", "False"], "correct": 0, "short": "True — 'edge margin' is another name some manufacturers use for edge distance.", "expl": "The handbook states it plainly: edge distance is 'also called edge margin by some manufacturers.' Either term means the distance from the center of the first rivet to the edge of the sheet.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (edge distance / edge margin)", "topic": "Rivet Layout", "fig": ""}, {"q": "Which pair of rivet alloy-code letters designates \"ice box\" rivets — the ones that must be refrigerated (or reheat-treated) before driving? [Original item was multiple-answer over A/B/AD/D/DD/M; adapted to single-best.]", "options": ["D and DD (2017 and 2024)", "A and AD (1100 and 2117)", "B and M (5056 and Monel)"], "correct": 0, "short": "Ice box rivets are D (2017) and DD (2024).", "expl": "Ice box rivets are the high-strength aluminum alloys 2017 (code D, above 3/16 inch) and 2024 (code DD) — they age-harden at room temperature, so they're annealed and kept in a freezer, then driven soon after removal. The 1100/2117 (A/AD) rivets drive in the as-received condition, and B (5056) and Monel drive as received too.", "cite": "AC 43.13-1B, Ch. 4, ¶4-57d, Page 4-25; FAA-H-8083-30B p.7-24 (ice box rivets)", "topic": "Ice Box Rivets", "fig": ""}, {"q": "How many times can ice box rivets be re-heat treated? [Original options after \"One/Two times\" were cut off on the paper; correct FAA answer reconstructed.]", "options": ["As often as required (unlimited)", "One time", "Two times"], "correct": 0, "short": "As often as required — but they must be anodized before the first reheat-treatment.", "expl": "The handbook says 2017 and 2024 rivets 'may be reheat-treated as often as required' — the only condition is they must be anodized before the first reheat-treatment to prevent intergranular oxidation. (The 'one time' trap is the manufacturer's single heat-treatment of 2117/AD rivets, which are NOT ice box rivets.)", "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (heat-treatment of aluminum alloy rivets)", "topic": "Ice Box Rivets", "fig": ""}, {"q": "What is the most common type of solid rivet used in the field today?", "options": ["AD (2117)", "A (1100)", "DD (2024)"], "correct": 0, "short": "AD (2117) — driven as received, no heat treatment, corrosion resistant.", "expl": "The AD rivet (alloy 2117) is the most frequently used repair rivet because it can be driven in the received condition — it needs no heat treatment, is fairly soft yet strong, and is highly corrosion resistant. DD (2024) rivets are too hard to drive as received (ice box), and A (1100) is only for nonstructural work.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31; FAA-H-8083-30B p.7-24 (AD/2117 rivet)", "topic": "Rivets", "fig": ""}, {"q": "When drilling holes for rivets, the holes should be approximately ___ larger than the rivet diameter.", "options": ["0.003\"", "0.03\"", "0.0003\""], "correct": 0, "short": "About 0.003 inch larger than the shank — snug but lets the rivet slip in.", "expl": "The drill for a rivet hole should be the smallest size that lets the rivet slip in easily — about 0.003 inch greater than the largest tolerance of the shank diameter. When driven, the solid rivet expands to fill the hole, so the joint strength depends on that tight, expanded fit. 0.03 inch would be ten times too loose.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-40 (drilling rivet holes)", "topic": "Rivet Layout", "fig": ""}, {"q": "Which of the following best describes a wing in flight?", "options": ["Its upper surface is in compression and its lower surface is in tension.", "Its upper surface is in tension and its lower surface is in compression.", "Its upper surface is in compression and its lower surface is in compression."], "correct": 0, "short": "In flight the wing bends UP: upper skin in compression, lower skin in tension.", "expl": "Lift bends the wing upward, and bending stress is a combination of compression and tension — the inside of the bend is squeezed and the outside is stretched. Because the wing bows up, the upper surface (inside of the bend) is in compression and the lower surface (outside) is in tension.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (bending stress: compression + tension)", "topic": "Aircraft Structures", "fig": ""}];
+const DRILL = [];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
