@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Rivet Head Markings</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Rivet Head Markings</h1>
+    <div class="sub">Learn to READ solid-rivet head marks and the alloy code behind them: plain 1100 (A), recessed-dot 2117 (AD, the field rivet), raised-dot 2017 (D), two-raised-dashes 2024 (DD), raised-cross 5056 (B, for magnesium), and raised-ring 7050 (E). Covers which are ice-box rivets and why, the MS part-number alloy code, and the &#x27;more marks = stronger&#x27; logic. Every answer verified against FAA-H-8083-31B Ch. 4 (Fig. 4-77) and cited.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "The rivet head shown has TWO raised dashes (two raised bars). What aluminum alloy is it?", "options": ["1100 (code A)", "2017 (code D)", "2024 (code DD)", "2117 (code AD)"], "correct": 2, "short": "Two raised dashes = 2024, the DD rivet.", "expl": "Two raised dashes (the handbook calls them 'two bars, raised') mark the 2024 rivet, code DD. It is the strongest of the common structural set at about 41 KSI shear, and it is an ice-box rivet. A handy memory hook: two dashes for the 'double-D' (DD) 2024.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Marking → Alloy", "fig": "<svg viewBox=\"0 0 150 150\" width=\"150\" role=\"img\" aria-label=\"rivet head marking\"><circle cx=\"75\" cy=\"75\" r=\"55\" fill=\"#eef2f8\" stroke=\"#0d2a4a\" stroke-width=\"3.5\"/><circle cx=\"60\" cy=\"58\" r=\"17\" fill=\"#ffffff\" opacity=\"0.45\"/><rect x=\"52\" y=\"61\" width=\"46\" height=\"9\" rx=\"4.5\" fill=\"#15436e\"/><rect x=\"54\" y=\"62.5\" width=\"30\" height=\"2\" rx=\"1\" fill=\"#ffffff\" opacity=\"0.4\"/><rect x=\"52\" y=\"80\" width=\"46\" height=\"9\" rx=\"4.5\" fill=\"#15436e\"/><rect x=\"54\" y=\"81.5\" width=\"30\" height=\"2\" rx=\"1\" fill=\"#ffffff\" opacity=\"0.4\"/></svg>"}, {"q": "The rivet head shown is completely PLAIN — no marking at all. What aluminum alloy is it?", "options": ["1100 (code A)", "2117 (code AD)", "2024 (code DD)", "5056 (code B)"], "correct": 0, "short": "No marking = 1100, the plain-head code A rivet (softest).", "expl": "A plain, unmarked head is the 1100 rivet, code A (alloy 3003 shares the same plain head and A code). It is soft, commercially pure aluminum, the weakest of the group at about 10 KSI shear, and is used for nonstructural work. Think of it this way: no marking means nothing to brag about — the softest rivet.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Marking → Alloy", "fig": "<svg viewBox=\"0 0 150 150\" width=\"150\" role=\"img\" aria-label=\"rivet head marking\"><circle cx=\"75\" cy=\"75\" r=\"55\" fill=\"#eef2f8\" stroke=\"#0d2a4a\" stroke-width=\"3.5\"/><circle cx=\"60\" cy=\"58\" r=\"17\" fill=\"#ffffff\" opacity=\"0.45\"/></svg>"}, {"q": "The rivet head shown has a small RECESSED DOT (a dimple). What aluminum alloy is it?", "options": ["2117 (code AD)", "2017 (code D)", "2024 (code DD)", "1100 (code A)"], "correct": 0, "short": "Recessed dot (dimple) = 2117, the AD field rivet.", "expl": "A recessed dot — a dimple pressed INTO the head — marks the 2117 rivet, code AD. This is the 'field rivet': it gets one heat-treatment at the factory, keeps its properties indefinitely, and is driven exactly as received with no refrigeration. The dot is sunk IN, which is the opposite of the 2017 rivet's dot that sticks OUT.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Marking → Alloy", "fig": "<svg viewBox=\"0 0 150 150\" width=\"150\" role=\"img\" aria-label=\"rivet head marking\"><circle cx=\"75\" cy=\"75\" r=\"55\" fill=\"#eef2f8\" stroke=\"#0d2a4a\" stroke-width=\"3.5\"/><circle cx=\"60\" cy=\"58\" r=\"17\" fill=\"#ffffff\" opacity=\"0.45\"/><circle cx=\"75\" cy=\"75\" r=\"13\" fill=\"#c2ccd8\" stroke=\"#5a6678\" stroke-width=\"2\"/><circle cx=\"75\" cy=\"75\" r=\"5.5\" fill=\"#6b7789\"/></svg>"}, {"q": "The rivet head shown has a single RAISED DOT (a teat sticking up). What aluminum alloy is it?", "options": ["2017 (code D)", "5056 (code B)", "2117 (code AD)", "1100 (code A)"], "correct": 0, "short": "Raised dot (teat) = 2017, the D ice-box rivet.", "expl": "A raised dot — a small teat standing UP off the head — marks the 2017 rivet, code D. It is a heat-treatable, high-strength rivet (about 38 KSI shear) that age-hardens after quenching, so it is an ice-box rivet. Watch the trap: the 2117 dot is pressed IN (recessed), while the 2017 dot stands OUT (raised).", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Marking → Alloy", "fig": "<svg viewBox=\"0 0 150 150\" width=\"150\" role=\"img\" aria-label=\"rivet head marking\"><circle cx=\"75\" cy=\"75\" r=\"55\" fill=\"#eef2f8\" stroke=\"#0d2a4a\" stroke-width=\"3.5\"/><circle cx=\"60\" cy=\"58\" r=\"17\" fill=\"#ffffff\" opacity=\"0.45\"/><circle cx=\"75\" cy=\"75\" r=\"12\" fill=\"#15436e\"/><circle cx=\"71\" cy=\"71\" r=\"3.5\" fill=\"#ffffff\" opacity=\"0.7\"/></svg>"}, {"q": "The rivet head shown has a RAISED CROSS. What aluminum alloy is it?", "options": ["2024 (code DD)", "2017 (code D)", "5056 (code B)", "7050 (code E)"], "correct": 2, "short": "Raised cross = 5056, the B rivet (used with magnesium).", "expl": "A raised cross marks the 5056 rivet, code B. Its job is not raw strength (only about 28 KSI shear) but corrosion compatibility: 5056 is the alloy you use when aluminum contacts a magnesium structure, because it resists the galvanic corrosion that would eat an ordinary aluminum rivet in that pairing.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Marking → Alloy", "fig": "<svg viewBox=\"0 0 150 150\" width=\"150\" role=\"img\" aria-label=\"rivet head marking\"><circle cx=\"75\" cy=\"75\" r=\"55\" fill=\"#eef2f8\" stroke=\"#0d2a4a\" stroke-width=\"3.5\"/><circle cx=\"60\" cy=\"58\" r=\"17\" fill=\"#ffffff\" opacity=\"0.45\"/><rect x=\"70\" y=\"49\" width=\"10\" height=\"52\" rx=\"5\" fill=\"#15436e\"/><rect x=\"49\" y=\"70\" width=\"52\" height=\"10\" rx=\"5\" fill=\"#15436e\"/><rect x=\"72\" y=\"51\" width=\"2.5\" height=\"20\" rx=\"1.2\" fill=\"#ffffff\" opacity=\"0.4\"/></svg>"}, {"q": "The rivet head shown has a RAISED RING (a circle standing up on the head). What aluminum alloy is it?", "options": ["1100 (code A)", "2117 (code AD)", "2024 (code DD)", "7050 (code E, also 'KE')"], "correct": 3, "short": "Raised ring = 7050, the E / KE rivet.", "expl": "A raised ring marks the 7050 rivet, code E (Boeing writes it KE). It is a newer high-strength rivet (about 43 KSI shear) developed as a replacement for the DD ice-box rivet because it can be driven in the received 'T' condition without refrigeration. Ring = the E/KE 7050 rivet.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Marking → Alloy", "fig": "<svg viewBox=\"0 0 150 150\" width=\"150\" role=\"img\" aria-label=\"rivet head marking\"><circle cx=\"75\" cy=\"75\" r=\"55\" fill=\"#eef2f8\" stroke=\"#0d2a4a\" stroke-width=\"3.5\"/><circle cx=\"60\" cy=\"58\" r=\"17\" fill=\"#ffffff\" opacity=\"0.45\"/><circle cx=\"75\" cy=\"75\" r=\"26\" fill=\"none\" stroke=\"#15436e\" stroke-width=\"7\"/><circle cx=\"75\" cy=\"75\" r=\"26\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"2\" opacity=\"0.3\"/></svg>"}, {"q": "In the part number MS20426AD4-4, the letters 'AD' tell you the alloy. What head MARKING will this rivet carry?", "options": ["A recessed dot (dimple)", "A raised dot (teat)", "Two raised dashes", "A plain head, no marking"], "correct": 0, "short": "AD = 2117, so its head carries a recessed dot (dimple).", "expl": "The alloy code in an MS rivet number is the same information as the head mark. AD means alloy 2117, and the 2117 head is stamped with a recessed dot (dimple). (Reading the rest of MS20426AD4-4: MS = military-standard spec, 20426 = 100-degree countersunk head, 4 = 4/32-inch diameter, 4 = 4/16-inch length.)", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)", "topic": "Code → Marking", "fig": ""}, {"q": "In the part number MS20470DD6-8, the letters 'DD' tell you the alloy. What head MARKING will this rivet carry?", "options": ["Two raised dashes", "A raised cross", "A raised ring", "A recessed dot (dimple)"], "correct": 0, "short": "DD = 2024, so its head carries two raised dashes.", "expl": "DD is the alloy code for 2024, and the 2024 head is stamped with two raised dashes (two raised bars). The rest reads: MS20470 = universal (protruding) head, 6 = 6/32 = 3/16-inch diameter, 8 = 8/16 = 1/2-inch length. Because it is a 2024 rivet it is an ice-box rivet that must be driven soon after refrigeration.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)", "topic": "Code → Marking", "fig": ""}, {"q": "A rivet is coded with a single 'D' for its alloy. What head MARKING identifies it?", "options": ["Two raised dashes", "A plain head", "A raised dot (teat)", "A recessed dot (dimple)"], "correct": 2, "short": "D = 2017, marked with a single raised dot.", "expl": "A single D is the alloy code for 2017, whose head carries one raised dot (a teat standing up). Do not confuse it with AD/2117, whose dot is recessed (pressed in). Both are dots — the difference is raised versus recessed.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)", "topic": "Code → Marking", "fig": ""}, {"q": "A rivet is coded with the letter 'B' for its alloy. What head MARKING identifies it?", "options": ["Two raised dashes", "A raised ring", "A recessed dot", "A raised cross"], "correct": 3, "short": "B = 5056, marked with a raised cross.", "expl": "The single letter B is the alloy code for 5056, and the 5056 head carries a raised cross. That is the rivet to reach for when you must rivet into — or in contact with — a magnesium structure.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)", "topic": "Code → Marking", "fig": ""}, {"q": "A rivet is coded with a single 'A' for its alloy. What will its head look like?", "options": ["A raised cross", "A recessed dot", "A raised dot", "Plain — no marking at all"], "correct": 3, "short": "A = 1100, which has a plain, unmarked head.", "expl": "Code A means alloy 1100 (soft, commercially pure aluminum), and its head is left completely plain — no dot, dash, cross, or ring. The absence of a mark IS the identification: the softest, lowest-strength rivet of the group.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)", "topic": "Code → Marking", "fig": ""}, {"q": "Which pair of rivets are the 'ice-box' rivets that must be kept refrigerated before driving?", "options": ["2117 (AD) and 5056 (B)", "2017 (D) and 2024 (DD)", "1100 (A) and 2117 (AD)", "5056 (B) and 7050 (E)"], "correct": 1, "short": "The ice-box rivets are 2017 (D) and 2024 (DD).", "expl": "The 2017 and 2024 rivets are heat-treatable alloys that age-harden at room temperature after they are quenched. Left out, they become too hard to drive — 2017 in about an hour, 2024 in about ten minutes. Storing them in a freezer below 32 degrees F slows that aging so they stay soft, which is why they are nicknamed ice-box rivets. You pull them out only just before driving.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets) + FAA-H-8083-30B, Ch. 7, Page 7-24", "topic": "Concept: Ice-Box", "fig": ""}, {"q": "Why must 2017 (D) and 2024 (DD) rivets be kept in a freezer, while 2117 (AD) rivets need no such care?", "options": ["Cold is required to activate their corrosion coating", "The freezer makes them stronger than any other rivet", "They must be frozen so the head marking stays visible", "2017 and 2024 age-harden at room temperature after quenching; cold slows the aging so they stay soft enough to drive"], "correct": 3, "short": "Cold retards the age-hardening of 2017/2024 so they stay drivable.", "expl": "2017 and 2024 are quenched and then naturally age-harden at room temperature, becoming too hard to upset within minutes to an hour. Refrigeration below 32 degrees F retards that aging, keeping them soft and drivable for several days. 2117 (AD) is different: it receives one factory heat-treatment, then holds its properties indefinitely and can be driven anytime — no freezer needed.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets) + FAA-H-8083-30B, Ch. 7, Page 7-24", "topic": "Concept: Ice-Box", "fig": ""}, {"q": "Which rivet is the 'field rivet' — the most widely used general-repair rivet, driven exactly as received with no heat treatment?", "options": ["2117 (code AD), marked with a recessed dot", "2024 (code DD), marked with two raised dashes", "2017 (code D), marked with a raised dot", "1100 (code A), plain head"], "correct": 0, "short": "The field rivet is 2117 / AD (recessed dot).", "expl": "2117 (AD) is the most widely used rivet in aircraft construction and the go-to general-repair rivet. It gets a single heat-treatment at the factory, keeps its strength indefinitely, and is driven straight from the bin — no reheat, no freezer — which is why it is called the field rivet. Its head mark is the recessed dot.", "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (alloy 2117 rivets) + FAA-H-8083-31B, Ch. 4, Page 4-32", "topic": "Concept: Field Rivet", "fig": ""}, {"q": "A plain rivet head with no marking tells you the rivet is made of what — and what does that imply about its strength?", "options": ["2024, the highest-strength rivet of the group", "1100, soft commercially pure aluminum — the lowest-strength rivet of the group", "7050, a high-strength ice-box replacement", "5056, a magnesium-compatible rivet"], "correct": 1, "short": "Plain head = 1100 = softest, lowest strength.", "expl": "No mark at all means alloy 1100 (code A) — soft, commercially pure aluminum with the lowest shear strength in the set, about 10 KSI. It is used only for nonstructural work. The memory logic runs the other way too: the more (and more raised) the marking, the harder and stronger the alloy, and a blank head sits at the bottom of that ladder.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Concept: Strength Logic", "fig": ""}, {"q": "The alloy code letters in a rivet's MS part number (A, AD, D, DD, B) give you the same information as what?", "options": ["The country where the rivet was made", "The hole size needed for the rivet", "The rivet's length only", "The rivet's head marking"], "correct": 3, "short": "The MS alloy code letters match the head marking (AD↔2117 dimple, D↔2017 raised dot, etc.).", "expl": "The letter(s) after the head-shape number in an MS part number name the alloy, and each alloy has one fixed head mark. So A = plain head = 1100, AD = recessed dot = 2117, D = raised dot = 2017, DD = two raised dashes = 2024, and B = raised cross = 5056. Read the code or read the head — they tell you the same thing.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)", "topic": "Concept: Code ↔ Mark", "fig": ""}, {"q": "Using the 'more/raised markings = harder, stronger alloy' memory logic, which of the common A, AD, D, DD rivets is the STRONGEST?", "options": ["2024 (DD), the two-raised-dashes rivet", "2117 (AD), the recessed-dot rivet", "2017 (D), the raised-dot rivet", "1100 (A), the plain-head rivet"], "correct": 0, "short": "2024 (DD), two raised dashes, is the strongest of the common set (~41 KSI).", "expl": "Walking the ladder from least to most marking: plain 1100 is softest (~10 KSI), recessed-dot 2117 is next (~30 KSI), raised-dot 2017 is higher (~38 KSI), and two-raised-dashes 2024 is the strongest of the common set (~41 KSI). More and more-raised marking tracks with higher strength.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Concept: Strength Logic", "fig": ""}, {"q": "The raised-cross 5056 (B) rivet breaks the usual 'more marks = stronger' pattern. What is it actually chosen for?", "options": ["Corrosion compatibility when aluminum contacts magnesium — not for strength", "Being the strongest rivet available", "Being an ice-box rivet for critical joints", "Being the softest, most easily driven rivet"], "correct": 0, "short": "5056 (raised cross) is picked for magnesium corrosion compatibility, not strength.", "expl": "The raised cross on a 5056 rivet is the exception to the strength ladder: at about 28 KSI it is on the weaker side, and it is selected for a chemical reason, not a strength one. 5056 resists galvanic corrosion where aluminum meets magnesium, so it is the correct rivet for magnesium structures even though stronger alloys exist.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Concept: Strength Logic", "fig": ""}, {"q": "You must rivet an aluminum fitting to a MAGNESIUM structure. Which rivet alloy and head marking do you select?", "options": ["5056 — the raised-cross rivet", "2024 — the two-raised-dashes rivet", "2117 — the recessed-dot rivet", "1100 — the plain-head rivet"], "correct": 0, "short": "Magnesium structure → 5056, the raised-cross rivet.", "expl": "Any time aluminum contacts magnesium you choose 5056, the raised-cross (code B) rivet, because it is corrosion-compatible with magnesium and prevents the galvanic attack that an ordinary aluminum rivet would suffer in that joint. Strength is secondary here; corrosion control drives the choice.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)", "topic": "Application", "fig": ""}, {"q": "A repair calls for the most common, no-heat-treat general-purpose rivet. Which do you grab, and how will you recognize it?", "options": ["2117 (AD) — recognized by the recessed dot on its head", "2024 (DD) — recognized by two raised dashes", "2017 (D) — recognized by a raised dot", "1100 (A) — recognized by a plain head"], "correct": 0, "short": "Reach for 2117 / AD, identified by the recessed dot.", "expl": "The everyday repair rivet is 2117 (AD): strong enough for most structure, highly corrosion resistant, and ready to drive straight from the bin with no reheat and no freezer. You spot it by the recessed dot stamped into the manufactured head.", "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (alloy 2117 rivets) + FAA-H-8083-31B, Ch. 4, Page 4-32", "topic": "Application", "fig": ""}, {"q": "You pull a rivet from the shop freezer to drive it quickly before it hardens. Which head marking(s) would such an ice-box rivet show?", "options": ["A raised cross only (5056/B)", "A recessed dot only (2117/AD)", "A plain head only (1100/A)", "A raised dot (2017/D) or two raised dashes (2024/DD)"], "correct": 3, "short": "Ice-box rivets are 2017 (raised dot) and 2024 (two raised dashes).", "expl": "Only the heat-treatable, age-hardening alloys live in the freezer: 2017 (D, raised dot) and 2024 (DD, two raised dashes). If a rivet came out of refrigeration, its head shows one of those two marks. A recessed-dot 2117 or a plain-head 1100 would never need the freezer.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets) + FAA-H-8083-30B, Ch. 7, Page 7-24", "topic": "Application", "fig": ""}];
+const DRILL = [{"label": "1100 — code A", "text": "Plain head, NO marking. Soft commercially-pure aluminum, weakest (~10 KSI), nonstructural."}, {"label": "2117 — code AD", "text": "RECESSED dot (dimple). The 'field rivet' — one factory heat-treat, driven as received, most widely used."}, {"label": "2017 — code D", "text": "RAISED dot (teat). Heat-treatable, ~38 KSI — an ICE-BOX rivet (hardens ~1 hr after quench)."}, {"label": "2024 — code DD", "text": "TWO raised dashes. Strongest of the common set (~41 KSI) — an ICE-BOX rivet (hardens ~10 min)."}, {"label": "5056 — code B", "text": "RAISED cross. Used where aluminum meets MAGNESIUM — chosen for corrosion compatibility, not strength (~28 KSI)."}, {"label": "7050 — code E/KE", "text": "RAISED ring. Newer high-strength (~43 KSI) replacement for the DD rivet; driven in 'T' condition, no freezer."}, {"label": "Code ↔ mark", "text": "The MS alloy letters equal the head mark: A=plain, AD=recessed dot, D=raised dot, DD=two dashes, B=cross."}, {"label": "Ice-box = D & DD", "text": "Only 2017 & 2024 age-harden and ride in the freezer; AD (2117) and A (1100) never need it."}, {"label": "Recessed vs raised dot", "text": "2117/AD dot is pressed IN (recessed); 2017/D dot sticks OUT (raised). Same shape, opposite relief."}, {"label": "Part number MS20426AD4-4", "text": "MS=spec · 20426=100° countersunk (20470=universal) · AD=2117 · 4=4/32\" dia · 4=4/16\" long."}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

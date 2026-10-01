@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Rivet Part Numbers</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Rivet Part Numbers</h1>
+    <div class="sub">Learn to decode an MS/AN solid-rivet part number piece by piece — e.g. MS20470AD4-4 = universal head, 2117 alloy, 1/8&quot; diameter, 1/4&quot; length. Covers the head-style number (20470 universal, 20426 countersunk), the alloy letters (A/AD/D/DD/B, and no-letter = mild steel), diameter in 32nds, length in 16ths, half sizes, full worked decodes, and how the code letters match the head marking. Verified against FAA-H-8083-30B Ch. 7, FAA-H-8083-31B Ch. 4, and AC 43.13-1B, each answer cited.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "In MS20470AD4-4, the '20470' identifies the HEAD STYLE. What head style is it?", "options": ["100° countersunk (flush) head", "Roundhead", "Universal (protruding) head", "Brazier head"], "correct": 2, "short": "20470 = universal (protruding) head.", "expl": "The number right after 'MS' is the head-style code. 20470 (which superseded AN470) is the universal or protruding head — the US standard protruding head that replaced the older round, flat, and brazier heads. Memorize this pair: 20470 = universal, 20426 = countersunk.", "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)", "topic": "Head Style", "fig": ""}, {"q": "In MS20426DD6-8, the '20426' identifies the head style. What head style is it?", "options": ["100° countersunk (flush) head", "Universal (protruding) head", "Roundhead", "Flathead"], "correct": 0, "short": "20426 = 100° countersunk (flush) head.", "expl": "20426 (which superseded AN426) is the 100-degree countersunk, or flush, head — used where a smooth aerodynamic surface is needed. The 100-degree angle is the adopted US standard. Remember: 20426 = countersunk/flush, 20470 = universal/protruding.", "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)", "topic": "Head Style", "fig": ""}, {"q": "Which standard number designates the 100° COUNTERSUNK (flush) rivet?", "options": ["AN430 / MS20430", "AN456", "MS20426 (supersedes AN426)", "MS20470 (supersedes AN470)"], "correct": 2, "short": "MS20426 (AN426) = 100° countersunk.", "expl": "MS20426, which superseded AN426, is the 100-degree countersunk flush rivet. MS20470 is the universal head, AN430 is the roundhead, and AN456 is a brazier head — none of those are the flush rivet.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Head Style", "fig": ""}, {"q": "Which standard number is the UNIVERSAL (protruding) head rivet — the US standard that may replace roundhead, flathead, and brazier head rivets?", "options": ["MS20470 (supersedes AN470)", "AN441", "AN455", "MS20426 (supersedes AN426)"], "correct": 0, "short": "MS20470 (AN470) = universal protruding head.", "expl": "MS20470, which superseded AN470, is the universal protruding head. It was adopted as the US standard for protruding-head rivets and can be used in place of the older roundhead, flathead, and brazier head rivets. MS20426 is the flush/countersunk rivet, not this one.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Head Style", "fig": ""}, {"q": "The AN430 (MS20430) rivet is which head style, used mainly in the interior of the aircraft?", "options": ["100° countersunk (flush) head", "Roundhead", "Brazier head", "Universal head"], "correct": 1, "short": "AN430 / MS20430 = roundhead (interior).", "expl": "AN430 (MS20430) is the roundhead rivet, used inside the aircraft except where an adjacent part needs clearance. Flatheads (AN441/AN442) are also interior; brazier heads (AN455/AN456) go on exterior surfaces where flush riveting is not essential.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Head Style", "fig": ""}, {"q": "In MS20470AD4-4, the letters 'AD' identify the ALLOY. Which alloy is it?", "options": ["1100", "2024", "2117", "2017"], "correct": 2, "short": "AD = 2117 aluminum.", "expl": "The letter(s) after the head-style number name the alloy. AD is 2117 (the common field rivet, driven as received). Its head carries a recessed dot. Do not confuse AD/2117 with D/2017 (a single D, raised dot) or DD/2024 (two raised dashes).", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "The alloy letters 'DD' in a rivet part number identify which alloy?", "options": ["2024", "2117", "2017", "5056"], "correct": 0, "short": "DD = 2024 aluminum (an ice-box rivet).", "expl": "DD is 2024, the strongest of the common structural rivets and an ice-box rivet that must be driven soon after refrigeration. Its head carries two raised dashes. A single D would be 2017, and AD would be 2117.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "The single letter 'D' in a rivet part number identifies which alloy?", "options": ["1100", "2024", "2117", "2017"], "correct": 3, "short": "D = 2017 aluminum (an ice-box rivet).", "expl": "A single D is 2017, a heat-treatable ice-box rivet whose head carries a single raised dot. Add a second D (DD) and you have 2024; add an A in front (AD) and you have 2117.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "The letter 'B' in a rivet part number identifies which alloy?", "options": ["5056", "2024", "1100", "2117"], "correct": 0, "short": "B = 5056 aluminum (used with magnesium).", "expl": "B is 5056, the rivet used where aluminum contacts a magnesium structure because it resists galvanic corrosion. Its head carries a raised cross.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "A rivet part number has NO material letter after the standard number (for example AN470-4-4). According to the FAA handbook, what is the rivet made of?", "options": ["Copper", "Mild steel", "2024 aluminum", "1100 aluminum"], "correct": 1, "short": "No material letter = MILD STEEL (not 1100).", "expl": "This is a classic trap. The FAA handbook states that the absence of a material letter indicates a rivet made of mild steel — NOT 1100 aluminum. Soft 1100 aluminum has its own code, the letter that sits alone, so a blank is steel, not aluminum. Always read the letters carefully.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "In an AN/MS rivet part number, which alloy does the single letter 'A' designate?", "options": ["1100 (or 3003) aluminum", "Mild steel", "2117 aluminum", "Copper"], "correct": 0, "short": "A = 1100 (or 3003) aluminum — soft, plain-head.", "expl": "The letter A designates 1100 (or 3003) aluminum, the soft, low-strength, plain-head rivet used for nonstructural work. Note the difference from a blank code: A is aluminum 1100, while no letter at all means mild steel.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "The letter 'C' in a rivet part number designates what material (and 'M' designates what)?", "options": ["C = copper (and M = Monel)", "C = carbon steel (and M = magnesium)", "C = chromium (and M = manganese)", "C = cadmium (and M = molybdenum)"], "correct": 0, "short": "C = copper; M = Monel.", "expl": "Besides the aluminum codes, the handbook lists C for copper and M for Monel. These are used for special applications — copper for some nonstructural work and Monel (a corrosion-resistant nickel alloy) where steel-strength corrosion resistance is needed.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Alloy Code", "fig": ""}, {"q": "In MS20470AD4-4, the FIRST '4' (right after AD) gives the shank diameter. What diameter is it?", "options": ["4/32 inch = 1/8 inch", "4/16 inch = 1/4 inch", "4 inches", "4 millimeters"], "correct": 0, "short": "First number = diameter in 32nds: 4/32 = 1/8 inch.", "expl": "The first number after the alloy letters is the shank diameter counted in thirty-seconds of an inch. Here 4 means 4/32, which reduces to 1/8 inch. (Do not mix it up with the length number, which is in sixteenths.)", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Diameter", "fig": ""}, {"q": "A rivet coded ...AD6-8 has a first number of 6. What is its shank DIAMETER?", "options": ["6/32 inch = 3/16 inch", "6/16 inch = 3/8 inch", "3/32 inch", "1/8 inch"], "correct": 0, "short": "6/32 = 3/16 inch diameter.", "expl": "The first number is diameter in thirty-seconds, so 6 means 6/32, which reduces to 3/16 inch. The 8 after the dash is the length (in sixteenths), a separate dimension.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Diameter", "fig": ""}, {"q": "In a rivet part number, the FIRST number after the alloy code letters tells you what, measured in what units?", "options": ["The shank DIAMETER, in thirty-seconds (1/32) of an inch", "The DIAMETER, in sixteenths (1/16) of an inch", "The LENGTH, in thirty-seconds (1/32) of an inch", "The LENGTH, in sixteenths (1/16) of an inch"], "correct": 0, "short": "First number = diameter in 32nds inch.", "expl": "The first number after the letters is always the shank diameter expressed in thirty-seconds of an inch (so 3 is 3/32, 5 is 5/32, and so on). The length comes later, after the dash, and is in sixteenths — keep the two units straight.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)", "topic": "Diameter", "fig": ""}, {"q": "In MS20470AD4-4, the '-4' after the dash gives the LENGTH. What length is it?", "options": ["4/16 inch = 1/4 inch", "4/32 inch = 1/8 inch", "4 inches", "1/2 inch"], "correct": 0, "short": "Dash number = length in 16ths: 4/16 = 1/4 inch.", "expl": "The number after the dash is the rivet length counted in sixteenths of an inch. Here 4 means 4/16, which reduces to 1/4 inch. The diameter (the number before the dash) is in thirty-seconds — different units.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Length", "fig": ""}, {"q": "A rivet coded ...DD6-8 has '-8' after the dash. What is its LENGTH?", "options": ["8/16 inch = 1/2 inch", "3/8 inch", "8 inches", "8/32 inch = 1/4 inch"], "correct": 0, "short": "8/16 = 1/2 inch length.", "expl": "The dash number is length in sixteenths, so 8 means 8/16, which reduces to 1/2 inch. (The 6 before the dash was the diameter, 6/32 = 3/16 inch.)", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Length", "fig": ""}, {"q": "In a rivet part number, the number AFTER the dash tells you what, measured in what units?", "options": ["The LENGTH, in sixteenths (1/16) of an inch", "The DIAMETER, in thirty-seconds (1/32) of an inch", "The LENGTH, in thirty-seconds (1/32) of an inch", "The grip range, in whole inches"], "correct": 0, "short": "Dash number = length in 16ths inch.", "expl": "The number following the dash is the rivet length in sixteenths of an inch (so -3 is 3/16, -7 is 7/16). The diameter sits before the dash and is in thirty-seconds, so always check which number you are reading.", "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)", "topic": "Length", "fig": ""}, {"q": "How is a HALF-size rivet length written in an MS rivet part number?", "options": ["Half sizes are not available in MS rivets", "An 'H' prefix on the length, e.g., MS20470AD4-H3", "A second dash and a fraction, e.g., MS20470AD4-3-1/2", "A '.5' is added after the length number, e.g., MS20470AD4-3.5"], "correct": 3, "short": "Half sizes = '.5' after the length (MS20470AD4-3.5).", "expl": "Rivets can be bought in half-length increments by adding a '.5' after the main length number — for example MS20470AD4-3.5 is a 3.5/16-inch-long rivet. This lets you fine-tune length to the grip of the joint.", "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)", "topic": "Length", "fig": ""}, {"q": "Decode the complete part number MS20470AD4-4.", "options": ["Universal head · 2117 alloy · 1/8\" diameter · 1/4\" length", "100° countersunk · 2024 alloy · 1/4\" diameter · 1/8\" length", "Universal head · 2017 alloy · 1/8\" diameter · 1/2\" length", "100° countersunk · 2117 alloy · 3/32\" diameter · 5/16\" length"], "correct": 0, "short": "MS20470AD4-4 = universal head, 2117, 1/8\" dia, 1/4\" long.", "expl": "Read it in order: 20470 = universal (protruding) head; AD = 2117 alloy (recessed-dot head mark); the first 4 = 4/32 = 1/8 inch diameter; and -4 = 4/16 = 1/4 inch length. Diameter before the dash is in thirty-seconds, length after the dash is in sixteenths.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)", "topic": "Full Decode", "fig": ""}, {"q": "Decode the complete part number MS20426DD6-8.", "options": ["100° countersunk (flush) head · 2024 alloy (ice-box) · 3/16\" diameter · 1/2\" length", "Universal head · 2117 alloy · 6/16\" diameter · 8/32\" length", "100° countersunk head · 2017 alloy · 1/8\" diameter · 1/4\" length", "Universal head · 2024 alloy · 1/2\" diameter · 3/16\" length"], "correct": 0, "short": "MS20426DD6-8 = countersunk, 2024 (ice-box), 3/16\" dia, 1/2\" long.", "expl": "Breaking it down: 20426 = 100-degree countersunk (flush) head; DD = 2024 alloy (two-raised-dashes head mark, an ice-box rivet); the first 6 = 6/32 = 3/16 inch diameter; and -8 = 8/16 = 1/2 inch length. Because it is 2024, it must be kept refrigerated and driven soon after removal.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)", "topic": "Full Decode", "fig": ""}, {"q": "The FAA handbook's own example, MS20470AD3-5, decodes to which of these?", "options": ["Universal head · 2117 alloy · 3/32\" diameter · 5/16\" length", "Roundhead · 2017 alloy · 3/16\" diameter · 5/16\" length", "100° countersunk · 2117 alloy · 3/16\" diameter · 5/32\" length", "Universal head · 2024 alloy · 3/32\" diameter · 5/16\" length"], "correct": 0, "short": "MS20470AD3-5 = universal, 2117, 3/32\" dia, 5/16\" long.", "expl": "This is the decode the handbook spells out: 20470 = universal head, AD = 2117-T aluminum, 3 = 3/32 inch diameter (thirty-seconds), 5 = 5/16 inch length (sixteenths). Same rivet is written AN470AD3-5 in the older Army-Navy system.", "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)", "topic": "Full Decode", "fig": ""}, {"q": "In MS20470DD6-8, the 'DD' code tells you the alloy. What head MARKING will you see stamped on this rivet?", "options": ["A recessed dot", "Two raised dashes", "A raised cross", "A raised dot"], "correct": 1, "short": "DD = 2024, whose head carries two raised dashes.", "expl": "The alloy letters in the part number are the SAME information as the head mark. DD is 2024, and the 2024 head carries two raised dashes. So without even reading the stamp you know this rivet's head will show two raised dashes — and that it is an ice-box rivet.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets)", "topic": "Code ↔ Mark", "fig": ""}, {"q": "Why are the alloy code letters (A, AD, D, DD, B) in a part number so useful even when you can see the rivet?", "options": ["They name the same alloy as the head marking, so the part number and the stamped head always agree", "They tell you the color the rivet must be painted", "They specify the air pressure for the rivet gun", "They give the hole size in millimeters"], "correct": 0, "short": "The code letters match the head markings — part number and stamp agree.", "expl": "Each alloy has one fixed head mark, and the part-number letters name that same alloy: A = plain head, AD = recessed dot, D = raised dot, DD = two raised dashes, B = raised cross. So you can confirm a loose rivet against its part number (or vice versa) — the paperwork and the stamped head tell the same story.", "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)", "topic": "Code ↔ Mark", "fig": ""}];
+const DRILL = [{"label": "MS20470 (AN470)", "text": "UNIVERSAL (protruding) head — US standard; replaces round/flat/brazier heads."}, {"label": "MS20426 (AN426)", "text": "100° COUNTERSUNK (flush) head — US standard flush rivet."}, {"label": "AN430 / AN441-442 / AN455-456", "text": "Roundhead / Flathead / Brazier head (older protruding styles)."}, {"label": "Alloy letters", "text": "A=1100 · AD=2117 · D=2017 · DD=2024 · B=5056 · C=copper · M=Monel."}, {"label": "No material letter", "text": "= MILD STEEL (NOT 1100 — 1100's code is the letter A)."}, {"label": "First number (before dash)", "text": "DIAMETER in 1/32 inch: 4=4/32=1/8\" · 6=6/32=3/16\" · 8=8/32=1/4\"."}, {"label": "Number after the dash", "text": "LENGTH in 1/16 inch: 4=4/16=1/4\" · 6=6/16=3/8\" · 8=8/16=1/2\"."}, {"label": "Half sizes", "text": "Add '.5' after the length: MS20470AD4-3.5."}, {"label": "MS20470AD4-4", "text": "Universal · 2117 · 1/8\" dia · 1/4\" length."}, {"label": "MS20426DD6-8", "text": "100° countersunk · 2024 (ice-box) · 3/16\" dia · 1/2\" length."}, {"label": "Code = head mark", "text": "The alloy letters equal the stamped head marking (DD ⇒ two raised dashes)."}];
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>';
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = shuffle(this.missed.slice()); }
+    else { this.order = shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCD'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false;
+  },
+
+  pick(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const ok = (li===q.correct);
+    btns.forEach(b=>{
+      const bl=+b.dataset.li;
+      if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+      if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+    });
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+'ABCD'[q.correct]+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+'ABCD'[q.correct]+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d'].includes(k)) QUIZ.pick('abcd'.indexOf(k));
+  else if(['1','2','3','4'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

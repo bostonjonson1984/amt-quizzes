@@ -1,6 +1,6 @@
 {
- "built": "2026-09-30",
- "total": 4045,
+ "built": "2026-10-01",
+ "total": 4090,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -49,6 +49,8 @@
   "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools": 8,
   "Block 5 · Day 7 — Layout, Forming & Bend Calculations": 28,
   "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
+  "Block 5 · Rivet Head Markings": 21,
+  "Block 5 · Rivet Part Numbers": 24,
   "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 25,
   "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install": 10,
   "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries": 10,
@@ -57524,6 +57526,861 @@
    "block": "Block 5",
    "sources": [
     "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "4e6afe0766",
+   "q": "The rivet head shown has TWO raised dashes (two raised bars). What aluminum alloy is it?",
+   "options": [
+    "1100 (code A)",
+    "2017 (code D)",
+    "2024 (code DD)",
+    "2117 (code AD)"
+   ],
+   "correct": 2,
+   "short": "Two raised dashes = 2024, the DD rivet.",
+   "expl": "Two raised dashes (the handbook calls them 'two bars, raised') mark the 2024 rivet, code DD. It is the strongest of the common structural set at about 41 KSI shear, and it is an ice-box rivet. A handy memory hook: two dashes for the 'double-D' (DD) 2024.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Marking → Alloy",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "3e47753d0d",
+   "q": "The rivet head shown is completely PLAIN — no marking at all. What aluminum alloy is it?",
+   "options": [
+    "1100 (code A)",
+    "2117 (code AD)",
+    "2024 (code DD)",
+    "5056 (code B)"
+   ],
+   "correct": 0,
+   "short": "No marking = 1100, the plain-head code A rivet (softest).",
+   "expl": "A plain, unmarked head is the 1100 rivet, code A (alloy 3003 shares the same plain head and A code). It is soft, commercially pure aluminum, the weakest of the group at about 10 KSI shear, and is used for nonstructural work. Think of it this way: no marking means nothing to brag about — the softest rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Marking → Alloy",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "c9e12a6777",
+   "q": "The rivet head shown has a small RECESSED DOT (a dimple). What aluminum alloy is it?",
+   "options": [
+    "2117 (code AD)",
+    "2017 (code D)",
+    "2024 (code DD)",
+    "1100 (code A)"
+   ],
+   "correct": 0,
+   "short": "Recessed dot (dimple) = 2117, the AD field rivet.",
+   "expl": "A recessed dot — a dimple pressed INTO the head — marks the 2117 rivet, code AD. This is the 'field rivet': it gets one heat-treatment at the factory, keeps its properties indefinitely, and is driven exactly as received with no refrigeration. The dot is sunk IN, which is the opposite of the 2017 rivet's dot that sticks OUT.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Marking → Alloy",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "04c1cff9fd",
+   "q": "The rivet head shown has a single RAISED DOT (a teat sticking up). What aluminum alloy is it?",
+   "options": [
+    "2017 (code D)",
+    "5056 (code B)",
+    "2117 (code AD)",
+    "1100 (code A)"
+   ],
+   "correct": 0,
+   "short": "Raised dot (teat) = 2017, the D ice-box rivet.",
+   "expl": "A raised dot — a small teat standing UP off the head — marks the 2017 rivet, code D. It is a heat-treatable, high-strength rivet (about 38 KSI shear) that age-hardens after quenching, so it is an ice-box rivet. Watch the trap: the 2117 dot is pressed IN (recessed), while the 2017 dot stands OUT (raised).",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Marking → Alloy",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "293ad503c1",
+   "q": "The rivet head shown has a RAISED CROSS. What aluminum alloy is it?",
+   "options": [
+    "2024 (code DD)",
+    "2017 (code D)",
+    "5056 (code B)",
+    "7050 (code E)"
+   ],
+   "correct": 2,
+   "short": "Raised cross = 5056, the B rivet (used with magnesium).",
+   "expl": "A raised cross marks the 5056 rivet, code B. Its job is not raw strength (only about 28 KSI shear) but corrosion compatibility: 5056 is the alloy you use when aluminum contacts a magnesium structure, because it resists the galvanic corrosion that would eat an ordinary aluminum rivet in that pairing.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Marking → Alloy",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "0a414b1219",
+   "q": "The rivet head shown has a RAISED RING (a circle standing up on the head). What aluminum alloy is it?",
+   "options": [
+    "1100 (code A)",
+    "2117 (code AD)",
+    "2024 (code DD)",
+    "7050 (code E, also 'KE')"
+   ],
+   "correct": 3,
+   "short": "Raised ring = 7050, the E / KE rivet.",
+   "expl": "A raised ring marks the 7050 rivet, code E (Boeing writes it KE). It is a newer high-strength rivet (about 43 KSI shear) developed as a replacement for the DD ice-box rivet because it can be driven in the received 'T' condition without refrigeration. Ring = the E/KE 7050 rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Marking → Alloy",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "bcc076a722",
+   "q": "In the part number MS20426AD4-4, the letters 'AD' tell you the alloy. What head MARKING will this rivet carry?",
+   "options": [
+    "A recessed dot (dimple)",
+    "A raised dot (teat)",
+    "Two raised dashes",
+    "A plain head, no marking"
+   ],
+   "correct": 0,
+   "short": "AD = 2117, so its head carries a recessed dot (dimple).",
+   "expl": "The alloy code in an MS rivet number is the same information as the head mark. AD means alloy 2117, and the 2117 head is stamped with a recessed dot (dimple). (Reading the rest of MS20426AD4-4: MS = military-standard spec, 20426 = 100-degree countersunk head, 4 = 4/32-inch diameter, 4 = 4/16-inch length.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)",
+   "topic": "Code → Marking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "d8f5e2a210",
+   "q": "In the part number MS20470DD6-8, the letters 'DD' tell you the alloy. What head MARKING will this rivet carry?",
+   "options": [
+    "Two raised dashes",
+    "A raised cross",
+    "A raised ring",
+    "A recessed dot (dimple)"
+   ],
+   "correct": 0,
+   "short": "DD = 2024, so its head carries two raised dashes.",
+   "expl": "DD is the alloy code for 2024, and the 2024 head is stamped with two raised dashes (two raised bars). The rest reads: MS20470 = universal (protruding) head, 6 = 6/32 = 3/16-inch diameter, 8 = 8/16 = 1/2-inch length. Because it is a 2024 rivet it is an ice-box rivet that must be driven soon after refrigeration.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)",
+   "topic": "Code → Marking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "925bc49c6e",
+   "q": "A rivet is coded with a single 'D' for its alloy. What head MARKING identifies it?",
+   "options": [
+    "Two raised dashes",
+    "A plain head",
+    "A raised dot (teat)",
+    "A recessed dot (dimple)"
+   ],
+   "correct": 2,
+   "short": "D = 2017, marked with a single raised dot.",
+   "expl": "A single D is the alloy code for 2017, whose head carries one raised dot (a teat standing up). Do not confuse it with AD/2117, whose dot is recessed (pressed in). Both are dots — the difference is raised versus recessed.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)",
+   "topic": "Code → Marking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "6cdbddcc23",
+   "q": "A rivet is coded with the letter 'B' for its alloy. What head MARKING identifies it?",
+   "options": [
+    "Two raised dashes",
+    "A raised ring",
+    "A recessed dot",
+    "A raised cross"
+   ],
+   "correct": 3,
+   "short": "B = 5056, marked with a raised cross.",
+   "expl": "The single letter B is the alloy code for 5056, and the 5056 head carries a raised cross. That is the rivet to reach for when you must rivet into — or in contact with — a magnesium structure.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)",
+   "topic": "Code → Marking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "3e19d47aa9",
+   "q": "A rivet is coded with a single 'A' for its alloy. What will its head look like?",
+   "options": [
+    "A raised cross",
+    "A recessed dot",
+    "A raised dot",
+    "Plain — no marking at all"
+   ],
+   "correct": 3,
+   "short": "A = 1100, which has a plain, unmarked head.",
+   "expl": "Code A means alloy 1100 (soft, commercially pure aluminum), and its head is left completely plain — no dot, dash, cross, or ring. The absence of a mark IS the identification: the softest, lowest-strength rivet of the group.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)",
+   "topic": "Code → Marking",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "d06afc0c04",
+   "q": "Which pair of rivets are the 'ice-box' rivets that must be kept refrigerated before driving?",
+   "options": [
+    "2117 (AD) and 5056 (B)",
+    "2017 (D) and 2024 (DD)",
+    "1100 (A) and 2117 (AD)",
+    "5056 (B) and 7050 (E)"
+   ],
+   "correct": 1,
+   "short": "The ice-box rivets are 2017 (D) and 2024 (DD).",
+   "expl": "The 2017 and 2024 rivets are heat-treatable alloys that age-harden at room temperature after they are quenched. Left out, they become too hard to drive — 2017 in about an hour, 2024 in about ten minutes. Storing them in a freezer below 32 degrees F slows that aging so they stay soft, which is why they are nicknamed ice-box rivets. You pull them out only just before driving.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets) + FAA-H-8083-30B, Ch. 7, Page 7-24",
+   "topic": "Concept: Ice-Box",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "537ff10ae4",
+   "q": "Why must 2017 (D) and 2024 (DD) rivets be kept in a freezer, while 2117 (AD) rivets need no such care?",
+   "options": [
+    "Cold is required to activate their corrosion coating",
+    "The freezer makes them stronger than any other rivet",
+    "They must be frozen so the head marking stays visible",
+    "2017 and 2024 age-harden at room temperature after quenching; cold slows the aging so they stay soft enough to drive"
+   ],
+   "correct": 3,
+   "short": "Cold retards the age-hardening of 2017/2024 so they stay drivable.",
+   "expl": "2017 and 2024 are quenched and then naturally age-harden at room temperature, becoming too hard to upset within minutes to an hour. Refrigeration below 32 degrees F retards that aging, keeping them soft and drivable for several days. 2117 (AD) is different: it receives one factory heat-treatment, then holds its properties indefinitely and can be driven anytime — no freezer needed.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets) + FAA-H-8083-30B, Ch. 7, Page 7-24",
+   "topic": "Concept: Ice-Box",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "6f817f53b1",
+   "q": "Which rivet is the 'field rivet' — the most widely used general-repair rivet, driven exactly as received with no heat treatment?",
+   "options": [
+    "2117 (code AD), marked with a recessed dot",
+    "2024 (code DD), marked with two raised dashes",
+    "2017 (code D), marked with a raised dot",
+    "1100 (code A), plain head"
+   ],
+   "correct": 0,
+   "short": "The field rivet is 2117 / AD (recessed dot).",
+   "expl": "2117 (AD) is the most widely used rivet in aircraft construction and the go-to general-repair rivet. It gets a single heat-treatment at the factory, keeps its strength indefinitely, and is driven straight from the bin — no reheat, no freezer — which is why it is called the field rivet. Its head mark is the recessed dot.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (alloy 2117 rivets) + FAA-H-8083-31B, Ch. 4, Page 4-32",
+   "topic": "Concept: Field Rivet",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "24057a4e60",
+   "q": "A plain rivet head with no marking tells you the rivet is made of what — and what does that imply about its strength?",
+   "options": [
+    "2024, the highest-strength rivet of the group",
+    "1100, soft commercially pure aluminum — the lowest-strength rivet of the group",
+    "7050, a high-strength ice-box replacement",
+    "5056, a magnesium-compatible rivet"
+   ],
+   "correct": 1,
+   "short": "Plain head = 1100 = softest, lowest strength.",
+   "expl": "No mark at all means alloy 1100 (code A) — soft, commercially pure aluminum with the lowest shear strength in the set, about 10 KSI. It is used only for nonstructural work. The memory logic runs the other way too: the more (and more raised) the marking, the harder and stronger the alloy, and a blank head sits at the bottom of that ladder.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Concept: Strength Logic",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "32816b2e11",
+   "q": "The alloy code letters in a rivet's MS part number (A, AD, D, DD, B) give you the same information as what?",
+   "options": [
+    "The country where the rivet was made",
+    "The hole size needed for the rivet",
+    "The rivet's length only",
+    "The rivet's head marking"
+   ],
+   "correct": 3,
+   "short": "The MS alloy code letters match the head marking (AD↔2117 dimple, D↔2017 raised dot, etc.).",
+   "expl": "The letter(s) after the head-shape number in an MS part number name the alloy, and each alloy has one fixed head mark. So A = plain head = 1100, AD = recessed dot = 2117, D = raised dot = 2017, DD = two raised dashes = 2024, and B = raised cross = 5056. Read the code or read the head — they tell you the same thing.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74/4-75, Page 4-31 (rivet part-number code)",
+   "topic": "Concept: Code ↔ Mark",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "2583488054",
+   "q": "Using the 'more/raised markings = harder, stronger alloy' memory logic, which of the common A, AD, D, DD rivets is the STRONGEST?",
+   "options": [
+    "2024 (DD), the two-raised-dashes rivet",
+    "2117 (AD), the recessed-dot rivet",
+    "2017 (D), the raised-dot rivet",
+    "1100 (A), the plain-head rivet"
+   ],
+   "correct": 0,
+   "short": "2024 (DD), two raised dashes, is the strongest of the common set (~41 KSI).",
+   "expl": "Walking the ladder from least to most marking: plain 1100 is softest (~10 KSI), recessed-dot 2117 is next (~30 KSI), raised-dot 2017 is higher (~38 KSI), and two-raised-dashes 2024 is the strongest of the common set (~41 KSI). More and more-raised marking tracks with higher strength.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Concept: Strength Logic",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "4bcd0fc468",
+   "q": "The raised-cross 5056 (B) rivet breaks the usual 'more marks = stronger' pattern. What is it actually chosen for?",
+   "options": [
+    "Corrosion compatibility when aluminum contacts magnesium — not for strength",
+    "Being the strongest rivet available",
+    "Being an ice-box rivet for critical joints",
+    "Being the softest, most easily driven rivet"
+   ],
+   "correct": 0,
+   "short": "5056 (raised cross) is picked for magnesium corrosion compatibility, not strength.",
+   "expl": "The raised cross on a 5056 rivet is the exception to the strength ladder: at about 28 KSI it is on the weaker side, and it is selected for a chemical reason, not a strength one. 5056 resists galvanic corrosion where aluminum meets magnesium, so it is the correct rivet for magnesium structures even though stronger alloys exist.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Concept: Strength Logic",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "117e3c180d",
+   "q": "You must rivet an aluminum fitting to a MAGNESIUM structure. Which rivet alloy and head marking do you select?",
+   "options": [
+    "5056 — the raised-cross rivet",
+    "2024 — the two-raised-dashes rivet",
+    "2117 — the recessed-dot rivet",
+    "1100 — the plain-head rivet"
+   ],
+   "correct": 0,
+   "short": "Magnesium structure → 5056, the raised-cross rivet.",
+   "expl": "Any time aluminum contacts magnesium you choose 5056, the raised-cross (code B) rivet, because it is corrosion-compatible with magnesium and prevents the galvanic attack that an ordinary aluminum rivet would suffer in that joint. Strength is secondary here; corrosion control drives the choice.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-77, Page 4-33 (standard rivet alloy code markings)",
+   "topic": "Application",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "4c37fa3258",
+   "q": "A repair calls for the most common, no-heat-treat general-purpose rivet. Which do you grab, and how will you recognize it?",
+   "options": [
+    "2117 (AD) — recognized by the recessed dot on its head",
+    "2024 (DD) — recognized by two raised dashes",
+    "2017 (D) — recognized by a raised dot",
+    "1100 (A) — recognized by a plain head"
+   ],
+   "correct": 0,
+   "short": "Reach for 2117 / AD, identified by the recessed dot.",
+   "expl": "The everyday repair rivet is 2117 (AD): strong enough for most structure, highly corrosion resistant, and ready to drive straight from the bin with no reheat and no freezer. You spot it by the recessed dot stamped into the manufactured head.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Page 7-24 (alloy 2117 rivets) + FAA-H-8083-31B, Ch. 4, Page 4-32",
+   "topic": "Application",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "3ddfaddbd4",
+   "q": "You pull a rivet from the shop freezer to drive it quickly before it hardens. Which head marking(s) would such an ice-box rivet show?",
+   "options": [
+    "A raised cross only (5056/B)",
+    "A recessed dot only (2117/AD)",
+    "A plain head only (1100/A)",
+    "A raised dot (2017/D) or two raised dashes (2024/DD)"
+   ],
+   "correct": 3,
+   "short": "Ice-box rivets are 2017 (raised dot) and 2024 (two raised dashes).",
+   "expl": "Only the heat-treatable, age-hardening alloys live in the freezer: 2017 (D, raised dot) and 2024 (DD, two raised dashes). If a rivet came out of refrigeration, its head shows one of those two marks. A recessed-dot 2117 or a plain-head 1100 would never need the freezer.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets) + FAA-H-8083-30B, Ch. 7, Page 7-24",
+   "topic": "Application",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Head Markings"
+   ]
+  },
+  {
+   "id": "8e10770e59",
+   "q": "In MS20470AD4-4, the '20470' identifies the HEAD STYLE. What head style is it?",
+   "options": [
+    "100° countersunk (flush) head",
+    "Roundhead",
+    "Universal (protruding) head",
+    "Brazier head"
+   ],
+   "correct": 2,
+   "short": "20470 = universal (protruding) head.",
+   "expl": "The number right after 'MS' is the head-style code. 20470 (which superseded AN470) is the universal or protruding head — the US standard protruding head that replaced the older round, flat, and brazier heads. Memorize this pair: 20470 = universal, 20426 = countersunk.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)",
+   "topic": "Head Style",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "9ccb96ef5d",
+   "q": "In MS20426DD6-8, the '20426' identifies the head style. What head style is it?",
+   "options": [
+    "100° countersunk (flush) head",
+    "Universal (protruding) head",
+    "Roundhead",
+    "Flathead"
+   ],
+   "correct": 0,
+   "short": "20426 = 100° countersunk (flush) head.",
+   "expl": "20426 (which superseded AN426) is the 100-degree countersunk, or flush, head — used where a smooth aerodynamic surface is needed. The 100-degree angle is the adopted US standard. Remember: 20426 = countersunk/flush, 20470 = universal/protruding.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)",
+   "topic": "Head Style",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "1743736b6d",
+   "q": "Which standard number designates the 100° COUNTERSUNK (flush) rivet?",
+   "options": [
+    "AN430 / MS20430",
+    "AN456",
+    "MS20426 (supersedes AN426)",
+    "MS20470 (supersedes AN470)"
+   ],
+   "correct": 2,
+   "short": "MS20426 (AN426) = 100° countersunk.",
+   "expl": "MS20426, which superseded AN426, is the 100-degree countersunk flush rivet. MS20470 is the universal head, AN430 is the roundhead, and AN456 is a brazier head — none of those are the flush rivet.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Head Style",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "6da1b86174",
+   "q": "Which standard number is the UNIVERSAL (protruding) head rivet — the US standard that may replace roundhead, flathead, and brazier head rivets?",
+   "options": [
+    "MS20470 (supersedes AN470)",
+    "AN441",
+    "AN455",
+    "MS20426 (supersedes AN426)"
+   ],
+   "correct": 0,
+   "short": "MS20470 (AN470) = universal protruding head.",
+   "expl": "MS20470, which superseded AN470, is the universal protruding head. It was adopted as the US standard for protruding-head rivets and can be used in place of the older roundhead, flathead, and brazier head rivets. MS20426 is the flush/countersunk rivet, not this one.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Head Style",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "033184bbb6",
+   "q": "The AN430 (MS20430) rivet is which head style, used mainly in the interior of the aircraft?",
+   "options": [
+    "100° countersunk (flush) head",
+    "Roundhead",
+    "Brazier head",
+    "Universal head"
+   ],
+   "correct": 1,
+   "short": "AN430 / MS20430 = roundhead (interior).",
+   "expl": "AN430 (MS20430) is the roundhead rivet, used inside the aircraft except where an adjacent part needs clearance. Flatheads (AN441/AN442) are also interior; brazier heads (AN455/AN456) go on exterior surfaces where flush riveting is not essential.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Head Style",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "00ca9d42c9",
+   "q": "In MS20470AD4-4, the letters 'AD' identify the ALLOY. Which alloy is it?",
+   "options": [
+    "1100",
+    "2024",
+    "2117",
+    "2017"
+   ],
+   "correct": 2,
+   "short": "AD = 2117 aluminum.",
+   "expl": "The letter(s) after the head-style number name the alloy. AD is 2117 (the common field rivet, driven as received). Its head carries a recessed dot. Do not confuse AD/2117 with D/2017 (a single D, raised dot) or DD/2024 (two raised dashes).",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "3129e2e2f8",
+   "q": "The alloy letters 'DD' in a rivet part number identify which alloy?",
+   "options": [
+    "2024",
+    "2117",
+    "2017",
+    "5056"
+   ],
+   "correct": 0,
+   "short": "DD = 2024 aluminum (an ice-box rivet).",
+   "expl": "DD is 2024, the strongest of the common structural rivets and an ice-box rivet that must be driven soon after refrigeration. Its head carries two raised dashes. A single D would be 2017, and AD would be 2117.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "e57b248c48",
+   "q": "The single letter 'D' in a rivet part number identifies which alloy?",
+   "options": [
+    "1100",
+    "2024",
+    "2117",
+    "2017"
+   ],
+   "correct": 3,
+   "short": "D = 2017 aluminum (an ice-box rivet).",
+   "expl": "A single D is 2017, a heat-treatable ice-box rivet whose head carries a single raised dot. Add a second D (DD) and you have 2024; add an A in front (AD) and you have 2117.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "b18e46b687",
+   "q": "The letter 'B' in a rivet part number identifies which alloy?",
+   "options": [
+    "5056",
+    "2024",
+    "1100",
+    "2117"
+   ],
+   "correct": 0,
+   "short": "B = 5056 aluminum (used with magnesium).",
+   "expl": "B is 5056, the rivet used where aluminum contacts a magnesium structure because it resists galvanic corrosion. Its head carries a raised cross.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "14e638b2f2",
+   "q": "A rivet part number has NO material letter after the standard number (for example AN470-4-4). According to the FAA handbook, what is the rivet made of?",
+   "options": [
+    "Copper",
+    "Mild steel",
+    "2024 aluminum",
+    "1100 aluminum"
+   ],
+   "correct": 1,
+   "short": "No material letter = MILD STEEL (not 1100).",
+   "expl": "This is a classic trap. The FAA handbook states that the absence of a material letter indicates a rivet made of mild steel — NOT 1100 aluminum. Soft 1100 aluminum has its own code, the letter that sits alone, so a blank is steel, not aluminum. Always read the letters carefully.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "aba63c2a46",
+   "q": "In an AN/MS rivet part number, which alloy does the single letter 'A' designate?",
+   "options": [
+    "1100 (or 3003) aluminum",
+    "Mild steel",
+    "2117 aluminum",
+    "Copper"
+   ],
+   "correct": 0,
+   "short": "A = 1100 (or 3003) aluminum — soft, plain-head.",
+   "expl": "The letter A designates 1100 (or 3003) aluminum, the soft, low-strength, plain-head rivet used for nonstructural work. Note the difference from a blank code: A is aluminum 1100, while no letter at all means mild steel.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "c75600064f",
+   "q": "The letter 'C' in a rivet part number designates what material (and 'M' designates what)?",
+   "options": [
+    "C = copper (and M = Monel)",
+    "C = carbon steel (and M = magnesium)",
+    "C = chromium (and M = manganese)",
+    "C = cadmium (and M = molybdenum)"
+   ],
+   "correct": 0,
+   "short": "C = copper; M = Monel.",
+   "expl": "Besides the aluminum codes, the handbook lists C for copper and M for Monel. These are used for special applications — copper for some nonstructural work and Monel (a corrosion-resistant nickel alloy) where steel-strength corrosion resistance is needed.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Alloy Code",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "adc5eb474e",
+   "q": "In MS20470AD4-4, the FIRST '4' (right after AD) gives the shank diameter. What diameter is it?",
+   "options": [
+    "4/32 inch = 1/8 inch",
+    "4/16 inch = 1/4 inch",
+    "4 inches",
+    "4 millimeters"
+   ],
+   "correct": 0,
+   "short": "First number = diameter in 32nds: 4/32 = 1/8 inch.",
+   "expl": "The first number after the alloy letters is the shank diameter counted in thirty-seconds of an inch. Here 4 means 4/32, which reduces to 1/8 inch. (Do not mix it up with the length number, which is in sixteenths.)",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "2e3e643088",
+   "q": "A rivet coded ...AD6-8 has a first number of 6. What is its shank DIAMETER?",
+   "options": [
+    "6/32 inch = 3/16 inch",
+    "6/16 inch = 3/8 inch",
+    "3/32 inch",
+    "1/8 inch"
+   ],
+   "correct": 0,
+   "short": "6/32 = 3/16 inch diameter.",
+   "expl": "The first number is diameter in thirty-seconds, so 6 means 6/32, which reduces to 3/16 inch. The 8 after the dash is the length (in sixteenths), a separate dimension.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "b0caa8e76f",
+   "q": "In a rivet part number, the FIRST number after the alloy code letters tells you what, measured in what units?",
+   "options": [
+    "The shank DIAMETER, in thirty-seconds (1/32) of an inch",
+    "The DIAMETER, in sixteenths (1/16) of an inch",
+    "The LENGTH, in thirty-seconds (1/32) of an inch",
+    "The LENGTH, in sixteenths (1/16) of an inch"
+   ],
+   "correct": 0,
+   "short": "First number = diameter in 32nds inch.",
+   "expl": "The first number after the letters is always the shank diameter expressed in thirty-seconds of an inch (so 3 is 3/32, 5 is 5/32, and so on). The length comes later, after the dash, and is in sixteenths — keep the two units straight.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)",
+   "topic": "Diameter",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "611662424e",
+   "q": "In MS20470AD4-4, the '-4' after the dash gives the LENGTH. What length is it?",
+   "options": [
+    "4/16 inch = 1/4 inch",
+    "4/32 inch = 1/8 inch",
+    "4 inches",
+    "1/2 inch"
+   ],
+   "correct": 0,
+   "short": "Dash number = length in 16ths: 4/16 = 1/4 inch.",
+   "expl": "The number after the dash is the rivet length counted in sixteenths of an inch. Here 4 means 4/16, which reduces to 1/4 inch. The diameter (the number before the dash) is in thirty-seconds — different units.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "622b40b859",
+   "q": "A rivet coded ...DD6-8 has '-8' after the dash. What is its LENGTH?",
+   "options": [
+    "8/16 inch = 1/2 inch",
+    "3/8 inch",
+    "8 inches",
+    "8/32 inch = 1/4 inch"
+   ],
+   "correct": 0,
+   "short": "8/16 = 1/2 inch length.",
+   "expl": "The dash number is length in sixteenths, so 8 means 8/16, which reduces to 1/2 inch. (The 6 before the dash was the diameter, 6/32 = 3/16 inch.)",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "0d749a7aa9",
+   "q": "In a rivet part number, the number AFTER the dash tells you what, measured in what units?",
+   "options": [
+    "The LENGTH, in sixteenths (1/16) of an inch",
+    "The DIAMETER, in thirty-seconds (1/32) of an inch",
+    "The LENGTH, in thirty-seconds (1/32) of an inch",
+    "The grip range, in whole inches"
+   ],
+   "correct": 0,
+   "short": "Dash number = length in 16ths inch.",
+   "expl": "The number following the dash is the rivet length in sixteenths of an inch (so -3 is 3/16, -7 is 7/16). The diameter sits before the dash and is in thirty-seconds, so always check which number you are reading.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Fig. 7-37/7-38, Page 7-56 (rivet identification code)",
+   "topic": "Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "6bf40f36ff",
+   "q": "How is a HALF-size rivet length written in an MS rivet part number?",
+   "options": [
+    "Half sizes are not available in MS rivets",
+    "An 'H' prefix on the length, e.g., MS20470AD4-H3",
+    "A second dash and a fraction, e.g., MS20470AD4-3-1/2",
+    "A '.5' is added after the length number, e.g., MS20470AD4-3.5"
+   ],
+   "correct": 3,
+   "short": "Half sizes = '.5' after the length (MS20470AD4-3.5).",
+   "expl": "Rivets can be bought in half-length increments by adding a '.5' after the main length number — for example MS20470AD4-3.5 is a 3.5/16-inch-long rivet. This lets you fine-tune length to the grip of the joint.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)",
+   "topic": "Length",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "a9ab6dbf5c",
+   "q": "Decode the complete part number MS20470AD4-4.",
+   "options": [
+    "Universal head · 2117 alloy · 1/8\" diameter · 1/4\" length",
+    "100° countersunk · 2024 alloy · 1/4\" diameter · 1/8\" length",
+    "Universal head · 2017 alloy · 1/8\" diameter · 1/2\" length",
+    "100° countersunk · 2117 alloy · 3/32\" diameter · 5/16\" length"
+   ],
+   "correct": 0,
+   "short": "MS20470AD4-4 = universal head, 2117, 1/8\" dia, 1/4\" long.",
+   "expl": "Read it in order: 20470 = universal (protruding) head; AD = 2117 alloy (recessed-dot head mark); the first 4 = 4/32 = 1/8 inch diameter; and -4 = 4/16 = 1/4 inch length. Diameter before the dash is in thirty-seconds, length after the dash is in sixteenths.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)",
+   "topic": "Full Decode",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "33bc7e52b9",
+   "q": "Decode the complete part number MS20426DD6-8.",
+   "options": [
+    "100° countersunk (flush) head · 2024 alloy (ice-box) · 3/16\" diameter · 1/2\" length",
+    "Universal head · 2117 alloy · 6/16\" diameter · 8/32\" length",
+    "100° countersunk head · 2017 alloy · 1/8\" diameter · 1/4\" length",
+    "Universal head · 2024 alloy · 1/2\" diameter · 3/16\" length"
+   ],
+   "correct": 0,
+   "short": "MS20426DD6-8 = countersunk, 2024 (ice-box), 3/16\" dia, 1/2\" long.",
+   "expl": "Breaking it down: 20426 = 100-degree countersunk (flush) head; DD = 2024 alloy (two-raised-dashes head mark, an ice-box rivet); the first 6 = 6/32 = 3/16 inch diameter; and -8 = 8/16 = 1/2 inch length. Because it is 2024, it must be kept refrigerated and driven soon after removal.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)",
+   "topic": "Full Decode",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "f65d45a659",
+   "q": "The FAA handbook's own example, MS20470AD3-5, decodes to which of these?",
+   "options": [
+    "Universal head · 2117 alloy · 3/32\" diameter · 5/16\" length",
+    "Roundhead · 2017 alloy · 3/16\" diameter · 5/16\" length",
+    "100° countersunk · 2117 alloy · 3/16\" diameter · 5/32\" length",
+    "Universal head · 2024 alloy · 3/32\" diameter · 5/16\" length"
+   ],
+   "correct": 0,
+   "short": "MS20470AD3-5 = universal, 2117, 3/32\" dia, 5/16\" long.",
+   "expl": "This is the decode the handbook spells out: 20470 = universal head, AD = 2117-T aluminum, 3 = 3/32 inch diameter (thirty-seconds), 5 = 5/16 inch length (sixteenths). Same rivet is written AN470AD3-5 in the older Army-Navy system.",
+   "cite": "AC 43.13-1B, Ch. 4, ¶4-57, Page 4-24 (rivet part-number example)",
+   "topic": "Full Decode",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "944e885d5f",
+   "q": "In MS20470DD6-8, the 'DD' code tells you the alloy. What head MARKING will you see stamped on this rivet?",
+   "options": [
+    "A recessed dot",
+    "Two raised dashes",
+    "A raised cross",
+    "A raised dot"
+   ],
+   "correct": 1,
+   "short": "DD = 2024, whose head carries two raised dashes.",
+   "expl": "The alloy letters in the part number are the SAME information as the head mark. DD is 2024, and the 2024 head carries two raised dashes. So without even reading the stamp you know this rivet's head will show two raised dashes — and that it is an ice-box rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-31 (ice-box rivets)",
+   "topic": "Code ↔ Mark",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
+   ]
+  },
+  {
+   "id": "1a754a27f3",
+   "q": "Why are the alloy code letters (A, AD, D, DD, B) in a part number so useful even when you can see the rivet?",
+   "options": [
+    "They name the same alloy as the head marking, so the part number and the stamped head always agree",
+    "They tell you the color the rivet must be painted",
+    "They specify the air pressure for the rivet gun",
+    "They give the hole size in millimeters"
+   ],
+   "correct": 0,
+   "short": "The code letters match the head markings — part number and stamp agree.",
+   "expl": "Each alloy has one fixed head mark, and the part-number letters name that same alloy: A = plain head, AD = recessed dot, D = raised dot, DD = two raised dashes, B = raised cross. So you can confirm a loose rivet against its part number (or vice versa) — the paperwork and the stamped head tell the same story.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Fig. 4-74, Page 4-31 (solid rivet part number)",
+   "topic": "Code ↔ Mark",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Rivet Part Numbers"
    ]
   },
   {
