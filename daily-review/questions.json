@@ -1,6 +1,6 @@
 {
- "built": "2026-10-01",
- "total": 4090,
+ "built": "2026-10-15",
+ "total": 4115,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -49,6 +49,7 @@
   "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools": 8,
   "Block 5 · Day 7 — Layout, Forming & Bend Calculations": 28,
   "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
+  "Block 5 · QZ 12 BLK 05 (Lay-Out 2)": 25,
   "Block 5 · Rivet Head Markings": 21,
   "Block 5 · Rivet Part Numbers": 24,
   "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 25,
@@ -57526,6 +57527,456 @@
    "block": "Block 5",
    "sources": [
     "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "53cf48fc50",
+   "q": "(Set Back) SB #1 = __________?",
+   "options": [
+    "7.065",
+    "0.002",
+    "0.065"
+   ],
+   "correct": 2,
+   "short": "SB = K(R+T) = .4142 × .157 = .065",
+   "expl": "Setback for any bend other than 90° is K(R+T). R + T = .125 + .032 = .157; times the 45° K of .4142 gives .06503, which rounds to .065.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (SB = K(R+T))",
+   "topic": "Setback",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "693b86c309",
+   "q": "(Set Back) SB #2 = ________?",
+   "options": [
+    "7.065",
+    "0/.002",
+    "0.065"
+   ],
+   "correct": 2,
+   "short": "Same 45° bend → same setback, .065",
+   "expl": "Bend #2 is also 45° with the same radius and thickness, so its setback is identical: .4142 × (.125 + .032) = .065.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (SB = K(R+T))",
+   "topic": "Setback",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "602101d5f6",
+   "q": "(Flat Dimension) FD A = ___________",
+   "options": [
+    "1.535",
+    "1.491",
+    "1.382"
+   ],
+   "correct": 0,
+   "short": "Flat A = MLD A − SB = 1.6 − .065 = 1.535",
+   "expl": "A flat equals its mold line dimension minus the setback for each bend touching it. Flange A touches one bend: 1.6 − .065 = 1.535.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (Flat = MLD − SB)",
+   "topic": "Flat Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "7b296c185b",
+   "q": "(Flat Dimension) FD B = ___________",
+   "options": [
+    "4.891",
+    "4.782",
+    "4.870"
+   ],
+   "correct": 2,
+   "short": "Flat B = 5 − .065 − .065 = 4.870",
+   "expl": "The center section touches BOTH bends, so subtract two setbacks: 5 − .065 − .065 = 4.870.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (one setback subtracted per bend)",
+   "topic": "Flat Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "e7d406a5f8",
+   "q": "(Flat Dimension) FD C = ___________",
+   "options": [
+    "2.335",
+    "Option 3",
+    "2.291"
+   ],
+   "correct": 0,
+   "short": "Flat C = 2.4 − .065 = 2.335",
+   "expl": "Flange C touches one bend: 2.4 − .065 = 2.335. ('Option 3' is a leftover placeholder on the form.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (Flat = MLD − SB)",
+   "topic": "Flat Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "c9bbc1f132",
+   "q": "(Bend Allowance) BA #1 = ___________",
+   "options": [
+    "0.109",
+    "0.108",
+    "0.003"
+   ],
+   "correct": 0,
+   "short": "BA = (.01743×.125 + .0078×.032) × 45 = .109",
+   "expl": ".01743 × .125 = .00217875 and .0078 × .032 = .0002496; together .00242835 per degree. Times 45 degrees = .10928, which rounds to .109. The .003 choice is only the per-degree figure, not multiplied by N.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (BA = (0.01743R + 0.0078T)N)",
+   "topic": "Bend Allowance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "363e1d41d3",
+   "q": "(Bend Allowance) BA #2 = ___________",
+   "options": [
+    "0.109",
+    "0.003",
+    "0.108"
+   ],
+   "correct": 0,
+   "short": "Same 45° bend → BA .109",
+   "expl": "Bend #2 has the same radius, thickness and degrees as bend #1, so the bend allowance is the same .109.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (BA = (0.01743R + 0.0078T)N)",
+   "topic": "Bend Allowance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "7b277b6397",
+   "q": "(Total Developed Width) TDW = _________",
+   "options": [
+    "8.958",
+    "8.870",
+    "8.740"
+   ],
+   "correct": 0,
+   "short": "TDW = 1.535 + 4.870 + 2.335 + .109 + .109 = 8.958",
+   "expl": "Total developed width is all the flats plus every bend allowance: 1.535 + 4.870 + 2.335 = 8.740 of flats, plus 2 × .109 = .218 of bends, for 8.958. Note 8.740 is the flats alone — a trap.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (TDW = Flats + BA × number of bends)",
+   "topic": "Total Developed Width",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "25144a92a7",
+   "q": "Total Mold Line Dimension (TMLD) = ___________",
+   "options": [
+    "9.000",
+    ".042",
+    "8.958"
+   ],
+   "correct": 0,
+   "short": "TMLD = 1.6 + 5 + 2.4 = 9.000",
+   "expl": "Total mold line dimension is just the mold line dimensions added: 1.6 + 5 + 2.4 = 9.000.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (mold line dimension)",
+   "topic": "Mold Line Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "54a78c8c83",
+   "q": "Amount of stretch or (Material Growth) MG",
+   "options": [
+    "0.052",
+    "0.043",
+    "0.042"
+   ],
+   "correct": 2,
+   "short": "MG = TMLD − TDW = 9.000 − 8.958 = .042",
+   "expl": "Stretch (material growth) is the total mold line dimension minus the total developed width: 9.000 − 8.958 = .042. Unrounded math gives .0416, which still rounds to .042.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (TDW is smaller than total MLD) + AIM BLK 05 Study Guide 2 (MG = TMLD − TDW)",
+   "topic": "Stretch / Material Growth",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "bc548325e1",
+   "q": "FD A = _______________?",
+   "options": [
+    "0.932\"",
+    "0.905\"",
+    "0.850\""
+   ],
+   "correct": 1,
+   "short": "Flat A = 1 − .095 = .905",
+   "expl": "Flange A touches only bend D: 1 − .095 = .905. (The setbacks given check out: K60 .5774 × .165 = .095 and K45 .4142 × .165 = .068.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (Flat = MLD − SB); FAA Figure 7",
+   "topic": "Flat Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "b171e39a0c",
+   "q": "Refer to question 11,  FD B = _________?",
+   "options": [
+    "2.738\"\"",
+    "2.932\"",
+    "2.837\""
+   ],
+   "correct": 2,
+   "short": "Flat B = 3 − .095 − .068 = 2.837",
+   "expl": "The base touches both bends, so subtract both setbacks: 3 − .095 − .068 = 2.837.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (one setback per bend); FAA Figure 7",
+   "topic": "Flat Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "9f10c59109",
+   "q": "Refer to question 11,  FD C = ________?",
+   "options": [
+    "1.837\"",
+    "1.932\"",
+    "1.888\""
+   ],
+   "correct": 1,
+   "short": "Flat C = 2 − .068 = 1.932",
+   "expl": "Flange C touches only bend E: 2 − .068 = 1.932.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (Flat = MLD − SB); FAA Figure 7",
+   "topic": "Flat Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "cb572f06fe",
+   "q": "Refer to question 11,  (TDW) Total Developed Width = ___________?",
+   "options": [
+    "5.764\"",
+    "5.936\"",
+    "5.837\""
+   ],
+   "correct": 1,
+   "short": "TDW = .905 + 2.837 + 1.932 + .150 + .112 = 5.936",
+   "expl": "Flats .905 + 2.837 + 1.932 = 5.674, plus the two bend allowances .150 + .112 = .262, gives 5.936.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (TDW = Flats + BAs); FAA Figure 7",
+   "topic": "Total Developed Width",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "71bc28ca38",
+   "q": "Refer to question 11,  (TMLD) Total Mold Line Dimension = _________?",
+   "options": [
+    "5.764\"",
+    "6.00\"",
+    "5.936\""
+   ],
+   "correct": 1,
+   "short": "TMLD = 1 + 3 + 2 = 6.00",
+   "expl": "Add the mold line dimensions: 1 + 3 + 2 = 6.00. 5.936 is the developed width, not the mold line total.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (mold line dimension); FAA Figure 7",
+   "topic": "Mold Line Dimensions",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "2f46a8ee63",
+   "q": "Refer to question 11,  (MG) Material Growth or Stretch = _________?",
+   "options": [
+    "0.064\"",
+    "0.056\"",
+    "0.172"
+   ],
+   "correct": 0,
+   "short": "MG = 6.000 − 5.936 = .064",
+   "expl": "Stretch = total mold line dimension − total developed width = 6.000 − 5.936 = .064.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (TDW vs total MLD) + AIM BLK 05 Study Guide 2 (MG = TMLD − TDW)",
+   "topic": "Stretch / Material Growth",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "5577891b08",
+   "q": "Refer to Questions 11 thru 16.  What is dimension F?",
+   "options": [
+    "5.936\" and the metal will stretch with total bend allowances of .260\".",
+    "5.936\" with a total setback stretch of 0.160\"",
+    "5.936\" and the metal will stretch about 0.064\""
+   ],
+   "correct": 2,
+   "short": "F = TDW 5.936; stretch .064",
+   "expl": "Dimension F on Figure 7 is the whole flat blank = the total developed width, 5.936. The stretch is 6.000 − 5.936 = .064. The bend allowances total .262 (not .260) and setbacks total .163 (not .160), and neither one is the stretch.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-66 (TDW = size of blank to cut); FAA Figure 7",
+   "topic": "Total Developed Width",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "5236c6f63e",
+   "q": "In the formula \"K(R+T)\" what does \"K\" stand for?",
+   "options": [
+    "The number from the \"K\" Chart which corresponds to the number of degrees in the bend.",
+    "The number of degrees in the bend",
+    "Either A or B as they are both the same"
+   ],
+   "correct": 0,
+   "short": "K = the K-chart number for that bend angle",
+   "expl": "K is the K-factor read from the K chart for the bend's angle (it equals the tangent of half the bend angle). It is NOT the degrees themselves — for 45° K is .4142, not 45.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (K-factor) and Figure 4-122, Page 4-60",
+   "topic": "K-Factor",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "31ba36ecec",
+   "q": "In the formula \"(0.01743R+0.0078T)N\" what does the \"N\" stand for ?",
+   "options": [
+    "The number from the \"K\" Chart which corresponds to the number of degrees of bend.",
+    "The number of degrees in the bend",
+    "Either or as they are both the same"
+   ],
+   "correct": 1,
+   "short": "N = number of degrees of bend",
+   "expl": "In the bend allowance formula, N is simply the number of degrees of bend (45, 60, 90...). The K-chart number belongs to the setback formula.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (N = number of degrees of bend)",
+   "topic": "Bend Allowance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "8f546e10b2",
+   "q": "Which Formula is used to find the bend allowance?",
+   "options": [
+    "N(R+T)",
+    "K(R+T)",
+    "(0.01743R+0.0078T)N"
+   ],
+   "correct": 2,
+   "short": "BA = (0.01743R + 0.0078T)N",
+   "expl": "The bend allowance formula good for any bend from 1° to 180° is (0.01743R + 0.0078T)N. K(R+T) is the setback formula; N(R+T) is not a real formula.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (Formula 2: bend allowance)",
+   "topic": "Bend Allowance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "b0b65e0ebf",
+   "q": "In the formula (0.01743 x R + 0.0078 x T) N what are 0.01743 and 0.0078?",
+   "options": [
+    "Variables",
+    "Neither variables nor constants",
+    "Constants"
+   ],
+   "correct": 2,
+   "short": "They are constants",
+   "expl": "The handbook calls them 'two constant values' worked out by experiment over the years — they never change. R, T and N are the values that change from job to job.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (\"two constant values\")",
+   "topic": "Bend Allowance",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "85345c1a5a",
+   "q": "In the Formulae (0.01743 x R + 0.0078 x T) N and K(R+T) what does \"R\" represent?",
+   "options": [
+    "Thickness",
+    "Radius",
+    "Number of degrees in the bend."
+   ],
+   "correct": 1,
+   "short": "R = bend radius",
+   "expl": "R is the desired bend radius in both formulas.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (R = the desired bend radius)",
+   "topic": "Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "ceed9bc2cd",
+   "q": "In the Formulae (0.01743 x R + 0.0078 x T) N and K(R+T) what does \"T\" represent?",
+   "options": [
+    "Number of degrees in the bend.",
+    "Thickness",
+    "Radius"
+   ],
+   "correct": 1,
+   "short": "T = metal thickness",
+   "expl": "T is the thickness of the metal in both formulas.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-64 (T = the thickness of the metal)",
+   "topic": "Terminology",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "64fb1e0f30",
+   "q": "What is Material Growth (MG) or Stretch?",
+   "options": [
+    "The sum of the Total Mold line Dimensions (TMLD) and Total Developed Width (TDW)",
+    "The difference between Total Mold line Dimensions (TMLD) and Total Developed Width (TDW)",
+    "The difference between Bend (BA) allowance and Set Back (SB)."
+   ],
+   "correct": 1,
+   "short": "MG = TMLD − TDW",
+   "expl": "Because the metal is bent around a radius instead of a sharp corner, the developed width is always a little less than the total mold line dimensions. That difference is the stretch / material growth.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (TDW is less than the sum of MLDs) + AIM BLK 05 Study Guide 2",
+   "topic": "Stretch / Material Growth",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
+   ]
+  },
+  {
+   "id": "6133c1aa8f",
+   "q": "When you see the set back formula written this way (R+T) what does it mean?",
+   "options": [
+    "The number of degrees in the bend equals 90 closed which corresponds to zero (0) on the \"K\" Chart.",
+    "The number of degrees in the bend equals 90  which corresponds to one (1) on the \"K\" chart.",
+    "The K was left out of the formula by mistake."
+   ],
+   "correct": 1,
+   "short": "(R+T) alone = a 90° bend, where K = 1",
+   "expl": "For a 90° bend K equals 1, and 1 × (R+T) is just R+T — so the K is dropped. The handbook: 'In a 90° bend, SB = R + T.'",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (K-factor of 90° equal to 1; SB = R + T)",
+   "topic": "K-Factor",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 12 BLK 05 (Lay-Out 2)"
    ]
   },
   {
