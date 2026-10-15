@@ -1,6 +1,6 @@
 {
  "built": "2026-10-15",
- "total": 4115,
+ "total": 4135,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -49,6 +49,7 @@
   "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools": 8,
   "Block 5 · Day 7 — Layout, Forming & Bend Calculations": 28,
   "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
+  "Block 5 · QZ 10 BLK 05 (Special Fasteners)": 20,
   "Block 5 · QZ 12 BLK 05 (Lay-Out 2)": 25,
   "Block 5 · Rivet Head Markings": 21,
   "Block 5 · Rivet Part Numbers": 24,
@@ -57527,6 +57528,359 @@
    "block": "Block 5",
    "sources": [
     "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "05849d3ffe",
+   "q": "Special purpose fasteners are designed for applications in which fastener strength, ease of installation, or temperature properties of the fastener require consideration.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — that is the handbook's definition word for word.",
+   "expl": "The handbook opens its Special Purpose Fasteners section with exactly this sentence: they are designed for jobs where fastener strength, ease of installation, or temperature properties need special consideration.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-45 (Special Purpose Fasteners)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "75a13dec45",
+   "q": "Many friction-locked blind rivet center stems fall out due to vibration, so these rivets are frequently replaced by mechanical-lock, or stem-lock fasteners.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — vibration shakes the friction-held stem out.",
+   "expl": "Friction-locked stems can vibrate loose, which greatly reduces shear strength, so most friction-lock blind rivets are replaced by the mechanical-lock (stem-lock) type.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-47 (Friction-Locked Blind Rivets)",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "d2bd729a95",
+   "q": "CherryMAX® rivets are classified as?",
+   "options": [
+    "Friction lock fasteners",
+    "Hollow stem blind fasteners",
+    "Mechanical lock blind fasteners."
+   ],
+   "correct": 2,
+   "short": "Mechanical lock blind fasteners.",
+   "expl": "The handbook files CherryMAX under mechanical-lock blind rivets: a locking collar mechanically locks the stem to the sleeve, so it can't shake out the way a friction-lock stem can.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-48 (CherryMAX® mechanical-lock blind rivet)",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "3a13384a26",
+   "q": "How are CherryMAX® rivets are installed?",
+   "options": [
+    "By using a rivet gun and bucking bar.",
+    "By using a rivet installation tool specially designed for installing CherryMax rivets.",
+    "By using any blind rivet installation tool."
+   ],
+   "correct": 1,
+   "short": "With a dedicated Cherry installation tool.",
+   "expl": "CherryMAX rivets are pulled with Cherry tools: the G750A or G800 hand riveters, or the G704B / G747 power tools. The pulling head is made for the CherryMAX stem. No bucking bar is used because it's a blind rivet, and a generic blind-rivet puller is not approved.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-48 (CherryMAX® installation tools)",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "818fe08a6d",
+   "q": "The removal of a mechanically locked blind rivet can be accomplished with the same techniques as removing solid shank rivets.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — the lock ring and stem must come out first.",
+   "expl": "Mechanically locked blind rivets are 'a challenge to remove' because they are hard metals with no back-side access. You first drill the top of the stem to destroy the lock, remove the lock ring, and punch the stem out. Only after that can the rest be drilled out like a solid rivet, so the technique is not the same.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-49 (Removal of Mechanically-Locked Blind Rivets)",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "1da7a0054e",
+   "q": "A Hi-Lok® is an example of a mechanically locked blind rivet.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — Hi-Lok is a pin fastening (high-shear) system.",
+   "expl": "A Hi-Lok is a two-piece pin-and-threaded-collar fastener in the Pin Fastening Systems (high-shear) family, and you need access to both sides to install it. It is not a blind rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-49 to 4-50 (Pin Fastening Systems; Hi-Lok®)",
+   "topic": "Pin Fastening Systems",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "0fed6c3b10",
+   "q": "The hole for a Hi-Lok® shall be prepared so that the maximum interference fit does not exceed 0.003-inch.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — the limit is 0.002-inch.",
+   "expl": "The handbook says the Hi-Lok hole 'shall be prepared so that the maximum interference fit does not exceed 0.002-inch', to avoid building up excessive stress around the hole. The 0.003 on the form is the trap.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-50 (Hi-Lok® hole preparation)",
+   "topic": "Pin Fastening Systems",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "32cfa7e313",
+   "q": "Hi-Lok®, Hi-Tigue®, and Hi-Lite® are all examples of pin fastening systems",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — all three are Hi-Shear pin fastening systems.",
+   "expl": "The handbook lists Hi-Lok, Hi-Tigue and Hi-Lite (all made by Hi-Shear Corporation) as pin fastening systems, also called high-shear fasteners.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-49 to 4-51 (Pin Fastening Systems)",
+   "topic": "Pin Fastening Systems",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "7c28c3a865",
+   "q": "What type of fastener is pictured?",
+   "options": [
+    "CherryMAX rivet",
+    "Huck Blind Bolt",
+    "Jo-Bolt"
+   ],
+   "correct": 0,
+   "short": "CherryMAX rivet.",
+   "expl": "Serrated pulling stem, locking collar, driving anvil washer and a rivet sleeve: those are the CherryMAX parts shown in the handbook figure. A Jo-Bolt has a hex drive nut and threaded core bolt instead.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-48 to 4-49 (Fig. 4-103 CherryMAX® rivet)",
+   "topic": "Fastener ID",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "428212a06a",
+   "q": "What type of fasteners are pictured?",
+   "options": [
+    "Rivet nut",
+    "Nut-plates or Plate Nuts",
+    "Lockbolt"
+   ],
+   "correct": 1,
+   "short": "Nut-plates (plate nuts).",
+   "expl": "Each part is a nut on a small plate with rivet holes in the ears (some are floating, held in a cage). They get riveted behind a panel so a screw can be installed from the front. That is a nutplate.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-56 (nutplates) + AC 43.13-1B ¶4-57",
+   "topic": "Fastener ID",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "cd617e8875",
+   "q": "The best way to remove a lockbolt is to?",
+   "options": [
+    "Remove the collar and drill out the pin.",
+    "Just drill out the pin.",
+    "Remove the collar and drive out the pin."
+   ],
+   "correct": 2,
+   "short": "Remove the collar, then drive out the pin.",
+   "expl": "Handbook, word for word: 'The best way to remove a lockbolt is to remove the collar and drive out the pin.' A collar cutter on a drill motor mills the collar off (a collar splitter or small chisel is the fallback), and you use a backup block when driving the pin.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-52 to 4-53 (Lockbolt Removal)",
+   "topic": "Lockbolts",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "56e582dcac",
+   "q": "What tool is pictured?",
+   "options": [
+    "Nut Plate Gage",
+    "CherryMAX puller",
+    "Grip Gage"
+   ],
+   "correct": 2,
+   "short": "Grip gage.",
+   "expl": "The tool is a Cherry grip selection gage: the hooked, numbered blade goes through the hole to measure material thickness so you can choose the right grip-length fastener. The gage itself says 'Grip Selection Gage'.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-53 to 4-54 (grip gauges; Fig. 4-106)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "bfaa74be65",
+   "q": "Before installing special fasteners you should always.",
+   "options": [
+    "Determine the grip length required for the fastener using a grip gauge.",
+    "Determine the grip diameter required for the fastener using a grip gauge.",
+    "Do nothing as all special fasteners will self accommodate to what ever size hole they are installed in."
+   ],
+   "correct": 0,
+   "short": "Measure the grip LENGTH with a grip gauge.",
+   "expl": "Getting the fastener length right is critical. Grip gauges go in the hole to measure the material thickness (grip), and every system has its own gauge. Diameter comes from the hole and drill size, not the grip gauge.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-53 to 4-54 (grip length; 'Use the grip gauge available for the type of fastener')",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "e6a6a2a66a",
+   "q": "Which of the following are not approved for use on certificated aircraft structures or components.",
+   "options": [
+    "Cherry Lock fasteners",
+    "Hi-Loc Fasteners",
+    "Common pull-type pop rivets, produced for non-aircraft related applications"
+   ],
+   "correct": 2,
+   "short": "Common hardware-store pop rivets.",
+   "expl": "Both sources say it outright: common pull-type pop rivets made for non-aircraft uses are not approved for use on certificated aircraft structures or components. Cherry Lock and Hi-Lok are approved aerospace fasteners.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-56 (Pop Rivets) + AC 43.13-1B ¶4-57f(7)",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "95a5f0d793",
+   "q": "Blind rivets shall not be used in which of the following areas. Multiple Answers",
+   "options": [
+    "fluid-tight areas",
+    "air intake areas",
+    "aircraft control surfaces"
+   ],
+   "correct": 0,
+   "short": "All three — fluid-tight areas, air intake areas, and control surfaces.",
+   "expl": "AC 43.13-1B: blind rivets shall not be used in fluid-tight areas, or in air intake areas where rivet parts may be ingested by the engine, or on control surfaces. The same list also includes hinges, hinge brackets, flight control actuating systems, wing attachment fittings, landing gear fittings, and floats or hulls below the water line. Check all three boxes.",
+   "cite": "AC 43.13-1B, ¶4-57f NOTE, Page 4-26",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "be0e5804e1",
+   "q": "A Hi-Lok fastener is determined to be torqued properly when?",
+   "options": [
+    "The wrenching flats break off.",
+    "The collar changes color.",
+    "A torque wrench indicates the correct torque has been reached."
+   ],
+   "correct": 0,
+   "short": "When the wrenching flats shear off.",
+   "expl": "The Hi-Lok collar has a built-in fracture point: the wrenching flats shear off when the proper torque is reached. That leaves the collar correctly torqued with no extra torque inspection, and it also means it can't be overtorqued.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-50 (Hi-Lok® collar fracture point)",
+   "topic": "Pin Fastening Systems",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "a681b4a719",
+   "q": "Blind fasteners are commonly used when?",
+   "options": [
+    "You have access to both sides of the material being fastened together.",
+    "The installer can not see the hole into which he or she must insert the fastener.",
+    "You have access to only one side of the material being fastened together."
+   ],
+   "correct": 2,
+   "short": "Only one side is accessible.",
+   "expl": "Blind rivets and fasteners are used when there is access to only one side of the structure. If you can reach both sides, a driven solid rivet is preferred.",
+   "cite": "AC 43.13-1B, ¶4-57f, Page 4-26 + FAA-H-8083-31B, Ch. 4, Page 4-45",
+   "topic": "Blind Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "82cf0c5bec",
+   "q": "Do Hi-Lok fasteners require special tools for installation?",
+   "options": [
+    "No, a screw driver and box end wrench can be used",
+    "No, an allen key and wrench or ratchet wrench can be used.",
+    "Yes, Hi-Lok fasteners require special tools for proper installation."
+   ],
+   "correct": 1,
+   "short": "No — an Allen (hex) key holds the pin while a wrench runs the collar.",
+   "expl": "The Hi-Lok pin has a hex recess in its threaded end. An Allen wrench holds the pin still while the collar is turned with a wrench until its wrenching flats shear off at the set torque. Ordinary hand tools do the job; a screwdriver doesn't fit the hex recess.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-50 (Hi-Lok®: hex recess + Allen wrench)",
+   "topic": "Pin Fastening Systems",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "16c208606a",
+   "q": "Rivnuts are primarily designed for use when?",
+   "options": [
+    "The installer has access to both sides of the installation area.",
+    "The installer has access to only one side of the installation area but can also be used when access to both side are available.",
+    "The screw hole has be drilled oversized ."
+   ],
+   "correct": 1,
+   "short": "One-side access (but fine with two-side access too).",
+   "expl": "A rivet nut is a blind-installed fastener, crimped from one side, that leaves a threaded hole. It is built for one-side access but nothing prevents using it where both sides are reachable. It is not a fix for an oversized hole.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-55 (Rivet Nut: 'blind installed', 'installed by crimping from one side')",
+   "topic": "Rivet Nuts",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
+   ]
+  },
+  {
+   "id": "f691989f95",
+   "q": "MS20470AD4-4 and AN426AD4-4 solid rivets are considered special fasteners.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — they're standard solid shank rivets.",
+   "expl": "MS20470 (universal head) and AN426 (100° countersunk) are ordinary solid shank rivets. Special fasteners are what you use when solid shank rivets are impractical, so by definition these are not special fasteners.",
+   "cite": "AC 43.13-1B, ¶4-57e, Page 4-26 + FAA-H-8083-31B, Ch. 4, Page 4-45",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 10 BLK 05 (Special Fasteners)"
    ]
   },
   {
