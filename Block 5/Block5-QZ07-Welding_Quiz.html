@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)</h1>
+    <div class="sub">The exact 25-question AIM Welding quiz: oxy-acetylene equipment, gases, regulators, hoses and threads, cylinder safety, lenses, and the AC 43.13 do-not-weld list. Questions and choices are word-for-word and in the SAME ORDER as the real form; checkbox questions are multi-select. Cites FAA-H-8083-31B Ch. 5 and AC 43.13-1B, and flags the items that come from the AIM class.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"fixed": true, "q": "When one tube is welded to another it is called a ___________ ; when more than two tubes are welded together it is called a ____________.", "options": ["weld, splice", "joint, cluster", "single-weld, double-weld"], "correct": 1, "short": "Joint; cluster.", "expl": "Two tubes welded together make a joint. Where several tubes meet and are welded at one spot it's a cluster, which is why AC 43.13 talks about 'cluster joints' in steel-tube fuselages. (The FAA text uses the term 'cluster' but doesn't spell out the two-vs-more definition; that comes from the AIM class.)", "cite": "AC 43.13-1B ¶4-91 (cluster joints) + FAA-H-8083-31B, Ch. 5, Page 5-30 (tubing clusters) + AIM class", "topic": "Welding Terms", "fig": ""}, {"fixed": true, "q": "There are three general types of welding:", "options": ["gas, electric arc, and electric resistance welding.", "electric, resistance, and inductance.", "gas, shielded-gas, and electric."], "correct": 0, "short": "Gas, electric arc, electric resistance.", "expl": "Handbook, word for word: 'There are three general types of welding: gas, electric arc, and electric resistance.'", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-1", "topic": "Welding Types", "fig": ""}, {"fixed": true, "q": "The oxy-acetylene flame has a temperature of approximately 6,300 °Fahrenheit (F), is produced with a torch burning acetylene and mixing it with pure oxygen.", "options": ["True", "False"], "correct": 0, "short": "True — 6,300 °F.", "expl": "Handbook: 'The oxy-acetylene flame, with a temperature of approximately 6,300 °F, is produced with a torch burning acetylene and mixing it with pure oxygen.'", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-1 (Gas Welding)", "topic": "Gas Welding", "fig": ""}, {"fixed": true, "q": "Why would a two-torch method of welding be beneficial?", "options": ["It helps the welder establish a nice, clean weld bead.", "It speeds up the welding process and helps to meet company deadlines.", "It heats the surrounding area and helps to reduce cracks."], "correct": 2, "short": "The second torch preheats the area so it cools evenly and doesn't crack.", "expl": "With two torches, one does the welding while the other heats the surrounding metal. Warming the area cuts the temperature difference, so the weld cools more evenly and cracks less. That is the same reason the handbook calls for preheating crack-prone metals. The 'two-torch method' itself is from the AIM class, not the FAA text.", "cite": "AIM class (two-torch method) + FAA-H-8083-31B, Ch. 5 (preheating)", "topic": "Gas Welding", "fig": ""}, {"fixed": true, "multi": [1, 2, 4, 5, 6], "q": "What are some key components of oxy-acetylene welding equipment? (This question has multiple answers)", "options": ["Welding rags", "Two cylinders, acetylene and oxygen", "An appropriately-rated fire extinguisher", "Machinist scale", "Acetylene and oxygen pressure regulators and cylinder pressure gauges", "A flint or spark lighter", "Welding goggles fitted with appropriate colored lenses"], "correct": 1, "short": "Everything except welding rags and the machinist scale.", "expl": "The handbook's equipment list includes: two cylinders (acetylene and oxygen); regulators and cylinder pressure gauges; red and green hoses; the torch; goggles with colored lenses; a flint or spark lighter; a special wrench; and an appropriately-rated fire extinguisher. Five of those appear on the form, so check those five. Rags and a machinist scale aren't on the list, and loose rags are a fire hazard near a torch.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-1 (oxy-acetylene equipment list)", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "The acetylene cylinder valve outlet should point away from the oxygen cylinder.", "options": ["True", "False"], "correct": 0, "short": "True.", "expl": "Keep the fuel and oxygen outlets pointed away from each other, so any fuel that leaks or is blown out doesn't go straight at the oxygen cylinder valve. This is standard cylinder-setup safety taught in class. The FAA text covers related precautions (blow out the valve, stand off to the side) but not this exact sentence.", "cite": "AIM class + FAA-H-8083-31B, Ch. 5, Page 5-10 (cylinder/regulator setup)", "topic": "Safety", "fig": ""}, {"fixed": true, "q": "Store acetylene cylinders in a(n) ____________ position. If left stored on the side, the Acetylene tank must be in an upright position for a minimum of ______________ before use.", "options": ["upright, 2 hours", "upside down, 6 hours", "sideways, 20 minutes"], "correct": 0, "short": "Upright; then stand it up before use (class figure: 2 hours).", "expl": "Cylinders are stored and moved upright, especially acetylene. Lying on its side lets acetone get into the regulator and hose. The handbook says a cylinder that has been on its side must stand upright 'for at least twice as long' before use. It doesn't give a fixed number of hours; '2 hours' is the class figure. Upright is the only choice that fits either way.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 (Gas Cylinders)", "topic": "Safety", "fig": ""}, {"fixed": true, "q": "Acetylene is unstable at pressure greater than _____________.", "options": ["13 psi", "14 psi", "15 psi"], "correct": 2, "short": "15 psi.", "expl": "Acetylene is chemically very unstable. The handbook says the acetylene gauge 'should never be set higher than 15 psi for welding or cutting', and the regulator photo notes a 15-psi maximum working pressure. (Free acetylene can explode from a slight shock at 29.4 psi; 15 is the working limit.)", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-6 (Acetylene; Fig. 5-13)", "topic": "Gases", "fig": ""}, {"fixed": true, "q": "Hoses, regulators, or other apparatus intended for oxygen, are interchangeable with those intended for acetylene.", "options": ["True", "False"], "correct": 1, "short": "False.", "expl": "They're deliberately NOT interchangeable. Oxygen gear is green with right-hand threads, and acetylene gear is red with left-hand (grooved-nut) threads. AC 43.13: use oxy-fuel equipment only with the gases it is intended for.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Welding Hose) + AC 43.13-1B ¶4-114g", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "The oxygen union nut has ________ hand threads.", "options": ["Right", "Left", "Right or Left"], "correct": 0, "short": "Right-hand.", "expl": "The oxygen fittings are right-hand thread (no groove cut in the nut). Acetylene is the left-hand one.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Fig. 5-14; Welding Hose)", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "The acetylene regulator union nut has __________ hand threads.", "options": ["Right", "Left", "Right and Left"], "correct": 1, "short": "Left-hand (notched nut).", "expl": "The acetylene regulator's notched (grooved) connection nut means a left-hand thread. The handbook figure caption says exactly that.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Fig. 5-13; Welding Hose)", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "Always check gas welding equipment for leaks prior to use.", "options": ["True", "False"], "correct": 0, "short": "True.", "expl": "Setup includes a leak check: pressurize, back out the adjusting screws, and watch for a pressure drop, then use soapy water to find the leak. Never check for leaks with a flame.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 + AC 43.13-1B ¶4-114j", "topic": "Safety", "fig": ""}, {"fixed": true, "q": "______________ alloy fittings must never be used with acetylene as the reaction could be explosive.", "options": ["Steel", "Copper", "Aluminum"], "correct": 1, "short": "Copper.", "expl": "Acetylene reacts with copper (and with high-copper alloys or silver) to form copper acetylide, which can detonate from a shock. That's why acetylene fittings must never be copper. This is standard welding-safety knowledge from class; the FAA handbook and AC 43.13 don't print the copper warning.", "cite": "AIM class (acetylene/copper hazard)", "topic": "Safety", "fig": ""}, {"fixed": true, "multi": [0, 1, 3, 4], "q": "Per AC 43.13-1B, which of these weldable aircraft parts should never be welded: (This question has multiple answers)", "options": ["Brazed and soldered parts", "Alloy steel parts", "Paper & plastic", "Brace wires and cables", "2024 & 7075 Aluminum"], "correct": 0, "short": "All except paper & plastic.", "expl": "AC 43.13-1B ¶4-89 'Aircraft Parts Not To Be Welded' lists exactly four: brace wires and cables (they get their strength from cold-working); brazed and soldered parts (the braze or solder weakens the hot steel); heat-treated alloy steel parts like bolts and turnbuckle ends; and 2024 and 7075 aluminum (they crack severely). Paper and plastic aren't weldable aircraft parts.", "cite": "AC 43.13-1B ¶4-89, Page 4-75", "topic": "Do Not Weld", "fig": ""}, {"fixed": true, "q": "What is the significance of oxygen in the presence of petroleum (oil)-based products?", "options": ["It will not create a strong joint/weld", "It can ignite and burn violently", "It will cause the base meal to become brittle"], "correct": 1, "short": "It can ignite and burn violently.", "expl": "AC 43.13 CAUTION: 'Oil and grease in the presence of oxygen can ignite and burn violently.' Even a trace is dangerous, so oxy-fuel gear must stay oil-free.", "cite": "AC 43.13-1B ¶4-113c CAUTION and ¶4-114b, Pages 4-94 to 4-95", "topic": "Safety", "fig": ""}, {"fixed": true, "q": "Oxygen is a combustible gas that easily burns by itself.", "options": ["True", "False"], "correct": 1, "short": "False — oxygen doesn't burn; it makes other things burn hotter.", "expl": "AC 43.13: 'oxygen will not burn. The presence of oxygen, however, serves to accelerate combustion.' The handbook also calls oxygen nonflammable.", "cite": "AC 43.13-1B ¶4-113c + FAA-H-8083-31B, Ch. 5, Page 5-7 (Oxygen)", "topic": "Gases", "fig": ""}, {"fixed": true, "q": "What is the purpose of a of the two-stage pressure regulator?", "options": ["It maintains the correct airflow to the torch so the welding equipment does not catch fire.", "It maintains the pressures within the oxygen and acetylene cylinders and keeps the gas from escaping.", "It maintains a more constant outlet pressure and flow as the cylinder volume and pressure drops."], "correct": 2, "short": "More constant outlet pressure and flow as the cylinder empties.", "expl": "Single- and two-stage regulators do the same job, 'but the two-stage regulator maintains a more constant outlet pressure and flow as the cylinder volume and pressure drops.' That's the handbook's wording almost exactly.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Pressure Regulators)", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "Oxygen cylinders are _____________ in color and can hold pressures up to __________ psi in the smaller size and up to ____________ psi in the larger size.", "options": ["orange, 1500, 2000", "green, 2000, 3000", "red, 250, 300"], "correct": 1, "short": "Green; 2,000 / 3,000 psi.", "expl": "Oxygen gear is color-coded green (oxygen hose = green), and only the green choice fits. The 2,000 / 3,000 psi cylinder figures come from the AIM class; the FAA welding chapter doesn't list oxygen cylinder pressures.", "cite": "AIM class (cylinder pressures) + FAA-H-8083-31B, Ch. 5, Page 5-7 (green = oxygen)", "topic": "Gases", "fig": ""}, {"fixed": true, "q": "What is the only approved way of safely lighting the oxygen/acetylene flame?", "options": ["friction type lighter or striker", "open flame", "your neighbor's hot breath"], "correct": 0, "short": "Friction lighter / flint striker.", "expl": "'Torch lighters are called friction lighters or flint strikers.' An open flame or match should never be used, because accumulated gas around your hand can ignite and cause a severe burn.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-9 (Torch Lighters)", "topic": "Safety", "fig": ""}, {"fixed": true, "q": "What type of lens is required for gas welding or brazing?", "options": ["#9 - #12 green lens, full face & neck", "Dark sunglasses work just fine", "#3 - #4 green shaded lens"], "correct": 2, "short": "#3 to #4 green shaded lens.", "expl": "AC 43.13: 'For gas welding and brazing, use number 3 or 4 green-shaded tempered lenses.'", "cite": "AC 43.13-1B ¶4-115a(1), Page 4-95", "topic": "Eye Protection", "fig": ""}, {"fixed": true, "q": "What type of lens is required for arc welding (MIG/TIG)?", "options": ["#30 lens for the size of welded rivet", "#9 - #12 green lens, full face & neck", "#3 - #4 green shaded lens"], "correct": 1, "short": "#9 to #12 green lens with full face & neck covering.", "expl": "AC 43.13: 'When arc welding, including TIG, MIG, and plasma cutting; use number 9 to 12 green lenses and a full face-and-neck covering helmet.'", "cite": "AC 43.13-1B ¶4-115a(3), Page 4-95", "topic": "Eye Protection", "fig": ""}, {"fixed": true, "q": "What type of lens is required for gas welding aluminum?", "options": ["Cobalt blue tint lens", "#30 lens for the size of welded rivet", "#9 - #12 green lens, full face & neck"], "correct": 0, "short": "Cobalt-blue tint.", "expl": "AC 43.13: 'When gas welding aluminum, use cobalt-blue tint lenses.' (The handbook also covers the special green glass made for aluminum oxy-fuel welding, but AC 43.13 is the reference this question uses.)", "cite": "AC 43.13-1B ¶4-115a(2), Page 4-95", "topic": "Eye Protection", "fig": ""}, {"fixed": true, "q": "How many pressure gages do both the oxygen and acetylene pressure regulators have?", "options": ["One", "Two", "Three"], "correct": 1, "short": "Two each.", "expl": "'Regulators have two gauges, one indicating the pressure in the cylinder and the second showing the working pressure.'", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Pressure Regulators)", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "When facing an oxy acetylene welding rig the gage to your right on both regulators read what type of pressure?", "options": ["Torch pressure", "Bottle pressure", "Either as it depends on the type regulators being used."], "correct": 1, "short": "Right gauge = bottle (cylinder) pressure.", "expl": "Each regulator has a cylinder (bottle) pressure gauge and a working (torch) pressure gauge. On a standard rig, facing the regulators, the high-pressure cylinder gauge is on the right. The handbook confirms the two-gauge setup but doesn't say which side is which, so the left/right layout is the class convention.", "cite": "AIM class (gauge layout) + FAA-H-8083-31B, Ch. 5, Page 5-7", "topic": "Equipment", "fig": ""}, {"fixed": true, "q": "What type of pressure does the gage to your left read?", "options": ["Torch pressure", "Bottle pressure", "Either as it depends on the type regulators being used."], "correct": 0, "short": "Left gauge = torch (working) pressure.", "expl": "The left gauge is the low-pressure working gauge, which shows what you've set the regulator to deliver to the torch (for example 10 psi oxygen and 5 psi acetylene in the leak check). Same caveat as the last question: left vs. right is the class convention.", "cite": "AIM class (gauge layout) + FAA-H-8083-31B, Ch. 5, Page 5-7", "topic": "Equipment", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = true;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

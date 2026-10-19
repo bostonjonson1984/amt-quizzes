@@ -1,6 +1,6 @@
 {
  "built": "2026-10-19",
- "total": 4159,
+ "total": 4184,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -49,6 +49,7 @@
   "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools": 8,
   "Block 5 · Day 7 — Layout, Forming & Bend Calculations": 28,
   "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
+  "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)": 25,
   "Block 5 · QZ 10 BLK 05 (Special Fasteners)": 20,
   "Block 5 · QZ 12 BLK 05 (Lay-Out 2)": 25,
   "Block 5 · QZ 13 BLK 05 (Structural Repair)": 25,
@@ -57529,6 +57530,457 @@
    "block": "Block 5",
    "sources": [
     "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "8c68a130e2",
+   "q": "When one tube is welded to another it is called a ___________ ; when more than two tubes are welded together it is called a ____________.",
+   "options": [
+    "weld, splice",
+    "joint, cluster",
+    "single-weld, double-weld"
+   ],
+   "correct": 1,
+   "short": "Joint; cluster.",
+   "expl": "Two tubes welded together make a joint. Where several tubes meet and are welded at one spot it's a cluster, which is why AC 43.13 talks about 'cluster joints' in steel-tube fuselages. (The FAA text uses the term 'cluster' but doesn't spell out the two-vs-more definition; that comes from the AIM class.)",
+   "cite": "AC 43.13-1B ¶4-91 (cluster joints) + FAA-H-8083-31B, Ch. 5, Page 5-30 (tubing clusters) + AIM class",
+   "topic": "Welding Terms",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "350e7bded2",
+   "q": "There are three general types of welding:",
+   "options": [
+    "gas, electric arc, and electric resistance welding.",
+    "electric, resistance, and inductance.",
+    "gas, shielded-gas, and electric."
+   ],
+   "correct": 0,
+   "short": "Gas, electric arc, electric resistance.",
+   "expl": "Handbook, word for word: 'There are three general types of welding: gas, electric arc, and electric resistance.'",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-1",
+   "topic": "Welding Types",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "d22970603a",
+   "q": "The oxy-acetylene flame has a temperature of approximately 6,300 °Fahrenheit (F), is produced with a torch burning acetylene and mixing it with pure oxygen.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — 6,300 °F.",
+   "expl": "Handbook: 'The oxy-acetylene flame, with a temperature of approximately 6,300 °F, is produced with a torch burning acetylene and mixing it with pure oxygen.'",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-1 (Gas Welding)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "121554aa03",
+   "q": "Why would a two-torch method of welding be beneficial?",
+   "options": [
+    "It helps the welder establish a nice, clean weld bead.",
+    "It speeds up the welding process and helps to meet company deadlines.",
+    "It heats the surrounding area and helps to reduce cracks."
+   ],
+   "correct": 2,
+   "short": "The second torch preheats the area so it cools evenly and doesn't crack.",
+   "expl": "With two torches, one does the welding while the other heats the surrounding metal. Warming the area cuts the temperature difference, so the weld cools more evenly and cracks less. That is the same reason the handbook calls for preheating crack-prone metals. The 'two-torch method' itself is from the AIM class, not the FAA text.",
+   "cite": "AIM class (two-torch method) + FAA-H-8083-31B, Ch. 5 (preheating)",
+   "topic": "Gas Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "bc6d630e7e",
+   "q": "What are some key components of oxy-acetylene welding equipment? (This question has multiple answers)",
+   "options": [
+    "Welding rags",
+    "Two cylinders, acetylene and oxygen",
+    "An appropriately-rated fire extinguisher",
+    "Machinist scale",
+    "Acetylene and oxygen pressure regulators and cylinder pressure gauges",
+    "A flint or spark lighter",
+    "Welding goggles fitted with appropriate colored lenses"
+   ],
+   "correct": 1,
+   "short": "Everything except welding rags and the machinist scale.",
+   "expl": "The handbook's equipment list includes: two cylinders (acetylene and oxygen); regulators and cylinder pressure gauges; red and green hoses; the torch; goggles with colored lenses; a flint or spark lighter; a special wrench; and an appropriately-rated fire extinguisher. Five of those appear on the form, so check those five. Rags and a machinist scale aren't on the list, and loose rags are a fire hazard near a torch.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-1 (oxy-acetylene equipment list)",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "54c69fa449",
+   "q": "The acetylene cylinder valve outlet should point away from the oxygen cylinder.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True.",
+   "expl": "Keep the fuel and oxygen outlets pointed away from each other, so any fuel that leaks or is blown out doesn't go straight at the oxygen cylinder valve. This is standard cylinder-setup safety taught in class. The FAA text covers related precautions (blow out the valve, stand off to the side) but not this exact sentence.",
+   "cite": "AIM class + FAA-H-8083-31B, Ch. 5, Page 5-10 (cylinder/regulator setup)",
+   "topic": "Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "818edd9516",
+   "q": "Store acetylene cylinders in a(n) ____________ position. If left stored on the side, the Acetylene tank must be in an upright position for a minimum of ______________ before use.",
+   "options": [
+    "upright, 2 hours",
+    "upside down, 6 hours",
+    "sideways, 20 minutes"
+   ],
+   "correct": 0,
+   "short": "Upright; then stand it up before use (class figure: 2 hours).",
+   "expl": "Cylinders are stored and moved upright, especially acetylene. Lying on its side lets acetone get into the regulator and hose. The handbook says a cylinder that has been on its side must stand upright 'for at least twice as long' before use. It doesn't give a fixed number of hours; '2 hours' is the class figure. Upright is the only choice that fits either way.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 (Gas Cylinders)",
+   "topic": "Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "ffa12f1a9a",
+   "q": "Acetylene is unstable at pressure greater than _____________.",
+   "options": [
+    "13 psi",
+    "14 psi",
+    "15 psi"
+   ],
+   "correct": 2,
+   "short": "15 psi.",
+   "expl": "Acetylene is chemically very unstable. The handbook says the acetylene gauge 'should never be set higher than 15 psi for welding or cutting', and the regulator photo notes a 15-psi maximum working pressure. (Free acetylene can explode from a slight shock at 29.4 psi; 15 is the working limit.)",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-6 (Acetylene; Fig. 5-13)",
+   "topic": "Gases",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "d2863ba734",
+   "q": "Hoses, regulators, or other apparatus intended for oxygen, are interchangeable with those intended for acetylene.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False.",
+   "expl": "They're deliberately NOT interchangeable. Oxygen gear is green with right-hand threads, and acetylene gear is red with left-hand (grooved-nut) threads. AC 43.13: use oxy-fuel equipment only with the gases it is intended for.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Welding Hose) + AC 43.13-1B ¶4-114g",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "3d023a15ba",
+   "q": "The oxygen union nut has ________ hand threads.",
+   "options": [
+    "Right",
+    "Left",
+    "Right or Left"
+   ],
+   "correct": 0,
+   "short": "Right-hand.",
+   "expl": "The oxygen fittings are right-hand thread (no groove cut in the nut). Acetylene is the left-hand one.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Fig. 5-14; Welding Hose)",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "a1a1f1431d",
+   "q": "The acetylene regulator union nut has __________ hand threads.",
+   "options": [
+    "Right",
+    "Left",
+    "Right and Left"
+   ],
+   "correct": 1,
+   "short": "Left-hand (notched nut).",
+   "expl": "The acetylene regulator's notched (grooved) connection nut means a left-hand thread. The handbook figure caption says exactly that.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Fig. 5-13; Welding Hose)",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "3c10507143",
+   "q": "Always check gas welding equipment for leaks prior to use.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True.",
+   "expl": "Setup includes a leak check: pressurize, back out the adjusting screws, and watch for a pressure drop, then use soapy water to find the leak. Never check for leaks with a flame.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-10 + AC 43.13-1B ¶4-114j",
+   "topic": "Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "9d5f3d18ba",
+   "q": "______________ alloy fittings must never be used with acetylene as the reaction could be explosive.",
+   "options": [
+    "Steel",
+    "Copper",
+    "Aluminum"
+   ],
+   "correct": 1,
+   "short": "Copper.",
+   "expl": "Acetylene reacts with copper (and with high-copper alloys or silver) to form copper acetylide, which can detonate from a shock. That's why acetylene fittings must never be copper. This is standard welding-safety knowledge from class; the FAA handbook and AC 43.13 don't print the copper warning.",
+   "cite": "AIM class (acetylene/copper hazard)",
+   "topic": "Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "ff85e1a8e3",
+   "q": "Per AC 43.13-1B, which of these weldable aircraft parts should never be welded: (This question has multiple answers)",
+   "options": [
+    "Brazed and soldered parts",
+    "Alloy steel parts",
+    "Paper & plastic",
+    "Brace wires and cables",
+    "2024 & 7075 Aluminum"
+   ],
+   "correct": 0,
+   "short": "All except paper & plastic.",
+   "expl": "AC 43.13-1B ¶4-89 'Aircraft Parts Not To Be Welded' lists exactly four: brace wires and cables (they get their strength from cold-working); brazed and soldered parts (the braze or solder weakens the hot steel); heat-treated alloy steel parts like bolts and turnbuckle ends; and 2024 and 7075 aluminum (they crack severely). Paper and plastic aren't weldable aircraft parts.",
+   "cite": "AC 43.13-1B ¶4-89, Page 4-75",
+   "topic": "Do Not Weld",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "f4fbd16797",
+   "q": "What is the significance of oxygen in the presence of petroleum (oil)-based products?",
+   "options": [
+    "It will not create a strong joint/weld",
+    "It can ignite and burn violently",
+    "It will cause the base meal to become brittle"
+   ],
+   "correct": 1,
+   "short": "It can ignite and burn violently.",
+   "expl": "AC 43.13 CAUTION: 'Oil and grease in the presence of oxygen can ignite and burn violently.' Even a trace is dangerous, so oxy-fuel gear must stay oil-free.",
+   "cite": "AC 43.13-1B ¶4-113c CAUTION and ¶4-114b, Pages 4-94 to 4-95",
+   "topic": "Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "7f4aece6fc",
+   "q": "Oxygen is a combustible gas that easily burns by itself.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — oxygen doesn't burn; it makes other things burn hotter.",
+   "expl": "AC 43.13: 'oxygen will not burn. The presence of oxygen, however, serves to accelerate combustion.' The handbook also calls oxygen nonflammable.",
+   "cite": "AC 43.13-1B ¶4-113c + FAA-H-8083-31B, Ch. 5, Page 5-7 (Oxygen)",
+   "topic": "Gases",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "7f432e8c6d",
+   "q": "What is the purpose of a of the two-stage pressure regulator?",
+   "options": [
+    "It maintains the correct airflow to the torch so the welding equipment does not catch fire.",
+    "It maintains the pressures within the oxygen and acetylene cylinders and keeps the gas from escaping.",
+    "It maintains a more constant outlet pressure and flow as the cylinder volume and pressure drops."
+   ],
+   "correct": 2,
+   "short": "More constant outlet pressure and flow as the cylinder empties.",
+   "expl": "Single- and two-stage regulators do the same job, 'but the two-stage regulator maintains a more constant outlet pressure and flow as the cylinder volume and pressure drops.' That's the handbook's wording almost exactly.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Pressure Regulators)",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "44242453b2",
+   "q": "Oxygen cylinders are _____________ in color and can hold pressures up to __________ psi in the smaller size and up to ____________ psi in the larger size.",
+   "options": [
+    "orange, 1500, 2000",
+    "green, 2000, 3000",
+    "red, 250, 300"
+   ],
+   "correct": 1,
+   "short": "Green; 2,000 / 3,000 psi.",
+   "expl": "Oxygen gear is color-coded green (oxygen hose = green), and only the green choice fits. The 2,000 / 3,000 psi cylinder figures come from the AIM class; the FAA welding chapter doesn't list oxygen cylinder pressures.",
+   "cite": "AIM class (cylinder pressures) + FAA-H-8083-31B, Ch. 5, Page 5-7 (green = oxygen)",
+   "topic": "Gases",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "41b9b6461c",
+   "q": "What is the only approved way of safely lighting the oxygen/acetylene flame?",
+   "options": [
+    "friction type lighter or striker",
+    "open flame",
+    "your neighbor's hot breath"
+   ],
+   "correct": 0,
+   "short": "Friction lighter / flint striker.",
+   "expl": "'Torch lighters are called friction lighters or flint strikers.' An open flame or match should never be used, because accumulated gas around your hand can ignite and cause a severe burn.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-9 (Torch Lighters)",
+   "topic": "Safety",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "e1ac3f86f0",
+   "q": "What type of lens is required for gas welding or brazing?",
+   "options": [
+    "#9 - #12 green lens, full face & neck",
+    "Dark sunglasses work just fine",
+    "#3 - #4 green shaded lens"
+   ],
+   "correct": 2,
+   "short": "#3 to #4 green shaded lens.",
+   "expl": "AC 43.13: 'For gas welding and brazing, use number 3 or 4 green-shaded tempered lenses.'",
+   "cite": "AC 43.13-1B ¶4-115a(1), Page 4-95",
+   "topic": "Eye Protection",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "3fa1d93464",
+   "q": "What type of lens is required for arc welding (MIG/TIG)?",
+   "options": [
+    "#30 lens for the size of welded rivet",
+    "#9 - #12 green lens, full face & neck",
+    "#3 - #4 green shaded lens"
+   ],
+   "correct": 1,
+   "short": "#9 to #12 green lens with full face & neck covering.",
+   "expl": "AC 43.13: 'When arc welding, including TIG, MIG, and plasma cutting; use number 9 to 12 green lenses and a full face-and-neck covering helmet.'",
+   "cite": "AC 43.13-1B ¶4-115a(3), Page 4-95",
+   "topic": "Eye Protection",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "c6e370564b",
+   "q": "What type of lens is required for gas welding aluminum?",
+   "options": [
+    "Cobalt blue tint lens",
+    "#30 lens for the size of welded rivet",
+    "#9 - #12 green lens, full face & neck"
+   ],
+   "correct": 0,
+   "short": "Cobalt-blue tint.",
+   "expl": "AC 43.13: 'When gas welding aluminum, use cobalt-blue tint lenses.' (The handbook also covers the special green glass made for aluminum oxy-fuel welding, but AC 43.13 is the reference this question uses.)",
+   "cite": "AC 43.13-1B ¶4-115a(2), Page 4-95",
+   "topic": "Eye Protection",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "37d2939d17",
+   "q": "How many pressure gages do both the oxygen and acetylene pressure regulators have?",
+   "options": [
+    "One",
+    "Two",
+    "Three"
+   ],
+   "correct": 1,
+   "short": "Two each.",
+   "expl": "'Regulators have two gauges, one indicating the pressure in the cylinder and the second showing the working pressure.'",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-7 (Pressure Regulators)",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "467199a9b0",
+   "q": "When facing an oxy acetylene welding rig the gage to your right on both regulators read what type of pressure?",
+   "options": [
+    "Torch pressure",
+    "Bottle pressure",
+    "Either as it depends on the type regulators being used."
+   ],
+   "correct": 1,
+   "short": "Right gauge = bottle (cylinder) pressure.",
+   "expl": "Each regulator has a cylinder (bottle) pressure gauge and a working (torch) pressure gauge. On a standard rig, facing the regulators, the high-pressure cylinder gauge is on the right. The handbook confirms the two-gauge setup but doesn't say which side is which, so the left/right layout is the class convention.",
+   "cite": "AIM class (gauge layout) + FAA-H-8083-31B, Ch. 5, Page 5-7",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
+   ]
+  },
+  {
+   "id": "d5411c96fd",
+   "q": "What type of pressure does the gage to your left read?",
+   "options": [
+    "Torch pressure",
+    "Bottle pressure",
+    "Either as it depends on the type regulators being used."
+   ],
+   "correct": 0,
+   "short": "Left gauge = torch (working) pressure.",
+   "expl": "The left gauge is the low-pressure working gauge, which shows what you've set the regulator to deliver to the torch (for example 10 psi oxygen and 5 psi acetylene in the leak check). Same caveat as the last question: left vs. right is the class convention.",
+   "cite": "AIM class (gauge layout) + FAA-H-8083-31B, Ch. 5, Page 5-7",
+   "topic": "Equipment",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)"
    ]
   },
   {
