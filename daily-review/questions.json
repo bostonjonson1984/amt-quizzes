@@ -1,6 +1,6 @@
 {
- "built": "2026-10-15",
- "total": 4135,
+ "built": "2026-10-19",
+ "total": 4159,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -51,9 +51,10 @@
   "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
   "Block 5 · QZ 10 BLK 05 (Special Fasteners)": 20,
   "Block 5 · QZ 12 BLK 05 (Lay-Out 2)": 25,
+  "Block 5 · QZ 13 BLK 05 (Structural Repair)": 25,
   "Block 5 · Rivet Head Markings": 21,
   "Block 5 · Rivet Part Numbers": 24,
-  "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 25,
+  "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)": 24,
   "Block 6 · Daily Quiz 4 — Generators, Inverters & Wiring Install": 10,
   "Block 6 · Daily Quiz 5 — Ohm's Law, DC Generators & Batteries": 10,
   "Block 6 · Daily Quiz 9 — Diagrams & Aircraft Wire Basics": 10,
@@ -58334,6 +58335,461 @@
    ]
   },
   {
+   "id": "3544936409",
+   "q": "A joint that is too weak cannot be tolerated, but neither can one that is too strong because it can create stress risers that may cause cracks in other locations.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True — handbook wording almost verbatim.",
+   "expl": "Repairs must carry all the loads with the required safety factor but must not have too much extra strength. A joint that is too strong creates stress risers that may cause cracks in other locations.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-1 (Repair strength)",
+   "topic": "Repair Principles",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "ab8af32c68",
+   "q": "What are the 5 major stresses? (Multiple Answers)",
+   "options": [
+    "Tension",
+    "Compression",
+    "Bending",
+    "Torsion",
+    "Contortion",
+    "shearing"
+   ],
+   "correct": 0,
+   "short": "Tension, compression, bending, torsion, shear (NOT contortion).",
+   "expl": "The handbook lists five major stresses that all aircraft are subjected to: tension, compression, torsion, shear and bending. 'Contortion' is not one of them. Check five boxes.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-6 (Major stresses, Fig. 1-14)",
+   "topic": "Stresses",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "252c199080",
+   "q": "Files are classified according to their? (Multiple Answers)",
+   "options": [
+    "Shape",
+    "Size",
+    "Cutting teeth",
+    "Color",
+    "Handle size",
+    "All of the above"
+   ],
+   "correct": 0,
+   "short": "Shape, size and cutting teeth.",
+   "expl": "The handbook gives files five properties: length, contour, form in cross section, kind of teeth and fineness of teeth. On this form those are shape, size and cutting teeth. Color and handle size are not file classifications, so 'All of the above' is wrong too.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-13 (Files)",
+   "topic": "Hand Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "91bd7bca53",
+   "q": "A file with a single row of parallel teeth is called?",
+   "options": [
+    "Single-cut file",
+    "Double-cut file",
+    "Triple-cut file"
+   ],
+   "correct": 0,
+   "short": "Single-cut file.",
+   "expl": "Handbook, word for word: 'A file with a single row of parallel teeth is called a single-cut file.' The teeth run at 65° to 85° to the centerline.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-13 (Files)",
+   "topic": "Hand Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "4124ecbd4f",
+   "q": "A file with one row of teeth crossing under another row are called?",
+   "options": [
+    "Single-cut files",
+    "Double-cut files",
+    "triple-cut files"
+   ],
+   "correct": 1,
+   "short": "Double-cut files.",
+   "expl": "Files with one row of teeth crossing another in a crisscross pattern are double-cut files. The first set is cut at about 40° to 50° and the crossing set at 70° to 80°.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-13 to 4-14 (Files)",
+   "topic": "Hand Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "55995ea0f2",
+   "q": "What type of drill motors are recommended for use around flammable materials?",
+   "options": [
+    "Electric drill motors",
+    "Pneumatic drill motors",
+    "Hydraulic drill motors"
+   ],
+   "correct": 1,
+   "short": "Pneumatic (air) drill motors.",
+   "expl": "Pneumatic drill motors are recommended for repairs around flammable materials, because sparks from an electric drill motor could become a fire hazard.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-14 (Portable Power Drills)",
+   "topic": "Power Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "2a06da22b1",
+   "q": "On the slip roller, the front rollers _________ or grip the metal while the rear roll provides the proper _______ to the work.",
+   "options": [
+    "Curvature, feed",
+    "Feed, Curvature",
+    "Grab, twist"
+   ],
+   "correct": 1,
+   "short": "Feed, curvature.",
+   "expl": "On the slip roll former the front rolls serve as feeding, or gripping, rolls, and the rear roll gives the proper curvature to the work.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-22 (Slip Roll Former)",
+   "topic": "Forming Machines",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "edca37c345",
+   "q": "It is advantageous to deburr or even polish the edges of a flange that must undergo even more moderate stretching to avoid crack formation.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True.",
+   "expl": "The handbook: 'It is advantageous to deburr or even polish the edges of a flange that must undergo even moderate stretching to avoid crack formation.' The form adds the word 'more', which doesn't change the meaning.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-26 (Stretching)",
+   "topic": "Forming",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "4ed3b86eca",
+   "q": "In order to form a box it is necessary to drill _____________ at the intersection of the bend tangent lines.",
+   "options": [
+    "Stop holes",
+    "Large holes",
+    "Relief holes"
+   ],
+   "correct": 2,
+   "short": "Relief holes.",
+   "expl": "When a part has intersecting bend radii (like a box corner), holes called relief holes are drilled or punched at the intersection of the inside bend tangent lines. They are about twice the bend radius in diameter and keep the metal from tearing.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-71 (Relief holes)",
+   "topic": "Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "8a6ffe0850",
+   "q": "Rivets expand to fill the hole during the installation process which provides for a good load transfer.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True.",
+   "expl": "Solid shank rivets have long been the preferred construction method 'because they fill up the hole, which results in good load transfer.'",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-45 (Special Purpose Fasteners intro)",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "9a27025883",
+   "q": "Why are blind rivets installed in lieu of solid rivets?",
+   "options": [
+    "They are stronger than solid rivets",
+    "Access is not available to buck solid rivets",
+    "The technician does not need to see them in order to install them"
+   ],
+   "correct": 1,
+   "short": "No access to buck a solid rivet.",
+   "expl": "Blind rivets are used where there is access to only one side of the structure, so a solid rivet can't be bucked. They are not stronger: AC 43.13 notes their locking characteristics are not as good as a driven rivet's.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-45 + AC 43.13-1B ¶4-57f",
+   "topic": "Rivets",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "1e84773d22",
+   "q": "What type of aircraft construction utilizes the skin reinforced with structural members to carry the primary stress loads?",
+   "options": [
+    "Semi-monocoque",
+    "Monocoque",
+    "Truss"
+   ],
+   "correct": 0,
+   "short": "Semi-monocoque.",
+   "expl": "In semimonocoque construction the skin is reinforced by longerons, stringers, bulkheads and formers, and they share the loads. Pure monocoque relies on the skin alone, and a truss uses a framework of tubes.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (Semimonocoque Type)",
+   "topic": "Construction",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)",
+    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
+   ]
+  },
+  {
+   "id": "207850904b",
+   "q": "_______________ is the perpendicular distance between rivet rows",
+   "options": [
+    "Transverse Pitch",
+    "Rivet Pitch",
+    "Edge Distance"
+   ],
+   "correct": 0,
+   "short": "Transverse pitch.",
+   "expl": "Handbook, word for word: 'Transverse pitch is the perpendicular distance between rivet rows.' It is usually 75% of rivet pitch, with a minimum of 2½ D. Rivet pitch is the distance between rivets in the same row.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (Transverse Pitch)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "a47a9830e9",
+   "q": "The use of a copper cleco would indicate a rivet size of 3/32",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — copper = 1/8 (4/32). Silver is 3/32.",
+   "expl": "Cleco color code: silver = 3/32, copper = 1/8 (4/32), black = 5/32, brass = 3/16. The handbook confirms clecos are color coded in six sizes but doesn't print the colors; the color map comes from the AIM deck chart and tool makers.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (Cleco fasteners) + AIM Metallic Structures deck (color chart)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "b5996897f3",
+   "q": "Choose the option that is NOT a damage classification",
+   "options": [
+    "Repairable by manufacturing",
+    "Repairable by patching",
+    "Negligible",
+    "Replacement"
+   ],
+   "correct": 0,
+   "short": "'Repairable by manufacturing' is not a class.",
+   "expl": "The four damage classes are: negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of parts. There is no 'repairable by manufacturing'.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (Classification of Damage)",
+   "topic": "Damage Classification",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "3a7cfc0e45",
+   "q": "Another name for the tail section of an aircraft structure is?",
+   "options": [
+    "Elevator",
+    "Elevator",
+    "Empennage"
+   ],
+   "correct": 2,
+   "short": "Empennage.",
+   "expl": "'The empennage of an aircraft is also known as the tail section.' The elevator is just one movable surface on it. (The form lists 'Elevator' twice.)",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-19 (Empennage)",
+   "topic": "Construction",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "33e4e8060b",
+   "q": "The ribs are the principle structural member of the wing?",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 1,
+   "short": "False — the SPARS are.",
+   "expl": "'Spars are the principal structural members of the wing.' Ribs give the airfoil its shape and pass loads to the spars.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-12 (Wing Spars)",
+   "topic": "Construction",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "f09f7016b3",
+   "q": "A rivet with part number MS20426B4-4 has what head marking",
+   "options": [
+    "Raised cross",
+    "Dimpled",
+    "Double dash"
+   ],
+   "correct": 0,
+   "short": "Raised cross (B = 5056).",
+   "expl": "The material letter B means 5056 aluminum, whose head marking is a raised cross. Dimpled (recessed dot) is AD/2117, and the double dash is DD/2024.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (Fig. 4-77 rivet identification)",
+   "topic": "Rivet ID",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "d7ffda16e6",
+   "q": "What type of countersink works best in aluminum?",
+   "options": [
+    "Four-fluted countersink",
+    "Five-fluted countersink",
+    "Six-fluted countersink"
+   ],
+   "correct": 2,
+   "short": "Six-fluted.",
+   "expl": "Handbook: 'A six-fluted countersink works best in aluminum.' Four- and three-fluted types are harder to control from a chatter standpoint.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-41 (Countersinking Tools)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "5eb377ac38",
+   "q": "The shop head (buck tail) height of an \"AD\" rivet should be...",
+   "options": [
+    "One and one-half times the rivet length of the manufactured head of the rivet",
+    "One-half times the diameter of the rivet shank",
+    "One and one-half times the diameter of the rivet length"
+   ],
+   "correct": 1,
+   "short": "Height = ½ D (width = 1½ D).",
+   "expl": "A properly formed shop head is 1½ times the shank diameter wide and ½ the shank diameter high. The height is the half-diameter figure.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32 (Fig. 4-76 shop head)",
+   "topic": "Rivet Installation",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "eb7106a3cb",
+   "q": "What are the three different types of wing construction?",
+   "options": [
+    "Monospar, Multispar, Box Spar",
+    "Monospar, Multispar, Semi-Monocoque",
+    "Monospar, Multispar, Box Beam"
+   ],
+   "correct": 2,
+   "short": "Monospar, multispar, box beam.",
+   "expl": "Wing construction is based on one of three fundamental designs: monospar, multispar and box beam. ('Box spar' isn't the term, and semi-monocoque is a fuselage type.) The form shows checkboxes here, but only one choice is correct.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-11 (Wing construction)",
+   "topic": "Construction",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "b85ff26bf3",
+   "q": "What is the main structural member of a wing?",
+   "options": [
+    "Longeron",
+    "Frame",
+    "Rib",
+    "Spar"
+   ],
+   "correct": 3,
+   "short": "Spar.",
+   "expl": "'The main structural member in a wing is called the wing spar.' Longerons and frames belong to the fuselage.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Pages 1-5 and 1-12 (Wing spar)",
+   "topic": "Construction",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "487dfed7f2",
+   "q": "The empennage contains which of the following structures? (Multiple Answers)",
+   "options": [
+    "Vertical Stabilizer",
+    "Horizontal Stabilizer",
+    "Rudder",
+    "Elevators"
+   ],
+   "correct": 0,
+   "short": "All four.",
+   "expl": "The empennage has fixed surfaces (horizontal and vertical stabilizers) and movable surfaces (the rudder on the vertical stabilizer and the elevator on the horizontal stabilizer). Check all four.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Pages 1-19 to 1-21 (Empennage)",
+   "topic": "Construction",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "7503f386d0",
+   "q": "What is the formula for finding the proper diameter of a rivet to be used in a repair?",
+   "options": [
+    "One and one half times the thickness of the thickest sheet.",
+    "Three times the thickness of the thickest sheet.",
+    "It depends on the type of aircraft you are working on."
+   ],
+   "correct": 1,
+   "short": "3 × the thicker sheet.",
+   "expl": "Rivet diameter should be about three times the thickness of the thicker sheet, then rounded up to the next larger rivet size. Example: 0.040 × 3 = 0.120, so use a 1/8 rivet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-32 to 4-33 + AC 43.13-1B ¶4-57g(3)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
+   "id": "7eab2194b3",
+   "q": "What is the formula for finding the the proper length of a rivet to be used in a repair?",
+   "options": [
+    "The grip length plus three times the rivet's diameter.",
+    "Three times the grip length plus one and one half times the rivet's diameter.",
+    "The grip length plus one and one half times the rivet's diameter."
+   ],
+   "correct": 2,
+   "short": "Grip + 1½ D.",
+   "expl": "Total rivet length = grip length (combined material thickness) + the shank needed to form the shop head, which is 1½ times the rivet diameter. A = B + C.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32 (Rivet Length, Fig. 4-76)",
+   "topic": "Rivet Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · QZ 13 BLK 05 (Structural Repair)"
+   ]
+  },
+  {
    "id": "4e6afe0766",
    "q": "The rivet head shown has TWO raised dashes (two raised bars). What aluminum alloy is it?",
    "options": [
@@ -59186,24 +59642,6 @@
    "block": "Block 5",
    "sources": [
     "Block 5 · Rivet Part Numbers"
-   ]
-  },
-  {
-   "id": "1e84773d22",
-   "q": "What type of aircraft construction utilizes the skin reinforced with structural members to carry the primary stress loads?",
-   "options": [
-    "Semi-monocoque",
-    "Monocoque",
-    "Truss"
-   ],
-   "correct": 0,
-   "short": "Semi-monocoque: skin + longerons/stringers share the load.",
-   "expl": "Semi-monocoque construction reinforces the skin with longitudinal members (longerons and stringers) plus bulkheads and formers, so the skin and its stiffeners TOGETHER carry the primary bending and stress loads. Pure monocoque makes the skin carry it all with no stiffeners, and a truss carries loads through welded tube members, not the skin.",
-   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (semimonocoque)",
-   "topic": "Aircraft Structures",
-   "block": "Block 5",
-   "sources": [
-    "Block 5 · Structural Repair — Sheet Metal & Rivets (25 Questions)"
    ]
   },
   {

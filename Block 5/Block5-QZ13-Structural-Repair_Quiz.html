@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · QZ 13 BLK 05 (Structural Repair)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · QZ 13 BLK 05 (Structural Repair)</h1>
+    <div class="sub">The exact 25-question AIM Structural Repair quiz: stresses, files, drills, slip roller, relief holes, rivet sizing, clecos, damage classes, wing and empennage structure. Questions and choices are word-for-word and in the SAME ORDER as the real form. Checkbox questions are multi-select. Every answer cites FAA-H-8083-31B or AC 43.13-1B.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"fixed": true, "q": "A joint that is too weak cannot be tolerated, but neither can one that is too strong because it can create stress risers that may cause cracks in other locations.", "options": ["True", "False"], "correct": 0, "short": "True — handbook wording almost verbatim.", "expl": "Repairs must carry all the loads with the required safety factor but must not have too much extra strength. A joint that is too strong creates stress risers that may cause cracks in other locations.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-1 (Repair strength)", "topic": "Repair Principles", "fig": ""}, {"fixed": true, "multi": [0, 1, 2, 3, 5], "q": "What are the 5 major stresses? (Multiple Answers)", "options": ["Tension", "Compression", "Bending", "Torsion", "Contortion", "shearing"], "correct": 0, "short": "Tension, compression, bending, torsion, shear (NOT contortion).", "expl": "The handbook lists five major stresses that all aircraft are subjected to: tension, compression, torsion, shear and bending. 'Contortion' is not one of them. Check five boxes.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-6 (Major stresses, Fig. 1-14)", "topic": "Stresses", "fig": ""}, {"fixed": true, "multi": [0, 1, 2], "q": "Files are classified according to their? (Multiple Answers)", "options": ["Shape", "Size", "Cutting teeth", "Color", "Handle size", "All of the above"], "correct": 0, "short": "Shape, size and cutting teeth.", "expl": "The handbook gives files five properties: length, contour, form in cross section, kind of teeth and fineness of teeth. On this form those are shape, size and cutting teeth. Color and handle size are not file classifications, so 'All of the above' is wrong too.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-13 (Files)", "topic": "Hand Tools", "fig": ""}, {"fixed": true, "q": "A file with a single row of parallel teeth is called?", "options": ["Single-cut file", "Double-cut file", "Triple-cut file"], "correct": 0, "short": "Single-cut file.", "expl": "Handbook, word for word: 'A file with a single row of parallel teeth is called a single-cut file.' The teeth run at 65° to 85° to the centerline.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-13 (Files)", "topic": "Hand Tools", "fig": ""}, {"fixed": true, "q": "A file with one row of teeth crossing under another row are called?", "options": ["Single-cut files", "Double-cut files", "triple-cut files"], "correct": 1, "short": "Double-cut files.", "expl": "Files with one row of teeth crossing another in a crisscross pattern are double-cut files. The first set is cut at about 40° to 50° and the crossing set at 70° to 80°.", "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-13 to 4-14 (Files)", "topic": "Hand Tools", "fig": ""}, {"fixed": true, "q": "What type of drill motors are recommended for use around flammable materials?", "options": ["Electric drill motors", "Pneumatic drill motors", "Hydraulic drill motors"], "correct": 1, "short": "Pneumatic (air) drill motors.", "expl": "Pneumatic drill motors are recommended for repairs around flammable materials, because sparks from an electric drill motor could become a fire hazard.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-14 (Portable Power Drills)", "topic": "Power Tools", "fig": ""}, {"fixed": true, "q": "On the slip roller, the front rollers _________ or grip the metal while the rear roll provides the proper _______ to the work.", "options": ["Curvature, feed", "Feed, Curvature", "Grab, twist"], "correct": 1, "short": "Feed, curvature.", "expl": "On the slip roll former the front rolls serve as feeding, or gripping, rolls, and the rear roll gives the proper curvature to the work.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-22 (Slip Roll Former)", "topic": "Forming Machines", "fig": ""}, {"fixed": true, "q": "It is advantageous to deburr or even polish the edges of a flange that must undergo even more moderate stretching to avoid crack formation.", "options": ["True", "False"], "correct": 0, "short": "True.", "expl": "The handbook: 'It is advantageous to deburr or even polish the edges of a flange that must undergo even moderate stretching to avoid crack formation.' The form adds the word 'more', which doesn't change the meaning.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-26 (Stretching)", "topic": "Forming", "fig": ""}, {"fixed": true, "q": "In order to form a box it is necessary to drill _____________ at the intersection of the bend tangent lines.", "options": ["Stop holes", "Large holes", "Relief holes"], "correct": 2, "short": "Relief holes.", "expl": "When a part has intersecting bend radii (like a box corner), holes called relief holes are drilled or punched at the intersection of the inside bend tangent lines. They are about twice the bend radius in diameter and keep the metal from tearing.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-71 (Relief holes)", "topic": "Layout", "fig": ""}, {"fixed": true, "q": "Rivets expand to fill the hole during the installation process which provides for a good load transfer.", "options": ["True", "False"], "correct": 0, "short": "True.", "expl": "Solid shank rivets have long been the preferred construction method 'because they fill up the hole, which results in good load transfer.'", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-45 (Special Purpose Fasteners intro)", "topic": "Rivets", "fig": ""}, {"fixed": true, "q": "Why are blind rivets installed in lieu of solid rivets?", "options": ["They are stronger than solid rivets", "Access is not available to buck solid rivets", "The technician does not need to see them in order to install them"], "correct": 1, "short": "No access to buck a solid rivet.", "expl": "Blind rivets are used where there is access to only one side of the structure, so a solid rivet can't be bucked. They are not stronger: AC 43.13 notes their locking characteristics are not as good as a driven rivet's.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-45 + AC 43.13-1B ¶4-57f", "topic": "Rivets", "fig": ""}, {"fixed": true, "q": "What type of aircraft construction utilizes the skin reinforced with structural members to carry the primary stress loads?", "options": ["Semi-monocoque", "Monocoque", "Truss"], "correct": 0, "short": "Semi-monocoque.", "expl": "In semimonocoque construction the skin is reinforced by longerons, stringers, bulkheads and formers, and they share the loads. Pure monocoque relies on the skin alone, and a truss uses a framework of tubes.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-8 (Semimonocoque Type)", "topic": "Construction", "fig": ""}, {"fixed": true, "q": "_______________ is the perpendicular distance between rivet rows", "options": ["Transverse Pitch", "Rivet Pitch", "Edge Distance"], "correct": 0, "short": "Transverse pitch.", "expl": "Handbook, word for word: 'Transverse pitch is the perpendicular distance between rivet rows.' It is usually 75% of rivet pitch, with a minimum of 2½ D. Rivet pitch is the distance between rivets in the same row.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-34 (Transverse Pitch)", "topic": "Rivet Layout", "fig": ""}, {"fixed": true, "q": "The use of a copper cleco would indicate a rivet size of 3/32", "options": ["True", "False"], "correct": 1, "short": "False — copper = 1/8 (4/32). Silver is 3/32.", "expl": "Cleco color code: silver = 3/32, copper = 1/8 (4/32), black = 5/32, brass = 3/16. The handbook confirms clecos are color coded in six sizes but doesn't print the colors; the color map comes from the AIM deck chart and tool makers.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-29 (Cleco fasteners) + AIM Metallic Structures deck (color chart)", "topic": "Tools", "fig": ""}, {"fixed": true, "q": "Choose the option that is NOT a damage classification", "options": ["Repairable by manufacturing", "Repairable by patching", "Negligible", "Replacement"], "correct": 0, "short": "'Repairable by manufacturing' is not a class.", "expl": "The four damage classes are: negligible damage, damage repairable by patching, damage repairable by insertion, and damage necessitating replacement of parts. There is no 'repairable by manufacturing'.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-90 (Classification of Damage)", "topic": "Damage Classification", "fig": ""}, {"fixed": true, "q": "Another name for the tail section of an aircraft structure is?", "options": ["Elevator", "Elevator", "Empennage"], "correct": 2, "short": "Empennage.", "expl": "'The empennage of an aircraft is also known as the tail section.' The elevator is just one movable surface on it. (The form lists 'Elevator' twice.)", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-19 (Empennage)", "topic": "Construction", "fig": ""}, {"fixed": true, "q": "The ribs are the principle structural member of the wing?", "options": ["True", "False"], "correct": 1, "short": "False — the SPARS are.", "expl": "'Spars are the principal structural members of the wing.' Ribs give the airfoil its shape and pass loads to the spars.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-12 (Wing Spars)", "topic": "Construction", "fig": ""}, {"fixed": true, "q": "A rivet with part number MS20426B4-4 has what head marking", "options": ["Raised cross", "Dimpled", "Double dash"], "correct": 0, "short": "Raised cross (B = 5056).", "expl": "The material letter B means 5056 aluminum, whose head marking is a raised cross. Dimpled (recessed dot) is AD/2117, and the double dash is DD/2024.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-33 (Fig. 4-77 rivet identification)", "topic": "Rivet ID", "fig": ""}, {"fixed": true, "q": "What type of countersink works best in aluminum?", "options": ["Four-fluted countersink", "Five-fluted countersink", "Six-fluted countersink"], "correct": 2, "short": "Six-fluted.", "expl": "Handbook: 'A six-fluted countersink works best in aluminum.' Four- and three-fluted types are harder to control from a chatter standpoint.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-41 (Countersinking Tools)", "topic": "Tools", "fig": ""}, {"fixed": true, "q": "The shop head (buck tail) height of an \"AD\" rivet should be...", "options": ["One and one-half times the rivet length of the manufactured head of the rivet", "One-half times the diameter of the rivet shank", "One and one-half times the diameter of the rivet length"], "correct": 1, "short": "Height = ½ D (width = 1½ D).", "expl": "A properly formed shop head is 1½ times the shank diameter wide and ½ the shank diameter high. The height is the half-diameter figure.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32 (Fig. 4-76 shop head)", "topic": "Rivet Installation", "fig": ""}, {"fixed": true, "multi": [2], "q": "What are the three different types of wing construction?", "options": ["Monospar, Multispar, Box Spar", "Monospar, Multispar, Semi-Monocoque", "Monospar, Multispar, Box Beam"], "correct": 2, "short": "Monospar, multispar, box beam.", "expl": "Wing construction is based on one of three fundamental designs: monospar, multispar and box beam. ('Box spar' isn't the term, and semi-monocoque is a fuselage type.) The form shows checkboxes here, but only one choice is correct.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-11 (Wing construction)", "topic": "Construction", "fig": ""}, {"fixed": true, "q": "What is the main structural member of a wing?", "options": ["Longeron", "Frame", "Rib", "Spar"], "correct": 3, "short": "Spar.", "expl": "'The main structural member in a wing is called the wing spar.' Longerons and frames belong to the fuselage.", "cite": "FAA-H-8083-31B, Ch. 1, Pages 1-5 and 1-12 (Wing spar)", "topic": "Construction", "fig": ""}, {"fixed": true, "multi": [0, 1, 2, 3], "q": "The empennage contains which of the following structures? (Multiple Answers)", "options": ["Vertical Stabilizer", "Horizontal Stabilizer", "Rudder", "Elevators"], "correct": 0, "short": "All four.", "expl": "The empennage has fixed surfaces (horizontal and vertical stabilizers) and movable surfaces (the rudder on the vertical stabilizer and the elevator on the horizontal stabilizer). Check all four.", "cite": "FAA-H-8083-31B, Ch. 1, Pages 1-19 to 1-21 (Empennage)", "topic": "Construction", "fig": ""}, {"fixed": true, "q": "What is the formula for finding the proper diameter of a rivet to be used in a repair?", "options": ["One and one half times the thickness of the thickest sheet.", "Three times the thickness of the thickest sheet.", "It depends on the type of aircraft you are working on."], "correct": 1, "short": "3 × the thicker sheet.", "expl": "Rivet diameter should be about three times the thickness of the thicker sheet, then rounded up to the next larger rivet size. Example: 0.040 × 3 = 0.120, so use a 1/8 rivet.", "cite": "FAA-H-8083-31B, Ch. 4, Pages 4-32 to 4-33 + AC 43.13-1B ¶4-57g(3)", "topic": "Rivet Layout", "fig": ""}, {"fixed": true, "q": "What is the formula for finding the the proper length of a rivet to be used in a repair?", "options": ["The grip length plus three times the rivet's diameter.", "Three times the grip length plus one and one half times the rivet's diameter.", "The grip length plus one and one half times the rivet's diameter."], "correct": 2, "short": "Grip + 1½ D.", "expl": "Total rivet length = grip length (combined material thickness) + the shank needed to form the shop head, which is 1½ times the rivet diameter. A = B + C.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32 (Rivet Length, Fig. 4-76)", "topic": "Rivet Layout", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = true;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEF'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEF'[k]).join(', ') : 'ABCDEF'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f'].includes(k)) QUIZ.pick('abcdef'.indexOf(k));
+  else if(['1','2','3','4','5','6'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
