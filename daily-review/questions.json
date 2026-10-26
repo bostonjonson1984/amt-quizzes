@@ -1,6 +1,6 @@
 {
- "built": "2026-10-19",
- "total": 4184,
+ "built": "2026-10-26",
+ "total": 4209,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -49,6 +49,7 @@
   "Block 5 · Day 5 — Aircraft Special Fasteners & Installation Tools": 8,
   "Block 5 · Day 7 — Layout, Forming & Bend Calculations": 28,
   "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc": 63,
+  "Block 5 · HW 09A BLK 05 (Review Questions 02)": 25,
   "Block 5 · Quiz 07 BLK 05 (Welding) (Virtual Day)": 25,
   "Block 5 · QZ 10 BLK 05 (Special Fasteners)": 20,
   "Block 5 · QZ 12 BLK 05 (Lay-Out 2)": 25,
@@ -57530,6 +57531,453 @@
    "block": "Block 5",
    "sources": [
     "Block 5 · Day 16 — Welded Structures, Welding Techniques & Gas-Shielded Arc"
+   ]
+  },
+  {
+   "id": "183de44dcc",
+   "q": "Cobalt Vanadium drill bits used to drill extremely hard metals have an included angle of ?",
+   "options": [
+    "135 degrees",
+    "90 degrees",
+    "120 degrees"
+   ],
+   "correct": 0,
+   "short": "135 degrees.",
+   "expl": "Hard metals get a flatter, blunter point. The handbook says to drill stainless steel with a bit ground to an included angle of 135°, and the standard split-point bit is also 135°. Cobalt vanadium bits are the ones made for hard metals like titanium and stainless. 118° is the general-purpose angle, and 90° is for soft metals, so 135° is the only fit.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-17 (cobalt/twist drill bits) and Page 4-82 (stainless: 135° included angle); FAA-H-8083-30B, Ch. 11, Page 11-12 (118° general, 90° soft)",
+   "topic": "Drilling",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "f86997ab0b",
+   "q": "A lockbolt which has 4 locking groves as opposed to one with 2 locking groves is used in tension applications as opposed to shear applications.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "correct": 0,
+   "short": "True. Four grooves means tension and two means shear.",
+   "expl": "From the handbook: 'The easiest way to differentiate between tension and shear pins is the number of locking grooves. Tension pins normally have four locking grooves and shear pins have two.' Memory trick: tension pulls harder, so it needs more grip.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-52 (lockbolts)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "7eb21e6555",
+   "q": "A closed Angle of 70 degrees equals an open angle of ___________ degrees?",
+   "options": [
+    "70",
+    "75",
+    "110"
+   ],
+   "correct": 2,
+   "short": "110 (180 − 70).",
+   "expl": "A closed angle measured between the legs and the amount of bend always add up to 180°. 'Closed angle: less than 90° when measured between legs, or more than 90° when the amount of bend is measured.' So a 70° closed angle is a 110° bend (180 − 70 = 110). The form's wording is loose, but it is asking for the supplement, and 110 is the only choice that makes sense.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (closed/open angle definitions)",
+   "topic": "Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "6732573277",
+   "q": "Bends in sheetmetal should be made _______________________ to the grain of the metal.",
+   "options": [
+    "Perpendicular or 90 degree",
+    "Parallel",
+    "Either parallel or perpendicular"
+   ],
+   "correct": 0,
+   "short": "Perpendicular (90°) to the grain.",
+   "expl": "'Bend lines should be made to lie at a 90° angle to the grain of the metal if possible.' A bend that runs along the grain (parallel) is much more likely to crack.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-58 (grain of the metal); AC 43.13-1B Ch. 4 (bend lines at an angle to the grain)",
+   "topic": "Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "2d958d405d",
+   "q": "Regarding bend radii a small bend radius will require more sheet metal as opposed to a large bend radius.",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 1,
+   "short": "True, by flat-pattern math. FLAGGED because the wording is ambiguous.",
+   "expl": "For the same finished part, a tighter radius gets closer to a square corner, so the blank has to be longer. The handbook says total developed width 'is less than the sum of mold line dimensions since the metal is bent on a radius and not to a square corner.' Worked example: 0.040 sheet, 90° bend, 1 in × 1 in mold lines. With R = 1/16, TDW = 1.925 in. With R = 1/4, TDW = 1.844 in. The smaller radius needs more metal. CAUTION: if the instructor means bend allowance alone (the metal inside the curve), a bigger radius has a bigger BA, and then the answer would be False. Ask which one is meant.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (TDW < sum of mold lines); BA/setback formulas Ch. 4",
+   "topic": "Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "48595b287f",
+   "q": "Which type of fuselage derives it's primary strength from it's skin?",
+   "options": [
+    "Monocoque",
+    "Truss",
+    "Semi-monocoque"
+   ],
+   "correct": 0,
+   "short": "Monocoque.",
+   "expl": "'The monocoque (single shell) fuselage relies largely on the strength of the skin or covering to carry the primary loads.' Think of a soda can. Semi-monocoque shares the load between the skin and its stringers and formers. A truss uses a frame of tubes.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-7/1-8 (monocoque type)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "0028bfee07",
+   "q": "What type of flame should be used when welding aluminum?",
+   "options": [
+    "Neutral",
+    "Oxidizing",
+    "Carburizing"
+   ],
+   "correct": 0,
+   "short": "Neutral, per the AIM class deck. FLAGGED because the FAA text also says carburizing.",
+   "expl": "Matthew's AIM Metallic Structures deck (Day 16) teaches welding aluminum with a neutral flame, and the 31B aluminum section practices with a neutral flame. AC 43.13 also says the neutral flame is the one used most. DIVERGENCE: 31B p.5-12 also says the carburizing flame is 'best used for ... welding such nonferrous alloys as aluminum, nickel, and Monel,' and the aluminum setup describes a bit of the fuel-rich feather. Oxidizing is wrong either way. Neutral is keyed because it matches the class deck this form was written from.",
+   "cite": "AIM class deck Day 16; FAA-H-8083-31B, Ch. 5, Page 5-18 (aluminum welding, neutral flame) vs Page 5-12 (carburizing flame); AC 43.13-1B Fig. 4-28",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "0461b9726f",
+   "q": "SAE Standard drill bits are grouped by which of the following standards? (Multiple Answers)",
+   "options": [
+    "Letters",
+    "Numbers",
+    "Fractions",
+    "Millimeters"
+   ],
+   "correct": 0,
+   "short": "Letters, Numbers, Fractions.",
+   "expl": "'Drill diameters are grouped by three size standards: number, letter, and fractional.' Millimeters are metric sizes, not the SAE (inch) system.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-17 (drill bit sizes); FAA-H-8083-30B, Ch. 11, Page 11-12",
+   "topic": "Drilling",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "b755e4a996",
+   "q": "When forming a sheetmetal box one very important step to be taken is?",
+   "options": [
+    "Drill drain holes in each corner before bending",
+    "Drill relief holes in each corner before bending",
+    "Drill pilot holes in each corner before bending"
+   ],
+   "correct": 1,
+   "short": "Drill relief holes in each corner before bending.",
+   "expl": "Where two bends meet, holes are drilled at the intersection of the inside bend tangent lines. 'These holes, called relief holes, prevent stress from concentrating at the point where the bend tangent lines intersect' and keep the metal from tearing. They have to touch the intersection of the inside bend tangent lines.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-71/4-72 (relief holes)",
+   "topic": "Layout",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "db7956c8c3",
+   "q": "What are gussets?",
+   "options": [
+    "A necessary part of access panels",
+    "Reinforcement pieces used when joining intersecting structural members.",
+    "Temporary holding devices"
+   ],
+   "correct": 1,
+   "short": "Reinforcement pieces used when joining intersecting structural members.",
+   "expl": "'A gusset is a type of connection bracket that adds strength.' Gussets tie together members that meet, like truss members, rib cap strips, and longerons to bulkheads. Temporary holding devices are clecos.",
+   "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (Fig. 1-18) and Page 1-14 (truss rib gussets)",
+   "topic": "Structures",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "25d0c968e6",
+   "q": "What type of punch is commonly used to make an indention in sheetmetal prior to drilling a hole?",
+   "options": [
+    "Pin Punch",
+    "Center Punch",
+    "Prick Punch"
+   ],
+   "correct": 1,
+   "short": "Center Punch.",
+   "expl": "'A center punch is used to make indentations in metal as an aid in drilling,' which keeps the drill from wandering. The prick punch only makes small layout marks that are later 'enlarged with a center punch to allow for drilling.' A pin punch drives out pins and rivets.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-5 (prick / center punch)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "c64f8e0598",
+   "q": "To keep moisture from gathering in the bottom of a fuselage _______________ should have been drilled during manufacturing and subsequently kept cleaned.",
+   "options": [
+    "Witness Holes",
+    "Weep holes",
+    "Drain Holes"
+   ],
+   "correct": 2,
+   "short": "Drain Holes.",
+   "expl": "The handbook's word is drain holes: corrosion collects 'in pockets and corners where moisture and salt spray may accumulate; therefore, drain holes must always be kept clean.' (Weep holes is a similar trade term, but every FAA reference says drain holes. A witness hole is a hole for checking thread engagement.)",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-92 (corrosion, drain holes); FAA-H-8083-30B, Ch. 8, Page 8-11 (keep drain holes free of obstructions)",
+   "topic": "Corrosion",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "faec2a758d",
+   "q": "A common nick name for a flush rivet set is?",
+   "options": [
+    "Flat Set",
+    "Mushroom set",
+    "Blossom Set"
+   ],
+   "correct": 1,
+   "short": "Mushroom set. FLAGGED because this is shop slang.",
+   "expl": "The flush rivet set has a wide, slightly domed face shaped like a mushroom cap, so shops call it a mushroom set. The FAA handbook only calls it a 'flush set' and never prints 'mushroom,' so this answer rests on common trade usage (AIM class). 'Flat set' sounds plausible but isn't the common nickname, and 'blossom set' isn't a real term.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-36 (flush sets) and 4-38 (rivet sets) + trade term (AIM class)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "8ef5ee64ef",
+   "q": "In Gas Metal Arc Welding (GMAW)",
+   "options": [
+    "The consumable electrode forms the arc between the metal being welded and the welding rod.",
+    "An oxygen and acetylene flame is used to melt the metal together.",
+    "A tungsten non-consumable electrode is used to melt the metal together and form the welding bead."
+   ],
+   "correct": 0,
+   "short": "The consumable electrode choice.",
+   "expl": "In GMAW (MIG), 'an uncoated wire electrode is fed into and through the torch,' and the arc melts both the work and the electrode. That means the electrode is consumable. The form's wording is clumsy, but this is the only GMAW description. Choice B is GTAW (TIG), and choice C is oxy-acetylene.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2/5-3 (GMAW vs GTAW)",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "4c292543a1",
+   "q": "Carbon dioxide is sometimes not considered an inert gas.",
+   "options": [
+    "False",
+    "True"
+   ],
+   "correct": 1,
+   "short": "True.",
+   "expl": "CO2 is used as a GMAW shielding gas, and 31B lists it with argon and helium. Chemically, though, it is an active gas, not a true inert gas: it breaks down in the arc. That's why CO2 MIG is sometimes called MAG (metal active gas). Only argon and helium are truly inert. The question's 'sometimes not considered' points to True.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (GMAW gases) and Page 5-6 (argon/helium are inert)",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "8f95ce9ad7",
+   "q": "When using which of the following tools is it advantageous to begin measuring from the one inch mark?",
+   "options": [
+    "A machinist scale",
+    "A dial caliper",
+    "A machinist square"
+   ],
+   "correct": 0,
+   "short": "A machinist scale.",
+   "expl": "'To obtain an accurate measurement, measure with the scale held on edge from the 1-inch mark instead of the end,' because a worn end gives a false reading. For dividers: 'put one of the points on the 1-inch mark and measure from there.'",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-3 (scales, dividers)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "e05605e773",
+   "q": "A template or the existing holes in the structure must be used in conjunction with which of the following tools in order to accurately locate the rivet holes in a repair?",
+   "options": [
+    "Prick punch",
+    "Center punch",
+    "Transfer punch"
+   ],
+   "correct": 2,
+   "short": "Transfer punch.",
+   "expl": "'A transfer punch uses a template or existing holes in the structure to mark the locations of new holes.' You center it in the old hole and tap it lightly to mark the new sheet.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-6 (transfer punch)",
+   "topic": "Tools",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "7145bfd176",
+   "q": "Oxygen and acetylene tanks are normally made of what material?",
+   "options": [
+    "Steel",
+    "Aluminum",
+    "Titanium"
+   ],
+   "correct": 0,
+   "short": "Steel.",
+   "expl": "Welding oxygen cylinders are seamless high-pressure steel (about 2,200 psi), and acetylene cylinders are steel shells packed with a porous filler soaked in acetone. The FAA handbook describes the cylinders but doesn't name the material, so this is standard welding-equipment knowledge from class. It is the only realistic choice.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-6 (cylinders) + AIM class",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "cabb83b87f",
+   "q": "At what pressure does acetylene become unstable?",
+   "options": [
+    "10 P.S.I.",
+    "15 P.S.I.",
+    "20 P.S.I."
+   ],
+   "correct": 1,
+   "short": "15 P.S.I.",
+   "expl": "'The acetylene pressure gauge should never be set higher than 15 psi for welding or cutting.' Free acetylene can explode from a slight shock at 29.4 psi, so 15 psi is the safe working limit taught as the instability line.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-6 (acetylene)",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "2d5d7b6f0e",
+   "q": "Will welding chrome molibium tubing adversely affect it's strength?",
+   "options": [
+    "No it will not",
+    "Yes it will"
+   ],
+   "correct": 0,
+   "short": "No it will not. FLAGGED.",
+   "expl": "4130 chrome-moly is used for welded fuselages because it 'has high tensile strength, malleability, and is easy to weld.' The handbook says its welding technique 'is practically the same as that for carbon steels.' Thin aircraft tubing welded correctly keeps its strength. CAVEAT: for sections over 3/16 inch the handbook calls for 300 to 400 °F preheat and post-weld heat treatment, or the weld area can turn brittle (untempered martensite). An instructor focused on that could argue 'Yes.' Confirm with the instructor.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-15 (SAE 4130) and Page 5-16 (chrome molybdenum)",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "b15e96070c",
+   "q": "When should a slightly carburizing flame be used in oxygen  acetylene welding?",
+   "options": [
+    "When welding Low carbon steel",
+    "When welding Stainless steel",
+    "When welding aluminum"
+   ],
+   "correct": 1,
+   "short": "When welding Stainless steel.",
+   "expl": "'A slightly carburizing flame is recommended for welding stainless steel,' with a 1/16-inch feather of excess acetylene around the inner cone. Low-carbon steel uses a neutral flame.",
+   "cite": "FAA-H-8083-31B, Ch. 5, Page 5-16 (stainless steel)",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "f30e06b742",
+   "q": "Removing the weld bead from a weld is never a good idea because it.",
+   "options": [
+    "it will reduce the weld's weight.",
+    "Cause the weld to over heat",
+    "It will weaken the weld"
+   ],
+   "correct": 2,
+   "short": "It will weaken the weld.",
+   "expl": "'Do not file or grind welds in an effort to create a smooth appearance, as such treatment causes a loss of strength.' The handbook says the same thing: 'filing deprives the weld of part of its strength.'",
+   "cite": "AC 43.13-1B ¶4-81 (practices to guard against); FAA-H-8083-31B, Ch. 5, Page 5-15",
+   "topic": "Welding",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "98dc1f6de4",
+   "q": "How do you know when a Hi-Lok is torqued to the correct amount?",
+   "options": [
+    "The top of the pin breaks off",
+    "The torque wrench registers the correct torque",
+    "The wrenching flats on the collar break off."
+   ],
+   "correct": 2,
+   "short": "The wrenching flats on the collar break off.",
+   "expl": "The Hi-Lok collar has a wrenching device 'that is torqued by the driving tool until it shears off during installation, leaving the lower portion of the collar seated with the proper torque without additional torque inspection.' The pin doesn't break, so no torque wrench is needed.",
+   "cite": "FAA-H-8083-30B, Ch. 7, Page 7-61 (HI-LOK fastening system)",
+   "topic": "Special Fasteners",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "e487ad8694",
+   "q": "In the calculations for the determination of proper rivet length what standard is used?",
+   "options": [
+    "Neither of the above answers",
+    "The rivet's shank diameter",
+    "The rivet's head diameter"
+   ],
+   "correct": 1,
+   "short": "The rivet's shank diameter.",
+   "expl": "Total rivet length = grip length + the shank needed to form the shop head. 'The properly formed shop head equals one and a half times the diameter of the rivet shank.' So length = grip + 1.5 × shank diameter.",
+   "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32 (rivet length)",
+   "topic": "Riveting",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
+   ]
+  },
+  {
+   "id": "c42cc7105c",
+   "q": "The flutes of a twist drill_____________.",
+   "options": [
+    "form the cutting edge of the drill point",
+    "provide a means for the cooling oil to flow to the correct area",
+    "form the area where the drill attached to the drill motor."
+   ],
+   "correct": 0,
+   "short": "Form the cutting edge of the drill point.",
+   "expl": "A twist drill has 'spiral flutes, or grooves, running the length of the body and a conical point with cutting edges formed by the ends of the flutes.' The flutes also carry chips out. The shank is the part the drill motor holds, and the flutes aren't oil passages.",
+   "cite": "FAA-H-8083-30B, Ch. 11, Page 11-12 (twist drills); FAA-H-8083-31B, Ch. 4, Fig. 4-44 (parts of a drill)",
+   "topic": "Drilling",
+   "block": "Block 5",
+   "sources": [
+    "Block 5 · HW 09A BLK 05 (Review Questions 02)"
    ]
   },
   {

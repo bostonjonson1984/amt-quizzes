@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 5 · HW 09A BLK 05 (Review Questions 02)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 5 · HW 09A BLK 05 (Review Questions 02)</h1>
+    <div class="sub">The 25-question AIM review homework: drill bits and angles, lockbolts, open/closed angles, grain direction, relief holes, fuselage types, punches, rivet sets and rivet length, Hi-Loks, and oxy-acetylene / GMAW welding. Questions are word-for-word from the form. Answer choices reshuffle on every attempt, and Q8 is multi-select. Cites FAA-H-8083-31B/-30B and AC 43.13-1B.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Cobalt Vanadium drill bits used to drill extremely hard metals have an included angle of ?", "options": ["135 degrees", "90 degrees", "120 degrees"], "correct": 0, "short": "135 degrees.", "expl": "Hard metals get a flatter, blunter point. The handbook says to drill stainless steel with a bit ground to an included angle of 135°, and the standard split-point bit is also 135°. Cobalt vanadium bits are the ones made for hard metals like titanium and stainless. 118° is the general-purpose angle, and 90° is for soft metals, so 135° is the only fit.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-17 (cobalt/twist drill bits) and Page 4-82 (stainless: 135° included angle); FAA-H-8083-30B, Ch. 11, Page 11-12 (118° general, 90° soft)", "topic": "Drilling", "fig": ""}, {"q": "A lockbolt which has 4 locking groves as opposed to one with 2 locking groves is used in tension applications as opposed to shear applications.", "options": ["True", "False"], "correct": 0, "short": "True. Four grooves means tension and two means shear.", "expl": "From the handbook: 'The easiest way to differentiate between tension and shear pins is the number of locking grooves. Tension pins normally have four locking grooves and shear pins have two.' Memory trick: tension pulls harder, so it needs more grip.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-52 (lockbolts)", "topic": "Special Fasteners", "fig": ""}, {"q": "A closed Angle of 70 degrees equals an open angle of ___________ degrees?", "options": ["70", "75", "110"], "correct": 2, "short": "110 (180 − 70).", "expl": "A closed angle measured between the legs and the amount of bend always add up to 180°. 'Closed angle: less than 90° when measured between legs, or more than 90° when the amount of bend is measured.' So a 70° closed angle is a 110° bend (180 − 70 = 110). The form's wording is loose, but it is asking for the supplement, and 110 is the only choice that makes sense.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (closed/open angle definitions)", "topic": "Layout", "fig": ""}, {"q": "Bends in sheetmetal should be made _______________________ to the grain of the metal.", "options": ["Perpendicular or 90 degree", "Parallel", "Either parallel or perpendicular"], "correct": 0, "short": "Perpendicular (90°) to the grain.", "expl": "'Bend lines should be made to lie at a 90° angle to the grain of the metal if possible.' A bend that runs along the grain (parallel) is much more likely to crack.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-58 (grain of the metal); AC 43.13-1B Ch. 4 (bend lines at an angle to the grain)", "topic": "Layout", "fig": ""}, {"q": "Regarding bend radii a small bend radius will require more sheet metal as opposed to a large bend radius.", "options": ["False", "True"], "correct": 1, "short": "True, by flat-pattern math. FLAGGED because the wording is ambiguous.", "expl": "For the same finished part, a tighter radius gets closer to a square corner, so the blank has to be longer. The handbook says total developed width 'is less than the sum of mold line dimensions since the metal is bent on a radius and not to a square corner.' Worked example: 0.040 sheet, 90° bend, 1 in × 1 in mold lines. With R = 1/16, TDW = 1.925 in. With R = 1/4, TDW = 1.844 in. The smaller radius needs more metal. CAUTION: if the instructor means bend allowance alone (the metal inside the curve), a bigger radius has a bigger BA, and then the answer would be False. Ask which one is meant.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-59 (TDW < sum of mold lines); BA/setback formulas Ch. 4", "topic": "Layout", "fig": ""}, {"q": "Which type of fuselage derives it's primary strength from it's skin?", "options": ["Monocoque", "Truss", "Semi-monocoque"], "correct": 0, "short": "Monocoque.", "expl": "'The monocoque (single shell) fuselage relies largely on the strength of the skin or covering to carry the primary loads.' Think of a soda can. Semi-monocoque shares the load between the skin and its stringers and formers. A truss uses a frame of tubes.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-7/1-8 (monocoque type)", "topic": "Structures", "fig": ""}, {"q": "What type of flame should be used when welding aluminum?", "options": ["Neutral", "Oxidizing", "Carburizing"], "correct": 0, "short": "Neutral, per the AIM class deck. FLAGGED because the FAA text also says carburizing.", "expl": "Matthew's AIM Metallic Structures deck (Day 16) teaches welding aluminum with a neutral flame, and the 31B aluminum section practices with a neutral flame. AC 43.13 also says the neutral flame is the one used most. DIVERGENCE: 31B p.5-12 also says the carburizing flame is 'best used for ... welding such nonferrous alloys as aluminum, nickel, and Monel,' and the aluminum setup describes a bit of the fuel-rich feather. Oxidizing is wrong either way. Neutral is keyed because it matches the class deck this form was written from.", "cite": "AIM class deck Day 16; FAA-H-8083-31B, Ch. 5, Page 5-18 (aluminum welding, neutral flame) vs Page 5-12 (carburizing flame); AC 43.13-1B Fig. 4-28", "topic": "Welding", "fig": ""}, {"fixed": true, "multi": [0, 1, 2], "q": "SAE Standard drill bits are grouped by which of the following standards? (Multiple Answers)", "options": ["Letters", "Numbers", "Fractions", "Millimeters"], "correct": 0, "short": "Letters, Numbers, Fractions.", "expl": "'Drill diameters are grouped by three size standards: number, letter, and fractional.' Millimeters are metric sizes, not the SAE (inch) system.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-17 (drill bit sizes); FAA-H-8083-30B, Ch. 11, Page 11-12", "topic": "Drilling", "fig": ""}, {"q": "When forming a sheetmetal box one very important step to be taken is?", "options": ["Drill drain holes in each corner before bending", "Drill relief holes in each corner before bending", "Drill pilot holes in each corner before bending"], "correct": 1, "short": "Drill relief holes in each corner before bending.", "expl": "Where two bends meet, holes are drilled at the intersection of the inside bend tangent lines. 'These holes, called relief holes, prevent stress from concentrating at the point where the bend tangent lines intersect' and keep the metal from tearing. They have to touch the intersection of the inside bend tangent lines.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-71/4-72 (relief holes)", "topic": "Layout", "fig": ""}, {"q": "What are gussets?", "options": ["A necessary part of access panels", "Reinforcement pieces used when joining intersecting structural members.", "Temporary holding devices"], "correct": 1, "short": "Reinforcement pieces used when joining intersecting structural members.", "expl": "'A gusset is a type of connection bracket that adds strength.' Gussets tie together members that meet, like truss members, rib cap strips, and longerons to bulkheads. Temporary holding devices are clecos.", "cite": "FAA-H-8083-31B, Ch. 1, Page 1-9 (Fig. 1-18) and Page 1-14 (truss rib gussets)", "topic": "Structures", "fig": ""}, {"q": "What type of punch is commonly used to make an indention in sheetmetal prior to drilling a hole?", "options": ["Pin Punch", "Center Punch", "Prick Punch"], "correct": 1, "short": "Center Punch.", "expl": "'A center punch is used to make indentations in metal as an aid in drilling,' which keeps the drill from wandering. The prick punch only makes small layout marks that are later 'enlarged with a center punch to allow for drilling.' A pin punch drives out pins and rivets.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-5 (prick / center punch)", "topic": "Tools", "fig": ""}, {"q": "To keep moisture from gathering in the bottom of a fuselage _______________ should have been drilled during manufacturing and subsequently kept cleaned.", "options": ["Witness Holes", "Weep holes", "Drain Holes"], "correct": 2, "short": "Drain Holes.", "expl": "The handbook's word is drain holes: corrosion collects 'in pockets and corners where moisture and salt spray may accumulate; therefore, drain holes must always be kept clean.' (Weep holes is a similar trade term, but every FAA reference says drain holes. A witness hole is a hole for checking thread engagement.)", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-92 (corrosion, drain holes); FAA-H-8083-30B, Ch. 8, Page 8-11 (keep drain holes free of obstructions)", "topic": "Corrosion", "fig": ""}, {"q": "A common nick name for a flush rivet set is?", "options": ["Flat Set", "Mushroom set", "Blossom Set"], "correct": 1, "short": "Mushroom set. FLAGGED because this is shop slang.", "expl": "The flush rivet set has a wide, slightly domed face shaped like a mushroom cap, so shops call it a mushroom set. The FAA handbook only calls it a 'flush set' and never prints 'mushroom,' so this answer rests on common trade usage (AIM class). 'Flat set' sounds plausible but isn't the common nickname, and 'blossom set' isn't a real term.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-36 (flush sets) and 4-38 (rivet sets) + trade term (AIM class)", "topic": "Riveting", "fig": ""}, {"q": "In Gas Metal Arc Welding (GMAW)", "options": ["The consumable electrode forms the arc between the metal being welded and the welding rod.", "An oxygen and acetylene flame is used to melt the metal together.", "A tungsten non-consumable electrode is used to melt the metal together and form the welding bead."], "correct": 0, "short": "The consumable electrode choice.", "expl": "In GMAW (MIG), 'an uncoated wire electrode is fed into and through the torch,' and the arc melts both the work and the electrode. That means the electrode is consumable. The form's wording is clumsy, but this is the only GMAW description. Choice B is GTAW (TIG), and choice C is oxy-acetylene.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2/5-3 (GMAW vs GTAW)", "topic": "Welding", "fig": ""}, {"q": "Carbon dioxide is sometimes not considered an inert gas.", "options": ["False", "True"], "correct": 1, "short": "True.", "expl": "CO2 is used as a GMAW shielding gas, and 31B lists it with argon and helium. Chemically, though, it is an active gas, not a true inert gas: it breaks down in the arc. That's why CO2 MIG is sometimes called MAG (metal active gas). Only argon and helium are truly inert. The question's 'sometimes not considered' points to True.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-2 (GMAW gases) and Page 5-6 (argon/helium are inert)", "topic": "Welding", "fig": ""}, {"q": "When using which of the following tools is it advantageous to begin measuring from the one inch mark?", "options": ["A machinist scale", "A dial caliper", "A machinist square"], "correct": 0, "short": "A machinist scale.", "expl": "'To obtain an accurate measurement, measure with the scale held on edge from the 1-inch mark instead of the end,' because a worn end gives a false reading. For dividers: 'put one of the points on the 1-inch mark and measure from there.'", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-3 (scales, dividers)", "topic": "Tools", "fig": ""}, {"q": "A template or the existing holes in the structure must be used in conjunction with which of the following tools in order to accurately locate the rivet holes in a repair?", "options": ["Prick punch", "Center punch", "Transfer punch"], "correct": 2, "short": "Transfer punch.", "expl": "'A transfer punch uses a template or existing holes in the structure to mark the locations of new holes.' You center it in the old hole and tap it lightly to mark the new sheet.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-6 (transfer punch)", "topic": "Tools", "fig": ""}, {"q": "Oxygen and acetylene tanks are normally made of what material?", "options": ["Steel", "Aluminum", "Titanium"], "correct": 0, "short": "Steel.", "expl": "Welding oxygen cylinders are seamless high-pressure steel (about 2,200 psi), and acetylene cylinders are steel shells packed with a porous filler soaked in acetone. The FAA handbook describes the cylinders but doesn't name the material, so this is standard welding-equipment knowledge from class. It is the only realistic choice.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-6 (cylinders) + AIM class", "topic": "Welding", "fig": ""}, {"q": "At what pressure does acetylene become unstable?", "options": ["10 P.S.I.", "15 P.S.I.", "20 P.S.I."], "correct": 1, "short": "15 P.S.I.", "expl": "'The acetylene pressure gauge should never be set higher than 15 psi for welding or cutting.' Free acetylene can explode from a slight shock at 29.4 psi, so 15 psi is the safe working limit taught as the instability line.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-6 (acetylene)", "topic": "Welding", "fig": ""}, {"q": "Will welding chrome molibium tubing adversely affect it's strength?", "options": ["No it will not", "Yes it will"], "correct": 0, "short": "No it will not. FLAGGED.", "expl": "4130 chrome-moly is used for welded fuselages because it 'has high tensile strength, malleability, and is easy to weld.' The handbook says its welding technique 'is practically the same as that for carbon steels.' Thin aircraft tubing welded correctly keeps its strength. CAVEAT: for sections over 3/16 inch the handbook calls for 300 to 400 °F preheat and post-weld heat treatment, or the weld area can turn brittle (untempered martensite). An instructor focused on that could argue 'Yes.' Confirm with the instructor.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-15 (SAE 4130) and Page 5-16 (chrome molybdenum)", "topic": "Welding", "fig": ""}, {"q": "When should a slightly carburizing flame be used in oxygen  acetylene welding?", "options": ["When welding Low carbon steel", "When welding Stainless steel", "When welding aluminum"], "correct": 1, "short": "When welding Stainless steel.", "expl": "'A slightly carburizing flame is recommended for welding stainless steel,' with a 1/16-inch feather of excess acetylene around the inner cone. Low-carbon steel uses a neutral flame.", "cite": "FAA-H-8083-31B, Ch. 5, Page 5-16 (stainless steel)", "topic": "Welding", "fig": ""}, {"q": "Removing the weld bead from a weld is never a good idea because it.", "options": ["it will reduce the weld's weight.", "Cause the weld to over heat", "It will weaken the weld"], "correct": 2, "short": "It will weaken the weld.", "expl": "'Do not file or grind welds in an effort to create a smooth appearance, as such treatment causes a loss of strength.' The handbook says the same thing: 'filing deprives the weld of part of its strength.'", "cite": "AC 43.13-1B ¶4-81 (practices to guard against); FAA-H-8083-31B, Ch. 5, Page 5-15", "topic": "Welding", "fig": ""}, {"q": "How do you know when a Hi-Lok is torqued to the correct amount?", "options": ["The top of the pin breaks off", "The torque wrench registers the correct torque", "The wrenching flats on the collar break off."], "correct": 2, "short": "The wrenching flats on the collar break off.", "expl": "The Hi-Lok collar has a wrenching device 'that is torqued by the driving tool until it shears off during installation, leaving the lower portion of the collar seated with the proper torque without additional torque inspection.' The pin doesn't break, so no torque wrench is needed.", "cite": "FAA-H-8083-30B, Ch. 7, Page 7-61 (HI-LOK fastening system)", "topic": "Special Fasteners", "fig": ""}, {"q": "In the calculations for the determination of proper rivet length what standard is used?", "options": ["Neither of the above answers", "The rivet's shank diameter", "The rivet's head diameter"], "correct": 1, "short": "The rivet's shank diameter.", "expl": "Total rivet length = grip length + the shank needed to form the shop head. 'The properly formed shop head equals one and a half times the diameter of the rivet shank.' So length = grip + 1.5 × shank diameter.", "cite": "FAA-H-8083-31B, Ch. 4, Page 4-32 (rivet length)", "topic": "Riveting", "fig": ""}, {"q": "The flutes of a twist drill_____________.", "options": ["form the cutting edge of the drill point", "provide a means for the cooling oil to flow to the correct area", "form the area where the drill attached to the drill motor."], "correct": 0, "short": "Form the cutting edge of the drill point.", "expl": "A twist drill has 'spiral flutes, or grooves, running the length of the body and a conical point with cutting edges formed by the ends of the flutes.' The flutes also carry chips out. The shank is the part the drill motor holds, and the flutes aren't oil passages.", "cite": "FAA-H-8083-30B, Ch. 11, Page 11-12 (twist drills); FAA-H-8083-31B, Ch. 4, Fig. 4-44 (parts of a drill)", "topic": "Drilling", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = false;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
