@@ -1,6 +1,6 @@
 {
  "built": "2026-11-03",
- "total": 4255,
+ "total": 4275,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -73,6 +73,7 @@
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "Block 6 · Systems Abbreviations & Acronyms": 159,
   "Block 7 · Day 1 — Composite Materials": 46,
+  "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)": 20,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
   "AET Academy M3 — Resistors": 36,
@@ -71287,6 +71288,366 @@
    "block": "Block 7",
    "sources": [
     "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "63d822be98",
+   "q": "What are the names of the four types of plywood patches?",
+   "options": [
+    "Splayed, interior, plug, splined",
+    "Scarf, surface, plug, splayed",
+    "Surface, layover, scarf, splayed"
+   ],
+   "correct": 1,
+   "short": "Four plywood patches: splayed, surface, plug, scarf.",
+   "expl": "AC 43.13-1B lists exactly four types of plywood skin patches: the splayed patch, the surface patch, the plug patch and the scarf patch. Interior, splined and layover are not patch types.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-51 (Types of Patches)",
+   "topic": "Plywood Repair",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "f77584e609",
+   "q": "The surface of the wood to be glued should be smoothed using:",
+   "options": [
+    "A wood plane",
+    "Sandpaper",
+    "Wood clamps"
+   ],
+   "correct": 0,
+   "short": "Smooth gluing surfaces with a plane, never sandpaper.",
+   "expl": "Mating surfaces should be machined smooth and true with planers, joiners or special miter saws. The AC says sandpaper must never be used to smooth softwood surfaces that are to be bonded. Clamps hold parts together; they don't smooth anything.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-6 (Preparation of Wood Surfaces for Bonding)",
+   "topic": "Bonding",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "6c3aa15077",
+   "q": "The period of time between the application of the adhesive and the assembly of the joint is called.",
+   "options": [
+    "Closed assembly time",
+    "Open assembly time",
+    "Gluing time"
+   ],
+   "correct": 1,
+   "short": "Adhesive spread → parts together = OPEN assembly time.",
+   "expl": "Open assembly time runs from the moment the adhesive is spread until the parts are put together, while the glue is open to the air. Closed assembly time starts once the parts are together and lasts until clamping pressure is applied.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-8b (Open assembly time)",
+   "topic": "Bonding",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "899e586e72",
+   "q": "The usable life of the adhesive from the time that it is mixed until it must be spread onto the wood structure is",
+   "options": [
+    "Pot life",
+    "Open assembly time",
+    "Glue life"
+   ],
+   "correct": 0,
+   "short": "Mixed → must be spread = pot life.",
+   "expl": "Pot life is the usable life of the adhesive from mixing until it must be spread onto the wood. When pot life runs out, the leftover adhesive is thrown away; you never thin it to stretch the batch.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-8a (Pot life)",
+   "topic": "Bonding",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "ee482a2997",
+   "q": "The species of wood used by the FAA as the reference wood for aircraft structures is:",
+   "options": [
+    "Noble fir",
+    "Sitka Fir",
+    "Sitka spruce"
+   ],
+   "correct": 2,
+   "short": "Reference wood = Sitka spruce.",
+   "expl": "Spruce, with Sitka spruce listed first, is the standard that every other species in the FAA wood comparison table is measured against. There is no species called Sitka fir, and noble fir is just one of the listed substitutes.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 (spruce \"considered as standard\"); FAA-H-8083-31B, Ch. 6 (Suitable Wood)",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "061d50b2bb",
+   "q": "Wood is:",
+   "options": [
+    "An inorganic product",
+    "Subject to decay",
+    "Organic and naturally immune to decay"
+   ],
+   "correct": 1,
+   "short": "Wood is organic and subject to decay (fungi).",
+   "expl": "Wood is an organic product, and that is exactly why it is subject to attack by fungi, which cause decay. It is not inorganic, and being organic makes it vulnerable to decay, not immune to it.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-28a (Wood Decay)",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "2574a81cfe",
+   "q": "The wood you can purchase at Home Depot is:",
+   "options": [
+    "A suitable substitute for aircraft repairs",
+    "Quarter sawn",
+    "Unsuitable for aircraft use"
+   ],
+   "correct": 2,
+   "short": "Hardware-store lumber is not aircraft grade.",
+   "expl": "Aircraft wood has to meet aircraft-quality specifications (MIL-S-6073 for solid wood, MIL-P-6070B for plywood). The handbook says that grade of wood can't be bought from a local lumber yard, so store lumber is unsuitable for aircraft use.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (Materials: aircraft-quality wood specifications)",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "abb1aaca27",
+   "q": "Casein glues are considered to be:",
+   "options": [
+    "Obsolete for all aircraft repairs",
+    "An ideal wood glue as it is organic",
+    "Suitable for scarf joints"
+   ],
+   "correct": 0,
+   "short": "Casein glue = obsolete for all aircraft repairs.",
+   "expl": "Casein glue should be considered obsolete for all aircraft repairs. It deteriorates when exposed to moisture and temperature changes that every aircraft sees in normal operation.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (Adhesives: casein glue); AC 43.13-1B, Ch. 1, Par. 1-4",
+   "topic": "Adhesives",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "dc9447d1d3",
+   "q": "What type of tool would you utilize to probe a suspected area of rot?",
+   "options": [
+    "A small hammer",
+    "A Phillips screwdriver",
+    "A sharp metal tool"
+   ],
+   "correct": 2,
+   "short": "Probe suspected rot with a sharp metal tool.",
+   "expl": "AC 43.13-1B says to probe the area in question with a sharp metal tool. A small hammer is used to tap-test for a hollow sound, which is a different check.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-29c (Inspection Methods: probing)",
+   "topic": "Inspection",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "bd87fa25c3",
+   "q": "Hard knots in wood components, are acceptable:",
+   "options": [
+    "as long as they do not exceed 0.40\" diameter",
+    "If they are max .375: diameter",
+    "If they go right through the wood to the other side"
+   ],
+   "correct": 1,
+   "short": "Sound hard knots up to 3/8 in (0.375\") are acceptable.",
+   "expl": "Sound, hard knots up to 3/8 inch (0.375 inch) in maximum diameter are acceptable, provided they meet the other location limits in the AC. 0.40 inch is over the limit.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-2, Table 1-2 (Hard knots); FAA-H-8083-31B, Ch. 6",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "70d4e45237",
+   "q": "Solid spars may be replaced with laminated spars:",
+   "options": [
+    "Never",
+    "provided the material is of the same high quality.",
+    "But not vice versa"
+   ],
+   "correct": 1,
+   "short": "Solid ↔ laminated spars are interchangeable if the material is the same high quality.",
+   "expl": "The AC says solid spars may be replaced with laminated spars, or the reverse, as long as the material is of the same high quality. So it works both ways, not \"never\" and not one-way only.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-43 (Replacing Solid-Type Spars with Laminated-Type Spars)",
+   "topic": "Structures",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "108852c10c",
+   "q": "Wood shrinkage is greatest in a:",
+   "options": [
+    "Tangential direction parallel to the growth rings",
+    "Across the growth rings",
+    "Through the growth rings"
+   ],
+   "correct": 0,
+   "short": "Shrinkage is greatest tangentially (parallel to the growth rings).",
+   "expl": "Wood shrinks most in the tangential direction, across the fibers and parallel to the growth rings. It shrinks somewhat less radially (across the rings) and very little along the grain.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-2 (Effects of Shrinkage)",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "6edd5f0ac7",
+   "q": "The most common form of modified woods used in aircraft is:",
+   "options": [
+    "Sitka spruce",
+    "Port Orford cedar",
+    "Plywood"
+   ],
+   "correct": 2,
+   "short": "Plywood is the common modified (assembled) wood.",
+   "expl": "Plywood is an assembled product of wood and glue, made of an odd number of thin plies with each layer's grain at 90° to the next. Sitka spruce and Port Orford cedar are natural solid-wood species, not modified woods.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-3 (Modified Wood Products); FAA-H-8083-31B, Ch. 6",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "5641b21baa",
+   "q": "Obsolete adhesives include:",
+   "options": [
+    "Epoxy adhesive",
+    "Urea formaldehyde, Casein",
+    "Resourcinol formaldehyde resin"
+   ],
+   "correct": 1,
+   "short": "Obsolete: urea-formaldehyde (plastic resin) and casein.",
+   "expl": "Both casein glue and plastic resin glue (urea-formaldehyde) should be considered obsolete for all aircraft repairs. Epoxy and resorcinol are the adhesives still accepted.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-4 (Adhesives); FAA-H-8083-31B, Ch. 6",
+   "topic": "Adhesives",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "a62b0ec6d5",
+   "q": "Epoxy adhesives are a two part synthetic resin product, and are acceptable providing they meet the requirements of",
+   "options": [
+    "FAR43, para 1-4a",
+    "8083-31",
+    "AC43.13-1b, para 1-4a"
+   ],
+   "correct": 2,
+   "short": "Epoxies must meet AC 43.13-1B paragraph 1-4a.",
+   "expl": "That wording is quoted straight from AC 43.13-1B, which says epoxy adhesives are acceptable providing they meet the requirements of paragraph 1-4a. Paragraph 1-4a is in the AC, not in Part 43 or the handbook.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-4b(6)",
+   "topic": "Adhesives",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "6a4873437a",
+   "q": "Prior to adhesive application, it is advisable to:",
+   "options": [
+    "vacuum the gluing surfaces",
+    "Thoroughly wet the surfaces",
+    "Clamp the parts tightly"
+   ],
+   "correct": 0,
+   "short": "Vacuum both joint surfaces just before applying adhesive.",
+   "expl": "The AC says it is advisable to clean both joint surfaces with a vacuum cleaner just before applying adhesive, because the surfaces must be free of dust and dirt. Clamping comes after the adhesive is on.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-6",
+   "topic": "Bonding",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "1067ede47f",
+   "q": "roughening smooth, well planed wood surfaces before bonding is:",
+   "options": [
+    "Not recommended",
+    "Done with high grade abrasives",
+    "Highly recommended"
+   ],
+   "correct": 0,
+   "short": "Roughening well-planed surfaces is NOT recommended.",
+   "expl": "Roughening smooth, well-planed wood before bonding is not recommended; it can cause local irregularities and round off the edges. Very light sanding is only for surfaces that can't be freshly machined, such as aged plywood.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-6a",
+   "topic": "Bonding",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "2231ccd0dd",
+   "q": "The period from assembly of the joint until the application of pressure is:",
+   "options": [
+    "Open assembly time",
+    "Closed assembly time",
+    "Clamping time"
+   ],
+   "correct": 1,
+   "short": "Parts together → pressure applied = CLOSED assembly time.",
+   "expl": "Closed assembly time runs from the moment the parts are placed together until clamping pressure is applied. Pressing (clamping) time is the period after that, while the adhesive cures under pressure.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-8c (Closed assembly time)",
+   "topic": "Bonding",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "f9d76efa66",
+   "q": "If probing with a sharp metal tool indicates a soft or mushy area the mechanic should assume the area is:",
+   "options": [
+    "Wet",
+    "Decayed",
+    "The wrong species of wood"
+   ],
+   "correct": 1,
+   "short": "Soft/mushy when probed = decay.",
+   "expl": "Sound wood resists the probe. If it goes in easily and the wood feels soft or mushy, the AC says to assume the area is decayed and inspect further.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-29c",
+   "topic": "Inspection",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "0fa2af6a8b",
+   "q": "A musty or moldy odor noticed when an access panel is removed is indicative of",
+   "options": [
+    "Deterioration",
+    "Mice infestation",
+    "Wrong wood used"
+   ],
+   "correct": 0,
+   "short": "Musty/moldy smell = moisture and deterioration.",
+   "expl": "A musty or moldy smell means moisture, fungal growth and possible decay. The handbook and the AC both treat it as a sign of deterioration that calls for a closer look.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-29; FAA-H-8083-31B, Ch. 6 (inspection)",
+   "topic": "Inspection",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
    ]
   },
   {
