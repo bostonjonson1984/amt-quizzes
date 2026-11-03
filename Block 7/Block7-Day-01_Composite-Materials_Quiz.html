@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 7 · Day 1 — Composite Materials</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 7 · Day 1 — Composite Materials</h1>
+    <div class="sub">Every point from the Day 1 Composite Materials class notes: what a composite is, fibers, the matrix system, core materials, laminated and sandwich construction, working with resin, safety, and manufacturing. Each explanation cites the notes section it comes from.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "What is a composite?", "options": ["Any part that is bonded with adhesive instead of riveted", "A combination of two or more materials that differ in composition or form, combined to make one single component or part", "A single metal alloy that has been heat-treated for strength"], "correct": 1, "short": "Composite = two or more different materials combined into one part.", "expl": "The notes define a composite as two or more materials that differ in composition or form, put together to make one single component. A heat-treated alloy is still one material, and bonding alone does not make something a composite.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "What Is a Composite", "fig": ""}, {"q": "Which is listed in the notes as an ADVANTAGE of composites?", "options": ["High strength-to-weight ratio", "Lower cost than aluminum in every application", "No need for any personal protection when handling"], "correct": 0, "short": "Advantage #1: high strength-to-weight ratio.", "expl": "A high strength-to-weight ratio is the headline advantage: composites give a lot of strength for very little weight. Cost and safety are not advantages; the notes spend a whole section on safety.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "What Is a Composite", "fig": ""}, {"q": "Besides strength-to-weight, which advantage of composites do the notes give?", "options": ["They can be formed into complex shapes", "They can only be made into flat sheets", "They never need to be inspected"], "correct": 0, "short": "Composites can be formed into complex shapes.", "expl": "Because the fibers and resin are laid up over a mold before curing, composites can be formed into complex shapes that would be hard to make from sheet metal.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1", "topic": "What Is a Composite", "fig": ""}, {"q": "Which statement about the strength and stiffness of a composite part is true?", "options": ["Strength and stiffness are fixed by the resin and cannot be changed", "Stiffness can be changed but strength cannot", "Strength and stiffness can be customized"], "correct": 2, "short": "Strength and stiffness can be customized.", "expl": "Choosing the fiber type, the number of plies and the direction they run lets the designer customize both strength and stiffness. That tailoring is one of the three advantages in the notes.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "What Is a Composite", "fig": ""}, {"q": "Match the element of a composite to its example: FIBER", "options": ["Carbon fiber", "Epoxy", "Honeycomb"], "correct": 0, "short": "Fiber → carbon fiber.", "expl": "The notes' elements table pairs each element with an example: fiber is carbon fiber, matrix is epoxy or resin, and core is honeycomb.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Elements of Composites)", "topic": "Elements", "fig": ""}, {"q": "Match the element of a composite to its example: MATRIX", "options": ["Honeycomb", "Epoxy or resin", "Carbon fiber"], "correct": 1, "short": "Matrix → epoxy or resin.", "expl": "The matrix is the resin system (epoxy or another resin) that surrounds the fibers and holds them in place. Carbon fiber is the fiber and honeycomb is the core.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Elements of Composites)", "topic": "Elements", "fig": ""}, {"q": "Match the element of a composite to its example: CORE", "options": ["Carbon fiber", "Honeycomb", "Epoxy or resin"], "correct": 1, "short": "Core → honeycomb.", "expl": "The core is the thick, light middle layer of a sandwich part; the notes' example is honeycomb.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Elements of Composites)", "topic": "Elements", "fig": ""}, {"q": "What three elements make up a composite, according to the notes?", "options": ["Fiber, rivets, and core", "Matrix, solvent, and primer", "Fiber, matrix, and core"], "correct": 2, "short": "Elements: fiber, matrix, core.", "expl": "The elements table lists three: fiber (carbon fiber), matrix (epoxy or resin) and core (honeycomb). Rivets, solvents and primer are not elements of the composite itself.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1", "topic": "Elements", "fig": ""}, {"q": "What does the FIBER provide in a composite?", "options": ["Nothing structural; it is decoration under the paint", "The primary structure, when combined with a matrix", "The bonding agent that holds the part together by itself"], "correct": 1, "short": "Fiber provides the primary structure (with a matrix).", "expl": "The fiber is the load-carrying part: combined with a matrix it provides the primary structure. The matrix holds the fibers in place and transfers load between them.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Fiber / Type of Material); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Fibers", "fig": ""}, {"q": "Two or more types of fiber combined into one material for a specific construction or design is called a ___.", "options": ["Thermoplastic", "Hybrid", "Monocoque"], "correct": 1, "short": "Combined fibers = hybrid material.", "expl": "The notes say fibers can be combined to form a hybrid material, used in structures for a specific construction or design, for example carbon and fiberglass in the same part.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Fiber / Type of Material)", "topic": "Fibers", "fig": ""}, {"q": "Fiberglass cloth is made from ___.", "options": ["Molten silica", "Carbon (graphite)", "Aramid (Kevlar)"], "correct": 0, "short": "Fiberglass = molten silica.", "expl": "Fiberglass cloth is made from molten silica (glass) drawn into fine fibers. Carbon fiber is graphite, and Kevlar is aramid.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Fiberglass Cloth); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Fibers", "fig": ""}, {"q": "Carbon fiber is also known as ___.", "options": ["Graphite", "Fiberglass", "Nomex"], "correct": 0, "short": "Carbon fiber = graphite.", "expl": "The notes say carbon fiber is also known as graphite. Fiberglass is made from silica, and Nomex is a paper-type honeycomb core material.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Carbon Fiber); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Fibers", "fig": ""}, {"q": "Plastics (matrix resins) fall into which two general categories?", "options": ["Epoxy and aluminum", "Laminated and sandwich", "Thermoplastic and thermosetting"], "correct": 2, "short": "Two plastic categories: thermoplastic and thermosetting.", "expl": "The matrix section says plastics come in two general categories: thermoplastic and thermosetting. Laminated and sandwich are the two types of construction, not types of plastic.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Matrix System", "fig": ""}, {"q": "A THERMOPLASTIC uses heat to form parts. What happens if it is reheated?", "options": ["The shape can change, because the shape is not permanent", "Nothing, because it is permanently set after the first heating", "It turns into a thermosetting resin"], "correct": 0, "short": "Thermoplastic: reheating can change the shape (not permanent).", "expl": "Thermoplastics are formed with heat, but the shape is not permanent: heat it again and it softens and can be reshaped. That is the key difference from a thermoset.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermoplastic); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Matrix System", "fig": ""}, {"q": "Which type of plastic uses heat to IRREVERSIBLY set the shape of a part?", "options": ["Thermosetting", "Thermoplastic", "Polyester foam"], "correct": 0, "short": "Thermosetting = heat sets the shape for good.", "expl": "A thermosetting resin uses heat to irreversibly set the part's shape. A thermoplastic uses heat too, but its shape can be changed again by reheating.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermosetting); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Matrix System", "fig": ""}, {"q": "Once a THERMOSETTING resin is cured, it ___.", "options": ["Can be softened and reshaped with a heat gun", "Returns to a liquid at room temperature", "Cannot be reformed"], "correct": 2, "short": "Cured thermoset cannot be reformed.", "expl": "Once a thermoset cures it cannot be reformed; reheating will not soften it back into a moldable state the way a thermoplastic would.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermosetting)", "topic": "Matrix System", "fig": ""}, {"q": "Which resin type, introduced into fabrics, is the PRIMARY application in aircraft composite construction?", "options": ["Thermosetting", "Thermoplastic", "Styrofoam"], "correct": 0, "short": "Thermosetting resin in fabric = primary aircraft composite application.", "expl": "The notes say thermosetting resin introduced into fabrics is the primary application used in aircraft composite construction.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermosetting); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Matrix System", "fig": ""}, {"q": "Which resin is the MOST used?", "options": ["Epoxy resin", "Polyester resin", "Urethane resin"], "correct": 0, "short": "Epoxy = most used resin.", "expl": "Of the two resin types in the notes, epoxy is the most used. Polyester is limited to non-structural use.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Resin Types); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Matrix System", "fig": ""}, {"q": "Polyester resin is used for ___.", "options": ["Primary structure only", "Honeycomb core manufacture", "Non-structural use"], "correct": 2, "short": "Polyester resin = non-structural use.", "expl": "The notes limit polyester resin to non-structural use. Structural work uses epoxy, the most-used resin.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Resin Types); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Matrix System", "fig": ""}, {"q": "Which is NOT one of the core types listed in the notes?", "options": ["Aluminum sheet stock", "Balsa", "Urethane foam"], "correct": 0, "short": "Core types: honeycomb, foam, balsa, Styrofoam, urethane foam.", "expl": "The notes list five core types: honeycomb, foam, balsa, Styrofoam and urethane foam. Aluminum shows up as a material honeycomb can be made from, not as a separate core type.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Core Types)", "topic": "Core Materials", "fig": ""}, {"q": "Which list contains ONLY core types from the notes?", "options": ["Honeycomb, foam, balsa, Styrofoam, urethane foam", "Honeycomb, epoxy, polyester, MEK, acetone", "Carbon, fiberglass, Kevlar, silica, graphite"], "correct": 0, "short": "Core types: honeycomb, foam, balsa, Styrofoam, urethane foam.", "expl": "The five core types are honeycomb, foam, balsa, Styrofoam and urethane foam. Epoxy and polyester are resins, MEK and acetone are solvents, and carbon, fiberglass and Kevlar are fibers.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Core Types)", "topic": "Core Materials", "fig": ""}, {"q": "Honeycomb core can be made from which of these?", "options": ["Aluminum, Kevlar, carbon, fiberglass, Nomex/paper, and steel", "Only aluminum", "Only Nomex paper"], "correct": 0, "short": "Honeycomb: aluminum, Kevlar, carbon, fiberglass, Nomex/paper, steel.", "expl": "The notes list six honeycomb materials: aluminum, Kevlar, carbon, fiberglass, Nomex/paper and steel.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Honeycomb can be made from); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Core Materials", "fig": ""}, {"q": "Which material is NOT on the notes' list of what honeycomb can be made from?", "options": ["Balsa", "Nomex / paper", "Steel"], "correct": 0, "short": "Balsa is a core TYPE, not a honeycomb material.", "expl": "Balsa is its own core type (end-grain wood). Honeycomb is made from aluminum, Kevlar, carbon, fiberglass, Nomex/paper or steel.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3", "topic": "Core Materials", "fig": ""}, {"q": "What is the RIBBON DIRECTION of honeycomb?", "options": ["The one direction in which the honeycomb can be torn easily", "The direction the resin flows during cure", "The thickness direction of the core"], "correct": 0, "short": "Ribbon direction = the one direction honeycomb tears easily.", "expl": "The notes say honeycomb can be torn easily in only one direction, called the ribbon direction. It comes from how the honeycomb sheets are bonded together during manufacture.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Characteristics); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Core Materials", "fig": ""}, {"q": "When repairing honeycomb core, how should the replacement core be oriented?", "options": ["Line up its ribbon direction with the original structure", "Turn it 90° to the original ribbon direction for extra strength", "Orientation does not matter for honeycomb"], "correct": 0, "short": "Repair: match the ribbon direction to the original.", "expl": "Line up the ribbon direction of the repair core with the original structure, so the repaired area carries load the same way the original did.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Characteristics); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Core Materials", "fig": ""}, {"q": "Fiber-reinforced composite construction comes in which two types?", "options": ["Laminated and sandwich", "Thermoplastic and thermosetting", "Monocoque and truss"], "correct": 0, "short": "Two construction types: laminated and sandwich.", "expl": "The notes give two types of fiber-reinforced construction: laminated and sandwich. Thermoplastic and thermosetting are plastic categories.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Construction", "fig": ""}, {"q": "A composite made of two or more layers of reinforcing material bonded together and embedded in a resin matrix is a ___.", "options": ["Laminated composite", "Sandwich composite", "Honeycomb core"], "correct": 0, "short": "Layers bonded in resin = laminated.", "expl": "A laminated composite is two or more layers (plies) of reinforcing material bonded together in a resin matrix, with no core.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4 (Laminated Composites); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Construction", "fig": ""}, {"q": "Two or more laminated face sheets bonded to each side of a relatively thick core is a ___.", "options": ["Sandwich composite", "Laminated composite", "Hybrid laminate"], "correct": 0, "short": "Face sheets + thick core = sandwich.", "expl": "A sandwich composite puts laminated face sheets on each side of a relatively thick, light core such as honeycomb, the way bread goes on each side of the filling.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4 (Sandwich Composites); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Construction", "fig": ""}, {"q": "A HYBRID LAMINATE is ___.", "options": ["Two or more layers of DIFFERENT reinforcing materials laminated together", "A laminate bonded to a honeycomb core", "A laminate made with both epoxy and polyester resin"], "correct": 0, "short": "Hybrid laminate = different reinforcing materials in one laminate.", "expl": "A hybrid laminate mixes different reinforcing materials, for example carbon and fiberglass layers, in one laminate. Bonding face sheets to a core makes a sandwich, not a hybrid.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4 (Hybrid Laminate); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Construction", "fig": ""}, {"q": "An epoxy ratio pump is able to ___.", "options": ["Supply adjustable ratios", "Cure the resin with heat", "Remove air from a layup"], "correct": 0, "short": "Ratio pump: adjustable ratios.", "expl": "An epoxy ratio pump dispenses resin and hardener at adjustable ratios, so the mix is right every time.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Epoxy Ratio Pump)", "topic": "Working with Resin", "fig": ""}, {"q": "Why does an epoxy ratio pump increase SAFETY?", "options": ["It makes the resin non-toxic", "It removes the need for an MSDS", "The user doesn't touch the resin during production"], "correct": 2, "short": "Ratio pump safety: no hand contact with resin.", "expl": "The pump dispenses the resin, so the technician doesn't have to touch it during production. Less skin contact means less risk of the allergic reactions covered in the safety section.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Epoxy Ratio Pump)", "topic": "Working with Resin", "fig": ""}, {"q": "What kind of container should resin be mixed in?", "options": ["Any container that held solvent", "A wax-free container", "A waxed paper cup"], "correct": 1, "short": "Mix resin in a WAX-FREE container.", "expl": "Mix resin in a wax-free container. Wax from a coated cup can get into the resin and contaminate the mix.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Mixing); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Working with Resin", "fig": ""}, {"q": "Why must resin be mixed THOROUGHLY?", "options": ["To add color", "To achieve maximum strength", "To make it cure slower"], "correct": 1, "short": "Mix thoroughly for maximum strength.", "expl": "The notes say to mix thoroughly in order to achieve maximum strength.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Mixing)", "topic": "Working with Resin", "fig": ""}, {"q": "What happens to resin that is NOT properly mixed?", "options": ["It will not cure correctly", "It cures faster and harder", "Nothing; mixing only affects color"], "correct": 0, "short": "Poorly mixed resin won't cure correctly.", "expl": "Resin that isn't properly mixed will not cure correctly, so the part can come out soft, tacky or weak.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Mixing); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Working with Resin", "fig": ""}, {"q": "A RESIN-RICH part is the result of ___.", "options": ["Too much resin applied to the part", "Not enough resin", "Too much heat during cure"], "correct": 0, "short": "Resin rich = too much resin.", "expl": "Resin rich means too much resin was applied to the part. The opposite condition, not enough resin, is called resin starved.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Rich); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Working with Resin", "fig": ""}, {"q": "Which problems does a RESIN-RICH condition cause?", "options": ["Cracks / weakness in the structure, and unnecessary weight", "Only a dull surface finish", "Extra strength with no downside"], "correct": 0, "short": "Resin rich → cracks/weakness + added weight.", "expl": "Excess resin is brittle and carries no fiber, so a resin-rich area causes cracks and weakness in the structure and adds unnecessary weight.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Rich); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Working with Resin", "fig": ""}, {"q": "A RESIN-STARVED part ___.", "options": ["Does not have enough resin, which causes weakness in the structure", "Has too much resin, which adds weight", "Is stronger because it is lighter"], "correct": 0, "short": "Resin starved = not enough resin → weakness.", "expl": "Resin starved means there isn't enough resin to wet out and bond the fibers, which causes weakness in the structure.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Starved); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Working with Resin", "fig": ""}, {"q": "According to the notes, why do accidents happen with composites?", "options": ["Only because of power-tool failures", "Improper usage and handling of composite material", "Composites are explosive under normal conditions"], "correct": 1, "short": "Accidents come from improper usage and handling.", "expl": "The safety section says accidents happen because of improper usage and handling of composite material, which is why the MSDS and personal protection matter.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6", "topic": "Safety", "fig": ""}, {"q": "What does MSDS stand for?", "options": ["Manufacturer's Standard Design Specification", "Maintenance Safety Directive Summary", "Material Safety Data Sheet"], "correct": 2, "short": "MSDS = Material Safety Data Sheet.", "expl": "MSDS stands for Material Safety Data Sheet: the document that lists a material's hazards, handling and protection requirements.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Safety", "fig": ""}, {"q": "Which statement about personal protection with composites is correct?", "options": ["Resins are harmless once mixed", "Everyone reacts the same way to resin", "Some materials cause allergic reactions, and some people are more sensitive than others"], "correct": 2, "short": "Some materials cause allergies; some people are more sensitive.", "expl": "The notes warn that some composite materials cause allergic reactions and that some people are more sensitive than others.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Personal Protection); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Safety", "fig": ""}, {"q": "When working with resin, it is imperative to ___.", "options": ["Protect yourself from contact with the resin", "Mix it with bare hands to feel the consistency", "Skip gloves if you are not allergic yet"], "correct": 0, "short": "Imperative: protect yourself from resin contact.", "expl": "The notes call it imperative to protect yourself from contact with resin. Sensitivity can develop over time, so not having reacted yet is no reason to skip protection.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Personal Protection)", "topic": "Safety", "fig": ""}, {"q": "What are the two most common solvents used with composites?", "options": ["Water and alcohol", "MEK and acetone", "Epoxy and polyester"], "correct": 1, "short": "Two most common solvents: MEK and acetone.", "expl": "The notes name the two most common solvents: MEK and acetone. Epoxy and polyester are resins.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Solvents); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Safety", "fig": ""}, {"q": "MEK stands for ___.", "options": ["Methyl Ethyl Ketone", "Methyl Epoxy Kerosene", "Mixed Ethylene Ketone"], "correct": 0, "short": "MEK = Methyl Ethyl Ketone.", "expl": "MEK stands for Methyl Ethyl Ketone, one of the two most common solvents; the other is acetone.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Solvents)", "topic": "Safety", "fig": ""}, {"q": "What do heat and pressure do for a finished composite product?", "options": ["Change it into a thermoplastic", "Augment (increase) its strength", "Reduce its strength to make it flexible"], "correct": 1, "short": "Heat + pressure augment strength.", "expl": "The notes say heat and pressure augment the strength of the finished product, which is why parts are cured under controlled heat and pressure.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §7; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Manufacturing", "fig": ""}, {"q": "What does HEAT do during manufacturing?", "options": ["Accelerates the curing process", "Squeezes out excess resin", "Removes the need for a matrix"], "correct": 0, "short": "Heat = speeds up the cure.", "expl": "Heat accelerates the curing process. Squeezing out excess resin is the job of pressure.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §7; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Manufacturing", "fig": ""}, {"q": "What does PRESSURE do during manufacturing?", "options": ["Squeezes out excess resin and removes air", "Accelerates the cure", "Adds resin to a starved part"], "correct": 0, "short": "Pressure = squeezes out excess resin + removes air.", "expl": "Pressure squeezes out excess resin (preventing a resin-rich part) and removes trapped air. Speeding up the cure is the job of heat.", "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §7; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)", "topic": "Manufacturing", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = false;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

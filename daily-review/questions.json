@@ -1,6 +1,6 @@
 {
- "built": "2026-10-26",
- "total": 4209,
+ "built": "2026-11-03",
+ "total": 4255,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -72,6 +72,7 @@
   "Block 6 · Mock Final — AMTBLK06 Final A (100 Questions)": 50,
   "Block 6 — Study Guide (Electricity + Avionics/Navigation)": 72,
   "Block 6 · Systems Abbreviations & Acronyms": 159,
+  "Block 7 · Day 1 — Composite Materials": 46,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
   "AET Academy M3 — Resistors": 36,
@@ -70458,6 +70459,834 @@
    "block": "Block 6",
    "sources": [
     "Block 6 · Systems Abbreviations & Acronyms"
+   ]
+  },
+  {
+   "id": "da9e3a20d3",
+   "q": "What is a composite?",
+   "options": [
+    "Any part that is bonded with adhesive instead of riveted",
+    "A combination of two or more materials that differ in composition or form, combined to make one single component or part",
+    "A single metal alloy that has been heat-treated for strength"
+   ],
+   "correct": 1,
+   "short": "Composite = two or more different materials combined into one part.",
+   "expl": "The notes define a composite as two or more materials that differ in composition or form, put together to make one single component. A heat-treated alloy is still one material, and bonding alone does not make something a composite.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "What Is a Composite",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "e4bff52bc4",
+   "q": "Which is listed in the notes as an ADVANTAGE of composites?",
+   "options": [
+    "High strength-to-weight ratio",
+    "Lower cost than aluminum in every application",
+    "No need for any personal protection when handling"
+   ],
+   "correct": 0,
+   "short": "Advantage #1: high strength-to-weight ratio.",
+   "expl": "A high strength-to-weight ratio is the headline advantage: composites give a lot of strength for very little weight. Cost and safety are not advantages; the notes spend a whole section on safety.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "What Is a Composite",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "ca05b769c0",
+   "q": "Besides strength-to-weight, which advantage of composites do the notes give?",
+   "options": [
+    "They can be formed into complex shapes",
+    "They can only be made into flat sheets",
+    "They never need to be inspected"
+   ],
+   "correct": 0,
+   "short": "Composites can be formed into complex shapes.",
+   "expl": "Because the fibers and resin are laid up over a mold before curing, composites can be formed into complex shapes that would be hard to make from sheet metal.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1",
+   "topic": "What Is a Composite",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "fb35af0bc7",
+   "q": "Which statement about the strength and stiffness of a composite part is true?",
+   "options": [
+    "Strength and stiffness are fixed by the resin and cannot be changed",
+    "Stiffness can be changed but strength cannot",
+    "Strength and stiffness can be customized"
+   ],
+   "correct": 2,
+   "short": "Strength and stiffness can be customized.",
+   "expl": "Choosing the fiber type, the number of plies and the direction they run lets the designer customize both strength and stiffness. That tailoring is one of the three advantages in the notes.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "What Is a Composite",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "1823ea1d9a",
+   "q": "Match the element of a composite to its example: FIBER",
+   "options": [
+    "Carbon fiber",
+    "Epoxy",
+    "Honeycomb"
+   ],
+   "correct": 0,
+   "short": "Fiber → carbon fiber.",
+   "expl": "The notes' elements table pairs each element with an example: fiber is carbon fiber, matrix is epoxy or resin, and core is honeycomb.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Elements of Composites)",
+   "topic": "Elements",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "a54f835b2e",
+   "q": "Match the element of a composite to its example: MATRIX",
+   "options": [
+    "Honeycomb",
+    "Epoxy or resin",
+    "Carbon fiber"
+   ],
+   "correct": 1,
+   "short": "Matrix → epoxy or resin.",
+   "expl": "The matrix is the resin system (epoxy or another resin) that surrounds the fibers and holds them in place. Carbon fiber is the fiber and honeycomb is the core.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Elements of Composites)",
+   "topic": "Elements",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "862c0b56e8",
+   "q": "Match the element of a composite to its example: CORE",
+   "options": [
+    "Carbon fiber",
+    "Honeycomb",
+    "Epoxy or resin"
+   ],
+   "correct": 1,
+   "short": "Core → honeycomb.",
+   "expl": "The core is the thick, light middle layer of a sandwich part; the notes' example is honeycomb.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Elements of Composites)",
+   "topic": "Elements",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "52c4d4addb",
+   "q": "What three elements make up a composite, according to the notes?",
+   "options": [
+    "Fiber, rivets, and core",
+    "Matrix, solvent, and primer",
+    "Fiber, matrix, and core"
+   ],
+   "correct": 2,
+   "short": "Elements: fiber, matrix, core.",
+   "expl": "The elements table lists three: fiber (carbon fiber), matrix (epoxy or resin) and core (honeycomb). Rivets, solvents and primer are not elements of the composite itself.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1",
+   "topic": "Elements",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "70f211f820",
+   "q": "What does the FIBER provide in a composite?",
+   "options": [
+    "Nothing structural; it is decoration under the paint",
+    "The primary structure, when combined with a matrix",
+    "The bonding agent that holds the part together by itself"
+   ],
+   "correct": 1,
+   "short": "Fiber provides the primary structure (with a matrix).",
+   "expl": "The fiber is the load-carrying part: combined with a matrix it provides the primary structure. The matrix holds the fibers in place and transfers load between them.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Fiber / Type of Material); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Fibers",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "3ee5c6f2e5",
+   "q": "Two or more types of fiber combined into one material for a specific construction or design is called a ___.",
+   "options": [
+    "Thermoplastic",
+    "Hybrid",
+    "Monocoque"
+   ],
+   "correct": 1,
+   "short": "Combined fibers = hybrid material.",
+   "expl": "The notes say fibers can be combined to form a hybrid material, used in structures for a specific construction or design, for example carbon and fiberglass in the same part.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Fiber / Type of Material)",
+   "topic": "Fibers",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "c2fc544c49",
+   "q": "Fiberglass cloth is made from ___.",
+   "options": [
+    "Molten silica",
+    "Carbon (graphite)",
+    "Aramid (Kevlar)"
+   ],
+   "correct": 0,
+   "short": "Fiberglass = molten silica.",
+   "expl": "Fiberglass cloth is made from molten silica (glass) drawn into fine fibers. Carbon fiber is graphite, and Kevlar is aramid.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Fiberglass Cloth); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Fibers",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "f63390e261",
+   "q": "Carbon fiber is also known as ___.",
+   "options": [
+    "Graphite",
+    "Fiberglass",
+    "Nomex"
+   ],
+   "correct": 0,
+   "short": "Carbon fiber = graphite.",
+   "expl": "The notes say carbon fiber is also known as graphite. Fiberglass is made from silica, and Nomex is a paper-type honeycomb core material.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §1 (Carbon Fiber); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Fibers",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "1c7c04e85b",
+   "q": "Plastics (matrix resins) fall into which two general categories?",
+   "options": [
+    "Epoxy and aluminum",
+    "Laminated and sandwich",
+    "Thermoplastic and thermosetting"
+   ],
+   "correct": 2,
+   "short": "Two plastic categories: thermoplastic and thermosetting.",
+   "expl": "The matrix section says plastics come in two general categories: thermoplastic and thermosetting. Laminated and sandwich are the two types of construction, not types of plastic.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "fcb22867ca",
+   "q": "A THERMOPLASTIC uses heat to form parts. What happens if it is reheated?",
+   "options": [
+    "The shape can change, because the shape is not permanent",
+    "Nothing, because it is permanently set after the first heating",
+    "It turns into a thermosetting resin"
+   ],
+   "correct": 0,
+   "short": "Thermoplastic: reheating can change the shape (not permanent).",
+   "expl": "Thermoplastics are formed with heat, but the shape is not permanent: heat it again and it softens and can be reshaped. That is the key difference from a thermoset.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermoplastic); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "ee1e902dda",
+   "q": "Which type of plastic uses heat to IRREVERSIBLY set the shape of a part?",
+   "options": [
+    "Thermosetting",
+    "Thermoplastic",
+    "Polyester foam"
+   ],
+   "correct": 0,
+   "short": "Thermosetting = heat sets the shape for good.",
+   "expl": "A thermosetting resin uses heat to irreversibly set the part's shape. A thermoplastic uses heat too, but its shape can be changed again by reheating.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermosetting); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "9de781bd89",
+   "q": "Once a THERMOSETTING resin is cured, it ___.",
+   "options": [
+    "Can be softened and reshaped with a heat gun",
+    "Returns to a liquid at room temperature",
+    "Cannot be reformed"
+   ],
+   "correct": 2,
+   "short": "Cured thermoset cannot be reformed.",
+   "expl": "Once a thermoset cures it cannot be reformed; reheating will not soften it back into a moldable state the way a thermoplastic would.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermosetting)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "0ffaaa1e73",
+   "q": "Which resin type, introduced into fabrics, is the PRIMARY application in aircraft composite construction?",
+   "options": [
+    "Thermosetting",
+    "Thermoplastic",
+    "Styrofoam"
+   ],
+   "correct": 0,
+   "short": "Thermosetting resin in fabric = primary aircraft composite application.",
+   "expl": "The notes say thermosetting resin introduced into fabrics is the primary application used in aircraft composite construction.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Thermosetting); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "773f2ca241",
+   "q": "Which resin is the MOST used?",
+   "options": [
+    "Epoxy resin",
+    "Polyester resin",
+    "Urethane resin"
+   ],
+   "correct": 0,
+   "short": "Epoxy = most used resin.",
+   "expl": "Of the two resin types in the notes, epoxy is the most used. Polyester is limited to non-structural use.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Resin Types); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "c281e60cd3",
+   "q": "Polyester resin is used for ___.",
+   "options": [
+    "Primary structure only",
+    "Honeycomb core manufacture",
+    "Non-structural use"
+   ],
+   "correct": 2,
+   "short": "Polyester resin = non-structural use.",
+   "expl": "The notes limit polyester resin to non-structural use. Structural work uses epoxy, the most-used resin.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §2 (Resin Types); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Matrix System",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "5a7be4abff",
+   "q": "Which is NOT one of the core types listed in the notes?",
+   "options": [
+    "Aluminum sheet stock",
+    "Balsa",
+    "Urethane foam"
+   ],
+   "correct": 0,
+   "short": "Core types: honeycomb, foam, balsa, Styrofoam, urethane foam.",
+   "expl": "The notes list five core types: honeycomb, foam, balsa, Styrofoam and urethane foam. Aluminum shows up as a material honeycomb can be made from, not as a separate core type.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Core Types)",
+   "topic": "Core Materials",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "ff15605afd",
+   "q": "Which list contains ONLY core types from the notes?",
+   "options": [
+    "Honeycomb, foam, balsa, Styrofoam, urethane foam",
+    "Honeycomb, epoxy, polyester, MEK, acetone",
+    "Carbon, fiberglass, Kevlar, silica, graphite"
+   ],
+   "correct": 0,
+   "short": "Core types: honeycomb, foam, balsa, Styrofoam, urethane foam.",
+   "expl": "The five core types are honeycomb, foam, balsa, Styrofoam and urethane foam. Epoxy and polyester are resins, MEK and acetone are solvents, and carbon, fiberglass and Kevlar are fibers.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Core Types)",
+   "topic": "Core Materials",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "7c7c15cfea",
+   "q": "Honeycomb core can be made from which of these?",
+   "options": [
+    "Aluminum, Kevlar, carbon, fiberglass, Nomex/paper, and steel",
+    "Only aluminum",
+    "Only Nomex paper"
+   ],
+   "correct": 0,
+   "short": "Honeycomb: aluminum, Kevlar, carbon, fiberglass, Nomex/paper, steel.",
+   "expl": "The notes list six honeycomb materials: aluminum, Kevlar, carbon, fiberglass, Nomex/paper and steel.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Honeycomb can be made from); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Core Materials",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "84d39df615",
+   "q": "Which material is NOT on the notes' list of what honeycomb can be made from?",
+   "options": [
+    "Balsa",
+    "Nomex / paper",
+    "Steel"
+   ],
+   "correct": 0,
+   "short": "Balsa is a core TYPE, not a honeycomb material.",
+   "expl": "Balsa is its own core type (end-grain wood). Honeycomb is made from aluminum, Kevlar, carbon, fiberglass, Nomex/paper or steel.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3",
+   "topic": "Core Materials",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "e37757e271",
+   "q": "What is the RIBBON DIRECTION of honeycomb?",
+   "options": [
+    "The one direction in which the honeycomb can be torn easily",
+    "The direction the resin flows during cure",
+    "The thickness direction of the core"
+   ],
+   "correct": 0,
+   "short": "Ribbon direction = the one direction honeycomb tears easily.",
+   "expl": "The notes say honeycomb can be torn easily in only one direction, called the ribbon direction. It comes from how the honeycomb sheets are bonded together during manufacture.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Characteristics); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Core Materials",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "35c9725d1d",
+   "q": "When repairing honeycomb core, how should the replacement core be oriented?",
+   "options": [
+    "Line up its ribbon direction with the original structure",
+    "Turn it 90° to the original ribbon direction for extra strength",
+    "Orientation does not matter for honeycomb"
+   ],
+   "correct": 0,
+   "short": "Repair: match the ribbon direction to the original.",
+   "expl": "Line up the ribbon direction of the repair core with the original structure, so the repaired area carries load the same way the original did.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §3 (Characteristics); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Core Materials",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "b5840c9f84",
+   "q": "Fiber-reinforced composite construction comes in which two types?",
+   "options": [
+    "Laminated and sandwich",
+    "Thermoplastic and thermosetting",
+    "Monocoque and truss"
+   ],
+   "correct": 0,
+   "short": "Two construction types: laminated and sandwich.",
+   "expl": "The notes give two types of fiber-reinforced construction: laminated and sandwich. Thermoplastic and thermosetting are plastic categories.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Construction",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "58cbc818da",
+   "q": "A composite made of two or more layers of reinforcing material bonded together and embedded in a resin matrix is a ___.",
+   "options": [
+    "Laminated composite",
+    "Sandwich composite",
+    "Honeycomb core"
+   ],
+   "correct": 0,
+   "short": "Layers bonded in resin = laminated.",
+   "expl": "A laminated composite is two or more layers (plies) of reinforcing material bonded together in a resin matrix, with no core.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4 (Laminated Composites); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Construction",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "1cbfb353a8",
+   "q": "Two or more laminated face sheets bonded to each side of a relatively thick core is a ___.",
+   "options": [
+    "Sandwich composite",
+    "Laminated composite",
+    "Hybrid laminate"
+   ],
+   "correct": 0,
+   "short": "Face sheets + thick core = sandwich.",
+   "expl": "A sandwich composite puts laminated face sheets on each side of a relatively thick, light core such as honeycomb, the way bread goes on each side of the filling.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4 (Sandwich Composites); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Construction",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "d0d79de3f0",
+   "q": "A HYBRID LAMINATE is ___.",
+   "options": [
+    "Two or more layers of DIFFERENT reinforcing materials laminated together",
+    "A laminate bonded to a honeycomb core",
+    "A laminate made with both epoxy and polyester resin"
+   ],
+   "correct": 0,
+   "short": "Hybrid laminate = different reinforcing materials in one laminate.",
+   "expl": "A hybrid laminate mixes different reinforcing materials, for example carbon and fiberglass layers, in one laminate. Bonding face sheets to a core makes a sandwich, not a hybrid.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §4 (Hybrid Laminate); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Construction",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "f2a52f3e6d",
+   "q": "An epoxy ratio pump is able to ___.",
+   "options": [
+    "Supply adjustable ratios",
+    "Cure the resin with heat",
+    "Remove air from a layup"
+   ],
+   "correct": 0,
+   "short": "Ratio pump: adjustable ratios.",
+   "expl": "An epoxy ratio pump dispenses resin and hardener at adjustable ratios, so the mix is right every time.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Epoxy Ratio Pump)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "cbf0d4f63a",
+   "q": "Why does an epoxy ratio pump increase SAFETY?",
+   "options": [
+    "It makes the resin non-toxic",
+    "It removes the need for an MSDS",
+    "The user doesn't touch the resin during production"
+   ],
+   "correct": 2,
+   "short": "Ratio pump safety: no hand contact with resin.",
+   "expl": "The pump dispenses the resin, so the technician doesn't have to touch it during production. Less skin contact means less risk of the allergic reactions covered in the safety section.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Epoxy Ratio Pump)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "ac7b2cd25b",
+   "q": "What kind of container should resin be mixed in?",
+   "options": [
+    "Any container that held solvent",
+    "A wax-free container",
+    "A waxed paper cup"
+   ],
+   "correct": 1,
+   "short": "Mix resin in a WAX-FREE container.",
+   "expl": "Mix resin in a wax-free container. Wax from a coated cup can get into the resin and contaminate the mix.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Mixing); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "317fd51172",
+   "q": "Why must resin be mixed THOROUGHLY?",
+   "options": [
+    "To add color",
+    "To achieve maximum strength",
+    "To make it cure slower"
+   ],
+   "correct": 1,
+   "short": "Mix thoroughly for maximum strength.",
+   "expl": "The notes say to mix thoroughly in order to achieve maximum strength.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Mixing)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "2ae7190727",
+   "q": "What happens to resin that is NOT properly mixed?",
+   "options": [
+    "It will not cure correctly",
+    "It cures faster and harder",
+    "Nothing; mixing only affects color"
+   ],
+   "correct": 0,
+   "short": "Poorly mixed resin won't cure correctly.",
+   "expl": "Resin that isn't properly mixed will not cure correctly, so the part can come out soft, tacky or weak.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Mixing); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "3f335a1646",
+   "q": "A RESIN-RICH part is the result of ___.",
+   "options": [
+    "Too much resin applied to the part",
+    "Not enough resin",
+    "Too much heat during cure"
+   ],
+   "correct": 0,
+   "short": "Resin rich = too much resin.",
+   "expl": "Resin rich means too much resin was applied to the part. The opposite condition, not enough resin, is called resin starved.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Rich); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "83e2703a8f",
+   "q": "Which problems does a RESIN-RICH condition cause?",
+   "options": [
+    "Cracks / weakness in the structure, and unnecessary weight",
+    "Only a dull surface finish",
+    "Extra strength with no downside"
+   ],
+   "correct": 0,
+   "short": "Resin rich → cracks/weakness + added weight.",
+   "expl": "Excess resin is brittle and carries no fiber, so a resin-rich area causes cracks and weakness in the structure and adds unnecessary weight.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Rich); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "fa27c327d8",
+   "q": "A RESIN-STARVED part ___.",
+   "options": [
+    "Does not have enough resin, which causes weakness in the structure",
+    "Has too much resin, which adds weight",
+    "Is stronger because it is lighter"
+   ],
+   "correct": 0,
+   "short": "Resin starved = not enough resin → weakness.",
+   "expl": "Resin starved means there isn't enough resin to wet out and bond the fibers, which causes weakness in the structure.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §5 (Resin Starved); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Working with Resin",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "6272edf636",
+   "q": "According to the notes, why do accidents happen with composites?",
+   "options": [
+    "Only because of power-tool failures",
+    "Improper usage and handling of composite material",
+    "Composites are explosive under normal conditions"
+   ],
+   "correct": 1,
+   "short": "Accidents come from improper usage and handling.",
+   "expl": "The safety section says accidents happen because of improper usage and handling of composite material, which is why the MSDS and personal protection matter.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6",
+   "topic": "Safety",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "e385779a8c",
+   "q": "What does MSDS stand for?",
+   "options": [
+    "Manufacturer's Standard Design Specification",
+    "Maintenance Safety Directive Summary",
+    "Material Safety Data Sheet"
+   ],
+   "correct": 2,
+   "short": "MSDS = Material Safety Data Sheet.",
+   "expl": "MSDS stands for Material Safety Data Sheet: the document that lists a material's hazards, handling and protection requirements.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Safety",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "455d6ada30",
+   "q": "Which statement about personal protection with composites is correct?",
+   "options": [
+    "Resins are harmless once mixed",
+    "Everyone reacts the same way to resin",
+    "Some materials cause allergic reactions, and some people are more sensitive than others"
+   ],
+   "correct": 2,
+   "short": "Some materials cause allergies; some people are more sensitive.",
+   "expl": "The notes warn that some composite materials cause allergic reactions and that some people are more sensitive than others.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Personal Protection); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Safety",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "c2ee93a423",
+   "q": "When working with resin, it is imperative to ___.",
+   "options": [
+    "Protect yourself from contact with the resin",
+    "Mix it with bare hands to feel the consistency",
+    "Skip gloves if you are not allergic yet"
+   ],
+   "correct": 0,
+   "short": "Imperative: protect yourself from resin contact.",
+   "expl": "The notes call it imperative to protect yourself from contact with resin. Sensitivity can develop over time, so not having reacted yet is no reason to skip protection.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Personal Protection)",
+   "topic": "Safety",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "334c365395",
+   "q": "What are the two most common solvents used with composites?",
+   "options": [
+    "Water and alcohol",
+    "MEK and acetone",
+    "Epoxy and polyester"
+   ],
+   "correct": 1,
+   "short": "Two most common solvents: MEK and acetone.",
+   "expl": "The notes name the two most common solvents: MEK and acetone. Epoxy and polyester are resins.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Solvents); FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Safety",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "ecb827c8fa",
+   "q": "MEK stands for ___.",
+   "options": [
+    "Methyl Ethyl Ketone",
+    "Methyl Epoxy Kerosene",
+    "Mixed Ethylene Ketone"
+   ],
+   "correct": 0,
+   "short": "MEK = Methyl Ethyl Ketone.",
+   "expl": "MEK stands for Methyl Ethyl Ketone, one of the two most common solvents; the other is acetone.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §6 (Solvents)",
+   "topic": "Safety",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "53a8499d73",
+   "q": "What do heat and pressure do for a finished composite product?",
+   "options": [
+    "Change it into a thermoplastic",
+    "Augment (increase) its strength",
+    "Reduce its strength to make it flexible"
+   ],
+   "correct": 1,
+   "short": "Heat + pressure augment strength.",
+   "expl": "The notes say heat and pressure augment the strength of the finished product, which is why parts are cured under controlled heat and pressure.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §7; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Manufacturing",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "fe855f87de",
+   "q": "What does HEAT do during manufacturing?",
+   "options": [
+    "Accelerates the curing process",
+    "Squeezes out excess resin",
+    "Removes the need for a matrix"
+   ],
+   "correct": 0,
+   "short": "Heat = speeds up the cure.",
+   "expl": "Heat accelerates the curing process. Squeezing out excess resin is the job of pressure.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §7; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Manufacturing",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
+   ]
+  },
+  {
+   "id": "9e5a344e66",
+   "q": "What does PRESSURE do during manufacturing?",
+   "options": [
+    "Squeezes out excess resin and removes air",
+    "Accelerates the cure",
+    "Adds resin to a starved part"
+   ],
+   "correct": 0,
+   "short": "Pressure = squeezes out excess resin + removes air.",
+   "expl": "Pressure squeezes out excess resin (preventing a resin-rich part) and removes trapped air. Speeding up the cure is the job of heat.",
+   "cite": "AIM AMTBLK 07 Composite Materials Class Notes, §7; FAA-H-8083-31B, Ch. 7 (Advanced Composite Materials)",
+   "topic": "Manufacturing",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 1 — Composite Materials"
    ]
   },
   {
