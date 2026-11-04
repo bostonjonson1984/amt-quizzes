@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 7 · Day 2 — Composite Fabrication, Inspection &amp; Repair</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 7 · Day 2 — Composite Fabrication, Inspection &amp; Repair</h1>
+    <div class="sub">Every point from the Day 2 class notes: manufacturing methods, electrical bonding, final finish, inspection methods, cutting and sanding, damage categories and repair types, damage removal, fiber orientation, pressure and vacuum bagging, curing, potting and inserts, delamination and core repair.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "Which list matches the five composite manufacturing methods covered on Day 2?", "options": ["Compression molding, vacuum bagging, filament winding, wet layup, fiberglass layup", "Casting, forging, extruding, stamping, spinning", "Riveting, welding, brazing, soldering, bonding"], "correct": 0, "short": "The five: compression mold, vacuum bag, filament wind, wet layup, fiberglass layup.", "expl": "Day 2 opened with five ways to make composite parts: compression molding, vacuum bagging, filament winding, wet layup and fiberglass layup. Casting and forging are metal processes.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "In compression molding, what happens to the fabric?", "options": ["It is wound around a spinning mandrel", "It is sealed under plastic and the air is pumped out", "It is laid in a female mold, then a male mold enters and the two squeeze it"], "correct": 2, "short": "Compression mold: fabric in the female, male comes in, squeeze.", "expl": "Compression molding works like a waffle iron: the fabric goes into the female half, the male half comes down into it, and the part is squeezed to shape. Winding on a mandrel is filament winding; pumping the air out is vacuum bagging.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "Which manufacturing method do the notes call the MOST COMMON?", "options": ["Vacuum bagging", "Filament winding", "Compression molding"], "correct": 0, "short": "Vacuum bagging = most common.", "expl": "Vacuum bagging is the most common method. It gives uniform pressure over the whole part and is used with autoclaves, heat lamps and hot bonders.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "What kind of pressure does vacuum bagging apply?", "options": ["Uniform pressure", "Pressure only at the edges", "Pressure only at the center"], "correct": 0, "short": "Vacuum bag = uniform pressure.", "expl": "Because the atmosphere pushes on the bag equally everywhere, vacuum bagging puts uniform pressure over the entire part.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "Vacuum bagging is used together with which heat sources?", "options": ["Oxy-acetylene torches and soldering irons", "Open flames and heat guns only", "Autoclaves, heat lamps and hot bonders"], "correct": 2, "short": "Vac bag + autoclave, heat lamps, hot bonders.", "expl": "The notes list autoclaves, heat lamps and hot bonders as the heat sources used with vacuum bagging. An open flame is never used on a composite cure.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "What is filament winding?", "options": ["Dry fabric brushed with resin by hand", "A continuous thread of fiber wound around a mandrel", "Fabric squeezed between a male and a female mold"], "correct": 1, "short": "Filament winding = continuous fiber wound on a mandrel.", "expl": "Filament winding wraps one continuous fiber thread around a mandrel (a form) and then the resin is cured. Squeezing between molds is compression molding.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "Which drawback do the notes give for filament-wound parts?", "options": ["They are hard to repair", "They are always heavier than steel", "They cannot hold any resin"], "correct": 0, "short": "Filament-wound = hard to repair.", "expl": "Because the strength comes from one continuous wound fiber, a filament-wound part is hard to repair once that fiber is cut or damaged.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Manufacturing Methods", "fig": ""}, {"q": "Which method is LESS PRECISE than the others but takes no special tools or equipment?", "options": ["Wet layup", "Filament winding", "Compression molding"], "correct": 0, "short": "Wet layup = less precise, no special tools.", "expl": "Wet layup is less precise than the other procedures, but it needs no special tools or equipment. That is why it is so common for field repairs.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Manufacturing Methods", "fig": ""}, {"q": "What advantages do the notes give for wet layup?", "options": ["Simple, with flexibility of application and use", "Highest precision of any method", "Needs an autoclave to work"], "correct": 0, "short": "Wet layup = simple + flexible.", "expl": "The notes give wet layup's upside as simplicity and flexibility of application and use. Its downside is that it is less precise.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Manufacturing Methods", "fig": ""}, {"q": "How is a fiberglass layup different from a wet layup?", "options": ["No resin is used at all", "The fibers are saturated with resin AFTER they are applied to the object", "The fibers are wound on a mandrel"], "correct": 1, "short": "Fiberglass layup: fibers go on first, then get saturated.", "expl": "In the notes, a fiberglass layup is slightly different from a wet layup: the fibers are put on the object first and saturated with resin after they are applied.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Manufacturing Methods", "fig": ""}, {"q": "Why do composite parts need an electrical-bonding layer added?", "options": ["So the part can carry static and lightning current like a metal skin does", "To make the part heavier for balance", "To keep the resin from curing too fast"], "correct": 0, "short": "Bonding = gives the composite a conductive path (static/lightning).", "expl": "Most composites do not conduct electricity well, so a conductive layer is added to carry static and lightning-strike current. The notes list six ways to do it.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Electrical Bonding", "fig": ""}, {"q": "Which is one of the electrical-bonding methods in the notes?", "options": ["Painting the part with primer only", "Aluminum wires woven into the fabric", "Copper rivets every inch"], "correct": 1, "short": "Aluminum wire woven into the fabric.", "expl": "Weaving aluminum wires into the fabric is the first bonding method in the notes. Ordinary primer is not conductive.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Electrical Bonding", "fig": ""}, {"q": "Which electrical-bonding method puts an aluminum screen into the part?", "options": ["Aluminum screen laminated into the top layer", "Aluminum screen glued to the inside of the core", "Aluminum screen bolted to the outside"], "correct": 0, "short": "Aluminum screen laminated into the top layer.", "expl": "In this method an aluminum screen is laminated into the top layer, so the conductive path is right at the surface where lightning attaches.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Electrical Bonding", "fig": ""}, {"q": "Which electrical-bonding method uses foil?", "options": ["A thin sheet of aluminum foil bonded to the part", "Tin foil wrapped around the mandrel", "Copper foil soldered to the core"], "correct": 0, "short": "Thin aluminum foil bonded on.", "expl": "A thin sheet of aluminum foil bonded to the part is one of the six bonding methods in the notes.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Electrical Bonding", "fig": ""}, {"q": "Which electrical-bonding method sprays metal onto the part?", "options": ["Aluminum flame sprayed onto the component", "Zinc chromate sprayed under the paint", "Liquid nitrogen sprayed onto the core"], "correct": 0, "short": "Aluminum flame-sprayed onto the component.", "expl": "Flame spraying puts a coat of aluminum directly onto the component to make it conductive.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Electrical Bonding", "fig": ""}, {"q": "Besides wire, screen, foil and flame spray, which TWO other bonding methods are in the notes?", "options": ["Metal bonded to the composite structure, and conductive paint", "Rubber grommets and nylon tape", "Extra resin and extra plies"], "correct": 0, "short": "Also: metal bonded on, and conductive paint.", "expl": "The last two bonding methods are metal bonded to the composite structure and conductive paint. Rubber, nylon, resin and extra plies do not conduct.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Electrical Bonding", "fig": ""}, {"q": "What does the final finish on a composite part do?", "options": ["Seals the surface to make a moisture barrier and keeps out ultraviolet light", "Adds most of the part's structural strength", "Makes the part conductive for lightning"], "correct": 0, "short": "Final finish = moisture barrier + UV blocker.", "expl": "The final finish seals the surface to create a moisture barrier, and it keeps out ultraviolet light, which breaks down resin over time. It is not structural.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Final Finish", "fig": ""}, {"q": "Ultraviolet light is kept out of a composite by:", "options": ["The honeycomb core", "The vacuum bag", "The final finish"], "correct": 2, "short": "UV is blocked by the final finish.", "expl": "Keeping out ultraviolet light is one of the two jobs of the final finish. The bag is removed after cure, and the core is inside the part.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Final Finish", "fig": ""}, {"q": "During a visual inspection, how should you look at a composite structure?", "options": ["View down the side of the structure for bulges or irregularities", "Look straight at it from 10 feet away", "Only look at it under ultraviolet light"], "correct": 0, "short": "Visual: sight down the side for bulges.", "expl": "Sighting down the side of the structure makes bulges and irregularities easy to see. That is usually the first indication of damage.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "What is usually the FIRST indication of damage on a composite?", "options": ["Bulges or irregularities found during a visual inspection", "A failed radiography test", "A computer warning from thermography software"], "correct": 0, "short": "First sign of damage = bulges/irregularities seen visually.", "expl": "The notes say bulges or irregularities seen during a visual check are usually the first indication of damage. The other methods come after you know where to look.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Inspection", "fig": ""}, {"q": "Which tool works well for a tap test?", "options": ["A center punch", "A smooth-sided coin", "A ball-peen hammer"], "correct": 1, "short": "Tap test: a smooth-sided coin works well.", "expl": "A smooth-sided coin works well. A sharp or heavy tool could damage the part. You listen for a dull sound, which points to a void or delamination.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "What have manufacturers done to help with the tap test?", "options": ["Banned the tap test on all aircraft", "Replaced it with visual inspection only", "Developed new technologies to aid in the tap test"], "correct": 2, "short": "Manufacturers developed new tech to aid the tap test.", "expl": "The notes say manufacturers have developed new technologies to aid in tap testing, such as automated tap hammers that measure the response.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "Which inspection method do the notes call the MOST COMMON one used on composites today?", "options": ["Ultrasonic testing", "Radiography", "Acoustic emission"], "correct": 0, "short": "Most common composite NDI = ultrasonic.", "expl": "Ultrasonic testing is the most common method used on composites today.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "Ultrasonic testing on composites uses which two methods?", "options": ["Eddy current and magnetic particle", "Dye penetrant and backlighting", "Pulse echo and through transmission"], "correct": 2, "short": "UT = pulse echo + through transmission.", "expl": "Pulse echo sends sound in and listens for it to bounce back from one side. Through transmission sends sound from one side to a receiver on the other side.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "Which of these is one of the composite inspection methods on the Day 2 list?", "options": ["Backlighting", "Magnetic particle", "Spark testing"], "correct": 0, "short": "Backlighting is on the inspection list.", "expl": "Backlighting is on the Day 2 inspection list. Light is shone through a thin laminate, and voids or delaminations show up as dark or light spots. Magnetic particle only works on iron-based metals.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Inspection", "fig": ""}, {"q": "Which inspection method works well on materials with multiple thicknesses but needs special training and is usually expensive?", "options": ["Radiography", "Tap test", "Visual inspection"], "correct": 0, "short": "Radiography: multi-thickness, special training, expensive.", "expl": "Radiography (X-ray) works well on materials with multiple thicknesses. It requires special training and is usually expensive. The tap test and visual check cost almost nothing.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "In thermography, what is put into the composite to find defects?", "options": ["Heat", "Sound waves", "X-rays"], "correct": 0, "short": "Thermography = introduce heat.", "expl": "Thermography introduces heat into the composite and uses a camera to watch how it spreads. A defect changes the heat flow. Sound is ultrasonic, and X-rays are radiography.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Inspection", "fig": ""}, {"q": "In thermography, how is the information collected?", "options": ["By ear, listening to a coin", "On radiographic film", "By computer software"], "correct": 2, "short": "Thermography data = collected by computer software.", "expl": "After heat is put into the part, the information is collected by computer software that maps the temperature differences.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Inspection", "fig": ""}, {"q": "Which inspection method picks up the different noises a defect makes compared to a good location?", "options": ["Acoustic emission", "Backlighting", "Radiography"], "correct": 0, "short": "Acoustic emission = listens to the noises a defect makes.", "expl": "Acoustic emission picks up the different noises a defect gives off compared to a non-defective spot.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Inspection", "fig": ""}, {"q": "What drawback do the notes give for acoustic emission?", "options": ["It requires expensive equipment and training to operate", "It only works on wood", "It needs a smooth-sided coin"], "correct": 0, "short": "Acoustic emission = expensive equipment + training.", "expl": "Acoustic emission requires expensive equipment and training to operate.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Inspection", "fig": ""}, {"q": "Which tool is PREFERRED for cutting holes in graphite (carbon fiber)?", "options": ["Wood auger bit", "Diamond hole saw", "High-speed steel bit"], "correct": 1, "short": "Graphite: diamond hole saws preferred.", "expl": "Diamond hole saws are preferred for cutting graphite. Carbide bits also work well, and high-speed steel bits dull quickly.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Cutting & Sanding", "fig": ""}, {"q": "Besides diamond, which drill bits work well on composites?", "options": ["Carbide bits", "High-speed steel bits", "Brass bits"], "correct": 0, "short": "Carbide bits work well.", "expl": "The notes say carbide bits work well. High-speed steel bits dull quickly in carbon and fiberglass.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Cutting & Sanding", "fig": ""}, {"q": "What happens to high-speed steel bits used on composites?", "options": ["They dull quickly", "They cut better than diamond", "They never need replacing"], "correct": 0, "short": "HSS bits dull quickly.", "expl": "The hard fibers in a composite wear down high-speed steel very fast. Use diamond or carbide.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Cutting & Sanding", "fig": ""}, {"q": "Which sanding paper should NOT be used on composites?", "options": ["Pure carbide", "Aluminum oxide", "Silicon carbide"], "correct": 1, "short": "Do NOT use aluminum oxide paper.", "expl": "The notes say aluminum oxide paper should not be used. Use silicon carbide or pure carbide paper instead.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Cutting & Sanding", "fig": ""}, {"q": "Which sanding paper SHOULD be used on composites?", "options": ["Silicon carbide or pure carbide", "Aluminum oxide", "Steel wool"], "correct": 0, "short": "Use silicon carbide or pure carbide.", "expl": "Silicon carbide or pure carbide paper should be used on composites. Aluminum oxide is on the do-not-use list.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Cutting & Sanding", "fig": ""}, {"q": "What are routers best for in composite repair?", "options": ["Applying resin", "Removing damaged core areas", "Drilling fastener holes in steel"], "correct": 1, "short": "Routers = best for removing damaged core.", "expl": "Routers are best at removing damaged core areas because they can cut a clean, flat-bottomed pocket to a set depth.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Cutting & Sanding", "fig": ""}, {"q": "What is the operating speed of a router used on composites?", "options": ["2,500 to 3,000 rpm", "250 to 300 rpm", "25,000 to 30,000 rpm"], "correct": 2, "short": "Router speed: 25,000–30,000 rpm.", "expl": "The notes give a router operating speed of 25,000 to 30,000 rpm.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Cutting & Sanding", "fig": ""}, {"q": "Minor scratches that are only cosmetic fall into which damage category?", "options": ["Negligible", "Repairable", "Non-repairable"], "correct": 0, "short": "Negligible = cosmetic, minor scratches.", "expl": "Negligible damage is cosmetic, like minor scratches. It does not affect strength.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage & Repairs", "fig": ""}, {"q": "Damage to the skin, bond or core that would require restrictions if it is not repaired is:", "options": ["Repairable damage", "Negligible damage", "Non-repairable damage"], "correct": 0, "short": "Repairable = skin/bond/core damage, restrictions if not fixed.", "expl": "Repairable damage is damage to the skin, bond or core that would require operating restrictions if it is not repaired.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage & Repairs", "fig": ""}, {"q": "A part that is basically destroyed and needs a structural engineer is in which category?", "options": ["Negligible", "Repairable", "Non-repairable"], "correct": 2, "short": "Non-repairable = destroyed, needs a structural engineer.", "expl": "Non-repairable damage means the part is basically destroyed and needs a structural engineer to fix it, or it gets replaced.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage & Repairs", "fig": ""}, {"q": "Which list matches the types of composite repairs in the notes?", "options": ["Bolted metal, bonded metal, resin injection, laminating plies", "Welding, brazing, soldering, riveting", "Scarf, splayed, plug, surface"], "correct": 0, "short": "Repairs: bolted metal, bonded metal, resin injection, laminating plies.", "expl": "The four repair types are bolted metal, bonded metal, resin injection and laminating plies. Scarf, splayed, plug and surface are wood splice and patch types from QZ 01.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage & Repairs", "fig": ""}, {"q": "Which damage-removal method removes layers with the MOST CONTROL?", "options": ["Step cutting", "Scarf cutting", "Hole sawing"], "correct": 0, "short": "Step cutting = most control.", "expl": "Step cutting removes the damaged plies one layer at a time, so it gives the most control.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage Removal", "fig": ""}, {"q": "During step cutting, which technique gives the most control?", "options": ["Hammering", "Grinding with a cutoff wheel", "Sanding"], "correct": 2, "short": "Step cutting: sanding gives the most control.", "expl": "The notes say sanding during step cutting gives the most control, because you can watch each ply come off.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Damage Removal", "fig": ""}, {"q": "What is scarf cutting?", "options": ["Removing one ply at a time in flat steps", "Drilling out the damage with a hole saw", "Removing damaged material with a tapered cut that tapers down to the center of the repair"], "correct": 2, "short": "Scarf cut = tapered cut-out, tapering to the repair's center.", "expl": "A scarf cut removes the damage with a smooth tapered cut-out that slopes down toward the center of the repair. Flat steps are step cutting.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage Removal", "fig": ""}, {"q": "What does a water break free test detect?", "options": ["Grease or oil on the surface you are repairing", "Cracks in the honeycomb core", "Wrong fiber orientation"], "correct": 0, "short": "Water break test = finds grease or oil.", "expl": "Water poured on a clean surface forms one smooth sheet. If it beads up or breaks, there is grease or oil present and the surface must be cleaned again before bonding.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Damage Removal", "fig": ""}, {"q": "What tool keeps track of the orientation of the fiber plies being replaced?", "options": ["A warp clock", "A torque wrench", "A dial indicator"], "correct": 0, "short": "Warp clock = tracks ply orientation.", "expl": "A warp clock is the tool used to keep track of the direction of each replacement ply so it matches the original.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Fiber Orientation", "fig": ""}, {"q": "What happens if the fiber plies in a repair are NOT oriented correctly?", "options": ["The repair becomes stronger than the original", "The repair's strength is dramatically reduced, which increases the chance of failure", "Nothing, orientation only matters for looks"], "correct": 1, "short": "Wrong orientation = big strength loss and failure risk.", "expl": "Fibers carry load only along their length. If plies are laid in the wrong direction, the repair's strength drops dramatically and the chance of failure goes up.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Fiber Orientation", "fig": ""}, {"q": "Which of these can apply pressure to a repair WITHOUT using a vacuum?", "options": ["Shot bags, lead weights, clecos and clamps", "A vacuum pump and bagging film", "An autoclave only"], "correct": 0, "short": "No-vacuum pressure: shot bags, lead weights, clecos, clamps.", "expl": "The notes list four ways to apply pressure without a vacuum: shot bags, lead weights, clecos and clamps.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Pressure & Vacuum Bagging", "fig": ""}, {"q": "Applying pressure with a vacuum bag does all of these EXCEPT:", "options": ["Remove excess resin", "Compact the fibers", "Speed up the cure"], "correct": 2, "short": "Vacuum pressure does NOT speed the cure (heat does).", "expl": "Vacuum pressure removes excess resin, compacts the fibers, removes trapped air, maintains the contour and prevents shifting. Speeding up the cure is the job of heat.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Pressure & Vacuum Bagging", "fig": ""}, {"q": "Vacuum-bag pressure removes trapped air and also:", "options": ["Maintains the contour and prevents the plies from shifting", "Adds extra resin to the plies", "Changes the fiber direction"], "correct": 0, "short": "Vacuum also maintains contour + prevents shifting.", "expl": "Along with removing excess resin, compacting the fibers and removing trapped air, vacuum pressure holds the part's contour and keeps the plies from shifting.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Pressure & Vacuum Bagging", "fig": ""}, {"q": "What is the usual MINIMUM vacuum for vacuum bagging?", "options": ["220 psi", "22 inches of mercury (in. Hg)", "2.2 inches of mercury"], "correct": 1, "short": "Minimum vacuum ≈ 22 in. Hg.", "expl": "The notes give 22 inches of mercury as the usual minimum. FAA-H-8083-31B also says to keep at least 22 in. Hg during the cure cycle.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Pressure & Vacuum Bagging", "fig": ""}, {"q": "What are the two ways a matrix (resin) system is cured?", "options": ["Room-temperature cure and heat cure", "Air cure and water cure", "UV cure and freeze cure"], "correct": 0, "short": "Two cures: room temperature and heat.", "expl": "The matrix system cures one of two ways: at room temperature or with heat.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Curing", "fig": ""}, {"q": "Which curing method do the notes call the MOST RELIABLE?", "options": ["Step curing", "Flash curing", "Open-flame curing"], "correct": 0, "short": "Step curing = most reliable.", "expl": "Step curing is the most reliable. The temperature is raised slowly, held for a set time, then brought back down slowly.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Curing", "fig": ""}, {"q": "What is the correct step-curing sequence?", "options": ["Raise the temperature slowly, hold it for a specific time, then bring it back to room temperature slowly", "Heat it as fast as possible, then cool it in water", "Hold it at room temperature, then flash heat it at the end"], "correct": 0, "short": "Step cure: ramp up slow → hold → ramp down slow.", "expl": "Step curing ramps the temperature up slowly, holds it for a specific time, then brings it back to room temperature slowly.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Curing", "fig": ""}, {"q": "Why is the temperature changed SLOWLY during step curing?", "options": ["To reduce thermal shock and imperfections in the repair", "To save electricity", "To make the resin stay liquid longer"], "correct": 0, "short": "Slow ramps = less shock, fewer imperfections.", "expl": "Changing the temperature slowly reduces thermal shock, which causes imperfections in the repair.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Curing", "fig": ""}, {"q": "Potting compounds are used for repairs of what size?", "options": ["Less than 1 inch", "More than 6 inches", "Any size, including whole panels"], "correct": 0, "short": "Potting = repairs under 1\".", "expl": "The notes say potting compounds are used for repairs less than 1 inch. FAA-H-8083-31B adds that potted repairs do not restore full strength.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Potting & Inserts", "fig": ""}, {"q": "Besides small repairs, potting compounds are used to:", "options": ["Install fasteners", "Strip paint", "Clean the surface before bonding"], "correct": 0, "short": "Potting is also used to install fasteners.", "expl": "Potting compound is used to install fasteners in sandwich panels. It fills the core around the fastener so it does not crush the honeycomb.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Potting & Inserts", "fig": ""}, {"q": "What mixture is available for installing fasteners?", "options": ["Potting compound mixed with microballoons", "Resin mixed with sand", "Paint mixed with water"], "correct": 0, "short": "Potting + microballoons for fastener installs.", "expl": "A mixture of potting compound and microballoons (tiny hollow glass or phenolic spheres) is available for installing fasteners.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Potting & Inserts", "fig": ""}, {"q": "What are fastener inserts?", "options": ["Washers that go under bolt heads", "Small barrel assemblies put into a sandwich structure, with internal threads for attaching components", "Rivets that are glued into the skin only"], "correct": 1, "short": "Insert = small threaded barrel in a sandwich panel.", "expl": "Fastener inserts are small barrel assemblies inserted into a sandwich structure. They have internal threads so a component can be attached with a screw.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Potting & Inserts", "fig": ""}, {"q": "What is delamination?", "options": ["When laminate layers separate from each other or from the core material", "When the resin cures too fast", "When fibers are laid in the wrong direction"], "correct": 0, "short": "Delamination = layers separate from each other or the core.", "expl": "Delamination is when laminate layers separate from each other or from the core material.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Delamination & Core", "fig": ""}, {"q": "Which causes of delamination are listed in the notes?", "options": ["Vibration, moisture and impact damage", "Too much paint and polishing", "Correct fiber orientation"], "correct": 0, "short": "Delamination causes: vibration, moisture, impact.", "expl": "The notes list vibration, moisture and impact damage as causes of delamination.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Delamination & Core", "fig": ""}, {"q": "In a honeycomb core repair, what is the damaged core replaced with?", "options": ["Balsa wood or honeycomb, after the damaged core is removed", "Nothing, the hole is left empty", "Solid steel plate"], "correct": 0, "short": "Core repair: remove damage, replace with balsa or honeycomb.", "expl": "The damaged core is removed and replaced with balsa wood or honeycomb.", "cite": "AIM AMTBLK 07 Day 2 Class Notes; FAA-H-8083-31B, Ch. 7", "topic": "Delamination & Core", "fig": ""}, {"q": "Before a honeycomb core repair, what must you consult?", "options": ["The applicable maintenance manual", "The pilot's logbook only", "Nothing, any core works"], "correct": 0, "short": "Always consult the applicable maintenance manual.", "expl": "The notes end with the rule that applies to every repair: consult the applicable maintenance manual for the approved core material and procedure.", "cite": "AIM AMTBLK 07 Day 2 Class Notes", "topic": "Delamination & Core", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = false;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
