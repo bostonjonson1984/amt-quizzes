@@ -1,6 +1,6 @@
 {
  "built": "2026-11-04",
- "total": 4338,
+ "total": 4358,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -75,6 +75,7 @@
   "Block 7 · Day 1 — Composite Materials": 46,
   "Block 7 · Day 2 — Composite Fabrication, Inspection & Repair": 63,
   "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)": 20,
+  "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)": 20,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
   "AET Academy M3 — Resistors": 36,
@@ -72783,6 +72784,366 @@
    "block": "Block 7",
    "sources": [
     "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "0ef5ba3e79",
+   "q": "A spar replacement is considered a:",
+   "options": [
+    "Major repair",
+    "Minor repair",
+    "Major alteration"
+   ],
+   "correct": 0,
+   "short": "Spar replacement = major repair.",
+   "expl": "Spars are primary structure. 14 CFR Part 43 Appendix A lists repairing, splicing or replacing primary structural members such as wing spars as a major repair. Replacing a spar with an approved part restores the original design, so it is a repair, not an alteration.",
+   "cite": "14 CFR Part 43, Appendix A (b)(1); AC 43.13-1B, Ch. 1, Par. 1-43",
+   "topic": "Repair Classification",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "e9912eb988",
+   "q": "A hole not exceeding 1” diameter, in a fabric covered thin plywood skin can most easily be Repaired using a",
+   "options": [
+    "Scarf patch",
+    "Fabric patch",
+    "Splayed patch"
+   ],
+   "correct": 1,
+   "short": "Hole ≤ 1\" in plywood skin = fabric patch.",
+   "expl": "Small holes not exceeding 1 inch in diameter, after being trimmed to a smooth outline, may be repaired by doping a fabric patch on the outside of the plywood skin. The patch must overlap the skin by at least 1 inch and can't be used within 1 inch of a frame member or on the leading edge. A scarf patch is the best repair for larger damage but is far more work.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-52 (Fabric Patch)",
+   "topic": "Plywood Patches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "acf0f86b8f",
+   "q": "A surface patch in a plywood skin must have its ___________aligned with the original skin",
+   "options": [
+    "Longest edges",
+    "Cross grain",
+    "face grain"
+   ],
+   "correct": 2,
+   "short": "Surface patch: face grain same direction as original skin.",
+   "expl": "For a surface (overlay) patch, the AC says the face-grain direction must be the same as the original skin. The same rule applies to scarf, splayed and plug patches.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-51b (Surface Patch)",
+   "topic": "Plywood Patches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "4809fab9f5",
+   "q": "A plywood scarf patch should be tapered to a slope of",
+   "options": [
+    "5:1",
+    "12:1",
+    "10:1"
+   ],
+   "correct": 1,
+   "short": "Plywood scarf = 12:1 (1 in 12).",
+   "expl": "The scarf slope of 1 in 12 is the steepest slope permitted for all kinds of plywood. 5:1 is too steep for a plywood scarf; it appears in the handbook as a bevel on a spar splice, not a skin patch.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-51c (Scarf Patch)",
+   "topic": "Plywood Patches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "fe9ed56aee",
+   "q": "The inner doubler in a small round plug patch in a plywood skin should extend ________________ Past the cutout",
+   "options": [
+    "½”",
+    "5/8”",
+    "¾”"
+   ],
+   "correct": 1,
+   "short": "Small round plug patch doubler = 5/8\" past the hole.",
+   "expl": "For a small round plug patch, the doubler (soft 1/4-inch plywood such as poplar) is cut so its outside radius is 5/8 inch greater than the hole and its inside radius is 5/8 inch less. For a large patch, both dimensions increase to 7/8 inch.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (Plug Patch, step 4; Fig. 6-31); AC 43.13-1B, Fig. 1-18",
+   "topic": "Plywood Patches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "baaf78e89b",
+   "q": "Checks or shakes are acceptable",
+   "options": [
+    "as long as there is minimal grain deviation:",
+    "Never",
+    "As long as they are not in the same growth ring"
+   ],
+   "correct": 1,
+   "short": "Checks, shakes, splits = never acceptable.",
+   "expl": "Checks are cracks across the growth rings, shakes are cracks between two rings, and splits are cracks from stress. All three appear under Defects Not Permitted: reject wood containing them. The growth-ring rule belongs to pitch pockets, not checks or shakes.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2h (Checks, shakes, and splits)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "8481317696",
+   "q": "Which softwood can be used as a substitute for spruce, when shear loads are not critical",
+   "options": [
+    "Oak",
+    "Noble fir",
+    "Port Oxford cedar"
+   ],
+   "correct": 1,
+   "short": "Noble fir = spruce substitute when shear isn't critical.",
+   "expl": "Table 1-1 rates noble fir as slightly stronger than spruce except 8% weaker in shear, so it may be used as a direct substitute for spruce in the same sizes providing shear does not become critical. Oak is a hardwood.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 (Noble Fir)",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "31bd1a0f71",
+   "q": "Aircraft lumber should be:",
+   "options": [
+    "Flat sawn",
+    "Quarter sawn",
+    "Half sawn"
+   ],
+   "correct": 1,
+   "short": "Aircraft lumber = quarter sawn.",
+   "expl": "Quarter-sawn (radial-cut) lumber has the growth rings running across the thickness. It shrinks and warps the least and the most evenly as it dries (handbook Figure 6-5), which is why aircraft-grade wood is quarter sawn. Flat-sawn boards cup and warp.",
+   "cite": "FAA-H-8083-31B, Ch. 6, Fig. 6-5 (Effects of shrinkage); AC 43.13-1B, Ch. 1, Par. 1-2",
+   "topic": "Wood Species",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "400b21da9c",
+   "q": ".Resorcinol-formaldehyde adhesive:",
+   "options": [
+    "Is considered obsolete",
+    "Is a two part adhesive with high durability",
+    "Is only used by the original manufacturer"
+   ],
+   "correct": 1,
+   "short": "Resorcinol = two-part, highly durable, approved.",
+   "expl": "Resorcinol-formaldehyde is a two-part synthetic resin adhesive. The AC calls it the only known adhesive recommended and approved for wooden aircraft structure that fully meets the strength and durability requirements. Casein and urea-formaldehyde are the obsolete ones.",
+   "cite": "AC 43.13-1B, Ch. 1, Par. 1-4 (Adhesives)",
+   "topic": "Adhesives",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "7f7096463e",
+   "q": "Maximum allowable grain deviation in aircraft lumber is:",
+   "options": [
+    "1:10",
+    "1:12",
+    "1:15"
+   ],
+   "correct": 2,
+   "short": "Max slope of grain = 1:15.",
+   "expl": "Column 3 of Table 1-1 gives a maximum permissible slope of grain of 1:15 for spruce and its substitutes. Grain can't diverge from the long axis more than 1 inch in 15 inches.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 (col. 3, slope of grain)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "40245ce9ad",
+   "q": "Spike knots are only allowed:",
+   "options": [
+    "If under 3/8” diameter",
+    "They do not cause excessive grain deviation",
+    "Never"
+   ],
+   "correct": 2,
+   "short": "Spike knots = never; reject.",
+   "expl": "Spike knots run completely through the depth of a beam, perpendicular to the annual rings. The AC says to reject wood containing this defect. The 3/8-inch limit belongs to sound hard knots.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2e (Spike knots)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "e9dee6bb05",
+   "q": "A wood splice in a rib cap strip should be:",
+   "options": [
+    "A butt splice",
+    "Glued and screwed",
+    "A scarf splice"
+   ],
+   "correct": 2,
+   "short": "Rib cap strip = scarf splice.",
+   "expl": "The handbook says a cap strip of a wood rib can be repaired with a scarf splice, reinforced with plywood splice plates. A butt splice has almost no glue area and doesn't carry load.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (Rib Repairs); AC 43.13-1B, Ch. 1, Fig. 1-11",
+   "topic": "Repairs",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "13bf44bb30",
+   "q": "Minor decay in a wood component is permissible:",
+   "options": [
+    "If drain holes are installed",
+    "If the wood is thoroughly dried",
+    "Never"
+   ],
+   "correct": 2,
+   "short": "Decay is never acceptable.",
+   "expl": "All pieces must be free from rot, dote, red heart, purple heart and every other form of decay. Drying the wood or adding drain holes stops future decay but does not make existing decay acceptable.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2k (Decay); AC 43.13-1B, Par. 1-28a",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "733d2d5fa2",
+   "q": ".The ideal moisture content of wood used on aircraft is",
+   "options": [
+    "19%",
+    "8%",
+    "14%"
+   ],
+   "correct": 1,
+   "short": "Ideal: 8 (to 12) percent.",
+   "expl": "The handbook lists proper moisture content for gluing as 8 to 12 percent. The AC allows 8 to 16 percent during inspection and prefers 10 to 12. A reading over 20 percent means fungus growth is likely, so 19% is far too wet. Of the three choices, only 8% is in the ideal range.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (gluing: 8 to 12 percent); AC 43.13-1B, Par. 1-29",
+   "topic": "Wood Properties",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "5423f704bd",
+   "q": "Any deviation from the original shape of a wood structure:",
+   "options": [
+    "Is acceptable if it is caused by high moisture content",
+    "Is an indication of deterioration",
+    "Should be sanded down flush with the surrounding structure"
+   ],
+   "correct": 1,
+   "short": "Shape distortion = sign of deterioration.",
+   "expl": "The handbook says to check carefully for any deviation from the original shape. Any distortion of these light plywood and spruce structures indicates deterioration and requires a detailed internal inspection.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (Inspection of wood structures)",
+   "topic": "Inspection",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "b0046135c1",
+   "q": "Compression failure in wood is normally indicated by",
+   "options": [
+    "A musty odor",
+    "Buckling of the fibers perpendicular to the grain",
+    "Buckling of the fibers parallel to the grain"
+   ],
+   "correct": 1,
+   "short": "Compression failure = fibers buckled at right angles to the grain.",
+   "expl": "Compression failures appear as a buckling of the fibers, seen as streaks on the surface substantially at right angles to the grain. A musty odor points to decay, not compression failure.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2j (Compression failures)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "987ef5ae0a",
+   "q": "Plywood is made up of",
+   "options": [
+    "Thin layers of wood glued together with grain 90° from each other",
+    "Thin layers of wood glued together with grain parallel to each other",
+    "Strips of wood glued together"
+   ],
+   "correct": 0,
+   "short": "Plywood = plies with grain at 90° to each other.",
+   "expl": "Plywood is thin veneers glued with the grain of each ply at 90° to the next. That cross-banding gives strength in both directions and resists splitting. Layers with parallel grain make laminated wood, not plywood.",
+   "cite": "FAA-H-8083-31B, Ch. 6 (Plywood); AC 43.13-1B, Ch. 1, Par. 1-3",
+   "topic": "Wood Properties",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "f6bdc3c8ae",
+   "q": "Free flowing ink is used to",
+   "options": [
+    "Help determine grain direction",
+    "Identify the wood species",
+    "Prevent decay"
+   ],
+   "correct": 0,
+   "short": "Free-flowing ink shows grain direction.",
+   "expl": "To check slope of grain, inspect all four faces of the board. The AC says the direction of free-flowing ink will frequently assist in determining grain direction, because the ink runs along the grain.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 1a (Cross grain)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "2e0c8764a9",
+   "q": "A small cluster of pin knots are found in the center of a wood beam, causing a grain deviation of 1:16",
+   "options": [
+    "The wood should be rejected",
+    "The wood can be accepted",
+    "The knots should be removed"
+   ],
+   "correct": 1,
+   "short": "Small pin-knot cluster + 1:16 (inside 1:15) = acceptable.",
+   "expl": "Small pin knot clusters are acceptable providing they have only a small effect on grain direction. A deviation of 1:16 is shallower than the 1:15 maximum, so the grain is within limits and the wood can be accepted.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 1d (Pin knot clusters) and Table 1-1 col. 3 (1:15)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
+   ]
+  },
+  {
+   "id": "382be147cc",
+   "q": "Decay in wood is acceptable:",
+   "options": [
+    "If it is part of a mineral streak",
+    "As long as it is at least 14” from a bolt hole",
+    "Never"
+   ],
+   "correct": 2,
+   "short": "Decay is never acceptable.",
+   "expl": "Decay is never acceptable. Mineral streaks are only acceptable if careful inspection shows no decay, and the 14-inch spacing rule belongs to pitch pockets, not decay.",
+   "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 1f / 2g (Mineral streaks), 2k (Decay)",
+   "topic": "Wood Defects",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)"
    ]
   },
   {

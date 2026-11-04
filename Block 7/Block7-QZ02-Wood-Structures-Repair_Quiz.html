@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 7 · QZ 02 AMT BLK 07 (Wood Structures &amp; Repair)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 7 · QZ 02 AMT BLK 07 (Wood Structures &amp; Repair)</h1>
+    <div class="sub">The exact 20-question AIM QZ 02 for Block 7: plywood patches, wood species and lumber, adhesives, grain deviation, knots, decay, compression failures and inspection. Questions and choices are word-for-word and in the SAME ORDER as the real form. Every answer cites AC 43.13-1B, FAA-H-8083-31B or 14 CFR Part 43.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"fixed": true, "q": "A spar replacement is considered a:", "options": ["Major repair", "Minor repair", "Major alteration"], "correct": 0, "short": "Spar replacement = major repair.", "expl": "Spars are primary structure. 14 CFR Part 43 Appendix A lists repairing, splicing or replacing primary structural members such as wing spars as a major repair. Replacing a spar with an approved part restores the original design, so it is a repair, not an alteration.", "cite": "14 CFR Part 43, Appendix A (b)(1); AC 43.13-1B, Ch. 1, Par. 1-43", "topic": "Repair Classification", "fig": ""}, {"fixed": true, "q": "A hole not exceeding 1” diameter, in a fabric covered thin plywood skin can most easily be Repaired using a", "options": ["Scarf patch", "Fabric patch", "Splayed patch"], "correct": 1, "short": "Hole ≤ 1\" in plywood skin = fabric patch.", "expl": "Small holes not exceeding 1 inch in diameter, after being trimmed to a smooth outline, may be repaired by doping a fabric patch on the outside of the plywood skin. The patch must overlap the skin by at least 1 inch and can't be used within 1 inch of a frame member or on the leading edge. A scarf patch is the best repair for larger damage but is far more work.", "cite": "AC 43.13-1B, Ch. 1, Par. 1-52 (Fabric Patch)", "topic": "Plywood Patches", "fig": ""}, {"fixed": true, "q": "A surface patch in a plywood skin must have its ___________aligned with the original skin", "options": ["Longest edges", "Cross grain", "face grain"], "correct": 2, "short": "Surface patch: face grain same direction as original skin.", "expl": "For a surface (overlay) patch, the AC says the face-grain direction must be the same as the original skin. The same rule applies to scarf, splayed and plug patches.", "cite": "AC 43.13-1B, Ch. 1, Par. 1-51b (Surface Patch)", "topic": "Plywood Patches", "fig": ""}, {"fixed": true, "q": "A plywood scarf patch should be tapered to a slope of", "options": ["5:1", "12:1", "10:1"], "correct": 1, "short": "Plywood scarf = 12:1 (1 in 12).", "expl": "The scarf slope of 1 in 12 is the steepest slope permitted for all kinds of plywood. 5:1 is too steep for a plywood scarf; it appears in the handbook as a bevel on a spar splice, not a skin patch.", "cite": "AC 43.13-1B, Ch. 1, Par. 1-51c (Scarf Patch)", "topic": "Plywood Patches", "fig": ""}, {"fixed": true, "q": "The inner doubler in a small round plug patch in a plywood skin should extend ________________ Past the cutout", "options": ["½”", "5/8”", "¾”"], "correct": 1, "short": "Small round plug patch doubler = 5/8\" past the hole.", "expl": "For a small round plug patch, the doubler (soft 1/4-inch plywood such as poplar) is cut so its outside radius is 5/8 inch greater than the hole and its inside radius is 5/8 inch less. For a large patch, both dimensions increase to 7/8 inch.", "cite": "FAA-H-8083-31B, Ch. 6 (Plug Patch, step 4; Fig. 6-31); AC 43.13-1B, Fig. 1-18", "topic": "Plywood Patches", "fig": ""}, {"fixed": true, "q": "Checks or shakes are acceptable", "options": ["as long as there is minimal grain deviation:", "Never", "As long as they are not in the same growth ring"], "correct": 1, "short": "Checks, shakes, splits = never acceptable.", "expl": "Checks are cracks across the growth rings, shakes are cracks between two rings, and splits are cracks from stress. All three appear under Defects Not Permitted: reject wood containing them. The growth-ring rule belongs to pitch pockets, not checks or shakes.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2h (Checks, shakes, and splits)", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": "Which softwood can be used as a substitute for spruce, when shear loads are not critical", "options": ["Oak", "Noble fir", "Port Oxford cedar"], "correct": 1, "short": "Noble fir = spruce substitute when shear isn't critical.", "expl": "Table 1-1 rates noble fir as slightly stronger than spruce except 8% weaker in shear, so it may be used as a direct substitute for spruce in the same sizes providing shear does not become critical. Oak is a hardwood.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 (Noble Fir)", "topic": "Wood Species", "fig": ""}, {"fixed": true, "q": "Aircraft lumber should be:", "options": ["Flat sawn", "Quarter sawn", "Half sawn"], "correct": 1, "short": "Aircraft lumber = quarter sawn.", "expl": "Quarter-sawn (radial-cut) lumber has the growth rings running across the thickness. It shrinks and warps the least and the most evenly as it dries (handbook Figure 6-5), which is why aircraft-grade wood is quarter sawn. Flat-sawn boards cup and warp.", "cite": "FAA-H-8083-31B, Ch. 6, Fig. 6-5 (Effects of shrinkage); AC 43.13-1B, Ch. 1, Par. 1-2", "topic": "Wood Species", "fig": ""}, {"fixed": true, "q": ".Resorcinol-formaldehyde adhesive:", "options": ["Is considered obsolete", "Is a two part adhesive with high durability", "Is only used by the original manufacturer"], "correct": 1, "short": "Resorcinol = two-part, highly durable, approved.", "expl": "Resorcinol-formaldehyde is a two-part synthetic resin adhesive. The AC calls it the only known adhesive recommended and approved for wooden aircraft structure that fully meets the strength and durability requirements. Casein and urea-formaldehyde are the obsolete ones.", "cite": "AC 43.13-1B, Ch. 1, Par. 1-4 (Adhesives)", "topic": "Adhesives", "fig": ""}, {"fixed": true, "q": "Maximum allowable grain deviation in aircraft lumber is:", "options": ["1:10", "1:12", "1:15"], "correct": 2, "short": "Max slope of grain = 1:15.", "expl": "Column 3 of Table 1-1 gives a maximum permissible slope of grain of 1:15 for spruce and its substitutes. Grain can't diverge from the long axis more than 1 inch in 15 inches.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 (col. 3, slope of grain)", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": "Spike knots are only allowed:", "options": ["If under 3/8” diameter", "They do not cause excessive grain deviation", "Never"], "correct": 2, "short": "Spike knots = never; reject.", "expl": "Spike knots run completely through the depth of a beam, perpendicular to the annual rings. The AC says to reject wood containing this defect. The 3/8-inch limit belongs to sound hard knots.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2e (Spike knots)", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": "A wood splice in a rib cap strip should be:", "options": ["A butt splice", "Glued and screwed", "A scarf splice"], "correct": 2, "short": "Rib cap strip = scarf splice.", "expl": "The handbook says a cap strip of a wood rib can be repaired with a scarf splice, reinforced with plywood splice plates. A butt splice has almost no glue area and doesn't carry load.", "cite": "FAA-H-8083-31B, Ch. 6 (Rib Repairs); AC 43.13-1B, Ch. 1, Fig. 1-11", "topic": "Repairs", "fig": ""}, {"fixed": true, "q": "Minor decay in a wood component is permissible:", "options": ["If drain holes are installed", "If the wood is thoroughly dried", "Never"], "correct": 2, "short": "Decay is never acceptable.", "expl": "All pieces must be free from rot, dote, red heart, purple heart and every other form of decay. Drying the wood or adding drain holes stops future decay but does not make existing decay acceptable.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2k (Decay); AC 43.13-1B, Par. 1-28a", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": ".The ideal moisture content of wood used on aircraft is", "options": ["19%", "8%", "14%"], "correct": 1, "short": "Ideal: 8 (to 12) percent.", "expl": "The handbook lists proper moisture content for gluing as 8 to 12 percent. The AC allows 8 to 16 percent during inspection and prefers 10 to 12. A reading over 20 percent means fungus growth is likely, so 19% is far too wet. Of the three choices, only 8% is in the ideal range.", "cite": "FAA-H-8083-31B, Ch. 6 (gluing: 8 to 12 percent); AC 43.13-1B, Par. 1-29", "topic": "Wood Properties", "fig": ""}, {"fixed": true, "q": "Any deviation from the original shape of a wood structure:", "options": ["Is acceptable if it is caused by high moisture content", "Is an indication of deterioration", "Should be sanded down flush with the surrounding structure"], "correct": 1, "short": "Shape distortion = sign of deterioration.", "expl": "The handbook says to check carefully for any deviation from the original shape. Any distortion of these light plywood and spruce structures indicates deterioration and requires a detailed internal inspection.", "cite": "FAA-H-8083-31B, Ch. 6 (Inspection of wood structures)", "topic": "Inspection", "fig": ""}, {"fixed": true, "q": "Compression failure in wood is normally indicated by", "options": ["A musty odor", "Buckling of the fibers perpendicular to the grain", "Buckling of the fibers parallel to the grain"], "correct": 1, "short": "Compression failure = fibers buckled at right angles to the grain.", "expl": "Compression failures appear as a buckling of the fibers, seen as streaks on the surface substantially at right angles to the grain. A musty odor points to decay, not compression failure.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 2j (Compression failures)", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": "Plywood is made up of", "options": ["Thin layers of wood glued together with grain 90° from each other", "Thin layers of wood glued together with grain parallel to each other", "Strips of wood glued together"], "correct": 0, "short": "Plywood = plies with grain at 90° to each other.", "expl": "Plywood is thin veneers glued with the grain of each ply at 90° to the next. That cross-banding gives strength in both directions and resists splitting. Layers with parallel grain make laminated wood, not plywood.", "cite": "FAA-H-8083-31B, Ch. 6 (Plywood); AC 43.13-1B, Ch. 1, Par. 1-3", "topic": "Wood Properties", "fig": ""}, {"fixed": true, "q": "Free flowing ink is used to", "options": ["Help determine grain direction", "Identify the wood species", "Prevent decay"], "correct": 0, "short": "Free-flowing ink shows grain direction.", "expl": "To check slope of grain, inspect all four faces of the board. The AC says the direction of free-flowing ink will frequently assist in determining grain direction, because the ink runs along the grain.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 1a (Cross grain)", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": "A small cluster of pin knots are found in the center of a wood beam, causing a grain deviation of 1:16", "options": ["The wood should be rejected", "The wood can be accepted", "The knots should be removed"], "correct": 1, "short": "Small pin-knot cluster + 1:16 (inside 1:15) = acceptable.", "expl": "Small pin knot clusters are acceptable providing they have only a small effect on grain direction. A deviation of 1:16 is shallower than the 1:15 maximum, so the grain is within limits and the wood can be accepted.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 1d (Pin knot clusters) and Table 1-1 col. 3 (1:15)", "topic": "Wood Defects", "fig": ""}, {"fixed": true, "q": "Decay in wood is acceptable:", "options": ["If it is part of a mineral streak", "As long as it is at least 14” from a bolt hole", "Never"], "correct": 2, "short": "Decay is never acceptable.", "expl": "Decay is never acceptable. Mineral streaks are only acceptable if careful inspection shows no decay, and the 14-inch spacing rule belongs to pitch pockets, not decay.", "cite": "AC 43.13-1B, Ch. 1, Table 1-1 Notes, 1f / 2g (Mineral streaks), 2k (Decay)", "topic": "Wood Defects", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = true;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
