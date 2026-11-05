@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 7 · Day 3 — Fabric Covering (+ Wood Review)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 7 · Day 3 — Fabric Covering (+ Wood Review)</h1>
+    <div class="sub">Every point from the Day 3 class notes and the fabric repair, lacing and stitches slide: fabric history and dopes, approvals and PMA fabrics, acetone, tapes, cords and thread, blanket vs. envelope, rib lacing, tear repair, Form 337, the 70% strength rule, grommets, and the wood review.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"q": "How is a polyester fabric covering attached to the structure?", "options": ["It is cemented or glued to the structure at all points where it makes contact", "It is only sewn at the leading edge", "It is held on by tension alone, with no adhesive"], "correct": 0, "short": "Polyester is cemented/glued wherever it touches the structure.", "expl": "The notes say a polyester fabric covering is cemented or glued to the structure at every point where it makes contact. The approved adhesive for that covering system is used.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric Basics", "fig": ""}, {"q": "Which fabric is the most commonly used for dope applications today?", "options": ["Polyester", "Irish linen", "Cotton"], "correct": 0, "short": "Most common fabric = polyester.", "expl": "Polyester is the most commonly used fabric today. Linen and cotton were the original fabrics but tended to sag and are rarely used now.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric Basics", "fig": ""}, {"q": "At what temperature should the covering adhesive be mixed?", "options": ["The temperature at which the work is being performed", "Always at 32 °F", "As hot as possible to speed the cure"], "correct": 0, "short": "Mix adhesive at the same temperature as the work.", "expl": "The adhesive should be mixed at the temperature at which the work is being performed, so it has the right working characteristics when it goes on.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric Basics", "fig": ""}, {"q": "Per AC 43.13-1B (CAR 3.388), in compartments where smoking is NOT permitted, aircraft interior materials must be:", "options": ["Flash-resistant", "Waterproof", "Fireproof steel"], "correct": 0, "short": "No-smoking compartments: materials must be flash-resistant.", "expl": "AC 43.13-1B paragraph 9-61, citing CAR 3.388, says that in compartments where smoking is not permitted the interior materials shall be flash-resistant. Where smoking is permitted, they must be flame-resistant.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Par. 9-61", "topic": "Fabric Basics", "fig": ""}, {"q": "What were the ORIGINAL aircraft covering fabrics?", "options": ["Finely woven Irish linen and cotton", "Polyester and fiberglass", "Nylon and Kevlar"], "correct": 0, "short": "Originals: Irish linen and cotton.", "expl": "Finely woven Irish linen and cotton were the original fabrics. They tended to sag, which left the structure exposed to the elements.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "What was the problem with the original linen and cotton fabrics?", "options": ["They could not be sewn", "They tended to sag, which left the structure exposed to the elements", "They were too heavy to fly"], "correct": 1, "short": "Linen/cotton sagged and exposed the structure.", "expl": "The original fabrics sagged, which left the structure exposed to the elements. That problem led to coating the fabric.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "To counter sagging, the early fabrics were first coated with:", "options": ["Oils and varnishes", "Epoxy resin", "Polyurethane paint"], "correct": 0, "short": "First fix for sag: oils and varnishes.", "expl": "Before dope, fabrics were coated with oils and varnishes to counter the sag.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "Nitrate dope is cellulose dissolved in:", "options": ["Nitric acid", "Butyric acid", "Acetone"], "correct": 0, "short": "Nitrate dope = cellulose + nitric acid.", "expl": "Nitrate dope is a mixture of cellulose dissolved in nitric acid. Butyrate dope uses butyric acid.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "What did nitrate dope do for the fabric?", "options": ["Made it fireproof", "Made it stretch and sag more", "Protected it and tautened (tightened) it"], "correct": 2, "short": "Nitrate dope protected + tautened the fabric.", "expl": "The nitrate dope coating protected the fabric and tautened, or tightened, it on the structure.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "What was the MAJOR drawback of nitrate dope?", "options": ["Its poor adhesion", "It was too expensive to make", "Its extreme flammability"], "correct": 2, "short": "Nitrate dope drawback = extreme flammability.", "expl": "Nitrate dope's major drawback was its extreme flammability. Poor adhesion was butyrate dope's drawback.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "Butyrate dope is cellulose dissolved in which acid?", "options": ["Butyric acid", "Nitric acid", "Sulfuric acid"], "correct": 0, "short": "Butyrate dope = cellulose + butyric acid.", "expl": "Butyrate dope came next: cellulose dissolved in butyric acid.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "What was the major drawback of butyrate dope?", "options": ["Poor adhesion qualities", "Extreme flammability", "It could not tighten fabric"], "correct": 0, "short": "Butyrate dope drawback = poor adhesion.", "expl": "Butyrate dope is less flammable than nitrate dope, but its major drawback is poor adhesion.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Fabric History", "fig": ""}, {"q": "A technical standard is:", "options": ["A maximum", "Only a recommendation", "A minimum"], "correct": 2, "short": "Technical standard = a minimum.", "expl": "The notes stress that a technical standard is a minimum. Covering materials must meet or exceed it.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Approvals", "fig": ""}, {"q": "A company approved to manufacture or sell an approved aviation fabric applies for and receives a:", "options": ["Parts Manufacturer Approval (PMA)", "Type Certificate (TC)", "Repair Station Certificate"], "correct": 0, "short": "Approved fabric makers hold a PMA.", "expl": "When a company is approved to make or sell an approved aviation fabric, it applies for and receives a Parts Manufacturer Approval (PMA).", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Approvals", "fig": ""}, {"q": "Which are the approved polyester aircraft fabrics named in class?", "options": ["Ceconite, Stits/Polyfiber and Superflite", "Dacron, Kevlar and Nomex", "Irish linen, Grade-A cotton and silk"], "correct": 0, "short": "Approved polyesters: Ceconite, Stits/Polyfiber, Superflite.", "expl": "The handbook names Ceconite, Stits/Polyfiber and Superflite as the approved polyester fabrics in current use. Your notes spell them \"Cenconite\" and \"Superfluity\".", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Approvals", "fig": ""}, {"q": "What is the key use of acetone in fabric work?", "options": ["Thinning dope", "Cleaning windscreens", "Removing grease from the fabric surface before doping"], "correct": 2, "short": "Acetone = remove grease from fabric.", "expl": "The key use of acetone is to remove grease from the fabric surface before doping. It is never used to thin dope or to clean windscreens.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 8 (Acetone)", "topic": "Acetone", "fig": ""}, {"q": "Which is a rule for acetone from the Day 3 notes?", "options": ["Never use it to clean aircraft surfaces or windscreens", "Always use it to clean windscreens", "Use it as the main dope thinner"], "correct": 0, "short": "Never clean aircraft surfaces or windscreens with acetone.", "expl": "Acetone attacks plastics and finishes. The notes say never to use it to clean aircraft surfaces and never to use it to clean a windscreen.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Acetone", "fig": ""}, {"q": "Why should acetone NOT be used as a thinner in dope?", "options": ["It evaporates so fast that the doped area cools and collects moisture", "It makes the dope too flammable to spray", "It turns the dope into a solid instantly"], "correct": 0, "short": "Acetone evaporates fast → area cools → collects moisture.", "expl": "Acetone evaporates so quickly that the doped area cools and collects moisture from the air. That moisture keeps the dope from drying evenly.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 8", "topic": "Acetone", "fig": ""}, {"q": "Using acetone as a dope thinner results in:", "options": ["Blushing of the dope and a flat, no-gloss finish", "A high-gloss finish", "Extra-strong adhesion"], "correct": 0, "short": "Result = blushing + flat no-gloss finish.", "expl": "The trapped moisture causes blushing, a cloudy, flat, no-gloss finish.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 8", "topic": "Acetone", "fig": ""}, {"q": "Where is anti-chafe tape used?", "options": ["Only over finished seams after painting", "Inside the fuel tank", "On sharp protrusions, rib caps, metal seams and similar areas, to give a smoother surface so the fabric isn't torn"], "correct": 2, "short": "Anti-chafe tape covers sharp spots so fabric isn't torn.", "expl": "Anti-chafe tape goes on sharp protrusions, rib caps, metal seams and other areas before covering. It gives a smoother surface so the fabric won't be torn.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "What is reinforcing tape used for?", "options": ["To replace rib lacing entirely", "On rib caps after the fabric is installed, to protect and strengthen the area where the fabric is attached to the ribs", "To cover the fabric's trailing edge only"], "correct": 1, "short": "Reinforcing tape: on rib caps over the fabric, protects the lacing area.", "expl": "Reinforcing tape goes on the rib caps after the fabric covering is installed. It protects and strengthens the area where the fabric is laced or attached to the ribs.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "How is rib bracing applied?", "options": ["Spanwise, wrapped alternately around a top rib cap and then a bottom rib cap, rib to rib", "Chordwise along each rib only", "Diagonally across the fabric surface after doping"], "correct": 0, "short": "Rib bracing: spanwise, alternate top cap / bottom cap.", "expl": "Rib bracing is applied spanwise. The cord is wrapped around a top rib cap, then a bottom rib cap, rib to rib until all the ribs are braced.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Surface tape is made of polyester, often pre-shrunk, and is obtained from:", "options": ["The airframe manufacturer only", "The STC holder", "Any hardware store"], "correct": 1, "short": "Surface tape comes from the STC holder.", "expl": "Surface tape is polyester, often pre-shrunk, and comes from the STC holder for the covering system, so it matches the approved materials.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Where is surface tape used?", "options": ["Over seams, ribs, patches and edges", "Only inside the wing", "Only on wooden spars"], "correct": 0, "short": "Surface tape goes over seams, ribs, patches, edges.", "expl": "Surface tape is applied over seams, ribs, patches and edges to protect them and give a smooth finish.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Why is a pinked edge on surface tape helpful?", "options": ["It increases surface area for better adhesion", "It makes the tape easier to remove", "It is only for looks"], "correct": 0, "short": "Pinked edge = more surface area = better adhesion.", "expl": "Surface tape comes with a pinked (zig-zag) edge or a straight edge. The pinked edge increases surface area for better adhesion.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "When is surface tape applied?", "options": ["Doped on after the first or second coat of dope", "Before any fabric is installed", "After the final topcoat of paint"], "correct": 0, "short": "Surface tape: after the 1st or 2nd coat of dope.", "expl": "Surface tape is applied, or doped on, after the first or second coat of dope.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Rib lacing cord is used to:", "options": ["Lace the fabric to the wing ribs, and comes in round or flat cross section", "Sew envelopes on a sewing machine", "Hang the wing in the jig"], "correct": 0, "short": "Rib lacing cord: laces fabric to ribs; round or flat.", "expl": "Rib lacing cord laces the fabric to the wing ribs. It comes in a round or flat cross section.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Hand-sewing thread is a three-ply uncoated polyester thread with what tensile strength?", "options": ["50 pounds", "15 pounds", "10 pounds"], "correct": 1, "short": "Hand thread: 3-ply, 15 lb.", "expl": "Hand-sewing thread is three-ply uncoated polyester with a 15-pound tensile strength.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Machine sewing thread is typically:", "options": ["Four-ply polyester with a 10-pound tensile strength", "Three-ply cotton with a 15-pound strength", "Single-ply nylon with a 5-pound strength"], "correct": 0, "short": "Machine thread: 4-ply, 10 lb.", "expl": "Machine thread is typically four-ply polyester with a 10-pound tensile strength. Sewing thread is used to make pre-fitted envelopes.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Tapes & Cords", "fig": ""}, {"q": "Which covering method uses multiple flat sections of fabric trimmed and attached to the airframe?", "options": ["The envelope method", "The wet layup method", "The blanket method"], "correct": 2, "short": "Blanket = multiple flat pieces trimmed and attached.", "expl": "The blanket method trims multiple flat sections of fabric and attaches them to the airframe with approved adhesives, following the rules of the covering process.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Covering Methods", "fig": ""}, {"q": "Which covering method saves time with precut, pre-sewn fabric?", "options": ["The envelope method", "The blanket method", "The compression method"], "correct": 0, "short": "Envelope = precut + pre-sewn, saves time.", "expl": "The envelope method uses precut, pre-sewn envelopes that slide over the structure. They must be sewn with approved machine thread, edge distance and fabric fold, and they are also attached with adhesives.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Covering Methods", "fig": ""}, {"q": "In BOTH the blanket and envelope methods, the fabric is:", "options": ["Adhered to the airframe with approved adhesives", "Only sewn, never glued", "Riveted to the ribs"], "correct": 0, "short": "Both methods: approved adhesives.", "expl": "In all cases, blanket or envelope, the fabric is adhered to the airframe with the approved adhesives for that covering process.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Covering Methods", "fig": ""}, {"q": "When the rib-lace knot used by the original manufacturer is NOT known, which knot is used?", "options": ["The modified seine knot", "A square knot only", "A granny knot"], "correct": 0, "short": "Unknown original knot → modified seine knot.", "expl": "AC 43.13-1B (note to Figure 2-4) says that when the original manufacturer's rib-lace knot is not known, use the modified seine knot shown in Figures 2-4 through 2-9c.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 2, Fig. 2-4 note", "topic": "Lacing & Stitches", "fig": ""}, {"q": "Repairing an L-shaped tear in fabric (AC 43.13-1B Fig. 2-13): where do you start sewing?", "options": ["At the point (the corner) of the L", "At the far end of the longest leg", "Anywhere, as long as it ends at the corner"], "correct": 0, "short": "L-shaped tear: start sewing at the point.", "expl": "Figure 2-13 marks it plainly: \"start sewing at the point.\" You work out from the corner along each leg.", "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13", "topic": "Lacing & Stitches", "fig": ""}, {"q": "Which stitch is used to sew up a tear in fabric?", "options": ["The blanket stitch", "The baseball stitch", "The chain stitch"], "correct": 1, "short": "Tears are closed with a baseball stitch.", "expl": "Figure 2-13 shows tears closed with the baseball stitch. The AC allows plain overthrow or baseball stitches.", "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13", "topic": "Lacing & Stitches", "fig": ""}, {"q": "How often is a hand-sewn tear repair locked?", "options": ["Only once, at the very end", "Every 50 stitches", "With a half hitch at least every 10 stitches, ending with a double half-hitch knot"], "correct": 2, "short": "Lock every 10 stitches max; end with a double half hitch.", "expl": "Figure 2-13: lock the stitching with a half hitch every 10 stitches maximum, and lock the end with a double half-hitch knot.", "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13 & Par. 2-7", "topic": "Lacing & Stitches", "fig": ""}, {"q": "What is the maximum stitch spacing on a tear repair?", "options": ["1/4 inch", "1 inch", "1/2 inch"], "correct": 0, "short": "Stitch spacing: 1/4\" max (1/4\" min edge distance).", "expl": "Figure 2-13 calls for 1/4-inch maximum stitch spacing and at least 1/4 inch from the edge of the tear.", "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13", "topic": "Lacing & Stitches", "fig": ""}, {"q": "Re-covering an aircraft with fabric (for example, replacing cotton with polyester) is:", "options": ["A major repair or alteration, and a Form 337 is executed", "A minor repair with a logbook entry only", "Preventive maintenance the pilot may perform"], "correct": 0, "short": "Re-cover = major repair/alteration → Form 337.", "expl": "Fabric re-covering is a major repair or alteration. A Form 337 is executed whenever an aircraft is re-covered, and replacing cotton with polyester is a major alteration.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; 14 CFR Part 43, App. A", "topic": "Regulations & Strength", "fig": ""}, {"q": "For a fabric re-cover alteration to be legal, the Form 337 must be:", "options": ["Approved, with an IA available to approve it and return the aircraft to service", "Mailed after the first flight", "Signed by the pilot only"], "correct": 0, "short": "337 must be approved (IA returns to service).", "expl": "A properly executed Form 337 also has to be approved for the alteration to be legal. The notes say to have your local IA available during the process to approve the 337 and return the aircraft to service.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Regulations & Strength", "fig": ""}, {"q": "How often must fabric strength be checked?", "options": ["At every 100-hour and annual inspection", "Only when the aircraft is re-covered", "Every 5 years"], "correct": 0, "short": "Fabric strength: every 100-hour and annual.", "expl": "The notes say fabric strength must be determined at every 100-hour and annual inspection.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Regulations & Strength", "fig": ""}, {"q": "Fabric becomes UNAIRWORTHY when its breaking strength falls below what percentage of new fabric required for the aircraft?", "options": ["90 percent", "70 percent (30 percent deficient)", "50 percent"], "correct": 1, "short": "Below 70% of new = unairworthy.", "expl": "Fabric is airworthy until it deteriorates to a breaking strength below 70 percent of the new fabric required for the aircraft. Below that, it is unairworthy. Example: Grade-A cotton is 80 lb new, so it is unairworthy below 56 lb. Your notes say \"airworthy\" here; the FAA text says unairworthy.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3 (Fabric Strength); AC 43.13-1B, Par. 2-33a", "topic": "Regulations & Strength", "fig": ""}, {"q": "What do the notes say about the Maule and Seyboth fabric testers?", "options": ["They are used to tighten fabric", "They are not FAA approved", "They are the only FAA-required test"], "correct": 1, "short": "Maule and Seyboth testers: not FAA approved.", "expl": "The notes say the Maule and Seyboth punch testers are not FAA approved. The handbook adds that they were designed for cotton and linen, not modern polyester (Dacron), so they only help the mechanic judge strength.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Regulations & Strength", "fig": ""}, {"q": "What is the MOST COMMON reason to re-cover an aircraft?", "options": ["Deterioration of the strength of the existing fabric", "A change of paint color", "Adding a new radio"], "correct": 0, "short": "#1 reason to re-cover = fabric strength deterioration.", "expl": "The notes say the most common reason to re-cover is deterioration of the strength of the present fabric.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3", "topic": "Regulations & Strength", "fig": ""}, {"q": "Grommets in aircraft fabric are used to:", "options": ["Hold inspection plates closed", "Create reinforced drain holes, and are usually made of aluminum or plastic", "Attach the fabric to the spar"], "correct": 1, "short": "Grommets = reinforced drain holes; aluminum or plastic.", "expl": "Grommets create reinforced drain holes in the fabric. They are usually aluminum or plastic and are glued or doped onto the fabric.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3 (Grommets)", "topic": "Regulations & Strength", "fig": ""}, {"q": "What rule did class give for making the hole in a PLASTIC grommet?", "options": ["Never use a soldering iron to make the hole", "Always melt it with a soldering iron", "Drill it with a 1-inch bit"], "correct": 0, "short": "Plastic grommets: never a soldering iron.", "expl": "Class rule: never use a soldering iron to create the hole in a plastic grommet, because it can melt the grommet. The handbook says a hot soldering pencil is often used to cut and seal the fabric, so on the test go with the class rule for plastic grommets.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Regulations & Strength", "fig": ""}, {"q": "Is wood decay ever acceptable?", "options": ["Yes, if it is less than 1 inch", "Yes, if the wood is dried", "Never"], "correct": 2, "short": "Wood decay = NEVER acceptable.", "expl": "Wood decay is never acceptable. All wood must be free of rot and every other form of decay.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Table 1-1 Notes 2k", "topic": "Wood Review", "fig": ""}, {"q": "What species of wood should be used to repair a wood structure?", "options": ["The same species as the original whenever possible, with permissible substitutes listed in AC 43.13-1B", "Any hardwood available", "Always oak, since it is stronger"], "correct": 0, "short": "Same species when possible; substitutes per AC 43.13-1B Table 1-1.", "expl": "Repairs should use the same species whenever possible. AC 43.13-1B Table 1-1 lists permissible substitutes such as Douglas fir and noble fir for spruce.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Table 1-1", "topic": "Wood Review", "fig": ""}, {"q": "A wood structure inspection should begin with:", "options": ["A radiograph of the spars", "An external examination of the aircraft's surface", "Removing all the fabric"], "correct": 1, "short": "Start with an external exam.", "expl": "Inspection begins with an external examination of the surface. Then access panels are removed.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-29", "topic": "Wood Review", "fig": ""}, {"q": "A musty or moldy smell when access panels are removed indicates:", "options": ["Fungal or mold decay", "Fuel leak", "Fresh glue"], "correct": 0, "short": "Musty/moldy smell = fungal decay.", "expl": "A musty or moldy smell when you remove access panels indicates fungal or mold decay.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-29", "topic": "Wood Review", "fig": ""}, {"q": "Which of these are listed in the notes as wood defects NOT permitted?", "options": ["Cross grain, hard knots and spike knots", "Mineral streaks with no decay", "Small pin-knot clusters"], "correct": 0, "short": "Not permitted: cross grain, hard knots, spike knots.", "expl": "The notes list cross grain, hard knots and spike knots as defects not permitted. Cross grain and hard knots are allowed only within the AC limits; spike knots are always rejected.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Table 1-1 Notes 2", "topic": "Wood Review", "fig": ""}, {"q": "Replacing a wood spar (including with a substitute wood) is:", "options": ["A major repair", "A minor repair", "Preventive maintenance"], "correct": 0, "short": "Spar replacement = major repair.", "expl": "Replacing a spar, including one made from a substitute species, is a major repair.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; 14 CFR Part 43, App. A", "topic": "Wood Review", "fig": ""}, {"q": "For glue that must be mixed with water, what water should be used?", "options": ["Clear, cool water", "Hot tap water", "Salt water"], "correct": 0, "short": "Glue mixing water = clear and cool.", "expl": "The notes say to use clear, cool water with glues that require mixing with water.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Wood Review", "fig": ""}, {"q": "How should the proportions of glue and solvent be measured?", "options": ["By the weight of each component", "By eye", "By volume in any cup"], "correct": 0, "short": "Glue proportions = by weight.", "expl": "The proportions of glue and solvent should be determined by the weight of each component.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Wood Review", "fig": ""}, {"q": "Whatever mixing method is used, the glue must be:", "options": ["Thoroughly mixed and free of air bubbles, foam and lumps of insoluble material", "Lightly stirred so air bubbles remain", "Thinned until it runs like water"], "correct": 0, "short": "Glue: thoroughly mixed, no bubbles, foam or lumps.", "expl": "The glue should be thoroughly mixed and free of air bubbles, foam and lumps of insoluble material.", "cite": "AIM AMTBLK 07 Day 3 Class Notes", "topic": "Wood Review", "fig": ""}, {"q": "A satisfactory glue joint in aircraft should:", "options": ["Be about half as strong as the wood", "Develop the full strength of the wood under all conditions of stress", "Be stronger only in compression"], "correct": 1, "short": "Good glue joint = full wood strength under all stress.", "expl": "Satisfactory glue joints should develop the full strength of the wood under all conditions of stress.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-6", "topic": "Wood Review", "fig": ""}, {"q": "To get a full-strength joint, the glue line should be:", "options": ["A thin layer of glue in the joint, contacting both wood surfaces", "A thick layer to fill gaps", "Glue on one surface only"], "correct": 0, "short": "Thin, continuous glue line touching both surfaces.", "expl": "The gluing conditions should leave a thin layer of glue in the joint, in contact with both surfaces of the wood. Thick glue lines are weak.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-6", "topic": "Wood Review", "fig": ""}, {"q": "Solid spars may be replaced with laminated spars:", "options": ["Provided the material is of the same quality", "Never", "Only on experimental aircraft"], "correct": 0, "short": "Solid → laminated OK if same quality.", "expl": "Solid spars may be replaced with laminated spars, or the reverse, provided the material is of the same quality.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-43", "topic": "Wood Review", "fig": ""}, {"q": "External plywood or solid reinforcements on a spar must:", "options": ["Always be replaced as on the original component", "Be left off to save weight", "Be replaced with aluminum"], "correct": 0, "short": "Reinforcements: always replaced as original.", "expl": "External reinforcements, plywood or solid, must always be replaced as on the original component.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-43", "topic": "Wood Review", "fig": ""}, {"q": "A spar has elongated bolt holes or cracks near the bolt holes. What is the repair?", "options": ["Splice in a new section of spar or replace the spar entirely", "Drill the holes oversize", "Fill the cracks with glue"], "correct": 0, "short": "Elongated holes/cracks → splice new section or replace spar.", "expl": "For elongated bolt holes or cracks around them, splice in a new section of spar or replace the spar entirely.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-45", "topic": "Wood Review", "fig": ""}, {"q": "If bolt-hole elongation or cracking is minimal and the holes are for non-critical fittings:", "options": ["You may get approval to repair it, for example by laminating a new section of spar", "The spar must always be scrapped", "No approval is ever needed"], "correct": 0, "short": "Minimal + non-critical → repair may be approved (laminate new section).", "expl": "If elongation or cracking is minimal and the bolt holes are for non-critical fittings, repair instead of replacement may be approved by the manufacturer or the FAA. Laminating the new section of spar is often the better choice.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-45", "topic": "Wood Review", "fig": ""}, {"q": "What are the BEST surfaces for gluing solid wood?", "options": ["Sawn surfaces", "Sanded surfaces", "Smooth, even surfaces made on planers and jointers"], "correct": 2, "short": "Best gluing surfaces: planed/jointed. Sawn surfaces discouraged.", "expl": "Smooth, even surfaces from planers and jointers are best. Sawn surfaces are discouraged because it is hard to produce one free of crushed fibers.", "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-6", "topic": "Wood Review", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = false;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>

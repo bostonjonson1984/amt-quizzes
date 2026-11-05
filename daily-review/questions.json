@@ -1,6 +1,6 @@
 {
- "built": "2026-11-04",
- "total": 4358,
+ "built": "2026-11-05",
+ "total": 4418,
  "per_source": {
   "AET — Baseline Diagnostic": 27,
   "AET — Module 1: DC Fundamentals": 41,
@@ -74,7 +74,8 @@
   "Block 6 · Systems Abbreviations & Acronyms": 159,
   "Block 7 · Day 1 — Composite Materials": 46,
   "Block 7 · Day 2 — Composite Fabrication, Inspection & Repair": 63,
-  "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)": 20,
+  "Block 7 · Day 3 — Fabric Covering (+ Wood Review)": 61,
+  "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)": 19,
   "Block 7 · QZ 02 AMT BLK 07 (Wood Structures & Repair)": 20,
   "AET Academy M1 — DC Fundamentals": 0,
   "AET Academy M2 — Circuits & Troubleshooting": 33,
@@ -72427,6 +72428,1105 @@
    ]
   },
   {
+   "id": "475bc22315",
+   "q": "How is a polyester fabric covering attached to the structure?",
+   "options": [
+    "It is cemented or glued to the structure at all points where it makes contact",
+    "It is only sewn at the leading edge",
+    "It is held on by tension alone, with no adhesive"
+   ],
+   "correct": 0,
+   "short": "Polyester is cemented/glued wherever it touches the structure.",
+   "expl": "The notes say a polyester fabric covering is cemented or glued to the structure at every point where it makes contact. The approved adhesive for that covering system is used.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric Basics",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "75da5054b3",
+   "q": "Which fabric is the most commonly used for dope applications today?",
+   "options": [
+    "Polyester",
+    "Irish linen",
+    "Cotton"
+   ],
+   "correct": 0,
+   "short": "Most common fabric = polyester.",
+   "expl": "Polyester is the most commonly used fabric today. Linen and cotton were the original fabrics but tended to sag and are rarely used now.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric Basics",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "dec260e506",
+   "q": "At what temperature should the covering adhesive be mixed?",
+   "options": [
+    "The temperature at which the work is being performed",
+    "Always at 32 °F",
+    "As hot as possible to speed the cure"
+   ],
+   "correct": 0,
+   "short": "Mix adhesive at the same temperature as the work.",
+   "expl": "The adhesive should be mixed at the temperature at which the work is being performed, so it has the right working characteristics when it goes on.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric Basics",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "30f7d4668a",
+   "q": "Per AC 43.13-1B (CAR 3.388), in compartments where smoking is NOT permitted, aircraft interior materials must be:",
+   "options": [
+    "Flash-resistant",
+    "Waterproof",
+    "Fireproof steel"
+   ],
+   "correct": 0,
+   "short": "No-smoking compartments: materials must be flash-resistant.",
+   "expl": "AC 43.13-1B paragraph 9-61, citing CAR 3.388, says that in compartments where smoking is not permitted the interior materials shall be flash-resistant. Where smoking is permitted, they must be flame-resistant.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Par. 9-61",
+   "topic": "Fabric Basics",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "dd19651882",
+   "q": "What were the ORIGINAL aircraft covering fabrics?",
+   "options": [
+    "Finely woven Irish linen and cotton",
+    "Polyester and fiberglass",
+    "Nylon and Kevlar"
+   ],
+   "correct": 0,
+   "short": "Originals: Irish linen and cotton.",
+   "expl": "Finely woven Irish linen and cotton were the original fabrics. They tended to sag, which left the structure exposed to the elements.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "5988f892bf",
+   "q": "What was the problem with the original linen and cotton fabrics?",
+   "options": [
+    "They could not be sewn",
+    "They tended to sag, which left the structure exposed to the elements",
+    "They were too heavy to fly"
+   ],
+   "correct": 1,
+   "short": "Linen/cotton sagged and exposed the structure.",
+   "expl": "The original fabrics sagged, which left the structure exposed to the elements. That problem led to coating the fabric.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "dbe50a45c6",
+   "q": "To counter sagging, the early fabrics were first coated with:",
+   "options": [
+    "Oils and varnishes",
+    "Epoxy resin",
+    "Polyurethane paint"
+   ],
+   "correct": 0,
+   "short": "First fix for sag: oils and varnishes.",
+   "expl": "Before dope, fabrics were coated with oils and varnishes to counter the sag.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "fd6c4da40b",
+   "q": "Nitrate dope is cellulose dissolved in:",
+   "options": [
+    "Nitric acid",
+    "Butyric acid",
+    "Acetone"
+   ],
+   "correct": 0,
+   "short": "Nitrate dope = cellulose + nitric acid.",
+   "expl": "Nitrate dope is a mixture of cellulose dissolved in nitric acid. Butyrate dope uses butyric acid.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "e44c8497cd",
+   "q": "What did nitrate dope do for the fabric?",
+   "options": [
+    "Made it fireproof",
+    "Made it stretch and sag more",
+    "Protected it and tautened (tightened) it"
+   ],
+   "correct": 2,
+   "short": "Nitrate dope protected + tautened the fabric.",
+   "expl": "The nitrate dope coating protected the fabric and tautened, or tightened, it on the structure.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "1fd0f04ba1",
+   "q": "What was the MAJOR drawback of nitrate dope?",
+   "options": [
+    "Its poor adhesion",
+    "It was too expensive to make",
+    "Its extreme flammability"
+   ],
+   "correct": 2,
+   "short": "Nitrate dope drawback = extreme flammability.",
+   "expl": "Nitrate dope's major drawback was its extreme flammability. Poor adhesion was butyrate dope's drawback.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "488f8fc5bb",
+   "q": "Butyrate dope is cellulose dissolved in which acid?",
+   "options": [
+    "Butyric acid",
+    "Nitric acid",
+    "Sulfuric acid"
+   ],
+   "correct": 0,
+   "short": "Butyrate dope = cellulose + butyric acid.",
+   "expl": "Butyrate dope came next: cellulose dissolved in butyric acid.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "7df1d8727c",
+   "q": "What was the major drawback of butyrate dope?",
+   "options": [
+    "Poor adhesion qualities",
+    "Extreme flammability",
+    "It could not tighten fabric"
+   ],
+   "correct": 0,
+   "short": "Butyrate dope drawback = poor adhesion.",
+   "expl": "Butyrate dope is less flammable than nitrate dope, but its major drawback is poor adhesion.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Fabric History",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "3b39c464c5",
+   "q": "A technical standard is:",
+   "options": [
+    "A maximum",
+    "Only a recommendation",
+    "A minimum"
+   ],
+   "correct": 2,
+   "short": "Technical standard = a minimum.",
+   "expl": "The notes stress that a technical standard is a minimum. Covering materials must meet or exceed it.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Approvals",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "59b8e265aa",
+   "q": "A company approved to manufacture or sell an approved aviation fabric applies for and receives a:",
+   "options": [
+    "Parts Manufacturer Approval (PMA)",
+    "Type Certificate (TC)",
+    "Repair Station Certificate"
+   ],
+   "correct": 0,
+   "short": "Approved fabric makers hold a PMA.",
+   "expl": "When a company is approved to make or sell an approved aviation fabric, it applies for and receives a Parts Manufacturer Approval (PMA).",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Approvals",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "51ab86610e",
+   "q": "Which are the approved polyester aircraft fabrics named in class?",
+   "options": [
+    "Ceconite, Stits/Polyfiber and Superflite",
+    "Dacron, Kevlar and Nomex",
+    "Irish linen, Grade-A cotton and silk"
+   ],
+   "correct": 0,
+   "short": "Approved polyesters: Ceconite, Stits/Polyfiber, Superflite.",
+   "expl": "The handbook names Ceconite, Stits/Polyfiber and Superflite as the approved polyester fabrics in current use. Your notes spell them \"Cenconite\" and \"Superfluity\".",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Approvals",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "0a0936aeae",
+   "q": "What is the key use of acetone in fabric work?",
+   "options": [
+    "Thinning dope",
+    "Cleaning windscreens",
+    "Removing grease from the fabric surface before doping"
+   ],
+   "correct": 2,
+   "short": "Acetone = remove grease from fabric.",
+   "expl": "The key use of acetone is to remove grease from the fabric surface before doping. It is never used to thin dope or to clean windscreens.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 8 (Acetone)",
+   "topic": "Acetone",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "3165a1a30a",
+   "q": "Which is a rule for acetone from the Day 3 notes?",
+   "options": [
+    "Never use it to clean aircraft surfaces or windscreens",
+    "Always use it to clean windscreens",
+    "Use it as the main dope thinner"
+   ],
+   "correct": 0,
+   "short": "Never clean aircraft surfaces or windscreens with acetone.",
+   "expl": "Acetone attacks plastics and finishes. The notes say never to use it to clean aircraft surfaces and never to use it to clean a windscreen.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Acetone",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "b5f170cf8a",
+   "q": "Why should acetone NOT be used as a thinner in dope?",
+   "options": [
+    "It evaporates so fast that the doped area cools and collects moisture",
+    "It makes the dope too flammable to spray",
+    "It turns the dope into a solid instantly"
+   ],
+   "correct": 0,
+   "short": "Acetone evaporates fast → area cools → collects moisture.",
+   "expl": "Acetone evaporates so quickly that the doped area cools and collects moisture from the air. That moisture keeps the dope from drying evenly.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 8",
+   "topic": "Acetone",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "350ea53596",
+   "q": "Using acetone as a dope thinner results in:",
+   "options": [
+    "Blushing of the dope and a flat, no-gloss finish",
+    "A high-gloss finish",
+    "Extra-strong adhesion"
+   ],
+   "correct": 0,
+   "short": "Result = blushing + flat no-gloss finish.",
+   "expl": "The trapped moisture causes blushing, a cloudy, flat, no-gloss finish.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 8",
+   "topic": "Acetone",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "a76b8fdc3d",
+   "q": "Where is anti-chafe tape used?",
+   "options": [
+    "Only over finished seams after painting",
+    "Inside the fuel tank",
+    "On sharp protrusions, rib caps, metal seams and similar areas, to give a smoother surface so the fabric isn't torn"
+   ],
+   "correct": 2,
+   "short": "Anti-chafe tape covers sharp spots so fabric isn't torn.",
+   "expl": "Anti-chafe tape goes on sharp protrusions, rib caps, metal seams and other areas before covering. It gives a smoother surface so the fabric won't be torn.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "2053f89b59",
+   "q": "What is reinforcing tape used for?",
+   "options": [
+    "To replace rib lacing entirely",
+    "On rib caps after the fabric is installed, to protect and strengthen the area where the fabric is attached to the ribs",
+    "To cover the fabric's trailing edge only"
+   ],
+   "correct": 1,
+   "short": "Reinforcing tape: on rib caps over the fabric, protects the lacing area.",
+   "expl": "Reinforcing tape goes on the rib caps after the fabric covering is installed. It protects and strengthens the area where the fabric is laced or attached to the ribs.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "50dad71f67",
+   "q": "How is rib bracing applied?",
+   "options": [
+    "Spanwise, wrapped alternately around a top rib cap and then a bottom rib cap, rib to rib",
+    "Chordwise along each rib only",
+    "Diagonally across the fabric surface after doping"
+   ],
+   "correct": 0,
+   "short": "Rib bracing: spanwise, alternate top cap / bottom cap.",
+   "expl": "Rib bracing is applied spanwise. The cord is wrapped around a top rib cap, then a bottom rib cap, rib to rib until all the ribs are braced.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "61cb49d453",
+   "q": "Surface tape is made of polyester, often pre-shrunk, and is obtained from:",
+   "options": [
+    "The airframe manufacturer only",
+    "The STC holder",
+    "Any hardware store"
+   ],
+   "correct": 1,
+   "short": "Surface tape comes from the STC holder.",
+   "expl": "Surface tape is polyester, often pre-shrunk, and comes from the STC holder for the covering system, so it matches the approved materials.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "7829db9cff",
+   "q": "Where is surface tape used?",
+   "options": [
+    "Over seams, ribs, patches and edges",
+    "Only inside the wing",
+    "Only on wooden spars"
+   ],
+   "correct": 0,
+   "short": "Surface tape goes over seams, ribs, patches, edges.",
+   "expl": "Surface tape is applied over seams, ribs, patches and edges to protect them and give a smooth finish.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "0e5481b462",
+   "q": "Why is a pinked edge on surface tape helpful?",
+   "options": [
+    "It increases surface area for better adhesion",
+    "It makes the tape easier to remove",
+    "It is only for looks"
+   ],
+   "correct": 0,
+   "short": "Pinked edge = more surface area = better adhesion.",
+   "expl": "Surface tape comes with a pinked (zig-zag) edge or a straight edge. The pinked edge increases surface area for better adhesion.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "65c5e02dd5",
+   "q": "When is surface tape applied?",
+   "options": [
+    "Doped on after the first or second coat of dope",
+    "Before any fabric is installed",
+    "After the final topcoat of paint"
+   ],
+   "correct": 0,
+   "short": "Surface tape: after the 1st or 2nd coat of dope.",
+   "expl": "Surface tape is applied, or doped on, after the first or second coat of dope.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "3baba07a05",
+   "q": "Rib lacing cord is used to:",
+   "options": [
+    "Lace the fabric to the wing ribs, and comes in round or flat cross section",
+    "Sew envelopes on a sewing machine",
+    "Hang the wing in the jig"
+   ],
+   "correct": 0,
+   "short": "Rib lacing cord: laces fabric to ribs; round or flat.",
+   "expl": "Rib lacing cord laces the fabric to the wing ribs. It comes in a round or flat cross section.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "2ba8798251",
+   "q": "Hand-sewing thread is a three-ply uncoated polyester thread with what tensile strength?",
+   "options": [
+    "50 pounds",
+    "15 pounds",
+    "10 pounds"
+   ],
+   "correct": 1,
+   "short": "Hand thread: 3-ply, 15 lb.",
+   "expl": "Hand-sewing thread is three-ply uncoated polyester with a 15-pound tensile strength.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "7951e08911",
+   "q": "Machine sewing thread is typically:",
+   "options": [
+    "Four-ply polyester with a 10-pound tensile strength",
+    "Three-ply cotton with a 15-pound strength",
+    "Single-ply nylon with a 5-pound strength"
+   ],
+   "correct": 0,
+   "short": "Machine thread: 4-ply, 10 lb.",
+   "expl": "Machine thread is typically four-ply polyester with a 10-pound tensile strength. Sewing thread is used to make pre-fitted envelopes.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Tapes & Cords",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "3705197df1",
+   "q": "Which covering method uses multiple flat sections of fabric trimmed and attached to the airframe?",
+   "options": [
+    "The envelope method",
+    "The wet layup method",
+    "The blanket method"
+   ],
+   "correct": 2,
+   "short": "Blanket = multiple flat pieces trimmed and attached.",
+   "expl": "The blanket method trims multiple flat sections of fabric and attaches them to the airframe with approved adhesives, following the rules of the covering process.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Covering Methods",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "3e0bcb5c00",
+   "q": "Which covering method saves time with precut, pre-sewn fabric?",
+   "options": [
+    "The envelope method",
+    "The blanket method",
+    "The compression method"
+   ],
+   "correct": 0,
+   "short": "Envelope = precut + pre-sewn, saves time.",
+   "expl": "The envelope method uses precut, pre-sewn envelopes that slide over the structure. They must be sewn with approved machine thread, edge distance and fabric fold, and they are also attached with adhesives.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Covering Methods",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "efbcafb9d5",
+   "q": "In BOTH the blanket and envelope methods, the fabric is:",
+   "options": [
+    "Adhered to the airframe with approved adhesives",
+    "Only sewn, never glued",
+    "Riveted to the ribs"
+   ],
+   "correct": 0,
+   "short": "Both methods: approved adhesives.",
+   "expl": "In all cases, blanket or envelope, the fabric is adhered to the airframe with the approved adhesives for that covering process.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Covering Methods",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "eea4244cf3",
+   "q": "When the rib-lace knot used by the original manufacturer is NOT known, which knot is used?",
+   "options": [
+    "The modified seine knot",
+    "A square knot only",
+    "A granny knot"
+   ],
+   "correct": 0,
+   "short": "Unknown original knot → modified seine knot.",
+   "expl": "AC 43.13-1B (note to Figure 2-4) says that when the original manufacturer's rib-lace knot is not known, use the modified seine knot shown in Figures 2-4 through 2-9c.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 2, Fig. 2-4 note",
+   "topic": "Lacing & Stitches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "8bd0c5a50f",
+   "q": "Repairing an L-shaped tear in fabric (AC 43.13-1B Fig. 2-13): where do you start sewing?",
+   "options": [
+    "At the point (the corner) of the L",
+    "At the far end of the longest leg",
+    "Anywhere, as long as it ends at the corner"
+   ],
+   "correct": 0,
+   "short": "L-shaped tear: start sewing at the point.",
+   "expl": "Figure 2-13 marks it plainly: \"start sewing at the point.\" You work out from the corner along each leg.",
+   "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13",
+   "topic": "Lacing & Stitches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "f47b4a2d36",
+   "q": "Which stitch is used to sew up a tear in fabric?",
+   "options": [
+    "The blanket stitch",
+    "The baseball stitch",
+    "The chain stitch"
+   ],
+   "correct": 1,
+   "short": "Tears are closed with a baseball stitch.",
+   "expl": "Figure 2-13 shows tears closed with the baseball stitch. The AC allows plain overthrow or baseball stitches.",
+   "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13",
+   "topic": "Lacing & Stitches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "88b03dad77",
+   "q": "How often is a hand-sewn tear repair locked?",
+   "options": [
+    "Only once, at the very end",
+    "Every 50 stitches",
+    "With a half hitch at least every 10 stitches, ending with a double half-hitch knot"
+   ],
+   "correct": 2,
+   "short": "Lock every 10 stitches max; end with a double half hitch.",
+   "expl": "Figure 2-13: lock the stitching with a half hitch every 10 stitches maximum, and lock the end with a double half-hitch knot.",
+   "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13 & Par. 2-7",
+   "topic": "Lacing & Stitches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "6705c8fa05",
+   "q": "What is the maximum stitch spacing on a tear repair?",
+   "options": [
+    "1/4 inch",
+    "1 inch",
+    "1/2 inch"
+   ],
+   "correct": 0,
+   "short": "Stitch spacing: 1/4\" max (1/4\" min edge distance).",
+   "expl": "Figure 2-13 calls for 1/4-inch maximum stitch spacing and at least 1/4 inch from the edge of the tear.",
+   "cite": "Class slide IMG_2408; AC 43.13-1B, Ch. 2, Fig. 2-13",
+   "topic": "Lacing & Stitches",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "1febccb7f3",
+   "q": "Re-covering an aircraft with fabric (for example, replacing cotton with polyester) is:",
+   "options": [
+    "A major repair or alteration, and a Form 337 is executed",
+    "A minor repair with a logbook entry only",
+    "Preventive maintenance the pilot may perform"
+   ],
+   "correct": 0,
+   "short": "Re-cover = major repair/alteration → Form 337.",
+   "expl": "Fabric re-covering is a major repair or alteration. A Form 337 is executed whenever an aircraft is re-covered, and replacing cotton with polyester is a major alteration.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; 14 CFR Part 43, App. A",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "e8e4930808",
+   "q": "For a fabric re-cover alteration to be legal, the Form 337 must be:",
+   "options": [
+    "Approved, with an IA available to approve it and return the aircraft to service",
+    "Mailed after the first flight",
+    "Signed by the pilot only"
+   ],
+   "correct": 0,
+   "short": "337 must be approved (IA returns to service).",
+   "expl": "A properly executed Form 337 also has to be approved for the alteration to be legal. The notes say to have your local IA available during the process to approve the 337 and return the aircraft to service.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "5ff4e6f99f",
+   "q": "How often must fabric strength be checked?",
+   "options": [
+    "At every 100-hour and annual inspection",
+    "Only when the aircraft is re-covered",
+    "Every 5 years"
+   ],
+   "correct": 0,
+   "short": "Fabric strength: every 100-hour and annual.",
+   "expl": "The notes say fabric strength must be determined at every 100-hour and annual inspection.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "dcf0adae4f",
+   "q": "Fabric becomes UNAIRWORTHY when its breaking strength falls below what percentage of new fabric required for the aircraft?",
+   "options": [
+    "90 percent",
+    "70 percent (30 percent deficient)",
+    "50 percent"
+   ],
+   "correct": 1,
+   "short": "Below 70% of new = unairworthy.",
+   "expl": "Fabric is airworthy until it deteriorates to a breaking strength below 70 percent of the new fabric required for the aircraft. Below that, it is unairworthy. Example: Grade-A cotton is 80 lb new, so it is unairworthy below 56 lb. Your notes say \"airworthy\" here; the FAA text says unairworthy.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3 (Fabric Strength); AC 43.13-1B, Par. 2-33a",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "d9df9b8dcb",
+   "q": "What do the notes say about the Maule and Seyboth fabric testers?",
+   "options": [
+    "They are used to tighten fabric",
+    "They are not FAA approved",
+    "They are the only FAA-required test"
+   ],
+   "correct": 1,
+   "short": "Maule and Seyboth testers: not FAA approved.",
+   "expl": "The notes say the Maule and Seyboth punch testers are not FAA approved. The handbook adds that they were designed for cotton and linen, not modern polyester (Dacron), so they only help the mechanic judge strength.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "2eb1ed8ca5",
+   "q": "What is the MOST COMMON reason to re-cover an aircraft?",
+   "options": [
+    "Deterioration of the strength of the existing fabric",
+    "A change of paint color",
+    "Adding a new radio"
+   ],
+   "correct": 0,
+   "short": "#1 reason to re-cover = fabric strength deterioration.",
+   "expl": "The notes say the most common reason to re-cover is deterioration of the strength of the present fabric.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "7108e3031b",
+   "q": "Grommets in aircraft fabric are used to:",
+   "options": [
+    "Hold inspection plates closed",
+    "Create reinforced drain holes, and are usually made of aluminum or plastic",
+    "Attach the fabric to the spar"
+   ],
+   "correct": 1,
+   "short": "Grommets = reinforced drain holes; aluminum or plastic.",
+   "expl": "Grommets create reinforced drain holes in the fabric. They are usually aluminum or plastic and are glued or doped onto the fabric.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; FAA-H-8083-31B, Ch. 3 (Grommets)",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "28908fa2b5",
+   "q": "What rule did class give for making the hole in a PLASTIC grommet?",
+   "options": [
+    "Never use a soldering iron to make the hole",
+    "Always melt it with a soldering iron",
+    "Drill it with a 1-inch bit"
+   ],
+   "correct": 0,
+   "short": "Plastic grommets: never a soldering iron.",
+   "expl": "Class rule: never use a soldering iron to create the hole in a plastic grommet, because it can melt the grommet. The handbook says a hot soldering pencil is often used to cut and seal the fabric, so on the test go with the class rule for plastic grommets.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Regulations & Strength",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "972a0391bf",
+   "q": "Is wood decay ever acceptable?",
+   "options": [
+    "Yes, if it is less than 1 inch",
+    "Yes, if the wood is dried",
+    "Never"
+   ],
+   "correct": 2,
+   "short": "Wood decay = NEVER acceptable.",
+   "expl": "Wood decay is never acceptable. All wood must be free of rot and every other form of decay.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Table 1-1 Notes 2k",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "7b9f6afd07",
+   "q": "What species of wood should be used to repair a wood structure?",
+   "options": [
+    "The same species as the original whenever possible, with permissible substitutes listed in AC 43.13-1B",
+    "Any hardwood available",
+    "Always oak, since it is stronger"
+   ],
+   "correct": 0,
+   "short": "Same species when possible; substitutes per AC 43.13-1B Table 1-1.",
+   "expl": "Repairs should use the same species whenever possible. AC 43.13-1B Table 1-1 lists permissible substitutes such as Douglas fir and noble fir for spruce.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Table 1-1",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "bdf1d3c5af",
+   "q": "A wood structure inspection should begin with:",
+   "options": [
+    "A radiograph of the spars",
+    "An external examination of the aircraft's surface",
+    "Removing all the fabric"
+   ],
+   "correct": 1,
+   "short": "Start with an external exam.",
+   "expl": "Inspection begins with an external examination of the surface. Then access panels are removed.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-29",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "6d87e2ea61",
+   "q": "A musty or moldy smell when access panels are removed indicates:",
+   "options": [
+    "Fungal or mold decay",
+    "Fuel leak",
+    "Fresh glue"
+   ],
+   "correct": 0,
+   "short": "Musty/moldy smell = fungal decay.",
+   "expl": "A musty or moldy smell when you remove access panels indicates fungal or mold decay.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-29",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "74cfe67756",
+   "q": "Which of these are listed in the notes as wood defects NOT permitted?",
+   "options": [
+    "Cross grain, hard knots and spike knots",
+    "Mineral streaks with no decay",
+    "Small pin-knot clusters"
+   ],
+   "correct": 0,
+   "short": "Not permitted: cross grain, hard knots, spike knots.",
+   "expl": "The notes list cross grain, hard knots and spike knots as defects not permitted. Cross grain and hard knots are allowed only within the AC limits; spike knots are always rejected.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Table 1-1 Notes 2",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "81f3e01cf2",
+   "q": "Replacing a wood spar (including with a substitute wood) is:",
+   "options": [
+    "A major repair",
+    "A minor repair",
+    "Preventive maintenance"
+   ],
+   "correct": 0,
+   "short": "Spar replacement = major repair.",
+   "expl": "Replacing a spar, including one made from a substitute species, is a major repair.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; 14 CFR Part 43, App. A",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "4dc8d533c2",
+   "q": "For glue that must be mixed with water, what water should be used?",
+   "options": [
+    "Clear, cool water",
+    "Hot tap water",
+    "Salt water"
+   ],
+   "correct": 0,
+   "short": "Glue mixing water = clear and cool.",
+   "expl": "The notes say to use clear, cool water with glues that require mixing with water.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "20275ac703",
+   "q": "How should the proportions of glue and solvent be measured?",
+   "options": [
+    "By the weight of each component",
+    "By eye",
+    "By volume in any cup"
+   ],
+   "correct": 0,
+   "short": "Glue proportions = by weight.",
+   "expl": "The proportions of glue and solvent should be determined by the weight of each component.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "f7fdbd6b1c",
+   "q": "Whatever mixing method is used, the glue must be:",
+   "options": [
+    "Thoroughly mixed and free of air bubbles, foam and lumps of insoluble material",
+    "Lightly stirred so air bubbles remain",
+    "Thinned until it runs like water"
+   ],
+   "correct": 0,
+   "short": "Glue: thoroughly mixed, no bubbles, foam or lumps.",
+   "expl": "The glue should be thoroughly mixed and free of air bubbles, foam and lumps of insoluble material.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "3d0f284853",
+   "q": "A satisfactory glue joint in aircraft should:",
+   "options": [
+    "Be about half as strong as the wood",
+    "Develop the full strength of the wood under all conditions of stress",
+    "Be stronger only in compression"
+   ],
+   "correct": 1,
+   "short": "Good glue joint = full wood strength under all stress.",
+   "expl": "Satisfactory glue joints should develop the full strength of the wood under all conditions of stress.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-6",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "0d4b13a946",
+   "q": "To get a full-strength joint, the glue line should be:",
+   "options": [
+    "A thin layer of glue in the joint, contacting both wood surfaces",
+    "A thick layer to fill gaps",
+    "Glue on one surface only"
+   ],
+   "correct": 0,
+   "short": "Thin, continuous glue line touching both surfaces.",
+   "expl": "The gluing conditions should leave a thin layer of glue in the joint, in contact with both surfaces of the wood. Thick glue lines are weak.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-6",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "70d4e45237",
+   "q": "Solid spars may be replaced with laminated spars:",
+   "options": [
+    "Provided the material is of the same quality",
+    "Never",
+    "Only on experimental aircraft"
+   ],
+   "correct": 0,
+   "short": "Solid → laminated OK if same quality.",
+   "expl": "Solid spars may be replaced with laminated spars, or the reverse, provided the material is of the same quality.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-43",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)",
+    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
+   ]
+  },
+  {
+   "id": "bbdb213f1b",
+   "q": "External plywood or solid reinforcements on a spar must:",
+   "options": [
+    "Always be replaced as on the original component",
+    "Be left off to save weight",
+    "Be replaced with aluminum"
+   ],
+   "correct": 0,
+   "short": "Reinforcements: always replaced as original.",
+   "expl": "External reinforcements, plywood or solid, must always be replaced as on the original component.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-43",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "303c57c314",
+   "q": "A spar has elongated bolt holes or cracks near the bolt holes. What is the repair?",
+   "options": [
+    "Splice in a new section of spar or replace the spar entirely",
+    "Drill the holes oversize",
+    "Fill the cracks with glue"
+   ],
+   "correct": 0,
+   "short": "Elongated holes/cracks → splice new section or replace spar.",
+   "expl": "For elongated bolt holes or cracks around them, splice in a new section of spar or replace the spar entirely.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-45",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "7e6e724f74",
+   "q": "If bolt-hole elongation or cracking is minimal and the holes are for non-critical fittings:",
+   "options": [
+    "You may get approval to repair it, for example by laminating a new section of spar",
+    "The spar must always be scrapped",
+    "No approval is ever needed"
+   ],
+   "correct": 0,
+   "short": "Minimal + non-critical → repair may be approved (laminate new section).",
+   "expl": "If elongation or cracking is minimal and the bolt holes are for non-critical fittings, repair instead of replacement may be approved by the manufacturer or the FAA. Laminating the new section of spar is often the better choice.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-45",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
+   "id": "dba1dffa52",
+   "q": "What are the BEST surfaces for gluing solid wood?",
+   "options": [
+    "Sawn surfaces",
+    "Sanded surfaces",
+    "Smooth, even surfaces made on planers and jointers"
+   ],
+   "correct": 2,
+   "short": "Best gluing surfaces: planed/jointed. Sawn surfaces discouraged.",
+   "expl": "Smooth, even surfaces from planers and jointers are best. Sawn surfaces are discouraged because it is hard to produce one free of crushed fibers.",
+   "cite": "AIM AMTBLK 07 Day 3 Class Notes; AC 43.13-1B, Ch. 1, Par. 1-6",
+   "topic": "Wood Review",
+   "block": "Block 7",
+   "sources": [
+    "Block 7 · Day 3 — Fabric Covering (+ Wood Review)"
+   ]
+  },
+  {
    "id": "63d822be98",
    "q": "What are the names of the four types of plywood patches?",
    "options": [
@@ -72601,24 +73701,6 @@
    "expl": "Sound, hard knots up to 3/8 inch (0.375 inch) in maximum diameter are acceptable, provided they meet the other location limits in the AC. 0.40 inch is over the limit.",
    "cite": "AC 43.13-1B, Ch. 1, Par. 1-2, Table 1-2 (Hard knots); FAA-H-8083-31B, Ch. 6",
    "topic": "Wood Defects",
-   "block": "Block 7",
-   "sources": [
-    "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
-   ]
-  },
-  {
-   "id": "70d4e45237",
-   "q": "Solid spars may be replaced with laminated spars:",
-   "options": [
-    "Never",
-    "provided the material is of the same high quality.",
-    "But not vice versa"
-   ],
-   "correct": 1,
-   "short": "Solid ↔ laminated spars are interchangeable if the material is the same high quality.",
-   "expl": "The AC says solid spars may be replaced with laminated spars, or the reverse, as long as the material is of the same high quality. So it works both ways, not \"never\" and not one-way only.",
-   "cite": "AC 43.13-1B, Ch. 1, Par. 1-43 (Replacing Solid-Type Spars with Laminated-Type Spars)",
-   "topic": "Structures",
    "block": "Block 7",
    "sources": [
     "Block 7 · QZ 01 AMT BLK 07 (Wood Structures)"
