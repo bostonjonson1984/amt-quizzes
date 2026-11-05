@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block 7 · QZ 03 AMT BLK 07 (Fabric Covering &amp; Paint)</title>
+<style>
+  :root{
+    --navy:#0d2a4a; --navy2:#15436e; --gold:#ffce4d; --ink:#1c2330;
+    --green:#1f9d57; --greenbg:#e7f7ee; --red:#d6453d; --redbg:#fdecea;
+    --line:#e3e8f0; --muted:#5a6678; --card:#ffffff; --bg:#eef2f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:0 16px env(safe-area-inset-bottom);
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto;}
+  .backlink{display:inline-block; margin:14px 0 0; color:var(--navy2); font-size:13px;
+            font-weight:700; text-decoration:none; opacity:.85;}
+  .backlink:hover{opacity:1; text-decoration:underline;}
+
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:10; background:var(--bg); padding:14px 0 8px;}
+  .barrow{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-weight:600;}
+  .score{color:var(--navy);}
+  .prog{height:8px; background:#dbe3ee; border-radius:6px; margin-top:8px; overflow:hidden;}
+  .progfill{height:100%; width:0; background:linear-gradient(90deg,var(--navy2),var(--gold)); transition:width .35s ease;}
+
+  /* card */
+  .card{background:var(--card); border-radius:14px; padding:22px 20px 20px; margin-top:14px;
+        box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .tag{display:inline-block; background:#eef2f8; color:var(--navy2); font-size:10.5px; font-weight:800;
+       letter-spacing:.5px; padding:3px 9px; border-radius:11px; text-transform:uppercase;}
+  .qfig{border:1px solid var(--line); border-radius:10px; background:#fbfcfd;
+        padding:10px 8px 6px; margin:12px 0 2px; text-align:center;}
+  .qfig svg{max-width:100%; height:auto;}
+  .missitem .qfig{padding:6px; margin:8px 0 6px;}
+  .missitem .qfig svg{max-width:150px; max-height:90px;}
+  .stem{font-size:19px; line-height:1.42; font-weight:600; margin:12px 0 18px; color:#0d1b2a;}
+
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left;
+       background:#f7f9fc; border:1.5px solid var(--line); border-radius:11px;
+       padding:14px 15px; font-size:16px; line-height:1.35; cursor:pointer;
+       transition:border-color .12s, background .12s, transform .05s; color:var(--ink);}
+  .opt:hover:not(.locked){border-color:var(--navy2); background:#fff;}
+  .opt:active:not(.locked){transform:scale(.995);}
+  .opt .L{flex:0 0 26px; height:26px; border-radius:50%; background:#e6ecf4; color:var(--navy);
+          font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .opt .T{flex:1; padding-top:2px;}
+  .opts.locked .opt{cursor:default;}
+  .opt.correct{border-color:var(--green); background:var(--greenbg);}
+  .opt.correct .L{background:var(--green); color:#fff;}
+  .opt.wrong{border-color:var(--red); background:var(--redbg);}
+  .opt.picked{border-color:var(--navy2); background:#e8f0fb;}
+  .opt.picked .L{background:var(--navy2); color:#fff;}
+  .multihint{font-size:13px; font-weight:700; color:#b0261d; margin:-8px 0 12px;}
+  .checkbtn{margin-top:12px; width:100%;}
+  .opt.wrong .L{background:var(--red); color:#fff;}
+  .opt .mark{margin-left:auto; font-weight:800; font-size:15px; align-self:center;}
+  .opt.correct .mark{color:var(--green);}
+  .opt.wrong .mark{color:var(--red);}
+
+  /* feedback */
+  .fb{margin-top:16px; border-radius:11px; padding:15px 16px; display:none;}
+  .fb.show{display:block; animation:rise .25s ease;}
+  @keyframes rise{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .fb.ok{background:var(--greenbg); border:1px solid #b9e6cb;}
+  .fb.no{background:var(--redbg); border:1px solid #f3c6c2;}
+  .fb .verdict{font-weight:800; font-size:15px; margin-bottom:5px;}
+  .fb.ok .verdict{color:var(--green);}
+  .fb.no .verdict{color:var(--red);}
+  .fb .ans{font-weight:700; margin-bottom:6px;}
+  .fb .expl{font-size:14.5px; line-height:1.5; color:#27313f;}
+  .fb .cite{margin-top:9px; font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .nav{display:flex; gap:10px; margin:16px 0 26px;}
+  .btn{flex:1; border:none; border-radius:11px; padding:15px; font-size:16px; font-weight:700;
+       cursor:pointer; font-family:inherit;}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.primary:hover{background:var(--navy2);}
+  .btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .btn:disabled{opacity:.4; cursor:default;}
+  .hint{text-align:center; font-size:12px; color:var(--muted); margin:-12px 0 22px;}
+
+  /* start + results screens */
+  .screen{background:var(--card); border-radius:16px; padding:30px 24px; margin-top:22px; text-align:center;
+          box-shadow:0 6px 22px rgba(13,42,74,.08);}
+  .screen h1{font-size:24px; margin:0 0 6px; color:var(--navy);}
+  .screen .sub{color:var(--muted); font-size:14px; margin-bottom:22px; line-height:1.45;}
+  .bigscore{font-size:60px; font-weight:800; color:var(--navy); line-height:1; margin:8px 0;}
+  .bigscore small{font-size:22px; color:var(--muted); font-weight:600;}
+  .pct{font-size:17px; font-weight:700; margin-bottom:18px;}
+  .pass{color:var(--green);} .fail{color:var(--red);}
+  .opt.toggle{justify-content:center; cursor:pointer; font-weight:600; max-width:320px; margin:0 auto 18px;}
+  .opt.toggle.on{border-color:var(--navy2); background:#eef4fb;}
+  .misslist{text-align:left; margin-top:6px;}
+  .missitem{border-left:3px solid var(--red); background:#fff6f5; border-radius:6px; padding:11px 13px; margin-bottom:10px;}
+  .missitem .mq{font-weight:600; font-size:14.5px; margin-bottom:5px;}
+  .missitem .ma{font-size:13.5px; color:#27313f;} .missitem .mc{font-size:12px; color:var(--muted); font-style:italic; margin-top:4px;}
+  .allright{font-size:16px; color:var(--green); font-weight:700; margin:14px 0;}
+  details.drill{margin:18px 0 4px; text-align:left;}
+  details.drill summary{cursor:pointer; font-weight:700; color:var(--navy); font-size:15px; padding:8px 0;}
+  .drillrow{border-bottom:1px solid var(--line); padding:9px 2px; font-size:13.5px;}
+  .drillrow b{color:var(--navy2);}
+  .foot{text-align:center; color:#9aa6b8; font-size:11px; margin:10px 0 26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="backlink">← All quizzes</a>
+
+  <!-- START -->
+  <div id="start" class="screen">
+    <h1>Block 7 · QZ 03 AMT BLK 07 (Fabric Covering &amp; Paint)</h1>
+    <div class="sub">The exact 20-question AIM QZ 03 for Block 7: fabric standards, covering methods, rib lacing, fabric repairs, fungicide, paint components, primers, stripping and surface prep. Questions and choices are word-for-word and in the SAME ORDER as the real form. Every answer cites AC 43.13-1B or FAA-H-8083-31B.</div>
+    <div id="startmeta" class="sub"></div>
+    <div class="nav" style="max-width:320px;margin:0 auto;">
+      <button class="btn primary" onclick="QUIZ.start()">Start Quiz →</button>
+    </div>
+    <div class="hint">Tip: press A–D (or 1–4) to answer, Enter for next.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" style="display:none;">
+    <div class="bar">
+      <div class="barrow"><span id="counter">Q1</span><span class="score" id="scorelbl">Score 0/0</span></div>
+      <div class="prog"><div class="progfill" id="progfill"></div></div>
+    </div>
+    <div id="cardmount"></div>
+    <div class="nav">
+      <button class="btn ghost" id="skipbtn" onclick="QUIZ.next(true)">Skip</button>
+      <button class="btn primary" id="nextbtn" onclick="QUIZ.next()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="screen" style="display:none;"></div>
+
+  <div class="foot">amt-tutor · Matt's Agency · offline study quiz</div>
+</div>
+
+<script>
+const DATA  = [{"fixed": true, "q": "All fabrics used to cover an aircraft, should conform to", "options": ["TSO-C14b or TSO-C15d.", "MS20426", "AC43.13-1b table 1-1"], "correct": 0, "short": "Fabric must meet TSO-C15d (Grade A) or TSO-C14b (intermediate).", "expl": "Aircraft fabric is held to Technical Standard Orders: TSO-C15d for Grade A fabric and TSO-C14b for intermediate-grade fabric. Polyester fabrics must meet the same criteria. MS20426 is a countersunk rivet. AC 43.13-1B Table 1-1 is the wood species table.", "cite": "AC 43.13-1B, Ch. 2, Par. 2-4; FAA-H-8083-31B, Ch. 3 (Aircraft Fabric Covering) (Fabric Terms/Standards)", "topic": "Fabric Standards", "fig": ""}, {"fixed": true, "q": "The envelope method is one method of wing covering. The other is", "options": ["The sheet method", "The blanket method", "The layer method"], "correct": 1, "short": "Two covering methods: envelope and blanket.", "expl": "Fabric goes on by either the envelope method (precut, pre-sewn sleeves) or the blanket method (flat pieces trimmed and attached to the airframe).", "cite": "FAA-H-8083-31B, Ch. 3 (Aircraft Fabric Covering) (Blanket and Envelope Methods)", "topic": "Covering Methods", "fig": ""}, {"fixed": true, "q": "What type of knot is used when starting the process of rib lacing?", "options": ["The start knot", "Seine knot", "The square knot"], "correct": 2, "short": "Rib lacing starts with a square knot (half hitch each side).", "expl": "Rib lacing is started with a square knot with a half hitch on each side. After that comes a series of modified seine knots until the final knot.", "cite": "FAA-H-8083-31B, Ch. 3 (Aircraft Fabric Covering) (Rib Lacing, Fig. 3-28)", "topic": "Rib Lacing", "fig": ""}, {"fixed": true, "q": "When the type of rib lacing used by the manufacturer is unknown use:", "options": ["the modified seine knot", "the square knot", "the box not"], "correct": 0, "short": "Original knot unknown → modified seine knot.", "expl": "The note with AC 43.13-1B Figure 2-4 says that when the rib-lace knot used by the original manufacturer is not known, use the modified seine knot shown in Figures 2-4 through 2-9c.", "cite": "AC 43.13-1B, Ch. 2, Fig. 2-4 note", "topic": "Rib Lacing", "fig": ""}, {"fixed": true, "q": "The condition of fabric covering must be inspected:", "options": ["Every two years", "biannually", "every 100 hr or annual inspection"], "correct": 2, "short": "Fabric condition: every 100-hour and annual.", "expl": "The condition of the fabric covering must be determined on every 100-hour and annual inspection, because fabric strength is a definite factor in airworthiness.", "cite": "AC 43.13-1B, Ch. 2, Par. 2-33a", "topic": "Inspection", "fig": ""}, {"fixed": true, "q": "A fungicide is added:", "options": ["to the last coat of dope to protect polyester fabric.", "To the first coat of dope to protect organic fabrics from decay", "To improve adhesion to the fabric"], "correct": 1, "short": "Fungicide goes in the FIRST coat of dope, for organic (cotton/linen) fabric.", "expl": "Cotton and linen are organic and can rot. The AC recommends adding a fungicide to the first coat of dope so it soaks into the fabric. Polyester is synthetic and doesn't decay, and a fungicide in the last coat would never reach the fabric.", "cite": "AC 43.13-1B, Ch. 2, Par. 2-21 (fungicide in first coat of dope)", "topic": "Dope & Finish", "fig": ""}, {"fixed": true, "q": "The stitch used in repairing tears is:", "options": ["A machine stitch", "A half hitch", "A baseball stitch"], "correct": 2, "short": "Tears are sewn with a baseball stitch.", "expl": "AC 43.13-1B Figure 2-13 shows tears closed by hand with a baseball stitch, locked with a half hitch at least every 10 stitches. A half hitch is the lock, not the stitch.", "cite": "AC 43.13-1B, Ch. 2, Fig. 2-13 & Par. 2-43", "topic": "Fabric Repairs", "fig": ""}, {"fixed": true, "q": "A sewn-in repair patch may be used if the damage is:", "options": ["longer than 16” in any one direction and the VNE is greater than 150 mph.", "Less than 8” and the VNE is less than 150", "More than 8” and the VNE is less than 150"], "correct": 0, "short": "Too big or too fast for a doped patch → sewn-in patch.", "expl": "A doped-on patch is only allowed on aircraft with a Vne under 150 mph: up to 8 inches with a 2-inch overlap, or 8 to 16 inches with a larger overlap (Par. 2-45). Both of the other choices are doped-patch cases. Damage over 16 inches, or an aircraft with a Vne above 150 mph, needs a sewn-in patch. Paragraph 2-44c covers exactly that case and calls for 6-inch finishing tape.", "cite": "AC 43.13-1B, Ch. 2, Par. 2-44 (Sewn-Patch Repair) & 2-45 (Doped-On Patch Repair)", "topic": "Fabric Repairs", "fig": ""}, {"fixed": true, "q": "What is one of the names of the repair for damage exceeding 16 inches in any direction?", "options": ["A sewn on patch", "Sewn and finishing tape patch", "Finishing tape patch"], "correct": 1, "short": ">16\" damage = sewn patch + (6\") finishing tape.", "expl": "Damage over 16 inches is beyond any doped-on patch. A new fabric section is sewn in and covered with finishing tape, which must be 6 inches wide when the opening is over 16 inches. That makes it a sewn and finishing tape patch.", "cite": "AC 43.13-1B, Ch. 2, Par. 2-44a & 2-44c", "topic": "Fabric Repairs", "fig": ""}, {"fixed": true, "q": "A Seyboth or Maule fabric testers are the approved ways of testing the strength of aircraft fabric", "options": ["Only during annual and 100 hour inspections", "Never", "Only if the fabric is over a plywood skin"], "correct": 1, "short": "Maule/Seyboth testers are NOT FAA-approved.", "expl": "Seyboth and Maule punch testers are not FAA-approved ways to test fabric strength. They were designed for cotton and linen, not modern polyester, and only help the mechanic judge strength. Only a breaking-strength (pull) test of a fabric sample is accepted.", "cite": "FAA-H-8083-31B, Ch. 3 (Aircraft Fabric Covering) (Fabric Testing Devices); class notes Day 3", "topic": "Inspection", "fig": ""}, {"fixed": true, "q": "The primary objective of any paint finish is to:", "options": ["Provide aircraft identification", "Protect against corrosion", "A personalized appearance"], "correct": 1, "short": "Paint's #1 job = corrosion protection.", "expl": "Appearance and identification matter, but internal and exposed parts are finished first to protect them from corrosion and deterioration.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing)", "topic": "Paint", "fig": ""}, {"fixed": true, "q": "Aircraft paint has three components:", "options": ["Water, dye and solvents", "Resin, pigment and solvents", "Pigment, water and solvents"], "correct": 1, "short": "Paint = resin + pigment + solvents.", "expl": "The handbook says paint has three components: resin as the coating material, pigment for color, and solvents to reduce the mix to a workable viscosity. Water is not one of them.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Finishing Materials)", "topic": "Paint", "fig": ""}, {"fixed": true, "q": "Painting to repair small areas on the airplane is known as", "options": ["Touch-up painting", "Repair painting", "Refinishing"], "correct": 0, "short": "Small-area repaint = touch-up painting.", "expl": "Repainting small damaged areas is touch-up painting. Refinishing means stripping and repainting the whole aircraft or a large area.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Paint Touchup)", "topic": "Paint", "fig": ""}, {"fixed": true, "q": "A heavy duty degreaser suitable for metal preparation and grease removal is:", "options": ["Naphtha", "Acetone", "Paint thinner"], "correct": 1, "short": "Acetone = heavy-duty degreaser.", "expl": "The handbook describes acetone as a heavy-duty degreaser suitable for metal preparation and for removing grease from fabric before doping. It is never used as a dope thinner.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Acetone)", "topic": "Solvents", "fig": ""}, {"fixed": true, "q": "A primer that can be used as a non-sanding primer over bare metal and has good chip Resistance is", "options": ["Epoxy primer", "Grey primer", "Red iron oxide primer"], "correct": 0, "short": "Epoxy = non-sanding primer/sealer over bare metal, good chip resistance.", "expl": "Epoxy can be used as a non-sanding primer and sealer over bare metal. It is softer than urethane, so it has good chip resistance. Red iron oxide is for iron and steel in mild conditions and has limited aviation use.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Primers: Epoxy)", "topic": "Primers", "fig": ""}, {"fixed": true, "q": "A corrosion resistant pigment that can be added to primers made of different resins such as epoxy, polyurethane or alkyd is", "options": ["Urethane", "Iron oxide", "Zinc chromate"], "correct": 2, "short": "Zinc chromate = corrosion-resistant pigment for primers.", "expl": "The handbook defines zinc chromate as a corrosion-resistant pigment that can be added to primers of different resin types, such as epoxy, polyurethane and alkyd. Older zinc chromate is bright yellow.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Primers: Zinc Chromate)", "topic": "Primers", "fig": ""}, {"fixed": true, "q": "A paint stripping method that reduces and may eliminate a majority of environmental pollution problems is known as:", "options": ["Pyrolytic paint removal", "PMB", "Chemical paint stripping"], "correct": 1, "short": "PMB (plastic media blasting) cuts environmental pollution.", "expl": "Plastic media blasting (PMB) is the stripping method the handbook says reduces and may eliminate most of the environmental pollution problems of chemical stripping. It is a dry abrasive blast that uses plastic media instead of sand.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Plastic Media Blasting)", "topic": "Paint Removal", "fig": ""}, {"fixed": true, "q": "Urethane, a two part coating, base and catalyst, produces a", "options": ["High gloss, durable finish", "Suitable base for a wash primer", "A finish that does not require a primer"], "correct": 0, "short": "Two-part urethane → high-gloss, durable finish.", "expl": "Polyurethane is a two-part coating, base plus catalyst. When mixed, it produces a durable, high-gloss finish that resists chemicals and weather. It still needs the proper primer underneath, and a wash primer goes under it, not on top.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Polyurethane)", "topic": "Paint", "fig": ""}, {"fixed": true, "q": "Chemical paint removers are:", "options": ["The most cost effective method of paint removal", "non-toxic and environmentally friendly.", "Toxic and hazardous to the environment"], "correct": 2, "short": "Chemical strippers = toxic and hazardous.", "expl": "Chemical strippers are toxic and hazardous. The handbook notes methylene chloride was declared a Hazardous Air Pollutant by the EPA in 1990, which is why PMB was developed. Strippers require full protective equipment.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Chemical Stripping / Paint Removal)", "topic": "Paint Removal", "fig": ""}, {"fixed": true, "q": "After preparing an aluminum surface to receive paint a “water break test” should be Performed. If water applied to the surface beads up it means:", "options": ["The part is ready for paint", "The surface is contaminated", "You should reapply the alodine"], "correct": 1, "short": "Water beads = surface contaminated (oil/grease).", "expl": "A clean surface is water break free: water forms one unbroken sheet. If the water beads up or breaks apart, oil or grease is still on the surface, and it must be cleaned again before priming.", "cite": "FAA-H-8083-31B, Ch. 8 (Aircraft Painting and Finishing) (Surface Preparation: water break test)", "topic": "Surface Prep", "fig": ""}];
+const DRILL = [];
+const FIXED_ORDER = true;
+
+// Fisher-Yates in place
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// Per-session option shuffle: clone the question, reshuffle its options with a
+// FRESH Math.random(), and recompute `correct` by tracking the correct option's
+// IDENTITY (a flag that travels with the option through the shuffle) — never its
+// old index. So the answer, the highlight, the score and the explanation all still
+// line up, and the layout is impossible to memorize by position.
+function shuffleOpts(q){
+  if(q.fixed || FIXED_ORDER) return q;
+  const pairs=q.options.map((o,i)=>({t:o,c:i===q.correct}));
+  shuffle(pairs);
+  return Object.assign({},q,{options:pairs.map(p=>p.t),correct:pairs.findIndex(p=>p.c)});
+}
+
+const QUIZ = {
+  order:[], i:0, score:0, answered:0, missed:[], session:[],
+
+  init(){
+    document.getElementById('startmeta').innerHTML =
+      '<b>'+DATA.length+'</b> questions &nbsp;·&nbsp; instant feedback &nbsp;·&nbsp; every answer cited'+
+      (FIXED_ORDER
+        ? '<br><span style="font-size:12px">📋 questions &amp; choices appear in the exact order of the real test</span>'
+        : '<br><span style="font-size:12px">🔀 options &amp; question order reshuffle every time you start</span>');
+  },
+
+  // Build a fresh session: every question gets a NEW option order (correct tracked
+  // by identity), and the question order itself is reshuffled. Called on every
+  // start/retake so nothing can be memorized by position. Mid-attempt we never
+  // reshuffle (render reads the frozen session), so a run stays stable.
+  buildSession(){ this.session = DATA.map(shuffleOpts); },
+
+  start(){
+    this.buildSession();
+    this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k));
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('start').style.display='none';
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  retake(missedOnly){
+    this.buildSession();
+    if(missedOnly && this.missed.length){ this.order = FIXED_ORDER ? this.missed.slice().sort((a,b)=>a-b) : shuffle(this.missed.slice()); }
+    else { this.order = FIXED_ORDER ? DATA.map((_,k)=>k) : shuffle(DATA.map((_,k)=>k)); }
+    this.i=0; this.score=0; this.answered=0; this.missed=[];
+    document.getElementById('results').style.display='none';
+    document.getElementById('quiz').style.display='block';
+    this.render();
+  },
+
+  render(){
+    const idx=this.order[this.i], q=this.session[idx];
+    const total=this.order.length;
+    document.getElementById('counter').textContent = 'Q'+(this.i+1)+' of '+total;
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('progfill').style.width = (this.i/total*100)+'%';
+    let opts='';
+    q.options.forEach((o,li)=>{
+      const L='ABCDEFGH'[li];
+      opts += '<button class="opt" data-li="'+li+'" onclick="QUIZ.pick('+li+')">'+
+              '<span class="L">'+L+'</span><span class="T">'+esc(o)+'</span><span class="mark"></span></button>';
+    });
+    document.getElementById('cardmount').innerHTML =
+      '<div class="card"><span class="tag">'+esc(q.topic)+'</span>'+
+      (q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+      '<div class="stem">'+esc(q.q)+'</div>'+
+      (q.multi?'<div class="multihint">Multiple answers — select ALL that apply, then press Check answer.</div>':'')+
+      '<div class="opts" id="opts">'+opts+'</div>'+
+      (q.multi?'<button class="btn primary checkbtn" id="checkbtn" onclick="QUIZ.check()" disabled>Check answer</button>':'')+
+      '<div class="fb" id="fb"></div></div>';
+    document.getElementById('nextbtn').disabled = true;
+    document.getElementById('skipbtn').style.display = '';
+    this.locked=false; this.sel=new Set();
+  },
+
+  pick(li){
+    if(this.locked) return;
+    const idx0=this.order[this.i], q0=this.session[idx0];
+    if(li<0 || li>=q0.options.length) return;
+    if(q0.multi){
+      const b=document.querySelector('#opts .opt[data-li="'+li+'"]');
+      if(this.sel.has(li)){ this.sel.delete(li); b.classList.remove('picked'); }
+      else { this.sel.add(li); b.classList.add('picked'); }
+      document.getElementById('checkbtn').disabled = (this.sel.size===0);
+      return;
+    }
+    this.grade(li);
+  },
+
+  check(){
+    if(this.locked || !this.sel || this.sel.size===0) return;
+    this.grade(null);
+  },
+
+  ansLetters(q){ return q.multi ? q.multi.map(k=>'ABCDEFGH'[k]).join(', ') : 'ABCDEFGH'[q.correct]; },
+
+  grade(li){
+    if(this.locked) return;
+    this.locked=true;
+    const idx=this.order[this.i], q=this.session[idx];
+    const wrapEl=document.getElementById('opts'); wrapEl.classList.add('locked');
+    const btns=wrapEl.querySelectorAll('.opt');
+    const cb=document.getElementById('checkbtn'); if(cb) cb.style.display='none';
+    let ok;
+    if(q.multi){
+      const want=new Set(q.multi);
+      ok = want.size===this.sel.size && [...want].every(k=>this.sel.has(k));
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(want.has(bl)){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        else if(this.sel.has(bl)){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    } else {
+      ok = (li===q.correct);
+      btns.forEach(b=>{
+        const bl=+b.dataset.li;
+        if(bl===q.correct){ b.classList.add('correct'); b.querySelector('.mark').textContent='✓'; }
+        if(bl===li && !ok){ b.classList.add('wrong'); b.querySelector('.mark').textContent='✗'; }
+      });
+    }
+    this.answered++;
+    if(ok) this.score++; else this.missed.push(idx);
+    const fb=document.getElementById('fb');
+    fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML = '<div class="verdict">'+(ok?'✓ Correct':'✗ Incorrect')+'</div>'+
+      '<div class="ans">Answer: '+this.ansLetters(q)+'. '+esc(q.short)+'</div>'+
+      '<div class="expl">'+esc(q.expl)+'</div>'+
+      '<div class="cite">📖 '+esc(q.cite)+'</div>';
+    document.getElementById('scorelbl').textContent = 'Score '+this.score+'/'+this.answered;
+    document.getElementById('nextbtn').disabled = false;
+    document.getElementById('skipbtn').style.display = 'none';
+  },
+
+  next(skip){
+    if(skip && !this.locked){ /* skipped, not answered */ }
+    this.i++;
+    if(this.i >= this.order.length){ this.finish(); return; }
+    this.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+
+  finish(){
+    document.getElementById('quiz').style.display='none';
+    const R=document.getElementById('results');
+    const total=this.answered;
+    const pct = total? Math.round(this.score/total*100):0;
+    const pass = pct>=70;
+    let miss='';
+    if(this.missed.length){
+      miss='<h3 style="text-align:left;font-size:16px;color:var(--navy);margin:22px 0 8px;">Review your '+this.missed.length+' missed:</h3><div class="misslist">';
+      this.missed.forEach(idx=>{ const q=this.session[idx];
+        miss+='<div class="missitem">'+(q.fig?'<div class="qfig">'+q.fig+'</div>':'')+
+              '<div class="mq">'+esc(q.q)+'</div>'+
+              '<div class="ma"><b>'+this.ansLetters(q)+'. '+esc(q.short)+'</b> — '+esc(q.expl)+'</div>'+
+              '<div class="mc">📖 '+esc(q.cite)+'</div></div>';
+      });
+      miss+='</div>';
+    } else {
+      miss='<div class="allright">🎯 Perfect — every question correct!</div>';
+    }
+    let drillHtml='';
+    if(DRILL && DRILL.length){
+      drillHtml='<details class="drill"><summary>📌 High-Yield Drill Box ('+DRILL.length+' must-know facts)</summary>';
+      DRILL.forEach(d=>{ drillHtml+='<div class="drillrow"><b>'+esc(d.label)+':</b> '+esc(d.text)+'</div>'; });
+      drillHtml+='</details>';
+    }
+    R.innerHTML =
+      '<h1>'+(pass?'Nice work 👍':'Keep grinding 💪')+'</h1>'+
+      '<div class="bigscore">'+this.score+'<small>/'+total+'</small></div>'+
+      '<div class="pct '+(pass?'pass':'fail')+'">'+pct+'%  '+(pass?'· passing (≥70%)':'· below 70%')+'</div>'+
+      '<div class="nav" style="max-width:430px;margin:0 auto 4px;">'+
+        '<button class="btn primary" onclick="QUIZ.retake(false)">Retake all</button>'+
+        (this.missed.length?'<button class="btn ghost" onclick="QUIZ.retake(true)">Retake missed only</button>':'')+
+      '</div>'+
+      miss + drillHtml;
+    R.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').style.display==='none') return;
+  const k=e.key.toLowerCase();
+  if(['a','b','c','d','e','f','g','h'].includes(k)) QUIZ.pick('abcdefgh'.indexOf(k));
+  else if(['1','2','3','4','5','6','7','8'].includes(k)) QUIZ.pick(+k-1);
+  else if(e.key==='Enter' && document.getElementById('checkbtn') && !QUIZ.locked) QUIZ.check();
+  else if(e.key==='Enter' && !document.getElementById('nextbtn').disabled) QUIZ.next();
+});
+
+QUIZ.init();
+</script>
+</body>
+</html>
